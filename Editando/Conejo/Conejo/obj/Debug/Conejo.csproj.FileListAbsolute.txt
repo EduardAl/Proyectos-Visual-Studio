@@ -51,3 +51,6 @@ C:\Users\Julissa Aguilar\Documents\Proyecto\PonyJuly\Conejo\Conejo\obj\Debug\Con
 C:\Users\Julissa Aguilar\Documents\Proyecto\PonyJuly\Conejo\Conejo\obj\Debug\Conejo.pdb
 C:\Users\Julissa Aguilar\Documents\Proyecto\PonyJuly\Conejo\Conejo\obj\Debug\Conejo.Nuevo_Ahorro.resources
 C:\Users\Julissa Aguilar\Documents\Proyecto\PonyJuly\Conejo\Conejo\obj\Debug\Conejo.Búsqueda.resources
+C:\Users\User\Source\Repos\Proyectos-Visual-Studio\Editando\Conejo\Conejo\bin\Debug\Conejo.exe.config
+C:\Users\User\Source\Repos\Proyectos-Visual-Studio\Editando\Conejo\Conejo\obj\Debug\Conejo.exe
+C:\Users\User\Source\Repos\Proyectos-Visual-Studio\Editando\Conejo\Conejo\obj\Debug\Conejo.pdb

@@ -26,7 +26,7 @@ namespace Conejo
                     else
                         listaServidores.Add(rowServidor["ServerName"] + "\\" + rowServidor["InstanceName"]);
                 }
-                Globales.Servidor = listaServidores[1];
+                Globales.Servidor = listaServidores[0];
             }
         }
         public bool elegido(int row)
