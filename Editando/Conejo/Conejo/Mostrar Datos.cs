@@ -16,9 +16,9 @@ namespace Conejo
 
         public Mostrar_Datos()
         {
-            conn.conec("sa", "1311");
-#warning Aqui modifique
-            //  conn.conec(Globales.gbUsuario, Globales.gbClave);
+            //            conn.conec("sa", "1311");
+            //#warning Aqui modifique
+            conn.conec(Globales.gbUsuario, Globales.gbClave);
             cn = new SqlConnection(conn.cadena);
             try
             {
