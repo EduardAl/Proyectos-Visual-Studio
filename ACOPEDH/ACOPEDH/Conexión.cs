@@ -9,7 +9,7 @@ namespace ACOPEDH
 {
     class Conexión
     {
-        public string servidor = Globales.Servidor;
+        Servidor server = new Servidor();
         public string usuario = "InicioSesion";
         public string clave = "In112358";
         public string db = "ACOPEDH";
