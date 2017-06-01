@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cifrado.cs" />
+    <Compile Include="Conexión.cs" />
     <Compile Include="Emailsistema.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
