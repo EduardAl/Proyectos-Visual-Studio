@@ -131,6 +131,7 @@ namespace Crear_Base_de_Datos
             String tabla12 = "Create table [dbo].[Pago](" +
                 "[Número][int] identity(1, 1) NOT NULL," +
                 "[id Pago] AS('PA' + right('000' + Convert([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
+                "[Pago] [smallmoney] NOT NULL"+
                 "[Número de Cuota] [int] NOT NULL," +
                 "[Intereses] [smallmoney] NOT NULL," +
                 "[Capital] [smallmoney] NOT NULL," +
