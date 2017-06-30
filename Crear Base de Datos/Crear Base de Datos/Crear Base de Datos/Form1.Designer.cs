@@ -68,6 +68,7 @@
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.BttCrear);
             this.Name = "Principal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Crear Base de Datos";
             this.Load += new System.EventHandler(this.Principal_Load);
             this.ResumeLayout(false);

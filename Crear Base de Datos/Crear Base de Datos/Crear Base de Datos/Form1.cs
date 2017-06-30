@@ -120,36 +120,37 @@ namespace Crear_Base_de_Datos
                 "CONSTRAINT [PK Abono] PRIMARY KEY ([id Abono])," +
                 "CONSTRAINT [FK Abono] FOREIGN KEY ([FK Ahorro])" +
                 "references Ahorro([id Ahorro]))";
-            String tabla11 = "CREATE TABLE [dbo].[Teléfonos](" +
+            String tabla11 = "CREATE TABLE [dbo].[Tipos de Teléfonos](" +
                 "[Número][int] IDENTITY(1, 1) NOT NULL," +
-                "[Id Teléfono]  AS('TF' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
-                "[Teléfono] [varchar](9) NOT NULL," +
-                "[FK Código Asociado] [varchar](5) NOT NULL," +
-                "CONSTRAINT[PK_Teléfonos] PRIMARY KEY ([Id Teléfono])," +
-                "CONSTRAINT [FK Código Asociado] FOREIGN KEY ([FK Código Asociado])" +
-                "references Asociado([Código Asociado]))";
-            String tabla12 = "Create table [dbo].[Pago](" +
+                "[id Tipo de Teléfono]  AS('TF' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
+                "[Tipo de Teléfono] [varchar](50) NOT NULL," +
+                "CONSTRAINT [PK Tipo de Teléfono] PRIMARY KEY ([id Tipo de Teléfono]))";
+            String tabla12 = "CREATE TABLE [dbo].[Contacto](" +
+                "[FK Tipo de Teléfono] [varchar](5) NOT NULL references[Tipos de Teléfonos]([id Tipo de Teléfono])," +
+                "[FK Código Asociado] [varchar](5) NOT NULL references Asociado([Código Asociado]),"+
+                "[Teléfono] [varchar](9) NOT NULL)";
+            String tabla13 = "Create table [dbo].[Pago](" +
                 "[Número][int] identity(1, 1) NOT NULL," +
                 "[id Pago] AS('PA' + right('000' + Convert([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
-                "[Pago] [smallmoney] NOT NULL"+
+                "[Pago] [smallmoney] NOT NULL,"+
                 "[Número de Cuota] [int] NOT NULL," +
                 "[Intereses] [smallmoney] NOT NULL," +
                 "[Capital] [smallmoney] NOT NULL," +
                 "[Saldo] [smallmoney] NOT NULL," +
                 "[Fecha de Pago] [date] NOT NULL," +
                 "CONSTRAINT [PK_Pagos] PRIMARY KEY ([id Pago]))";
-            String tabla13 = "Create table [dbo].[Forma de Pago](" +
+            String tabla14 = "Create table [dbo].[Forma de Pago](" +
                 "[Número] [int] identity(1, 1) NOT NULL," +
                 "[id Forma de Pago] AS('FP' + right('000' + Convert([varchar](3), [Número]), (3))) PERSISTED NOT NULL," +
                 "[Nombre] [varchar](50) NOT NULL unique," +
                 "CONSTRAINT [PK_Forma de Pago] PRIMARY KEY ([id Forma de Pago]))";
-            String tabla14 = "Create table [dbo].[Tipo de Préstamo](" +
+            String tabla15 = "Create table [dbo].[Tipo de Préstamo](" +
                 "[Número] [int] identity(1,1) NOT NULL," +
                 "[id Tipo de Préstamo] AS('TP' + right('000'+Convert([varchar](3), [Número]), (3))) PERSISTED NOT NULL," +
                 "[Tipo de Préstamo] [varchar](50) NOT NULL Unique," +
                 "[Tasa de Interés] [decimal](10, 2) NOT NULL," +
                 "CONSTRAINT [PK_Tipo de Préstamo] PRIMARY KEY ([id Tipo de Préstamo]))";
-            String tabla15 = "Create table [Préstamos](" +
+            String tabla16 = "Create table [Préstamos](" +
                 "[Número] [int] identity(1,1)," +
                 "[id Préstamos] AS('PP-' + right('000000'+Convert([varchar](6), [Número]), (6))) PERSISTED NOT NULL PRIMARY KEY," +
                 "[Código Asociado] [varchar](5) NOT NULL references [Asociado]([Código Asociado])," +
@@ -159,8 +160,9 @@ namespace Crear_Base_de_Datos
                 "[Plazo en Meses] [int] NOT NULL," +
                 "[Cuotas] [int] NOT NULL," +
                 "[Monto del Préstamo] [smallmoney] NOT NULL," +
+                "[Cuota Mensual] [smallmoney] NOT NULL,"+
                 "[Estado] [varchar](10) NOT NULL)";
-            String tabla16 = "Create Table [Información](" +
+            String tabla17 = "Create Table [Información](" +
                 "[id Pago] [varchar](5) references [Pago]([id Pago])NOT NULL," +
                 "[id Préstamo] [varchar](9) references [Préstamos]([id Préstamos])NOT NULL," +
                 "[Mora] [smallmoney]," +
@@ -201,7 +203,9 @@ namespace Crear_Base_de_Datos
                 "to Administrador with grant option " +
                 "grant select, update, references, insert on object :: Aportaciones " +
                 "to Administrador with grant option " +
-                "grant select, update, references, insert on object :: Teléfonos " +
+                "grant select, update, references, insert on object :: [Tipos de Teléfonos] " +
+                "to Administrador with grant option " +
+                "grant select, update, references, insert on object :: [Contacto] " +
                 "to Administrador with grant option " +
                 "grant select, update, references, insert on object :: Usuarios " +
                 "to Administrador with grant option " +
@@ -255,19 +259,20 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd14 = new SqlCommand(tabla14, cnn);
             SqlCommand cmd15 = new SqlCommand(tabla15, cnn);
             SqlCommand cmd16 = new SqlCommand(tabla16, cnn);
-            SqlCommand cmd17 = new SqlCommand(Usuario1, cnn);
-            SqlCommand cmd18 = new SqlCommand(Usuario2, cnn);
-            SqlCommand cmd19 = new SqlCommand(Usuario3, cnn);
-            SqlCommand cmd20 = new SqlCommand(Usuario4, cnn);
-            SqlCommand cmd21 = new SqlCommand(permisosAdministrador, cnn);
-            SqlCommand cmd22 = new SqlCommand(permisosUsuario, cnn);
-            SqlCommand cmd23 = new SqlCommand(permisosInicioSesión, cnn);
-            SqlCommand cmd24 = new SqlCommand(crearusuarios, cnn);
-            SqlCommand cmd25 = new SqlCommand(crearahorros, cnn);
-            SqlCommand cmd26 = new SqlCommand(crearpagos, cnn);
-            SqlCommand cmd27 = new SqlCommand(crearsocios, cnn);
-            SqlCommand cmd28 = new SqlCommand(creartrabajos, cnn);
-            SqlCommand cmd29 = new SqlCommand(crearpréstamos, cnn);
+            SqlCommand cmd17 = new SqlCommand(tabla17, cnn);
+            SqlCommand cmd18 = new SqlCommand(Usuario1, cnn);
+            SqlCommand cmd19 = new SqlCommand(Usuario2, cnn);
+            SqlCommand cmd20 = new SqlCommand(Usuario3, cnn);
+            SqlCommand cmd21 = new SqlCommand(Usuario4, cnn);
+            SqlCommand cmd22 = new SqlCommand(permisosAdministrador, cnn);
+            SqlCommand cmd23 = new SqlCommand(permisosUsuario, cnn);
+            SqlCommand cmd24 = new SqlCommand(permisosInicioSesión, cnn);
+            SqlCommand cmd25 = new SqlCommand(crearusuarios, cnn);
+            SqlCommand cmd26 = new SqlCommand(crearahorros, cnn);
+            SqlCommand cmd27 = new SqlCommand(crearpagos, cnn);
+            SqlCommand cmd28 = new SqlCommand(crearsocios, cnn);
+            SqlCommand cmd29 = new SqlCommand(creartrabajos, cnn);
+            SqlCommand cmd30 = new SqlCommand(crearpréstamos, cnn);
             try
             {
                 //Abrimos la conexión y ejecutamos el comando
@@ -302,6 +307,7 @@ namespace Crear_Base_de_Datos
                 cmd27.ExecuteNonQuery();
                 cmd28.ExecuteNonQuery();
                 cmd29.ExecuteNonQuery();
+                cmd30.ExecuteNonQuery();
                 cnn.Close();
                 MessageBox.Show("Base Creada");
                 this.Close();
