@@ -132,7 +132,7 @@ namespace Crear_Base_de_Datos
                 "[FK Tipo de Teléfono][varchar](5) NOT NULL references [Tipos de Teléfonos]([id Tipo de Teléfono]),"+
                 "CONSTRAINT [PK Teléfono] PRIMARY KEY ([id Teléfono]))";
             String tabla13 = "CREATE TABLE [dbo].[Contacto](" +
-                "[FK Teléfono] [varchar](5) NOT NULL references[Tipos de Teléfonos]([id Tipo de Teléfono])," +
+                "[FK Teléfono] [varchar](5) NOT NULL references[Teléfono]([id Teléfono])," +
                 "[FK Código Asociado] [varchar](5) NOT NULL references Asociado([Código Asociado]))";
             String tabla14 = "Create table [dbo].[Pago](" +
                 "[Número][int] identity(1, 1) NOT NULL," +
