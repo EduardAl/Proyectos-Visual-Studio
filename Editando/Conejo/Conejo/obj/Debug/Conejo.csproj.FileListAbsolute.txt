@@ -70,3 +70,6 @@ C:\Users\User\Source\Repos\Proyectos-Visual-Studio\Editando\Conejo\Conejo\obj\De
 C:\Users\User\Source\Repos\Proyectos-Visual-Studio\Editando\Conejo\Conejo\obj\Debug\Conejo.Properties.Resources.resources
 C:\Users\User\Source\Repos\Proyectos-Visual-Studio\Editando\Conejo\Conejo\obj\Debug\Conejo.Asociado.resources
 C:\Users\User\Source\Repos\Proyectos-Visual-Studio\Editando\Conejo\Conejo\obj\Debug\Conejo.csproj.GenerateResource.Cache
+C:\Users\FATIMA\Source\Repos\Proyectos-Visual-Studio\Editando\Conejo\Conejo\bin\Debug\Conejo.exe.config
+C:\Users\FATIMA\Source\Repos\Proyectos-Visual-Studio\Editando\Conejo\Conejo\obj\Debug\Conejo.exe
+C:\Users\FATIMA\Source\Repos\Proyectos-Visual-Studio\Editando\Conejo\Conejo\obj\Debug\Conejo.pdb
