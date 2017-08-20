@@ -77,6 +77,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(981, 42);
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             this.pictureBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.pictureBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
@@ -85,11 +86,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Gotham Narrow Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(206, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(646, 46);
+            this.label1.Size = new System.Drawing.Size(873, 58);
             this.label1.TabIndex = 2;
             this.label1.Text = "Asociación Cooperativa de Ahorro, Crédito y Consumo del Personal de la \r\nProcurad" +
     "uría para la Defensa de los Derechos Humanos";
@@ -100,7 +101,7 @@
             this.PInicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(182)))), ((int)(((byte)(11)))));
             this.PInicio.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PInicio.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.PInicio.Font = new System.Drawing.Font("Linotte-Bold", 12.5F);
+            this.PInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F);
             this.PInicio.ForeColor = System.Drawing.Color.Black;
             this.PInicio.Location = new System.Drawing.Point(31, 217);
             this.PInicio.Name = "PInicio";
@@ -116,7 +117,7 @@
             this.PAhorros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
             this.PAhorros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PAhorros.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.PAhorros.Font = new System.Drawing.Font("Linotte-Bold", 12.5F);
+            this.PAhorros.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F);
             this.PAhorros.ForeColor = System.Drawing.Color.Black;
             this.PAhorros.Location = new System.Drawing.Point(31, 281);
             this.PAhorros.Name = "PAhorros";
@@ -132,7 +133,7 @@
             this.PPréstamos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
             this.PPréstamos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PPréstamos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.PPréstamos.Font = new System.Drawing.Font("Linotte-Bold", 12.5F);
+            this.PPréstamos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F);
             this.PPréstamos.ForeColor = System.Drawing.Color.Black;
             this.PPréstamos.Location = new System.Drawing.Point(31, 345);
             this.PPréstamos.Name = "PPréstamos";
@@ -148,7 +149,7 @@
             this.PAsociados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
             this.PAsociados.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PAsociados.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.PAsociados.Font = new System.Drawing.Font("Linotte-Bold", 12.5F);
+            this.PAsociados.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F);
             this.PAsociados.ForeColor = System.Drawing.Color.Black;
             this.PAsociados.Location = new System.Drawing.Point(31, 409);
             this.PAsociados.Name = "PAsociados";
@@ -164,7 +165,7 @@
             this.PConfiguración.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
             this.PConfiguración.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PConfiguración.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.PConfiguración.Font = new System.Drawing.Font("Linotte-Bold", 12.5F);
+            this.PConfiguración.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F);
             this.PConfiguración.ForeColor = System.Drawing.Color.Black;
             this.PConfiguración.Location = new System.Drawing.Point(31, 473);
             this.PConfiguración.Name = "PConfiguración";
@@ -180,7 +181,7 @@
             this.PEstadoAsociación.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
             this.PEstadoAsociación.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PEstadoAsociación.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.PEstadoAsociación.Font = new System.Drawing.Font("Linotte-Bold", 12.5F);
+            this.PEstadoAsociación.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F);
             this.PEstadoAsociación.ForeColor = System.Drawing.Color.Black;
             this.PEstadoAsociación.Location = new System.Drawing.Point(31, 537);
             this.PEstadoAsociación.Name = "PEstadoAsociación";
@@ -196,7 +197,7 @@
             this.PCerrarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
             this.PCerrarSesion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.PCerrarSesion.Font = new System.Drawing.Font("Linotte-Bold", 12.5F);
+            this.PCerrarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F);
             this.PCerrarSesion.ForeColor = System.Drawing.Color.Black;
             this.PCerrarSesion.Location = new System.Drawing.Point(31, 601);
             this.PCerrarSesion.Name = "PCerrarSesion";
@@ -279,7 +280,7 @@
             "Código Asociado"});
             this.cbBúsqueda.Location = new System.Drawing.Point(405, 141);
             this.cbBúsqueda.Name = "cbBúsqueda";
-            this.cbBúsqueda.Size = new System.Drawing.Size(184, 27);
+            this.cbBúsqueda.Size = new System.Drawing.Size(184, 33);
             this.cbBúsqueda.TabIndex = 22;
             this.cbBúsqueda.Visible = false;
             this.cbBúsqueda.SelectedIndexChanged += new System.EventHandler(this.cbBúsqueda_SelectedIndexChanged);
@@ -290,7 +291,7 @@
             this.lab1.BackColor = System.Drawing.Color.Transparent;
             this.lab1.Location = new System.Drawing.Point(257, 144);
             this.lab1.Name = "lab1";
-            this.lab1.Size = new System.Drawing.Size(83, 19);
+            this.lab1.Size = new System.Drawing.Size(107, 25);
             this.lab1.TabIndex = 21;
             this.lab1.Text = "Búsqueda:";
             this.lab1.Visible = false;
@@ -301,7 +302,7 @@
             this.labBuscar.BackColor = System.Drawing.Color.Transparent;
             this.labBuscar.Location = new System.Drawing.Point(257, 174);
             this.labBuscar.Name = "labBuscar";
-            this.labBuscar.Size = new System.Drawing.Size(83, 19);
+            this.labBuscar.Size = new System.Drawing.Size(107, 25);
             this.labBuscar.TabIndex = 20;
             this.labBuscar.Text = "Búsqueda:";
             this.labBuscar.Visible = false;
@@ -311,7 +312,7 @@
             this.txtBúsqueda.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBúsqueda.Location = new System.Drawing.Point(405, 174);
             this.txtBúsqueda.Name = "txtBúsqueda";
-            this.txtBúsqueda.Size = new System.Drawing.Size(318, 20);
+            this.txtBúsqueda.Size = new System.Drawing.Size(318, 23);
             this.txtBúsqueda.TabIndex = 19;
             this.txtBúsqueda.Visible = false;
             // 
@@ -397,7 +398,7 @@
             this.Controls.Add(this.bttVerEstados);
             this.Controls.Add(this.bttCrearCuenta);
             this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Principal_P";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
