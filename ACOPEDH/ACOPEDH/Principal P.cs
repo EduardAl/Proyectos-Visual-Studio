@@ -310,9 +310,13 @@ namespace ACOPEDH
         private void pictureBox4_Click(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Maximized)
-                WindowState= FormWindowState.Normal;
+                WindowState = FormWindowState.Normal;
             else
-                WindowState = FormWindowState.Maximized;
+            {
+                // WindowState = FormWindowState.Maximized;
+                Location = new Point(0, 0);
+                Size = new Size(SystemInformation.PrimaryMonitorMaximizedWindowSize.Width-15, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height-15);
+            }
         }
 
         private void Principal_P_SizeChanged(object sender, EventArgs e)
@@ -339,11 +343,7 @@ namespace ACOPEDH
             //  bttRetirar.Location = new Point((dgvBúsqueda.Width/2) - (bttRetirar.Width/2) + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
             Refresh();
         }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void bttOtorgarPréstamo_Click(object sender, EventArgs e)
         {

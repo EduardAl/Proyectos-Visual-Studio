@@ -292,9 +292,10 @@
             // txtBúsqueda
             // 
             this.txtBúsqueda.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtBúsqueda.Font = new System.Drawing.Font("Linotte-Bold", 14F);
             this.txtBúsqueda.Location = new System.Drawing.Point(405, 174);
             this.txtBúsqueda.Name = "txtBúsqueda";
-            this.txtBúsqueda.Size = new System.Drawing.Size(318, 20);
+            this.txtBúsqueda.Size = new System.Drawing.Size(318, 23);
             this.txtBúsqueda.TabIndex = 19;
             this.txtBúsqueda.Visible = false;
             // 
@@ -440,6 +441,7 @@
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(980, 705);
+            this.ControlBox = false;
             this.Controls.Add(this.bttCer);
             this.Controls.Add(this.bttMin);
             this.Controls.Add(this.bttMax);
