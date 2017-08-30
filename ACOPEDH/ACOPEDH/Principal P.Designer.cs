@@ -260,7 +260,7 @@
             "Nombre",
             "DUI",
             "Código Asociado"});
-            this.cbBúsqueda.Location = new System.Drawing.Point(405, 141);
+            this.cbBúsqueda.Location = new System.Drawing.Point(405, 137);
             this.cbBúsqueda.Name = "cbBúsqueda";
             this.cbBúsqueda.Size = new System.Drawing.Size(184, 27);
             this.cbBúsqueda.TabIndex = 22;
@@ -271,7 +271,7 @@
             // 
             this.lab1.AutoSize = true;
             this.lab1.BackColor = System.Drawing.Color.Transparent;
-            this.lab1.Location = new System.Drawing.Point(257, 144);
+            this.lab1.Location = new System.Drawing.Point(257, 140);
             this.lab1.Name = "lab1";
             this.lab1.Size = new System.Drawing.Size(83, 19);
             this.lab1.TabIndex = 21;
@@ -282,7 +282,7 @@
             // 
             this.labBuscar.AutoSize = true;
             this.labBuscar.BackColor = System.Drawing.Color.Transparent;
-            this.labBuscar.Location = new System.Drawing.Point(257, 174);
+            this.labBuscar.Location = new System.Drawing.Point(257, 170);
             this.labBuscar.Name = "labBuscar";
             this.labBuscar.Size = new System.Drawing.Size(83, 19);
             this.labBuscar.TabIndex = 20;
@@ -293,7 +293,7 @@
             // 
             this.txtBúsqueda.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBúsqueda.Font = new System.Drawing.Font("Linotte-Bold", 14F);
-            this.txtBúsqueda.Location = new System.Drawing.Point(405, 174);
+            this.txtBúsqueda.Location = new System.Drawing.Point(405, 170);
             this.txtBúsqueda.Name = "txtBúsqueda";
             this.txtBúsqueda.Size = new System.Drawing.Size(318, 23);
             this.txtBúsqueda.TabIndex = 19;
@@ -354,13 +354,13 @@
             // BarraTítulo
             // 
             this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
-            this.BarraTítulo.Font = new System.Drawing.Font("Linotte-Heavy", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
             this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
             this.BarraTítulo.Name = "BarraTítulo";
             this.BarraTítulo.Size = new System.Drawing.Size(980, 30);
             this.BarraTítulo.TabIndex = 32;
-            this.BarraTítulo.Text = "         ACOPEDH - PRINCIPAL";
+            this.BarraTítulo.Text = "         ACOPEDH .:. PRINCIPAL";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BarraTítulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.BarraTítulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
