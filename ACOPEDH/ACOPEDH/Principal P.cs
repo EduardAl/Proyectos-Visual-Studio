@@ -340,6 +340,11 @@ namespace ACOPEDH
             Refresh();
         }
 
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void bttOtorgarPréstamo_Click(object sender, EventArgs e)
         {
             /*
