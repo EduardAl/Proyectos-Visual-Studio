@@ -12,10 +12,15 @@ namespace ACOPEDH
 {
     public partial class Pagos : Form
     {
+        string Dato;
         public Pagos()
         {
             InitializeComponent();
-            Fonts Y = new Fonts();
+        }
+        public Pagos(string dato)
+        {
+            InitializeComponent();
+            Dato = dato;
         }
 
         private void Pagos_FormClosing(object sender, FormClosingEventArgs e)

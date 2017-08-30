@@ -12,9 +12,15 @@ namespace ACOPEDH
 {
     public partial class Pagos_Realizados : Form
     {
+        string Datos;
         public Pagos_Realizados()
         {
             InitializeComponent();
+        }
+        public Pagos_Realizados(string datos)
+        {
+            InitializeComponent();
+            Datos = datos;
         }
 
         private void Pagos_Realizados_FormClosing(object sender, FormClosingEventArgs e)

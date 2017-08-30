@@ -293,8 +293,51 @@ namespace ACOPEDH
 
         private void Principal_P_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("¿Está seguro que desea salir?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
-                e.Cancel=true;
+            ////if (MessageBox.Show("¿Está seguro que desea salir?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+            ////    e.Cancel=true;
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+                WindowState= FormWindowState.Normal;
+            else
+                WindowState = FormWindowState.Maximized;
+        }
+
+        private void Principal_P_SizeChanged(object sender, EventArgs e)
+        {
+            BarraTítulo.Size = new Size(Width, BarraTítulo.Size.Height);
+            bttCer.Location = new Point(Width - 26, 0);
+            bttMax.Location = new Point(bttCer.Location.X - 26, 0);
+            bttMin.Location = new Point(bttMax.Location.X - 26, 0);
+            //                          Elementos
+            Titulo.Location = new Point((Width / 2) - (Titulo.Width / 2) + 39, Titulo.Location.Y);
+            dgvBúsqueda.Width = Width - dgvBúsqueda.Location.X - 87;
+            dgvBúsqueda.Height = Height - dgvBúsqueda.Location.Y - 116;
+
+            //Botones
+            bttOtorgarPréstamo.Location = new Point(dgvBúsqueda.Width - bttOtorgarPréstamo.Width + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y - bttOtorgarPréstamo.Height - 23);
+            bttCrearCuenta.Location = new Point(dgvBúsqueda.Width - bttCrearCuenta.Width + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y - bttCrearCuenta.Height - 23);
+            bttPagosRealizados.Location = new Point(dgvBúsqueda.Width - bttPagosRealizados.Width + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
+            bttVerEstados.Location = bttPagosRealizados.Location;
+            bttAmortización.Location = new Point(bttPagosRealizados.Location.X-bttAmortización.Width-89, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
+            bttRetirar.Location = bttAmortización.Location;
+            bttRealizarPago.Location = new Point(bttAmortización.Location.X-bttRealizarPago.Width-89, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
+            bttAbonar.Location = bttRealizarPago.Location;
+            //  bttAmortización.Location = new Point((dgvBúsqueda.Width/2) - (bttAmortización.Width/2) + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
+            //  bttRetirar.Location = new Point((dgvBúsqueda.Width/2) - (bttRetirar.Width/2) + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
+            Refresh();
         }
 
         private void bttOtorgarPréstamo_Click(object sender, EventArgs e)

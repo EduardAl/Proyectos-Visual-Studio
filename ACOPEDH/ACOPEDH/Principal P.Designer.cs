@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal_P));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Titulo = new System.Windows.Forms.Label();
             this.PInicio = new System.Windows.Forms.Button();
             this.PAhorros = new System.Windows.Forms.Button();
             this.PPréstamos = new System.Windows.Forms.Button();
@@ -43,7 +43,6 @@
             this.bttAmortización = new System.Windows.Forms.Button();
             this.bttRealizarPago = new System.Windows.Forms.Button();
             this.dgvBúsqueda = new System.Windows.Forms.DataGridView();
-            this.bttOtorgarPréstamo = new System.Windows.Forms.Button();
             this.cbBúsqueda = new System.Windows.Forms.ComboBox();
             this.lab1 = new System.Windows.Forms.Label();
             this.labBuscar = new System.Windows.Forms.Label();
@@ -52,9 +51,19 @@
             this.bttRetirar = new System.Windows.Forms.Button();
             this.bttVerEstados = new System.Windows.Forms.Button();
             this.bttCrearCuenta = new System.Windows.Forms.Button();
+            this.BarraTítulo = new System.Windows.Forms.Label();
+            this.bttCer = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.bttMax = new System.Windows.Forms.PictureBox();
+            this.bttMin = new System.Windows.Forms.PictureBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.bttOtorgarPréstamo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBúsqueda)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttMin)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -68,32 +77,19 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // pictureBox2
+            // Titulo
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(981, 42);
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
-            this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
-            this.pictureBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Gotham Narrow Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(206, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(646, 46);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Asociación Cooperativa de Ahorro, Crédito y Consumo del Personal de la \r\nProcurad" +
+            this.Titulo.AutoSize = true;
+            this.Titulo.BackColor = System.Drawing.Color.Transparent;
+            this.Titulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Titulo.ForeColor = System.Drawing.Color.White;
+            this.Titulo.Location = new System.Drawing.Point(206, 44);
+            this.Titulo.Name = "Titulo";
+            this.Titulo.Size = new System.Drawing.Size(646, 46);
+            this.Titulo.TabIndex = 2;
+            this.Titulo.Text = "Asociación Cooperativa de Ahorro, Crédito y Consumo del Personal de la \r\nProcurad" +
     "uría para la Defensa de los Derechos Humanos";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Titulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // PInicio
             // 
@@ -256,19 +252,6 @@
             this.dgvBúsqueda.TabIndex = 24;
             this.dgvBúsqueda.Visible = false;
             // 
-            // bttOtorgarPréstamo
-            // 
-            this.bttOtorgarPréstamo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttOtorgarPréstamo.Location = new System.Drawing.Point(743, 135);
-            this.bttOtorgarPréstamo.Name = "bttOtorgarPréstamo";
-            this.bttOtorgarPréstamo.Size = new System.Drawing.Size(150, 59);
-            this.bttOtorgarPréstamo.TabIndex = 23;
-            this.bttOtorgarPréstamo.TabStop = false;
-            this.bttOtorgarPréstamo.Text = "Otorgar Préstamo";
-            this.bttOtorgarPréstamo.UseVisualStyleBackColor = true;
-            this.bttOtorgarPréstamo.Visible = false;
-            this.bttOtorgarPréstamo.Click += new System.EventHandler(this.bttOtorgarPréstamo_Click);
-            // 
             // cbBúsqueda
             // 
             this.cbBúsqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -367,17 +350,103 @@
             this.bttCrearCuenta.Visible = false;
             this.bttCrearCuenta.Click += new System.EventHandler(this.bttCrearCuenta_Click);
             // 
+            // BarraTítulo
+            // 
+            this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
+            this.BarraTítulo.Font = new System.Drawing.Font("Linotte-Heavy", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
+            this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
+            this.BarraTítulo.Name = "BarraTítulo";
+            this.BarraTítulo.Size = new System.Drawing.Size(980, 30);
+            this.BarraTítulo.TabIndex = 32;
+            this.BarraTítulo.Text = "         ACOPEDH - PRINCIPAL";
+            this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BarraTítulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            this.BarraTítulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+            this.BarraTítulo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
+            // 
+            // bttCer
+            // 
+            this.bttCer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bttCer.BackColor = System.Drawing.Color.Transparent;
+            this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
+            this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bttCer.Image = ((System.Drawing.Image)(resources.GetObject("bttCer.Image")));
+            this.bttCer.Location = new System.Drawing.Point(951, 0);
+            this.bttCer.Name = "bttCer";
+            this.bttCer.Size = new System.Drawing.Size(30, 26);
+            this.bttCer.TabIndex = 33;
+            this.bttCer.TabStop = false;
+            this.toolTip1.SetToolTip(this.bttCer, "Cerrar");
+            this.bttCer.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Location = new System.Drawing.Point(4, 0);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox3.TabIndex = 34;
+            this.pictureBox3.TabStop = false;
+            // 
+            // bttMax
+            // 
+            this.bttMax.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bttMax.BackColor = System.Drawing.Color.Transparent;
+            this.bttMax.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttMax.BackgroundImage")));
+            this.bttMax.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bttMax.Image = ((System.Drawing.Image)(resources.GetObject("bttMax.Image")));
+            this.bttMax.Location = new System.Drawing.Point(924, 0);
+            this.bttMax.Name = "bttMax";
+            this.bttMax.Size = new System.Drawing.Size(30, 26);
+            this.bttMax.TabIndex = 35;
+            this.bttMax.TabStop = false;
+            this.toolTip1.SetToolTip(this.bttMax, "Maximizar");
+            this.bttMax.Click += new System.EventHandler(this.pictureBox4_Click);
+            // 
+            // bttMin
+            // 
+            this.bttMin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bttMin.BackColor = System.Drawing.Color.Transparent;
+            this.bttMin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttMin.BackgroundImage")));
+            this.bttMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bttMin.Image = ((System.Drawing.Image)(resources.GetObject("bttMin.Image")));
+            this.bttMin.Location = new System.Drawing.Point(898, 0);
+            this.bttMin.Name = "bttMin";
+            this.bttMin.Size = new System.Drawing.Size(30, 26);
+            this.bttMin.TabIndex = 36;
+            this.bttMin.TabStop = false;
+            this.toolTip1.SetToolTip(this.bttMin, "Minimizar");
+            this.bttMin.Click += new System.EventHandler(this.pictureBox5_Click);
+            // 
+            // bttOtorgarPréstamo
+            // 
+            this.bttOtorgarPréstamo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttOtorgarPréstamo.Location = new System.Drawing.Point(743, 135);
+            this.bttOtorgarPréstamo.Name = "bttOtorgarPréstamo";
+            this.bttOtorgarPréstamo.Size = new System.Drawing.Size(150, 59);
+            this.bttOtorgarPréstamo.TabIndex = 23;
+            this.bttOtorgarPréstamo.TabStop = false;
+            this.bttOtorgarPréstamo.Text = "Otorgar Préstamo";
+            this.bttOtorgarPréstamo.UseVisualStyleBackColor = true;
+            this.bttOtorgarPréstamo.Visible = false;
+            this.bttOtorgarPréstamo.Click += new System.EventHandler(this.bttOtorgarPréstamo_Click);
+            // 
             // Principal_P
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(980, 705);
-            this.Controls.Add(this.bttPagosRealizados);
-            this.Controls.Add(this.bttAmortización);
+            this.Controls.Add(this.bttCer);
+            this.Controls.Add(this.bttMin);
+            this.Controls.Add(this.bttMax);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.BarraTítulo);
             this.Controls.Add(this.bttRealizarPago);
             this.Controls.Add(this.dgvBúsqueda);
-            this.Controls.Add(this.bttOtorgarPréstamo);
             this.Controls.Add(this.cbBúsqueda);
             this.Controls.Add(this.lab1);
             this.Controls.Add(this.labBuscar);
@@ -389,24 +458,31 @@
             this.Controls.Add(this.PPréstamos);
             this.Controls.Add(this.PAhorros);
             this.Controls.Add(this.PInicio);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.Titulo);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.bttAbonar);
-            this.Controls.Add(this.bttRetirar);
-            this.Controls.Add(this.bttVerEstados);
+            this.Controls.Add(this.bttOtorgarPréstamo);
             this.Controls.Add(this.bttCrearCuenta);
+            this.Controls.Add(this.bttPagosRealizados);
+            this.Controls.Add(this.bttVerEstados);
+            this.Controls.Add(this.bttAmortización);
+            this.Controls.Add(this.bttRetirar);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Principal_P";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Principal_P";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Principal_P_FormClosing);
             this.Load += new System.EventHandler(this.Principal_P_Load);
+            this.SizeChanged += new System.EventHandler(this.Principal_P_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBúsqueda)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttMin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -415,8 +491,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Titulo;
         private System.Windows.Forms.Button PInicio;
         private System.Windows.Forms.Button PAhorros;
         private System.Windows.Forms.Button PPréstamos;
@@ -428,7 +503,6 @@
         private System.Windows.Forms.Button bttAmortización;
         private System.Windows.Forms.Button bttRealizarPago;
         private System.Windows.Forms.DataGridView dgvBúsqueda;
-        private System.Windows.Forms.Button bttOtorgarPréstamo;
         private System.Windows.Forms.ComboBox cbBúsqueda;
         private System.Windows.Forms.Label lab1;
         private System.Windows.Forms.Label labBuscar;
@@ -437,5 +511,12 @@
         private System.Windows.Forms.Button bttRetirar;
         private System.Windows.Forms.Button bttVerEstados;
         private System.Windows.Forms.Button bttCrearCuenta;
+        private System.Windows.Forms.Label BarraTítulo;
+        private System.Windows.Forms.PictureBox bttCer;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox bttMax;
+        private System.Windows.Forms.PictureBox bttMin;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button bttOtorgarPréstamo;
     }
 }
