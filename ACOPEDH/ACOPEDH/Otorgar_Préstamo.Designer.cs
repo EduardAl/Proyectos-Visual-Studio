@@ -58,13 +58,21 @@
             this.label5 = new System.Windows.Forms.Label();
             this.TxtAsociadoP = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.BarraTítulo = new System.Windows.Forms.Label();
+            this.bttCer = new System.Windows.Forms.PictureBox();
+            this.bttMin = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttMin)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.GridColor = System.Drawing.Color.Silver;
             this.dataGridView1.Location = new System.Drawing.Point(458, 51);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(452, 195);
@@ -80,6 +88,7 @@
             // 
             // CBBusqueda
             // 
+            this.CBBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBBusqueda.FormattingEnabled = true;
             this.CBBusqueda.Location = new System.Drawing.Point(165, 64);
             this.CBBusqueda.Name = "CBBusqueda";
@@ -259,6 +268,7 @@
             // 
             // CBTipoPréstamo
             // 
+            this.CBTipoPréstamo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBTipoPréstamo.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBTipoPréstamo.FormattingEnabled = true;
             this.CBTipoPréstamo.Location = new System.Drawing.Point(450, 94);
@@ -351,6 +361,58 @@
             this.button1.TabIndex = 10;
             this.button1.Text = "ACEPTAR";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Location = new System.Drawing.Point(4, 0);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox3.TabIndex = 36;
+            this.pictureBox3.TabStop = false;
+            // 
+            // BarraTítulo
+            // 
+            this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
+            this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
+            this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
+            this.BarraTítulo.Name = "BarraTítulo";
+            this.BarraTítulo.Size = new System.Drawing.Size(982, 30);
+            this.BarraTítulo.TabIndex = 35;
+            this.BarraTítulo.Text = "         ACOPEDH .:. OTORGAR PRÉSTAMO";
+            this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // bttCer
+            // 
+            this.bttCer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bttCer.BackColor = System.Drawing.Color.Transparent;
+            this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
+            this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bttCer.Image = ((System.Drawing.Image)(resources.GetObject("bttCer.Image")));
+            this.bttCer.Location = new System.Drawing.Point(952, 0);
+            this.bttCer.Name = "bttCer";
+            this.bttCer.Size = new System.Drawing.Size(30, 26);
+            this.bttCer.TabIndex = 37;
+            this.bttCer.TabStop = false;
+            this.bttCer.Click += new System.EventHandler(this.bttCer_Click);
+            // 
+            // bttMin
+            // 
+            this.bttMin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bttMin.BackColor = System.Drawing.Color.Transparent;
+            this.bttMin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttMin.BackgroundImage")));
+            this.bttMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bttMin.Image = ((System.Drawing.Image)(resources.GetObject("bttMin.Image")));
+            this.bttMin.Location = new System.Drawing.Point(922, 0);
+            this.bttMin.Name = "bttMin";
+            this.bttMin.Size = new System.Drawing.Size(30, 26);
+            this.bttMin.TabIndex = 38;
+            this.bttMin.TabStop = false;
+            this.bttMin.Click += new System.EventHandler(this.bttMin_Click);
             // 
             // Otorgar_Préstamo
             // 
@@ -359,7 +421,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(966, 579);
+            this.ClientSize = new System.Drawing.Size(982, 618);
+            this.Controls.Add(this.bttCer);
+            this.Controls.Add(this.bttMin);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.BarraTítulo);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label4);
@@ -373,19 +439,23 @@
             this.Controls.Add(this.dataGridView1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(982, 618);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(982, 618);
             this.Name = "Otorgar_Préstamo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ACOPEDH - OTORGAR PRÉSTAMO";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Otorgar_Préstamo_FormClosing);
             this.Load += new System.EventHandler(this.Otorgar_Préstamo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttMin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -422,6 +492,10 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox TxtAsociadoP;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label BarraTítulo;
+        private System.Windows.Forms.PictureBox bttCer;
+        private System.Windows.Forms.PictureBox bttMin;
     }
 }
 

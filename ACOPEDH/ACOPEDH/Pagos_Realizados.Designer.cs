@@ -44,9 +44,14 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtCuotaMensual = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.BarraTítulo = new System.Windows.Forms.Label();
+            this.bttCer = new System.Windows.Forms.PictureBox();
+            this.bttMin = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttMin)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox2
@@ -191,22 +196,66 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(63, 216);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(793, 377);
             this.dataGridView1.TabIndex = 24;
             // 
-            // pictureBox2
+            // pictureBox3
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(929, 35);
-            this.pictureBox2.TabIndex = 25;
-            this.pictureBox2.TabStop = false;
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Location = new System.Drawing.Point(4, 0);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox3.TabIndex = 38;
+            this.pictureBox3.TabStop = false;
+            // 
+            // BarraTítulo
+            // 
+            this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
+            this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
+            this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
+            this.BarraTítulo.Name = "BarraTítulo";
+            this.BarraTítulo.Size = new System.Drawing.Size(929, 30);
+            this.BarraTítulo.TabIndex = 37;
+            this.BarraTítulo.Text = "         ACOPEDH .:. PAGOS REALIZADOS";
+            this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BarraTítulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            this.BarraTítulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+            this.BarraTítulo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
+            // 
+            // bttCer
+            // 
+            this.bttCer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bttCer.BackColor = System.Drawing.Color.Transparent;
+            this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
+            this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bttCer.Image = ((System.Drawing.Image)(resources.GetObject("bttCer.Image")));
+            this.bttCer.Location = new System.Drawing.Point(899, 0);
+            this.bttCer.Name = "bttCer";
+            this.bttCer.Size = new System.Drawing.Size(30, 26);
+            this.bttCer.TabIndex = 39;
+            this.bttCer.TabStop = false;
+            this.bttCer.Click += new System.EventHandler(this.bttCer_Click);
+            // 
+            // bttMin
+            // 
+            this.bttMin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bttMin.BackColor = System.Drawing.Color.Transparent;
+            this.bttMin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttMin.BackgroundImage")));
+            this.bttMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bttMin.Image = ((System.Drawing.Image)(resources.GetObject("bttMin.Image")));
+            this.bttMin.Location = new System.Drawing.Point(869, 0);
+            this.bttMin.Name = "bttMin";
+            this.bttMin.Size = new System.Drawing.Size(30, 26);
+            this.bttMin.TabIndex = 40;
+            this.bttMin.TabStop = false;
+            this.bttMin.Click += new System.EventHandler(this.bttMin_Click);
             // 
             // Pagos_Realizados
             // 
@@ -215,7 +264,10 @@
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(929, 634);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.bttCer);
+            this.Controls.Add(this.bttMin);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.BarraTítulo);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtCuotaMensual);
@@ -237,12 +289,14 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Pagos_Realizados";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ACOPEDH - PAGOS REALIZADOS";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Pagos_Realizados_FormClosing);
             this.Load += new System.EventHandler(this.Pagos_Realizados_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttMin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,6 +319,9 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtCuotaMensual;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label BarraTítulo;
+        private System.Windows.Forms.PictureBox bttCer;
+        private System.Windows.Forms.PictureBox bttMin;
     }
 }

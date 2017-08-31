@@ -15,6 +15,40 @@ namespace ACOPEDH
         Emailsistema enviarcorreo = new Emailsistema();
         String asunto = "Alerta de inicio de sesión.";
         String mensaje = "Se ha iniciado sesión en su cuenta el día " + DateTime.Now.Date.ToLongDateString() + " a las " + DateTime.Now.ToLongTimeString() + "\n\nSi usted no ha realizado ésta acción se le recomienda cambiar su clave de inicio de sesión.\nÉsto puede hacerlo en la opciones de configuración de su cuenta.\nSi ha sido usted, no realice ninguna acción.\n\n\nÉste correo se ha generado automáticamente, por favor, no responder.\n\nDesarrolladores.";
+        #region Mover Form
+        bool Empezarmover = false;
+        int PosX;
+        int PosY;
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Empezarmover = true;
+                PosX = e.X;
+                PosY = e.Y;
+            }
+        }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Empezarmover = false;
+            }
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Empezarmover)
+            {
+                Point temp = new Point();
+                temp.X = Location.X + (e.X - PosX);
+                temp.Y = Location.Y + (e.Y - PosY);
+                Location = temp;
+            }
+        }
+        #endregion
         public InicioSesión()
         {
             InitializeComponent();

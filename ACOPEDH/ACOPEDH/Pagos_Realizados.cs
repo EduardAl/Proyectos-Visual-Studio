@@ -22,6 +22,40 @@ namespace ACOPEDH
             InitializeComponent();
             Datos = datos;
         }
+        #region Mover Form
+        bool Empezarmover = false;
+        int PosX;
+        int PosY;
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Empezarmover = true;
+                PosX = e.X;
+                PosY = e.Y;
+            }
+        }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Empezarmover = false;
+            }
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Empezarmover)
+            {
+                Point temp = new Point();
+                temp.X = Location.X + (e.X - PosX);
+                temp.Y = Location.Y + (e.Y - PosY);
+                Location = temp;
+            }
+        }
+        #endregion
 
         private void Pagos_Realizados_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -56,7 +90,16 @@ namespace ACOPEDH
 
         private void Pagos_Realizados_Load(object sender, EventArgs e)
         {
+        }
 
+        private void bttMin_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+
+        private void bttCer_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

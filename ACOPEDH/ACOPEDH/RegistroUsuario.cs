@@ -10,6 +10,41 @@ namespace ACOPEDH
         Validaciones validar = new Validaciones();
         Cuentas NewAcount = new Cuentas();
         Emailsistema enviaremail = new Emailsistema();
+        #region Mover Form
+        bool Empezarmover = false;
+        int PosX;
+        int PosY;
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Empezarmover = true;
+                PosX = e.X;
+                PosY = e.Y;
+            }
+        }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Empezarmover = false;
+            }
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Empezarmover)
+            {
+                Point temp = new Point();
+                temp.X = Location.X + (e.X - PosX);
+                temp.Y = Location.Y + (e.Y - PosY);
+                Location = temp;
+            }
+        }
+        #endregion
+
         public RegistroUsuario()
         {
             InitializeComponent();

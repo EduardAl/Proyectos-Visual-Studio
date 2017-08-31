@@ -13,6 +13,7 @@ namespace ACOPEDH
     public partial class Principal_P : Form
     {
         Color Original, Seleccionado;
+        Point Lock;
 
 #region Mover Form
         bool Empezarmover = false;
@@ -58,7 +59,6 @@ namespace ACOPEDH
             cbBúsqueda.SelectedIndex = 0;
             Seleccionado = PInicio.BackColor;
             Original = PPréstamos.BackColor;
-
         }
 
         private void cbBúsqueda_SelectedIndexChanged(object sender, EventArgs e)
@@ -309,13 +309,17 @@ namespace ACOPEDH
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            if (WindowState == FormWindowState.Maximized)
-                WindowState = FormWindowState.Normal;
+            if (Size.Width == SystemInformation.PrimaryMonitorMaximizedWindowSize.Width - 15
+             && Size.Height == SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 15)
+            {
+                Location = Lock;
+                Size = new Size(980, 705);
+            }
             else
             {
-                // WindowState = FormWindowState.Maximized;
+                Lock = Location;
                 Location = new Point(0, 0);
-                Size = new Size(SystemInformation.PrimaryMonitorMaximizedWindowSize.Width-15, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height-15);
+                Size = new Size(SystemInformation.PrimaryMonitorMaximizedWindowSize.Width - 15, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 15);
             }
         }
 
