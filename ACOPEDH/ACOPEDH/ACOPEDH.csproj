@@ -156,7 +156,11 @@
     </Compile>
     <None Include="Resources\Folks-Light.ttf" />
     <None Include="Resources\GothamNarrow-Medium.otf" />
+    <None Include="Resources\Linotte Bold.otf" />
+    <None Include="Resources\Linotte Heavy.otf" />
     <None Include="Resources\Linotte Light.otf" />
+    <None Include="Resources\Linotte Regular.otf" />
+    <None Include="Resources\Linotte Semi Bold.otf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
