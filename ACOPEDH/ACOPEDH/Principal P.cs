@@ -53,18 +53,19 @@ namespace ACOPEDH
         {
             InitializeComponent();
         }
-
         private void Principal_P_Load(object sender, EventArgs e)
         {
             cbBúsqueda.SelectedIndex = 0;
             Seleccionado = PInicio.BackColor;
             Original = PPréstamos.BackColor;
         }
-
         private void cbBúsqueda_SelectedIndexChanged(object sender, EventArgs e)
         {
             labBuscar.Text = cbBúsqueda.Text+":";
+            txtBúsqueda.Clear();
+            txtBúsqueda.Focus();
         }
+
         /*
             *********************************
             *      Botones Principales      *
@@ -77,7 +78,6 @@ namespace ACOPEDH
             //Colorear
             PInicio.BackColor = Seleccionado;
         }
-               
         private void PAhorros_Click(object sender, EventArgs e)
         {
             Ocultar();
@@ -95,7 +95,6 @@ namespace ACOPEDH
             bttVerEstados.Visible = true;
             bttCrearCuenta.Visible = true;
         }
-
         private void PPréstamos_Click(object sender, EventArgs e)
         {
             Ocultar();
@@ -113,60 +112,40 @@ namespace ACOPEDH
             bttPagosRealizados.Visible = true;
             bttRealizarPago.Visible = true;
         }
-
         private void PAsociados_Click(object sender, EventArgs e)
         {
             Ocultar();
             //Colorear
             PAsociados.BackColor = Seleccionado;
-        }
 
+            //Mostrando
+            lab1.Visible = true;
+            labBuscar.Visible = true;
+            cbBúsqueda.Visible = true;
+            txtBúsqueda.Visible = true;
+            dgvBúsqueda.Visible = true;
+            bttNuevoAsociado.Visible = true;
+            bttDatosAsociado.Visible = true;
+            bttAportaciones.Visible = true;
+        }
         private void PConfiguración_Click(object sender, EventArgs e)
         {
             Ocultar();
             //Colorear
             PConfiguración.BackColor = Seleccionado;
         }
-
         private void PEstadoAsociación_Click(object sender, EventArgs e)
         {
             Ocultar();
             //Colorear
             PEstadoAsociación.BackColor = Seleccionado;
         }
-
         private void PCerrarSesion_Click(object sender, EventArgs e)
         {
             Close();
         }
 #warning Elegir si cambiar a groupbox
-        public void Ocultar()
-        {
-            //Colorear
-            PInicio.BackColor = Original;
-            PAhorros.BackColor = Original;
-            PPréstamos.BackColor = Original;
-            PAsociados.BackColor = Original;
-            PConfiguración.BackColor = Original;
-            PEstadoAsociación.BackColor = Original;
-
-            //Búsqueda
-            lab1.Visible = false;
-            labBuscar.Visible = false;
-            cbBúsqueda.Visible = false;
-            txtBúsqueda.Visible = false;
-            dgvBúsqueda.Visible = false;
-
-            //Botones
-            bttAmortización.Visible = false;
-            bttOtorgarPréstamo.Visible = false;
-            bttPagosRealizados.Visible = false;
-            bttRealizarPago.Visible = false;
-            bttAbonar.Visible = false;
-            bttRetirar.Visible = false;
-            bttVerEstados.Visible = false;
-            bttCrearCuenta.Visible = false;
-        }
+     
         #endregion
 #warning Modificando tener una opción seleccionada
       
@@ -197,13 +176,43 @@ namespace ACOPEDH
             }
             return DialogResult == DialogResult.OK ? Datos : "";
         }
+        public void Ocultar()
+        {
+            //Colorear
+            PInicio.BackColor = Original;
+            PAhorros.BackColor = Original;
+            PPréstamos.BackColor = Original;
+            PAsociados.BackColor = Original;
+            PConfiguración.BackColor = Original;
+            PEstadoAsociación.BackColor = Original;
 
+            //Búsqueda
+            lab1.Visible = false;
+            labBuscar.Visible = false;
+            cbBúsqueda.Visible = false;
+            txtBúsqueda.Visible = false;
+            dgvBúsqueda.Visible = false;
+
+            //Botones
+            bttAmortización.Visible = false;
+            bttOtorgarPréstamo.Visible = false;
+            bttPagosRealizados.Visible = false;
+            bttRealizarPago.Visible = false;
+            bttAbonar.Visible = false;
+            bttRetirar.Visible = false;
+            bttVerEstados.Visible = false;
+            bttCrearCuenta.Visible = false;
+            bttAportaciones.Visible = false;
+            bttNuevoAsociado.Visible = false;
+            bttDatosAsociado.Visible = false;
+        }
         /*
            *********************************
            *      Botones Secundarios      *
            ********************************* 
        */
-#region Botones
+        #region Botones
+        //Acciones
         private void bttAbonar_Click(object sender, EventArgs e)
         {
             /*
@@ -290,65 +299,6 @@ namespace ACOPEDH
            }
             */
         }
-
-        private void Principal_P_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            ////if (MessageBox.Show("¿Está seguro que desea salir?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
-            ////    e.Cancel=true;
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-            if (Size.Width == SystemInformation.PrimaryMonitorMaximizedWindowSize.Width - 15
-             && Size.Height == SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 15)
-            {
-                Location = Lock;
-                Size = new Size(980, 705);
-            }
-            else
-            {
-                Lock = Location;
-                Location = new Point(0, 0);
-                Size = new Size(SystemInformation.PrimaryMonitorMaximizedWindowSize.Width - 15, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 15);
-            }
-        }
-
-        private void Principal_P_SizeChanged(object sender, EventArgs e)
-        {
-            BarraTítulo.Size = new Size(Width, BarraTítulo.Size.Height);
-            bttCer.Location = new Point(Width - 26, 0);
-            bttMax.Location = new Point(bttCer.Location.X - 26, 0);
-            bttMin.Location = new Point(bttMax.Location.X - 26, 0);
-            //                          Elementos
-            Titulo.Location = new Point((Width / 2) - (Titulo.Width / 2) + 39, Titulo.Location.Y);
-            dgvBúsqueda.Width = Width - dgvBúsqueda.Location.X - 87;
-            dgvBúsqueda.Height = Height - dgvBúsqueda.Location.Y - 116;
-
-            //Botones
-            bttOtorgarPréstamo.Location = new Point(dgvBúsqueda.Width - bttOtorgarPréstamo.Width + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y - bttOtorgarPréstamo.Height - 23);
-            bttCrearCuenta.Location = new Point(dgvBúsqueda.Width - bttCrearCuenta.Width + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y - bttCrearCuenta.Height - 23);
-            bttPagosRealizados.Location = new Point(dgvBúsqueda.Width - bttPagosRealizados.Width + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
-            bttVerEstados.Location = bttPagosRealizados.Location;
-            bttAmortización.Location = new Point(bttPagosRealizados.Location.X-bttAmortización.Width-89, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
-            bttRetirar.Location = bttAmortización.Location;
-            bttRealizarPago.Location = new Point(bttAmortización.Location.X-bttRealizarPago.Width-89, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
-            bttAbonar.Location = bttRealizarPago.Location;
-            //  bttAmortización.Location = new Point((dgvBúsqueda.Width/2) - (bttAmortización.Width/2) + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
-            //  bttRetirar.Location = new Point((dgvBúsqueda.Width/2) - (bttRetirar.Width/2) + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
-            Refresh();
-        }
-        
-
         private void bttOtorgarPréstamo_Click(object sender, EventArgs e)
         {
             /*
@@ -356,6 +306,64 @@ namespace ACOPEDH
             Accion.ShowDialog();
             */
         }
-#endregion
+        //Barta Título
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            if (Size.Width == SystemInformation.PrimaryMonitorMaximizedWindowSize.Width - 15
+             && Size.Height == SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 15)
+            {
+                Location = Lock;
+                Size = new Size(980, 705);
+                toolTip1.SetToolTip(bttMax, "Maximizar");
+            }
+            else
+            {
+                Lock = Location;
+                Location = new Point(0, 0);
+                Size = new Size(SystemInformation.PrimaryMonitorMaximizedWindowSize.Width - 15, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 15);
+                toolTip1.SetToolTip(bttMax, "Restaurar a tamaño normal");
+            }
+        }
+      
+        #endregion
+        private void Principal_P_SizeChanged(object sender, EventArgs e)
+        {
+            BarraTítulo.Size = new Size(Width, BarraTítulo.Size.Height);
+            bttCer.Location = new Point(Width - 26, 0);
+            bttMax.Location = new Point(bttCer.Location.X - 26, 0);
+            bttMin.Location = new Point(bttMax.Location.X - 26, 0);
+            //                          Elementos
+            Titulo.Location = new Point((Width / 2) - (Titulo.Width / 2) + 93, Titulo.Location.Y);
+            dgvBúsqueda.Width = Width - dgvBúsqueda.Location.X - 87;
+            dgvBúsqueda.Height = Height - dgvBúsqueda.Location.Y - 116;
+
+            //Botones
+            bttOtorgarPréstamo.Location = new Point(dgvBúsqueda.Width - bttOtorgarPréstamo.Width + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y - bttOtorgarPréstamo.Height - 23);
+            bttCrearCuenta.Location = bttOtorgarPréstamo.Location;
+            bttNuevoAsociado.Location = bttOtorgarPréstamo.Location;
+            bttPagosRealizados.Location = new Point(dgvBúsqueda.Width - bttPagosRealizados.Width + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
+            bttVerEstados.Location = bttPagosRealizados.Location;
+            bttAportaciones.Location = bttPagosRealizados.Location;
+            bttAmortización.Location = new Point(bttPagosRealizados.Location.X - bttAmortización.Width - 89, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
+            bttRetirar.Location = bttAmortización.Location;
+            bttDatosAsociado.Location = bttAmortización.Location;
+            bttRealizarPago.Location = new Point(bttAmortización.Location.X - bttRealizarPago.Width - 89, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
+            bttAbonar.Location = bttRealizarPago.Location;
+            Refresh();
+        }
+        private void Principal_P_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ////if (MessageBox.Show("¿Está seguro que desea salir?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+            ////    e.Cancel=true;
+        }
+
     }
 }

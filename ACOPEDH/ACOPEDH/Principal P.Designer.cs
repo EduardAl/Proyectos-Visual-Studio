@@ -58,6 +58,9 @@
             this.bttMin = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.bttOtorgarPréstamo = new System.Windows.Forms.Button();
+            this.bttNuevoAsociado = new System.Windows.Forms.Button();
+            this.bttAportaciones = new System.Windows.Forms.Button();
+            this.bttDatosAsociado = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBúsqueda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
@@ -73,7 +76,7 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Location = new System.Drawing.Point(29, 45);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(152, 135);
+            this.pictureBox1.Size = new System.Drawing.Size(165, 144);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -83,7 +86,7 @@
             this.Titulo.BackColor = System.Drawing.Color.Transparent;
             this.Titulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Titulo.ForeColor = System.Drawing.Color.White;
-            this.Titulo.Location = new System.Drawing.Point(206, 44);
+            this.Titulo.Location = new System.Drawing.Point(260, 44);
             this.Titulo.Name = "Titulo";
             this.Titulo.Size = new System.Drawing.Size(646, 46);
             this.Titulo.TabIndex = 2;
@@ -212,6 +215,7 @@
             this.bttPagosRealizados.TabIndex = 27;
             this.bttPagosRealizados.TabStop = false;
             this.bttPagosRealizados.Text = "Pagos Realizados";
+            this.toolTip1.SetToolTip(this.bttPagosRealizados, "Ver los pagos realizados del préstamo seleccionado");
             this.bttPagosRealizados.UseVisualStyleBackColor = true;
             this.bttPagosRealizados.Visible = false;
             this.bttPagosRealizados.Click += new System.EventHandler(this.bttPagosRealizados_Click);
@@ -225,6 +229,7 @@
             this.bttAmortización.TabIndex = 26;
             this.bttAmortización.TabStop = false;
             this.bttAmortización.Text = "Amortización";
+            this.toolTip1.SetToolTip(this.bttAmortización, "Ver la amortización del préstamo seleccionado");
             this.bttAmortización.UseVisualStyleBackColor = true;
             this.bttAmortización.Visible = false;
             this.bttAmortización.Click += new System.EventHandler(this.bttAmortización_Click);
@@ -238,6 +243,7 @@
             this.bttRealizarPago.TabIndex = 25;
             this.bttRealizarPago.TabStop = false;
             this.bttRealizarPago.Text = "Realizar Pago";
+            this.toolTip1.SetToolTip(this.bttRealizarPago, "Pagar una cuota de un préstamo activo");
             this.bttRealizarPago.UseVisualStyleBackColor = true;
             this.bttRealizarPago.Visible = false;
             this.bttRealizarPago.Click += new System.EventHandler(this.bttRealizarPago_Click);
@@ -264,6 +270,7 @@
             this.cbBúsqueda.Name = "cbBúsqueda";
             this.cbBúsqueda.Size = new System.Drawing.Size(184, 27);
             this.cbBúsqueda.TabIndex = 22;
+            this.toolTip1.SetToolTip(this.cbBúsqueda, "Filtrar por");
             this.cbBúsqueda.Visible = false;
             this.cbBúsqueda.SelectedIndexChanged += new System.EventHandler(this.cbBúsqueda_SelectedIndexChanged);
             // 
@@ -308,6 +315,7 @@
             this.bttAbonar.TabIndex = 28;
             this.bttAbonar.TabStop = false;
             this.bttAbonar.Text = "Abonar";
+            this.toolTip1.SetToolTip(this.bttAbonar, "Abonar efectivo a la cuenta de ahorro seleccionada");
             this.bttAbonar.UseVisualStyleBackColor = true;
             this.bttAbonar.Visible = false;
             this.bttAbonar.Click += new System.EventHandler(this.bttAbonar_Click);
@@ -321,6 +329,7 @@
             this.bttRetirar.TabIndex = 29;
             this.bttRetirar.TabStop = false;
             this.bttRetirar.Text = "Retirar";
+            this.toolTip1.SetToolTip(this.bttRetirar, "Retirar efectivo de la cuenta de ahorro seleccionada");
             this.bttRetirar.UseVisualStyleBackColor = true;
             this.bttRetirar.Visible = false;
             this.bttRetirar.Click += new System.EventHandler(this.bttRetirar_Click);
@@ -334,6 +343,7 @@
             this.bttVerEstados.TabIndex = 30;
             this.bttVerEstados.TabStop = false;
             this.bttVerEstados.Text = "Ver Estados de Cuentas";
+            this.toolTip1.SetToolTip(this.bttVerEstados, "Ver el estado de cuenta del ahorro seleccionado");
             this.bttVerEstados.UseVisualStyleBackColor = true;
             this.bttVerEstados.Visible = false;
             this.bttVerEstados.Click += new System.EventHandler(this.bttVerEstados_Click);
@@ -347,6 +357,7 @@
             this.bttCrearCuenta.TabIndex = 31;
             this.bttCrearCuenta.TabStop = false;
             this.bttCrearCuenta.Text = "Crear Cuenta";
+            this.toolTip1.SetToolTip(this.bttCrearCuenta, "Registrar una nueva cuenta de ahorro para una persona asociada activa");
             this.bttCrearCuenta.UseVisualStyleBackColor = true;
             this.bttCrearCuenta.Visible = false;
             this.bttCrearCuenta.Click += new System.EventHandler(this.bttCrearCuenta_Click);
@@ -431,9 +442,49 @@
             this.bttOtorgarPréstamo.TabIndex = 23;
             this.bttOtorgarPréstamo.TabStop = false;
             this.bttOtorgarPréstamo.Text = "Otorgar Préstamo";
+            this.toolTip1.SetToolTip(this.bttOtorgarPréstamo, "Registrar un nuevo préstamo para una persona asociada activa");
             this.bttOtorgarPréstamo.UseVisualStyleBackColor = true;
             this.bttOtorgarPréstamo.Visible = false;
             this.bttOtorgarPréstamo.Click += new System.EventHandler(this.bttOtorgarPréstamo_Click);
+            // 
+            // bttNuevoAsociado
+            // 
+            this.bttNuevoAsociado.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttNuevoAsociado.Location = new System.Drawing.Point(743, 135);
+            this.bttNuevoAsociado.Name = "bttNuevoAsociado";
+            this.bttNuevoAsociado.Size = new System.Drawing.Size(150, 59);
+            this.bttNuevoAsociado.TabIndex = 37;
+            this.bttNuevoAsociado.TabStop = false;
+            this.bttNuevoAsociado.Text = "Nueva Persona Asociada";
+            this.toolTip1.SetToolTip(this.bttNuevoAsociado, "Registrar una persona asociada");
+            this.bttNuevoAsociado.UseVisualStyleBackColor = true;
+            this.bttNuevoAsociado.Visible = false;
+            // 
+            // bttAportaciones
+            // 
+            this.bttAportaciones.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttAportaciones.Location = new System.Drawing.Point(743, 607);
+            this.bttAportaciones.Name = "bttAportaciones";
+            this.bttAportaciones.Size = new System.Drawing.Size(150, 59);
+            this.bttAportaciones.TabIndex = 38;
+            this.bttAportaciones.TabStop = false;
+            this.bttAportaciones.Text = "Aportaciones";
+            this.toolTip1.SetToolTip(this.bttAportaciones, "Ver aportaciones del usuario seleccionado");
+            this.bttAportaciones.UseVisualStyleBackColor = true;
+            this.bttAportaciones.Visible = false;
+            // 
+            // bttDatosAsociado
+            // 
+            this.bttDatosAsociado.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttDatosAsociado.Location = new System.Drawing.Point(504, 607);
+            this.bttDatosAsociado.Name = "bttDatosAsociado";
+            this.bttDatosAsociado.Size = new System.Drawing.Size(150, 59);
+            this.bttDatosAsociado.TabIndex = 39;
+            this.bttDatosAsociado.TabStop = false;
+            this.bttDatosAsociado.Text = "Datos del Asociado";
+            this.toolTip1.SetToolTip(this.bttDatosAsociado, "Ver los datos del asociado seleccionado");
+            this.bttDatosAsociado.UseVisualStyleBackColor = true;
+            this.bttDatosAsociado.Visible = false;
             // 
             // Principal_P
             // 
@@ -447,7 +498,6 @@
             this.Controls.Add(this.bttMax);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.BarraTítulo);
-            this.Controls.Add(this.bttRealizarPago);
             this.Controls.Add(this.dgvBúsqueda);
             this.Controls.Add(this.cbBúsqueda);
             this.Controls.Add(this.lab1);
@@ -463,19 +513,24 @@
             this.Controls.Add(this.Titulo);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.bttAbonar);
-            this.Controls.Add(this.bttOtorgarPréstamo);
-            this.Controls.Add(this.bttCrearCuenta);
-            this.Controls.Add(this.bttPagosRealizados);
             this.Controls.Add(this.bttVerEstados);
-            this.Controls.Add(this.bttAmortización);
             this.Controls.Add(this.bttRetirar);
+            this.Controls.Add(this.bttDatosAsociado);
+            this.Controls.Add(this.bttAportaciones);
+            this.Controls.Add(this.bttRealizarPago);
+            this.Controls.Add(this.bttAmortización);
+            this.Controls.Add(this.bttPagosRealizados);
+            this.Controls.Add(this.bttCrearCuenta);
+            this.Controls.Add(this.bttNuevoAsociado);
+            this.Controls.Add(this.bttOtorgarPréstamo);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(980, 705);
             this.Name = "Principal_P";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Principal_P";
+            this.Text = "ACOPEDH - PRINCIPAL";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Principal_P_FormClosing);
             this.Load += new System.EventHandler(this.Principal_P_Load);
             this.SizeChanged += new System.EventHandler(this.Principal_P_SizeChanged);
@@ -520,5 +575,8 @@
         private System.Windows.Forms.PictureBox bttMin;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button bttOtorgarPréstamo;
+        private System.Windows.Forms.Button bttNuevoAsociado;
+        private System.Windows.Forms.Button bttAportaciones;
+        private System.Windows.Forms.Button bttDatosAsociado;
     }
 }
