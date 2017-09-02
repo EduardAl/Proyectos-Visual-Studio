@@ -55,9 +55,10 @@
             this.linkLabel3.AutoSize = true;
             this.linkLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel3.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel3.Location = new System.Drawing.Point(194, 288);
+            this.linkLabel3.Location = new System.Drawing.Point(259, 354);
+            this.linkLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(118, 17);
+            this.linkLabel3.Size = new System.Drawing.Size(138, 20);
             this.linkLabel3.TabIndex = 57;
             this.linkLabel3.TabStop = true;
             this.linkLabel3.Text = "Crear una cuenta";
@@ -72,25 +73,25 @@
             this.linkLabel4.AutoSize = true;
             this.linkLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel4.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel4.Location = new System.Drawing.Point(159, 257);
+            this.linkLabel4.Location = new System.Drawing.Point(212, 316);
+            this.linkLabel4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(189, 17);
+            this.linkLabel4.Size = new System.Drawing.Size(222, 20);
             this.linkLabel4.TabIndex = 56;
             this.linkLabel4.TabStop = true;
             this.linkLabel4.Text = "¿Ha olvidado la contraseña?";
             // 
             // btningresar
             // 
-            this.btningresar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btningresar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btningresar.AutoSize = true;
             this.btningresar.BackColor = System.Drawing.SystemColors.ControlDark;
             this.btningresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btningresar.ForeColor = System.Drawing.Color.Black;
-            this.btningresar.Location = new System.Drawing.Point(212, 207);
+            this.btningresar.Location = new System.Drawing.Point(277, 405);
+            this.btningresar.Margin = new System.Windows.Forms.Padding(4);
             this.btningresar.Name = "btningresar";
-            this.btningresar.Size = new System.Drawing.Size(107, 47);
+            this.btningresar.Size = new System.Drawing.Size(143, 58);
             this.btningresar.TabIndex = 55;
             this.btningresar.TabStop = false;
             this.btningresar.Text = "Ingresar";
@@ -104,9 +105,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(224, 69);
+            this.label5.Location = new System.Drawing.Point(299, 85);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 23);
+            this.label5.Size = new System.Drawing.Size(80, 29);
             this.label5.TabIndex = 54;
             this.label5.Text = "Correo";
             // 
@@ -117,9 +119,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(204, 133);
+            this.label2.Location = new System.Drawing.Point(272, 164);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 23);
+            this.label2.Size = new System.Drawing.Size(126, 29);
             this.label2.TabIndex = 53;
             this.label2.Text = "Contraseña";
             // 
@@ -132,10 +135,11 @@
             this.ttpass.BackColor = System.Drawing.Color.Gainsboro;
             this.ttpass.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ttpass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ttpass.Location = new System.Drawing.Point(122, 159);
+            this.ttpass.Location = new System.Drawing.Point(163, 196);
+            this.ttpass.Margin = new System.Windows.Forms.Padding(4);
             this.ttpass.Name = "ttpass";
             this.ttpass.PasswordChar = '⚫';
-            this.ttpass.Size = new System.Drawing.Size(263, 19);
+            this.ttpass.Size = new System.Drawing.Size(351, 23);
             this.ttpass.TabIndex = 52;
             this.ttpass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -150,9 +154,10 @@
             this.txtCorreo.BackColor = System.Drawing.Color.Gainsboro;
             this.txtCorreo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCorreo.Location = new System.Drawing.Point(122, 95);
+            this.txtCorreo.Location = new System.Drawing.Point(163, 117);
+            this.txtCorreo.Margin = new System.Windows.Forms.Padding(4);
             this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.Size = new System.Drawing.Size(263, 19);
+            this.txtCorreo.Size = new System.Drawing.Size(351, 23);
             this.txtCorreo.TabIndex = 51;
             this.txtCorreo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCorreo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtCorreo_KeyUp);
@@ -168,9 +173,10 @@
             this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
             this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.bttCer.Image = ((System.Drawing.Image)(resources.GetObject("bttCer.Image")));
-            this.bttCer.Location = new System.Drawing.Point(478, 0);
+            this.bttCer.Location = new System.Drawing.Point(637, 115);
+            this.bttCer.Margin = new System.Windows.Forms.Padding(4);
             this.bttCer.Name = "bttCer";
-            this.bttCer.Size = new System.Drawing.Size(30, 26);
+            this.bttCer.Size = new System.Drawing.Size(40, 32);
             this.bttCer.TabIndex = 61;
             this.bttCer.TabStop = false;
             // 
@@ -179,9 +185,10 @@
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(4, 0);
+            this.pictureBox3.Location = new System.Drawing.Point(5, 0);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox3.Size = new System.Drawing.Size(40, 37);
             this.pictureBox3.TabIndex = 60;
             this.pictureBox3.TabStop = false;
             // 
@@ -191,8 +198,9 @@
             this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
             this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
+            this.BarraTítulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.BarraTítulo.Name = "BarraTítulo";
-            this.BarraTítulo.Size = new System.Drawing.Size(509, 30);
+            this.BarraTítulo.Size = new System.Drawing.Size(679, 37);
             this.BarraTítulo.TabIndex = 59;
             this.BarraTítulo.Text = "         ACOPEDH .:. INICIO DE SESIÓN";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -202,9 +210,9 @@
             // 
             // InicioSesión
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 375);
+            this.ClientSize = new System.Drawing.Size(677, 693);
             this.Controls.Add(this.bttCer);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.BarraTítulo);
@@ -216,10 +224,9 @@
             this.Controls.Add(this.ttpass);
             this.Controls.Add(this.txtCorreo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "InicioSesión";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "InicioSesión";
             this.Load += new System.EventHandler(this.InicioSesión_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();

@@ -9,13 +9,11 @@ namespace ACOPEDH
 
     public partial class InicioSesión : Form
     {
-        public static string MiServidor;
-        Validaciones validar = new Validaciones();
-        Cuentas cuenta = new Cuentas();
-        Conexión con = new Conexión();
-        Emailsistema enviarcorreo = new Emailsistema();
-        String asunto = "Alerta de inicio de sesión.";
-        String mensaje = "Se ha iniciado sesión en su cuenta el día " + DateTime.Now.Date.ToLongDateString() + " a las " + DateTime.Now.ToLongTimeString() + "\n\nSi usted no ha realizado ésta acción se le recomienda cambiar su clave de inicio de sesión.\nÉsto puede hacerlo en la opciones de configuración de su cuenta.\nSi ha sido usted, no realice ninguna acción.\n\n\nÉste correo se ha generado automáticamente, por favor, no responder.\n\nDesarrolladores.";
+       
+        public InicioSesión()
+        {
+            InitializeComponent();
+        }
         #region Mover Form
         bool Empezarmover = false;
         int PosX;
@@ -50,16 +48,28 @@ namespace ACOPEDH
             }
         }
         #endregion
-        public InicioSesión()
-        {
-            InitializeComponent();
-        }
+        public static string MiServidor;
+        Validaciones validar;
+        Cuentas cuenta;
+        Conexión con;
+        //Emailsistema enviarcorreo = new Emailsistema();
+        String asunto = "Alerta de inicio de sesión.";
+        String mensaje = "Se ha iniciado sesión en su cuenta el día " + DateTime.Now.Date.ToLongDateString() + " a las " + DateTime.Now.ToLongTimeString() + "\n\nSi usted no ha realizado ésta acción se le recomienda cambiar su clave de inicio de sesión.\nÉsto puede hacerlo en la opciones de configuración de su cuenta.\nSi ha sido usted, no realice ninguna acción.\n\n\nÉste correo se ha generado automáticamente, por favor, no responder.\n\nDesarrolladores.";
+       
         private void InicioSesión_Load(object sender, EventArgs e)
         {
-            Servidor s = new Servidor();
+
+            this.Visible = false;
+            this.MaximumSize = new Size(677, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35);
+            this.Height = SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35;
+            this.Visible = true;
+            CenterToScreen();
         }
         private void btningresar_Click_1(object sender, EventArgs e)
         {
+            validar = new Validaciones();
+            cuenta = new Cuentas();
+            con = new Conexión();
             if (
             validar.IsNullOrEmty(ref txtCorreo, ref errorProvider1) &&
             validar.IsNullOrEmty(ref ttpass, ref errorProvider1)

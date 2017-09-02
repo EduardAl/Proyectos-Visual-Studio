@@ -569,7 +569,7 @@ namespace Crear_Base_de_Datos
                 "CREATE LOGIN Master_ACOPEDH " +
                 "WITH PASSWORD = 'AUREO112358' " +
                 "USE "+txtNombre.Text+";" +
-                "CREATE USER Master FOR LOGIN Master_ACOPEDH ";
+                "CREATE USER Master_ACOPEDH FOR LOGIN Master_ACOPEDH ";
             String Usuario2 =
                 "CREATE LOGIN Administrador " +
                 "WITH PASSWORD = 'ACOPEDH365' " +
@@ -643,7 +643,7 @@ namespace Crear_Base_de_Datos
             String crearpréstamos =
                 "insert into [Tipo de Préstamo] values ('Personal',17),('Emergencia',17)";
             String insertartiposdetransacciones =
-                "insert into [Tipo de Transacción] values ('Pago'),('Abono'), ('Retiro'), ('Aportación'), ('Prestamo')";
+                "insert into [Tipo de Transacción] values ('Aportación'),('Abono'), ('Préstamo'), ('Pago'), ('Retiro')";
             SqlCommand cmd = new SqlCommand(cadena1, cnn);
             SqlCommand cmd1 = new SqlCommand(tabla1, cnn);
             SqlCommand cmd2 = new SqlCommand(tabla2, cnn);
