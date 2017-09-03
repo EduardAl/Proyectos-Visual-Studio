@@ -6,11 +6,11 @@ namespace ACOPEDH
 {
     public partial class RegistroUsuario : Form
     {
-        Conexión conn = new Conexión();
+        Conexión conn;
         SqlConnection cn;
         Validaciones validar = new Validaciones();
-        Cuentas NewAcount = new Cuentas();
-        Emailsistema enviaremail = new Emailsistema();
+        Cuentas NewAcount;
+        Emailsistema enviaremail;
         #region Mover Form
         bool Empezarmover = false;
         int PosX;
@@ -50,11 +50,15 @@ namespace ACOPEDH
         {
             InitializeComponent();
             Focus();
-            cn = new SqlConnection(conn.cadena);
         }
 
         private void RegistroUsuario_Load(object sender, EventArgs e)
         {
+            this.MaximumSize = new Size(509, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35);
+            this.Height = SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35;
+            this.Visible = true;
+            CenterToScreen();
+            this.Cursor = Cursors.Default;
             txtNombre.Focus();
             cbTipoUsuario.SelectedIndex = 0;
         }
@@ -89,6 +93,8 @@ namespace ACOPEDH
 
         private void bttConfirmar_Click(object sender, EventArgs e)
         {
+            NewAcount = new Cuentas();
+            enviaremail = new Emailsistema();
             String asunto = "Bienvenido a ACOPEDH";
             String mensaje = "Éste correo se ha generado automáticamente, por favor, no responder\n\nBienvenido a ACOPEDH.\n\nDesde éste momento puede ingresar a su cuenta.\n\n\nSu usuario: " + txtCorreo.Text + "\nSu clave: " + txtPassword.Text;
             string seguridad = Cifrado.CreateRandomPassword(32);
@@ -121,6 +127,12 @@ namespace ACOPEDH
         private void bttCancelar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void RegistroUsuario_SizeChanged(object sender, EventArgs e)
+        {
+            this.Size = new Size(509, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35);
+            CenterToScreen();
         }
     }
 }

@@ -13,6 +13,9 @@ namespace ACOPEDH
         List<String> listaServidores = new List<String>();
         public Servidor()
         {
+        }
+        public void server()
+        {
             tablaServidores = new DataTable();
             servidores = SqlDataSourceEnumerator.Instance;
             if (tablaServidores.Rows.Count == 0)
@@ -27,18 +30,6 @@ namespace ACOPEDH
                         listaServidores.Add(rowServidor["ServerName"] + "\\" + rowServidor["InstanceName"]);
                 }
                 Globales.Servidor = listaServidores[0];
-            }
-        }
-        public bool elegido(int row)
-        {
-            try
-            {
-                Globales.Servidor = listaServidores[row];
-                return true;
-            }
-            catch
-            {
-                return false;
             }
         }
     }

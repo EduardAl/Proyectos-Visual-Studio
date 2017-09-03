@@ -58,7 +58,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(146, 281);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 30);
+            this.label6.Size = new System.Drawing.Size(64, 36);
             this.label6.TabIndex = 55;
             this.label6.Text = "Tipo de\r\nUsuario:";
             // 
@@ -72,7 +72,7 @@
             "Master"});
             this.cbTipoUsuario.Location = new System.Drawing.Point(74, 311);
             this.cbTipoUsuario.Name = "cbTipoUsuario";
-            this.cbTipoUsuario.Size = new System.Drawing.Size(198, 23);
+            this.cbTipoUsuario.Size = new System.Drawing.Size(198, 26);
             this.cbTipoUsuario.TabIndex = 54;
             // 
             // bttCancelar
@@ -90,7 +90,7 @@
             this.txtCorreo.Location = new System.Drawing.Point(74, 170);
             this.txtCorreo.MaxLength = 50;
             this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.Size = new System.Drawing.Size(198, 21);
+            this.txtCorreo.Size = new System.Drawing.Size(198, 24);
             this.txtCorreo.TabIndex = 52;
             this.txtCorreo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtCorreo_KeyUp);
             // 
@@ -99,7 +99,7 @@
             this.txtPassword.Location = new System.Drawing.Point(74, 208);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(198, 21);
+            this.txtPassword.Size = new System.Drawing.Size(198, 24);
             this.txtPassword.TabIndex = 51;
             this.txtPassword.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyUp);
             // 
@@ -108,7 +108,7 @@
             this.txtConfPassword.Location = new System.Drawing.Point(74, 259);
             this.txtConfPassword.Name = "txtConfPassword";
             this.txtConfPassword.PasswordChar = '*';
-            this.txtConfPassword.Size = new System.Drawing.Size(198, 21);
+            this.txtConfPassword.Size = new System.Drawing.Size(198, 24);
             this.txtConfPassword.TabIndex = 50;
             this.txtConfPassword.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtConfPassword_KeyUp);
             // 
@@ -117,7 +117,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(146, 230);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 30);
+            this.label5.Size = new System.Drawing.Size(89, 36);
             this.label5.TabIndex = 49;
             this.label5.Text = "Confirmar\r\nContraseña:";
             // 
@@ -126,7 +126,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(146, 193);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 15);
+            this.label4.Size = new System.Drawing.Size(89, 18);
             this.label4.TabIndex = 48;
             this.label4.Text = "Contraseña:";
             // 
@@ -135,7 +135,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(150, 154);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 15);
+            this.label3.Size = new System.Drawing.Size(59, 18);
             this.label3.TabIndex = 47;
             this.label3.Text = "Correo:";
             // 
@@ -144,7 +144,7 @@
             this.txtApellido.Location = new System.Drawing.Point(74, 125);
             this.txtApellido.MaxLength = 50;
             this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(198, 21);
+            this.txtApellido.Size = new System.Drawing.Size(198, 24);
             this.txtApellido.TabIndex = 46;
             this.txtApellido.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtApellido_KeyUp);
             // 
@@ -153,7 +153,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(146, 109);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 15);
+            this.label2.Size = new System.Drawing.Size(71, 18);
             this.label2.TabIndex = 45;
             this.label2.Text = "Apellidos:";
             // 
@@ -162,7 +162,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(150, 67);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 15);
+            this.label1.Size = new System.Drawing.Size(66, 18);
             this.label1.TabIndex = 44;
             this.label1.Text = "Nombre:";
             // 
@@ -171,7 +171,7 @@
             this.txtNombre.Location = new System.Drawing.Point(74, 83);
             this.txtNombre.MaxLength = 50;
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(198, 21);
+            this.txtNombre.Size = new System.Drawing.Size(198, 24);
             this.txtNombre.TabIndex = 43;
             this.txtNombre.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtNombre_KeyUp);
             // 
@@ -256,6 +256,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ACOPEDH - Registro de Usuario";
             this.Load += new System.EventHandler(this.RegistroUsuario_Load);
+            this.SizeChanged += new System.EventHandler(this.RegistroUsuario_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
