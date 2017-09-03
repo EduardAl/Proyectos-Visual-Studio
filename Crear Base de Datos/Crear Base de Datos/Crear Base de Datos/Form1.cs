@@ -417,8 +417,8 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Cargar_Abono " +
                 "Begin Try " +
-                "Select Abono.Abono,Transacciones.[Fecha de Transacción] From Abono inner join Transacciones on Abono.[FK Transacción] = Transacciones.[id Transacción] "+
-                "where[FK Ahorro] = @ID_Ahorro "+
+                "Select Abono.Abono,Transacciones.[Fecha de Transacción] From Abono inner join Transacciones on Abono.[FK Transacción] = Transacciones.[id Transacción] " +
+                "where[FK Ahorro] = @ID_Ahorro " +
                 "Commit Tran Cargar_Abono " +
                 "End Try " +
                 "Begin Catch " +
@@ -460,8 +460,8 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Cargar_Retiro " +
                 "Begin Try " +
-                "Select Retiros.Retiro,Transacciones.[Fecha de Transacción] From Retiros inner join Transacciones on Retiros.[FK Transacción] = Transacciones.[id Transacción] "+
-                "where[FK Ahorro] = @ID_Ahorro "+
+                "Select Retiros.Retiro,Transacciones.[Fecha de Transacción] From Retiros inner join Transacciones on Retiros.[FK Transacción] = Transacciones.[id Transacción] " +
+                "where[FK Ahorro] = @ID_Ahorro " +
                 "Commit Tran Cargar_Retiro " +
                 "End Try " +
                 "Begin Catch " +
@@ -494,18 +494,18 @@ namespace Crear_Base_de_Datos
                 "Begin Tran Pago " +
                 "Begin Try " +
                 "Declare @ID_Pago as varchar(5) " +
-                "Declare @id_Transación varchar(5) "+
-                "Insert into Transacciones values('TT004',@Fecha_Pago) "+
-                "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) "+
+                "Declare @id_Transación varchar(5) " +
+                "Insert into Transacciones values('TT004',@Fecha_Pago) " +
+                "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
                 "If(@Fecha_Pago <= @Fecha_Límite) " +
                 "Begin " +
-                "Insert into Pago values(@Pago, @No_Cuota, @Intereses, @Capital, @Saldo, @id_Transación) "+
+                "Insert into Pago values(@Pago, @No_Cuota, @Intereses, @Capital, @Saldo, @id_Transación) " +
                 "Set @ID_Pago = (Select Max([id Pago])From Pago) " +
                 "Insert into Información values(@ID_Pago, @ID_Préstamo,null,@Fecha_Límite) " +
                 "Commit Tran Pago " +
                 "End " +
                 "Else " +
-                "Insert into Pago values(@Pago, @No_Cuota, @Intereses, @Capital, @Saldo, @id_Transación) "+
+                "Insert into Pago values(@Pago, @No_Cuota, @Intereses, @Capital, @Saldo, @id_Transación) " +
                 "Set @ID_Pago = (Select Max([id Pago])From Pago) " +
                 "Insert into Información values(@ID_Pago, @ID_Préstamo, @Mora, @Fecha_Límite) " +
                 "Commit Tran Pago " +
@@ -554,11 +554,11 @@ namespace Crear_Base_de_Datos
                  "As " +
                  "Begin Tran Cargar_P " +
                 "Begin Try " +
-                "Select Asociado.[Código Asociado],(Asociado.Nombres + ' ' + Asociado.Apellidos), [Tipo de Préstamo].[Tipo de Préstamo], "+
-                "[Tipo de Préstamo].[Tasa de Interés],Préstamos.[Monto del Préstamo],Transacciones.[Fecha de Transacción], Préstamos.Cuotas, "+
-                "Préstamos.[Cuota Mensual],Préstamos.Estado From Asociado inner join Préstamos on "+
-                "Asociado.[Código Asociado]= Préstamos.[Código Asociado] inner join [Tipo de Préstamo] on Préstamos.[id Tipo de Préstamo] "+
-                "= [Tipo de Préstamo].[id Tipo de Préstamo] inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] where Préstamos.[id Préstamos]= @ID_Préstamo  "+
+                "Select Asociado.[Código Asociado],(Asociado.Nombres + ' ' + Asociado.Apellidos), [Tipo de Préstamo].[Tipo de Préstamo], " +
+                "[Tipo de Préstamo].[Tasa de Interés],Préstamos.[Monto del Préstamo],Transacciones.[Fecha de Transacción], Préstamos.Cuotas, " +
+                "Préstamos.[Cuota Mensual],Préstamos.Estado From Asociado inner join Préstamos on " +
+                "Asociado.[Código Asociado]= Préstamos.[Código Asociado] inner join [Tipo de Préstamo] on Préstamos.[id Tipo de Préstamo] " +
+                "= [Tipo de Préstamo].[id Tipo de Préstamo] inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] where Préstamos.[id Préstamos]= @ID_Préstamo  " +
                 "Commit Tran Cargar_P " +
                 "End Try " +
                 "Begin Catch " +
@@ -568,7 +568,7 @@ namespace Crear_Base_de_Datos
             String Usuario1 =
                 "CREATE LOGIN Master_ACOPEDH " +
                 "WITH PASSWORD = 'AUREO112358' " +
-                "USE "+txtNombre.Text+";" +
+                "USE " + txtNombre.Text + ";" +
                 "CREATE USER Master_ACOPEDH FOR LOGIN Master_ACOPEDH ";
             String Usuario2 =
                 "CREATE LOGIN Administrador " +
@@ -591,15 +591,15 @@ namespace Crear_Base_de_Datos
                 "to Administrador with grant option " +
                 "grant select, update, references, insert on object :: [Tipo de Ahorro]" +
                 "to Administrador with grant option " +
-                "grant select, update, references, insert on object :: Retiros " +
+                "grant select, references, insert on object :: Retiros " +
                 "to Administrador with grant option " +
-                "grant select, update, references, insert on object :: Abono " +
+                "grant select, references, insert on object :: Abono " +
                 "to Administrador with grant option " +
                 "grant select, update, references, insert on object :: Ocupación " +
                 "to Administrador with grant option " +
-                "grant select, update, references, insert on object :: Asociado " +
+                "grant select, update, insert,references, insert on object :: Asociado " +
                 "to Administrador with grant option " +
-                "grant select, update, references, insert on object :: Aportaciones " +
+                "grant select, references, insert on object :: Aportaciones " +
                 "to Administrador with grant option " +
                 "grant select, update, references, insert on object :: [Tipos de Teléfonos] " +
                 "to Administrador with grant option " +
@@ -612,12 +612,68 @@ namespace Crear_Base_de_Datos
                 "grant select, update, references, insert on object :: [Tipo de Socio] " +
                 "to Administrador with grant option " +
                 "grant select on object :: [Tipo de Usuarios] " +
+                "to Administrador with grant option " +
+                "grant select, references, insert on object :: [Pago] " +
+                "to Administrador with grant option " +
+                "grant select, update, references, insert on object :: [Préstamos] " +
+                "to Administrador with grant option " +
+                "grant select, update, references, insert on object :: [Retiros] " +
+                "to Administrador with grant option " +
+                "grant select, update, references, insert on object :: [Tipo de Préstamo] " +
+                "to Administrador with grant option " +
+                "grant select, update, references, insert on object :: [Tipo de Transacción] " +
+                "to Administrador with grant option " +
+                "grant select, update, references, insert on object :: [Forma de Pago] " +
+                "to Administrador with grant option " +
+                "grant select, references, insert on object :: [Transacciones] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Insertar Asociado] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Cargar Asociados] " +
+                "to Administrador with grant option " +
+                 "grant execute on object :: [Cargar Ahorros] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Cargar Abonos] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Cargar Aportaciones] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Cargar Pagos] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Cargar Préstamo] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Cargar Retiros] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Cargar Saldo] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Cargar Teléfonos] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Eliminar Teléfono] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Insertar Asociado] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Insertar Teléfono] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Modificar Teléfonos] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Nueva Cuenta Ahorro] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Realizar Aportación] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Realizar Pago] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Realizar Retiros] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Suma Abonos] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Suma Aportaciones] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Suma Retiros] " +
                 "to Administrador with grant option ";
             String permisosUsuario =
                  "Use " + txtNombre.Text + ";" +
                  "grant select on database :: [" + txtNombre.Text + "] " +
                  "to Usuario with grant option " +
-                 "grant insert, update on object :: Usuarios " +
+                 "grant insert on object :: Usuarios " +
                  "to Usuario with grant option ";
             String permisosInicioSesión =
                  "Use " + txtNombre.Text + ";" +
