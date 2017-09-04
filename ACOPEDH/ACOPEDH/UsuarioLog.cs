@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Forms;
 namespace ACOPEDH
 {
     public partial class UsuarioLog
@@ -36,9 +37,10 @@ namespace ACOPEDH
                 this.Usuario = dro["Nombre"].ToString();
                 this.clave = dro["Clave"].ToString();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 cn.Close();
+                MessageBox.Show("Error al conectar con el servidor.\n" + "Número del error: " + ex.Number + "\nCódigo del error: " + ex.ErrorCode + "\nError: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
             cn.Close();
         }

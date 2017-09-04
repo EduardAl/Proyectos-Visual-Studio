@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InicioSesión));
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.LLOlvidoContraseña = new System.Windows.Forms.LinkLabel();
             this.btningresar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -62,20 +62,20 @@
             this.linkLabel3.Text = "Crear una cuenta";
             this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
             // 
-            // linkLabel4
+            // LLOlvidoContraseña
             // 
-            this.linkLabel4.ActiveLinkColor = System.Drawing.Color.Black;
-            this.linkLabel4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel4.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel4.Location = new System.Drawing.Point(222, 607);
-            this.linkLabel4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(222, 20);
-            this.linkLabel4.TabIndex = 56;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "¿Ha olvidado la contraseña?";
+            this.LLOlvidoContraseña.ActiveLinkColor = System.Drawing.Color.Black;
+            this.LLOlvidoContraseña.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.LLOlvidoContraseña.AutoSize = true;
+            this.LLOlvidoContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LLOlvidoContraseña.LinkColor = System.Drawing.Color.Black;
+            this.LLOlvidoContraseña.Location = new System.Drawing.Point(222, 607);
+            this.LLOlvidoContraseña.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LLOlvidoContraseña.Name = "LLOlvidoContraseña";
+            this.LLOlvidoContraseña.Size = new System.Drawing.Size(222, 20);
+            this.LLOlvidoContraseña.TabIndex = 56;
+            this.LLOlvidoContraseña.TabStop = true;
+            this.LLOlvidoContraseña.Text = "¿Ha olvidado la contraseña?";
             // 
             // btningresar
             // 
@@ -205,7 +205,7 @@
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.BarraTítulo);
             this.Controls.Add(this.linkLabel3);
-            this.Controls.Add(this.linkLabel4);
+            this.Controls.Add(this.LLOlvidoContraseña);
             this.Controls.Add(this.btningresar);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
@@ -228,7 +228,7 @@
         #endregion
 
         private System.Windows.Forms.LinkLabel linkLabel3;
-        private System.Windows.Forms.LinkLabel linkLabel4;
+        private System.Windows.Forms.LinkLabel LLOlvidoContraseña;
         private System.Windows.Forms.Button btningresar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;

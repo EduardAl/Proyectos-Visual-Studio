@@ -12,31 +12,24 @@ namespace ACOPEDH
     {
         public static string encriptar(string cadena, string clave)
         {
+            //Variables tipo byte que codifican las claves enviadas
             byte[] cadenaBytes = Encoding.UTF8.GetBytes(cadena);
             byte[] claveBytes = Encoding.UTF8.GetBytes(clave);
-
             RijndaelManaged rij = new RijndaelManaged();
-
             rij.Mode = CipherMode.ECB;
             rij.BlockSize = 256;
             rij.Padding = PaddingMode.Zeros;
             ICryptoTransform encriptador;
             encriptador = rij.CreateEncryptor(claveBytes, rij.IV);
             MemoryStream memStream = new MemoryStream();
-
             CryptoStream cifradoStream;
             cifradoStream = new CryptoStream(memStream, encriptador, CryptoStreamMode.Write);
             cifradoStream.Write(cadenaBytes, 0, cadenaBytes.Length);
-
             cifradoStream.FlushFinalBlock();
-
             byte[] cipherTextBytes = memStream.ToArray();
-
             memStream.Close();
             cifradoStream.Close();
-
             return Convert.ToBase64String(cipherTextBytes);
-
         }
         public static string desencriptar(string cadena, string clave)
         {
@@ -63,7 +56,6 @@ namespace ACOPEDH
             Byte[] randomBytes = new Byte[PasswordLength];
             char[] chars = new char[PasswordLength];
             int allowedCharCount = _allowedChars.Length;
-
             for (int i = 0; i < PasswordLength; i++)
             {
                 Random randomObj = new Random();

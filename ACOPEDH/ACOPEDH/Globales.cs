@@ -9,7 +9,7 @@ namespace ACOPEDH
         public static string gbCorreo;
         public static string gbCodUsuario;
         public static string Servidor;
-        public static string gbCod_TUsuario;
+        public static string gbCod_TipoUsuario;
         public Globales()
         {
         }

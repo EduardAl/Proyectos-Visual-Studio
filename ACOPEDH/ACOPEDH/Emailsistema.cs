@@ -25,11 +25,11 @@ namespace ACOPEDH
                     correo.To.Add(addr[i]);
                 correo.Subject = pasunto;
                 correo.Body = (pmensaje);
-                correo.ReplyTo= new MailAddress(pcorreo.Text);
                 SmtpServer.Send(correo);
             }
             catch
             {
+
             }
         }
     }

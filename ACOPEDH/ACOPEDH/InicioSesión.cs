@@ -48,17 +48,20 @@ namespace ACOPEDH
             }
         }
         #endregion
-        Servidor server = new Servidor();
-        public static string MiServidor;
+#warning Se cambiará para el host
+        //Instancia para leer el servidor para tenerlo activo en todo el programa
+        #region instancias y variables globales de clase
+        Servidor server;
         Validaciones validar;
         Cuentas cuenta;
         Conexión con;
         Emailsistema enviarcorreo = new Emailsistema();
         String asunto = "Alerta de inicio de sesión.";
         String mensaje = "Se ha iniciado sesión en su cuenta el día " + DateTime.Now.Date.ToLongDateString() + " a las " + DateTime.Now.ToLongTimeString() + "\n\nSi usted no ha realizado ésta acción se le recomienda cambiar su clave de inicio de sesión.\nÉsto puede hacerlo en la opciones de configuración de su cuenta.\nSi ha sido usted, no realice ninguna acción.\n\n\nÉste correo se ha generado automáticamente, por favor, no responder.\n\nDesarrolladores.";
-       
+        #endregion
         private void InicioSesión_Load(object sender, EventArgs e)
         {
+            server = new Servidor();
             server.server();
             this.MaximumSize = new Size(509, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35);
             this.Height = SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35;
@@ -84,10 +87,10 @@ namespace ACOPEDH
                     {
                         cn.Open();
                     }
-                    catch (Exception ex)
+                    catch (SqlException ex)
                     {
                         cn.Close();
-                        MessageBox.Show("Error al conectar.\n" + ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        MessageBox.Show("Error al conectar.\n" + "Número del error: "+ex.Number+"\nCódigo del error: "+ex.ErrorCode+"\nError: "+ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     }
                     string seguridad;
                     cmd.ExecuteNonQuery();
@@ -104,11 +107,11 @@ namespace ACOPEDH
                             ttpass.Text = null;
                             enviarcorreo.EnviarEmail(txtCorreo, ttpass, asunto, mensaje);
                             Principal_P p = new Principal_P();
-                            Globales.gbCod_TUsuario = dro["FK Tipo Usuario"].ToString();
+                            Globales.gbCod_TipoUsuario = dro["FK Tipo Usuario"].ToString();
                             Globales.gbCorreo = dro["Correo"].ToString();
                             Globales.gbCodUsuario = dro["Id Usuario"].ToString();
-                            MessageBox.Show(Globales.gbCod_TUsuario);
-                            SqlCommand cmd2 = new SqlCommand("select Nombre, Clave from [Tipo de Usuarios] where [Id Tipo Usuario]= '" + Globales.gbCod_TUsuario + "'", cn);
+                            MessageBox.Show(Globales.gbCod_TipoUsuario);
+                            SqlCommand cmd2 = new SqlCommand("select Nombre, Clave from [Tipo de Usuarios] where [Id Tipo Usuario]= '" + Globales.gbCod_TipoUsuario + "'", cn);
                             cmd2.ExecuteNonQuery();
                             cn.Close();
                             ds = new DataSet();
@@ -152,6 +155,7 @@ namespace ACOPEDH
             this.Visible = false;
             p.ShowDialog();
             this.Visible = true;
+            this.Cursor = Cursors.Default;
         }
 
         private void InicioSesión_SizeChanged(object sender, EventArgs e)
