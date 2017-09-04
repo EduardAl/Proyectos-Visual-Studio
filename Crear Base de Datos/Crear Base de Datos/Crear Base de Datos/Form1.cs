@@ -15,6 +15,7 @@ namespace Crear_Base_de_Datos
             Servidores ser = new Servidores();
             this.Hide();
             ser.ShowDialog();
+            
         }
         private void BttCrear_Click(object sender, EventArgs e)
         {
@@ -585,6 +586,9 @@ namespace Crear_Base_de_Datos
                 "WITH PASSWORD = 'In112358' " +
                 "USE " + txtNombre.Text + ";" +
                 "CREATE USER InicioSesion FOR LOGIN InicioSesion ";
+            String permisosMaster_ACOPEDH =
+                "Use " + txtNombre.Text + ";" +
+                "Exec sp_addrolemember N'db_owner',N'Master_ACOPEDH' ";
             String permisosAdministrador =
                 "Use " + txtNombre.Text + ";" +
                 "grant select, update, references, insert on object :: Ahorro " +
@@ -671,10 +675,7 @@ namespace Crear_Base_de_Datos
                 "to Administrador with grant option ";
             String permisosUsuario =
                  "Use " + txtNombre.Text + ";" +
-                 "grant select on database :: [" + txtNombre.Text + "] " +
-                 "to Usuario with grant option " +
-                 "grant insert on object :: Usuarios " +
-                 "to Usuario with grant option ";
+                 "Exec sp_addrolemember N'db_datareader',N'Usuario' ";
             String permisosInicioSesión =
                  "Use " + txtNombre.Text + ";" +
                  "grant select, insert on object :: Usuarios " +
@@ -747,6 +748,7 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd45 = new SqlCommand(Usuario2, cnn);
             SqlCommand cmd46 = new SqlCommand(Usuario3, cnn);
             SqlCommand cmd47 = new SqlCommand(Usuario4, cnn);
+            SqlCommand cmd51 = new SqlCommand(permisosMaster_ACOPEDH, cnn);
             SqlCommand cmd52 = new SqlCommand(permisosAdministrador, cnn);
             SqlCommand cmd53 = new SqlCommand(permisosUsuario, cnn);
             SqlCommand cmd54 = new SqlCommand(permisosInicioSesión, cnn);
@@ -808,6 +810,7 @@ namespace Crear_Base_de_Datos
                 cmd45.ExecuteNonQuery();
                 cmd46.ExecuteNonQuery();
                 cmd47.ExecuteNonQuery();
+                cmd51.ExecuteNonQuery();
                 cmd52.ExecuteNonQuery();
                 cmd53.ExecuteNonQuery();
                 cmd54.ExecuteNonQuery();
