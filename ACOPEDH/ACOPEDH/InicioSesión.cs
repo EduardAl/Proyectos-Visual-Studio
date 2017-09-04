@@ -9,7 +9,6 @@ namespace ACOPEDH
 
     public partial class InicioSesión : Form
     {
-       
         public InicioSesión()
         {
             InitializeComponent();
@@ -61,6 +60,7 @@ namespace ACOPEDH
         #endregion
         private void InicioSesión_Load(object sender, EventArgs e)
         {
+            txtCorreo.Text = Properties.Settings.Default.UsuariosG;
             server = new Servidor();
             server.server();
             this.MaximumSize = new Size(509, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35);
@@ -73,6 +73,9 @@ namespace ACOPEDH
             validar = new Validaciones();
             if (validar.IsNullOrEmty(ref txtCorreo, ref errorProvider1) && validar.IsNullOrEmty(ref ttpass, ref errorProvider1))
             {
+                this.Cursor = Cursors.WaitCursor;
+                Properties.Settings.Default.UsuariosG = txtCorreo.Text;
+                Properties.Settings.Default.Save();
             cuenta = new Cuentas();
                 if (!cuenta.existe(txtCorreo.Text))
                 {
@@ -123,6 +126,7 @@ namespace ACOPEDH
                             Globales.gbClave = dro1["Clave"].ToString();
                             this.Visible = false;
                             p.ShowDialog();
+                            this.Cursor = Cursors.Default;
                             this.Visible = true;
 
                         }
@@ -157,11 +161,32 @@ namespace ACOPEDH
             this.Visible = true;
             this.Cursor = Cursors.Default;
         }
+        private void InicioSesión_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("¿Está seguro que desea salir?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+                e.Cancel = true;
+        }
 
+        private void InicioSesión_AutoSizeChanged(object sender, EventArgs e)
+        {
+            CenterToScreen();
+        }
+        //Esto hace que aunque se intente maximizar, el formulario se mantenga en la misma posición en la que estaba y el mismo tamaño
         private void InicioSesión_SizeChanged(object sender, EventArgs e)
         {
-            this.Size = new Size(509, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35);
-            CenterToScreen();
+            this.WindowState = FormWindowState.Normal;
+        }
+        private void bttCer_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        private void PBMostrar1_MouseUp(object sender, MouseEventArgs e)
+        {
+            ttpass.UseSystemPasswordChar = true;
+        }
+        private void PBMostrar1_MouseDown(object sender, MouseEventArgs e)
+        {
+            ttpass.UseSystemPasswordChar = false;
         }
     }
 }

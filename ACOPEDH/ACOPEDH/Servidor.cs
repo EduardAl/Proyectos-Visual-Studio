@@ -14,9 +14,6 @@ namespace ACOPEDH
         SqlDataSourceEnumerator servidores;
         DataTable tablaServidores;
         List<String> listaServidores = new List<String>();
-        public Servidor()    
-        {
-        }
         public void server()
         {
             try

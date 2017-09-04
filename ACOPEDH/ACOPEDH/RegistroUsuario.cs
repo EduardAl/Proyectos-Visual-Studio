@@ -6,8 +6,6 @@ namespace ACOPEDH
 {
     public partial class RegistroUsuario : Form
     {
-        Conexión conn;
-        SqlConnection cn;
         Validaciones validar = new Validaciones();
         Cuentas NewAcount;
         Emailsistema enviaremail;
@@ -57,10 +55,9 @@ namespace ACOPEDH
             this.MaximumSize = new Size(509, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35);
             this.Height = SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35;
             this.Visible = true;
-            CenterToScreen();
             this.Cursor = Cursors.Default;
-            txtNombre.Focus();
             cbTipoUsuario.SelectedIndex = 0;
+            CenterToScreen();
         }
 
         private void txtNombre_KeyUp(object sender, KeyEventArgs e)
@@ -123,16 +120,61 @@ namespace ACOPEDH
                 }
             }
         }
-
         private void bttCancelar_Click(object sender, EventArgs e)
         {
             Close();
         }
-
+        private void RegistroUsuario_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("¿Está seguro que desea salir sin guardar su cuenta?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+                e.Cancel = true;
+        }
+        private void RegistroUsuario_AutoSizeChanged(object sender, EventArgs e)
+        {
+            this.StartPosition = FormStartPosition.CenterScreen;
+        }
         private void RegistroUsuario_SizeChanged(object sender, EventArgs e)
         {
-            this.Size = new Size(509, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35);
-            CenterToScreen();
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void bttCer_Click_1(object sender, EventArgs e)
+        {
+            Close();
+        }
+        //Método solo para centrar el texto de un ComboBox
+        private void cbTipoUsuario_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index >= 0)
+            {
+                e.DrawBackground();
+                StringFormat st = new StringFormat();
+                st.LineAlignment = StringAlignment.Center;
+                st.Alignment = StringAlignment.Center;
+                Brush brush = new SolidBrush(cbTipoUsuario.ForeColor);
+                if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+                    brush = SystemBrushes.HighlightText;
+                e.Graphics.DrawString(cbTipoUsuario.Items[e.Index].ToString(), cbTipoUsuario.Font, brush, e.Bounds, st);
+            }
+        }
+        private void PBMostrar1_MouseDown(object sender, MouseEventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = false;
+        }
+
+        private void PBMostrar1_MouseUp(object sender, MouseEventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = true;
+        }
+
+        private void PBMostrar2_MouseUp(object sender, MouseEventArgs e)
+        {
+            txtConfPassword.UseSystemPasswordChar = true;
+        }
+
+        private void PBMostrar2_MouseDown(object sender, MouseEventArgs e)
+        {
+            txtConfPassword.UseSystemPasswordChar = false;
         }
     }
 }
