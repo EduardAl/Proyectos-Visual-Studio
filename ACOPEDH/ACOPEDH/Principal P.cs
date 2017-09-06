@@ -165,10 +165,10 @@ namespace ACOPEDH
                 try
                 {
                     DataGridViewRow dgvv = null;
-                    int i = dgvBúsqueda.SelectedRows[0].Index;
+                    int i = dgvBúsqueda.CurrentCell.RowIndex;
                     dgvv = dgvBúsqueda.Rows[i];
                     Datos = dgvv.Cells[0].Value.ToString();
-                    if (String.IsNullOrEmpty(Datos) || i == 0)
+                    if (String.IsNullOrEmpty(Datos))
                         DialogResult = DialogResult.Cancel;
                     else
                         DialogResult = DialogResult.OK;
