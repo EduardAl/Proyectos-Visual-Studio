@@ -63,7 +63,7 @@ namespace ACOPEDH
             txtCorreo.Text = Properties.Settings.Default.UsuariosG;
             server = new Servidor();
             server.server();
-            this.MaximumSize = new Size(509, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35);
+            this.MaximumSize = new Size(480, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35);
             this.Height = SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35;
             this.Visible = true;
             CenterToScreen();
@@ -73,7 +73,6 @@ namespace ACOPEDH
             validar = new Validaciones();
             if (validar.IsNullOrEmty(ref txtCorreo, ref errorProvider1) && validar.IsNullOrEmty(ref ttpass, ref errorProvider1))
             {
-                this.Cursor = Cursors.WaitCursor;
                 Properties.Settings.Default.UsuariosG = txtCorreo.Text;
                 Properties.Settings.Default.Save();
             cuenta = new Cuentas();
@@ -83,6 +82,7 @@ namespace ACOPEDH
                 }
                 else
                 {
+                this.Cursor = Cursors.WaitCursor;
                     con = new Conexión();
                     SqlConnection cn = new SqlConnection(con.cadena);
                     SqlCommand cmd = new SqlCommand("select [Id Usuario], Correo, Contraseña, [FK Tipo Usuario], Seguridad from Usuarios where Correo= '" + txtCorreo.Text + "'", cn);
@@ -187,6 +187,36 @@ namespace ACOPEDH
         private void PBMostrar1_MouseDown(object sender, MouseEventArgs e)
         {
             ttpass.UseSystemPasswordChar = false;
+        }
+
+        private void LLOlvidoContraseña_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void PBMostrar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ttpass_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCorreo_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
