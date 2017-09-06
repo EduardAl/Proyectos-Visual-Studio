@@ -14,7 +14,7 @@ namespace ACOPEDH
     {
         Color Original, Seleccionado;
         Point Lock;
-
+        Procedimientos_select Procedimientos_select = new Procedimientos_select();
 #region Mover Form
         bool Empezarmover = false;
         int PosX;
@@ -128,6 +128,9 @@ namespace ACOPEDH
             bttNuevoAsociado.Visible = true;
             bttDatosAsociado.Visible = true;
             bttAportaciones.Visible = true;
+            DataView dvPersonaAsociada = new DataView();
+            dgvBúsqueda.DataSource = Procedimientos_select.llenar_DataTable("[Asociado DVG]");
+
         }
         private void PConfiguración_Click(object sender, EventArgs e)
         {

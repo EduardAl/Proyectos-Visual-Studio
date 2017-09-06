@@ -107,6 +107,7 @@ namespace ACOPEDH
                         seguridad = dro["Seguridad"].ToString();
                         if ((Cifrado.encriptar(ttpass.Text, seguridad) == dro["Contraseña"].ToString()))
                         {
+                            this.Cursor = Cursors.WaitCursor;
                             ttpass.Text = null;
                             enviarcorreo.EnviarEmail(txtCorreo, ttpass, asunto, mensaje);
                             Principal_P p = new Principal_P();
