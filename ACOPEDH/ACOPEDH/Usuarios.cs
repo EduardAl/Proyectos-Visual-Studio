@@ -6,7 +6,7 @@ namespace ACOPEDH
 {
     public partial class Cuentas
     {
-        Conexión con = new Conexión(Globales.gbUsuario, Globales.gbClave);
+        Conexión con = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave);
         public int CrearCuentas(string pnombre, string papellido, string pcontraseña, string pcorreo, string pT_Usuario, string pseguridad)
         {
             if (pT_Usuario == "Master")
@@ -57,7 +57,7 @@ namespace ACOPEDH
             catch (SqlException ex)
             {
                 SqlError Error = ex.Errors[0];
-                MessageBox.Show("Código de error: " + Error.Number + "\nMensaje\n" + Error.Message + "\nNivel de error " + Error.Class + "\nEstado " + Error.State, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBox.Show("Error al conectar.\n" + "Número del error: " + ex.Number + "\nCódigo del error: " + ex.ErrorCode + "\nError: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
 
             cn.Close();
@@ -75,7 +75,7 @@ namespace ACOPEDH
             catch (SqlException ex)
             {
                 SqlError Error = ex.Errors[0];
-                MessageBox.Show("Código de error " + Error.Number + "\nMensaje\n" + Error.Message + "\nNivel de error " + Error.Class + "\nEstado " + Error.State, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBox.Show("Error al conectar con el servidor.\n" + "Número del error: " + ex.Number + "\nCódigo del error: " + ex.ErrorCode + "\nError: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
             cmd = new SqlCommand("select [Id Usuario] from Usuarios where Correo= '" + pCorreo + "'", cn);
             SqlDataReader dr;

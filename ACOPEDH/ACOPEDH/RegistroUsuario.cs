@@ -6,11 +6,9 @@ namespace ACOPEDH
 {
     public partial class RegistroUsuario : Form
     {
-        Conexión conn = new Conexión();
-        SqlConnection cn;
         Validaciones validar = new Validaciones();
-        Cuentas NewAcount = new Cuentas();
-        Emailsistema enviaremail = new Emailsistema();
+        Cuentas NewAcount;
+        Emailsistema enviaremail;
         #region Mover Form
         bool Empezarmover = false;
         int PosX;
@@ -50,13 +48,16 @@ namespace ACOPEDH
         {
             InitializeComponent();
             Focus();
-            cn = new SqlConnection(conn.cadena);
         }
 
         private void RegistroUsuario_Load(object sender, EventArgs e)
         {
-            txtNombre.Focus();
+            this.MaximumSize = new Size(509, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35);
+            this.Height = SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35;
+            this.Visible = true;
+            this.Cursor = Cursors.Default;
             cbTipoUsuario.SelectedIndex = 0;
+            CenterToScreen();
         }
 
         private void txtNombre_KeyUp(object sender, KeyEventArgs e)
@@ -89,6 +90,8 @@ namespace ACOPEDH
 
         private void bttConfirmar_Click(object sender, EventArgs e)
         {
+            NewAcount = new Cuentas();
+            enviaremail = new Emailsistema();
             String asunto = "Bienvenido a ACOPEDH";
             String mensaje = "Éste correo se ha generado automáticamente, por favor, no responder\n\nBienvenido a ACOPEDH.\n\nDesde éste momento puede ingresar a su cuenta.\n\n\nSu usuario: " + txtCorreo.Text + "\nSu clave: " + txtPassword.Text;
             string seguridad = Cifrado.CreateRandomPassword(32);
@@ -117,10 +120,61 @@ namespace ACOPEDH
                 }
             }
         }
-
         private void bttCancelar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+        private void RegistroUsuario_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("¿Está seguro que desea salir sin guardar su cuenta?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+                e.Cancel = true;
+        }
+        private void RegistroUsuario_AutoSizeChanged(object sender, EventArgs e)
+        {
+            this.StartPosition = FormStartPosition.CenterScreen;
+        }
+        private void RegistroUsuario_SizeChanged(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void bttCer_Click_1(object sender, EventArgs e)
+        {
+            Close();
+        }
+        //Método solo para centrar el texto de un ComboBox
+        private void cbTipoUsuario_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index >= 0)
+            {
+                e.DrawBackground();
+                StringFormat st = new StringFormat();
+                st.LineAlignment = StringAlignment.Center;
+                st.Alignment = StringAlignment.Center;
+                Brush brush = new SolidBrush(cbTipoUsuario.ForeColor);
+                if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+                    brush = SystemBrushes.HighlightText;
+                e.Graphics.DrawString(cbTipoUsuario.Items[e.Index].ToString(), cbTipoUsuario.Font, brush, e.Bounds, st);
+            }
+        }
+        private void PBMostrar1_MouseDown(object sender, MouseEventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = false;
+        }
+
+        private void PBMostrar1_MouseUp(object sender, MouseEventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = true;
+        }
+
+        private void PBMostrar2_MouseUp(object sender, MouseEventArgs e)
+        {
+            txtConfPassword.UseSystemPasswordChar = true;
+        }
+
+        private void PBMostrar2_MouseDown(object sender, MouseEventArgs e)
+        {
+            txtConfPassword.UseSystemPasswordChar = false;
         }
     }
 }

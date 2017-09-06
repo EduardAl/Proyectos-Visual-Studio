@@ -55,6 +55,7 @@ namespace ACOPEDH
         }
         private void Principal_P_Load(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.Default;
             cbBúsqueda.SelectedIndex = 0;
             Seleccionado = PInicio.BackColor;
             Original = PPréstamos.BackColor;
@@ -361,8 +362,8 @@ namespace ACOPEDH
         }
         private void Principal_P_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ////if (MessageBox.Show("¿Está seguro que desea salir?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
-            ////    e.Cancel=true;
+            if (MessageBox.Show("¿Está seguro que desea salir?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+                e.Cancel = true;
         }
 
     }

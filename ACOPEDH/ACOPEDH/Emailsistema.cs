@@ -25,12 +25,10 @@ namespace ACOPEDH
                     correo.To.Add(addr[i]);
                 correo.Subject = pasunto;
                 correo.Body = (pmensaje);
-                correo.ReplyTo = new MailAddress(pcorreo.Text);
                 SmtpServer.Send(correo);
             }
-            catch (SmtpException ex)
+            catch
             {
-                MessageBox.Show("Código de error " + ex.StatusCode + "\nMensaje\n" + ex.Message + "\nNivel de error ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
 
             }
         }
