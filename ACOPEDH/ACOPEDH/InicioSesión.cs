@@ -84,7 +84,7 @@ namespace ACOPEDH
                 {
                 this.Cursor = Cursors.WaitCursor;
                     con = new Conexión();
-                    SqlConnection cn = new SqlConnection(con.cadena);
+                    SqlConnection cn = new SqlConnection(Conexión.cadena);
                     SqlCommand cmd = new SqlCommand("select [Id Usuario], Correo, Contraseña, [FK Tipo Usuario], Seguridad from Usuarios where Correo= '" + txtCorreo.Text + "'", cn);
                     try
                     {

@@ -459,6 +459,7 @@
             this.toolTip1.SetToolTip(this.bttNuevoAsociado, "Registrar una persona asociada");
             this.bttNuevoAsociado.UseVisualStyleBackColor = true;
             this.bttNuevoAsociado.Visible = false;
+            this.bttNuevoAsociado.Click += new System.EventHandler(this.bttNuevoAsociado_Click);
             // 
             // bttAportaciones
             // 
@@ -472,6 +473,7 @@
             this.toolTip1.SetToolTip(this.bttAportaciones, "Ver aportaciones del usuario seleccionado");
             this.bttAportaciones.UseVisualStyleBackColor = true;
             this.bttAportaciones.Visible = false;
+            this.bttAportaciones.Click += new System.EventHandler(this.bttAportaciones_Click);
             // 
             // bttDatosAsociado
             // 
@@ -485,6 +487,7 @@
             this.toolTip1.SetToolTip(this.bttDatosAsociado, "Ver los datos del asociado seleccionado");
             this.bttDatosAsociado.UseVisualStyleBackColor = true;
             this.bttDatosAsociado.Visible = false;
+            this.bttDatosAsociado.Click += new System.EventHandler(this.bttDatosAsociado_Click);
             // 
             // Principal_P
             // 
@@ -513,16 +516,16 @@
             this.Controls.Add(this.Titulo);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.bttAbonar);
-            this.Controls.Add(this.bttVerEstados);
-            this.Controls.Add(this.bttRetirar);
             this.Controls.Add(this.bttDatosAsociado);
             this.Controls.Add(this.bttAportaciones);
             this.Controls.Add(this.bttRealizarPago);
             this.Controls.Add(this.bttAmortización);
             this.Controls.Add(this.bttPagosRealizados);
-            this.Controls.Add(this.bttCrearCuenta);
             this.Controls.Add(this.bttNuevoAsociado);
             this.Controls.Add(this.bttOtorgarPréstamo);
+            this.Controls.Add(this.bttRetirar);
+            this.Controls.Add(this.bttVerEstados);
+            this.Controls.Add(this.bttCrearCuenta);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

@@ -12,7 +12,7 @@ namespace ACOPEDH
         public string usuario = "InicioSesion";
         public string clave = "In112358";
         public string db = "ACOPEDH";
-        public string cadena;
+        public static string cadena;
         /// <summary>
         /// Constructor de clase que contiene la cadena de conexión por defecto
         /// </summary>

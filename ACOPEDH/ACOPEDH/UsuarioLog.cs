@@ -23,7 +23,7 @@ namespace ACOPEDH
         public void ObtenerUsuario(string código)
         {
             Conexión con = new Conexión("InicioSesión", "In112358");
-            SqlConnection cn = new SqlConnection(con.cadena);
+            SqlConnection cn = new SqlConnection(Conexión.cadena);
             SqlCommand cmd = new SqlCommand("select Nombre, Clave from [Tipo de Usuarios] where [Id Tipo Usuario]= '" + código + "'", cn);
             try
             {

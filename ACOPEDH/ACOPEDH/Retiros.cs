@@ -12,11 +12,19 @@ namespace ACOPEDH
 {
     public partial class Retiros : Form
     {
+        string Dato;
+
+        public string Dato1 { get => Dato; set => Dato = value; }
+
         public Retiros()
         {
             InitializeComponent();
         }
-
+        public Retiros(string dato)
+        {
+            InitializeComponent();
+            Dato1=dato;
+        }
         private void bttCancelar_Click(object sender, EventArgs e)
         {
             Close();

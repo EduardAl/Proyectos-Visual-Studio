@@ -16,7 +16,7 @@ namespace ACOPEDH
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new InicioSesión());
+            Application.Run(new Principal_P());
         }
     }
 }

@@ -12,9 +12,15 @@ namespace ACOPEDH
 {
     public partial class Amortización : Form
     {
+        string Dato;
         public Amortización()
         {
             InitializeComponent();
+        }
+        public Amortización(string dato)
+        {
+            InitializeComponent();
+            Dato = dato;
         }
         #region Mover Form
         bool Empezarmover = false;

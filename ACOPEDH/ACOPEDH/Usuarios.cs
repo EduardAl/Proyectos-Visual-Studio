@@ -22,7 +22,7 @@ namespace ACOPEDH
                 pT_Usuario = "TU003";
             }
             int resultado = 0;
-            SqlConnection cn = new SqlConnection(con.cadena);
+            SqlConnection cn = new SqlConnection(Conexión.cadena);
             SqlCommand cmd = new SqlCommand(string.Format("Insert into Usuarios values ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')", pnombre, papellido, Cifrado.encriptar(pcontraseña, pseguridad), pcorreo, pT_Usuario, pseguridad), cn);
             try
             {
@@ -40,7 +40,7 @@ namespace ACOPEDH
         public bool existe(String pttcorreo)
         {
             bool exis = false;
-            SqlConnection cn = new SqlConnection(con.cadena);
+            SqlConnection cn = new SqlConnection(Conexión.cadena);
             SqlCommand cmd;
             try
             {
@@ -66,7 +66,7 @@ namespace ACOPEDH
         public string devolverID(String pCorreo)
         {
             String ID = null;
-            SqlConnection cn = new SqlConnection(con.cadena);
+            SqlConnection cn = new SqlConnection(Conexión.cadena);
             SqlCommand cmd;
             try
             {
@@ -90,7 +90,7 @@ namespace ACOPEDH
         }
         public bool actualizar(string tabla, string campos, string condición)
         {
-            SqlConnection cn = new SqlConnection(con.cadena);
+            SqlConnection cn = new SqlConnection(Conexión.cadena);
             SqlCommand cmd;
             try
             {
