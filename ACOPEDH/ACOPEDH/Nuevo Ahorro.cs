@@ -12,11 +12,11 @@ namespace ACOPEDH
 {
     public partial class Nuevo_Ahorro : Form
     {
+
         public Nuevo_Ahorro()
         {
             InitializeComponent();
         }
-
         private void cbBúsqueda_SelectedIndexChanged(object sender, EventArgs e)
         {
             labBuscar.Text = cbBúsqueda.Text + ":";
@@ -46,6 +46,9 @@ namespace ACOPEDH
         {
             Graphics Linea = CreateGraphics();
             Linea.DrawLine(new Pen(Brushes.Black, 2), 40, 300, 833, 300);
+            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0,0),new Point(0,Height));
+            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0,Height-1),new Point(Width,Height));
+            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(Width-1,0),new Point(Width,Height));
         }
     }
 }
