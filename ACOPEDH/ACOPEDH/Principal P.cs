@@ -216,96 +216,109 @@ namespace ACOPEDH
         //Acciones
         private void bttAbonar_Click(object sender, EventArgs e)
         {
-            /*
-                if (DialogResult == DialogResult.OK)
-                    {
-                        Abonar Accion = new Abonar(Dato());
-                        Accion.ShowDialog();
-                    }
-                    else
-                        MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Abonos Accion = new Abonos(Dato());
+
+            if (DialogResult == DialogResult.OK)
+            {
+                Accion.ShowDialog();
             }
-             */
+            else
+                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            
+             
         }
         private void bttRetirar_Click(object sender, EventArgs e)
         {
-            /*
+            Retiros Accion = new Retiros(Dato());
                 if (DialogResult == DialogResult.OK)
                     {
-                        Retirar Accion = new Retirar(Dato());
                         Accion.ShowDialog();
                     }
                     else
                         MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-             */
+             
         }
         private void bttVerEstados_Click(object sender, EventArgs e)
         {
-            /*  
-               if (DialogResult == DialogResult.OK)
-                   {
-                       Ver_Estados Accion = new Ver_Estados(Dato());
-                       Accion.ShowDialog();
-                   }
-                   else
-                       MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-           }
-            */
+            Estado_de_Cuenta Accion = new Estado_de_Cuenta(Dato());
+
+            if (DialogResult == DialogResult.OK)
+            {
+                Accion.ShowDialog();
+            }
+            else
+                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         private void bttCrearCuenta_Click(object sender, EventArgs e)
         {
-            /*  
-            Crear_Cuenta Accion = new Crear_Cuenta(Dato());
+
+            Nuevo_Ahorro Accion = new Nuevo_Ahorro();
             Accion.ShowDialog();
 
-            */
         }
         private void bttRealizarPago_Click(object sender, EventArgs e)
         {
-            /*
+            Pagos Accion = new Pagos(Dato());
+
                if (DialogResult == DialogResult.OK)
                    {
-                       Realizar_Pago Accion = new Realizar_Pago(Dato());
                        Accion.ShowDialog();
                    }
                    else
                        MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-           }
-            */
         }
         private void bttAmortización_Click(object sender, EventArgs e)
         {
-            /*
-               if (DialogResult == DialogResult.OK)
-                   {
-                       Amortización Accion = new Amortización(Dato());
-                       Accion.ShowDialog();
-                   }
-                   else
-                       MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-           }
-            */
+            Amortización Accion = new Amortización(Dato());
+            if (DialogResult == DialogResult.OK)
+            {
+                Accion.ShowDialog();
+            }
+            else
+                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         private void bttPagosRealizados_Click(object sender, EventArgs e)
         {
-            /*
+            Pagos_Realizados Accion = new Pagos_Realizados(Dato());
                if (DialogResult == DialogResult.OK)
                    {
-                       Pagos_Realizados Accion = new Pagos_Realizados(Dato());
                        Accion.ShowDialog();
                    }
                    else
                        MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-           }
-            */
         }
         private void bttOtorgarPréstamo_Click(object sender, EventArgs e)
         {
-            /*
-            Otorgar_Préstamo Accion = new Otorgar_Préstamo(Dato());
+            
+            Otorgar_Préstamo Accion = new Otorgar_Préstamo();
             Accion.ShowDialog();
-            */
+        }
+        private void bttDatosAsociado_Click(object sender, EventArgs e)
+        {
+            Datos_Asociado Accion = new Datos_Asociado();
+            if (DialogResult == DialogResult.OK)
+            {
+                Accion.ShowDialog();
+            }
+            else
+                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+        }
+        private void bttAportaciones_Click(object sender, EventArgs e)
+        {
+            Aportaciones Accion = new Aportaciones(Dato());
+            if (DialogResult == DialogResult.OK)
+            {
+                Accion.ShowDialog();
+            }
+            else
+                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+        }
+        private void bttNuevoAsociado_Click(object sender, EventArgs e)
+        {
+            Nuevo_asociado Accion = new Nuevo_asociado();
+            Accion.ShowDialog();
         }
         //Barta Título
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -360,6 +373,9 @@ namespace ACOPEDH
             bttAbonar.Location = bttRealizarPago.Location;
             Refresh();
         }
+
+        
+
         private void Principal_P_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (MessageBox.Show("¿Está seguro que desea salir?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)

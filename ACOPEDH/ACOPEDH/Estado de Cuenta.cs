@@ -12,11 +12,19 @@ namespace ACOPEDH
 {
     public partial class Estado_de_Cuenta : Form
     {
+        string Dato;
+
+        public string Dato1 { get => Dato; set => Dato = value; }
+
         public Estado_de_Cuenta()
         {
             InitializeComponent();
         }
-
+        public Estado_de_Cuenta(string dato)
+        {
+            InitializeComponent();
+            Dato = dato;
+        }
         private void bttCer_Click(object sender, EventArgs e)
         {
             Close();
