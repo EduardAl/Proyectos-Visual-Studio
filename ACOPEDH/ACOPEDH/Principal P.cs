@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace ACOPEDH
 {
@@ -118,7 +119,7 @@ namespace ACOPEDH
             Ocultar();
             //Colorear
             PAsociados.BackColor = Seleccionado;
-
+            DataView dv = new DataView();
             //Mostrando
             lab1.Visible = true;
             labBuscar.Visible = true;
@@ -128,9 +129,8 @@ namespace ACOPEDH
             bttNuevoAsociado.Visible = true;
             bttDatosAsociado.Visible = true;
             bttAportaciones.Visible = true;
-            DataView dvPersonaAsociada = new DataView();
             dgvBúsqueda.DataSource = Procedimientos_select.llenar_DataTable("[Asociado DVG]");
-
+            dgvBúsqueda.Refresh();
         }
         private void PConfiguración_Click(object sender, EventArgs e)
         {
@@ -377,7 +377,10 @@ namespace ACOPEDH
             Refresh();
         }
 
-        
+        private void dgvBúsqueda_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
 
         private void Principal_P_FormClosing(object sender, FormClosingEventArgs e)
         {

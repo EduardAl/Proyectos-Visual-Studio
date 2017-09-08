@@ -90,6 +90,7 @@ namespace ACOPEDH
 
         private void bttConfirmar_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             NewAcount = new Cuentas();
             enviaremail = new Emailsistema();
             String asunto = "Bienvenido a ACOPEDH";
@@ -114,11 +115,13 @@ namespace ACOPEDH
                     {
                         enviaremail.EnviarEmail(txtCorreo, txtPassword, asunto, mensaje);
                         MessageBox.Show("Cuenta creada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        DialogResult = DialogResult.OK;
                         this.Close();
                     }
 
                 }
             }
+            this.Cursor = Cursors.Default;
         }
         private void bttCancelar_Click(object sender, EventArgs e)
         {
@@ -126,8 +129,9 @@ namespace ACOPEDH
         }
         private void RegistroUsuario_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("¿Está seguro que desea salir sin guardar su cuenta?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
-                e.Cancel = true;
+            if (DialogResult != DialogResult.OK)
+                if (MessageBox.Show("¿Está seguro que desea salir sin guardar su cuenta?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+                    e.Cancel = true;
         }
         private void RegistroUsuario_AutoSizeChanged(object sender, EventArgs e)
         {

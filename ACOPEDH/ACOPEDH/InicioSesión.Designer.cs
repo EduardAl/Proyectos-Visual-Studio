@@ -211,9 +211,12 @@
             // 
             // PBACOPEDH
             // 
+            this.PBACOPEDH.BackgroundImage = global::ACOPEDH.Properties.Resources.show;
+            this.PBACOPEDH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PBACOPEDH.Location = new System.Drawing.Point(80, 74);
             this.PBACOPEDH.Name = "PBACOPEDH";
             this.PBACOPEDH.Size = new System.Drawing.Size(351, 223);
+            this.PBACOPEDH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PBACOPEDH.TabIndex = 63;
             this.PBACOPEDH.TabStop = false;
             // 

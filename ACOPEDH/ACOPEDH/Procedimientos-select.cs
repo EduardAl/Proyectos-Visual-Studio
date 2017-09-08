@@ -5,18 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 namespace ACOPEDH
 {
     public class Procedimientos_select
     {
-        SqlCommand Comando = new SqlCommand();
+        Conexión cn;
+        SqlCommand Comando;
         public void llenar_tabla(string procedimiento, SqlParameter[] param)
         {
             DataTable ds = new DataTable();
             try
             {
-                using (SqlConnection conex = new SqlConnection(Conexión.cadena))
+                using (SqlConnection conex = new SqlConnection(cn.cadena))
                 {
                     conex.Open();
                     Comando.CommandType = CommandType.StoredProcedure;
@@ -34,25 +36,23 @@ namespace ACOPEDH
         }
         public DataTable llenar_DataTable(string procedimiento)
         {
+            cn = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
             DataTable dt = new DataTable();
             try
             {
-                using (SqlConnection conex = new SqlConnection(Conexión.cadena))
-                {
+                    SqlConnection conex = new SqlConnection(cn.cadena);
                     conex.Open();
-                    Comando.CommandType = CommandType.StoredProcedure;
-                    Comando.CommandText = procedimiento;
+                Comando = new SqlCommand(procedimiento, conex);
+                Comando.CommandType = CommandType.StoredProcedure;
                     SqlDataAdapter da = new SqlDataAdapter(Comando);
                     da.Fill(dt);
                     da.Dispose();
                     conex.Close();
-                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Ha ocurrido un error al intentar extraer los datos." + ex);
             }
-
             return dt;
         }
     }

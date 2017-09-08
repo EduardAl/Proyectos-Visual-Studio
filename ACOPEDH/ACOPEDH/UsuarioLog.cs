@@ -18,12 +18,12 @@ namespace ACOPEDH
             this.correo = email;
             this.Cod_Tipo_Usuario = códigoUsuario;
             ObtenerUsuario(códigoUsuario);
-            Globales.Inicializar(códigoUsuario, Usuario, clave, correo);
+            //Globales.Inicializar(códigoUsuario, Usuario, clave, correo);
         }
         public void ObtenerUsuario(string código)
         {
             Conexión con = new Conexión("InicioSesión", "In112358");
-            SqlConnection cn = new SqlConnection(Conexión.cadena);
+            SqlConnection cn = new SqlConnection(con.cadena);
             SqlCommand cmd = new SqlCommand("select Nombre, Clave from [Tipo de Usuarios] where [Id Tipo Usuario]= '" + código + "'", cn);
             try
             {
