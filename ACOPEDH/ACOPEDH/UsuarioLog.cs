@@ -18,7 +18,7 @@ namespace ACOPEDH
             this.correo = email;
             this.Cod_Tipo_Usuario = códigoUsuario;
             ObtenerUsuario(códigoUsuario);
-            Globales.Inicializar(códigoUsuario, Usuario, clave, correo);
+            //Globales.Inicializar(códigoUsuario, Usuario, clave, correo);
         }
         public void ObtenerUsuario(string código)
         {

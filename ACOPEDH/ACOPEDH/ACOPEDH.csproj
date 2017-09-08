@@ -139,6 +139,7 @@
     <Compile Include="Principal P.Designer.cs">
       <DependentUpon>Principal P.cs</DependentUpon>
     </Compile>
+    <Compile Include="Procedimientos-select.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistroUsuario.cs">

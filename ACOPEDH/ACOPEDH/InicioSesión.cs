@@ -55,6 +55,7 @@ namespace ACOPEDH
         Cuentas cuenta;
         Conexión con;
         Emailsistema enviarcorreo = new Emailsistema();
+        Globales glb = new Globales();
         String asunto = "Alerta de inicio de sesión.";
         String mensaje = "Se ha iniciado sesión en su cuenta el día " + DateTime.Now.Date.ToLongDateString() + " a las " + DateTime.Now.ToLongTimeString() + "\n\nSi usted no ha realizado ésta acción se le recomienda cambiar su clave de inicio de sesión.\nÉsto puede hacerlo en la opciones de configuración de su cuenta.\nSi ha sido usted, no realice ninguna acción.\n\n\nÉste correo se ha generado automáticamente, por favor, no responder.\n\nDesarrolladores.";
         #endregion
@@ -107,12 +108,11 @@ namespace ACOPEDH
                         seguridad = dro["Seguridad"].ToString();
                         if ((Cifrado.encriptar(ttpass.Text, seguridad) == dro["Contraseña"].ToString()))
                         {
+                            Globales.gbCod_TipoUsuario = dro["FK Tipo Usuario"].ToString();
+                            this.Cursor = Cursors.WaitCursor;
                             ttpass.Text = null;
                             enviarcorreo.EnviarEmail(txtCorreo, ttpass, asunto, mensaje);
                             Principal_P p = new Principal_P();
-                            Globales.gbCod_TipoUsuario = dro["FK Tipo Usuario"].ToString();
-                            Globales.gbCorreo = dro["Correo"].ToString();
-                            Globales.gbCodUsuario = dro["Id Usuario"].ToString();
                             MessageBox.Show(Globales.gbCod_TipoUsuario);
                             SqlCommand cmd2 = new SqlCommand("select Nombre, Clave from [Tipo de Usuarios] where [Id Tipo Usuario]= '" + Globales.gbCod_TipoUsuario + "'", cn);
                             cmd2.ExecuteNonQuery();
@@ -122,8 +122,7 @@ namespace ACOPEDH
                             da.Fill(ds, "[Tipo de Usuarios]");
                             DataRow dro1;
                             dro1 = ds.Tables["[Tipo de Usuarios]"].Rows[0];
-                            Globales.gbTipo_Usuario = dro1["Nombre"].ToString();
-                            Globales.gbClave = dro1["Clave"].ToString();
+                            glb.Inicializar(dro["Id Usuario"].ToString(), dro1["Nombre"].ToString(), dro1["Clave"].ToString(), dro["Correo"].ToString(), dro["FK Tipo Usuario"].ToString(), dro["Contraseña"].ToString());
                             this.Visible = false;
                             p.ShowDialog();
                             this.Cursor = Cursors.Default;
