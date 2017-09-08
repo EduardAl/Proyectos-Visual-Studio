@@ -12,15 +12,20 @@ namespace ACOPEDH
 {
     public partial class Amortización : Form
     {
-        string Dato;
         public Amortización()
         {
             InitializeComponent();
         }
-        public Amortización(string dato)
+        public Amortización(string CodigoAhorro)
         {
             InitializeComponent();
-            Dato = dato;
+        }
+        public Amortización(double interes,double monto, int plazo)
+        {
+            InitializeComponent();
+            txtInteres.Text = (interes).ToString();
+            txtMonto.Text = monto.ToString();
+            txtPlazo.Text = plazo.ToString();
         }
         #region Mover Form
         bool Empezarmover = false;
@@ -65,12 +70,28 @@ namespace ACOPEDH
 
         private void Amortización_Load(object sender, EventArgs e)
         {
-
+            double interes = Convert.ToDouble(txtInteres.Text) / 12;
+            int plazo = Convert.ToInt32(txtPlazo.Text);
+            double Fijo = Math.Pow(1 + interes, plazo);
+            double Monto = Convert.ToInt32(txtMonto.Text);
+            double cuota = Monto * ((Fijo * interes) / (Fijo - 1));
+            double inte;
+            txtInteres.Text = (double.Parse(txtInteres.Text)*100).ToString()+"%";
+            txtMonto.Text = "$"+txtMonto.Text;
+            for(int i=1;i<=plazo;i++)
+            {
+                dgvAmortizar.Rows.Add(i, "$" + Math.Round(inte = interes * Monto, 2), "$" + Math.Round(cuota - inte, 2), "$" + Math.Round(Monto = Monto - cuota + inte, 2));
+            }
         }
 
         private void bttMin_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
+        }
+
+        private void bttImprimir_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void bttCer_Click(object sender, EventArgs e)

@@ -31,8 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Nuevo_Ahorro));
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.BarraTítulo = new System.Windows.Forms.Label();
-            this.cbBúsqueda = new System.Windows.Forms.ComboBox();
-            this.lab1 = new System.Windows.Forms.Label();
             this.labBuscar = new System.Windows.Forms.Label();
             this.txtBúsqueda = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -40,9 +38,7 @@
             this.txtAsociado = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -77,38 +73,14 @@
             this.BarraTítulo.Name = "BarraTítulo";
             this.BarraTítulo.Size = new System.Drawing.Size(859, 30);
             this.BarraTítulo.TabIndex = 62;
-            this.BarraTítulo.Text = "         ACOPEDH .:. NUEVA CUENTA DE AHORRO";
+            this.BarraTítulo.Text = "         ACOPEDH .:. Nueva Cuenta de Ahorros";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // cbBúsqueda
-            // 
-            this.cbBúsqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbBúsqueda.FormattingEnabled = true;
-            this.cbBúsqueda.Items.AddRange(new object[] {
-            "Nombre",
-            "DUI",
-            "Código Asociado"});
-            this.cbBúsqueda.Location = new System.Drawing.Point(184, 124);
-            this.cbBúsqueda.Name = "cbBúsqueda";
-            this.cbBúsqueda.Size = new System.Drawing.Size(184, 27);
-            this.cbBúsqueda.TabIndex = 67;
-            this.cbBúsqueda.SelectedIndexChanged += new System.EventHandler(this.cbBúsqueda_SelectedIndexChanged);
-            // 
-            // lab1
-            // 
-            this.lab1.AutoSize = true;
-            this.lab1.BackColor = System.Drawing.Color.Transparent;
-            this.lab1.Location = new System.Drawing.Point(36, 127);
-            this.lab1.Name = "lab1";
-            this.lab1.Size = new System.Drawing.Size(83, 19);
-            this.lab1.TabIndex = 66;
-            this.lab1.Text = "Búsqueda:";
             // 
             // labBuscar
             // 
             this.labBuscar.AutoSize = true;
             this.labBuscar.BackColor = System.Drawing.Color.Transparent;
-            this.labBuscar.Location = new System.Drawing.Point(36, 173);
+            this.labBuscar.Location = new System.Drawing.Point(36, 155);
             this.labBuscar.Name = "labBuscar";
             this.labBuscar.Size = new System.Drawing.Size(83, 19);
             this.labBuscar.TabIndex = 65;
@@ -118,7 +90,7 @@
             // 
             this.txtBúsqueda.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBúsqueda.Font = new System.Drawing.Font("Linotte-Bold", 14F);
-            this.txtBúsqueda.Location = new System.Drawing.Point(184, 173);
+            this.txtBúsqueda.Location = new System.Drawing.Point(184, 155);
             this.txtBúsqueda.Name = "txtBúsqueda";
             this.txtBúsqueda.Size = new System.Drawing.Size(285, 23);
             this.txtBúsqueda.TabIndex = 64;
@@ -167,14 +139,6 @@
             this.textBox2.Size = new System.Drawing.Size(148, 27);
             this.textBox2.TabIndex = 87;
             // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(588, 372);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(148, 27);
-            this.textBox3.TabIndex = 88;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -184,16 +148,6 @@
             this.label2.Size = new System.Drawing.Size(40, 19);
             this.label2.TabIndex = 89;
             this.label2.Text = "DUI:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(463, 375);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 19);
-            this.label3.TabIndex = 90;
-            this.label3.Text = "Ocupación:";
             // 
             // label4
             // 
@@ -268,7 +222,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(274, 486);
+            this.label7.Location = new System.Drawing.Point(274, 482);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(106, 19);
             this.label7.TabIndex = 98;
@@ -315,16 +269,12 @@
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.txtAsociado);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.cbBúsqueda);
-            this.Controls.Add(this.lab1);
             this.Controls.Add(this.labBuscar);
             this.Controls.Add(this.txtBúsqueda);
             this.Controls.Add(this.pictureBox3);
@@ -338,7 +288,6 @@
             this.Name = "Nuevo_Ahorro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ACOPEDH - NUEVO AHORRO";
-            this.Load += new System.EventHandler(this.Nuevo_Ahorro_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Nuevo_Ahorro_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -352,8 +301,6 @@
 
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label BarraTítulo;
-        private System.Windows.Forms.ComboBox cbBúsqueda;
-        private System.Windows.Forms.Label lab1;
         private System.Windows.Forms.Label labBuscar;
         private System.Windows.Forms.TextBox txtBúsqueda;
         private System.Windows.Forms.DataGridView dataGridView2;
@@ -361,9 +308,7 @@
         private System.Windows.Forms.TextBox txtAsociado;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox4;

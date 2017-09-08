@@ -43,8 +43,6 @@
             this.bttAmortización = new System.Windows.Forms.Button();
             this.bttRealizarPago = new System.Windows.Forms.Button();
             this.dgvBúsqueda = new System.Windows.Forms.DataGridView();
-            this.cbBúsqueda = new System.Windows.Forms.ComboBox();
-            this.lab1 = new System.Windows.Forms.Label();
             this.labBuscar = new System.Windows.Forms.Label();
             this.txtBúsqueda = new System.Windows.Forms.TextBox();
             this.bttAbonar = new System.Windows.Forms.Button();
@@ -72,7 +70,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImage = global::ACOPEDH.Properties.Resources.Photo_1;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Location = new System.Drawing.Point(29, 45);
             this.pictureBox1.Name = "pictureBox1";
@@ -254,42 +252,16 @@
             this.dgvBúsqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBúsqueda.Location = new System.Drawing.Point(261, 217);
             this.dgvBúsqueda.Name = "dgvBúsqueda";
+            this.dgvBúsqueda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBúsqueda.Size = new System.Drawing.Size(632, 372);
             this.dgvBúsqueda.TabIndex = 24;
             this.dgvBúsqueda.Visible = false;
-            // 
-            // cbBúsqueda
-            // 
-            this.cbBúsqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbBúsqueda.FormattingEnabled = true;
-            this.cbBúsqueda.Items.AddRange(new object[] {
-            "Nombre",
-            "DUI",
-            "Código Asociado"});
-            this.cbBúsqueda.Location = new System.Drawing.Point(405, 137);
-            this.cbBúsqueda.Name = "cbBúsqueda";
-            this.cbBúsqueda.Size = new System.Drawing.Size(184, 27);
-            this.cbBúsqueda.TabIndex = 22;
-            this.toolTip1.SetToolTip(this.cbBúsqueda, "Filtrar por");
-            this.cbBúsqueda.Visible = false;
-            this.cbBúsqueda.SelectedIndexChanged += new System.EventHandler(this.cbBúsqueda_SelectedIndexChanged);
-            // 
-            // lab1
-            // 
-            this.lab1.AutoSize = true;
-            this.lab1.BackColor = System.Drawing.Color.Transparent;
-            this.lab1.Location = new System.Drawing.Point(257, 140);
-            this.lab1.Name = "lab1";
-            this.lab1.Size = new System.Drawing.Size(83, 19);
-            this.lab1.TabIndex = 21;
-            this.lab1.Text = "Búsqueda:";
-            this.lab1.Visible = false;
             // 
             // labBuscar
             // 
             this.labBuscar.AutoSize = true;
             this.labBuscar.BackColor = System.Drawing.Color.Transparent;
-            this.labBuscar.Location = new System.Drawing.Point(257, 170);
+            this.labBuscar.Location = new System.Drawing.Point(255, 154);
             this.labBuscar.Name = "labBuscar";
             this.labBuscar.Size = new System.Drawing.Size(83, 19);
             this.labBuscar.TabIndex = 20;
@@ -300,7 +272,7 @@
             // 
             this.txtBúsqueda.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBúsqueda.Font = new System.Drawing.Font("Linotte-Bold", 14F);
-            this.txtBúsqueda.Location = new System.Drawing.Point(405, 170);
+            this.txtBúsqueda.Location = new System.Drawing.Point(403, 154);
             this.txtBúsqueda.Name = "txtBúsqueda";
             this.txtBúsqueda.Size = new System.Drawing.Size(318, 23);
             this.txtBúsqueda.TabIndex = 19;
@@ -502,8 +474,6 @@
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.BarraTítulo);
             this.Controls.Add(this.dgvBúsqueda);
-            this.Controls.Add(this.cbBúsqueda);
-            this.Controls.Add(this.lab1);
             this.Controls.Add(this.labBuscar);
             this.Controls.Add(this.txtBúsqueda);
             this.Controls.Add(this.PCerrarSesion);
@@ -563,8 +533,6 @@
         private System.Windows.Forms.Button bttAmortización;
         private System.Windows.Forms.Button bttRealizarPago;
         private System.Windows.Forms.DataGridView dgvBúsqueda;
-        private System.Windows.Forms.ComboBox cbBúsqueda;
-        private System.Windows.Forms.Label lab1;
         private System.Windows.Forms.Label labBuscar;
         private System.Windows.Forms.TextBox txtBúsqueda;
         private System.Windows.Forms.Button bttAbonar;

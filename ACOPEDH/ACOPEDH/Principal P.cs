@@ -56,15 +56,8 @@ namespace ACOPEDH
         private void Principal_P_Load(object sender, EventArgs e)
         {
             this.Cursor = Cursors.Default;
-            cbBúsqueda.SelectedIndex = 0;
             Seleccionado = PInicio.BackColor;
             Original = PPréstamos.BackColor;
-        }
-        private void cbBúsqueda_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            labBuscar.Text = cbBúsqueda.Text+":";
-            txtBúsqueda.Clear();
-            txtBúsqueda.Focus();
         }
 
         /*
@@ -86,9 +79,7 @@ namespace ACOPEDH
             PAhorros.BackColor = Seleccionado;
 
             // Mostrando
-            lab1.Visible = true;
             labBuscar.Visible = true;
-            cbBúsqueda.Visible = true;
             txtBúsqueda.Visible = true;
             dgvBúsqueda.Visible = true;
             bttAbonar.Visible = true;
@@ -103,9 +94,7 @@ namespace ACOPEDH
             PPréstamos.BackColor = Seleccionado;
 
             // Mostrando
-            lab1.Visible = true;
             labBuscar.Visible = true;
-            cbBúsqueda.Visible = true;
             txtBúsqueda.Visible = true;
             dgvBúsqueda.Visible = true;
             bttAmortización.Visible = true;
@@ -120,9 +109,7 @@ namespace ACOPEDH
             PAsociados.BackColor = Seleccionado;
 
             //Mostrando
-            lab1.Visible = true;
             labBuscar.Visible = true;
-            cbBúsqueda.Visible = true;
             txtBúsqueda.Visible = true;
             dgvBúsqueda.Visible = true;
             bttNuevoAsociado.Visible = true;
@@ -188,9 +175,7 @@ namespace ACOPEDH
             PEstadoAsociación.BackColor = Original;
 
             //Búsqueda
-            lab1.Visible = false;
             labBuscar.Visible = false;
-            cbBúsqueda.Visible = false;
             txtBúsqueda.Visible = false;
             dgvBúsqueda.Visible = false;
 
@@ -269,7 +254,7 @@ namespace ACOPEDH
         }
         private void bttAmortización_Click(object sender, EventArgs e)
         {
-            Amortización Accion = new Amortización(Dato());
+            Amortización Accion = new Amortización(0.17,700,18);
             if (DialogResult == DialogResult.OK)
             {
                 Accion.ShowDialog();
