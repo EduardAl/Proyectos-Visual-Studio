@@ -20,10 +20,9 @@ namespace ACOPEDH
         public Datos_Asociado(string dato)
         {
             InitializeComponent();
-            Dato1 = dato;
+            Dato = dato;
         }
 
-        public string Dato1 { get => Dato; set => Dato = value; }
     }
 
 }
