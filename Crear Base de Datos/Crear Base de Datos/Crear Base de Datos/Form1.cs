@@ -211,8 +211,8 @@ namespace Crear_Base_de_Datos
                  "As " +
                  "Begin Tran Cargar_Asociados " +
                  "Begin Try " +
-                 "Select[Código Asociado],[FK Tipo Socio], (Nombres + ' ' + Apellidos), DUI, NIT, Dirección,[Fecha de Nacimiento],[Fecha de Asociación] " +
-                 "From Asociado where[Fecha de Desasociación] is null " +
+                 "Select [FK Tipo Socio] AS 'Tipo de Asociación', (Nombres + ' ' + Apellidos) AS 'Nombre', DUI, NIT, Dirección,[Fecha de Nacimiento],[Fecha de Asociación] " +
+                 "From Asociado where [Código Asociado] = @Código_Asociado" +
                  "Commit Tran Cargar_Asociados " +
                  "End Try " +
                  "Begin Catch " +
@@ -362,7 +362,7 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran C_Aportaciones " +
                 "Begin Try " +
-                "Select Aportaciones.Aportación as 'Aportación',Transacciones.[Fecha de Transacción] as 'Fecha de Aportación' From Aportaciones inner join Transacciones on Aportaciones.[FK Transacción] =" +
+                "Select Aportaciones.Aportación as ' Monto de la Aportación',Transacciones.[Fecha de Transacción] as 'Fecha de Aportación' From Aportaciones inner join Transacciones on Aportaciones.[FK Transacción] =" +
                 "Transacciones.[id Transacción] where @Código_Asociado = Aportaciones.[FK Asociado] " +
                 "Commit Tran C_Aportaciones " +
                 "End Try " +
@@ -418,7 +418,7 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Cargar_Abono " +
                 "Begin Try " +
-                "Select Abono.Abono as 'Abono',Transacciones.[Fecha de Transacción] as 'Fecha de Abono' From Abono inner join Transacciones on Abono.[FK Transacción] = Transacciones.[id Transacción] " +
+                "Select Abono.Abono as 'Monto Abonado',Transacciones.[Fecha de Transacción] as 'Fecha de Abono' From Abono inner join Transacciones on Abono.[FK Transacción] = Transacciones.[id Transacción] " +
                 "where[FK Ahorro] = @ID_Ahorro " +
                 "Commit Tran Cargar_Abono " +
                 "End Try " +
