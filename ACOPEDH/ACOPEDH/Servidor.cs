@@ -31,7 +31,7 @@ namespace ACOPEDH
                         else
                             listaServidores.Add(rowServidor["ServerName"] + "\\" + rowServidor["InstanceName"]);
                     }
-                    Globales.Servidor = listaServidores[0];
+                    Globales.Servidor = listaServidores[1];
                 }
             }
             catch(SqlException ex)

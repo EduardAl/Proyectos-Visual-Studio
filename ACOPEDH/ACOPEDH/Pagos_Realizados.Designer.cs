@@ -28,50 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pagos_Realizados));
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtAsociado = new System.Windows.Forms.TextBox();
+            this.txtIDPréstamo = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.CBTipoPréstamo = new System.Windows.Forms.ComboBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtOtorgamiento = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtPlazo = new System.Windows.Forms.TextBox();
+            this.txtMonto = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtCuotaMensual = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvPagosRealizados = new System.Windows.Forms.DataGridView();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.BarraTítulo = new System.Windows.Forms.Label();
             this.bttCer = new System.Windows.Forms.PictureBox();
             this.bttMin = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.txtTipoPréstamo = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPagosRealizados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttMin)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox2
+            // txtAsociado
             // 
-            this.textBox2.Location = new System.Drawing.Point(130, 109);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(385, 25);
-            this.textBox2.TabIndex = 11;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txtAsociado.Location = new System.Drawing.Point(130, 109);
+            this.txtAsociado.Multiline = true;
+            this.txtAsociado.Name = "txtAsociado";
+            this.txtAsociado.ReadOnly = true;
+            this.txtAsociado.Size = new System.Drawing.Size(385, 25);
+            this.txtAsociado.TabIndex = 3;
+            this.txtAsociado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox1
+            // txtIDPréstamo
             // 
-            this.textBox1.Location = new System.Drawing.Point(157, 58);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(124, 25);
-            this.textBox1.TabIndex = 10;
+            this.txtIDPréstamo.Location = new System.Drawing.Point(157, 58);
+            this.txtIDPréstamo.Multiline = true;
+            this.txtIDPréstamo.Name = "txtIDPréstamo";
+            this.txtIDPréstamo.ReadOnly = true;
+            this.txtIDPréstamo.Size = new System.Drawing.Size(124, 25);
+            this.txtIDPréstamo.TabIndex = 0;
+            this.txtIDPréstamo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
             // 
@@ -103,25 +109,15 @@
             this.label9.TabIndex = 15;
             this.label9.Text = "Tipo de Préstamo: ";
             // 
-            // CBTipoPréstamo
+            // txtOtorgamiento
             // 
-            this.CBTipoPréstamo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CBTipoPréstamo.Enabled = false;
-            this.CBTipoPréstamo.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.CBTipoPréstamo.FormattingEnabled = true;
-            this.CBTipoPréstamo.Location = new System.Drawing.Point(459, 58);
-            this.CBTipoPréstamo.Name = "CBTipoPréstamo";
-            this.CBTipoPréstamo.Size = new System.Drawing.Size(155, 26);
-            this.CBTipoPréstamo.TabIndex = 14;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(714, 113);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(136, 25);
-            this.textBox3.TabIndex = 17;
+            this.txtOtorgamiento.Location = new System.Drawing.Point(714, 113);
+            this.txtOtorgamiento.Multiline = true;
+            this.txtOtorgamiento.Name = "txtOtorgamiento";
+            this.txtOtorgamiento.ReadOnly = true;
+            this.txtOtorgamiento.Size = new System.Drawing.Size(136, 25);
+            this.txtOtorgamiento.TabIndex = 4;
+            this.txtOtorgamiento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
             // 
@@ -152,26 +148,26 @@
             this.label5.Size = new System.Drawing.Size(148, 18);
             this.label5.TabIndex = 20;
             this.label5.Text = "Monto del Préstamo:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
-            // textBox4
+            // txtPlazo
             // 
-            this.textBox4.Location = new System.Drawing.Point(778, 51);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(72, 33);
-            this.textBox4.TabIndex = 19;
+            this.txtPlazo.Location = new System.Drawing.Point(778, 51);
+            this.txtPlazo.Multiline = true;
+            this.txtPlazo.Name = "txtPlazo";
+            this.txtPlazo.ReadOnly = true;
+            this.txtPlazo.Size = new System.Drawing.Size(72, 33);
+            this.txtPlazo.TabIndex = 2;
+            this.txtPlazo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox5
+            // txtMonto
             // 
-            this.textBox5.Location = new System.Drawing.Point(216, 169);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(72, 33);
-            this.textBox5.TabIndex = 18;
-            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+            this.txtMonto.Location = new System.Drawing.Point(216, 169);
+            this.txtMonto.Multiline = true;
+            this.txtMonto.Name = "txtMonto";
+            this.txtMonto.ReadOnly = true;
+            this.txtMonto.Size = new System.Drawing.Size(72, 33);
+            this.txtMonto.TabIndex = 5;
+            this.txtMonto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label13
             // 
@@ -182,7 +178,6 @@
             this.label13.Size = new System.Drawing.Size(116, 18);
             this.label13.TabIndex = 23;
             this.label13.Text = "Cuota Mensual: ";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // txtCuotaMensual
             // 
@@ -191,17 +186,56 @@
             this.txtCuotaMensual.Name = "txtCuotaMensual";
             this.txtCuotaMensual.ReadOnly = true;
             this.txtCuotaMensual.Size = new System.Drawing.Size(67, 29);
-            this.txtCuotaMensual.TabIndex = 22;
-            this.txtCuotaMensual.TextChanged += new System.EventHandler(this.txtCuotaMensual_TextChanged);
+            this.txtCuotaMensual.TabIndex = 6;
+            this.txtCuotaMensual.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // dataGridView1
+            // dgvPagosRealizados
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.LightGray;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(63, 216);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(793, 377);
-            this.dataGridView1.TabIndex = 24;
+            this.dgvPagosRealizados.AllowUserToAddRows = false;
+            this.dgvPagosRealizados.AllowUserToDeleteRows = false;
+            this.dgvPagosRealizados.AllowUserToResizeColumns = false;
+            this.dgvPagosRealizados.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvPagosRealizados.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvPagosRealizados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPagosRealizados.BackgroundColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Linotte-SemiBold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPagosRealizados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvPagosRealizados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Linotte-SemiBold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPagosRealizados.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvPagosRealizados.Location = new System.Drawing.Point(63, 216);
+            this.dgvPagosRealizados.MultiSelect = false;
+            this.dgvPagosRealizados.Name = "dgvPagosRealizados";
+            this.dgvPagosRealizados.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Linotte-SemiBold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPagosRealizados.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvPagosRealizados.RowHeadersVisible = false;
+            this.dgvPagosRealizados.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvPagosRealizados.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvPagosRealizados.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvPagosRealizados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPagosRealizados.Size = new System.Drawing.Size(793, 377);
+            this.dgvPagosRealizados.TabIndex = 24;
             // 
             // pictureBox3
             // 
@@ -257,6 +291,16 @@
             this.bttMin.TabStop = false;
             this.bttMin.Click += new System.EventHandler(this.bttMin_Click);
             // 
+            // txtTipoPréstamo
+            // 
+            this.txtTipoPréstamo.Location = new System.Drawing.Point(470, 54);
+            this.txtTipoPréstamo.Multiline = true;
+            this.txtTipoPréstamo.Name = "txtTipoPréstamo";
+            this.txtTipoPréstamo.ReadOnly = true;
+            this.txtTipoPréstamo.Size = new System.Drawing.Size(124, 25);
+            this.txtTipoPréstamo.TabIndex = 1;
+            this.txtTipoPréstamo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Pagos_Realizados
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -264,36 +308,37 @@
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(929, 634);
+            this.Controls.Add(this.txtTipoPréstamo);
             this.Controls.Add(this.bttCer);
             this.Controls.Add(this.bttMin);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.BarraTítulo);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvPagosRealizados);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtCuotaMensual);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtPlazo);
+            this.Controls.Add(this.txtMonto);
+            this.Controls.Add(this.txtOtorgamiento);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.CBTipoPréstamo);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtAsociado);
+            this.Controls.Add(this.txtIDPréstamo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Linotte-SemiBold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(929, 634);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(929, 634);
             this.Name = "Pagos_Realizados";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ACOPEDH - PAGOS REALIZADOS";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Pagos_Realizados_FormClosing);
             this.Load += new System.EventHandler(this.Pagos_Realizados_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPagosRealizados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttMin)).EndInit();
@@ -304,24 +349,24 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtAsociado;
+        private System.Windows.Forms.TextBox txtIDPréstamo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox CBTipoPréstamo;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtOtorgamiento;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtPlazo;
+        private System.Windows.Forms.TextBox txtMonto;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtCuotaMensual;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvPagosRealizados;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label BarraTítulo;
         private System.Windows.Forms.PictureBox bttCer;
         private System.Windows.Forms.PictureBox bttMin;
+        private System.Windows.Forms.TextBox txtTipoPréstamo;
     }
 }

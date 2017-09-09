@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,7 @@ namespace ACOPEDH
         {
             InitializeComponent();
             Datos = datos;
+            txtIDPréstamo.Text = Datos;
         }
         #region Mover Form
         bool Empezarmover = false;
@@ -62,34 +64,16 @@ namespace ACOPEDH
             if (MessageBox.Show("¿Desea salir?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 e.Cancel = true;
         }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtCuotaMensual_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
+      
         private void Pagos_Realizados_Load(object sender, EventArgs e)
         {
+            Procedimientos_select pro = new Procedimientos_select();
+            SqlParameter[] Param = new SqlParameter[1];
+            Param[0] = new SqlParameter("@ID_Préstamo", Datos);
+            dgvPagosRealizados.DataSource = pro.llenar_DataTable("[Cargar Pagos]",Param);
+            Param[0] = new SqlParameter("@ID_Préstamo", Datos);
+            pro.LlenarText("[Cargar Préstamo]", "Nombre,PCuotas,Monto,FechaT,NCuotas,TipoP", Param, txtAsociado, txtCuotaMensual, txtMonto, txtOtorgamiento, txtPlazo, txtTipoPréstamo);
+            dgvPagosRealizados.Refresh();
         }
 
         private void bttMin_Click(object sender, EventArgs e)

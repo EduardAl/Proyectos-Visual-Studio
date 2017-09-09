@@ -86,7 +86,7 @@
             this.Titulo.ForeColor = System.Drawing.Color.White;
             this.Titulo.Location = new System.Drawing.Point(260, 44);
             this.Titulo.Name = "Titulo";
-            this.Titulo.Size = new System.Drawing.Size(833, 58);
+            this.Titulo.Size = new System.Drawing.Size(646, 46);
             this.Titulo.TabIndex = 2;
             this.Titulo.Text = "Asociación Cooperativa de Ahorro, Crédito y Consumo del Personal de la \r\nProcurad" +
     "uría para la Defensa de los Derechos Humanos";
@@ -258,40 +258,13 @@
             this.dgvBúsqueda.Visible = false;
             this.dgvBúsqueda.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBúsqueda_CellContentClick);
             // 
-            // cbBúsqueda
-            // 
-            this.cbBúsqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbBúsqueda.FormattingEnabled = true;
-            this.cbBúsqueda.Items.AddRange(new object[] {
-            "Nombre",
-            "DUI",
-            "Código Asociado"});
-            this.cbBúsqueda.Location = new System.Drawing.Point(405, 137);
-            this.cbBúsqueda.Name = "cbBúsqueda";
-            this.cbBúsqueda.Size = new System.Drawing.Size(184, 27);
-            this.cbBúsqueda.TabIndex = 22;
-            this.toolTip1.SetToolTip(this.cbBúsqueda, "Filtrar por");
-            this.cbBúsqueda.Visible = false;
-            this.cbBúsqueda.SelectedIndexChanged += new System.EventHandler(this.cbBúsqueda_SelectedIndexChanged);
-            // 
-            // lab1
-            // 
-            this.lab1.AutoSize = true;
-            this.lab1.BackColor = System.Drawing.Color.Transparent;
-            this.lab1.Location = new System.Drawing.Point(257, 140);
-            this.lab1.Name = "lab1";
-            this.lab1.Size = new System.Drawing.Size(83, 19);
-            this.lab1.TabIndex = 21;
-            this.lab1.Text = "Búsqueda:";
-            this.lab1.Visible = false;
-            // 
             // labBuscar
             // 
             this.labBuscar.AutoSize = true;
             this.labBuscar.BackColor = System.Drawing.Color.Transparent;
             this.labBuscar.Location = new System.Drawing.Point(255, 154);
             this.labBuscar.Name = "labBuscar";
-            this.labBuscar.Size = new System.Drawing.Size(104, 24);
+            this.labBuscar.Size = new System.Drawing.Size(83, 19);
             this.labBuscar.TabIndex = 20;
             this.labBuscar.Text = "Búsqueda:";
             this.labBuscar.Visible = false;
@@ -300,9 +273,9 @@
             // 
             this.txtBúsqueda.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBúsqueda.Font = new System.Drawing.Font("Linotte-Bold", 14F);
-            this.txtBúsqueda.Location = new System.Drawing.Point(403, 154);
+            this.txtBúsqueda.Location = new System.Drawing.Point(365, 154);
             this.txtBúsqueda.Name = "txtBúsqueda";
-            this.txtBúsqueda.Size = new System.Drawing.Size(318, 28);
+            this.txtBúsqueda.Size = new System.Drawing.Size(356, 23);
             this.txtBúsqueda.TabIndex = 19;
             this.txtBúsqueda.Visible = false;
             // 
@@ -514,7 +487,6 @@
             this.Controls.Add(this.Titulo);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.bttAbonar);
-            this.Controls.Add(this.bttDatosAsociado);
             this.Controls.Add(this.bttAportaciones);
             this.Controls.Add(this.bttRealizarPago);
             this.Controls.Add(this.bttAmortización);
@@ -524,6 +496,7 @@
             this.Controls.Add(this.bttRetirar);
             this.Controls.Add(this.bttVerEstados);
             this.Controls.Add(this.bttCrearCuenta);
+            this.Controls.Add(this.bttDatosAsociado);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

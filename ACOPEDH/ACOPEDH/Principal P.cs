@@ -116,6 +116,7 @@ namespace ACOPEDH
             bttNuevoAsociado.Visible = true;
             bttDatosAsociado.Visible = true;
             bttAportaciones.Visible = true;
+            //Lenado de Datos
             dgvBúsqueda.DataSource = Procedimientos_select.llenar_DataTable("[Asociado DVG]");
             dgvBúsqueda.Refresh();
         }
@@ -158,7 +159,7 @@ namespace ACOPEDH
                     int i = dgvBúsqueda.CurrentCell.RowIndex;
                     dgvv = dgvBúsqueda.Rows[i];
                     Datos = dgvv.Cells[0].Value.ToString();
-                    if (String.IsNullOrEmpty(Datos))
+                    if (String.IsNullOrEmpty(Datos)||Datos=="")
                         DialogResult = DialogResult.Cancel;
                     else
                         DialogResult = DialogResult.OK;
@@ -257,7 +258,7 @@ namespace ACOPEDH
         }
         private void bttAmortización_Click(object sender, EventArgs e)
         {
-            Amortización Accion = new Amortización(0.17,700,18);
+            Amortización Accion = new Amortización(Dato());
             if (DialogResult == DialogResult.OK)
             {
                 Accion.ShowDialog();
