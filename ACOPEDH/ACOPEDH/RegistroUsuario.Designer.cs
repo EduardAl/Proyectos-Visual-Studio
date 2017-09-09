@@ -48,15 +48,15 @@
             this.BarraTítulo = new System.Windows.Forms.Label();
             this.bttCer = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.PBACOPEDH = new System.Windows.Forms.PictureBox();
             this.PBMostrar1 = new System.Windows.Forms.PictureBox();
             this.PBMostrar2 = new System.Windows.Forms.PictureBox();
+            this.PBACOPEDH = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PBACOPEDH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBMostrar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBMostrar2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBACOPEDH)).BeginInit();
             this.SuspendLayout();
             // 
             // label6
@@ -64,7 +64,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(179, 683);
+            this.label6.Location = new System.Drawing.Point(179, 491);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(162, 24);
@@ -84,7 +84,7 @@
             "Usuario",
             "Administrador",
             "Master"});
-            this.cbTipoUsuario.Location = new System.Drawing.Point(142, 713);
+            this.cbTipoUsuario.Location = new System.Drawing.Point(142, 521);
             this.cbTipoUsuario.Margin = new System.Windows.Forms.Padding(0);
             this.cbTipoUsuario.Name = "cbTipoUsuario";
             this.cbTipoUsuario.Size = new System.Drawing.Size(236, 29);
@@ -97,7 +97,7 @@
             this.bttCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bttCancelar.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bttCancelar.Location = new System.Drawing.Point(282, 778);
+            this.bttCancelar.Location = new System.Drawing.Point(282, 586);
             this.bttCancelar.Margin = new System.Windows.Forms.Padding(0);
             this.bttCancelar.Name = "bttCancelar";
             this.bttCancelar.Size = new System.Drawing.Size(149, 60);
@@ -112,7 +112,7 @@
             this.txtCorreo.BackColor = System.Drawing.Color.Gainsboro;
             this.txtCorreo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCorreo.Font = new System.Drawing.Font("Linotte-Light", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCorreo.Location = new System.Drawing.Point(89, 494);
+            this.txtCorreo.Location = new System.Drawing.Point(89, 302);
             this.txtCorreo.Margin = new System.Windows.Forms.Padding(0);
             this.txtCorreo.MaxLength = 50;
             this.txtCorreo.Name = "txtCorreo";
@@ -127,7 +127,7 @@
             this.txtPassword.BackColor = System.Drawing.Color.Gainsboro;
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPassword.Font = new System.Drawing.Font("Linotte-Light", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(89, 567);
+            this.txtPassword.Location = new System.Drawing.Point(89, 375);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(0);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(342, 27);
@@ -142,7 +142,7 @@
             this.txtConfPassword.BackColor = System.Drawing.Color.Gainsboro;
             this.txtConfPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtConfPassword.Font = new System.Drawing.Font("Linotte-Light", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConfPassword.Location = new System.Drawing.Point(89, 640);
+            this.txtConfPassword.Location = new System.Drawing.Point(89, 448);
             this.txtConfPassword.Margin = new System.Windows.Forms.Padding(0);
             this.txtConfPassword.Name = "txtConfPassword";
             this.txtConfPassword.Size = new System.Drawing.Size(342, 27);
@@ -156,7 +156,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(152, 610);
+            this.label5.Location = new System.Drawing.Point(152, 418);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(217, 24);
@@ -168,7 +168,7 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(201, 537);
+            this.label4.Location = new System.Drawing.Point(201, 345);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(119, 24);
@@ -180,7 +180,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(223, 464);
+            this.label3.Location = new System.Drawing.Point(223, 272);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 24);
@@ -193,7 +193,7 @@
             this.txtApellido.BackColor = System.Drawing.Color.Gainsboro;
             this.txtApellido.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtApellido.Font = new System.Drawing.Font("Linotte-Light", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtApellido.Location = new System.Drawing.Point(89, 421);
+            this.txtApellido.Location = new System.Drawing.Point(89, 229);
             this.txtApellido.Margin = new System.Windows.Forms.Padding(0);
             this.txtApellido.MaxLength = 50;
             this.txtApellido.Name = "txtApellido";
@@ -207,7 +207,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(212, 391);
+            this.label2.Location = new System.Drawing.Point(212, 199);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 24);
@@ -219,7 +219,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(217, 318);
+            this.label1.Location = new System.Drawing.Point(217, 126);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 24);
@@ -232,7 +232,7 @@
             this.txtNombre.BackColor = System.Drawing.Color.Gainsboro;
             this.txtNombre.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNombre.Font = new System.Drawing.Font("Linotte-Light", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(89, 348);
+            this.txtNombre.Location = new System.Drawing.Point(89, 156);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(0);
             this.txtNombre.MaxLength = 50;
             this.txtNombre.Name = "txtNombre";
@@ -246,7 +246,7 @@
             this.bttConfirmar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bttConfirmar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttConfirmar.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bttConfirmar.Location = new System.Drawing.Point(89, 778);
+            this.bttConfirmar.Location = new System.Drawing.Point(89, 586);
             this.bttConfirmar.Margin = new System.Windows.Forms.Padding(0);
             this.bttConfirmar.Name = "bttConfirmar";
             this.bttConfirmar.Size = new System.Drawing.Size(149, 60);
@@ -302,19 +302,11 @@
             this.pictureBox3.TabIndex = 61;
             this.pictureBox3.TabStop = false;
             // 
-            // PBACOPEDH
-            // 
-            this.PBACOPEDH.Location = new System.Drawing.Point(167, 58);
-            this.PBACOPEDH.Name = "PBACOPEDH";
-            this.PBACOPEDH.Size = new System.Drawing.Size(342, 223);
-            this.PBACOPEDH.TabIndex = 62;
-            this.PBACOPEDH.TabStop = false;
-            // 
             // PBMostrar1
             // 
             this.PBMostrar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.PBMostrar1.Image = global::ACOPEDH.Properties.Resources.show;
-            this.PBMostrar1.Location = new System.Drawing.Point(398, 565);
+            this.PBMostrar1.Location = new System.Drawing.Point(398, 373);
             this.PBMostrar1.Name = "PBMostrar1";
             this.PBMostrar1.Size = new System.Drawing.Size(33, 33);
             this.PBMostrar1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -327,7 +319,7 @@
             // 
             this.PBMostrar2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.PBMostrar2.Image = global::ACOPEDH.Properties.Resources.show;
-            this.PBMostrar2.Location = new System.Drawing.Point(398, 638);
+            this.PBMostrar2.Location = new System.Drawing.Point(398, 446);
             this.PBMostrar2.Name = "PBMostrar2";
             this.PBMostrar2.Size = new System.Drawing.Size(33, 33);
             this.PBMostrar2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -336,16 +328,29 @@
             this.PBMostrar2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PBMostrar2_MouseDown);
             this.PBMostrar2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PBMostrar2_MouseUp);
             // 
+            // PBACOPEDH
+            // 
+            this.PBACOPEDH.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.PBACOPEDH.BackgroundImage = global::ACOPEDH.Properties.Resources.Photo_1;
+            this.PBACOPEDH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PBACOPEDH.Location = new System.Drawing.Point(127, 73);
+            this.PBACOPEDH.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PBACOPEDH.Name = "PBACOPEDH";
+            this.PBACOPEDH.Size = new System.Drawing.Size(267, 223);
+            this.PBACOPEDH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PBACOPEDH.TabIndex = 65;
+            this.PBACOPEDH.TabStop = false;
+            // 
             // RegistroUsuario
             // 
             this.AcceptButton = this.bttConfirmar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bttCancelar;
-            this.ClientSize = new System.Drawing.Size(520, 885);
+            this.ClientSize = new System.Drawing.Size(520, 729);
+            this.Controls.Add(this.PBACOPEDH);
             this.Controls.Add(this.PBMostrar2);
             this.Controls.Add(this.PBMostrar1);
-            this.Controls.Add(this.PBACOPEDH);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.bttCer);
             this.Controls.Add(this.BarraTítulo);
@@ -375,9 +380,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PBACOPEDH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBMostrar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBMostrar2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBACOPEDH)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -403,8 +408,8 @@
         private System.Windows.Forms.Label BarraTítulo;
         private System.Windows.Forms.PictureBox bttCer;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox PBACOPEDH;
         private System.Windows.Forms.PictureBox PBMostrar2;
         private System.Windows.Forms.PictureBox PBMostrar1;
+        private System.Windows.Forms.PictureBox PBACOPEDH;
     }
 }

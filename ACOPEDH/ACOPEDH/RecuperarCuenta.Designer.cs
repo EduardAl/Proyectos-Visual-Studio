@@ -34,8 +34,11 @@
             this.BarraTítulo = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtCorreo = new System.Windows.Forms.TextBox();
+            this.bttConfirmar = new System.Windows.Forms.Button();
+            this.PBACOPEDH = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBACOPEDH)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox3
@@ -82,7 +85,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(225, 373);
+            this.label5.Location = new System.Drawing.Point(227, 441);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(70, 24);
@@ -98,18 +101,45 @@
             this.txtCorreo.BackColor = System.Drawing.Color.Gainsboro;
             this.txtCorreo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCorreo.Font = new System.Drawing.Font("Linotte-Light", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCorreo.Location = new System.Drawing.Point(85, 405);
+            this.txtCorreo.Location = new System.Drawing.Point(87, 473);
             this.txtCorreo.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(351, 27);
             this.txtCorreo.TabIndex = 65;
             this.txtCorreo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // bttConfirmar
+            // 
+            this.bttConfirmar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.bttConfirmar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttConfirmar.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttConfirmar.Location = new System.Drawing.Point(188, 520);
+            this.bttConfirmar.Margin = new System.Windows.Forms.Padding(0);
+            this.bttConfirmar.Name = "bttConfirmar";
+            this.bttConfirmar.Size = new System.Drawing.Size(149, 60);
+            this.bttConfirmar.TabIndex = 69;
+            this.bttConfirmar.Text = "Crear Cuenta";
+            this.bttConfirmar.UseVisualStyleBackColor = true;
+            // 
+            // PBACOPEDH
+            // 
+            this.PBACOPEDH.BackgroundImage = global::ACOPEDH.Properties.Resources.Photo_1;
+            this.PBACOPEDH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PBACOPEDH.Location = new System.Drawing.Point(126, 79);
+            this.PBACOPEDH.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PBACOPEDH.Name = "PBACOPEDH";
+            this.PBACOPEDH.Size = new System.Drawing.Size(267, 223);
+            this.PBACOPEDH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PBACOPEDH.TabIndex = 70;
+            this.PBACOPEDH.TabStop = false;
+            // 
             // RecuperarCuenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(520, 885);
+            this.Controls.Add(this.PBACOPEDH);
+            this.Controls.Add(this.bttConfirmar);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtCorreo);
             this.Controls.Add(this.pictureBox3);
@@ -120,6 +150,7 @@
             this.Text = "RecuperarCuenta";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBACOPEDH)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,5 +163,7 @@
         private System.Windows.Forms.Label BarraTítulo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtCorreo;
+        private System.Windows.Forms.Button bttConfirmar;
+        private System.Windows.Forms.PictureBox PBACOPEDH;
     }
 }
