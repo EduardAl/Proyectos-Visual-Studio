@@ -44,6 +44,8 @@
             this.bttCer = new System.Windows.Forms.PictureBox();
             this.bttMin = new System.Windows.Forms.PictureBox();
             this.nmCantidad = new System.Windows.Forms.NumericUpDown();
+            this.txtPagoMax = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttMin)).BeginInit();
@@ -77,7 +79,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(32, 155);
+            this.label3.Location = new System.Drawing.Point(32, 148);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(121, 19);
             this.label3.TabIndex = 2;
@@ -88,7 +90,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(234, 155);
+            this.label4.Location = new System.Drawing.Point(245, 170);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 19);
             this.label4.TabIndex = 3;
@@ -99,7 +101,7 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(32, 209);
+            this.label5.Location = new System.Drawing.Point(32, 235);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(143, 19);
             this.label5.TabIndex = 4;
@@ -108,7 +110,7 @@
             // bttAceptar
             // 
             this.bttAceptar.Font = new System.Drawing.Font("Folks-Light", 12F);
-            this.bttAceptar.Location = new System.Drawing.Point(181, 256);
+            this.bttAceptar.Location = new System.Drawing.Point(209, 275);
             this.bttAceptar.Name = "bttAceptar";
             this.bttAceptar.Size = new System.Drawing.Size(110, 45);
             this.bttAceptar.TabIndex = 1;
@@ -143,7 +145,7 @@
             // txtMontoMinimo
             // 
             this.txtMontoMinimo.Font = new System.Drawing.Font("Folks-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMontoMinimo.Location = new System.Drawing.Point(149, 153);
+            this.txtMontoMinimo.Location = new System.Drawing.Point(149, 146);
             this.txtMontoMinimo.Multiline = true;
             this.txtMontoMinimo.Name = "txtMontoMinimo";
             this.txtMontoMinimo.ReadOnly = true;
@@ -155,7 +157,7 @@
             // txtSaldo
             // 
             this.txtSaldo.Font = new System.Drawing.Font("Folks-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSaldo.Location = new System.Drawing.Point(293, 153);
+            this.txtSaldo.Location = new System.Drawing.Point(303, 168);
             this.txtSaldo.Multiline = true;
             this.txtSaldo.Name = "txtSaldo";
             this.txtSaldo.ReadOnly = true;
@@ -221,11 +223,34 @@
             // nmCantidad
             // 
             this.nmCantidad.DecimalPlaces = 2;
-            this.nmCantidad.Location = new System.Drawing.Point(181, 207);
+            this.nmCantidad.Location = new System.Drawing.Point(207, 233);
             this.nmCantidad.Name = "nmCantidad";
             this.nmCantidad.Size = new System.Drawing.Size(110, 27);
             this.nmCantidad.TabIndex = 0;
             this.nmCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtPagoMax
+            // 
+            this.txtPagoMax.Font = new System.Drawing.Font("Folks-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPagoMax.Location = new System.Drawing.Point(149, 189);
+            this.txtPagoMax.Multiline = true;
+            this.txtPagoMax.Name = "txtPagoMax";
+            this.txtPagoMax.ReadOnly = true;
+            this.txtPagoMax.Size = new System.Drawing.Size(76, 25);
+            this.txtPagoMax.TabIndex = 42;
+            this.txtPagoMax.TabStop = false;
+            this.txtPagoMax.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(32, 191);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(106, 19);
+            this.label6.TabIndex = 41;
+            this.label6.Text = "Un solo pago:";
             // 
             // Pagos
             // 
@@ -234,6 +259,8 @@
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(470, 336);
+            this.Controls.Add(this.txtPagoMax);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.nmCantidad);
             this.Controls.Add(this.bttCer);
             this.Controls.Add(this.bttMin);
@@ -288,5 +315,7 @@
         private System.Windows.Forms.PictureBox bttCer;
         private System.Windows.Forms.PictureBox bttMin;
         private System.Windows.Forms.NumericUpDown nmCantidad;
+        private System.Windows.Forms.TextBox txtPagoMax;
+        private System.Windows.Forms.Label label6;
     }
 }

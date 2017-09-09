@@ -24,14 +24,6 @@ namespace ACOPEDH
         {
             InitializeComponent();
             Datos=dato;
-            TextBox txt = new TextBox();
-            Procedimientos_select pro = new Procedimientos_select();
-            SqlParameter[] Param = new SqlParameter[1];
-            Param[0] = new SqlParameter("@ID_Préstamo", dato);
-            pro.LlenarText("[Cargar Préstamo]", "Nombre,PCuotas,Monto", Param, txtNombre, txtMontoMinimo,txt);
-            Param[0] = new SqlParameter("@ID_Préstamo", dato);
-            pro.LlenarText("[Cargar Saldo]", "Pago Mínimo", Param, txtSaldo);
-            Monto = txt.Text;
         }
 
         #region Mover Form
@@ -78,14 +70,22 @@ namespace ACOPEDH
 
         private void Pagos_Load(object sender, EventArgs e)
         {
+            string interes = "1";
+            Procedimientos_select pro = new Procedimientos_select();
+            SqlParameter[] Param = new SqlParameter[1];
+            Param[0] = new SqlParameter("@ID_Préstamo", Datos);
+            pro.LlenarText("[Cargar Préstamo]", "Nombre,PCuotas,Monto,Interés", Param, txtNombre.Text, txtMontoMinimo.Text, Monto,interes);
+            Param[0] = new SqlParameter("@ID_Préstamo", Datos);
+            pro.LlenarText("[Cargar Saldo]", "Pago Mínimo", Param, txtSaldo.Text);
             txtIdPréstamo.Text = Datos;
             try
             {
-                nmCantidad.Maximum = Convert.ToDecimal(txtSaldo.Text);
+                nmCantidad.Maximum = Convert.ToDecimal(txtSaldo.Text)*(Convert.ToDecimal(interes)/1200);
+
             }
             catch
             {
-                nmCantidad.Maximum= Convert.ToDecimal(Monto);
+                nmCantidad.Maximum= Convert.ToDecimal(Monto) * (Convert.ToDecimal(interes) / 1200);
                 txtSaldo.Text = Monto;
             }
             if (Convert.ToDecimal(txtMontoMinimo.Text) > nmCantidad.Maximum)
@@ -96,6 +96,7 @@ namespace ACOPEDH
             else
                 nmCantidad.Minimum = Convert.ToDecimal(txtMontoMinimo.Text);
             nmCantidad.Value = nmCantidad.Minimum;
+            txtPagoMax.Text = Math.Round(nmCantidad.Maximum,2).ToString();
         }
 
         private void bttMin_Click(object sender, EventArgs e)
@@ -113,6 +114,7 @@ namespace ACOPEDH
             DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de pago para la siguiente transacción?:\n$" + nmCantidad.Value + "\n N° Préstamo: " + txtIdPréstamo.Text + "\nPersona Asociada: " + txtNombre.Text, "Confirmar Pago", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (Imprimir!= DialogResult.Cancel)
             {
+
                 if(Imprimir==DialogResult.Yes)
                 {
                     //Imprimir

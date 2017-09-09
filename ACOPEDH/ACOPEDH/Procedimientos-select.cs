@@ -54,8 +54,7 @@ namespace ACOPEDH
                 Console.WriteLine("Ha ocurrido un error al intentar extraer los datos." + ex);
             }
             return dt;
-        }
-        
+        }        
         public DataTable llenar_DataTable(string procedimiento, SqlParameter[] param)
         {
             cn = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
@@ -81,18 +80,16 @@ namespace ACOPEDH
             return dt;
         }
 
-        public void LlenarText(string procedimiento, string Rows, params TextBox[] Text)
+        public void LlenarText(string procedimiento, string Rows, params String[] Text)
         {
             try
             {
-                int i = 0;
                 DataTable Llenado = llenar_DataTable(procedimiento);
                 String[] Row = Rows.Split(',');
                 DataRow row = Llenado.Rows[0];
-                foreach (TextBox Texto in Text)
+                for (int j = 0; j < Text.Length; j++)
                 {
-                    Texto.Text = Convert.ToString(row[Row[i]]);
-                    i++;
+                    Text[j] = Convert.ToString(row[Row[j]]);
                 }
             }
             catch(SqlException ex)
@@ -100,18 +97,16 @@ namespace ACOPEDH
                 MessageBox.Show(ex.Message, ex.ErrorCode.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void LlenarText(string procedimiento, string Rows,SqlParameter[] param, params TextBox[] Text)
+        public void LlenarText(string procedimiento, string Rows,SqlParameter[] param, params String[] Text)
         {
             try
             {
-                int i = 0;
                 DataTable Llenado = llenar_DataTable(procedimiento, param);
                 String[] Row = Rows.Split(',');
                 DataRow row = Llenado.Rows[0];
-                foreach (TextBox Texto in Text)
+                for(int j=0;j<Text.Length;j++)
                 {
-                    Texto.Text = Convert.ToString(row[Row[i]]);
-                    i++;
+                    Text[j]= Convert.ToString(row[Row[j]]);
                 }
             }
             catch(SqlException ex)

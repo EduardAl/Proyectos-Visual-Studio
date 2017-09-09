@@ -258,7 +258,6 @@
             this.dgvBúsqueda.Size = new System.Drawing.Size(632, 372);
             this.dgvBúsqueda.TabIndex = 24;
             this.dgvBúsqueda.Visible = false;
-            this.dgvBúsqueda.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBúsqueda_CellContentClick);
             // 
             // labBuscar
             // 

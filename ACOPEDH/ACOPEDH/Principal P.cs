@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace ACOPEDH
 {
     public partial class Principal_P : Form
     {
         Color Original, Seleccionado;
-        Point Lock;
+        String Dato;
         Procedimientos_select Procedimientos_select = new Procedimientos_select();
 #region Mover Form
         bool Empezarmover = false;
@@ -59,6 +53,7 @@ namespace ACOPEDH
             this.Cursor = Cursors.Default;
             Seleccionado = PInicio.BackColor;
             Original = PPréstamos.BackColor;
+            MaximumSize = new Size(SystemInformation.PrimaryMonitorMaximizedWindowSize.Width - 15, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 15);
         }
 
         /*
@@ -87,7 +82,7 @@ namespace ACOPEDH
             bttRetirar.Visible = true;
             bttVerEstados.Visible = true;
             bttCrearCuenta.Visible = true;
-            //dgvBúsqueda.Rows
+            //Lenado de Datos
             dgvBúsqueda.DataSource = Procedimientos_select.llenar_DataTable("[Cargar Ahorros]");
             dgvBúsqueda.Refresh();
         }
@@ -105,7 +100,7 @@ namespace ACOPEDH
             bttOtorgarPréstamo.Visible = true;
             bttPagosRealizados.Visible = true;
             bttRealizarPago.Visible = true;
-            //dgvBúsqueda.Rows.Clear();
+            //Lenado de Datos
             dgvBúsqueda.DataSource = Procedimientos_select.llenar_DataTable("[Préstamo DVG]");
             dgvBúsqueda.Refresh();
         }
@@ -142,21 +137,15 @@ namespace ACOPEDH
         {
             Close();
         }
-#warning Elegir si cambiar a groupbox
-     
         #endregion
-#warning Modificando tener una opción seleccionada
-      
 
         /*
             *********************************
             *   Funciones y Procedimientos  *
             ********************************* 
         */
-#warning Verificar si funciona
-        private string Dato()
+        private void DatoR()
         {
-            string Datos = "";
             if (dgvBúsqueda.SelectedRows.Count == 1)
             {
                 try
@@ -164,15 +153,14 @@ namespace ACOPEDH
                     DataGridViewRow dgvv = null;
                     int i = dgvBúsqueda.CurrentCell.RowIndex;
                     dgvv = dgvBúsqueda.Rows[i];
-                    Datos = dgvv.Cells[0].Value.ToString();
-                    if (String.IsNullOrEmpty(Datos))
+                    Dato = dgvv.Cells[0].Value.ToString();
+                    if (String.IsNullOrEmpty(Dato))
                         DialogResult = DialogResult.Cancel;
                     else
                         DialogResult = DialogResult.OK;
                 }
                 catch { }
             }
-            return DialogResult == DialogResult.OK ? Datos : "";
         }
         public void Ocultar()
         {
@@ -211,10 +199,10 @@ namespace ACOPEDH
         //Acciones
         private void bttAbonar_Click(object sender, EventArgs e)
         {
-            Abonos Accion = new Abonos(Dato());
-
+            DatoR();
             if (DialogResult == DialogResult.OK)
             {
+            Abonos Accion = new Abonos(Dato);
                 Accion.ShowDialog();
             }
             else
@@ -224,21 +212,22 @@ namespace ACOPEDH
         }
         private void bttRetirar_Click(object sender, EventArgs e)
         {
-            Retiros Accion = new Retiros(Dato());
-                if (DialogResult == DialogResult.OK)
-                    {
-                        Accion.ShowDialog();
-                    }
-                    else
-                        MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-             
+            DatoR();
+            if (DialogResult == DialogResult.OK)
+            {
+                Retiros Accion = new Retiros(Dato);
+                Accion.ShowDialog();
+            }
+            else
+                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
         }
         private void bttVerEstados_Click(object sender, EventArgs e)
         {
-            Estado_de_Cuenta Accion = new Estado_de_Cuenta(Dato());
-
+            DatoR();
             if (DialogResult == DialogResult.OK)
             {
+            Estado_de_Cuenta Accion = new Estado_de_Cuenta(Dato);
                 Accion.ShowDialog();
             }
             else
@@ -246,27 +235,27 @@ namespace ACOPEDH
         }
         private void bttCrearCuenta_Click(object sender, EventArgs e)
         {
-
             Nuevo_Ahorro Accion = new Nuevo_Ahorro();
             Accion.ShowDialog();
-
         }
         private void bttRealizarPago_Click(object sender, EventArgs e)
         {
-            Pagos Accion = new Pagos(Dato());
+            DatoR();
 
-               if (DialogResult == DialogResult.OK)
-                   {
-                       Accion.ShowDialog();
-                   }
-                   else
-                       MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (DialogResult == DialogResult.OK)
+            {
+                Pagos Accion = new Pagos(Dato);
+                Accion.ShowDialog();
+            }
+            else
+                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         private void bttAmortización_Click(object sender, EventArgs e)
         {
-            Amortización Accion = new Amortización(Dato());
+            DatoR();
             if (DialogResult == DialogResult.OK)
             {
+                Amortización Accion = new Amortización(Dato);
                 Accion.ShowDialog();
             }
             else
@@ -274,13 +263,14 @@ namespace ACOPEDH
         }
         private void bttPagosRealizados_Click(object sender, EventArgs e)
         {
-            Pagos_Realizados Accion = new Pagos_Realizados(Dato());
-               if (DialogResult == DialogResult.OK)
-                   {
-                       Accion.ShowDialog();
-                   }
-                   else
-                       MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            DatoR();
+            if (DialogResult == DialogResult.OK)
+            {
+                Pagos_Realizados Accion = new Pagos_Realizados(Dato);
+                Accion.ShowDialog();
+            }
+            else
+                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         private void bttOtorgarPréstamo_Click(object sender, EventArgs e)
         {
@@ -290,9 +280,10 @@ namespace ACOPEDH
         }
         private void bttDatosAsociado_Click(object sender, EventArgs e)
         {
-            Datos_Asociado Accion = new Datos_Asociado();
+            DatoR();
             if (DialogResult == DialogResult.OK)
             {
+            Datos_Asociado Accion = new Datos_Asociado(Dato);
                 Accion.ShowDialog();
             }
             else
@@ -301,9 +292,10 @@ namespace ACOPEDH
         }
         private void bttAportaciones_Click(object sender, EventArgs e)
         {
-            Aportaciones Accion = new Aportaciones(Dato());
+            DatoR();
             if (DialogResult == DialogResult.OK)
             {
+                Aportaciones Accion = new Aportaciones();
                 Accion.ShowDialog();
             }
             else
@@ -326,19 +318,15 @@ namespace ACOPEDH
         }
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            if (Size.Width == SystemInformation.PrimaryMonitorMaximizedWindowSize.Width - 15
-             && Size.Height == SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 15)
+            if (WindowState == FormWindowState.Maximized)
             {
-                Location = Lock;
-                Size = new Size(980, 705);
+                WindowState = FormWindowState.Normal;
                 toolTip1.SetToolTip(bttMax, "Maximizar");
             }
             else
             {
-                Lock = Location;
-                Location = new Point(0, 0);
-                Size = new Size(SystemInformation.PrimaryMonitorMaximizedWindowSize.Width - 15, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 15);
                 toolTip1.SetToolTip(bttMax, "Restaurar a tamaño normal");
+                WindowState = FormWindowState.Maximized;
             }
         }
       
@@ -368,12 +356,7 @@ namespace ACOPEDH
             bttAbonar.Location = bttRealizarPago.Location;
             Refresh();
         }
-
-        private void dgvBúsqueda_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
+        
         private void Principal_P_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (MessageBox.Show("¿Está seguro que desea salir?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)

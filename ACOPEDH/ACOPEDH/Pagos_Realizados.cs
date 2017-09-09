@@ -72,7 +72,7 @@ namespace ACOPEDH
             Param[0] = new SqlParameter("@ID_Préstamo", Datos);
             dgvPagosRealizados.DataSource = pro.llenar_DataTable("[Cargar Pagos]",Param);
             Param[0] = new SqlParameter("@ID_Préstamo", Datos);
-            pro.LlenarText("[Cargar Préstamo]", "Nombre,PCuotas,Monto,FechaT,NCuotas,TipoP", Param, txtAsociado, txtCuotaMensual, txtMonto, txtOtorgamiento, txtPlazo, txtTipoPréstamo);
+            pro.LlenarText("[Cargar Préstamo]", "Nombre,PCuotas,Monto,FechaT,NCuotas,TipoP", Param, txtAsociado.Text, txtCuotaMensual.Text, txtMonto.Text, txtOtorgamiento.Text, txtPlazo.Text, txtTipoPréstamo.Text);
             dgvPagosRealizados.Refresh();
         }
 
