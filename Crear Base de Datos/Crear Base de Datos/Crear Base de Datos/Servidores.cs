@@ -48,5 +48,10 @@ namespace Crear_Base_de_Datos
             {
             }
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

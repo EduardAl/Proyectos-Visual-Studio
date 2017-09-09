@@ -64,7 +64,7 @@ namespace ACOPEDH
             txtCorreo.Text = Properties.Settings.Default.UsuariosG;
             server = new Servidor();
             server.server();
-            this.MaximumSize = new Size(480, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35);
+            MessageBox.Show(Globales.Servidor);            this.MaximumSize = new Size(480, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35);
             this.Height = SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35;
             this.Visible = true;
             CenterToScreen();

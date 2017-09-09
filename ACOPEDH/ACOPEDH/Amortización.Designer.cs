@@ -282,7 +282,6 @@
             this.Name = "Amortización";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ACOPEDH - AMORTIZACIÓN DEL PRÉSTAMO";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Amortización_FormClosing);
             this.Load += new System.EventHandler(this.Amortización_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAmortizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

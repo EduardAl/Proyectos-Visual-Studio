@@ -12,6 +12,8 @@ namespace ACOPEDH
 {
     public partial class Otorgar_Préstamo : Form
     {
+        int Cuotas; double Monto,interes;
+
         public Otorgar_Préstamo()
         {
             InitializeComponent();
@@ -55,7 +57,7 @@ namespace ACOPEDH
         private void Otorgar_Préstamo_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (MessageBox.Show("¿Desea salir sin guardar cambios?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                e.Cancel = true; 
+                e.Cancel = true;
         }
 
         private void Otorgar_Préstamo_Load(object sender, EventArgs e)
@@ -76,6 +78,38 @@ namespace ACOPEDH
         private void bttCer_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Amortización Acción = new Amortización(double.Parse(TxtInterés.Text), Monto,Cuotas);
+                Acción.ShowDialog();
+                Focus();
+            }
+            catch
+            {
+                MessageBox.Show("Aún no ha colocado los datos necesarios para generar una amortización");
+            }
+        }
+
+        private void txtNoCuota_TextChanged(object sender, EventArgs e)
+        {
+            if (Double.TryParse(TxtMonto.Text, out Monto)
+                && int.TryParse(txtNoCuota.Text, out Cuotas)
+                &&Cuotas>0
+                && double.TryParse(TxtInterés.Text, out interes))
+            {
+                interes = interes / 1200;
+                double Fijo = Math.Pow(1 + interes, Cuotas);
+                double cuota = Monto * ((Fijo * interes) / (Fijo - 1));
+                txtCuotaMensual.Text = Math.Round(cuota,2).ToString();
+            }
+            else
+            {
+                txtCuotaMensual.Text = "";
+            }
         }
     }
 }

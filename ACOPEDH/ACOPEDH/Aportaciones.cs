@@ -20,6 +20,7 @@ namespace ACOPEDH
         public Aportaciones(string dato)
         {
             InitializeComponent();
+            Dato = dato;
         }
     }
 }

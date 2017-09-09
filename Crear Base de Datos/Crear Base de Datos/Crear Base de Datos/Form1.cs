@@ -387,7 +387,7 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Cargar_Pagos " +
                 "Begin Try " +
-                "Select Pago.Pago as 'Pago', Transacciones.[Fecha de Transacción] as 'Fecha de Pago' From Pago inner join Información on Pago.[id Pago] = Información.[id Pago] " +
+                "Select Pago.Pago as 'Monto Cancelado', Transacciones.[Fecha de Transacción] as 'Fecha de Pago' From Pago inner join Información on Pago.[id Pago] = Información.[id Pago] " +
                 "Inner join Préstamos on Información.[id Préstamo] = Préstamos.[id Préstamos] inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] " +
                 "where Préstamos.[id Préstamos]=@ID_Préstamo " +
                 "Commit Tran Cargar_Pagos " +
@@ -555,9 +555,9 @@ namespace Crear_Base_de_Datos
                  "As " +
                  "Begin Tran Cargar_P " +
                 "Begin Try " +
-                "Select Asociado.[Código Asociado],(Asociado.Nombres + ' ' + Asociado.Apellidos), [Tipo de Préstamo].[Tipo de Préstamo], " +
-                "[Tipo de Préstamo].[Tasa de Interés],Préstamos.[Monto del Préstamo],Transacciones.[Fecha de Transacción], Préstamos.Cuotas, " +
-                "Préstamos.[Cuota Mensual],Préstamos.Estado From Asociado inner join Préstamos on " +
+                "Select Asociado.[Código Asociado],(Asociado.Nombres + ' ' + Asociado.Apellidos)AS 'Nombre', [Tipo de Préstamo].[Tipo de Préstamo]As 'TipoP', " +
+                "[Tipo de Préstamo].[Tasa de Interés] As Iterés,Préstamos.[Monto del Préstamo] AS Monto,Transacciones.[Fecha de Transacción] AS FechaT, Préstamos.Cuotas AS NCuotas, " +
+                "Préstamos.[Cuota Mensual] AS PCuotas,Préstamos.Estado AS Estado From Asociado inner join Préstamos on " +
                 "Asociado.[Código Asociado]= Préstamos.[Código Asociado] inner join [Tipo de Préstamo] on Préstamos.[id Tipo de Préstamo] " +
                 "= [Tipo de Préstamo].[id Tipo de Préstamo] inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] where Préstamos.[id Préstamos]= @ID_Préstamo  " +
                 "Commit Tran Cargar_P " +

@@ -62,6 +62,7 @@
             this.BarraTítulo = new System.Windows.Forms.Label();
             this.bttCer = new System.Windows.Forms.PictureBox();
             this.bttMin = new System.Windows.Forms.PictureBox();
+            this.bttAmortización = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -196,6 +197,7 @@
             this.txtCuotaMensual.Location = new System.Drawing.Point(646, 145);
             this.txtCuotaMensual.Multiline = true;
             this.txtCuotaMensual.Name = "txtCuotaMensual";
+            this.txtCuotaMensual.ReadOnly = true;
             this.txtCuotaMensual.Size = new System.Drawing.Size(67, 29);
             this.txtCuotaMensual.TabIndex = 20;
             // 
@@ -203,11 +205,11 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(330, 150);
+            this.label12.Location = new System.Drawing.Point(323, 150);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(105, 19);
+            this.label12.Size = new System.Drawing.Size(112, 19);
             this.label12.TabIndex = 19;
-            this.label12.Text = "No de Cuota: ";
+            this.label12.Text = "No de Cuotas: ";
             // 
             // txtNoCuota
             // 
@@ -217,6 +219,7 @@
             this.txtNoCuota.Name = "txtNoCuota";
             this.txtNoCuota.Size = new System.Drawing.Size(54, 29);
             this.txtNoCuota.TabIndex = 18;
+            this.txtNoCuota.TextChanged += new System.EventHandler(this.txtNoCuota_TextChanged);
             // 
             // label11
             // 
@@ -236,6 +239,7 @@
             this.TxtMonto.Name = "TxtMonto";
             this.TxtMonto.Size = new System.Drawing.Size(67, 29);
             this.TxtMonto.TabIndex = 16;
+            this.TxtMonto.TextChanged += new System.EventHandler(this.txtNoCuota_TextChanged);
             // 
             // TxtInterés
             // 
@@ -245,6 +249,7 @@
             this.TxtInterés.Name = "TxtInterés";
             this.TxtInterés.Size = new System.Drawing.Size(56, 29);
             this.TxtInterés.TabIndex = 15;
+            this.TxtInterés.TextChanged += new System.EventHandler(this.txtNoCuota_TextChanged);
             // 
             // label10
             // 
@@ -292,6 +297,7 @@
             this.TxtOcupación.Location = new System.Drawing.Point(98, 94);
             this.TxtOcupación.Multiline = true;
             this.TxtOcupación.Name = "TxtOcupación";
+            this.TxtOcupación.ReadOnly = true;
             this.TxtOcupación.Size = new System.Drawing.Size(180, 29);
             this.TxtOcupación.TabIndex = 10;
             // 
@@ -301,6 +307,7 @@
             this.TxtDUIP.Location = new System.Drawing.Point(682, 40);
             this.TxtDUIP.Multiline = true;
             this.TxtDUIP.Name = "TxtDUIP";
+            this.TxtDUIP.ReadOnly = true;
             this.TxtDUIP.Size = new System.Drawing.Size(146, 29);
             this.TxtDUIP.TabIndex = 10;
             // 
@@ -320,6 +327,7 @@
             this.TxtCódigoP.Location = new System.Drawing.Point(488, 40);
             this.TxtCódigoP.Multiline = true;
             this.TxtCódigoP.Name = "TxtCódigoP";
+            this.TxtCódigoP.ReadOnly = true;
             this.TxtCódigoP.Size = new System.Drawing.Size(136, 29);
             this.TxtCódigoP.TabIndex = 10;
             // 
@@ -355,9 +363,9 @@
             // button1
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(430, 508);
+            this.button1.Location = new System.Drawing.Point(325, 508);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(132, 44);
+            this.button1.Size = new System.Drawing.Size(143, 57);
             this.button1.TabIndex = 10;
             this.button1.Text = "ACEPTAR";
             this.button1.UseVisualStyleBackColor = true;
@@ -414,14 +422,27 @@
             this.bttMin.TabStop = false;
             this.bttMin.Click += new System.EventHandler(this.bttMin_Click);
             // 
+            // bttAmortización
+            // 
+            this.bttAmortización.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bttAmortización.Location = new System.Drawing.Point(485, 508);
+            this.bttAmortización.Name = "bttAmortización";
+            this.bttAmortización.Size = new System.Drawing.Size(143, 57);
+            this.bttAmortización.TabIndex = 39;
+            this.bttAmortización.Text = "GENERAR AMORTIZACIÓN";
+            this.bttAmortización.UseVisualStyleBackColor = true;
+            this.bttAmortización.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Otorgar_Préstamo
             // 
             this.AcceptButton = this.button1;
             this.AllowDrop = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.DarkTurquoise;
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(982, 618);
+            this.Controls.Add(this.bttAmortización);
             this.Controls.Add(this.bttCer);
             this.Controls.Add(this.bttMin);
             this.Controls.Add(this.pictureBox3);
@@ -496,6 +517,7 @@
         private System.Windows.Forms.Label BarraTítulo;
         private System.Windows.Forms.PictureBox bttCer;
         private System.Windows.Forms.PictureBox bttMin;
+        private System.Windows.Forms.Button bttAmortización;
     }
 }
 
