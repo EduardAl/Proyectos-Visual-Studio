@@ -250,10 +250,12 @@
             // 
             // dgvBúsqueda
             // 
+            this.dgvBúsqueda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBúsqueda.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvBúsqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBúsqueda.Location = new System.Drawing.Point(261, 217);
             this.dgvBúsqueda.Name = "dgvBúsqueda";
+            this.dgvBúsqueda.RowHeadersVisible = false;
             this.dgvBúsqueda.Size = new System.Drawing.Size(632, 372);
             this.dgvBúsqueda.TabIndex = 24;
             this.dgvBúsqueda.Visible = false;

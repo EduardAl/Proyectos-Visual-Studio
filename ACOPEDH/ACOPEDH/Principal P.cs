@@ -96,6 +96,9 @@ namespace ACOPEDH
             bttRetirar.Visible = true;
             bttVerEstados.Visible = true;
             bttCrearCuenta.Visible = true;
+            //dgvBúsqueda.Rows
+            dgvBúsqueda.DataSource = Procedimientos_select.llenar_DataTable("[Cargar Ahorros]");
+            dgvBúsqueda.Refresh();
         }
         private void PPréstamos_Click(object sender, EventArgs e)
         {
@@ -113,6 +116,9 @@ namespace ACOPEDH
             bttOtorgarPréstamo.Visible = true;
             bttPagosRealizados.Visible = true;
             bttRealizarPago.Visible = true;
+            //dgvBúsqueda.Rows.Clear();
+            dgvBúsqueda.DataSource = Procedimientos_select.llenar_DataTable("[Préstamo DVG]");
+            dgvBúsqueda.Refresh();
         }
         private void PAsociados_Click(object sender, EventArgs e)
         {
@@ -129,6 +135,7 @@ namespace ACOPEDH
             bttNuevoAsociado.Visible = true;
             bttDatosAsociado.Visible = true;
             bttAportaciones.Visible = true;
+            //dgvBúsqueda.Rows.Clear();
             dgvBúsqueda.DataSource = Procedimientos_select.llenar_DataTable("[Asociado DVG]");
             dgvBúsqueda.Refresh();
         }
