@@ -14,8 +14,6 @@ namespace ACOPEDH
     {
         string Dato;
 
-        public string Dato1 { get => Dato; set => Dato = value; }
-
         public Retiros()
         {
             InitializeComponent();
@@ -23,7 +21,7 @@ namespace ACOPEDH
         public Retiros(string dato)
         {
             InitializeComponent();
-            Dato1=dato;
+            Dato=dato;
         }
         private void bttCancelar_Click(object sender, EventArgs e)
         {

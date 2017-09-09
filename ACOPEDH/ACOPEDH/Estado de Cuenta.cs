@@ -14,7 +14,6 @@ namespace ACOPEDH
     {
         string Dato;
 
-        public string Dato1 { get => Dato; set => Dato = value; }
 
         public Estado_de_Cuenta()
         {

@@ -14,8 +14,6 @@ namespace ACOPEDH
     {
         string Dato;
 
-        public string Dato1 { get => Dato; set => Dato = value; }
-
         public Abonos()
         {
             InitializeComponent();
