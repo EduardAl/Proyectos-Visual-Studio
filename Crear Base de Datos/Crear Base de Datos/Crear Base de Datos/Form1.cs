@@ -592,6 +592,16 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Aso " +
                 "End Catch";
+            String tabla46 = "Create Procedure [Cargar Tipo Préstamo] As Begin Tran Pre Begin Try " +
+                "Select[Tipo de Préstamo].[Tipo de Préstamo] AS 'TipoP',[Tipo de Préstamo].[Tasa de Interés] AS 'Interés' from[Tipo de Préstamo] " +
+                "Commit Tran Pre End Try Begin Catch Print ERROR_MESSAGE(); " +
+                "Rollback Tran Pre End Catch";
+            String tabla47 = "Create Procedure [Cargar Tipo Socio] As Begin Tran Aso Begin Try " +
+                "Select [Tipo de Socio].[Nombre Tipo Socio] AS 'TipoS' from [Tipo de Socio] " +
+                "Commit Tran Aso End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Aso End Catch"; 
+            String tabla48 = "Create Procedure [Cargar Tipo Ahorro] As Begin Tran Aho Begin Try " +
+                "Select [Tipo de Ahorro].Nombre AS 'TipoA',[Tipo de Ahorro].[Tasa de Interés] AS 'Interés' from [Tipo de Ahorro] " +
+                "Commit Tran Aho End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Aho End Catch";
             String Usuario1 =
                 "CREATE LOGIN Master_ACOPEDH " +
                 "WITH PASSWORD = 'AUREO112358' " +
@@ -787,10 +797,14 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd59 = new SqlCommand(creartrabajos, cnn);
             SqlCommand cmd60 = new SqlCommand(crearpréstamos, cnn);
             SqlCommand cmd61 = new SqlCommand(insertartiposdetransacciones, cnn);
+            SqlCommand cmd62 = new SqlCommand(tabla46, cnn);
+            SqlCommand cmd63 = new SqlCommand(tabla47, cnn);
+            SqlCommand cmd64 = new SqlCommand(tabla48, cnn);
+
             //try
             //{
-                //Abrimos la conexión y ejecutamos el comando
-                cnn.Open();
+            //Abrimos la conexión y ejecutamos el comando
+            cnn.Open();
                 cmd.ExecuteNonQuery();
                 cmd1.ExecuteNonQuery();
                 cmd2.ExecuteNonQuery();
@@ -851,7 +865,10 @@ namespace Crear_Base_de_Datos
                 cmd59.ExecuteNonQuery();
                 cmd60.ExecuteNonQuery();
                 cmd61.ExecuteNonQuery();
-                cnn.Close();
+                cmd62.ExecuteNonQuery();
+                cmd63.ExecuteNonQuery();
+                cmd64.ExecuteNonQuery();
+            cnn.Close();
                 MessageBox.Show("Base Creada");
                 this.Close();
             //}

@@ -81,6 +81,7 @@
       <DependentUpon>Aportaciones.cs</DependentUpon>
     </Compile>
     <Compile Include="Cifrado.cs" />
+    <Compile Include="ComboBox_Llenado.cs" />
     <Compile Include="Conexión.cs" />
     <Compile Include="Datos Asociado.cs">
       <SubType>Form</SubType>

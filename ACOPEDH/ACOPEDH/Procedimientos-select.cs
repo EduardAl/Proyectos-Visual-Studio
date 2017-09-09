@@ -34,6 +34,7 @@ namespace ACOPEDH
                 Console.WriteLine("Ha ocurrido un error al intentar extraer los datos." + ex);
             }
         }
+#warning PROCEDIMIENTOS CON CONEXION SQL/YIYEL POR PRUEBAS 
         public DataTable llenar_DataTable(string procedimiento)
         {
             cn = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
@@ -114,5 +115,38 @@ namespace ACOPEDH
                 MessageBox.Show(ex.Message, ex.ErrorCode.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public List<ComboBox_Llenado> LlenarCombo(string procedimiento, string Rows)
+        {
+            cn = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
+            List<ComboBox_Llenado> Retornar = new List<ComboBox_Llenado>();
+            try
+            {
+                 //SqlConnection conex = new SqlConnection(cn.cadena);
+                SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
+                conex.Open();
+                Comando = new SqlCommand(procedimiento, conex);
+                Comando.CommandType = CommandType.StoredProcedure;
+                SqlDataReader DataReader = Comando.ExecuteReader();
+                SqlDataAdapter da = new SqlDataAdapter(Comando);
+                string[] Row = Rows.Split(',');
+                while (DataReader.Read())
+                {
+                    ComboBox_Llenado Dato = new ComboBox_Llenado();
+                    Dato.Nombre = DataReader[Row[0]].ToString();
+                    if (Row.Length > 1)
+                        Dato.interes = Convert.ToDouble(DataReader[Row[1]]);
+                    Retornar.Add(Dato);
+                }
+                conex.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, ex.ErrorCode.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return Retornar;
+        }
+
+
     }
 }
