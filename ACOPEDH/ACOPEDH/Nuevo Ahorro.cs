@@ -17,10 +17,6 @@ namespace ACOPEDH
         {
             InitializeComponent();
         }
-        private void cbBúsqueda_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            labBuscar.Text = cbBúsqueda.Text + ":";
-        }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -36,11 +32,7 @@ namespace ACOPEDH
         {
             Close();
         }
-
-        private void Nuevo_Ahorro_Load(object sender, EventArgs e)
-        {
-            cbBúsqueda.SelectedIndex = 0;
-        }
+        
 
         private void Nuevo_Ahorro_Paint(object sender, PaintEventArgs e)
         {

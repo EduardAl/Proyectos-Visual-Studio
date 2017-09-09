@@ -170,6 +170,12 @@
     <EmbeddedResource Include="Amortización.resx">
       <DependentUpon>Amortización.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Aportaciones.resx">
+      <DependentUpon>Aportaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Datos Asociado.resx">
+      <DependentUpon>Datos Asociado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Estado de Cuenta.resx">
       <DependentUpon>Estado de Cuenta.cs</DependentUpon>
     </EmbeddedResource>
@@ -178,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Nuevo Ahorro.resx">
       <DependentUpon>Nuevo Ahorro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nuevo asociado.resx">
+      <DependentUpon>Nuevo asociado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Otorgar_Préstamo.resx">
       <DependentUpon>Otorgar_Préstamo.cs</DependentUpon>
@@ -244,6 +253,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\show.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Photo_1.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
