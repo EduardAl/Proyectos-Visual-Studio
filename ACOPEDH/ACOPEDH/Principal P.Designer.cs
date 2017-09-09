@@ -260,33 +260,6 @@
             this.dgvBúsqueda.Visible = false;
             this.dgvBúsqueda.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBúsqueda_CellContentClick);
             // 
-            // cbBúsqueda
-            // 
-            this.cbBúsqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbBúsqueda.FormattingEnabled = true;
-            this.cbBúsqueda.Items.AddRange(new object[] {
-            "Nombre",
-            "DUI",
-            "Código Asociado"});
-            this.cbBúsqueda.Location = new System.Drawing.Point(405, 137);
-            this.cbBúsqueda.Name = "cbBúsqueda";
-            this.cbBúsqueda.Size = new System.Drawing.Size(184, 27);
-            this.cbBúsqueda.TabIndex = 22;
-            this.toolTip1.SetToolTip(this.cbBúsqueda, "Filtrar por");
-            this.cbBúsqueda.Visible = false;
-            this.cbBúsqueda.SelectedIndexChanged += new System.EventHandler(this.cbBúsqueda_SelectedIndexChanged);
-            // 
-            // lab1
-            // 
-            this.lab1.AutoSize = true;
-            this.lab1.BackColor = System.Drawing.Color.Transparent;
-            this.lab1.Location = new System.Drawing.Point(257, 140);
-            this.lab1.Name = "lab1";
-            this.lab1.Size = new System.Drawing.Size(83, 19);
-            this.lab1.TabIndex = 21;
-            this.lab1.Text = "Búsqueda:";
-            this.lab1.Visible = false;
-            // 
             // labBuscar
             // 
             this.labBuscar.AutoSize = true;
