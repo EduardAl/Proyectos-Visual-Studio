@@ -12,12 +12,107 @@ namespace ACOPEDH
 {
     public partial class Otorgar_Préstamo : Form
     {
-        int Cuotas; double Monto,interes;
-
+#warning FALTA TODO EL CÓDIGO
+        /*
+            *********************************
+            *     Componentes Iniciales     *
+            ********************************* 
+        */
+        int Cuotas; double Monto, interes;
+        List<ComboBox_Llenado> TipoPréstamo = new List<ComboBox_Llenado>();
+        #region Constructores
+        //Normal
         public Otorgar_Préstamo()
         {
             InitializeComponent();
         }
+        #endregion        
+        #region Load
+        private void Otorgar_Préstamo_Load(object sender, EventArgs e)
+        {
+            Procedimientos_select Cargar = new Procedimientos_select();
+            TipoPréstamo = Cargar.LlenarCombo("[Cargar Tipo Préstamo]", "TipoP,Interés");
+            foreach (ComboBox_Llenado element in TipoPréstamo)
+            {
+                CBTipoPréstamo.Items.Add(element.Nombre);
+            }
+            if (CBTipoPréstamo.Items.Count > 0)
+                CBTipoPréstamo.SelectedIndex = 0;
+        }
+        #endregion
+
+        /*
+            *********************************
+            *            Botones            *
+            ********************************* 
+        */
+        #region Botones
+        //Otorgar Préstamo
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (TxtCódigoP.Text != "")
+            {
+                //Otorgar Préstamo
+            }
+            else
+                MessageBox.Show("No ha seleccionado a una persona asociada", "Persona Asociada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+        //Minimizar
+        private void bttMin_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+        //Cerrar
+        private void bttCer_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        //Mostrar Amortización
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Amortización Acción = new Amortización(double.Parse(TxtInterés.Text), Monto, Cuotas);
+                Acción.ShowDialog();
+                Focus();
+            }
+            catch
+            {
+                MessageBox.Show("Aún no ha colocado los datos necesarios para generar una amortización");
+            }
+        }
+        #endregion
+
+        /*
+            *********************************
+            *            Eventos            *
+            ********************************* 
+        */
+        #region TextChanged
+        //Generar Cuota
+        private void txtNoCuota_TextChanged(object sender, EventArgs e)
+        {
+            if (Double.TryParse(TxtMonto.Text, out Monto)
+                && int.TryParse(txtNoCuota.Text, out Cuotas)
+                && Cuotas > 0
+                && double.TryParse(TxtInterés.Text, out interes))
+            {
+                interes = interes / 1200;
+                double Fijo = Math.Pow(1 + interes, Cuotas);
+                double cuota = Monto * ((Fijo * interes) / (Fijo - 1));
+                txtCuotaMensual.Text = Math.Round(cuota, 2).ToString();
+            }
+            else
+            {
+                txtCuotaMensual.Text = "";
+            }
+        }
+        //Búsqueda de Asociado
+        private void TxtBúsqueda_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
         #region Mover Form
         bool Empezarmover = false;
         int PosX;
@@ -52,64 +147,52 @@ namespace ACOPEDH
             }
         }
         #endregion
-
-        //Evento que pregunta antes de salir del formulario.
+        #region Closing
         private void Otorgar_Préstamo_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("¿Desea salir sin guardar cambios?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                e.Cancel = true;
+            if (DialogResult != DialogResult.OK)
+                if (MessageBox.Show("¿Desea salir sin guardar cambios?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    e.Cancel = true;
         }
 
-        private void Otorgar_Préstamo_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bttMin_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-        private void bttCer_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        #endregion
+        #region CurrentCell
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             try
             {
-                Amortización Acción = new Amortización(double.Parse(TxtInterés.Text), Monto,Cuotas);
-                Acción.ShowDialog();
-                Focus();
+                TxtCódigoP.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                TxtAsociadoP.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                TxtDUIP.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                TxtOcupación.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
             }
             catch
             {
-                MessageBox.Show("Aún no ha colocado los datos necesarios para generar una amortización");
+                TxtAsociadoP.Clear();
+                TxtCódigoP.Clear();
+                TxtDUIP.Clear();
+                TxtOcupación.Clear();
             }
+        }
+        #endregion
+        #region IndexChanged
+        //Cambiar el tipo de préstamo
+        private void CBTipoPréstamo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TxtInterés.Text = ComboBox_Llenado.ConseguirInterés(TipoPréstamo, CBTipoPréstamo.Text).ToString();
         }
 
-        private void txtNoCuota_TextChanged(object sender, EventArgs e)
+        #endregion
+
+        #region Pintar Bordes
+        private void Bordes_Paint(object sender, PaintEventArgs e)
         {
-            if (Double.TryParse(TxtMonto.Text, out Monto)
-                && int.TryParse(txtNoCuota.Text, out Cuotas)
-                &&Cuotas>0
-                && double.TryParse(TxtInterés.Text, out interes))
-            {
-                interes = interes / 1200;
-                double Fijo = Math.Pow(1 + interes, Cuotas);
-                double cuota = Monto * ((Fijo * interes) / (Fijo - 1));
-                txtCuotaMensual.Text = Math.Round(cuota,2).ToString();
-            }
-            else
-            {
-                txtCuotaMensual.Text = "";
-            }
+            Graphics Linea = CreateGraphics();
+            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0, 0), new Point(0, Height));
+            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0, Height - 1), new Point(Width, Height));
+            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(Width - 1, 0), new Point(Width, Height));
         }
+        #endregion
+
     }
 }

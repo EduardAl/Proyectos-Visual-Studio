@@ -75,6 +75,7 @@
             this.bttModificar.TabIndex = 88;
             this.bttModificar.Text = "Modificar";
             this.bttModificar.UseVisualStyleBackColor = true;
+            this.bttModificar.Click += new System.EventHandler(this.bttModificar_Click);
             // 
             // bttAceptar
             // 
@@ -84,6 +85,7 @@
             this.bttAceptar.TabIndex = 87;
             this.bttAceptar.Text = "Aceptar";
             this.bttAceptar.UseVisualStyleBackColor = true;
+            this.bttAceptar.Click += new System.EventHandler(this.bttAceptar_Click);
             // 
             // dtNacimiento
             // 
@@ -318,6 +320,7 @@
             this.button3.TabStop = false;
             this.button3.Text = "Eliminar";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -330,6 +333,7 @@
             this.button2.TabStop = false;
             this.button2.Text = "Modificar";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -341,6 +345,7 @@
             this.button1.TabStop = false;
             this.button1.Text = "Añadir";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtTeléfono
             // 
@@ -364,6 +369,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(286, 141);
             this.dataGridView1.TabIndex = 105;
             this.dataGridView1.TabStop = false;
+            this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             // 
             // label10
             // 
@@ -393,6 +399,7 @@
             this.bttCancelar.TabIndex = 111;
             this.bttCancelar.Text = "Cancelar";
             this.bttCancelar.UseVisualStyleBackColor = true;
+            this.bttCancelar.Click += new System.EventHandler(this.bttCancelar_Click);
             // 
             // bttDesasociar
             // 
@@ -402,6 +409,7 @@
             this.bttDesasociar.TabIndex = 112;
             this.bttDesasociar.Text = "Desasociar";
             this.bttDesasociar.UseVisualStyleBackColor = true;
+            this.bttDesasociar.Click += new System.EventHandler(this.bttDesasociar_Click);
             // 
             // Datos_Asociado
             // 
@@ -451,6 +459,8 @@
             this.Name = "Datos_Asociado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Datos_Asociado";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Datos_Asociado_FormClosing);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

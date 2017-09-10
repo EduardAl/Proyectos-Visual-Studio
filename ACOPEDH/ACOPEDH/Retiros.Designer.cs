@@ -192,6 +192,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ACOPEDH - RETIROS";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Retiros_FormClosing);
+            this.Load += new System.EventHandler(this.Retiros_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nCantidadRetiro)).EndInit();
             this.ResumeLayout(false);

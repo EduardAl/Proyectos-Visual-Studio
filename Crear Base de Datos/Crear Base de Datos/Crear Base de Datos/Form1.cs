@@ -15,6 +15,7 @@ namespace Crear_Base_de_Datos
             Servidores ser = new Servidores();
             this.Hide();
             ser.ShowDialog();
+            txtNombre.Focus();
             
         }
         private void BttCrear_Click(object sender, EventArgs e)
@@ -188,7 +189,7 @@ namespace Crear_Base_de_Datos
                 "@Apellidos varchar(80), " +
                 "@DUI varchar(10), " +
                 "@NIT varchar(17), " +
-                "@Dirección varchar(100), " +
+                "@Residencia varchar(100), " +
                 "@Fecha_Nacimiento datetime, " +
                 "@Fecha_Asociación datetime, " +
                 "@FK_Ocupacion varchar(30) " +
@@ -199,7 +200,7 @@ namespace Crear_Base_de_Datos
                 "Declare @ID_Ocupación as varchar(5) " +
                 "set @ID_Tipo_Socio = (Select[id Tipo de Socio] From[Tipo de Socio] where[Nombre Tipo Socio] = @FK_Tipo_Socio) " +
                 "set @ID_Ocupación = (Select[Id Ocupación] From[Ocupación] where[Nombre de la Empresa] = @FK_Ocupacion) " +
-                "Insert into Asociado values(@ID_Tipo_Socio, @Nombres, @Apellidos, @DUI, @NIT, @Dirección, @Fecha_Nacimiento, @Fecha_Asociación, null,@ID_Ocupación) " +
+                "Insert into Asociado values(@ID_Tipo_Socio, @Nombres, @Apellidos, @DUI, @NIT, @Residencia, @Fecha_Nacimiento, @Fecha_Asociación, null,@ID_Ocupación) " +
                 "Commit tran Asociado " +
                 "End try " +
                 "Begin Catch " +
@@ -212,7 +213,7 @@ namespace Crear_Base_de_Datos
                  "Begin Tran Cargar_Asociados " +
                  "Begin Try " +
                  "Select [FK Tipo Socio] AS 'Tipo de Asociación', (Nombres + ' ' + Apellidos) AS 'Nombre', DUI, NIT, Dirección,[Fecha de Nacimiento],[Fecha de Asociación] " +
-                 "From Asociado where [Código Asociado] = @Código_Asociado" +
+                 "From Asociado where [Código Asociado] = @Código_Asociado " +
                  "Commit Tran Cargar_Asociados " +
                  "End Try " +
                  "Begin Catch " +
@@ -247,7 +248,8 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Cargar_Teléfonos " +
                 "Begin Try " +
-                "Select Teléfono.Teléfono From Teléfono inner join Contacto on Teléfono.[id Teléfono]=Contacto.[FK Teléfono] " +
+                "Select Teléfono.Teléfono AS 'Número de Teléfono',[Tipos de Teléfonos].[Tipo de Teléfono]  From Teléfono " +
+                "inner join Contacto on Teléfono.[id Teléfono]=Contacto.[FK Teléfono] inner join [Tipos de Teléfonos] on [Tipos de Teléfonos].[id Tipo de Teléfono] = Teléfono.[FK Tipo de Teléfono] " +
                 "where Contacto.[FK Código Asociado] = @Código_Asociado " +
                 "Commit Tran Cargar_Teléfonos " +
                 "End Try " +
@@ -263,7 +265,7 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Mod_Tel " +
                 "Begin Try " +
-                "If(Select[Tipos de Teléfonos].[Tipo de Teléfono]From[Tipos de Teléfonos] inner join Teléfono " +
+                "If(Select [Tipos de Teléfonos].[Tipo de Teléfono] From[Tipos de Teléfonos] inner join Teléfono " +
                 "on[Tipos de Teléfonos].[id Tipo de Teléfono] = Teléfono.[FK Tipo de Teléfono] where Teléfono.[id Teléfono] = @ID_Teléfono) " +
                 "= @Tipo_Telefono " +
                 "Begin " +
@@ -287,7 +289,6 @@ namespace Crear_Base_de_Datos
                 "Begin Try " +
                 "Begin " +
                 "Delete From Contacto where @ID_Teléfono = [FK Teléfono] " +
-                "Delete From Teléfono where @ID_Teléfono = [id Teléfono] " +
                 "Commit Tran Del_Teléfono " +
                 "End " +
                 "End Try " +
@@ -375,7 +376,7 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran S_Aportaciones " +
                 "Begin Try " +
-                "Select SUM(Aportación) From Aportaciones where @Código_Asociado = [FK Asociado] " +
+                "Select SUM(Aportación) AS 'Suma de Aportaciones' From Aportaciones where @Código_Asociado = [FK Asociado] " +
                 "Commit Tran S_Aportaciones " +
                 "End Try " +
                 "Begin Catch " +
@@ -431,7 +432,7 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Disponibles_Abono " +
                 "Begin Try " +
-                "Select SUM(Abono) From Abono where[FK Ahorro] = @ID_Ahorro " +
+                "Select SUM(Abono) AS 'Suma de Abonos' From Abono where[FK Ahorro] = @ID_Ahorro " +
                 "Commit Tran Disponibles_Abono  " +
                 "End Try " +
                 "Begin Catch " +
@@ -461,7 +462,7 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Cargar_Retiro " +
                 "Begin Try " +
-                "Select Retiros.Retiro as 'Retiro',Transacciones.[Fecha de Transacción] as 'Fecha de Retiro' From Retiros inner join Transacciones on Retiros.[FK Transacción] = Transacciones.[id Transacción] " +
+                "Select Retiros.Retiro as 'Monto Retirado',Transacciones.[Fecha de Transacción] as 'Fecha de Retiro' From Retiros inner join Transacciones on Retiros.[FK Transacción] = Transacciones.[id Transacción] " +
                 "where[FK Ahorro] = @ID_Ahorro " +
                 "Commit Tran Cargar_Retiro " +
                 "End Try " +
@@ -474,7 +475,7 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Disponibles_Retiro " +
                 "Begin Try " +
-                "Select SUM(Retiro) From Retiros where[FK Ahorro] = @ID_Ahorro " +
+                "Select SUM(Retiro) AS 'Suma de Retiros' From Retiros where[FK Ahorro] = @ID_Ahorro " +
                 "Commit Tran Disponibles_Retiro " +
                 "End Try " +
                 "Begin Catch " +
@@ -520,7 +521,7 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Cargar_Saldo " +
                 "Begin Try " +
-                "Select Min(Pago.Saldo) From Pago inner join Información on Pago.[id Pago] = Información.[id Pago] inner join Préstamos " +
+                "Select Min(Pago.Saldo) AS 'Pago Mínimo' From Pago inner join Información on Pago.[id Pago] = Información.[id Pago] inner join Préstamos " +
                 "on Información.[id Préstamo] = Préstamos.[id Préstamos] where Préstamos.[id Préstamos]=@ID_Préstamo " +
                 "Commit Tran Cargar_Saldo " +
                 "End Try " +
@@ -570,7 +571,7 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Pres " +
                 "Begin Try " +
-                "Select Préstamos.[id Préstamos] as 'Código de Préstamo', Asociado.[Código Asociado], [Tipo de Préstamo].[Tipo de Préstamo] " +
+                "Select Préstamos.[id Préstamos] as 'Código de Préstamo', Asociado.[Código Asociado] as 'Código', [Tipo de Préstamo].[Tipo de Préstamo] " +
                 "From Asociado inner join Préstamos on Asociado.[Código Asociado] = Préstamos.[Código Asociado] inner join [Tipo de Préstamo] " +
                 "on Préstamos.[id Tipo de Préstamo] = [Tipo de Préstamo].[id Tipo de Préstamo] " +
                 "Commit Tran Pres " +
@@ -591,6 +592,16 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Aso " +
                 "End Catch";
+            String tabla46 = "Create Procedure [Cargar Tipo Préstamo] As Begin Tran Pre Begin Try " +
+                "Select[Tipo de Préstamo].[Tipo de Préstamo] AS 'TipoP',[Tipo de Préstamo].[Tasa de Interés] AS 'Interés' from[Tipo de Préstamo] " +
+                "Commit Tran Pre End Try Begin Catch Print ERROR_MESSAGE(); " +
+                "Rollback Tran Pre End Catch";
+            String tabla47 = "Create Procedure [Cargar Tipo Socio] As Begin Tran Aso Begin Try " +
+                "Select [Tipo de Socio].[Nombre Tipo Socio] AS 'TipoS' from [Tipo de Socio] " +
+                "Commit Tran Aso End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Aso End Catch"; 
+            String tabla48 = "Create Procedure [Cargar Tipo Ahorro] As Begin Tran Aho Begin Try " +
+                "Select [Tipo de Ahorro].Nombre AS 'TipoA',[Tipo de Ahorro].[Tasa de Interés] AS 'Interés' from [Tipo de Ahorro] " +
+                "Commit Tran Aho End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Aho End Catch";
             String Usuario1 =
                 "CREATE LOGIN Master_ACOPEDH " +
                 "WITH PASSWORD = 'AUREO112358' " +
@@ -786,10 +797,14 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd59 = new SqlCommand(creartrabajos, cnn);
             SqlCommand cmd60 = new SqlCommand(crearpréstamos, cnn);
             SqlCommand cmd61 = new SqlCommand(insertartiposdetransacciones, cnn);
+            SqlCommand cmd62 = new SqlCommand(tabla46, cnn);
+            SqlCommand cmd63 = new SqlCommand(tabla47, cnn);
+            SqlCommand cmd64 = new SqlCommand(tabla48, cnn);
+
             //try
             //{
-                //Abrimos la conexión y ejecutamos el comando
-                cnn.Open();
+            //Abrimos la conexión y ejecutamos el comando
+            cnn.Open();
                 cmd.ExecuteNonQuery();
                 cmd1.ExecuteNonQuery();
                 cmd2.ExecuteNonQuery();
@@ -850,7 +865,10 @@ namespace Crear_Base_de_Datos
                 cmd59.ExecuteNonQuery();
                 cmd60.ExecuteNonQuery();
                 cmd61.ExecuteNonQuery();
-                cnn.Close();
+                cmd62.ExecuteNonQuery();
+                cmd63.ExecuteNonQuery();
+                cmd64.ExecuteNonQuery();
+            cnn.Close();
                 MessageBox.Show("Base Creada");
                 this.Close();
             //}

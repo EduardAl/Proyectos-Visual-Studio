@@ -13,16 +13,27 @@ namespace ACOPEDH
 {
     public partial class Amortización : Form
     {
+#warning Preguntar si se debe añadir fecha
+
+        /*
+            *********************************
+            *     Componentes Iniciales     *
+            ********************************* 
+        */
         public string CódigoPréstamo="";
+        #region Constructores
+        //Normal
         public Amortización()
         {
             InitializeComponent();
         }
+        //Con un código
         public Amortización(string codigoPréstamo)
         {
             InitializeComponent();
             CódigoPréstamo = codigoPréstamo;
-               }
+        }
+        //Únicamente para generar
         public Amortización(double interes,double monto, int plazo)
         {
             InitializeComponent();
@@ -30,6 +41,68 @@ namespace ACOPEDH
             txtMonto.Text = monto.ToString();
             txtPlazo.Text = plazo.ToString();
         }
+        #endregion
+        #region Load
+        private void Amortización_Load(object sender, EventArgs e)
+        {
+            if (CódigoPréstamo != "")//Si se ha cargado desde código
+            {
+                Procedimientos_select pro = new Procedimientos_select();
+                SqlParameter[] Param = new SqlParameter[1];
+                Param[0] = new SqlParameter("@ID_Préstamo", CódigoPréstamo);
+                pro.LlenarText("[Cargar Préstamo]", "Monto,NCuotas,Interés", Param, txtMonto.Text, txtPlazo.Text, txtInteres.Text);
+            }
+            try
+            {
+                double interes = Convert.ToDouble(txtInteres.Text) / 1200;
+                int plazo = Convert.ToInt32(txtPlazo.Text);
+                double Fijo = Math.Pow(1 + interes, plazo);
+                double Monto = Convert.ToDouble(txtMonto.Text);
+                double cuota = Monto * ((Fijo * interes) / (Fijo - 1));
+                double inte;
+                txtInteres.Text = txtInteres.Text + "%";
+                txtMonto.Text = "$" + txtMonto.Text;
+                for (int i = 1; i <= plazo; i++)
+                {
+                    dgvAmortizar.Rows.Add(i, "$" + Math.Round(inte = interes * Monto, 2), "$" + Math.Round(cuota - inte, 2), "$" + Math.Round(Monto = Monto - cuota + inte, 2));
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        #endregion
+
+        /*
+            *********************************
+            *            Botones            *
+            ********************************* 
+        */
+        #region Botones          
+        //Imprimir
+        private void bttImprimir_Click(object sender, EventArgs e)
+        {
+#warning Falta Imprimir
+        }
+        //Cerrar
+        private void bttCer_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        //Minimizar
+        private void bttMin_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+        #endregion
+
+        /*
+            *********************************
+            *            Eventos            *
+            ********************************* 
+        */
         #region Mover Form
         bool Empezarmover = false;
         int PosX;
@@ -64,51 +137,14 @@ namespace ACOPEDH
             }
         }
         #endregion
-        
-
-        private void Amortización_Load(object sender, EventArgs e)
+        #region Pintar Bordes
+        private void Bordes_Paint(object sender, PaintEventArgs e)
         {
-            if (CódigoPréstamo != "")
-            {
-                Procedimientos_select pro = new Procedimientos_select();
-                SqlParameter[] Param = new SqlParameter[1];
-                Param[0] = new SqlParameter("@ID_Préstamo", CódigoPréstamo);
-                pro.LlenarText("[Cargar Préstamo]", "Monto,NCuotas,Interés", Param, txtMonto.Text, txtPlazo.Text, txtInteres.Text);
-            }
-            try
-            {
-                double interes = Convert.ToDouble(txtInteres.Text) / 1200;
-                int plazo = Convert.ToInt32(txtPlazo.Text);
-                double Fijo = Math.Pow(1 + interes, plazo);
-                double Monto = Convert.ToDouble(txtMonto.Text);
-                double cuota = Monto * ((Fijo * interes) / (Fijo - 1));
-                double inte;
-                txtInteres.Text = txtInteres.Text + "%";
-                txtMonto.Text = "$" + txtMonto.Text;
-                for (int i = 1; i <= plazo; i++)
-                {
-                    dgvAmortizar.Rows.Add(i, "$" + Math.Round(inte = interes * Monto, 2), "$" + Math.Round(cuota - inte, 2), "$" + Math.Round(Monto = Monto - cuota + inte, 2));
-                }
-            }
-            catch
-            {
-
-            }
+            Graphics Linea = CreateGraphics();
+            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0, 0), new Point(0, Height));
+            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0, Height - 1), new Point(Width, Height));
+            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(Width - 1, 0), new Point(Width, Height));
         }
-
-        private void bttMin_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-        private void bttImprimir_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bttCer_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        #endregion
     }
 }

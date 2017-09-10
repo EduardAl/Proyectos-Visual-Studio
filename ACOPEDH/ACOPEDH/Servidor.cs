@@ -29,12 +29,15 @@ namespace ACOPEDH
                         if (String.IsNullOrEmpty(rowServidor["InstanceName"].ToString()))
                             listaServidores.Add(rowServidor["ServerName"].ToString());
                         else
+                        {
                             listaServidores.Add(rowServidor["ServerName"] + "\\" + rowServidor["InstanceName"]);
+                        }
                     }
-                    Globales.Servidor = listaServidores[0];
+#warning Cambiar los servidores 
+                    Globales.Servidor = listaServidores[1];
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 MessageBox.Show("Error al conectar con el servidor.\n" + "Número del error: " + ex.Number + "\nCódigo del error: " + ex.ErrorCode + "\nError: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
