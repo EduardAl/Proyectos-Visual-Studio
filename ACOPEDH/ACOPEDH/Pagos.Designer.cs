@@ -116,7 +116,7 @@
             this.bttAceptar.TabIndex = 1;
             this.bttAceptar.Text = "ACEPTAR";
             this.bttAceptar.UseVisualStyleBackColor = true;
-            this.bttAceptar.Click += new System.EventHandler(this.button1_Click);
+            this.bttAceptar.Click += new System.EventHandler(this.bttAceptar_Click);
             // 
             // txtIdPréstamo
             // 
@@ -289,6 +289,7 @@
             this.Text = "ACOPEDH - PAGOS";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Pagos_FormClosing);
             this.Load += new System.EventHandler(this.Pagos_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttMin)).EndInit();

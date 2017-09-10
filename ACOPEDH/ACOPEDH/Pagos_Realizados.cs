@@ -13,17 +13,68 @@ namespace ACOPEDH
 {
     public partial class Pagos_Realizados : Form
     {
+        /*
+            *********************************
+            *     Componentes Iniciales     *
+            ********************************* 
+        */
         string Datos;
+        #region Constructores
+        //Solo iniciando
         public Pagos_Realizados()
         {
             InitializeComponent();
         }
+        //Con código de préstamo
         public Pagos_Realizados(string datos)
         {
             InitializeComponent();
             Datos = datos;
             txtIDPréstamo.Text = Datos;
         }
+        #endregion
+        #region load
+        private void Pagos_Realizados_Load(object sender, EventArgs e)
+        {
+            Procedimientos_select pro = new Procedimientos_select();
+            SqlParameter[] Param = new SqlParameter[1];
+            Param[0] = new SqlParameter("@ID_Préstamo", Datos);
+            dgvPagosRealizados.DataSource = pro.llenar_DataTable("[Cargar Pagos]", Param);
+            Param[0] = new SqlParameter("@ID_Préstamo", Datos);
+            pro.LlenarText("[Cargar Préstamo]", "Nombre,PCuotas,Monto,FechaT,NCuotas,TipoP", Param, txtAsociado.Text, txtCuotaMensual.Text, txtMonto.Text, txtOtorgamiento.Text, txtPlazo.Text, txtTipoPréstamo.Text);
+            dgvPagosRealizados.Refresh();
+        }
+        #endregion
+
+        /*
+            *********************************
+            *            Botones            *
+            ********************************* 
+        */
+        #region Botones
+        //Minimizar
+        private void bttMin_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+        //Cerrar
+        private void bttCer_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        //Imprimir
+        private void bttImprimir_Click(object sender, EventArgs e)
+        {
+#warning Imprimir el estado del préstamo
+        }
+
+        #endregion
+
+        /*
+            *********************************
+            *            Eventos            *
+            ********************************* 
+        */
         #region Mover Form
         bool Empezarmover = false;
         int PosX;
@@ -58,32 +109,14 @@ namespace ACOPEDH
             }
         }
         #endregion
-
-        private void Pagos_Realizados_FormClosing(object sender, FormClosingEventArgs e)
+        #region Pintar Bordes
+        private void Bordes_Paint(object sender, PaintEventArgs e)
         {
-            if (MessageBox.Show("¿Desea salir?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                e.Cancel = true;
+            Graphics Linea = CreateGraphics();
+            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0, 0), new Point(0, Height));
+            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0, Height - 1), new Point(Width, Height));
+            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(Width - 1, 0), new Point(Width, Height));
         }
-      
-        private void Pagos_Realizados_Load(object sender, EventArgs e)
-        {
-            Procedimientos_select pro = new Procedimientos_select();
-            SqlParameter[] Param = new SqlParameter[1];
-            Param[0] = new SqlParameter("@ID_Préstamo", Datos);
-            dgvPagosRealizados.DataSource = pro.llenar_DataTable("[Cargar Pagos]",Param);
-            Param[0] = new SqlParameter("@ID_Préstamo", Datos);
-            pro.LlenarText("[Cargar Préstamo]", "Nombre,PCuotas,Monto,FechaT,NCuotas,TipoP", Param, txtAsociado.Text, txtCuotaMensual.Text, txtMonto.Text, txtOtorgamiento.Text, txtPlazo.Text, txtTipoPréstamo.Text);
-            dgvPagosRealizados.Refresh();
-        }
-
-        private void bttMin_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-        private void bttCer_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        #endregion
     }
 }

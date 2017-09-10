@@ -13,19 +13,66 @@ namespace ACOPEDH
 {
     public partial class Pagos : Form
     {
+        /*
+            *********************************
+            *     Componentes Iniciales     *
+            ********************************* 
+        */
         string Datos, Monto;
+        #region Constructores
+        //Normal
         public Pagos()
         {
             InitializeComponent();
             txtMontoMinimo.Text = "1";
             txtSaldo.Text = "200";
         }
+        //Con Código Préstamo
         public Pagos(string dato)
         {
             InitializeComponent();
-            Datos=dato;
+            Datos = dato;
         }
+        #endregion
 
+        /*
+           *********************************
+           *            Botones            *
+           ********************************* 
+       */
+        #region Botones
+        //Minimizar
+        private void bttMin_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+        //Cerrar
+        private void bttCer_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        //Pagar e Imprimir
+        private void bttAceptar_Click(object sender, EventArgs e)
+        {
+            DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de pago para la siguiente transacción?:\n$" + nmCantidad.Value + "\n N° Préstamo: " + txtIdPréstamo.Text + "\nPersona Asociada: " + txtNombre.Text, "Confirmar Pago", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            if (Imprimir != DialogResult.Cancel)
+            {
+
+                if (Imprimir == DialogResult.Yes)
+                {
+#warning Añadir Imprimir
+                }
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+        }
+        #endregion
+
+        /*
+        *********************************
+        *            Eventos            *
+        ********************************* 
+    */
         #region Mover Form
         bool Empezarmover = false;
         int PosX;
@@ -60,13 +107,15 @@ namespace ACOPEDH
             }
         }
         #endregion
-
+        #region Closing
         private void Pagos_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(DialogResult!=DialogResult.OK)
-            if (MessageBox.Show("¿Desea salir?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                e.Cancel = true;
+            if (DialogResult != DialogResult.OK)//Si no ha efectuado el pago
+                if (MessageBox.Show("¿Desea salir?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    e.Cancel = true;
         }
+        #endregion
+        #region Load
 
         private void Pagos_Load(object sender, EventArgs e)
         {
@@ -74,18 +123,18 @@ namespace ACOPEDH
             Procedimientos_select pro = new Procedimientos_select();
             SqlParameter[] Param = new SqlParameter[1];
             Param[0] = new SqlParameter("@ID_Préstamo", Datos);
-            pro.LlenarText("[Cargar Préstamo]", "Nombre,PCuotas,Monto,Interés", Param, txtNombre.Text, txtMontoMinimo.Text, Monto,interes);
+            pro.LlenarText("[Cargar Préstamo]", "Nombre,PCuotas,Monto,Interés", Param, txtNombre.Text, txtMontoMinimo.Text, Monto, interes);
             Param[0] = new SqlParameter("@ID_Préstamo", Datos);
             pro.LlenarText("[Cargar Saldo]", "Pago Mínimo", Param, txtSaldo.Text);
             txtIdPréstamo.Text = Datos;
             try
             {
-                nmCantidad.Maximum = Convert.ToDecimal(txtSaldo.Text)*(Convert.ToDecimal(interes)/1200);
+                nmCantidad.Maximum = Convert.ToDecimal(txtSaldo.Text) * (Convert.ToDecimal(interes) / 1200);
 
             }
             catch
             {
-                nmCantidad.Maximum= Convert.ToDecimal(Monto) * (Convert.ToDecimal(interes) / 1200);
+                nmCantidad.Maximum = Convert.ToDecimal(Monto) * (Convert.ToDecimal(interes) / 1200);
                 txtSaldo.Text = Monto;
             }
             if (Convert.ToDecimal(txtMontoMinimo.Text) > nmCantidad.Maximum)
@@ -96,32 +145,19 @@ namespace ACOPEDH
             else
                 nmCantidad.Minimum = Convert.ToDecimal(txtMontoMinimo.Text);
             nmCantidad.Value = nmCantidad.Minimum;
-            txtPagoMax.Text = Math.Round(nmCantidad.Maximum,2).ToString();
+            txtPagoMax.Text = Math.Round(nmCantidad.Maximum, 2).ToString();
         }
-
-        private void bttMin_Click(object sender, EventArgs e)
+        #endregion
+        #region Pintar Bordes
+        private void Bordes_Paint(object sender, PaintEventArgs e)
         {
-            WindowState = FormWindowState.Minimized;
+            Graphics Linea = CreateGraphics();
+            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0, 0), new Point(0, Height));
+            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0, Height - 1), new Point(Width, Height));
+            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(Width - 1, 0), new Point(Width, Height));
         }
+        #endregion
 
-        private void bttCer_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-#warning Añadir Imprimir
-        private void button1_Click(object sender, EventArgs e)
-        {
-            DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de pago para la siguiente transacción?:\n$" + nmCantidad.Value + "\n N° Préstamo: " + txtIdPréstamo.Text + "\nPersona Asociada: " + txtNombre.Text, "Confirmar Pago", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-            if (Imprimir!= DialogResult.Cancel)
-            {
 
-                if(Imprimir==DialogResult.Yes)
-                {
-                    //Imprimir
-                }
-                DialogResult = DialogResult.OK;
-                Close();
-            }
-        }
     }
 }

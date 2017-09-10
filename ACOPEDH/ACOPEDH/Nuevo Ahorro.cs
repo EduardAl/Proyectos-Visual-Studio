@@ -37,10 +37,14 @@ namespace ACOPEDH
         private void Nuevo_Ahorro_Paint(object sender, PaintEventArgs e)
         {
             Graphics Linea = CreateGraphics();
-            Linea.DrawLine(new Pen(Brushes.Black, 2), 40, 300, 833, 300);
             Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0,0),new Point(0,Height));
             Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0,Height-1),new Point(Width,Height));
             Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(Width-1,0),new Point(Width,Height));
+        }
+
+        private void Nuevo_Ahorro_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

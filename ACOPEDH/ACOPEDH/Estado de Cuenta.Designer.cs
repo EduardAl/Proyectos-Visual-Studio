@@ -325,6 +325,8 @@
             this.Name = "Estado_de_Cuenta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ACOPEDH - ESTADO DE CUENTA";
+            this.Load += new System.EventHandler(this.Estado_de_Cuenta_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);

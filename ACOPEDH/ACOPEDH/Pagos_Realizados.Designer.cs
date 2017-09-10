@@ -53,6 +53,7 @@
             this.bttCer = new System.Windows.Forms.PictureBox();
             this.bttMin = new System.Windows.Forms.PictureBox();
             this.txtTipoPréstamo = new System.Windows.Forms.TextBox();
+            this.bttImprimir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPagosRealizados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
@@ -173,7 +174,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Location = new System.Drawing.Point(662, 176);
+            this.label13.Location = new System.Drawing.Point(358, 176);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(116, 18);
             this.label13.TabIndex = 23;
@@ -181,7 +182,7 @@
             // 
             // txtCuotaMensual
             // 
-            this.txtCuotaMensual.Location = new System.Drawing.Point(785, 170);
+            this.txtCuotaMensual.Location = new System.Drawing.Point(481, 170);
             this.txtCuotaMensual.Multiline = true;
             this.txtCuotaMensual.Name = "txtCuotaMensual";
             this.txtCuotaMensual.ReadOnly = true;
@@ -301,6 +302,16 @@
             this.txtTipoPréstamo.TabIndex = 1;
             this.txtTipoPréstamo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // bttImprimir
+            // 
+            this.bttImprimir.Location = new System.Drawing.Point(738, 156);
+            this.bttImprimir.Name = "bttImprimir";
+            this.bttImprimir.Size = new System.Drawing.Size(112, 50);
+            this.bttImprimir.TabIndex = 97;
+            this.bttImprimir.Text = "Imprimir Estado";
+            this.bttImprimir.UseVisualStyleBackColor = true;
+            this.bttImprimir.Click += new System.EventHandler(this.bttImprimir_Click);
+            // 
             // Pagos_Realizados
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -308,6 +319,7 @@
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(929, 634);
+            this.Controls.Add(this.bttImprimir);
             this.Controls.Add(this.txtTipoPréstamo);
             this.Controls.Add(this.bttCer);
             this.Controls.Add(this.bttMin);
@@ -338,6 +350,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ACOPEDH - PAGOS REALIZADOS";
             this.Load += new System.EventHandler(this.Pagos_Realizados_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPagosRealizados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
@@ -368,5 +381,6 @@
         private System.Windows.Forms.PictureBox bttCer;
         private System.Windows.Forms.PictureBox bttMin;
         private System.Windows.Forms.TextBox txtTipoPréstamo;
+        private System.Windows.Forms.Button bttImprimir;
     }
 }
