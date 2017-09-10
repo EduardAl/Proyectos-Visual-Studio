@@ -126,6 +126,9 @@ namespace ACOPEDH
             Ocultar();
             //Colorear
             PConfiguración.BackColor = Seleccionado;
+            DataView dv = new DataView();
+            //Mostrando
+            panelConfig.Visible = true;
         }
         private void PEstadoAsociación_Click(object sender, EventArgs e)
         {
@@ -189,6 +192,9 @@ namespace ACOPEDH
             bttAportaciones.Visible = false;
             bttNuevoAsociado.Visible = false;
             bttDatosAsociado.Visible = false;
+
+            //Configuración
+            panelConfig.Visible = false;
         }
         /*
            *********************************
