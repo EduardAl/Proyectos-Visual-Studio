@@ -28,9 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Otorgar_Préstamo));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.TxtAsociado = new System.Windows.Forms.TextBox();
+            this.TxtBúsqueda = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -66,22 +71,62 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView1.GridColor = System.Drawing.Color.Silver;
             this.dataGridView1.Location = new System.Drawing.Point(458, 51);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridView1.RowHeadersVisible = false;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            this.dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridView1.RowTemplate.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(452, 195);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             // 
-            // TxtAsociado
+            // TxtBúsqueda
             // 
-            this.TxtAsociado.Location = new System.Drawing.Point(116, 117);
-            this.TxtAsociado.Multiline = true;
-            this.TxtAsociado.Name = "TxtAsociado";
-            this.TxtAsociado.Size = new System.Drawing.Size(289, 31);
-            this.TxtAsociado.TabIndex = 1;
+            this.TxtBúsqueda.Location = new System.Drawing.Point(116, 117);
+            this.TxtBúsqueda.Multiline = true;
+            this.TxtBúsqueda.Name = "TxtBúsqueda";
+            this.TxtBúsqueda.Size = new System.Drawing.Size(289, 31);
+            this.TxtBúsqueda.TabIndex = 0;
+            this.TxtBúsqueda.TextChanged += new System.EventHandler(this.TxtBúsqueda_TextChanged);
             // 
             // label1
             // 
@@ -141,6 +186,7 @@
             this.txtCuotaMensual.ReadOnly = true;
             this.txtCuotaMensual.Size = new System.Drawing.Size(67, 29);
             this.txtCuotaMensual.TabIndex = 20;
+            this.txtCuotaMensual.TabStop = false;
             // 
             // label12
             // 
@@ -159,7 +205,7 @@
             this.txtNoCuota.Multiline = true;
             this.txtNoCuota.Name = "txtNoCuota";
             this.txtNoCuota.Size = new System.Drawing.Size(54, 29);
-            this.txtNoCuota.TabIndex = 18;
+            this.txtNoCuota.TabIndex = 4;
             this.txtNoCuota.TextChanged += new System.EventHandler(this.txtNoCuota_TextChanged);
             // 
             // label11
@@ -179,7 +225,7 @@
             this.TxtMonto.Multiline = true;
             this.TxtMonto.Name = "TxtMonto";
             this.TxtMonto.Size = new System.Drawing.Size(67, 29);
-            this.TxtMonto.TabIndex = 16;
+            this.TxtMonto.TabIndex = 3;
             this.TxtMonto.TextChanged += new System.EventHandler(this.txtNoCuota_TextChanged);
             // 
             // TxtInterés
@@ -188,15 +234,17 @@
             this.TxtInterés.Location = new System.Drawing.Point(742, 94);
             this.TxtInterés.Multiline = true;
             this.TxtInterés.Name = "TxtInterés";
+            this.TxtInterés.ReadOnly = true;
             this.TxtInterés.Size = new System.Drawing.Size(56, 29);
             this.TxtInterés.TabIndex = 15;
+            this.TxtInterés.TabStop = false;
             this.TxtInterés.TextChanged += new System.EventHandler(this.txtNoCuota_TextChanged);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(621, 102);
+            this.label10.Location = new System.Drawing.Point(621, 99);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(124, 19);
             this.label10.TabIndex = 14;
@@ -220,7 +268,8 @@
             this.CBTipoPréstamo.Location = new System.Drawing.Point(450, 94);
             this.CBTipoPréstamo.Name = "CBTipoPréstamo";
             this.CBTipoPréstamo.Size = new System.Drawing.Size(156, 27);
-            this.CBTipoPréstamo.TabIndex = 12;
+            this.CBTipoPréstamo.TabIndex = 2;
+            this.CBTipoPréstamo.SelectedIndexChanged += new System.EventHandler(this.CBTipoPréstamo_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -241,6 +290,7 @@
             this.TxtOcupación.ReadOnly = true;
             this.TxtOcupación.Size = new System.Drawing.Size(180, 29);
             this.TxtOcupación.TabIndex = 10;
+            this.TxtOcupación.TabStop = false;
             // 
             // TxtDUIP
             // 
@@ -251,6 +301,7 @@
             this.TxtDUIP.ReadOnly = true;
             this.TxtDUIP.Size = new System.Drawing.Size(146, 29);
             this.TxtDUIP.TabIndex = 10;
+            this.TxtDUIP.TabStop = false;
             // 
             // label7
             // 
@@ -271,6 +322,7 @@
             this.TxtCódigoP.ReadOnly = true;
             this.TxtCódigoP.Size = new System.Drawing.Size(136, 29);
             this.TxtCódigoP.TabIndex = 10;
+            this.TxtCódigoP.TabStop = false;
             // 
             // label6
             // 
@@ -298,8 +350,10 @@
             this.TxtAsociadoP.Location = new System.Drawing.Point(98, 40);
             this.TxtAsociadoP.Multiline = true;
             this.TxtAsociadoP.Name = "TxtAsociadoP";
+            this.TxtAsociadoP.ReadOnly = true;
             this.TxtAsociadoP.Size = new System.Drawing.Size(289, 31);
             this.TxtAsociadoP.TabIndex = 10;
+            this.TxtAsociadoP.TabStop = false;
             // 
             // button1
             // 
@@ -307,7 +361,7 @@
             this.button1.Location = new System.Drawing.Point(325, 508);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(143, 57);
-            this.button1.TabIndex = 10;
+            this.button1.TabIndex = 5;
             this.button1.Text = "ACEPTAR";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -369,7 +423,7 @@
             this.bttAmortización.Location = new System.Drawing.Point(485, 508);
             this.bttAmortización.Name = "bttAmortización";
             this.bttAmortización.Size = new System.Drawing.Size(143, 57);
-            this.bttAmortización.TabIndex = 39;
+            this.bttAmortización.TabIndex = 6;
             this.bttAmortización.Text = "GENERAR AMORTIZACIÓN";
             this.bttAmortización.UseVisualStyleBackColor = true;
             this.bttAmortización.Click += new System.EventHandler(this.button2_Click);
@@ -391,7 +445,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.TxtAsociado);
+            this.Controls.Add(this.TxtBúsqueda);
             this.Controls.Add(this.dataGridView1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -421,7 +475,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox TxtAsociado;
+        private System.Windows.Forms.TextBox TxtBúsqueda;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label13;
