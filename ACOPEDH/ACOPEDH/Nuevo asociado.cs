@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,14 +27,49 @@ namespace ACOPEDH
 
         private void bttAceptar_Click(object sender, EventArgs e)
         {
-            string datos = string.Format("{0}\n{1}\n{2}\n{3}\n{4}\n{5}\n{6}\n{7}",
-                txtNombres.Text, txtApellidos.Text, txtDUI.Text, txtNIT.Text,
-                dtNacimiento.Text, cbOcupación.Text, cbAsociación.Text, txtDirección.Text);
-            if (MessageBox.Show("¿Seguro de ingresar los siguientes datos?: \n" + datos, "Confirmar registro", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+#warning Añadir validaciones al escribir y el ingreso de teléfonos
+            if (validar.ValidarNomApe(ref txtNombres,ref errorProvider1)&&
+                validar.ValidarNomApe(ref txtApellidos, ref errorProvider1) &&
+                validar.validar_DUI(ref txtDUI, ref errorProvider1) &&
+                validar.validar_NIT(ref txtNIT, ref errorProvider1) &&
+                validar.IsNullOrEmty(ref txtDirección, ref errorProvider1))
             {
-                //Ingresar
-                DialogResult = DialogResult.OK;
-                Close();
+                string datos = string.Format("Nombre: {0}\nApellidos: {1}\nDUI: {2}\n" +
+                    "NIT: {3}\nFecha de Nacimiento: {4}\nLugar de Trabajo: {5}\nTipo de Asociación: " +
+                    "{6}\nDirección: {7}",txtNombres.Text, txtApellidos.Text, txtDUI.Text, txtNIT.Text,
+                    dtNacimiento.Text, cbOcupación.Text, cbAsociación.Text, txtDirección.Text);
+                if (MessageBox.Show("¿Seguro de ingresar los siguientes datos?: \n" + datos, "Confirmar registro", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    try
+                    {
+                        Procedimientos_select ingresar = new Procedimientos_select();
+                        SqlParameter[] param = new SqlParameter[9];
+                        param[0] = new SqlParameter("@FK_Tipo_Socio", cbAsociación.Text);
+                        param[1] = new SqlParameter("@Nombres", txtNombres.Text);
+                        param[2] = new SqlParameter("@Apellidos", txtApellidos.Text);
+                        param[3] = new SqlParameter("@DUI", txtDUI.Text);
+                        param[4] = new SqlParameter("@NIT", txtNIT.Text);
+                        param[5] = new SqlParameter("@Residencia", txtDirección.Text);
+                        param[6] = new SqlParameter("@Fecha_Nacimiento", dtNacimiento.Value);
+                        param[7] = new SqlParameter("@Fecha_Asociación", DateTime.Now);
+                        param[8] = new SqlParameter("@FK_Ocupacion", cbOcupación.Text);
+                        ingresar.llenar_tabla("[Insertar Asociado]", param);
+                        foreach (DataGridViewRow row in dgvTeléfonos.Rows)
+                        {
+                            param = new SqlParameter[3];
+                            param[0] = new SqlParameter("@Tipo_Teléfono", row.Cells[1].Value.ToString());
+                            param[1] = new SqlParameter("@Teléfono", row.Cells[0].Value.ToString());
+                            param[2] = new SqlParameter("@DUI", txtDUI.Text);
+                            ingresar.llenar_tabla("[Insertar Teléfono]", param);
+                        }
+                        DialogResult = DialogResult.OK;
+                        Close();
+                    }
+                    catch(SqlException ex)
+                    {
+                        MessageBox.Show("Ocurrió un error en el ingreso de datos:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
 
@@ -62,6 +98,9 @@ namespace ACOPEDH
                 cbOcupación.SelectedIndex = 0;
             if (cbTipoTeléfono.Items.Count > 0)
                 cbTipoTeléfono.SelectedIndex = 0;
+            dtNacimiento.MinDate = DateTime.Today.AddYears(-200);
+            dtNacimiento.MaxDate = DateTime.Now.AddYears(-18);
+            dtNacimiento.Value = dtNacimiento.MaxDate;
         }
 
         private void Nuevo_asociado_FormClosing(object sender, FormClosingEventArgs e)

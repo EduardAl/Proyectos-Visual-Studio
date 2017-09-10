@@ -13,28 +13,30 @@ namespace ACOPEDH
     {
         Conexión cn;
         SqlCommand Comando;
+#warning PROCEDIMIENTOS CON CONEXION SQL/YIYEL POR PRUEBAS 
         public void llenar_tabla(string procedimiento, SqlParameter[] param)
         {
             DataTable ds = new DataTable();
             try
             {
                 using (SqlConnection conex = new SqlConnection(cn.cadena))
+                //using (SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311"))
                 {
                     conex.Open();
+                    Comando = new SqlCommand(procedimiento, conex);
                     Comando.CommandType = CommandType.StoredProcedure;
                     Comando.CommandText = procedimiento;
                     SqlDataAdapter da = new SqlDataAdapter(Comando);
                     for (int x = 0; x < (param.Length); x++)
                         Comando.Parameters.Add(param[x]);
-                    Comando.Parameters.Clear();
+                    Comando.ExecuteNonQuery();
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                Console.WriteLine("Ha ocurrido un error al intentar extraer los datos." + ex);
+                MessageBox.Show(ex.Message, ex.ErrorCode.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-#warning PROCEDIMIENTOS CON CONEXION SQL/YIYEL POR PRUEBAS 
         public DataTable llenar_DataTable(string procedimiento)
         {
             cn = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
@@ -50,9 +52,9 @@ namespace ACOPEDH
                 da.Dispose();
                 conex.Close();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                Console.WriteLine("Ha ocurrido un error al intentar extraer los datos." + ex);
+                MessageBox.Show(ex.Message, ex.ErrorCode.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return dt;
         }        
