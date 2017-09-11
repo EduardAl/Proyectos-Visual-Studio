@@ -16,7 +16,7 @@ namespace ACOPEDH
 #warning PROCEDIMIENTOS CON CONEXION SQL/YIYEL POR PRUEBAS 
         public void llenar_tabla(string procedimiento, SqlParameter[] param)
         {
-            DataTable ds = new DataTable();
+            cn = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
             try
             {
                 using (SqlConnection conex = new SqlConnection(cn.cadena))
@@ -43,10 +43,13 @@ namespace ACOPEDH
             DataTable dt = new DataTable();
             try
             {
-                SqlConnection conex = new SqlConnection(cn.cadena);
+             //   SqlConnection conex = new SqlConnection(cn.cadena);
+                SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
+
                 conex.Open();
                 Comando = new SqlCommand(procedimiento, conex);
                 Comando.CommandType = CommandType.StoredProcedure;
+                MessageBox.Show(Comando.ExecuteNonQuery().ToString());
                 SqlDataAdapter da = new SqlDataAdapter(Comando);
                 da.Fill(dt);
                 da.Dispose();
@@ -100,16 +103,18 @@ namespace ACOPEDH
                 MessageBox.Show(ex.Message, ex.ErrorCode.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void LlenarText(string procedimiento, string Rows,SqlParameter[] param, params String[] Text)
+        public void LlenarText(string procedimiento, string Rows,SqlParameter[] param, params TextBox[] Text)
         {
             try
             {
                 DataTable Llenado = llenar_DataTable(procedimiento, param);
                 String[] Row = Rows.Split(',');
                 DataRow row = Llenado.Rows[0];
-                for(int j=0;j<Text.Length;j++)
+                int j = 0;
+                foreach(TextBox text in Text)
                 {
-                    Text[j]= Convert.ToString(row[Row[j]]);
+                    text.Text= Convert.ToString(row[Row[j]]); ;
+                    j++;
                 }
             }
             catch(SqlException ex)

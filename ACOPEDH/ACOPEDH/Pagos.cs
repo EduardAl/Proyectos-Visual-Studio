@@ -18,7 +18,7 @@ namespace ACOPEDH
             *     Componentes Iniciales     *
             ********************************* 
         */
-        string Datos, Monto;
+        string Datos;
         #region Constructores
         //Normal
         public Pagos()
@@ -57,7 +57,7 @@ namespace ACOPEDH
             DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de pago para la siguiente transacción?:\n$" + nmCantidad.Value + "\n N° Préstamo: " + txtIdPréstamo.Text + "\nPersona Asociada: " + txtNombre.Text, "Confirmar Pago", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (Imprimir != DialogResult.Cancel)
             {
-
+                Procedimientos_select ingresar = new Procedimientos_select();
                 if (Imprimir == DialogResult.Yes)
                 {
 #warning Añadir Imprimir
@@ -119,23 +119,26 @@ namespace ACOPEDH
 
         private void Pagos_Load(object sender, EventArgs e)
         {
-            string interes = "1";
+            double interes=1, Monto=1;
+            TextBox Monto1 = new TextBox();
+            TextBox interes1 = new TextBox();
             Procedimientos_select pro = new Procedimientos_select();
             SqlParameter[] Param = new SqlParameter[1];
             Param[0] = new SqlParameter("@ID_Préstamo", Datos);
-            pro.LlenarText("[Cargar Préstamo]", "Nombre,PCuotas,Monto,Interés", Param, txtNombre.Text, txtMontoMinimo.Text, Monto, interes);
+            pro.LlenarText("[Cargar Préstamo]", "Nombre,PCuotas,Monto,Interés", Param, txtNombre, txtMontoMinimo, Monto1, interes1);
             Param[0] = new SqlParameter("@ID_Préstamo", Datos);
-            pro.LlenarText("[Cargar Saldo]", "Pago Mínimo", Param, txtSaldo.Text);
+            pro.LlenarText("[Cargar Saldo]", "Pago Mínimo", Param, txtSaldo);
             txtIdPréstamo.Text = Datos;
             try
             {
+                Monto = double.Parse(Monto1.Text);
+                interes = double.Parse(interes1.Text);
                 nmCantidad.Maximum = Convert.ToDecimal(txtSaldo.Text) * (Convert.ToDecimal(interes) / 1200);
-
             }
             catch
             {
-                nmCantidad.Maximum = Convert.ToDecimal(Monto) * (Convert.ToDecimal(interes) / 1200);
-                txtSaldo.Text = Monto;
+                nmCantidad.Maximum = Convert.ToDecimal(Monto) * (1+ (Convert.ToDecimal(interes) / 1200));
+                txtSaldo.Text = Monto.ToString();
             }
             if (Convert.ToDecimal(txtMontoMinimo.Text) > nmCantidad.Maximum)
             {
