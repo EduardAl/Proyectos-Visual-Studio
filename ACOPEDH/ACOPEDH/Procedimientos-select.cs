@@ -43,8 +43,8 @@ namespace ACOPEDH
             DataTable dt = new DataTable();
             try
             {
-             //   SqlConnection conex = new SqlConnection(cn.cadena);
-                SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
+                SqlConnection conex = new SqlConnection(cn.cadena);
+             //   SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
 
                 conex.Open();
                 Comando = new SqlCommand(procedimiento, conex);
@@ -67,8 +67,8 @@ namespace ACOPEDH
             DataTable dt = new DataTable();
             try
             {
-               // SqlConnection conex = new SqlConnection(cn.cadena);
-                SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
+                SqlConnection conex = new SqlConnection(cn.cadena);
+               // SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
                 conex.Open();
                 Comando = new SqlCommand(procedimiento, conex);
                 Comando.CommandType = CommandType.StoredProcedure;
@@ -129,8 +129,8 @@ namespace ACOPEDH
             List<ComboBox_Llenado> Retornar = new List<ComboBox_Llenado>();
             try
             {
-                 //SqlConnection conex = new SqlConnection(cn.cadena);
-                SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
+                SqlConnection conex = new SqlConnection(cn.cadena);
+                //SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
                 conex.Open();
                 Comando = new SqlCommand(procedimiento, conex);
                 Comando.CommandType = CommandType.StoredProcedure;
