@@ -59,12 +59,44 @@
             this.bttNuevoAsociado = new System.Windows.Forms.Button();
             this.bttAportaciones = new System.Windows.Forms.Button();
             this.bttDatosAsociado = new System.Windows.Forms.Button();
+            this.bttConfirmar = new System.Windows.Forms.Button();
+            this.bttCancelar = new System.Windows.Forms.Button();
+            this.panelConfig = new System.Windows.Forms.Panel();
+            this.txtCorreoElectrónicoNuevo = new System.Windows.Forms.TextBox();
+            this.PBMostrar3 = new System.Windows.Forms.PictureBox();
+            this.txtConfContraseña = new System.Windows.Forms.TextBox();
+            this.PBMostrar2 = new System.Windows.Forms.PictureBox();
+            this.txtNuevaContraseña = new System.Windows.Forms.TextBox();
+            this.PBMostrar1 = new System.Windows.Forms.PictureBox();
+            this.txtActualContraseña = new System.Windows.Forms.TextBox();
+            this.labCConfirmar = new System.Windows.Forms.Label();
+            this.labCNueva = new System.Windows.Forms.Label();
+            this.labCActual = new System.Windows.Forms.Label();
+            this.LLEditar4 = new System.Windows.Forms.LinkLabel();
+            this.LLEditar3 = new System.Windows.Forms.LinkLabel();
+            this.LLEditar2 = new System.Windows.Forms.LinkLabel();
+            this.LLEditar1 = new System.Windows.Forms.LinkLabel();
+            this.lablinea5 = new System.Windows.Forms.Label();
+            this.lablinea4 = new System.Windows.Forms.Label();
+            this.lablinea3 = new System.Windows.Forms.Label();
+            this.txtApellidoActual = new System.Windows.Forms.TextBox();
+            this.txtNombreActual = new System.Windows.Forms.TextBox();
+            this.labContraseña = new System.Windows.Forms.Label();
+            this.labCorreo = new System.Windows.Forms.Label();
+            this.labApellidos = new System.Windows.Forms.Label();
+            this.labNombre = new System.Windows.Forms.Label();
+            this.labTítulo = new System.Windows.Forms.Label();
+            this.lablinea1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBúsqueda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttMin)).BeginInit();
+            this.panelConfig.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PBMostrar3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBMostrar2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBMostrar1)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -82,7 +114,7 @@
             // 
             this.Titulo.AutoSize = true;
             this.Titulo.BackColor = System.Drawing.Color.Transparent;
-            this.Titulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Titulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 14.25F, System.Drawing.FontStyle.Bold);
             this.Titulo.ForeColor = System.Drawing.Color.White;
             this.Titulo.Location = new System.Drawing.Point(260, 44);
             this.Titulo.Name = "Titulo";
@@ -251,10 +283,10 @@
             this.dgvBúsqueda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBúsqueda.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvBúsqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBúsqueda.Location = new System.Drawing.Point(261, 217);
+            this.dgvBúsqueda.Location = new System.Drawing.Point(264, 233);
             this.dgvBúsqueda.Name = "dgvBúsqueda";
-            this.dgvBúsqueda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBúsqueda.RowHeadersVisible = false;
+            this.dgvBúsqueda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBúsqueda.Size = new System.Drawing.Size(632, 372);
             this.dgvBúsqueda.TabIndex = 24;
             this.dgvBúsqueda.Visible = false;
@@ -273,10 +305,10 @@
             // txtBúsqueda
             // 
             this.txtBúsqueda.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBúsqueda.Font = new System.Drawing.Font("Linotte-Bold", 14F);
+            this.txtBúsqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.txtBúsqueda.Location = new System.Drawing.Point(365, 154);
             this.txtBúsqueda.Name = "txtBúsqueda";
-            this.txtBúsqueda.Size = new System.Drawing.Size(356, 23);
+            this.txtBúsqueda.Size = new System.Drawing.Size(356, 22);
             this.txtBúsqueda.TabIndex = 19;
             this.txtBúsqueda.Visible = false;
             // 
@@ -339,13 +371,13 @@
             // BarraTítulo
             // 
             this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
-            this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F);
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
             this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
             this.BarraTítulo.Name = "BarraTítulo";
             this.BarraTítulo.Size = new System.Drawing.Size(980, 30);
             this.BarraTítulo.TabIndex = 32;
-            this.BarraTítulo.Text = "         ACOPEDH .:. PRINCIPAL";
+            this.BarraTítulo.Text = "         ACOPEDH .:. Principal";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BarraTítulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.BarraTítulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
@@ -463,6 +495,385 @@
             this.bttDatosAsociado.Visible = false;
             this.bttDatosAsociado.Click += new System.EventHandler(this.bttDatosAsociado_Click);
             // 
+            // bttConfirmar
+            // 
+            this.bttConfirmar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttConfirmar.Font = new System.Drawing.Font("Gotham Narrow Medium", 11F);
+            this.bttConfirmar.Location = new System.Drawing.Point(184, 95);
+            this.bttConfirmar.Name = "bttConfirmar";
+            this.bttConfirmar.Size = new System.Drawing.Size(115, 32);
+            this.bttConfirmar.TabIndex = 114;
+            this.bttConfirmar.TabStop = false;
+            this.bttConfirmar.Text = "Confirmar";
+            this.toolTip1.SetToolTip(this.bttConfirmar, "Ver la amortización del préstamo seleccionado");
+            this.bttConfirmar.UseVisualStyleBackColor = true;
+            this.bttConfirmar.Visible = false;
+            // 
+            // bttCancelar
+            // 
+            this.bttCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttCancelar.Font = new System.Drawing.Font("Gotham Narrow Medium", 11F);
+            this.bttCancelar.Location = new System.Drawing.Point(347, 95);
+            this.bttCancelar.Name = "bttCancelar";
+            this.bttCancelar.Size = new System.Drawing.Size(115, 32);
+            this.bttCancelar.TabIndex = 115;
+            this.bttCancelar.TabStop = false;
+            this.bttCancelar.Text = "Cancelar";
+            this.toolTip1.SetToolTip(this.bttCancelar, "Ver la amortización del préstamo seleccionado");
+            this.bttCancelar.UseVisualStyleBackColor = true;
+            this.bttCancelar.Visible = false;
+            // 
+            // panelConfig
+            // 
+            this.panelConfig.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
+            this.panelConfig.Controls.Add(this.bttCancelar);
+            this.panelConfig.Controls.Add(this.bttConfirmar);
+            this.panelConfig.Controls.Add(this.txtCorreoElectrónicoNuevo);
+            this.panelConfig.Controls.Add(this.PBMostrar3);
+            this.panelConfig.Controls.Add(this.txtConfContraseña);
+            this.panelConfig.Controls.Add(this.PBMostrar2);
+            this.panelConfig.Controls.Add(this.txtNuevaContraseña);
+            this.panelConfig.Controls.Add(this.PBMostrar1);
+            this.panelConfig.Controls.Add(this.txtActualContraseña);
+            this.panelConfig.Controls.Add(this.labCConfirmar);
+            this.panelConfig.Controls.Add(this.labCNueva);
+            this.panelConfig.Controls.Add(this.labCActual);
+            this.panelConfig.Controls.Add(this.LLEditar4);
+            this.panelConfig.Controls.Add(this.LLEditar3);
+            this.panelConfig.Controls.Add(this.LLEditar2);
+            this.panelConfig.Controls.Add(this.LLEditar1);
+            this.panelConfig.Controls.Add(this.lablinea5);
+            this.panelConfig.Controls.Add(this.lablinea4);
+            this.panelConfig.Controls.Add(this.lablinea3);
+            this.panelConfig.Controls.Add(this.txtApellidoActual);
+            this.panelConfig.Controls.Add(this.txtNombreActual);
+            this.panelConfig.Controls.Add(this.labContraseña);
+            this.panelConfig.Controls.Add(this.labCorreo);
+            this.panelConfig.Controls.Add(this.labApellidos);
+            this.panelConfig.Controls.Add(this.labNombre);
+            this.panelConfig.Controls.Add(this.labTítulo);
+            this.panelConfig.Controls.Add(this.lablinea1);
+            this.panelConfig.Location = new System.Drawing.Point(259, 122);
+            this.panelConfig.Name = "panelConfig";
+            this.panelConfig.Size = new System.Drawing.Size(695, 544);
+            this.panelConfig.TabIndex = 79;
+            this.panelConfig.Visible = false;
+            // 
+            // txtCorreoElectrónicoNuevo
+            // 
+            this.txtCorreoElectrónicoNuevo.BackColor = System.Drawing.Color.White;
+            this.txtCorreoElectrónicoNuevo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCorreoElectrónicoNuevo.Enabled = false;
+            this.txtCorreoElectrónicoNuevo.Font = new System.Drawing.Font("Linotte-Light", 14F);
+            this.txtCorreoElectrónicoNuevo.Location = new System.Drawing.Point(205, 284);
+            this.txtCorreoElectrónicoNuevo.Name = "txtCorreoElectrónicoNuevo";
+            this.txtCorreoElectrónicoNuevo.Size = new System.Drawing.Size(329, 23);
+            this.txtCorreoElectrónicoNuevo.TabIndex = 90;
+            // 
+            // PBMostrar3
+            // 
+            this.PBMostrar3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.PBMostrar3.Image = global::ACOPEDH.Properties.Resources.show;
+            this.PBMostrar3.Location = new System.Drawing.Point(479, 503);
+            this.PBMostrar3.Margin = new System.Windows.Forms.Padding(2);
+            this.PBMostrar3.Name = "PBMostrar3";
+            this.PBMostrar3.Size = new System.Drawing.Size(25, 27);
+            this.PBMostrar3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PBMostrar3.TabIndex = 109;
+            this.PBMostrar3.TabStop = false;
+            // 
+            // txtConfContraseña
+            // 
+            this.txtConfContraseña.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.txtConfContraseña.BackColor = System.Drawing.Color.White;
+            this.txtConfContraseña.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtConfContraseña.Enabled = false;
+            this.txtConfContraseña.Font = new System.Drawing.Font("Linotte-Light", 13F);
+            this.txtConfContraseña.Location = new System.Drawing.Point(248, 505);
+            this.txtConfContraseña.Margin = new System.Windows.Forms.Padding(0);
+            this.txtConfContraseña.Name = "txtConfContraseña";
+            this.txtConfContraseña.Size = new System.Drawing.Size(256, 21);
+            this.txtConfContraseña.TabIndex = 108;
+            this.txtConfContraseña.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtConfContraseña.UseSystemPasswordChar = true;
+            // 
+            // PBMostrar2
+            // 
+            this.PBMostrar2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.PBMostrar2.Image = global::ACOPEDH.Properties.Resources.show;
+            this.PBMostrar2.Location = new System.Drawing.Point(479, 461);
+            this.PBMostrar2.Margin = new System.Windows.Forms.Padding(2);
+            this.PBMostrar2.Name = "PBMostrar2";
+            this.PBMostrar2.Size = new System.Drawing.Size(25, 27);
+            this.PBMostrar2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PBMostrar2.TabIndex = 107;
+            this.PBMostrar2.TabStop = false;
+            // 
+            // txtNuevaContraseña
+            // 
+            this.txtNuevaContraseña.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.txtNuevaContraseña.BackColor = System.Drawing.Color.White;
+            this.txtNuevaContraseña.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNuevaContraseña.Enabled = false;
+            this.txtNuevaContraseña.Font = new System.Drawing.Font("Linotte-Light", 13F);
+            this.txtNuevaContraseña.Location = new System.Drawing.Point(248, 463);
+            this.txtNuevaContraseña.Margin = new System.Windows.Forms.Padding(0);
+            this.txtNuevaContraseña.Name = "txtNuevaContraseña";
+            this.txtNuevaContraseña.Size = new System.Drawing.Size(256, 21);
+            this.txtNuevaContraseña.TabIndex = 106;
+            this.txtNuevaContraseña.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNuevaContraseña.UseSystemPasswordChar = true;
+            // 
+            // PBMostrar1
+            // 
+            this.PBMostrar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.PBMostrar1.Image = global::ACOPEDH.Properties.Resources.show;
+            this.PBMostrar1.Location = new System.Drawing.Point(479, 419);
+            this.PBMostrar1.Margin = new System.Windows.Forms.Padding(2);
+            this.PBMostrar1.Name = "PBMostrar1";
+            this.PBMostrar1.Size = new System.Drawing.Size(25, 27);
+            this.PBMostrar1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PBMostrar1.TabIndex = 105;
+            this.PBMostrar1.TabStop = false;
+            // 
+            // txtActualContraseña
+            // 
+            this.txtActualContraseña.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.txtActualContraseña.BackColor = System.Drawing.Color.White;
+            this.txtActualContraseña.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtActualContraseña.Enabled = false;
+            this.txtActualContraseña.Font = new System.Drawing.Font("Linotte-Light", 13F);
+            this.txtActualContraseña.Location = new System.Drawing.Point(248, 421);
+            this.txtActualContraseña.Margin = new System.Windows.Forms.Padding(0);
+            this.txtActualContraseña.Name = "txtActualContraseña";
+            this.txtActualContraseña.Size = new System.Drawing.Size(256, 21);
+            this.txtActualContraseña.TabIndex = 104;
+            this.txtActualContraseña.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtActualContraseña.UseSystemPasswordChar = true;
+            // 
+            // labCConfirmar
+            // 
+            this.labCConfirmar.AutoSize = true;
+            this.labCConfirmar.BackColor = System.Drawing.Color.Transparent;
+            this.labCConfirmar.Enabled = false;
+            this.labCConfirmar.Location = new System.Drawing.Point(129, 514);
+            this.labCConfirmar.Name = "labCConfirmar";
+            this.labCConfirmar.Size = new System.Drawing.Size(89, 19);
+            this.labCConfirmar.TabIndex = 101;
+            this.labCConfirmar.Text = "Confirmar: ";
+            // 
+            // labCNueva
+            // 
+            this.labCNueva.AutoSize = true;
+            this.labCNueva.BackColor = System.Drawing.Color.Transparent;
+            this.labCNueva.Enabled = false;
+            this.labCNueva.Location = new System.Drawing.Point(151, 472);
+            this.labCNueva.Name = "labCNueva";
+            this.labCNueva.Size = new System.Drawing.Size(62, 19);
+            this.labCNueva.TabIndex = 100;
+            this.labCNueva.Text = "Nueva: ";
+            // 
+            // labCActual
+            // 
+            this.labCActual.AutoSize = true;
+            this.labCActual.BackColor = System.Drawing.Color.Transparent;
+            this.labCActual.Enabled = false;
+            this.labCActual.Location = new System.Drawing.Point(150, 430);
+            this.labCActual.Name = "labCActual";
+            this.labCActual.Size = new System.Drawing.Size(63, 19);
+            this.labCActual.TabIndex = 99;
+            this.labCActual.Text = "Actual: ";
+            // 
+            // LLEditar4
+            // 
+            this.LLEditar4.ActiveLinkColor = System.Drawing.Color.Navy;
+            this.LLEditar4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.LLEditar4.AutoSize = true;
+            this.LLEditar4.BackColor = System.Drawing.Color.Transparent;
+            this.LLEditar4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LLEditar4.DisabledLinkColor = System.Drawing.Color.Navy;
+            this.LLEditar4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LLEditar4.ForeColor = System.Drawing.Color.Navy;
+            this.LLEditar4.LinkColor = System.Drawing.Color.Navy;
+            this.LLEditar4.Location = new System.Drawing.Point(583, 393);
+            this.LLEditar4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LLEditar4.Name = "LLEditar4";
+            this.LLEditar4.Size = new System.Drawing.Size(51, 20);
+            this.LLEditar4.TabIndex = 98;
+            this.LLEditar4.TabStop = true;
+            this.LLEditar4.Text = "Editar";
+            // 
+            // LLEditar3
+            // 
+            this.LLEditar3.ActiveLinkColor = System.Drawing.Color.Navy;
+            this.LLEditar3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.LLEditar3.AutoSize = true;
+            this.LLEditar3.BackColor = System.Drawing.Color.Transparent;
+            this.LLEditar3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LLEditar3.DisabledLinkColor = System.Drawing.Color.Navy;
+            this.LLEditar3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LLEditar3.ForeColor = System.Drawing.Color.Navy;
+            this.LLEditar3.LinkColor = System.Drawing.Color.Navy;
+            this.LLEditar3.Location = new System.Drawing.Point(583, 268);
+            this.LLEditar3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LLEditar3.Name = "LLEditar3";
+            this.LLEditar3.Size = new System.Drawing.Size(51, 20);
+            this.LLEditar3.TabIndex = 97;
+            this.LLEditar3.TabStop = true;
+            this.LLEditar3.Text = "Editar";
+            // 
+            // LLEditar2
+            // 
+            this.LLEditar2.ActiveLinkColor = System.Drawing.Color.Navy;
+            this.LLEditar2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.LLEditar2.AutoSize = true;
+            this.LLEditar2.BackColor = System.Drawing.Color.Transparent;
+            this.LLEditar2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LLEditar2.DisabledLinkColor = System.Drawing.Color.Navy;
+            this.LLEditar2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LLEditar2.ForeColor = System.Drawing.Color.Navy;
+            this.LLEditar2.LinkColor = System.Drawing.Color.Navy;
+            this.LLEditar2.Location = new System.Drawing.Point(583, 164);
+            this.LLEditar2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LLEditar2.Name = "LLEditar2";
+            this.LLEditar2.Size = new System.Drawing.Size(51, 20);
+            this.LLEditar2.TabIndex = 96;
+            this.LLEditar2.TabStop = true;
+            this.LLEditar2.Text = "Editar";
+            // 
+            // LLEditar1
+            // 
+            this.LLEditar1.ActiveLinkColor = System.Drawing.Color.Navy;
+            this.LLEditar1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.LLEditar1.AutoSize = true;
+            this.LLEditar1.BackColor = System.Drawing.Color.Transparent;
+            this.LLEditar1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LLEditar1.DisabledLinkColor = System.Drawing.Color.Navy;
+            this.LLEditar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LLEditar1.ForeColor = System.Drawing.Color.Navy;
+            this.LLEditar1.LinkColor = System.Drawing.Color.Navy;
+            this.LLEditar1.Location = new System.Drawing.Point(583, 59);
+            this.LLEditar1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LLEditar1.Name = "LLEditar1";
+            this.LLEditar1.Size = new System.Drawing.Size(51, 20);
+            this.LLEditar1.TabIndex = 95;
+            this.LLEditar1.TabStop = true;
+            this.LLEditar1.Text = "Editar";
+            // 
+            // lablinea5
+            // 
+            this.lablinea5.AutoSize = true;
+            this.lablinea5.BackColor = System.Drawing.Color.Transparent;
+            this.lablinea5.Location = new System.Drawing.Point(39, 358);
+            this.lablinea5.Name = "lablinea5";
+            this.lablinea5.Size = new System.Drawing.Size(537, 19);
+            this.lablinea5.TabIndex = 94;
+            this.lablinea5.Text = "__________________________________________________________________";
+            // 
+            // lablinea4
+            // 
+            this.lablinea4.AutoSize = true;
+            this.lablinea4.BackColor = System.Drawing.Color.Transparent;
+            this.lablinea4.Location = new System.Drawing.Point(39, 237);
+            this.lablinea4.Name = "lablinea4";
+            this.lablinea4.Size = new System.Drawing.Size(537, 19);
+            this.lablinea4.TabIndex = 93;
+            this.lablinea4.Text = "__________________________________________________________________";
+            // 
+            // lablinea3
+            // 
+            this.lablinea3.AutoSize = true;
+            this.lablinea3.BackColor = System.Drawing.Color.Transparent;
+            this.lablinea3.Location = new System.Drawing.Point(39, 121);
+            this.lablinea3.Name = "lablinea3";
+            this.lablinea3.Size = new System.Drawing.Size(537, 19);
+            this.lablinea3.TabIndex = 92;
+            this.lablinea3.Text = "__________________________________________________________________";
+            // 
+            // txtApellidoActual
+            // 
+            this.txtApellidoActual.BackColor = System.Drawing.Color.White;
+            this.txtApellidoActual.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtApellidoActual.Enabled = false;
+            this.txtApellidoActual.Font = new System.Drawing.Font("Linotte-Light", 14F);
+            this.txtApellidoActual.Location = new System.Drawing.Point(155, 164);
+            this.txtApellidoActual.Name = "txtApellidoActual";
+            this.txtApellidoActual.Size = new System.Drawing.Size(349, 23);
+            this.txtApellidoActual.TabIndex = 87;
+            // 
+            // txtNombreActual
+            // 
+            this.txtNombreActual.BackColor = System.Drawing.Color.White;
+            this.txtNombreActual.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNombreActual.Enabled = false;
+            this.txtNombreActual.Font = new System.Drawing.Font("Linotte-Light", 14F);
+            this.txtNombreActual.Location = new System.Drawing.Point(155, 56);
+            this.txtNombreActual.Name = "txtNombreActual";
+            this.txtNombreActual.Size = new System.Drawing.Size(349, 23);
+            this.txtNombreActual.TabIndex = 85;
+            // 
+            // labContraseña
+            // 
+            this.labContraseña.AutoSize = true;
+            this.labContraseña.BackColor = System.Drawing.Color.Transparent;
+            this.labContraseña.Location = new System.Drawing.Point(40, 391);
+            this.labContraseña.Name = "labContraseña";
+            this.labContraseña.Size = new System.Drawing.Size(163, 19);
+            this.labContraseña.TabIndex = 84;
+            this.labContraseña.Text = "Cambiar Contraseña: ";
+            // 
+            // labCorreo
+            // 
+            this.labCorreo.AutoSize = true;
+            this.labCorreo.BackColor = System.Drawing.Color.Transparent;
+            this.labCorreo.Location = new System.Drawing.Point(40, 286);
+            this.labCorreo.Name = "labCorreo";
+            this.labCorreo.Size = new System.Drawing.Size(147, 19);
+            this.labCorreo.TabIndex = 83;
+            this.labCorreo.Text = "Correo Electrónico: ";
+            // 
+            // labApellidos
+            // 
+            this.labApellidos.AutoSize = true;
+            this.labApellidos.BackColor = System.Drawing.Color.Transparent;
+            this.labApellidos.Location = new System.Drawing.Point(39, 164);
+            this.labApellidos.Name = "labApellidos";
+            this.labApellidos.Size = new System.Drawing.Size(82, 19);
+            this.labApellidos.TabIndex = 82;
+            this.labApellidos.Text = "Apellidos: ";
+            // 
+            // labNombre
+            // 
+            this.labNombre.AutoSize = true;
+            this.labNombre.BackColor = System.Drawing.Color.Transparent;
+            this.labNombre.Location = new System.Drawing.Point(39, 59);
+            this.labNombre.Name = "labNombre";
+            this.labNombre.Size = new System.Drawing.Size(73, 19);
+            this.labNombre.TabIndex = 81;
+            this.labNombre.Text = "Nombre: ";
+            // 
+            // labTítulo
+            // 
+            this.labTítulo.AutoSize = true;
+            this.labTítulo.BackColor = System.Drawing.Color.Transparent;
+            this.labTítulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labTítulo.Location = new System.Drawing.Point(26, 7);
+            this.labTítulo.Name = "labTítulo";
+            this.labTítulo.Size = new System.Drawing.Size(227, 20);
+            this.labTítulo.TabIndex = 79;
+            this.labTítulo.Text = "Configuración de la Cuenta";
+            // 
+            // lablinea1
+            // 
+            this.lablinea1.AutoSize = true;
+            this.lablinea1.BackColor = System.Drawing.Color.Transparent;
+            this.lablinea1.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lablinea1.Location = new System.Drawing.Point(6, 13);
+            this.lablinea1.Name = "lablinea1";
+            this.lablinea1.Size = new System.Drawing.Size(684, 20);
+            this.lablinea1.TabIndex = 80;
+            this.lablinea1.Text = "___________________________________________________________________________";
+            // 
             // Principal_P
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -470,6 +881,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(980, 705);
             this.ControlBox = false;
+            this.Controls.Add(this.panelConfig);
             this.Controls.Add(this.bttCer);
             this.Controls.Add(this.bttMin);
             this.Controls.Add(this.bttMax);
@@ -499,7 +911,7 @@
             this.Controls.Add(this.bttCrearCuenta);
             this.Controls.Add(this.bttDatosAsociado);
             this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Linotte-Bold", 12F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(980, 705);
@@ -515,6 +927,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttMin)).EndInit();
+            this.panelConfig.ResumeLayout(false);
+            this.panelConfig.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PBMostrar3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBMostrar2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBMostrar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -551,5 +968,33 @@
         private System.Windows.Forms.Button bttNuevoAsociado;
         private System.Windows.Forms.Button bttAportaciones;
         private System.Windows.Forms.Button bttDatosAsociado;
+        private System.Windows.Forms.Panel panelConfig;
+        private System.Windows.Forms.TextBox txtCorreoElectrónicoNuevo;
+        private System.Windows.Forms.PictureBox PBMostrar3;
+        private System.Windows.Forms.TextBox txtConfContraseña;
+        private System.Windows.Forms.PictureBox PBMostrar2;
+        private System.Windows.Forms.TextBox txtNuevaContraseña;
+        private System.Windows.Forms.PictureBox PBMostrar1;
+        private System.Windows.Forms.TextBox txtActualContraseña;
+        private System.Windows.Forms.Label labCConfirmar;
+        private System.Windows.Forms.Label labCNueva;
+        private System.Windows.Forms.Label labCActual;
+        private System.Windows.Forms.LinkLabel LLEditar4;
+        private System.Windows.Forms.LinkLabel LLEditar3;
+        private System.Windows.Forms.LinkLabel LLEditar2;
+        private System.Windows.Forms.LinkLabel LLEditar1;
+        private System.Windows.Forms.Label lablinea5;
+        private System.Windows.Forms.Label lablinea4;
+        private System.Windows.Forms.Label lablinea3;
+        private System.Windows.Forms.TextBox txtApellidoActual;
+        private System.Windows.Forms.TextBox txtNombreActual;
+        private System.Windows.Forms.Label labContraseña;
+        private System.Windows.Forms.Label labCorreo;
+        private System.Windows.Forms.Label labApellidos;
+        private System.Windows.Forms.Label labNombre;
+        private System.Windows.Forms.Label labTítulo;
+        private System.Windows.Forms.Label lablinea1;
+        private System.Windows.Forms.Button bttCancelar;
+        private System.Windows.Forms.Button bttConfirmar;
     }
 }

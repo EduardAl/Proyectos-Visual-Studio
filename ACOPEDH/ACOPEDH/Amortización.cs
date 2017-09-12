@@ -50,7 +50,7 @@ namespace ACOPEDH
                 Procedimientos_select pro = new Procedimientos_select();
                 SqlParameter[] Param = new SqlParameter[1];
                 Param[0] = new SqlParameter("@ID_Préstamo", CódigoPréstamo);
-                pro.LlenarText("[Cargar Préstamo]", "Monto,NCuotas,Interés", Param, txtMonto.Text, txtPlazo.Text, txtInteres.Text);
+                pro.LlenarText("[Cargar Préstamo]", "Monto,NCuotas,Interés", Param, txtMonto, txtPlazo, txtInteres);
             }
             try
             {

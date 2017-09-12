@@ -19,7 +19,8 @@ namespace ACOPEDH
             ********************************* 
         */
         int Cuotas; double Monto, interes;
-        #region Componentes
+        List<ComboBox_Llenado> TipoPréstamo = new List<ComboBox_Llenado>();
+        #region Constructores
         //Normal
         public Otorgar_Préstamo()
         {
@@ -29,7 +30,14 @@ namespace ACOPEDH
         #region Load
         private void Otorgar_Préstamo_Load(object sender, EventArgs e)
         {
-            //Cargar Datos
+            Procedimientos_select Cargar = new Procedimientos_select();
+            TipoPréstamo = Cargar.LlenarCombo("[Cargar Tipo Préstamo]", "TipoP,Interés");
+            foreach (ComboBox_Llenado element in TipoPréstamo)
+            {
+                CBTipoPréstamo.Items.Add(element.Nombre);
+            }
+            if (CBTipoPréstamo.Items.Count > 0)
+                CBTipoPréstamo.SelectedIndex = 0;
         }
         #endregion
 
@@ -42,7 +50,12 @@ namespace ACOPEDH
         //Otorgar Préstamo
         private void button1_Click(object sender, EventArgs e)
         {
-            //Otorgar Préstamo
+            if (TxtCódigoP.Text != "")
+            {
+                //Otorgar Préstamo
+            }
+            else
+                MessageBox.Show("No ha seleccionado a una persona asociada", "Persona Asociada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
         //Minimizar
         private void bttMin_Click(object sender, EventArgs e)
@@ -76,6 +89,7 @@ namespace ACOPEDH
             ********************************* 
         */
         #region TextChanged
+        //Generar Cuota
         private void txtNoCuota_TextChanged(object sender, EventArgs e)
         {
             if (Double.TryParse(TxtMonto.Text, out Monto)
@@ -92,6 +106,11 @@ namespace ACOPEDH
             {
                 txtCuotaMensual.Text = "";
             }
+        }
+        //Búsqueda de Asociado
+        private void TxtBúsqueda_TextChanged(object sender, EventArgs e)
+        {
+
         }
         #endregion
         #region Mover Form
@@ -135,7 +154,36 @@ namespace ACOPEDH
                 if (MessageBox.Show("¿Desea salir sin guardar cambios?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     e.Cancel = true;
         }
+
         #endregion
+        #region CurrentCell
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                TxtCódigoP.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                TxtAsociadoP.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                TxtDUIP.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                TxtOcupación.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            }
+            catch
+            {
+                TxtAsociadoP.Clear();
+                TxtCódigoP.Clear();
+                TxtDUIP.Clear();
+                TxtOcupación.Clear();
+            }
+        }
+        #endregion
+        #region IndexChanged
+        //Cambiar el tipo de préstamo
+        private void CBTipoPréstamo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TxtInterés.Text = ComboBox_Llenado.ConseguirInterés(TipoPréstamo, CBTipoPréstamo.Text).ToString();
+        }
+
+        #endregion
+
         #region Pintar Bordes
         private void Bordes_Paint(object sender, PaintEventArgs e)
         {

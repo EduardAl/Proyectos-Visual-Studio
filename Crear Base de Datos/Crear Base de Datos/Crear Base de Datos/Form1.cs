@@ -557,7 +557,7 @@ namespace Crear_Base_de_Datos
                  "Begin Tran Cargar_P " +
                 "Begin Try " +
                 "Select Asociado.[Código Asociado],(Asociado.Nombres + ' ' + Asociado.Apellidos)AS 'Nombre', [Tipo de Préstamo].[Tipo de Préstamo]As 'TipoP', " +
-                "[Tipo de Préstamo].[Tasa de Interés] As Iterés,Préstamos.[Monto del Préstamo] AS Monto,Transacciones.[Fecha de Transacción] AS FechaT, Préstamos.Cuotas AS NCuotas, " +
+                "[Tipo de Préstamo].[Tasa de Interés] As Interés,Préstamos.[Monto del Préstamo] AS Monto,Transacciones.[Fecha de Transacción] AS FechaT, Préstamos.Cuotas AS NCuotas, " +
                 "Préstamos.[Cuota Mensual] AS PCuotas,Préstamos.Estado AS Estado From Asociado inner join Préstamos on " +
                 "Asociado.[Código Asociado]= Préstamos.[Código Asociado] inner join [Tipo de Préstamo] on Préstamos.[id Tipo de Préstamo] " +
                 "= [Tipo de Préstamo].[id Tipo de Préstamo] inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] where Préstamos.[id Préstamos]= @ID_Préstamo  " +
