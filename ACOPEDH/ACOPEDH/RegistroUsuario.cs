@@ -7,7 +7,7 @@ namespace ACOPEDH
     public partial class RegistroUsuario : Form
     {
         Validaciones validar = new Validaciones();
-        Cuentas NewAcount;
+        Usuarios NewAcount;
         Emailsistema enviaremail;
         #region Mover Form
         bool Empezarmover = false;
@@ -91,7 +91,7 @@ namespace ACOPEDH
         private void bttConfirmar_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
-            NewAcount = new Cuentas();
+            NewAcount = new Usuarios();
             enviaremail = new Emailsistema();
             String asunto = "Bienvenido a ACOPEDH";
             String mensaje = "Éste correo se ha generado automáticamente, por favor, no responder\n\nBienvenido a ACOPEDH.\n\nDesde éste momento puede ingresar a su cuenta.\n\n\nSu usuario: " + txtCorreo.Text + "\nSu clave: " + txtPassword.Text;
@@ -113,7 +113,7 @@ namespace ACOPEDH
                     errorProvider1.Clear();
                     if (NewAcount.CrearCuentas(txtNombre.Text, txtApellido.Text, txtConfPassword.Text, txtCorreo.Text, cbTipoUsuario.Text, seguridad) == 1)
                     {
-                        enviaremail.EnviarEmail(txtCorreo, txtPassword, asunto, mensaje);
+                        enviaremail.EnviarEmail(txtCorreo, asunto, mensaje);
                         MessageBox.Show("Cuenta creada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                         DialogResult = DialogResult.OK;
                         this.Close();

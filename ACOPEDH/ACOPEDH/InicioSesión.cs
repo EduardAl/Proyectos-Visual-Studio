@@ -52,7 +52,7 @@ namespace ACOPEDH
         #region instancias y variables globales de clase
         Servidor server;
         Validaciones validar;
-        Cuentas cuenta;
+        Usuarios cuenta;
         Conexión con;
         Emailsistema enviarcorreo = new Emailsistema();
         Globales glb = new Globales();
@@ -64,7 +64,8 @@ namespace ACOPEDH
             txtCorreo.Text = Properties.Settings.Default.UsuariosG;
             server = new Servidor();
             server.server();
-            MessageBox.Show(Globales.Servidor);            this.MaximumSize = new Size(480, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35);
+            MessageBox.Show(Globales.Servidor);
+            this.MaximumSize = new Size(480, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35);
             this.Height = SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 35;
             this.Visible = true;
             CenterToScreen();
@@ -76,7 +77,7 @@ namespace ACOPEDH
             {
                 Properties.Settings.Default.UsuariosG = txtCorreo.Text;
                 Properties.Settings.Default.Save();
-            cuenta = new Cuentas();
+            cuenta = new Usuarios();
                 if (!cuenta.existe(txtCorreo.Text))
                 {
                     errorProvider1.SetError(txtCorreo, "No se encontró ninguna cuenta asociada a ésta dirección E-Mail.");
@@ -111,7 +112,7 @@ namespace ACOPEDH
                             Globales.gbCod_TipoUsuario = dro["FK Tipo Usuario"].ToString();
                             this.Cursor = Cursors.WaitCursor;
                             ttpass.Text = null;
-                            enviarcorreo.EnviarEmail(txtCorreo, ttpass, asunto, mensaje);
+                            enviarcorreo.EnviarEmail(txtCorreo, asunto, mensaje);
                             Principal_P p = new Principal_P();
                             MessageBox.Show(Globales.gbCod_TipoUsuario);
                             SqlCommand cmd2 = new SqlCommand("select Nombre, Clave from [Tipo de Usuarios] where [Id Tipo Usuario]= '" + Globales.gbCod_TipoUsuario + "'", cn);
@@ -190,32 +191,10 @@ namespace ACOPEDH
 
         private void LLOlvidoContraseña_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
-        }
-
-        private void PBMostrar1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ttpass_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtCorreo_TextChanged(object sender, EventArgs e)
-        {
-
+            RecuperarCuenta RC = new RecuperarCuenta();
+            this.Hide();
+            RC.ShowDialog();
+            this.Show();
         }
     }
 }

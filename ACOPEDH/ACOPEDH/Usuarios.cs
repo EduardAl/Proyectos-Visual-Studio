@@ -4,9 +4,10 @@ using System.Windows.Forms;
 
 namespace ACOPEDH
 {
-    public partial class Cuentas
+    public partial class Usuarios
     {
         Conexión con = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
+
         public int CrearCuentas(string pnombre, string papellido, string pcontraseña, string pcorreo, string pT_Usuario, string pseguridad)
         {
             if (pT_Usuario == "Master")

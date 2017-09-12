@@ -52,7 +52,7 @@ namespace ACOPEDH
         }
         public static string CreateRandomPassword(int PasswordLength)
         {
-            string _allowedChars = "abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789!@$?";
+            string _allowedChars = "abcdefghijkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789@/!?";
             Byte[] randomBytes = new Byte[PasswordLength];
             char[] chars = new char[PasswordLength];
             int allowedCharCount = _allowedChars.Length;

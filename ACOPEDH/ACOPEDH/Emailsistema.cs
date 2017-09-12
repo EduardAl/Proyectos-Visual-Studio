@@ -7,7 +7,7 @@ namespace ACOPEDH
     class Emailsistema
     {
         public MailMessage correo = new MailMessage();
-        public void EnviarEmail(TextBox pcorreo, TextBox pcontra, string pasunto, string pmensaje)
+        public void EnviarEmail(TextBox pcorreo, string pasunto, string pmensaje)
         {
             SmtpClient SmtpServer = new SmtpClient();
             SmtpServer.Credentials = new System.Net.NetworkCredential("developersacopedh@gmail.com", "AUREO112358");
@@ -29,7 +29,6 @@ namespace ACOPEDH
             }
             catch
             {
-
             }
         }
     }

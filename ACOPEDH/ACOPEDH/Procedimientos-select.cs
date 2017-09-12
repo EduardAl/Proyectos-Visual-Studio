@@ -13,15 +13,13 @@ namespace ACOPEDH
     {
         Conexión cn;
         SqlCommand Comando;
-#warning PROCEDIMIENTOS CON CONEXION SQL/YIYEL POR PRUEBAS 
         public void llenar_tabla(string procedimiento, SqlParameter[] param)
         {
             DataTable ds = new DataTable();
             try
             {
-                using (SqlConnection conex = new SqlConnection(cn.cadena))
-                //using (SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311"))
-                {
+                cn = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
+                SqlConnection conex = new SqlConnection(cn.cadena);
                     conex.Open();
                     Comando = new SqlCommand(procedimiento, conex);
                     Comando.CommandType = CommandType.StoredProcedure;
@@ -30,7 +28,6 @@ namespace ACOPEDH
                     for (int x = 0; x < (param.Length); x++)
                         Comando.Parameters.Add(param[x]);
                     Comando.ExecuteNonQuery();
-                }
             }
             catch (SqlException ex)
             {
@@ -64,8 +61,7 @@ namespace ACOPEDH
             DataTable dt = new DataTable();
             try
             {
-               // SqlConnection conex = new SqlConnection(cn.cadena);
-                SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
+                SqlConnection conex = new SqlConnection(cn.cadena);
                 conex.Open();
                 Comando = new SqlCommand(procedimiento, conex);
                 Comando.CommandType = CommandType.StoredProcedure;
@@ -124,8 +120,7 @@ namespace ACOPEDH
             List<ComboBox_Llenado> Retornar = new List<ComboBox_Llenado>();
             try
             {
-                 //SqlConnection conex = new SqlConnection(cn.cadena);
-                SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
+                SqlConnection conex = new SqlConnection(cn.cadena);
                 conex.Open();
                 Comando = new SqlCommand(procedimiento, conex);
                 Comando.CommandType = CommandType.StoredProcedure;

@@ -16,7 +16,7 @@ namespace Crear_Base_de_Datos
             this.Hide();
             ser.ShowDialog();
             txtNombre.Focus();
-            
+
         }
         private void BttCrear_Click(object sender, EventArgs e)
         {
@@ -598,15 +598,30 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Pre End Catch";
             String tabla47 = "Create Procedure [Cargar Tipo Socio] As Begin Tran Aso Begin Try " +
                 "Select [Tipo de Socio].[Nombre Tipo Socio] AS 'TipoS' from [Tipo de Socio] " +
-                "Commit Tran Aso End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Aso End Catch"; 
+                "Commit Tran Aso End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Aso End Catch";
             String tabla48 = "Create Procedure [Cargar Tipo Ahorro] As Begin Tran Aho Begin Try " +
                 "Select [Tipo de Ahorro].Nombre AS 'TipoA',[Tipo de Ahorro].[Tasa de Interés] AS 'Interés' from [Tipo de Ahorro] " +
                 "Commit Tran Aho End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Aho End Catch";
+            String tabla49 = "create Procedure[dbo].[Recuperar Contraseña] " +
+                "@Correo varchar(50), " +
+                "@Contraseña varchar(MAX), " +
+                "@Seguridad varchar(32) " +
+                "As " +
+                "Begin Tran Mod_Tel " +
+                "Begin Try " +
+                "Begin Update Usuarios set Contraseña = @Contraseña, Seguridad = @Seguridad where @Correo =[Correo] " +
+                "Commit " +
+                "Tran Mod_Tel End;" +
+                "End Try " +
+                "Begin Catch " +
+                "Print ERROR_MESSAGE(); " +
+                "Rollback Tran Mod_Tel " +
+                "End Catch ";
             String Usuario1 =
-                "CREATE LOGIN Master_ACOPEDH " +
-                "WITH PASSWORD = 'AUREO112358' " +
-                "USE " + txtNombre.Text + ";" +
-                "CREATE USER Master_ACOPEDH FOR LOGIN Master_ACOPEDH ";
+    "CREATE LOGIN Master_ACOPEDH " +
+    "WITH PASSWORD = 'AUREO112358' " +
+    "USE " + txtNombre.Text + ";" +
+    "CREATE USER Master_ACOPEDH FOR LOGIN Master_ACOPEDH ";
             String Usuario2 =
                 "CREATE LOGIN Administrador " +
                 "WITH PASSWORD = 'ACOPEDH365' " +
@@ -715,9 +730,11 @@ namespace Crear_Base_de_Datos
             String permisosInicioSesión =
                  "Use " + txtNombre.Text + ";" +
                  "grant select, insert on object :: Usuarios " +
-                 "to InicioSesion with grant option " +
+                 "to InicioSesion " +
                  "grant select on object :: [Tipo de Usuarios] " +
-                 "to InicioSesion with grant option ";
+                 "to InicioSesion " +
+                 "grant execute on object :: [Recuperar Contraseña] " +
+                 "to InicioSesion";
             String crearusuarios =
                  "Use " + txtNombre.Text + ";" +
                  "insert into [Tipo de Usuarios] values" +
@@ -780,31 +797,32 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd41 = new SqlCommand(tabla41, cnn);
             SqlCommand cmd42 = new SqlCommand(tabla42, cnn);
             SqlCommand cmd43 = new SqlCommand(tabla43, cnn);
-            SqlCommand cmd44 = new SqlCommand(Usuario1, cnn);
-            SqlCommand cmd45 = new SqlCommand(Usuario2, cnn);
-            SqlCommand cmd46 = new SqlCommand(Usuario3, cnn);
-            SqlCommand cmd47 = new SqlCommand(Usuario4, cnn);
-            SqlCommand cmd48 = new SqlCommand(tabla44, cnn);
-            SqlCommand cmd49 = new SqlCommand(tabla45, cnn);
-            SqlCommand cmd51 = new SqlCommand(permisosMaster_ACOPEDH, cnn);
-            SqlCommand cmd52 = new SqlCommand(permisosAdministrador, cnn);
-            SqlCommand cmd53 = new SqlCommand(permisosUsuario, cnn);
-            SqlCommand cmd54 = new SqlCommand(permisosInicioSesión, cnn);
-            SqlCommand cmd55 = new SqlCommand(crearusuarios, cnn);
-            SqlCommand cmd56 = new SqlCommand(crearahorros, cnn);
-            SqlCommand cmd57 = new SqlCommand(crearpagos, cnn);
-            SqlCommand cmd58 = new SqlCommand(crearsocios, cnn);
-            SqlCommand cmd59 = new SqlCommand(creartrabajos, cnn);
-            SqlCommand cmd60 = new SqlCommand(crearpréstamos, cnn);
-            SqlCommand cmd61 = new SqlCommand(insertartiposdetransacciones, cnn);
-            SqlCommand cmd62 = new SqlCommand(tabla46, cnn);
-            SqlCommand cmd63 = new SqlCommand(tabla47, cnn);
-            SqlCommand cmd64 = new SqlCommand(tabla48, cnn);
+            SqlCommand cmd44 = new SqlCommand(tabla44, cnn);
+            SqlCommand cmd45 = new SqlCommand(tabla45, cnn);
+            SqlCommand cmd46 = new SqlCommand(tabla46, cnn);
+            SqlCommand cmd47 = new SqlCommand(tabla47, cnn);
+            SqlCommand cmd48 = new SqlCommand(tabla48, cnn);
+            SqlCommand cmd49 = new SqlCommand(tabla49, cnn);
+            SqlCommand cmd50 = new SqlCommand(Usuario1, cnn);
+            SqlCommand cmd51 = new SqlCommand(Usuario2, cnn);
+            SqlCommand cmd52 = new SqlCommand(Usuario3, cnn);
+            SqlCommand cmd53 = new SqlCommand(Usuario4, cnn);
+            SqlCommand cmd54 = new SqlCommand(permisosMaster_ACOPEDH, cnn);
+            SqlCommand cmd55 = new SqlCommand(permisosAdministrador, cnn);
+            SqlCommand cmd56 = new SqlCommand(permisosUsuario, cnn);
+            SqlCommand cmd57 = new SqlCommand(permisosInicioSesión, cnn);
+            SqlCommand cmd58 = new SqlCommand(crearusuarios, cnn);
+            SqlCommand cmd59 = new SqlCommand(crearahorros, cnn);
+            SqlCommand cmd60 = new SqlCommand(crearpagos, cnn);
+            SqlCommand cmd61 = new SqlCommand(crearsocios, cnn);
+            SqlCommand cmd62 = new SqlCommand(creartrabajos, cnn);
+            SqlCommand cmd63 = new SqlCommand(crearpréstamos, cnn);
+            SqlCommand cmd64 = new SqlCommand(insertartiposdetransacciones, cnn);
 
             //try
             //{
-            //Abrimos la conexión y ejecutamos el comando
-            cnn.Open();
+                //Abrimos la conexión y ejecutamos el comando
+                cnn.Open();
                 cmd.ExecuteNonQuery();
                 cmd1.ExecuteNonQuery();
                 cmd2.ExecuteNonQuery();
@@ -854,6 +872,7 @@ namespace Crear_Base_de_Datos
                 cmd47.ExecuteNonQuery();
                 cmd48.ExecuteNonQuery();
                 cmd49.ExecuteNonQuery();
+                cmd50.ExecuteNonQuery();
                 cmd51.ExecuteNonQuery();
                 cmd52.ExecuteNonQuery();
                 cmd53.ExecuteNonQuery();
@@ -868,7 +887,7 @@ namespace Crear_Base_de_Datos
                 cmd62.ExecuteNonQuery();
                 cmd63.ExecuteNonQuery();
                 cmd64.ExecuteNonQuery();
-            cnn.Close();
+                cnn.Close();
                 MessageBox.Show("Base Creada");
                 this.Close();
             //}
