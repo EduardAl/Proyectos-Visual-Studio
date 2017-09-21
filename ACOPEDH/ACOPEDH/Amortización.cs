@@ -58,13 +58,15 @@ namespace ACOPEDH
                 int plazo = Convert.ToInt32(txtPlazo.Text);
                 double Fijo = Math.Pow(1 + interes, plazo);
                 double Monto = Convert.ToDouble(txtMonto.Text);
-                double cuota = Monto * ((Fijo * interes) / (Fijo - 1));
+                double cuota = Math.Round(Monto * ((Fijo * interes) / (Fijo - 1)),2);
                 double inte;
                 txtInteres.Text = txtInteres.Text + "%";
                 txtMonto.Text = "$" + txtMonto.Text;
                 for (int i = 1; i <= plazo; i++)
                 {
-                    dgvAmortizar.Rows.Add(i, "$" + Math.Round(inte = interes * Monto, 2), "$" + Math.Round(cuota - inte, 2), "$" + Math.Round(Monto = Monto - cuota + inte, 2));
+                    if (i == plazo)
+                        cuota = Math.Round(Monto * (1 + interes), 2);
+                    dgvAmortizar.Rows.Add(i, "$" + cuota, "$" + (inte = Math.Round(interes * Monto, 2)), "$" + Math.Round(cuota - inte, 2), "$" + (Monto = Math.Round(Monto - cuota + inte, 2)));
                 }
             }
             catch

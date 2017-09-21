@@ -280,6 +280,10 @@
             // 
             // dgvBúsqueda
             // 
+            this.dgvBúsqueda.AllowUserToAddRows = false;
+            this.dgvBúsqueda.AllowUserToDeleteRows = false;
+            this.dgvBúsqueda.AllowUserToResizeColumns = false;
+            this.dgvBúsqueda.AllowUserToResizeRows = false;
             this.dgvBúsqueda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBúsqueda.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvBúsqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
