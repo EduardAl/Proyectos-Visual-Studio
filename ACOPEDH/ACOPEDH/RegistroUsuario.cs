@@ -155,7 +155,7 @@ namespace ACOPEDH
                 StringFormat st = new StringFormat();
                 st.LineAlignment = StringAlignment.Center;
                 st.Alignment = StringAlignment.Center;
-                Brush brush = new SolidBrush(cbTipoUsuario.ForeColor);
+                Brush brush = new SolidBrush(Color.Red);
                 if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
                     brush = SystemBrushes.HighlightText;
                 e.Graphics.DrawString(cbTipoUsuario.Items[e.Index].ToString(), cbTipoUsuario.Font, brush, e.Bounds, st);

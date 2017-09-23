@@ -61,6 +61,7 @@ namespace Crear_Base_de_Datos
             String tabla5 = "CREATE TABLE Transacciones(" +
                  "[Número][int] IDENTITY(1, 1) NOT NULL," +
                 "[id Transacción]  AS('TR' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL primary key," +
+                "[ID Usuario Transacción] varchar(5) references [Usuarios]([Id Usuario]), " +
                 "[FK Tipo de Transacción] [varchar](5) NOT NULL references [Tipo de Transacción]([id Tipo de Transacción])," +
                 "[Fecha de Transacción] datetime NOT NULL)";
             String tabla6 = "CREATE TABLE [dbo].[Tipo de Ahorro](" +
@@ -86,6 +87,7 @@ namespace Crear_Base_de_Datos
                 "[Fecha de Nacimiento] [datetime] NOT NULL," +
                 "[Fecha de Asociación] [datetime] NOT NULL," +
                 "[Fecha de Desasociación] [datetime] NULL," +
+                "[Estado] [varchar](10) NOT NULL, " +
                 "[FK Ocupación] [varchar](5) NOT NULL," +
                 "CONSTRAINT [PK_Asociado] PRIMARY KEY ([Código Asociado])," +
                 "CONSTRAINT [FK Tipo Socio] FOREIGN KEY ([FK Tipo Socio])" +
@@ -192,6 +194,7 @@ namespace Crear_Base_de_Datos
                 "@Residencia varchar(100), " +
                 "@Fecha_Nacimiento datetime, " +
                 "@Fecha_Asociación datetime, " +
+                "@Estado varchar(10), " +
                 "@FK_Ocupacion varchar(30) " +
                 "As " +
                 "Begin Tran Asociado " +
@@ -200,7 +203,7 @@ namespace Crear_Base_de_Datos
                 "Declare @ID_Ocupación as varchar(5) " +
                 "set @ID_Tipo_Socio = (Select[id Tipo de Socio] From[Tipo de Socio] where[Nombre Tipo Socio] = @FK_Tipo_Socio) " +
                 "set @ID_Ocupación = (Select[Id Ocupación] From[Ocupación] where[Nombre de la Empresa] = @FK_Ocupacion) " +
-                "Insert into Asociado values(@ID_Tipo_Socio, @Nombres, @Apellidos, @DUI, @NIT, @Residencia, @Fecha_Nacimiento, @Fecha_Asociación, null,@ID_Ocupación) " +
+                "Insert into Asociado values(@ID_Tipo_Socio, @Nombres, @Apellidos, @DUI, @NIT, @Residencia, @Fecha_Nacimiento, @Fecha_Asociación, null, @Estado, @ID_Ocupación) " +
                 "Commit tran Asociado " +
                 "End try " +
                 "Begin Catch " +
@@ -336,7 +339,8 @@ namespace Crear_Base_de_Datos
             String tabla29 = "Create Procedure[dbo].[Realizar Aportación] " +
                 "@Aportación smallmoney, " +
                 "@Fecha_Aportación datetime,  " +
-                "@ID_Asociado varchar(5) " +
+                "@ID_Asociado varchar(5), " +
+                "@Id_Usuario varchar(5) " +
                 "As " +
                 "Begin Tran Aportación " +
                 "Begin try " +
@@ -349,7 +353,7 @@ namespace Crear_Base_de_Datos
                 "End " +
                 "Else " +
                 "Declare @id_Transación varchar(5) " +
-                "Insert into Transacciones values('TT001',@Fecha_Aportación) " +
+                "Insert into Transacciones values(@Id_Usuario, 'TT001',@Fecha_Aportación) " +
                 "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
                 "Insert into Aportaciones values(@Aportación, @ID_Asociado, @id_Transación) " +
                 "Commit tran Asociado " +
@@ -400,12 +404,13 @@ namespace Crear_Base_de_Datos
             String tabla33 = "Create Procedure[Abonar] " +
                 "@Abono smallmoney, " +
                 "@Fecha_Abono datetime, " +
-                "@FK_Ahorro varchar(40) " +
+                "@FK_Ahorro varchar(40), " +
+                "@Id_Usuario varchar(5) " +
                 "As " +
                 "Begin Tran Abono " +
                 "Begin Try " +
                 "Declare @id_Transación varchar(5) " +
-                "Insert into Transacciones values('TT002',@Fecha_Abono) " +
+                "Insert into Transacciones values(@Id_Usuario, 'TT002',@Fecha_Abono) " +
                 "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
                 "Insert into Abono values(@Abono, @FK_Ahorro, @id_Transación) " +
                 "Commit Tran Abono " +
@@ -443,12 +448,13 @@ namespace Crear_Base_de_Datos
                 "@Retiro smallmoney, " +
                 "@Fecha_Retiro date, " +
                 "@Número_Cheque varchar(8), " +
-                "@FK_Ahorro varchar(30) " +
+                "@FK_Ahorro varchar(30), " +
+                "@Id_Usuario varchar(5) " +
                 "As " +
                 "Begin Try " +
                 "Begin Tran Retiro " +
                 "Declare @id_Transación varchar(5) " +
-                "Insert into Transacciones values('TT005',@Fecha_Retiro) " +
+                "Insert into Transacciones values(@Id_Usuario, 'TT005',@Fecha_Retiro) " +
                 "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
                 "Insert into Retiros values(@Retiro,@Número_Cheque, @FK_Ahorro, @id_Transación) " +
                 "Commit Tran Retiro " +
@@ -491,13 +497,14 @@ namespace Crear_Base_de_Datos
                 "@Saldo smallmoney, " +
                 "@Mora smallmoney, " +
                 "@Fecha_Límite datetime, " +
-                "@Fecha_Pago datetime " +
+                "@Fecha_Pago datetime, " +
+                "@Id_Usuario varchar(5) " +
                 "As " +
                 "Begin Tran Pago " +
                 "Begin Try " +
                 "Declare @ID_Pago as varchar(5) " +
                 "Declare @id_Transación varchar(5) " +
-                "Insert into Transacciones values('TT004',@Fecha_Pago) " +
+                "Insert into Transacciones values(@Id_Usuario, 'TT004',@Fecha_Pago) " +
                 "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
                 "If(@Fecha_Pago <= @Fecha_Límite) " +
                 "Begin " +
@@ -585,7 +592,7 @@ namespace Crear_Base_de_Datos
                 "Begin Tran Aso " +
                 "Begin Try " +
                 "Select Asociado.[Código Asociado] as 'Código', (Asociado.Nombres + ' ' + Asociado.Apellidos) as 'Persona Asociada' " +
-                "From Asociado where Asociado.[Fecha de Desasociación] = NULL " +
+                "From Asociado where Asociado.[Estado] = 'Activo' " +
                 "Commit Tran Aso " +
                 "End Try " +
                 "Begin Catch " +
