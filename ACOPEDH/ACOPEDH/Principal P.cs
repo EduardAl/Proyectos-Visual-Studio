@@ -147,7 +147,7 @@ namespace ACOPEDH
             *   Funciones y Procedimientos  *
             ********************************* 
         */
-        private void DatoR()
+        private bool DatoR()
         {
             if (dgvBúsqueda.SelectedRows.Count == 1)
             {
@@ -157,13 +157,14 @@ namespace ACOPEDH
                     int i = dgvBúsqueda.CurrentCell.RowIndex;
                     dgvv = dgvBúsqueda.Rows[i];
                     Dato = dgvv.Cells[0].Value.ToString();
-                    if (String.IsNullOrEmpty(Dato))
-                        DialogResult = DialogResult.Cancel;
-                    else
-                        DialogResult = DialogResult.OK;
+                    if (!String.IsNullOrEmpty(Dato))
+                        return true;
                 }
-                catch { }
+                catch
+                {
+                }
             }
+                return false;
         }
         public void Ocultar()
         {
@@ -205,8 +206,7 @@ namespace ACOPEDH
         //Acciones
         private void bttAbonar_Click(object sender, EventArgs e)
         {
-            DatoR();
-            if (DialogResult == DialogResult.OK)
+            if (DatoR())
             {
             Abonos Accion = new Abonos(Dato);
                 Accion.ShowDialog();
@@ -218,8 +218,7 @@ namespace ACOPEDH
         }
         private void bttRetirar_Click(object sender, EventArgs e)
         {
-            DatoR();
-            if (DialogResult == DialogResult.OK)
+            if (DatoR())
             {
                 Retiros Accion = new Retiros(Dato);
                 Accion.ShowDialog();
@@ -230,8 +229,7 @@ namespace ACOPEDH
         }
         private void bttVerEstados_Click(object sender, EventArgs e)
         {
-            DatoR();
-            if (DialogResult == DialogResult.OK)
+            if (DatoR())
             {
             Estado_de_Cuenta Accion = new Estado_de_Cuenta(Dato);
                 Accion.ShowDialog();
@@ -246,9 +244,7 @@ namespace ACOPEDH
         }
         private void bttRealizarPago_Click(object sender, EventArgs e)
         {
-            DatoR();
-
-            if (DialogResult == DialogResult.OK)
+            if (DatoR())
             {
                 Pagos Accion = new Pagos(Dato);
                 Accion.ShowDialog();
@@ -258,8 +254,7 @@ namespace ACOPEDH
         }
         private void bttAmortización_Click(object sender, EventArgs e)
         {
-            DatoR();
-            if (DialogResult == DialogResult.OK)
+            if (DatoR())
             {
                 Amortización Accion = new Amortización(Dato);
                 Accion.ShowDialog();
@@ -269,8 +264,7 @@ namespace ACOPEDH
         }
         private void bttPagosRealizados_Click(object sender, EventArgs e)
         {
-            DatoR();
-            if (DialogResult == DialogResult.OK)
+            if (DatoR())
             {
                 Pagos_Realizados Accion = new Pagos_Realizados(Dato);
                 Accion.ShowDialog();
@@ -286,8 +280,7 @@ namespace ACOPEDH
         }
         private void bttDatosAsociado_Click(object sender, EventArgs e)
         {
-            DatoR();
-            if (DialogResult == DialogResult.OK)
+            if (DatoR())
             {
             Datos_Asociado Accion = new Datos_Asociado(Dato);
                 Accion.ShowDialog();
@@ -298,8 +291,7 @@ namespace ACOPEDH
         }
         private void bttAportaciones_Click(object sender, EventArgs e)
         {
-            DatoR();
-            if (DialogResult == DialogResult.OK)
+            if (DatoR())
             {
                 Aportaciones Accion = new Aportaciones();
                 Accion.ShowDialog();
@@ -345,6 +337,7 @@ namespace ACOPEDH
             bttMin.Location = new Point(bttMax.Location.X - 26, 0);
             //                          Elementos
             Titulo.Location = new Point((Width / 2) - (Titulo.Width / 2) + 93, Titulo.Location.Y);
+            panelConfig.Location = new Point((Width / 2) - (panelConfig.Width / 2) + 93, panelConfig.Location.Y);
             dgvBúsqueda.Width = Width - dgvBúsqueda.Location.X - 87;
             dgvBúsqueda.Height = Height - dgvBúsqueda.Location.Y - 116;
 

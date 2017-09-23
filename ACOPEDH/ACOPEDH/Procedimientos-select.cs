@@ -46,7 +46,6 @@ namespace ACOPEDH
                 conex.Open();
                 Comando = new SqlCommand(procedimiento, conex);
                 Comando.CommandType = CommandType.StoredProcedure;
-                MessageBox.Show(Comando.ExecuteNonQuery().ToString());
                 SqlDataAdapter da = new SqlDataAdapter(Comando);
                 da.Fill(dt);
                 da.Dispose();
