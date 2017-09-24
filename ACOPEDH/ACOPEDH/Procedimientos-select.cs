@@ -13,8 +13,9 @@ namespace ACOPEDH
     {
         Conexión cn;
         SqlCommand Comando;
-        public void llenar_tabla(string procedimiento, SqlParameter[] param)
+        public int llenar_tabla(string procedimiento, SqlParameter[] param)
         {
+            int resultado = 0;
             cn = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
             try
             {
@@ -27,12 +28,13 @@ namespace ACOPEDH
                     SqlDataAdapter da = new SqlDataAdapter(Comando);
                     for (int x = 0; x < (param.Length); x++)
                         Comando.Parameters.Add(param[x]);
-                    Comando.ExecuteNonQuery();
+                    resultado = Comando.ExecuteNonQuery();
             }
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message, ex.ErrorCode.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            return resultado;
         }
         public DataTable llenar_DataTable(string procedimiento)
         {
@@ -56,7 +58,7 @@ namespace ACOPEDH
                 MessageBox.Show(ex.Message, ex.ErrorCode.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return dt;
-        }        
+        }
         public DataTable llenar_DataTable(string procedimiento, SqlParameter[] param)
         {
             cn = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
@@ -64,7 +66,7 @@ namespace ACOPEDH
             try
             {
                 SqlConnection conex = new SqlConnection(cn.cadena);
-               // SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
+                // SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
                 conex.Open();
                 Comando = new SqlCommand(procedimiento, conex);
                 Comando.CommandType = CommandType.StoredProcedure;
@@ -80,6 +82,45 @@ namespace ACOPEDH
                 MessageBox.Show("Ha ocurrido un error al intentar extraer los datos.\n" + ex.Message);
             }
             return dt;
+        }
+        public DataSet llenar_DataSet(string procedimiento, SqlParameter[] param)
+        {
+            cn = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection conex = new SqlConnection(cn.cadena);
+                conex.Open();
+                conex.InfoMessage += new SqlInfoMessageEventHandler(Conex_InfoMessage);
+                Comando = new SqlCommand(procedimiento, conex);
+                Comando.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(Comando);
+                for (int x = 0; x < (param.Length); x++)
+                    Comando.Parameters.Add(param[x]);
+                int registro = da.Fill(ds, "Usuarios");
+
+                da.Dispose();
+                conex.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al intentar extraer los datos.\n" + ex.Message);
+            }
+            return ds;
+        }
+        
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //   Obtinene los mensajes o errores de un procedimiento almacenado por medio de la cadena de conexión   //
+        //   añadiendo .InfoMessage a la cadena y llamando a esta funcion ver el procedimiento "LlenarDataSet"   //
+        /// ///////////////////////////////////////////////////////////////////////////////////////////////////////
+        public void Conex_InfoMessage(object sender, SqlInfoMessageEventArgs e)
+        {
+            String mensaje = "";
+            if (e.Errors.Count > 0)
+            {
+                mensaje = e.Errors[0].Message;
+            }
+            InicioSesión.error = mensaje;
         }
 
         public void LlenarText(string procedimiento, string Rows, params String[] Text)
@@ -131,7 +172,6 @@ namespace ACOPEDH
                 Comando = new SqlCommand(procedimiento, conex);
                 Comando.CommandType = CommandType.StoredProcedure;
                 SqlDataReader DataReader = Comando.ExecuteReader();
-                SqlDataAdapter da = new SqlDataAdapter(Comando);
                 string[] Row = Rows.Split(',');
                 while (DataReader.Read())
                 {

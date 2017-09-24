@@ -47,7 +47,6 @@ namespace Crear_Base_de_Datos
                 "[Contraseña] [varchar](max) NOT NULL," +
                 "[Correo] [varchar](50) NOT NULL," +
                 "[FK Tipo Usuario] [varchar](5) NOT NULL references [Tipo de Usuarios]([Id Tipo Usuario])," +
-                "[Seguridad] [varchar](32) NOT NULL," +
                 "CONSTRAINT [PK_Usuarios] PRIMARY KEY ([Id Usuario]))";
             String tabla3 = "CREATE TABLE [dbo].[Tipo de Socio](" +
                  "[Número] [int] IDENTITY(1,1) NOT NULL," +
@@ -611,12 +610,11 @@ namespace Crear_Base_de_Datos
                 "Commit Tran Aho End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Aho End Catch";
             String tabla49 = "create Procedure[dbo].[Recuperar Contraseña] " +
                 "@Correo varchar(50), " +
-                "@Contraseña varchar(MAX), " +
-                "@Seguridad varchar(32) " +
+                "@Contraseña varchar(MAX) " +
                 "As " +
                 "Begin Tran Mod_Tel " +
                 "Begin Try " +
-                "Begin Update Usuarios set Contraseña = @Contraseña, Seguridad = @Seguridad where @Correo =[Correo] " +
+                "Begin Update Usuarios set Contraseña = @Contraseña where @Correo =[Correo] " +
                 "Commit " +
                 "Tran Mod_Tel End;" +
                 "End Try " +

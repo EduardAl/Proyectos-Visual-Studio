@@ -118,7 +118,7 @@
             this.Titulo.ForeColor = System.Drawing.Color.White;
             this.Titulo.Location = new System.Drawing.Point(260, 44);
             this.Titulo.Name = "Titulo";
-            this.Titulo.Size = new System.Drawing.Size(646, 46);
+            this.Titulo.Size = new System.Drawing.Size(833, 58);
             this.Titulo.TabIndex = 2;
             this.Titulo.Text = "Asociación Cooperativa de Ahorro, Crédito y Consumo del Personal de la \r\nProcurad" +
     "uría para la Defensa de los Derechos Humanos";
@@ -301,7 +301,7 @@
             this.labBuscar.BackColor = System.Drawing.Color.Transparent;
             this.labBuscar.Location = new System.Drawing.Point(255, 154);
             this.labBuscar.Name = "labBuscar";
-            this.labBuscar.Size = new System.Drawing.Size(83, 19);
+            this.labBuscar.Size = new System.Drawing.Size(104, 24);
             this.labBuscar.TabIndex = 20;
             this.labBuscar.Text = "Búsqueda:";
             this.labBuscar.Visible = false;
@@ -312,7 +312,7 @@
             this.txtBúsqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.txtBúsqueda.Location = new System.Drawing.Point(365, 154);
             this.txtBúsqueda.Name = "txtBúsqueda";
-            this.txtBúsqueda.Size = new System.Drawing.Size(356, 22);
+            this.txtBúsqueda.Size = new System.Drawing.Size(356, 27);
             this.txtBúsqueda.TabIndex = 19;
             this.txtBúsqueda.Visible = false;
             // 
@@ -517,7 +517,7 @@
             // 
             this.bttCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttCancelar.Font = new System.Drawing.Font("Gotham Narrow Medium", 11F);
-            this.bttCancelar.Location = new System.Drawing.Point(347, 95);
+            this.bttCancelar.Location = new System.Drawing.Point(324, 95);
             this.bttCancelar.Name = "bttCancelar";
             this.bttCancelar.Size = new System.Drawing.Size(115, 32);
             this.bttCancelar.TabIndex = 115;
@@ -571,7 +571,7 @@
             this.txtCorreoElectrónicoNuevo.Font = new System.Drawing.Font("Linotte-Light", 14F);
             this.txtCorreoElectrónicoNuevo.Location = new System.Drawing.Point(205, 284);
             this.txtCorreoElectrónicoNuevo.Name = "txtCorreoElectrónicoNuevo";
-            this.txtCorreoElectrónicoNuevo.Size = new System.Drawing.Size(329, 23);
+            this.txtCorreoElectrónicoNuevo.Size = new System.Drawing.Size(329, 28);
             this.txtCorreoElectrónicoNuevo.TabIndex = 90;
             // 
             // PBMostrar3
@@ -596,7 +596,7 @@
             this.txtConfContraseña.Location = new System.Drawing.Point(248, 505);
             this.txtConfContraseña.Margin = new System.Windows.Forms.Padding(0);
             this.txtConfContraseña.Name = "txtConfContraseña";
-            this.txtConfContraseña.Size = new System.Drawing.Size(256, 21);
+            this.txtConfContraseña.Size = new System.Drawing.Size(256, 26);
             this.txtConfContraseña.TabIndex = 108;
             this.txtConfContraseña.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtConfContraseña.UseSystemPasswordChar = true;
@@ -623,7 +623,7 @@
             this.txtNuevaContraseña.Location = new System.Drawing.Point(248, 463);
             this.txtNuevaContraseña.Margin = new System.Windows.Forms.Padding(0);
             this.txtNuevaContraseña.Name = "txtNuevaContraseña";
-            this.txtNuevaContraseña.Size = new System.Drawing.Size(256, 21);
+            this.txtNuevaContraseña.Size = new System.Drawing.Size(256, 26);
             this.txtNuevaContraseña.TabIndex = 106;
             this.txtNuevaContraseña.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtNuevaContraseña.UseSystemPasswordChar = true;
@@ -650,7 +650,7 @@
             this.txtActualContraseña.Location = new System.Drawing.Point(248, 421);
             this.txtActualContraseña.Margin = new System.Windows.Forms.Padding(0);
             this.txtActualContraseña.Name = "txtActualContraseña";
-            this.txtActualContraseña.Size = new System.Drawing.Size(256, 21);
+            this.txtActualContraseña.Size = new System.Drawing.Size(256, 26);
             this.txtActualContraseña.TabIndex = 104;
             this.txtActualContraseña.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtActualContraseña.UseSystemPasswordChar = true;
@@ -662,7 +662,7 @@
             this.labCConfirmar.Enabled = false;
             this.labCConfirmar.Location = new System.Drawing.Point(129, 514);
             this.labCConfirmar.Name = "labCConfirmar";
-            this.labCConfirmar.Size = new System.Drawing.Size(89, 19);
+            this.labCConfirmar.Size = new System.Drawing.Size(111, 24);
             this.labCConfirmar.TabIndex = 101;
             this.labCConfirmar.Text = "Confirmar: ";
             // 
@@ -673,7 +673,7 @@
             this.labCNueva.Enabled = false;
             this.labCNueva.Location = new System.Drawing.Point(151, 472);
             this.labCNueva.Name = "labCNueva";
-            this.labCNueva.Size = new System.Drawing.Size(62, 19);
+            this.labCNueva.Size = new System.Drawing.Size(77, 24);
             this.labCNueva.TabIndex = 100;
             this.labCNueva.Text = "Nueva: ";
             // 
@@ -684,7 +684,7 @@
             this.labCActual.Enabled = false;
             this.labCActual.Location = new System.Drawing.Point(150, 430);
             this.labCActual.Name = "labCActual";
-            this.labCActual.Size = new System.Drawing.Size(63, 19);
+            this.labCActual.Size = new System.Drawing.Size(78, 24);
             this.labCActual.TabIndex = 99;
             this.labCActual.Text = "Actual: ";
             // 
@@ -702,7 +702,7 @@
             this.LLEditar4.Location = new System.Drawing.Point(583, 393);
             this.LLEditar4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LLEditar4.Name = "LLEditar4";
-            this.LLEditar4.Size = new System.Drawing.Size(51, 20);
+            this.LLEditar4.Size = new System.Drawing.Size(62, 25);
             this.LLEditar4.TabIndex = 98;
             this.LLEditar4.TabStop = true;
             this.LLEditar4.Text = "Editar";
@@ -721,7 +721,7 @@
             this.LLEditar3.Location = new System.Drawing.Point(583, 268);
             this.LLEditar3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LLEditar3.Name = "LLEditar3";
-            this.LLEditar3.Size = new System.Drawing.Size(51, 20);
+            this.LLEditar3.Size = new System.Drawing.Size(62, 25);
             this.LLEditar3.TabIndex = 97;
             this.LLEditar3.TabStop = true;
             this.LLEditar3.Text = "Editar";
@@ -740,7 +740,7 @@
             this.LLEditar2.Location = new System.Drawing.Point(583, 164);
             this.LLEditar2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LLEditar2.Name = "LLEditar2";
-            this.LLEditar2.Size = new System.Drawing.Size(51, 20);
+            this.LLEditar2.Size = new System.Drawing.Size(62, 25);
             this.LLEditar2.TabIndex = 96;
             this.LLEditar2.TabStop = true;
             this.LLEditar2.Text = "Editar";
@@ -759,10 +759,11 @@
             this.LLEditar1.Location = new System.Drawing.Point(583, 59);
             this.LLEditar1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LLEditar1.Name = "LLEditar1";
-            this.LLEditar1.Size = new System.Drawing.Size(51, 20);
+            this.LLEditar1.Size = new System.Drawing.Size(62, 25);
             this.LLEditar1.TabIndex = 95;
             this.LLEditar1.TabStop = true;
             this.LLEditar1.Text = "Editar";
+            this.LLEditar1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LLEditar1_LinkClicked);
             // 
             // lablinea5
             // 
@@ -770,7 +771,7 @@
             this.lablinea5.BackColor = System.Drawing.Color.Transparent;
             this.lablinea5.Location = new System.Drawing.Point(39, 358);
             this.lablinea5.Name = "lablinea5";
-            this.lablinea5.Size = new System.Drawing.Size(537, 19);
+            this.lablinea5.Size = new System.Drawing.Size(670, 24);
             this.lablinea5.TabIndex = 94;
             this.lablinea5.Text = "__________________________________________________________________";
             // 
@@ -780,7 +781,7 @@
             this.lablinea4.BackColor = System.Drawing.Color.Transparent;
             this.lablinea4.Location = new System.Drawing.Point(39, 237);
             this.lablinea4.Name = "lablinea4";
-            this.lablinea4.Size = new System.Drawing.Size(537, 19);
+            this.lablinea4.Size = new System.Drawing.Size(670, 24);
             this.lablinea4.TabIndex = 93;
             this.lablinea4.Text = "__________________________________________________________________";
             // 
@@ -790,7 +791,7 @@
             this.lablinea3.BackColor = System.Drawing.Color.Transparent;
             this.lablinea3.Location = new System.Drawing.Point(39, 121);
             this.lablinea3.Name = "lablinea3";
-            this.lablinea3.Size = new System.Drawing.Size(537, 19);
+            this.lablinea3.Size = new System.Drawing.Size(670, 24);
             this.lablinea3.TabIndex = 92;
             this.lablinea3.Text = "__________________________________________________________________";
             // 
@@ -802,7 +803,7 @@
             this.txtApellidoActual.Font = new System.Drawing.Font("Linotte-Light", 14F);
             this.txtApellidoActual.Location = new System.Drawing.Point(155, 164);
             this.txtApellidoActual.Name = "txtApellidoActual";
-            this.txtApellidoActual.Size = new System.Drawing.Size(349, 23);
+            this.txtApellidoActual.Size = new System.Drawing.Size(349, 28);
             this.txtApellidoActual.TabIndex = 87;
             // 
             // txtNombreActual
@@ -813,7 +814,7 @@
             this.txtNombreActual.Font = new System.Drawing.Font("Linotte-Light", 14F);
             this.txtNombreActual.Location = new System.Drawing.Point(155, 56);
             this.txtNombreActual.Name = "txtNombreActual";
-            this.txtNombreActual.Size = new System.Drawing.Size(349, 23);
+            this.txtNombreActual.Size = new System.Drawing.Size(349, 28);
             this.txtNombreActual.TabIndex = 85;
             // 
             // labContraseña
@@ -822,7 +823,7 @@
             this.labContraseña.BackColor = System.Drawing.Color.Transparent;
             this.labContraseña.Location = new System.Drawing.Point(40, 391);
             this.labContraseña.Name = "labContraseña";
-            this.labContraseña.Size = new System.Drawing.Size(163, 19);
+            this.labContraseña.Size = new System.Drawing.Size(207, 24);
             this.labContraseña.TabIndex = 84;
             this.labContraseña.Text = "Cambiar Contraseña: ";
             // 
@@ -832,7 +833,7 @@
             this.labCorreo.BackColor = System.Drawing.Color.Transparent;
             this.labCorreo.Location = new System.Drawing.Point(40, 286);
             this.labCorreo.Name = "labCorreo";
-            this.labCorreo.Size = new System.Drawing.Size(147, 19);
+            this.labCorreo.Size = new System.Drawing.Size(183, 24);
             this.labCorreo.TabIndex = 83;
             this.labCorreo.Text = "Correo Electrónico: ";
             // 
@@ -842,7 +843,7 @@
             this.labApellidos.BackColor = System.Drawing.Color.Transparent;
             this.labApellidos.Location = new System.Drawing.Point(39, 164);
             this.labApellidos.Name = "labApellidos";
-            this.labApellidos.Size = new System.Drawing.Size(82, 19);
+            this.labApellidos.Size = new System.Drawing.Size(102, 24);
             this.labApellidos.TabIndex = 82;
             this.labApellidos.Text = "Apellidos: ";
             // 
@@ -852,7 +853,7 @@
             this.labNombre.BackColor = System.Drawing.Color.Transparent;
             this.labNombre.Location = new System.Drawing.Point(39, 59);
             this.labNombre.Name = "labNombre";
-            this.labNombre.Size = new System.Drawing.Size(73, 19);
+            this.labNombre.Size = new System.Drawing.Size(92, 24);
             this.labNombre.TabIndex = 81;
             this.labNombre.Text = "Nombre: ";
             // 
@@ -863,7 +864,7 @@
             this.labTítulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labTítulo.Location = new System.Drawing.Point(26, 7);
             this.labTítulo.Name = "labTítulo";
-            this.labTítulo.Size = new System.Drawing.Size(227, 20);
+            this.labTítulo.Size = new System.Drawing.Size(275, 25);
             this.labTítulo.TabIndex = 79;
             this.labTítulo.Text = "Configuración de la Cuenta";
             // 
@@ -874,7 +875,7 @@
             this.lablinea1.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lablinea1.Location = new System.Drawing.Point(6, 13);
             this.lablinea1.Name = "lablinea1";
-            this.lablinea1.Size = new System.Drawing.Size(684, 20);
+            this.lablinea1.Size = new System.Drawing.Size(837, 26);
             this.lablinea1.TabIndex = 80;
             this.lablinea1.Text = "___________________________________________________________________________";
             // 

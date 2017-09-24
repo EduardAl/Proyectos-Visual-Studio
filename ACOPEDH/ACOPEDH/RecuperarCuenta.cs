@@ -14,7 +14,6 @@ namespace ACOPEDH
         Conexión con = new Conexión();
         Validaciones validaciones = new Validaciones();
         Procedimientos_select ps = new Procedimientos_select();
-        static String seguridad;
         static String contraseña;
         static String contraseñac;
         static String Asunto = "ACOPEDH - Recuperar cuenta";
@@ -43,19 +42,17 @@ namespace ACOPEDH
 
         private void bttConfirmar_Click(object sender, EventArgs e)
         {
-            seguridad = Cifrado.CreateRandomPassword(32);
             contraseña = Cifrado.CreateRandomPassword(8);
-            contraseñac = Cifrado.encriptar(contraseña, seguridad);
+            contraseñac = Cifrado.encriptar(contraseña);
             if (validaciones.validar_correo(ref txtCorreo, ref errorProvider1))
             {
                 if (usuarios.existe(txtCorreo.Text))
                 {
                     try
                     {
-                        SqlParameter[] parámetros = new SqlParameter[3];
+                        SqlParameter[] parámetros = new SqlParameter[2];
                         parámetros[0] = new SqlParameter("@Correo", txtCorreo.Text);
                         parámetros[1] = new SqlParameter("@Contraseña", contraseñac);
-                        parámetros[2] = new SqlParameter("@Seguridad", seguridad);
                         String Mensaje = "Su nueva contraseña: " + contraseña + "\n\nEste correo ha sido generado automáticamente.\nPor favor, no responder.";
                         ps.llenar_tabla("Recuperar Contraseña", parámetros);
                         Emailsistema ES = new Emailsistema();

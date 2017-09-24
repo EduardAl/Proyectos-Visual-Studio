@@ -10,7 +10,17 @@ namespace ACOPEDH
 {
     class Cifrado
     {
-        public static string encriptar(string cadena, string clave)
+        public static String encriptar(string cadena)
+        {
+            string hashed = BCrypt.Net.BCrypt.HashPassword(cadena, BCrypt.Net.BCrypt.GenerateSalt());
+            return (hashed);
+        }
+        public static bool desencriptar(String cadena, String password)
+        {
+            bool verify = BCrypt.Net.BCrypt.Verify(cadena, password);
+            return verify;
+        }
+        public static string encriptar_B64(string cadena, string clave)
         {
             //Variables tipo byte que codifican las claves enviadas
             byte[] cadenaBytes = Encoding.UTF8.GetBytes(cadena);
@@ -31,7 +41,7 @@ namespace ACOPEDH
             cifradoStream.Close();
             return Convert.ToBase64String(cipherTextBytes);
         }
-        public static string desencriptar(string cadena, string clave)
+        public static string desencriptar_B64(string cadena, string clave)
         {
             byte[] cadenaBytes = Convert.FromBase64String(cadena);
             byte[] claveBytes = Encoding.UTF8.GetBytes(clave);

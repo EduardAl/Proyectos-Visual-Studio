@@ -355,7 +355,12 @@ namespace ACOPEDH
             bttAbonar.Location = bttRealizarPago.Location;
             Refresh();
         }
-        
+
+        private void LLEditar1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
         private void Principal_P_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (MessageBox.Show("¿Está seguro que desea salir?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)

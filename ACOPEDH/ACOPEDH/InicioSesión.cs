@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 
 namespace ACOPEDH
 {
-
     public partial class InicioSesión : Form
     {
         public InicioSesión()
@@ -56,6 +55,7 @@ namespace ACOPEDH
         Conexión con;
         Emailsistema enviarcorreo = new Emailsistema();
         Globales glb = new Globales();
+        public static String error;
         String asunto = "Alerta de inicio de sesión.";
         String mensaje = "Se ha iniciado sesión en su cuenta el día " + DateTime.Now.Date.ToLongDateString() + " a las " + DateTime.Now.ToLongTimeString() + "\n\nSi usted no ha realizado ésta acción se le recomienda cambiar su clave de inicio de sesión.\nÉsto puede hacerlo en la opciones de configuración de su cuenta.\nSi ha sido usted, no realice ninguna acción.\n\n\nÉste correo se ha generado automáticamente, por favor, no responder.\n\nDesarrolladores.";
         #endregion
@@ -72,52 +72,44 @@ namespace ACOPEDH
         }
         private void btningresar_Click_1(object sender, EventArgs e)
         {
+            Conexión con;
+            con = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
+            SqlConnection cn = new SqlConnection(con.cadena);
             validar = new Validaciones();
             if (validar.IsNullOrEmty(ref txtCorreo, ref errorProvider1) && validar.IsNullOrEmty(ref ttpass, ref errorProvider1))
             {
                 Properties.Settings.Default.UsuariosG = txtCorreo.Text;
                 Properties.Settings.Default.Save();
-            cuenta = new Usuarios();
-                if (!cuenta.existe(txtCorreo.Text))
-                {
-                    errorProvider1.SetError(txtCorreo, "No se encontró ninguna cuenta asociada a ésta dirección E-Mail.");
-                }
-                else
-                {
+                cuenta = new Usuarios();
+                //if (!cuenta.existe(txtCorreo.Text))
+                //{
+                //    errorProvider1.SetError(txtCorreo, "No se encontró ninguna cuenta asociada a ésta dirección E-Mail.");
+                //}
+                //else
+                //{
                 this.Cursor = Cursors.WaitCursor;
-                    con = new Conexión();
-                    SqlConnection cn = new SqlConnection(con.cadena);
-                    SqlCommand cmd = new SqlCommand("select [Id Usuario], Correo, Contraseña, [FK Tipo Usuario], Seguridad from Usuarios where Correo= '" + txtCorreo.Text + "'", cn);
-                    try
-                    {
-                        cn.Open();
-                    }
-                    catch (SqlException ex)
-                    {
-                        cn.Close();
-                        MessageBox.Show("Error al conectar.\n" + "Número del error: "+ex.Number+"\nCódigo del error: "+ex.ErrorCode+"\nError: "+ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                    }
-                    string seguridad;
-                    cmd.ExecuteNonQuery();
-                    DataSet ds = new DataSet();
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(ds, "Usuarios");
+                SqlParameter[] parámetros = new SqlParameter[1];
+                parámetros[0] = new SqlParameter("@Correo", txtCorreo.Text);
+                DataSet ds = new DataSet();
+                Procedimientos_select select = new Procedimientos_select();
+                ds = select.llenar_DataSet("InicioDeSesión", parámetros);
+                if (ds.Tables["Usuarios"] != null)
+                {
                     DataRow dro;
                     dro = ds.Tables["Usuarios"].Rows[0];
                     if (txtCorreo.Text == dro["Correo"].ToString())
                     {
-                        seguridad = dro["Seguridad"].ToString();
-                        if ((Cifrado.encriptar(ttpass.Text, seguridad) == dro["Contraseña"].ToString()))
+                        if (Cifrado.desencriptar(ttpass.Text, dro["Contraseña"].ToString()))
                         {
+                            cn.Open();
                             Globales.gbCod_TipoUsuario = dro["FK Tipo Usuario"].ToString();
                             this.Cursor = Cursors.WaitCursor;
                             ttpass.Text = null;
                             enviarcorreo.EnviarEmail(txtCorreo, asunto, mensaje);
                             Principal_P p = new Principal_P();
-                            MessageBox.Show(Globales.gbCod_TipoUsuario);
                             SqlCommand cmd2 = new SqlCommand("select Nombre, Clave from [Tipo de Usuarios] where [Id Tipo Usuario]= '" + Globales.gbCod_TipoUsuario + "'", cn);
+                            SqlDataAdapter da = new SqlDataAdapter();
                             cmd2.ExecuteNonQuery();
-                            cn.Close();
                             ds = new DataSet();
                             da = new SqlDataAdapter(cmd2);
                             da.Fill(ds, "[Tipo de Usuarios]");
@@ -141,6 +133,11 @@ namespace ACOPEDH
                         cn.Close();
                         MessageBox.Show("Error al conectar.\nCorreo incorrecto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                     }
+                }
+                else
+                {
+                    this.Cursor = Cursors.Default;
+                    errorProvider1.SetError(txtCorreo, error);
                 }
             }
         }

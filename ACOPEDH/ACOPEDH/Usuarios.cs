@@ -8,7 +8,7 @@ namespace ACOPEDH
     {
         Conexión con = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
 
-        public int CrearCuentas(string pnombre, string papellido, string pcontraseña, string pcorreo, string pT_Usuario, string pseguridad)
+        public int CrearCuentas(string pnombre, string papellido, string pcontraseña, string pcorreo, string pT_Usuario)
         {
             if (pT_Usuario == "Master")
             {
@@ -24,7 +24,7 @@ namespace ACOPEDH
             }
             int resultado = 0;
             SqlConnection cn = new SqlConnection(con.cadena);
-            SqlCommand cmd = new SqlCommand(string.Format("Insert into Usuarios values ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')", pnombre, papellido, Cifrado.encriptar(pcontraseña, pseguridad), pcorreo, pT_Usuario, pseguridad), cn);
+            SqlCommand cmd = new SqlCommand(string.Format("Insert into Usuarios values ('{0}', '{1}', '{2}', '{3}', '{4}' )", pnombre, papellido, Cifrado.encriptar(pcontraseña), pcorreo, pT_Usuario), cn);
             try
             {
                 cn.Open();
@@ -63,57 +63,6 @@ namespace ACOPEDH
 
             cn.Close();
             return exis;
-        }
-        public string devolverID(String pCorreo)
-        {
-            String ID = null;
-            SqlConnection cn = new SqlConnection(con.cadena);
-            SqlCommand cmd;
-            try
-            {
-                cn.Open();
-            }
-            catch (SqlException ex)
-            {
-                SqlError Error = ex.Errors[0];
-                MessageBox.Show("Error al conectar con el servidor.\n" + "Número del error: " + ex.Number + "\nCódigo del error: " + ex.ErrorCode + "\nError: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-            }
-            cmd = new SqlCommand("select [Id Usuario] from Usuarios where Correo= '" + pCorreo + "'", cn);
-            SqlDataReader dr;
-            dr = cmd.ExecuteReader();
-            if (dr.Read() == true)
-            {
-                ID = dr["Id Usuario"].ToString();
-            }
-            dr.Close();
-            cn.Close();
-            return ID;
-        }
-        public bool actualizar(string tabla, string campos, string condición)
-        {
-            SqlConnection cn = new SqlConnection(con.cadena);
-            SqlCommand cmd;
-            try
-            {
-                cn.Open();
-                string actualizar = "update " + tabla + " set " + campos + " where " + condición;
-                cmd = new SqlCommand(actualizar, cn);
-                int i = cmd.ExecuteNonQuery();
-                cn.Close();
-                if (i > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                return false;
-            }
         }
     }
 }
