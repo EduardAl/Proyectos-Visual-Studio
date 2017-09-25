@@ -221,8 +221,9 @@
             // PBMostrar1
             // 
             this.PBMostrar1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.PBMostrar1.BackColor = System.Drawing.Color.Gainsboro;
             this.PBMostrar1.Image = global::ACOPEDH.Properties.Resources.show;
-            this.PBMostrar1.Location = new System.Drawing.Point(400, 458);
+            this.PBMostrar1.Location = new System.Drawing.Point(400, 459);
             this.PBMostrar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PBMostrar1.Name = "PBMostrar1";
             this.PBMostrar1.Size = new System.Drawing.Size(33, 33);

@@ -17,8 +17,15 @@ namespace ACOPEDH
         }
         public static bool desencriptar(String cadena, String password)
         {
-            bool verify = BCrypt.Net.BCrypt.Verify(cadena, password);
-            return verify;
+            try
+            {
+                bool verify = BCrypt.Net.BCrypt.Verify(cadena, password);
+                return verify;
+            }
+            catch
+            {
+                return false;
+            }
         }
         public static string encriptar_B64(string cadena, string clave)
         {

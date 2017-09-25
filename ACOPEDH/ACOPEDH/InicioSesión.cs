@@ -97,41 +97,34 @@ namespace ACOPEDH
                 {
                     DataRow dro;
                     dro = ds.Tables["Usuarios"].Rows[0];
-                    if (txtCorreo.Text == dro["Correo"].ToString())
+                    if (Cifrado.desencriptar(ttpass.Text, dro["Contraseña"].ToString()))
                     {
-                        if (Cifrado.desencriptar(ttpass.Text, dro["Contraseña"].ToString()))
-                        {
-                            cn.Open();
-                            Globales.gbCod_TipoUsuario = dro["FK Tipo Usuario"].ToString();
-                            this.Cursor = Cursors.WaitCursor;
-                            ttpass.Text = null;
-                            enviarcorreo.EnviarEmail(txtCorreo, asunto, mensaje);
-                            Principal_P p = new Principal_P();
-                            SqlCommand cmd2 = new SqlCommand("select Nombre, Clave from [Tipo de Usuarios] where [Id Tipo Usuario]= '" + Globales.gbCod_TipoUsuario + "'", cn);
-                            SqlDataAdapter da = new SqlDataAdapter();
-                            cmd2.ExecuteNonQuery();
-                            ds = new DataSet();
-                            da = new SqlDataAdapter(cmd2);
-                            da.Fill(ds, "[Tipo de Usuarios]");
-                            DataRow dro1;
-                            dro1 = ds.Tables["[Tipo de Usuarios]"].Rows[0];
-                            glb.Inicializar(dro["Id Usuario"].ToString(), dro1["Nombre"].ToString(), dro1["Clave"].ToString(), dro["Correo"].ToString(), dro["FK Tipo Usuario"].ToString(), dro["Contraseña"].ToString());
-                            this.Visible = false;
-                            p.ShowDialog();
-                            this.Cursor = Cursors.Default;
-                            this.Visible = true;
+                        cn.Open();
+                        Globales.gbCod_TipoUsuario = dro["FK Tipo Usuario"].ToString();
+                        this.Cursor = Cursors.WaitCursor;
+                        ttpass.Text = null;
+                        enviarcorreo.EnviarEmail(txtCorreo, asunto, mensaje);
+                        Principal_P p = new Principal_P();
+                        SqlCommand cmd2 = new SqlCommand("select Nombre, Clave from [Tipo de Usuarios] where [Id Tipo Usuario]= '" + Globales.gbCod_TipoUsuario + "'", cn);
+                        SqlDataAdapter da = new SqlDataAdapter();
+                        cmd2.ExecuteNonQuery();
+                        ds = new DataSet();
+                        da = new SqlDataAdapter(cmd2);
+                        da.Fill(ds, "[Tipo de Usuarios]");
+                        DataRow dro1;
+                        dro1 = ds.Tables["[Tipo de Usuarios]"].Rows[0];
+                        glb.Inicializar(dro["Id Usuario"].ToString(), dro1["Nombre"].ToString(), dro1["Clave"].ToString(), dro["Correo"].ToString(), dro["FK Tipo Usuario"].ToString(), dro["Contraseña"].ToString());
+                        this.Visible = false;
+                        p.ShowDialog();
+                        this.Cursor = Cursors.Default;
+                        this.Visible = true;
 
-                        }
-                        else
-                        {
-                            cn.Close();
-                            MessageBox.Show("Error al conectar.\nContraseña incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                        }
                     }
                     else
                     {
                         cn.Close();
-                        MessageBox.Show("Error al conectar.\nCorreo incorrecto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        errorProvider1.SetError(ttpass, "Contraseña incorrecta.");
+                        this.Cursor = Cursors.Default;
                     }
                 }
                 else
