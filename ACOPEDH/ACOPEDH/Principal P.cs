@@ -10,7 +10,7 @@ namespace ACOPEDH
         Color Original, Seleccionado;
         String Dato;
         Procedimientos_select Procedimientos_select = new Procedimientos_select();
-#region Mover Form
+        #region Mover Form
         bool Empezarmover = false;
         int PosX;
         int PosY;
@@ -43,7 +43,7 @@ namespace ACOPEDH
                 Location = temp;
             }
         }
-#endregion
+        #endregion
         public Principal_P()
         {
             InitializeComponent();
@@ -54,6 +54,9 @@ namespace ACOPEDH
             Seleccionado = PInicio.BackColor;
             Original = PPréstamos.BackColor;
             MaximumSize = new Size(SystemInformation.PrimaryMonitorMaximizedWindowSize.Width - 15, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 15);
+            txtActualContraseña.UseSystemPasswordChar = true;
+            txtNuevaContraseña.UseSystemPasswordChar = true;
+            txtConfContraseña.UseSystemPasswordChar = true;
         }
 
         /*
@@ -61,7 +64,7 @@ namespace ACOPEDH
             *      Botones Principales      *
             ********************************* 
         */
-#region Botones
+        #region Botones
         private void PInicio_Click(object sender, EventArgs e)
         {
             Ocultar();
@@ -164,7 +167,7 @@ namespace ACOPEDH
                 {
                 }
             }
-                return false;
+            return false;
         }
         public void Ocultar()
         {
@@ -208,7 +211,7 @@ namespace ACOPEDH
         {
             if (DatoR())
             {
-            Abonos Accion = new Abonos(Dato);
+                Abonos Accion = new Abonos(Dato);
                 Accion.ShowDialog();
             }
             else
@@ -231,7 +234,7 @@ namespace ACOPEDH
         {
             if (DatoR())
             {
-            Estado_de_Cuenta Accion = new Estado_de_Cuenta(Dato);
+                Estado_de_Cuenta Accion = new Estado_de_Cuenta(Dato);
                 Accion.ShowDialog();
             }
             else
@@ -274,7 +277,7 @@ namespace ACOPEDH
         }
         private void bttOtorgarPréstamo_Click(object sender, EventArgs e)
         {
-            
+
             Otorgar_Préstamo Accion = new Otorgar_Préstamo();
             Accion.ShowDialog();
         }
@@ -282,7 +285,7 @@ namespace ACOPEDH
         {
             if (DatoR())
             {
-            Datos_Asociado Accion = new Datos_Asociado(Dato);
+                Datos_Asociado Accion = new Datos_Asociado(Dato);
                 Accion.ShowDialog();
             }
             else
@@ -327,7 +330,7 @@ namespace ACOPEDH
                 WindowState = FormWindowState.Maximized;
             }
         }
-      
+
         #endregion
         private void Principal_P_SizeChanged(object sender, EventArgs e)
         {
@@ -337,6 +340,7 @@ namespace ACOPEDH
             bttMin.Location = new Point(bttMax.Location.X - 26, 0);
             //                          Elementos
             Titulo.Location = new Point((Width / 2) - (Titulo.Width / 2) + 93, Titulo.Location.Y);
+            panelConfig.Width = Width - 285;
             panelConfig.Location = new Point((Width / 2) - (panelConfig.Width / 2) + 93, panelConfig.Location.Y);
             dgvBúsqueda.Width = Width - dgvBúsqueda.Location.X - 87;
             dgvBúsqueda.Height = Height - dgvBúsqueda.Location.Y - 116;
@@ -358,7 +362,79 @@ namespace ACOPEDH
 
         private void LLEditar1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            lkCancelar.Visible = !false;
+            lkConfirmar.Visible = !false;
+            LLEditar1.Visible = !true;
+            txtNombreActual.ReadOnly = !true;
+            txtApellidoActual.ReadOnly = !true;
+            txtCorreoElectrónicoNuevo.ReadOnly = !true;
+            txtActualContraseña.ReadOnly = !true;
+            txtNuevaContraseña.ReadOnly = !true;
+            txtConfContraseña.ReadOnly = !true;
+            txtNombreActual.Focus();
+        }
 
+        private void lkConfirmar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            lkCancelar.Visible = false;
+            lkConfirmar.Visible = false;
+            LLEditar1.Visible = true;
+            txtNombreActual.ReadOnly = true;
+            txtApellidoActual.ReadOnly = true;
+            txtCorreoElectrónicoNuevo.ReadOnly = true;
+            txtActualContraseña.ReadOnly = true;
+            txtNuevaContraseña.ReadOnly = true;
+            txtConfContraseña.ReadOnly = true;
+        }
+
+        private void lkCancelar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            lkCancelar.Visible = false;
+            lkConfirmar.Visible = false;
+            LLEditar1.Visible = true;
+            txtNombreActual.ReadOnly = true;
+            txtApellidoActual.ReadOnly = true;
+            txtCorreoElectrónicoNuevo.ReadOnly = true;
+            txtActualContraseña.ReadOnly = true;
+            txtNuevaContraseña.ReadOnly = true;
+            txtConfContraseña.ReadOnly = true;
+        }
+
+        private void panelConfig_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawLine(new Pen(Brushes.Black,3), 10, 32, panelConfig.Width - 10, 32);//23
+            e.Graphics.DrawLine(new Pen(Brushes.Black,2), 10, 196, panelConfig.Width - 10, 196);//180
+            e.Graphics.DrawLine(new Pen(Brushes.Black,2), 10, 347, panelConfig.Width - 10, 347);//331
+        }
+
+        private void PBMostrar1_MouseDown(object sender, MouseEventArgs e)
+        {
+            txtActualContraseña.UseSystemPasswordChar = false;
+        }
+
+        private void PBMostrar1_MouseUp(object sender, MouseEventArgs e)
+        {
+            txtActualContraseña.UseSystemPasswordChar = true;
+        }
+
+        private void PBMostrar2_MouseDown(object sender, MouseEventArgs e)
+        {
+            txtNuevaContraseña.UseSystemPasswordChar = false;
+        }
+
+        private void PBMostrar2_MouseUp(object sender, MouseEventArgs e)
+        {
+            txtNuevaContraseña.UseSystemPasswordChar = true;
+        }
+
+        private void PBMostrar3_MouseDown(object sender, MouseEventArgs e)
+        {
+            txtConfContraseña.UseSystemPasswordChar = false;
+        }
+
+        private void PBMostrar3_MouseUp(object sender, MouseEventArgs e)
+        {
+            txtConfContraseña.UseSystemPasswordChar = true;
         }
 
         private void Principal_P_FormClosing(object sender, FormClosingEventArgs e)
