@@ -216,8 +216,8 @@ namespace ACOPEDH
             }
             else
                 MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-
+            
+             
         }
         private void bttRetirar_Click(object sender, EventArgs e)
         {

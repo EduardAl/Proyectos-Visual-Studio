@@ -95,7 +95,6 @@ namespace ACOPEDH
             enviaremail = new Emailsistema();
             String asunto = "Bienvenido a ACOPEDH";
             String mensaje = "Éste correo se ha generado automáticamente, por favor, no responder\n\nBienvenido a ACOPEDH.\n\nDesde éste momento puede ingresar a su cuenta.\n\n\nSu usuario: " + txtCorreo.Text + "\nSu clave: " + txtPassword.Text;
-            string seguridad = Cifrado.CreateRandomPassword(32);
             if (
                 validar.IsNullOrEmty(ref txtNombre, ref errorProvider1) &&
                 validar.IsNullOrEmty(ref txtApellido, ref errorProvider1) &&
@@ -111,7 +110,7 @@ namespace ACOPEDH
                 else
                 {
                     errorProvider1.Clear();
-                    if (NewAcount.CrearCuentas(txtNombre.Text, txtApellido.Text, txtConfPassword.Text, txtCorreo.Text, cbTipoUsuario.Text, seguridad) == 1)
+                    if (NewAcount.CrearCuentas(txtNombre.Text, txtApellido.Text, txtConfPassword.Text, txtCorreo.Text, cbTipoUsuario.Text) == 1)
                     {
                         enviaremail.EnviarEmail(txtCorreo, asunto, mensaje);
                         MessageBox.Show("Cuenta creada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);

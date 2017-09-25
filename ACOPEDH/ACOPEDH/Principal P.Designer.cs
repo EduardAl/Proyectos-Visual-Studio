@@ -111,7 +111,7 @@
             this.Titulo.ForeColor = System.Drawing.Color.White;
             this.Titulo.Location = new System.Drawing.Point(260, 44);
             this.Titulo.Name = "Titulo";
-            this.Titulo.Size = new System.Drawing.Size(646, 46);
+            this.Titulo.Size = new System.Drawing.Size(833, 58);
             this.Titulo.TabIndex = 2;
             this.Titulo.Text = "Asociación Cooperativa de Ahorro, Crédito y Consumo del Personal de la \r\nProcurad" +
     "uría para la Defensa de los Derechos Humanos";
@@ -294,7 +294,7 @@
             this.labBuscar.BackColor = System.Drawing.Color.Transparent;
             this.labBuscar.Location = new System.Drawing.Point(255, 154);
             this.labBuscar.Name = "labBuscar";
-            this.labBuscar.Size = new System.Drawing.Size(83, 19);
+            this.labBuscar.Size = new System.Drawing.Size(104, 24);
             this.labBuscar.TabIndex = 20;
             this.labBuscar.Text = "Búsqueda:";
             this.labBuscar.Visible = false;
@@ -305,7 +305,7 @@
             this.txtBúsqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.txtBúsqueda.Location = new System.Drawing.Point(365, 154);
             this.txtBúsqueda.Name = "txtBúsqueda";
-            this.txtBúsqueda.Size = new System.Drawing.Size(356, 22);
+            this.txtBúsqueda.Size = new System.Drawing.Size(356, 27);
             this.txtBúsqueda.TabIndex = 19;
             this.txtBúsqueda.Visible = false;
             // 
@@ -632,7 +632,7 @@
             this.labCConfirmar.BackColor = System.Drawing.Color.Transparent;
             this.labCConfirmar.Location = new System.Drawing.Point(79, 499);
             this.labCConfirmar.Name = "labCConfirmar";
-            this.labCConfirmar.Size = new System.Drawing.Size(89, 19);
+            this.labCConfirmar.Size = new System.Drawing.Size(111, 24);
             this.labCConfirmar.TabIndex = 101;
             this.labCConfirmar.Text = "Confirmar: ";
             // 
@@ -643,7 +643,7 @@
             this.labCNueva.BackColor = System.Drawing.Color.Transparent;
             this.labCNueva.Location = new System.Drawing.Point(101, 457);
             this.labCNueva.Name = "labCNueva";
-            this.labCNueva.Size = new System.Drawing.Size(62, 19);
+            this.labCNueva.Size = new System.Drawing.Size(77, 24);
             this.labCNueva.TabIndex = 100;
             this.labCNueva.Text = "Nueva: ";
             // 
@@ -654,7 +654,7 @@
             this.labCActual.BackColor = System.Drawing.Color.Transparent;
             this.labCActual.Location = new System.Drawing.Point(100, 415);
             this.labCActual.Name = "labCActual";
-            this.labCActual.Size = new System.Drawing.Size(63, 19);
+            this.labCActual.Size = new System.Drawing.Size(78, 24);
             this.labCActual.TabIndex = 99;
             this.labCActual.Text = "Actual: ";
             // 
@@ -709,7 +709,7 @@
             this.labContraseña.BackColor = System.Drawing.Color.Transparent;
             this.labContraseña.Location = new System.Drawing.Point(65, 373);
             this.labContraseña.Name = "labContraseña";
-            this.labContraseña.Size = new System.Drawing.Size(163, 19);
+            this.labContraseña.Size = new System.Drawing.Size(207, 24);
             this.labContraseña.TabIndex = 84;
             this.labContraseña.Text = "Cambiar Contraseña: ";
             // 
@@ -720,7 +720,7 @@
             this.labCorreo.BackColor = System.Drawing.Color.Transparent;
             this.labCorreo.Location = new System.Drawing.Point(28, 262);
             this.labCorreo.Name = "labCorreo";
-            this.labCorreo.Size = new System.Drawing.Size(147, 19);
+            this.labCorreo.Size = new System.Drawing.Size(183, 24);
             this.labCorreo.TabIndex = 83;
             this.labCorreo.Text = "Correo Electrónico: ";
             // 
@@ -731,7 +731,7 @@
             this.labApellidos.BackColor = System.Drawing.Color.Transparent;
             this.labApellidos.Location = new System.Drawing.Point(64, 121);
             this.labApellidos.Name = "labApellidos";
-            this.labApellidos.Size = new System.Drawing.Size(82, 19);
+            this.labApellidos.Size = new System.Drawing.Size(102, 24);
             this.labApellidos.TabIndex = 82;
             this.labApellidos.Text = "Apellidos: ";
             // 
@@ -742,7 +742,7 @@
             this.labNombre.BackColor = System.Drawing.Color.Transparent;
             this.labNombre.Location = new System.Drawing.Point(64, 76);
             this.labNombre.Name = "labNombre";
-            this.labNombre.Size = new System.Drawing.Size(73, 19);
+            this.labNombre.Size = new System.Drawing.Size(92, 24);
             this.labNombre.TabIndex = 81;
             this.labNombre.Text = "Nombre: ";
             // 
@@ -754,7 +754,7 @@
             this.labTítulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labTítulo.Location = new System.Drawing.Point(26, 7);
             this.labTítulo.Name = "labTítulo";
-            this.labTítulo.Size = new System.Drawing.Size(227, 20);
+            this.labTítulo.Size = new System.Drawing.Size(275, 25);
             this.labTítulo.TabIndex = 79;
             this.labTítulo.Text = "Configuración de la Cuenta";
             // 
