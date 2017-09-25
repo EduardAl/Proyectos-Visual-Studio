@@ -635,6 +635,10 @@ namespace Crear_Base_de_Datos
                 "Begin " +
                 "update Usuarios set Correo = @Correo, Nombres = @Nombre, Apellidos = @Apellido, Contraseña = @Contraseña where[Id Usuario] = @Id; " +
                 "End " +
+                "Else" +
+                "Begin" +
+                "Print 'Ocurrió un problema al actualizar los datos.' "+
+                "End " +
                 "End Try " +
                 "Begin Catch " +
                 "Catch: " +

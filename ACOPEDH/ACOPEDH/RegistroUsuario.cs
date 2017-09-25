@@ -99,7 +99,12 @@ namespace ACOPEDH
                 validar.IsNullOrEmty(ref txtApellido, ref errorProvider1) &&
                 validar.IsNullOrEmty(ref txtCorreo, ref errorProvider1) &&
                 validar.IsNullOrEmty(ref txtPassword, ref errorProvider1) &&
-                validar.IsNullOrEmty(ref txtConfPassword, ref errorProvider1)
+                validar.IsNullOrEmty(ref txtConfPassword, ref errorProvider1) &&
+                validar.ValidarNomApe(ref txtNombre, ref errorProvider1) &&
+                validar.ValidarNomApe(ref txtApellido, ref errorProvider1) &&
+                validar.validar_contraseñas(txtPassword, ref errorProvider1) &&
+                validar.claves_iguales(txtPassword, txtConfPassword, ref errorProvider1) &&
+                validar.validar_correo(ref txtCorreo, ref errorProvider1)
                 )
             {
                 errorProvider1.Clear();
@@ -110,7 +115,7 @@ namespace ACOPEDH
                 parámetros[2] = new SqlParameter("@Apellido", txtApellido.Text);
                 parámetros[3] = new SqlParameter("@Contraseña", Cifrado.encriptar(txtPassword.Text));
                 String tipo = "";
-                if (cbTipoUsuario.Text== "Master")
+                if (cbTipoUsuario.Text == "Master")
                     tipo = "TU001";
                 if (cbTipoUsuario.Text == "Administrador")
                     tipo = "TU002";

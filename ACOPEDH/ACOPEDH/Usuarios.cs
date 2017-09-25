@@ -6,7 +6,7 @@ namespace ACOPEDH
 {
     public partial class Usuarios
     {
-        Conexión con = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
+        Conexión con = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
         public bool existe(String pttcorreo)
         {
             bool exis = false;

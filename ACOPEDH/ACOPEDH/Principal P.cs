@@ -2,14 +2,21 @@
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace ACOPEDH
 {
     public partial class Principal_P : Form
     {
+        DialogResult dr = DialogResult.Cancel;
         Color Original, Seleccionado;
         String Dato;
         Procedimientos_select Procedimientos_select = new Procedimientos_select();
+        Validaciones validar = new Validaciones();
+        Emailsistema enviarEmail = new Emailsistema();
+        public static bool confirmación = false;
+        public bool editpass = false;
+        public bool editdata = false;
         #region Mover Form
         bool Empezarmover = false;
         int PosX;
@@ -54,9 +61,9 @@ namespace ACOPEDH
             Seleccionado = PInicio.BackColor;
             Original = PPréstamos.BackColor;
             MaximumSize = new Size(SystemInformation.PrimaryMonitorMaximizedWindowSize.Width - 15, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 15);
-            txtActualContraseña.UseSystemPasswordChar = true;
             txtNuevaContraseña.UseSystemPasswordChar = true;
             txtConfContraseña.UseSystemPasswordChar = true;
+            No_Editar();
         }
 
         /*
@@ -332,6 +339,81 @@ namespace ACOPEDH
         }
 
         #endregion
+        private void Editar()
+        {
+            editdata = true;
+            PBMostrar2.Visible = !false;
+            PBMostrar3.Visible = !false;
+            if (!editpass)
+            {
+                txtNombreActual.Text = Globales.gbNombre_Usuario;
+                txtApellidoActual.Text = Globales.gbApellido_Usuario;
+                txtCorreoElectrónicoNuevo.Text = Globales.gbCorreo;
+                txtNuevaContraseña.Text = Globales.gbClaveUsuario;
+                txtConfContraseña.Text = Globales.gbClaveUsuario;
+            }
+            lkCancelar.Visible = !false;
+            lkConfirmar.Visible = !false;
+            LLEditar1.Visible = !true;
+            txtNombreActual.ReadOnly = !true;
+            txtApellidoActual.ReadOnly = !true;
+            txtCorreoElectrónicoNuevo.ReadOnly = !true;
+            txtNombreActual.Visible = true;
+            txtApellidoActual.Visible = true;
+            lbNombre.Visible = false;
+            lbApellido.Visible = false;
+            lbCorreo.Visible = false;
+            txtNombreActual.Focus();
+            txtCorreoElectrónicoNuevo.Visible = true;
+        }
+        private void Editar(String palabra)
+        {
+            editpass = true;
+            PBMostrar2.Visible = !false;
+            PBMostrar3.Visible = !false;
+            if (!editdata)
+            {
+                txtNombreActual.Text = Globales.gbNombre_Usuario;
+                txtApellidoActual.Text = Globales.gbApellido_Usuario;
+                txtCorreoElectrónicoNuevo.Text = Globales.gbCorreo;
+            }
+            txtNuevaContraseña.Text = "";
+            txtConfContraseña.Text = "";
+            lkCancelar.Visible = !false;
+            lkConfirmar.Visible = !false;
+            txtNuevaContraseña.ReadOnly = !true;
+            txtConfContraseña.ReadOnly = !true;
+            lbContraseña.Visible = false;
+            txtConfContraseña.Visible = !false;
+            txtNuevaContraseña.Visible = !false;
+            lkContra.Visible = false;
+        }
+        private void No_Editar()
+        {
+            PBMostrar2.Visible = false;
+            PBMostrar3.Visible = false;
+            lbNombre.Text = Globales.gbNombre_Usuario;
+            lbApellido.Text = Globales.gbApellido_Usuario;
+            lbCorreo.Text = Globales.gbCorreo;
+            lkCancelar.Visible = false;
+            lkConfirmar.Visible = false;
+            LLEditar1.Visible = true;
+            txtNombreActual.Visible = !true;
+            txtApellidoActual.Visible = !true;
+            txtCorreoElectrónicoNuevo.ReadOnly = true;
+            txtNuevaContraseña.ReadOnly = true;
+            txtConfContraseña.ReadOnly = true;
+            lbNombre.Visible = !false;
+            lbApellido.Visible = !false;
+            lbContraseña.Visible = !false;
+            txtConfContraseña.Visible = false;
+            txtNuevaContraseña.Visible = false;
+            lbCorreo.Visible = true;
+            txtCorreoElectrónicoNuevo.Visible = false;
+            lkContra.Visible = true;
+            editpass = false;
+            editdata = false;
+        }
         private void Principal_P_SizeChanged(object sender, EventArgs e)
         {
             BarraTítulo.Size = new Size(Width, BarraTítulo.Size.Height);
@@ -360,44 +442,126 @@ namespace ACOPEDH
             Refresh();
         }
 
-        private void LLEditar1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        public void LLEditar1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            lkCancelar.Visible = !false;
-            lkConfirmar.Visible = !false;
-            LLEditar1.Visible = !true;
-            txtNombreActual.ReadOnly = !true;
-            txtApellidoActual.ReadOnly = !true;
-            txtCorreoElectrónicoNuevo.ReadOnly = !true;
-            txtActualContraseña.ReadOnly = !true;
-            txtNuevaContraseña.ReadOnly = !true;
-            txtConfContraseña.ReadOnly = !true;
-            txtNombreActual.Focus();
+            Editar();
         }
 
-        private void lkConfirmar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        public void lkConfirmar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            lkCancelar.Visible = false;
-            lkConfirmar.Visible = false;
-            LLEditar1.Visible = true;
-            txtNombreActual.ReadOnly = true;
-            txtApellidoActual.ReadOnly = true;
-            txtCorreoElectrónicoNuevo.ReadOnly = true;
-            txtActualContraseña.ReadOnly = true;
-            txtNuevaContraseña.ReadOnly = true;
-            txtConfContraseña.ReadOnly = true;
+            DataSet ds = new DataSet();
+            if (
+                validar.IsNullOrEmty(ref txtNombreActual, ref errorProvider1) &&
+                validar.IsNullOrEmty(ref txtApellidoActual, ref errorProvider1) &&
+                validar.IsNullOrEmty(ref txtCorreoElectrónicoNuevo, ref errorProvider1) &&
+                validar.ValidarNomApe(ref txtNombreActual, ref errorProvider1) &&
+                validar.ValidarNomApe(ref txtApellidoActual, ref errorProvider1) &&
+                validar.validar_correo(ref txtCorreoElectrónicoNuevo, ref errorProvider1) &&
+                validar.IsNullOrEmty(ref txtNuevaContraseña, ref errorProvider1) &&
+                validar.IsNullOrEmty(ref txtConfContraseña, ref errorProvider1) &&
+                validar.validar_contraseñas(txtNuevaContraseña, ref errorProvider1) &&
+                validar.claves_iguales(txtNuevaContraseña, txtConfContraseña, ref errorProvider1)
+                )
+            {
+                if (!(Globales.gbNombre_Usuario == txtNombreActual.Text.Trim() && Globales.gbApellido_Usuario == txtApellidoActual.Text.Trim() &&
+                    Globales.gbCorreo == txtCorreoElectrónicoNuevo.Text.Trim() && (Globales.gbClaveUsuario == txtNuevaContraseña.Text.Trim() ||
+                    Cifrado.desencriptar(txtNuevaContraseña.Text.Trim(), Globales.gbClaveUsuario))))
+                {
+                    SqlParameter[] parámetros = new SqlParameter[5];
+                    parámetros[0] = new SqlParameter("@Id", Globales.gbCodUsuario);
+                    parámetros[1] = new SqlParameter("@Correo", txtCorreoElectrónicoNuevo.Text);
+                    parámetros[2] = new SqlParameter("@Nombre", txtNombreActual.Text);
+                    parámetros[3] = new SqlParameter("@Apellido", txtApellidoActual.Text);
+                    if (editpass)
+                    {
+                        if
+                            (
+                                validar.IsNullOrEmty(ref txtNuevaContraseña, ref errorProvider1) &&
+                                validar.IsNullOrEmty(ref txtConfContraseña, ref errorProvider1) &&
+                                validar.validar_contraseñas(txtNuevaContraseña, ref errorProvider1) &&
+                                validar.claves_iguales(txtNuevaContraseña, txtConfContraseña, ref errorProvider1)
+                            )
+                        {
+                            parámetros[4] = new SqlParameter("@Contraseña", Cifrado.encriptar(txtNuevaContraseña.Text));
+                        }
+                    }
+                    else
+                    {
+                        parámetros[4] = new SqlParameter("@Contraseña", Globales.gbClaveUsuario);
+                    }
+                    Confirmación cf = new Confirmación();
+                    cf.StartPosition = FormStartPosition.CenterParent;
+                    cf.ShowDialog();
+                    this.Cursor = Cursors.WaitCursor;
+                    if (confirmación)
+                    {
+                        ds = Procedimientos_select.llenar_DataSet("ModificarDatos", parámetros);
+                    }
+                    else
+                    {
+                        goto etiqueta;
+                    }
+                    if (!(txtCorreoElectrónicoNuevo.Text.Trim() == lbCorreo.Text.Trim()))
+                    {
+                        if (ds.Tables["Usuarios"] != null)
+                        {
+                            if (editpass)
+                            {
+                                enviarEmail.EnviarEmail(txtCorreoElectrónicoNuevo, "ACOPEDH Cambio de vinculación de e-mail", ("Su cambio de e-mail para ACOPEDH se realizó con éxito.\n Su contraseña es: " + txtNuevaContraseña.Text + "\nEste correo se ha generado automáticamente, favor no responder."));
+                            }
+                            else
+                            {
+                                enviarEmail.EnviarEmail(txtCorreoElectrónicoNuevo, "ACOPEDH Cambio de vinculación de e-mail", ("Su cambio de e-mail para ACOPEDH se realizó con éxito.\n" + "\nEste correo se ha generado automáticamente, favor no responder."));
+                            }
+                            MessageBox.Show("Datos modificados exitosamente.\nEn necesario volver a introducir sus credenciales para continuar con la sesión.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                            dr = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        }
+                    }
+                    else
+                    {
+                        if (ds.Tables["Usuarios"] != null)
+                        {
+                            if (editpass)
+                            {
+                                enviarEmail.EnviarEmail(txtCorreoElectrónicoNuevo, "ACOPEDH Cambio de datos de la cuenta", ("Se han realizado cambios en la información de su cuenta.\n Su contraseña es: " + txtNuevaContraseña.Text + "\nEste correo se ha generado automáticamente, favor no responder."));
+                            }
+                            else
+                            {
+                                enviarEmail.EnviarEmail(txtCorreoElectrónicoNuevo, "ACOPEDH Cambio de datos de la cuenta", ("Se han realizado cambios en la información de su cuenta.\n" + "\nEste correo se ha generado automáticamente, favor no responder."));
+                            }
+                            MessageBox.Show("Datos modificados exitosamente.\nEn necesario volver a introducir sus credenciales para continuar con la sesión.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                            dr = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                        }
+                    }
+                    etiqueta:
+                    this.Cursor = Cursors.Default;
+                }
+                else
+                {
+                    MessageBox.Show("No se han realizado cambios en los datos de la cuenta.\nLos datos se guardarán nuevamente como se encontraban.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    No_Editar();
+                }
+            }
         }
 
-        private void lkCancelar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        public void lkCancelar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            lkCancelar.Visible = false;
-            lkConfirmar.Visible = false;
-            LLEditar1.Visible = true;
-            txtNombreActual.ReadOnly = true;
-            txtApellidoActual.ReadOnly = true;
-            txtCorreoElectrónicoNuevo.ReadOnly = true;
-            txtActualContraseña.ReadOnly = true;
-            txtNuevaContraseña.ReadOnly = true;
-            txtConfContraseña.ReadOnly = true;
+            No_Editar();
+        }
+        private void lkContra_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Editar("contraseña");
+            txtNuevaContraseña.Focus();
         }
 
         private void panelConfig_Paint(object sender, PaintEventArgs e)
@@ -406,17 +570,6 @@ namespace ACOPEDH
             e.Graphics.DrawLine(new Pen(Brushes.Black,2), 10, 196, panelConfig.Width - 10, 196);//180
             e.Graphics.DrawLine(new Pen(Brushes.Black,2), 10, 347, panelConfig.Width - 10, 347);//331
         }
-
-        private void PBMostrar1_MouseDown(object sender, MouseEventArgs e)
-        {
-            txtActualContraseña.UseSystemPasswordChar = false;
-        }
-
-        private void PBMostrar1_MouseUp(object sender, MouseEventArgs e)
-        {
-            txtActualContraseña.UseSystemPasswordChar = true;
-        }
-
         private void PBMostrar2_MouseDown(object sender, MouseEventArgs e)
         {
             txtNuevaContraseña.UseSystemPasswordChar = false;
@@ -437,10 +590,45 @@ namespace ACOPEDH
             txtConfContraseña.UseSystemPasswordChar = true;
         }
 
+        private void txtNombreActual_KeyUp(object sender, KeyEventArgs e)
+        {
+            errorProvider1.Clear();
+            validar.ValidarNomApe(ref txtNombreActual, ref errorProvider1);
+        }
+
+        private void txtApellidoActual_KeyUp(object sender, KeyEventArgs e)
+        {
+            errorProvider1.Clear();
+            validar.ValidarNomApe(ref txtApellidoActual, ref errorProvider1);
+        }
+
+        private void txtCorreoElectrónicoNuevo_KeyUp(object sender, KeyEventArgs e)
+        {
+            errorProvider1.Clear();
+            validar.validar_correo(ref txtCorreoElectrónicoNuevo, ref errorProvider1);
+        }
+
+        private void txtNuevaContraseña_KeyUp(object sender, KeyEventArgs e)
+        {
+            errorProvider1.Clear();
+            validar.validar_contraseñas(txtNuevaContraseña, ref errorProvider1);
+        }
+
+        private void txtConfContraseña_KeyUp(object sender, KeyEventArgs e)
+        {
+            errorProvider1.Clear();
+            validar.claves_iguales(txtNuevaContraseña, txtConfContraseña, ref errorProvider1);
+        }
+
         private void Principal_P_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("¿Está seguro que desea salir?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
-                e.Cancel = true;
+            if (dr == DialogResult.Cancel)
+            {
+                DialogResult = MessageBox.Show("¿Está seguro que desea salir?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (DialogResult == DialogResult.Cancel)
+                    e.Cancel = true;
+            }
+
         }
 
     }

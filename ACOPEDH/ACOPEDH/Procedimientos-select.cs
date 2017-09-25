@@ -16,10 +16,10 @@ namespace ACOPEDH
         public int llenar_tabla(string procedimiento, SqlParameter[] param)
         {
             int resultado = 0;
-            cn = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
+            cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
             try
             {
-                cn = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
+                cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
                 SqlConnection conex = new SqlConnection(cn.cadena);
                 conex.InfoMessage += new SqlInfoMessageEventHandler(Conex_InfoMessage);
                 conex.Open();
@@ -39,7 +39,7 @@ namespace ACOPEDH
         }
         public DataTable llenar_DataTable(string procedimiento)
         {
-            cn = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
+            cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
             DataTable dt = new DataTable();
             try
             {
@@ -62,7 +62,7 @@ namespace ACOPEDH
         }
         public DataTable llenar_DataTable(string procedimiento, SqlParameter[] param)
         {
-            cn = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
+            cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
             DataTable dt = new DataTable();
             try
             {
@@ -86,7 +86,7 @@ namespace ACOPEDH
         }
         public DataSet llenar_DataSet(string procedimiento, SqlParameter[] param)
         {
-            cn = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
+            cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
             DataSet ds = new DataSet();
             try
             {
@@ -163,7 +163,7 @@ namespace ACOPEDH
 
         public List<ComboBox_Llenado> LlenarCombo(string procedimiento, string Rows)
         {
-            cn = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
+            cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
             List<ComboBox_Llenado> Retornar = new List<ComboBox_Llenado>();
             try
             {

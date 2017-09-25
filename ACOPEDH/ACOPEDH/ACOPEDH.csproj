@@ -86,6 +86,12 @@
     <Compile Include="Cifrado.cs" />
     <Compile Include="ComboBox_Llenado.cs" />
     <Compile Include="Conexión.cs" />
+    <Compile Include="Confirmación.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Confirmación.Designer.cs">
+      <DependentUpon>Confirmación.cs</DependentUpon>
+    </Compile>
     <Compile Include="Datos Asociado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Aportaciones.resx">
       <DependentUpon>Aportaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Confirmación.resx">
+      <DependentUpon>Confirmación.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Datos Asociado.resx">
       <DependentUpon>Datos Asociado.cs</DependentUpon>
