@@ -91,7 +91,6 @@ namespace ACOPEDH
         private void bttConfirmar_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
-            NewAcount = new Usuarios();
             enviaremail = new Emailsistema();
             String asunto = "Bienvenido a ACOPEDH";
             String mensaje = "Éste correo se ha generado automáticamente, por favor, no responder\n\nBienvenido a ACOPEDH.\n\nDesde éste momento puede ingresar a su cuenta.\n\n\nSu usuario: " + txtCorreo.Text + "\nSu clave: " + txtPassword.Text;
@@ -103,21 +102,31 @@ namespace ACOPEDH
                 validar.IsNullOrEmty(ref txtConfPassword, ref errorProvider1)
                 )
             {
-                if (NewAcount.existe(txtCorreo.Text) == true)
+                errorProvider1.Clear();
+                Procedimientos_select procedimientos_Select = new Procedimientos_select();
+                SqlParameter[] parámetros = new SqlParameter[5];
+                parámetros[0] = new SqlParameter("@Correo", txtCorreo.Text);
+                parámetros[1] = new SqlParameter("@Nombre", txtNombre.Text);
+                parámetros[2] = new SqlParameter("@Apellido", txtApellido.Text);
+                parámetros[3] = new SqlParameter("@Contraseña", Cifrado.encriptar(txtPassword.Text));
+                String tipo = "";
+                if (cbTipoUsuario.Text== "Master")
+                    tipo = "TU001";
+                if (cbTipoUsuario.Text == "Administrador")
+                    tipo = "TU002";
+                if (cbTipoUsuario.Text == "Usuario")
+                    tipo = "TU003";
+                parámetros[4] = new SqlParameter("@Tipo_Usuario", tipo);
+                if (procedimientos_Select.llenar_tabla("Nuevo Usuario", parámetros) == 1)
                 {
-                    errorProvider1.SetError(txtCorreo, "Ya existe una cuenta regstrada con ésta dirección de correo electrónico");
+                    enviaremail.EnviarEmail(txtCorreo, asunto, mensaje);
+                    MessageBox.Show("Cuenta creada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    DialogResult = DialogResult.OK;
+                    this.Close();
                 }
                 else
                 {
-                    errorProvider1.Clear();
-                    if (NewAcount.CrearCuentas(txtNombre.Text, txtApellido.Text, txtConfPassword.Text, txtCorreo.Text, cbTipoUsuario.Text) == 1)
-                    {
-                        enviaremail.EnviarEmail(txtCorreo, asunto, mensaje);
-                        MessageBox.Show("Cuenta creada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                        DialogResult = DialogResult.OK;
-                        this.Close();
-                    }
-
+                    errorProvider1.SetError(txtCorreo, Globales.gbError);
                 }
             }
             this.Cursor = Cursors.Default;
@@ -154,7 +163,7 @@ namespace ACOPEDH
                 StringFormat st = new StringFormat();
                 st.LineAlignment = StringAlignment.Center;
                 st.Alignment = StringAlignment.Center;
-                Brush brush = new SolidBrush(Color.Red);
+                Brush brush = new SolidBrush(Color.Black);
                 if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
                     brush = SystemBrushes.HighlightText;
                 e.Graphics.DrawString(cbTipoUsuario.Items[e.Index].ToString(), cbTipoUsuario.Font, brush, e.Bounds, st);

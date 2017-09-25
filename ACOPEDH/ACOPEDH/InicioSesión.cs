@@ -52,10 +52,8 @@ namespace ACOPEDH
         Servidor server;
         Validaciones validar;
         Usuarios cuenta;
-        Conexión con;
         Emailsistema enviarcorreo = new Emailsistema();
         Globales glb = new Globales();
-        public static String error;
         String asunto = "Alerta de inicio de sesión.";
         String mensaje = "Se ha iniciado sesión en su cuenta el día " + DateTime.Now.Date.ToLongDateString() + " a las " + DateTime.Now.ToLongTimeString() + "\n\nSi usted no ha realizado ésta acción se le recomienda cambiar su clave de inicio de sesión.\nÉsto puede hacerlo en la opciones de configuración de su cuenta.\nSi ha sido usted, no realice ninguna acción.\n\n\nÉste correo se ha generado automáticamente, por favor, no responder.\n\nDesarrolladores.";
         #endregion
@@ -81,12 +79,6 @@ namespace ACOPEDH
                 Properties.Settings.Default.UsuariosG = txtCorreo.Text;
                 Properties.Settings.Default.Save();
                 cuenta = new Usuarios();
-                //if (!cuenta.existe(txtCorreo.Text))
-                //{
-                //    errorProvider1.SetError(txtCorreo, "No se encontró ninguna cuenta asociada a ésta dirección E-Mail.");
-                //}
-                //else
-                //{
                 this.Cursor = Cursors.WaitCursor;
                 SqlParameter[] parámetros = new SqlParameter[1];
                 parámetros[0] = new SqlParameter("@Correo", txtCorreo.Text);
@@ -130,7 +122,8 @@ namespace ACOPEDH
                 else
                 {
                     this.Cursor = Cursors.Default;
-                    errorProvider1.SetError(txtCorreo, error);
+                    errorProvider1.SetError(txtCorreo, Globales.gbError);
+                    Globales.gbError = "";
                 }
             }
         }

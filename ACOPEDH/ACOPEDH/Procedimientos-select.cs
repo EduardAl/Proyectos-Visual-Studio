@@ -21,7 +21,8 @@ namespace ACOPEDH
             {
                 cn = new Conexión(Globales.gbTipo_Cuenta, Globales.gbClaveCuenta);
                 SqlConnection conex = new SqlConnection(cn.cadena);
-                    conex.Open();
+                conex.InfoMessage += new SqlInfoMessageEventHandler(Conex_InfoMessage);
+                conex.Open();
                     Comando = new SqlCommand(procedimiento, conex);
                     Comando.CommandType = CommandType.StoredProcedure;
                     Comando.CommandText = procedimiento;
@@ -120,7 +121,7 @@ namespace ACOPEDH
             {
                 mensaje = e.Errors[0].Message;
             }
-            InicioSesión.error = mensaje;
+            Globales.gbError = mensaje;
         }
 
         public void LlenarText(string procedimiento, string Rows, params String[] Text)

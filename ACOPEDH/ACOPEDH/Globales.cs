@@ -4,13 +4,14 @@ namespace ACOPEDH
 {
     public class Globales
     {
-        public static string gbTipo_Cuenta = "InicioSesion";
-        public static string gbClaveCuenta = "In112358";
-        public static string gbCorreo;
-        public static string gbCodUsuario;
-        public static string Servidor;
-        public static string gbCod_TipoUsuario;
-        public static string gbClaveUsuario;
+        public static String gbTipo_Cuenta = "InicioSesion";
+        public static String gbClaveCuenta = "In112358";
+        public static String gbCorreo;
+        public static String gbCodUsuario;
+        public static String Servidor;
+        public static String gbCod_TipoUsuario;
+        public static String gbClaveUsuario;
+        public static String gbError = "";
         public Globales()
         {
         }

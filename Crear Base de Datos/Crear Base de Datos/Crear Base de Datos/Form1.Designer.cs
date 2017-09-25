@@ -31,14 +31,14 @@
             this.BttCrear = new System.Windows.Forms.Button();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BttCrear
             // 
-            this.BttCrear.Location = new System.Drawing.Point(118, 127);
+            this.BttCrear.Location = new System.Drawing.Point(157, 156);
+            this.BttCrear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BttCrear.Name = "BttCrear";
-            this.BttCrear.Size = new System.Drawing.Size(87, 38);
+            this.BttCrear.Size = new System.Drawing.Size(116, 47);
             this.BttCrear.TabIndex = 0;
             this.BttCrear.Text = "Crear";
             this.BttCrear.UseVisualStyleBackColor = true;
@@ -46,40 +46,32 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(75, 88);
+            this.txtNombre.Location = new System.Drawing.Point(100, 108);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(168, 20);
+            this.txtNombre.Size = new System.Drawing.Size(223, 22);
             this.txtNombre.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(89, 56);
+            this.label1.Location = new System.Drawing.Point(119, 69);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(140, 13);
+            this.label1.Size = new System.Drawing.Size(187, 17);
             this.label1.TabIndex = 2;
             this.label1.Text = "Nombre de la base de datos";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(92, 20);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "label2";
             // 
             // Principal
             // 
             this.AcceptButton = this.BttCrear;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(318, 211);
-            this.Controls.Add(this.label2);
+            this.ClientSize = new System.Drawing.Size(424, 260);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.BttCrear);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Principal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Crear Base de Datos";
@@ -94,7 +86,6 @@
         private System.Windows.Forms.Button BttCrear;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
     }
 }
 

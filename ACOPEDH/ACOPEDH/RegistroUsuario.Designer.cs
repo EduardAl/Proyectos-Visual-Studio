@@ -306,8 +306,9 @@
             // PBMostrar1
             // 
             this.PBMostrar1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.PBMostrar1.BackColor = System.Drawing.Color.Gainsboro;
             this.PBMostrar1.Image = global::ACOPEDH.Properties.Resources.show;
-            this.PBMostrar1.Location = new System.Drawing.Point(398, 373);
+            this.PBMostrar1.Location = new System.Drawing.Point(429, 387);
             this.PBMostrar1.Name = "PBMostrar1";
             this.PBMostrar1.Size = new System.Drawing.Size(33, 33);
             this.PBMostrar1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -319,8 +320,9 @@
             // PBMostrar2
             // 
             this.PBMostrar2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.PBMostrar2.BackColor = System.Drawing.Color.Gainsboro;
             this.PBMostrar2.Image = global::ACOPEDH.Properties.Resources.show;
-            this.PBMostrar2.Location = new System.Drawing.Point(398, 446);
+            this.PBMostrar2.Location = new System.Drawing.Point(429, 460);
             this.PBMostrar2.Name = "PBMostrar2";
             this.PBMostrar2.Size = new System.Drawing.Size(33, 33);
             this.PBMostrar2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

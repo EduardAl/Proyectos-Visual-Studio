@@ -28,6 +28,7 @@ namespace Crear_Base_de_Datos
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            DialogResult = DialogResult.No;
             DataGridViewRow dgvv = null;
             try
             {
@@ -52,6 +53,24 @@ namespace Crear_Base_de_Datos
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void Servidores_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (String.IsNullOrEmpty(Servidor) || String.IsNullOrEmpty(Servidor2))
+            {
+                DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                DialogResult = DialogResult.No;
+            }
+        }
+
+        private void Servidores_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if(DialogResult == DialogResult.OK)
+            Application.Exit();
         }
     }
 }
