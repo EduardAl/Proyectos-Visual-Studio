@@ -637,7 +637,7 @@ namespace Crear_Base_de_Datos
                 "End " +
                 "Else " +
                 "Begin " +
-                "Print 'Ocurrió un problema al actualizar los datos.' "+
+                "Print 'Ocurrió un problema al actualizar los datos.' " +
                 "End " +
                 "End Try " +
                 "Begin Catch " +
@@ -687,6 +687,19 @@ namespace Crear_Base_de_Datos
                 "print ERROR_MESSAGE(); " +
                 "End " +
                 "End Catch";
+            String tabla53 =
+                "Create procedure [Cargar Ocupaciones] " +
+                "As " +
+                "Begin " +
+                "Select * from Ocupaciones " +
+                "End";
+            String tabla54 =
+                "Create procedure [Cargar Tipo Teléfono] " +
+                "As " +
+                "Begin " +
+                "Select*From [Tipos de Teléfonos] " +
+                "End";
+
             String Usuario1 =
     "CREATE LOGIN Master_ACOPEDH " +
     "WITH PASSWORD = 'AUREO112358' " +
