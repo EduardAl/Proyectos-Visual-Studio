@@ -36,7 +36,7 @@ namespace ACOPEDH
             {
                 cbAsociación.Items.Add(element.Nombre);
             }
-            Cargando = Cargar.LlenarCombo("[Cargar Ocupación]", "Trabajo");
+            Cargando = Cargar.LlenarCombo("[Cargar Ocupaciones]", "Trabajo");
             foreach (ComboBox_Llenado element in Cargando)
             {
                 cbOcupación.Items.Add(element.Nombre);

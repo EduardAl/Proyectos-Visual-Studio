@@ -691,13 +691,13 @@ namespace Crear_Base_de_Datos
                 "Create procedure [Cargar Ocupaciones] " +
                 "As " +
                 "Begin " +
-                "Select * from Ocupaciones " +
+                "Select [Nombre de la Empresa] As 'Trabajo' from Ocupación " +
                 "End";
             String tabla54 =
                 "Create procedure [Cargar Tipo Teléfono] " +
                 "As " +
                 "Begin " +
-                "Select*From [Tipos de Teléfonos] " +
+                "Select [Tipo de Teléfono] As 'TipoT' From [Tipos de Teléfonos] " +
                 "End";
 
             String Usuario1 =
@@ -923,10 +923,10 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd68 = new SqlCommand(tabla53, cnn);
             SqlCommand cmd69 = new SqlCommand(tabla54, cnn);
 
-            //try
-            //{
-            //Abrimos la conexión y ejecutamos el comando
-            cnn.Open();
+            try
+            {
+                //Abrimos la conexión y ejecutamos el comando
+                cnn.Open();
                 cmd.ExecuteNonQuery();
                 cmd1.ExecuteNonQuery();
                 cmd2.ExecuteNonQuery();
@@ -999,13 +999,13 @@ namespace Crear_Base_de_Datos
                 cnn.Close();
                 MessageBox.Show("Base Creada");
                 this.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message,
-            //        "Error al crear la base",
-            //        MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
         }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                    "Error al crear la base",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+}
     }
 }

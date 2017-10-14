@@ -529,7 +529,7 @@
             this.panelConfig.Controls.Add(this.labTítulo);
             this.panelConfig.Controls.Add(this.lkConfirmar);
             this.panelConfig.Controls.Add(this.lkCancelar);
-            this.panelConfig.Location = new System.Drawing.Point(259, 122);
+            this.panelConfig.Location = new System.Drawing.Point(400, 488);
             this.panelConfig.Name = "panelConfig";
             this.panelConfig.Size = new System.Drawing.Size(669, 544);
             this.panelConfig.TabIndex = 79;
