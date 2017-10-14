@@ -637,7 +637,7 @@ namespace Crear_Base_de_Datos
                 "End " +
                 "Else " +
                 "Begin " +
-                "Print 'Ocurrió un problema al actualizar los datos.' "+
+                "Print 'Ocurrió un problema al actualizar los datos.' " +
                 "End " +
                 "End Try " +
                 "Begin Catch " +
@@ -687,6 +687,19 @@ namespace Crear_Base_de_Datos
                 "print ERROR_MESSAGE(); " +
                 "End " +
                 "End Catch";
+            String tabla53 =
+                "Create procedure [Cargar Ocupaciones] " +
+                "As " +
+                "Begin " +
+                "Select * from Ocupaciones " +
+                "End";
+            String tabla54 =
+                "Create procedure [Cargar Tipo Teléfono] " +
+                "As " +
+                "Begin " +
+                "Select*From [Tipos de Teléfonos] " +
+                "End";
+
             String Usuario1 =
     "CREATE LOGIN Master_ACOPEDH " +
     "WITH PASSWORD = 'AUREO112358' " +
@@ -907,11 +920,13 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd65 = new SqlCommand(creartrabajos, cnn);
             SqlCommand cmd66 = new SqlCommand(crearpréstamos, cnn);
             SqlCommand cmd67 = new SqlCommand(insertartiposdetransacciones, cnn);
+            SqlCommand cmd68 = new SqlCommand(tabla53, cnn);
+            SqlCommand cmd69 = new SqlCommand(tabla54, cnn);
 
             //try
             //{
-                //Abrimos la conexión y ejecutamos el comando
-                cnn.Open();
+            //Abrimos la conexión y ejecutamos el comando
+            cnn.Open();
                 cmd.ExecuteNonQuery();
                 cmd1.ExecuteNonQuery();
                 cmd2.ExecuteNonQuery();
@@ -979,6 +994,8 @@ namespace Crear_Base_de_Datos
                 cmd65.ExecuteNonQuery();
                 cmd66.ExecuteNonQuery();
                 cmd67.ExecuteNonQuery();
+                cmd68.ExecuteNonQuery();
+                cmd69.ExecuteNonQuery();
                 cnn.Close();
                 MessageBox.Show("Base Creada");
                 this.Close();
