@@ -920,11 +920,13 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd65 = new SqlCommand(creartrabajos, cnn);
             SqlCommand cmd66 = new SqlCommand(crearpréstamos, cnn);
             SqlCommand cmd67 = new SqlCommand(insertartiposdetransacciones, cnn);
+            SqlCommand cmd68 = new SqlCommand(tabla53, cnn);
+            SqlCommand cmd69 = new SqlCommand(tabla54, cnn);
 
             //try
             //{
-                //Abrimos la conexión y ejecutamos el comando
-                cnn.Open();
+            //Abrimos la conexión y ejecutamos el comando
+            cnn.Open();
                 cmd.ExecuteNonQuery();
                 cmd1.ExecuteNonQuery();
                 cmd2.ExecuteNonQuery();
@@ -992,6 +994,8 @@ namespace Crear_Base_de_Datos
                 cmd65.ExecuteNonQuery();
                 cmd66.ExecuteNonQuery();
                 cmd67.ExecuteNonQuery();
+                cmd68.ExecuteNonQuery();
+                cmd69.ExecuteNonQuery();
                 cnn.Close();
                 MessageBox.Show("Base Creada");
                 this.Close();
