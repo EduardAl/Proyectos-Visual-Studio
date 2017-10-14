@@ -179,5 +179,10 @@ namespace ACOPEDH
             RC.ShowDialog();
             this.Show();
         }
+
+        private void PBMostrar1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

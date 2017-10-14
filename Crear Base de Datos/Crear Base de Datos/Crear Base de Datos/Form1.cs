@@ -635,8 +635,8 @@ namespace Crear_Base_de_Datos
                 "Begin " +
                 "update Usuarios set Correo = @Correo, Nombres = @Nombre, Apellidos = @Apellido, Contraseña = @Contraseña where[Id Usuario] = @Id; " +
                 "End " +
-                "Else" +
-                "Begin" +
+                "Else " +
+                "Begin " +
                 "Print 'Ocurrió un problema al actualizar los datos.' "+
                 "End " +
                 "End Try " +
@@ -908,8 +908,8 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd66 = new SqlCommand(crearpréstamos, cnn);
             SqlCommand cmd67 = new SqlCommand(insertartiposdetransacciones, cnn);
 
-            try
-            {
+            //try
+            //{
                 //Abrimos la conexión y ejecutamos el comando
                 cnn.Open();
                 cmd.ExecuteNonQuery();
@@ -982,13 +982,13 @@ namespace Crear_Base_de_Datos
                 cnn.Close();
                 MessageBox.Show("Base Creada");
                 this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message,
-                    "Error al crear la base",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message,
+            //        "Error al crear la base",
+            //        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
     }
 }

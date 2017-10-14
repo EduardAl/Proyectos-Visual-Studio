@@ -56,12 +56,12 @@
             this.linkLabel3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.linkLabel3.AutoSize = true;
             this.linkLabel3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.linkLabel3.Font = new System.Drawing.Font("Linotte-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel3.LinkColor = System.Drawing.Color.Black;
             this.linkLabel3.Location = new System.Drawing.Point(176, 554);
             this.linkLabel3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(159, 24);
+            this.linkLabel3.Size = new System.Drawing.Size(163, 25);
             this.linkLabel3.TabIndex = 57;
             this.linkLabel3.TabStop = true;
             this.linkLabel3.Text = "Crear una cuenta";
@@ -73,12 +73,12 @@
             this.LLOlvidoContraseña.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LLOlvidoContraseña.AutoSize = true;
             this.LLOlvidoContraseña.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LLOlvidoContraseña.Font = new System.Drawing.Font("Linotte-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LLOlvidoContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LLOlvidoContraseña.LinkColor = System.Drawing.Color.Black;
             this.LLOlvidoContraseña.Location = new System.Drawing.Point(127, 516);
             this.LLOlvidoContraseña.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.LLOlvidoContraseña.Name = "LLOlvidoContraseña";
-            this.LLOlvidoContraseña.Size = new System.Drawing.Size(256, 24);
+            this.LLOlvidoContraseña.Size = new System.Drawing.Size(260, 25);
             this.LLOlvidoContraseña.TabIndex = 56;
             this.LLOlvidoContraseña.TabStop = true;
             this.LLOlvidoContraseña.Text = "¿Ha olvidado la contraseña?";
@@ -90,7 +90,7 @@
             this.btningresar.AutoSize = true;
             this.btningresar.BackColor = System.Drawing.SystemColors.ControlDark;
             this.btningresar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btningresar.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btningresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btningresar.ForeColor = System.Drawing.Color.Black;
             this.btningresar.Location = new System.Drawing.Point(184, 606);
             this.btningresar.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -106,11 +106,11 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(220, 350);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 24);
+            this.label5.Size = new System.Drawing.Size(72, 25);
             this.label5.TabIndex = 54;
             this.label5.Text = "Correo";
             // 
@@ -118,11 +118,11 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(197, 430);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(114, 24);
+            this.label2.Size = new System.Drawing.Size(114, 25);
             this.label2.TabIndex = 53;
             this.label2.Text = "Contraseña";
             // 
@@ -132,7 +132,7 @@
             this.ttpass.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ttpass.BackColor = System.Drawing.Color.Gainsboro;
             this.ttpass.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ttpass.Font = new System.Drawing.Font("Linotte-Light", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ttpass.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ttpass.Location = new System.Drawing.Point(80, 462);
             this.ttpass.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.ttpass.Name = "ttpass";
@@ -149,7 +149,7 @@
             "Dijite un nombre"});
             this.txtCorreo.BackColor = System.Drawing.Color.Gainsboro;
             this.txtCorreo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCorreo.Font = new System.Drawing.Font("Linotte-Light", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCorreo.Location = new System.Drawing.Point(80, 382);
             this.txtCorreo.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtCorreo.Name = "txtCorreo";
@@ -193,7 +193,7 @@
             // BarraTítulo
             // 
             this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
-            this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarraTítulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
             this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
             this.BarraTítulo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -223,13 +223,14 @@
             this.PBMostrar1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PBMostrar1.BackColor = System.Drawing.Color.Gainsboro;
             this.PBMostrar1.Image = global::ACOPEDH.Properties.Resources.show;
-            this.PBMostrar1.Location = new System.Drawing.Point(400, 459);
+            this.PBMostrar1.Location = new System.Drawing.Point(397, 458);
             this.PBMostrar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PBMostrar1.Name = "PBMostrar1";
             this.PBMostrar1.Size = new System.Drawing.Size(33, 33);
             this.PBMostrar1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PBMostrar1.TabIndex = 64;
             this.PBMostrar1.TabStop = false;
+            this.PBMostrar1.Click += new System.EventHandler(this.PBMostrar1_Click);
             this.PBMostrar1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PBMostrar1_MouseDown);
             this.PBMostrar1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PBMostrar1_MouseUp);
             // 

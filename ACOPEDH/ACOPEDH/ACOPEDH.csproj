@@ -49,7 +49,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BCrypt.Net">
-      <HintPath>..\..\..\..\..\Desktop\UDB\Programación IV\BCrypt\BCrypt.Net.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\Programas\BCrypt\BCrypt.Net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
