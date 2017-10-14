@@ -12,6 +12,7 @@ namespace ACOPEDH
 {
     public partial class Otorgar_Préstamo : Form
     {
+        public static DialogResult dr = DialogResult.Cancel;
 #warning FALTA TODO EL CÓDIGO
         /*
             *********************************
@@ -65,7 +66,8 @@ namespace ACOPEDH
         //Cerrar
         private void bttCer_Click(object sender, EventArgs e)
         {
-            Close();
+            dr = DialogResult.Cancel;
+            this.Close();
         }
         //Mostrar Amortización
         private void button2_Click(object sender, EventArgs e)
@@ -74,12 +76,12 @@ namespace ACOPEDH
             {
                 Amortización Acción = new Amortización(double.Parse(TxtInterés.Text), Monto, Cuotas);
                 Acción.ShowDialog();
-                Focus();
             }
             catch
             {
                 MessageBox.Show("Aún no ha colocado los datos necesarios para generar una amortización");
             }
+            dr = DialogResult.OK;
         }
         #endregion
 
@@ -150,11 +152,17 @@ namespace ACOPEDH
         #region Closing
         private void Otorgar_Préstamo_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (DialogResult != DialogResult.OK)
-                if (MessageBox.Show("¿Desea salir sin guardar cambios?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            if (dr == DialogResult.Cancel)
+            {
+                DialogResult = MessageBox.Show("¿Está seguro que desea salir?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (DialogResult == DialogResult.Cancel)
                     e.Cancel = true;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
-
         #endregion
         #region CurrentCell
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)

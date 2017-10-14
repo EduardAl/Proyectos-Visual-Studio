@@ -155,6 +155,7 @@
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(351, 27);
             this.txtCorreo.TabIndex = 51;
+            this.txtCorreo.Text = "|";
             this.txtCorreo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCorreo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtCorreo_KeyUp);
             // 

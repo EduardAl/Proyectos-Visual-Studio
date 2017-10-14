@@ -91,7 +91,7 @@ namespace ACOPEDH
         //Cerrar
         private void bttCer_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
         }
         //Minimizar
         private void bttMin_Click(object sender, EventArgs e)
@@ -148,5 +148,9 @@ namespace ACOPEDH
             Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(Width - 1, 0), new Point(Width, Height));
         }
         #endregion
+
+        private void Amortización_FormClosing(object sender, FormClosingEventArgs e)
+        {
+        }
     }
 }
