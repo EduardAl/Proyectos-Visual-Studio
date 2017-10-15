@@ -132,11 +132,11 @@
             this.ttpass.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ttpass.BackColor = System.Drawing.Color.Gainsboro;
             this.ttpass.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ttpass.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ttpass.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ttpass.Location = new System.Drawing.Point(80, 462);
             this.ttpass.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.ttpass.Name = "ttpass";
-            this.ttpass.Size = new System.Drawing.Size(351, 27);
+            this.ttpass.Size = new System.Drawing.Size(351, 25);
             this.ttpass.TabIndex = 52;
             this.ttpass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.ttpass.UseSystemPasswordChar = true;
@@ -149,11 +149,11 @@
             "Dijite un nombre"});
             this.txtCorreo.BackColor = System.Drawing.Color.Gainsboro;
             this.txtCorreo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCorreo.Location = new System.Drawing.Point(80, 382);
             this.txtCorreo.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.Size = new System.Drawing.Size(351, 27);
+            this.txtCorreo.Size = new System.Drawing.Size(351, 25);
             this.txtCorreo.TabIndex = 51;
             this.txtCorreo.Text = "|";
             this.txtCorreo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -224,7 +224,7 @@
             this.PBMostrar1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PBMostrar1.BackColor = System.Drawing.Color.Gainsboro;
             this.PBMostrar1.Image = global::ACOPEDH.Properties.Resources.show;
-            this.PBMostrar1.Location = new System.Drawing.Point(397, 458);
+            this.PBMostrar1.Location = new System.Drawing.Point(397, 459);
             this.PBMostrar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PBMostrar1.Name = "PBMostrar1";
             this.PBMostrar1.Size = new System.Drawing.Size(33, 33);

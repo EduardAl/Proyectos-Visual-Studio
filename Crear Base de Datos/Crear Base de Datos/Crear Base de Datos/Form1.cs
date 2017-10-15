@@ -193,7 +193,6 @@ namespace Crear_Base_de_Datos
                 "@Residencia varchar(100), " +
                 "@Fecha_Nacimiento datetime, " +
                 "@Fecha_Asociación datetime, " +
-                "@Estado varchar(10), " +
                 "@FK_Ocupacion varchar(30) " +
                 "As " +
                 "Begin Tran Asociado " +
@@ -202,7 +201,7 @@ namespace Crear_Base_de_Datos
                 "Declare @ID_Ocupación as varchar(5) " +
                 "set @ID_Tipo_Socio = (Select[id Tipo de Socio] From[Tipo de Socio] where[Nombre Tipo Socio] = @FK_Tipo_Socio) " +
                 "set @ID_Ocupación = (Select[Id Ocupación] From[Ocupación] where[Nombre de la Empresa] = @FK_Ocupacion) " +
-                "Insert into Asociado values(@ID_Tipo_Socio, @Nombres, @Apellidos, @DUI, @NIT, @Residencia, @Fecha_Nacimiento, @Fecha_Asociación, null, @Estado, @ID_Ocupación) " +
+                "Insert into Asociado values(@ID_Tipo_Socio, @Nombres, @Apellidos, @DUI, @NIT, @Residencia, @Fecha_Nacimiento, @Fecha_Asociación, null, 'ACTIVO', @ID_Ocupación) " +
                 "Commit tran Asociado " +
                 "End try " +
                 "Begin Catch " +
@@ -658,7 +657,7 @@ namespace Crear_Base_de_Datos
                 "Begin Try " +
                 "if exists(select * from Usuarios where Usuarios.Correo = @Correo) " +
                 "Begin " +
-                "select* from Usuarios; " +
+                "select * from Usuarios where Correo = @Correo; " +
                 "End " +
                 "Else " +
                 "Begin " +
@@ -696,7 +695,7 @@ namespace Crear_Base_de_Datos
                 "Create procedure [Cargar Ocupaciones] " +
                 "As " +
                 "Begin " +
-                "Select * from Ocupaciones " +
+                "Select [Nombre de la Empresa] As 'Trabajo' from Ocupación " +
                 "End";
             //Aqui se cambió para tener la referencia "TipoT"
             String tabla54 =

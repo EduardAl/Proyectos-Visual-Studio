@@ -54,6 +54,7 @@ namespace ACOPEDH
                         parámetros[0] = new SqlParameter("@Correo", txtCorreo.Text);
                         parámetros[1] = new SqlParameter("@Contraseña", contraseñac);
                         String Mensaje = "Su nueva contraseña: " + contraseña + "\n\nEste correo ha sido generado automáticamente.\nPor favor, no responder.";
+                        MessageBox.Show(contraseña);
                         ps.llenar_tabla("Recuperar Contraseña", parámetros);
                         Emailsistema ES = new Emailsistema();
                         ES.EnviarEmail(txtCorreo, Asunto, Mensaje);
