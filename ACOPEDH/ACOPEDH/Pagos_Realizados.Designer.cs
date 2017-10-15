@@ -54,6 +54,10 @@
             this.bttMin = new System.Windows.Forms.PictureBox();
             this.txtTipoPréstamo = new System.Windows.Forms.TextBox();
             this.bttImprimir = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPagosRealizados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
@@ -62,29 +66,28 @@
             // 
             // txtAsociado
             // 
-            this.txtAsociado.Location = new System.Drawing.Point(130, 109);
+            this.txtAsociado.Location = new System.Drawing.Point(145, 45);
             this.txtAsociado.Multiline = true;
             this.txtAsociado.Name = "txtAsociado";
             this.txtAsociado.ReadOnly = true;
-            this.txtAsociado.Size = new System.Drawing.Size(385, 25);
-            this.txtAsociado.TabIndex = 3;
-            this.txtAsociado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAsociado.Size = new System.Drawing.Size(434, 33);
+            this.txtAsociado.TabIndex = 1;
             // 
             // txtIDPréstamo
             // 
-            this.txtIDPréstamo.Location = new System.Drawing.Point(157, 58);
+            this.txtIDPréstamo.Location = new System.Drawing.Point(729, 41);
             this.txtIDPréstamo.Multiline = true;
             this.txtIDPréstamo.Name = "txtIDPréstamo";
             this.txtIDPréstamo.ReadOnly = true;
-            this.txtIDPréstamo.Size = new System.Drawing.Size(124, 25);
-            this.txtIDPréstamo.TabIndex = 0;
+            this.txtIDPréstamo.Size = new System.Drawing.Size(162, 33);
+            this.txtIDPréstamo.TabIndex = 2;
             this.txtIDPréstamo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(57, 112);
+            this.label2.Location = new System.Drawing.Point(36, 52);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 18);
             this.label2.TabIndex = 9;
@@ -94,7 +97,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(60, 61);
+            this.label1.Location = new System.Drawing.Point(604, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 18);
             this.label1.TabIndex = 8;
@@ -104,90 +107,90 @@
             // 
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(319, 61);
+            this.label9.Location = new System.Drawing.Point(39, 99);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(135, 18);
+            this.label9.Size = new System.Drawing.Size(80, 36);
             this.label9.TabIndex = 15;
-            this.label9.Text = "Tipo de Préstamo: ";
+            this.label9.Text = "Tipo de\r\nPréstamo: ";
             // 
             // txtOtorgamiento
             // 
-            this.txtOtorgamiento.Location = new System.Drawing.Point(714, 113);
+            this.txtOtorgamiento.Location = new System.Drawing.Point(729, 96);
             this.txtOtorgamiento.Multiline = true;
             this.txtOtorgamiento.Name = "txtOtorgamiento";
             this.txtOtorgamiento.ReadOnly = true;
-            this.txtOtorgamiento.Size = new System.Drawing.Size(136, 25);
-            this.txtOtorgamiento.TabIndex = 4;
+            this.txtOtorgamiento.Size = new System.Drawing.Size(162, 33);
+            this.txtOtorgamiento.TabIndex = 5;
             this.txtOtorgamiento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(532, 116);
+            this.label3.Location = new System.Drawing.Point(604, 94);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(175, 18);
+            this.label3.Size = new System.Drawing.Size(110, 36);
             this.label3.TabIndex = 16;
-            this.label3.Text = "Fecha de Otorgamiento: ";
+            this.label3.Text = "Fecha de\r\nOtorgamiento: ";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(648, 58);
+            this.label4.Location = new System.Drawing.Point(617, 154);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(119, 18);
+            this.label4.Size = new System.Drawing.Size(65, 36);
             this.label4.TabIndex = 21;
-            this.label4.Text = "Plazo en Meses: ";
+            this.label4.Text = "Plazo en\r\n Meses: ";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(60, 176);
+            this.label5.Location = new System.Drawing.Point(39, 154);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(148, 18);
+            this.label5.Size = new System.Drawing.Size(76, 36);
             this.label5.TabIndex = 20;
-            this.label5.Text = "Monto del Préstamo:";
+            this.label5.Text = "Monto del\r\nPréstamo:";
             // 
             // txtPlazo
             // 
-            this.txtPlazo.Location = new System.Drawing.Point(778, 51);
+            this.txtPlazo.Location = new System.Drawing.Point(701, 155);
             this.txtPlazo.Multiline = true;
             this.txtPlazo.Name = "txtPlazo";
             this.txtPlazo.ReadOnly = true;
-            this.txtPlazo.Size = new System.Drawing.Size(72, 33);
-            this.txtPlazo.TabIndex = 2;
+            this.txtPlazo.Size = new System.Drawing.Size(66, 33);
+            this.txtPlazo.TabIndex = 9;
             this.txtPlazo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtMonto
             // 
-            this.txtMonto.Location = new System.Drawing.Point(216, 169);
+            this.txtMonto.Location = new System.Drawing.Point(145, 155);
             this.txtMonto.Multiline = true;
             this.txtMonto.Name = "txtMonto";
             this.txtMonto.ReadOnly = true;
-            this.txtMonto.Size = new System.Drawing.Size(72, 33);
-            this.txtMonto.TabIndex = 5;
+            this.txtMonto.Size = new System.Drawing.Size(100, 33);
+            this.txtMonto.TabIndex = 6;
             this.txtMonto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Location = new System.Drawing.Point(358, 176);
+            this.label13.Location = new System.Drawing.Point(258, 154);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(116, 18);
+            this.label13.Size = new System.Drawing.Size(72, 36);
             this.label13.TabIndex = 23;
-            this.label13.Text = "Cuota Mensual: ";
+            this.label13.Text = "Cuota\r\nMensual: ";
             // 
             // txtCuotaMensual
             // 
-            this.txtCuotaMensual.Location = new System.Drawing.Point(481, 170);
+            this.txtCuotaMensual.Location = new System.Drawing.Point(349, 155);
             this.txtCuotaMensual.Multiline = true;
             this.txtCuotaMensual.Name = "txtCuotaMensual";
             this.txtCuotaMensual.ReadOnly = true;
-            this.txtCuotaMensual.Size = new System.Drawing.Size(67, 29);
-            this.txtCuotaMensual.TabIndex = 6;
+            this.txtCuotaMensual.Size = new System.Drawing.Size(100, 33);
+            this.txtCuotaMensual.TabIndex = 7;
             this.txtCuotaMensual.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // dgvPagosRealizados
@@ -217,7 +220,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvPagosRealizados.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvPagosRealizados.Location = new System.Drawing.Point(63, 216);
+            this.dgvPagosRealizados.Location = new System.Drawing.Point(37, 216);
             this.dgvPagosRealizados.MultiSelect = false;
             this.dgvPagosRealizados.Name = "dgvPagosRealizados";
             this.dgvPagosRealizados.ReadOnly = true;
@@ -235,8 +238,8 @@
             this.dgvPagosRealizados.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvPagosRealizados.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgvPagosRealizados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPagosRealizados.Size = new System.Drawing.Size(793, 377);
-            this.dgvPagosRealizados.TabIndex = 24;
+            this.dgvPagosRealizados.Size = new System.Drawing.Size(855, 377);
+            this.dgvPagosRealizados.TabIndex = 10;
             // 
             // pictureBox3
             // 
@@ -256,7 +259,7 @@
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
             this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
             this.BarraTítulo.Name = "BarraTítulo";
-            this.BarraTítulo.Size = new System.Drawing.Size(929, 30);
+            this.BarraTítulo.Size = new System.Drawing.Size(1017, 30);
             this.BarraTítulo.TabIndex = 37;
             this.BarraTítulo.Text = "         ACOPEDH .:. PAGOS REALIZADOS";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -266,7 +269,7 @@
             // 
             // bttCer
             // 
-            this.bttCer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bttCer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bttCer.BackColor = System.Drawing.Color.Transparent;
             this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
             this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -280,7 +283,6 @@
             // 
             // bttMin
             // 
-            this.bttMin.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.bttMin.BackColor = System.Drawing.Color.Transparent;
             this.bttMin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttMin.BackgroundImage")));
             this.bttMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -294,23 +296,62 @@
             // 
             // txtTipoPréstamo
             // 
-            this.txtTipoPréstamo.Location = new System.Drawing.Point(470, 54);
+            this.txtTipoPréstamo.Location = new System.Drawing.Point(145, 100);
             this.txtTipoPréstamo.Multiline = true;
             this.txtTipoPréstamo.Name = "txtTipoPréstamo";
             this.txtTipoPréstamo.ReadOnly = true;
-            this.txtTipoPréstamo.Size = new System.Drawing.Size(124, 25);
-            this.txtTipoPréstamo.TabIndex = 1;
-            this.txtTipoPréstamo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTipoPréstamo.Size = new System.Drawing.Size(195, 33);
+            this.txtTipoPréstamo.TabIndex = 3;
             // 
             // bttImprimir
             // 
-            this.bttImprimir.Location = new System.Drawing.Point(738, 156);
+            this.bttImprimir.Location = new System.Drawing.Point(781, 155);
             this.bttImprimir.Name = "bttImprimir";
             this.bttImprimir.Size = new System.Drawing.Size(112, 50);
-            this.bttImprimir.TabIndex = 97;
+            this.bttImprimir.TabIndex = 0;
             this.bttImprimir.Text = "Imprimir Estado";
             this.bttImprimir.UseVisualStyleBackColor = true;
             this.bttImprimir.Click += new System.EventHandler(this.bttImprimir_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Location = new System.Drawing.Point(369, 106);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(62, 18);
+            this.label6.TabIndex = 98;
+            this.label6.Text = "Estado: ";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(451, 98);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(128, 33);
+            this.textBox1.TabIndex = 4;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Location = new System.Drawing.Point(468, 154);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(62, 36);
+            this.label7.TabIndex = 100;
+            this.label7.Text = "Tasa de\r\nInterés: ";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(536, 157);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(66, 33);
+            this.textBox2.TabIndex = 8;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Pagos_Realizados
             // 
@@ -319,6 +360,10 @@
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(929, 634);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.bttImprimir);
             this.Controls.Add(this.txtTipoPréstamo);
             this.Controls.Add(this.bttCer);
@@ -382,5 +427,9 @@
         private System.Windows.Forms.PictureBox bttMin;
         private System.Windows.Forms.TextBox txtTipoPréstamo;
         private System.Windows.Forms.Button bttImprimir;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

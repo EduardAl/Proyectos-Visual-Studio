@@ -109,7 +109,37 @@ namespace ACOPEDH
             }
             return ds;
         }
-        
+        public DataSet llenar_DataSet(string procedimiento, SqlParameter[] param, String ptabla)
+        {
+            cn = new Conexión();
+            DataSet ds = new DataSet();
+            try
+            {
+                SqlConnection conex = new SqlConnection(cn.cadena);
+                conex.InfoMessage += new SqlInfoMessageEventHandler(Conex_InfoMessage);
+                conex.Open();
+                Comando = new SqlCommand();
+                Comando.Connection = conex;
+                Comando.CommandText = procedimiento;
+                Comando.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(Comando);
+                for (int x = 0; x < (param.Length - 1); x++)
+                {
+                    Comando.Parameters.Add(param[x]);
+                }
+                Comando.Parameters.Add(param[param.Length - 1]).Direction = ParameterDirection.Output;
+                int registro = da.Fill(ds, ptabla);
+                da.SelectCommand = Comando;
+                da.Dispose();
+                conex.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al intentar extraer los datos.\n" + ex.Message.ToString());
+            }
+            return ds;
+        }
+
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
         //   Obtinene los mensajes o errores de un procedimiento almacenado por medio de la cadena de conexión   //
         //   añadiendo .InfoMessage a la cadena y llamando a esta funcion ver el procedimiento "LlenarDataSet"   //
@@ -123,7 +153,7 @@ namespace ACOPEDH
             }
             Globales.gbError = mensaje;
         }
-
+#region NoUtilizar
         public void LlenarText(string procedimiento, string Rows, params String[] Text)
         {
             try
@@ -160,7 +190,6 @@ namespace ACOPEDH
                 MessageBox.Show(ex.Message, ex.ErrorCode.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         public List<ComboBox_Llenado> LlenarCombo(string procedimiento, string Rows)
         {
             cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
@@ -190,7 +219,6 @@ namespace ACOPEDH
             }
             return Retornar;
         }
-
-
+#endregion
     }
 }

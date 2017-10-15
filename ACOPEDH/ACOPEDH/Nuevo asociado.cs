@@ -19,6 +19,7 @@ namespace ACOPEDH
             ********************************* 
         */
         Validaciones validar = new Validaciones();
+        DataTable dt;
         #region Constructores
         public Nuevo_asociado()
         {
@@ -29,34 +30,29 @@ namespace ACOPEDH
         #region Load
         private void Nuevo_asociado_Load(object sender, EventArgs e)
         {
+            //Llenar los ComboBox
             Procedimientos_select Cargar = new Procedimientos_select();
-            List<ComboBox_Llenado> Cargando = new List<ComboBox_Llenado>();
-            Cargando = Cargar.LlenarCombo("[Cargar Tipo Socio]", "TipoS");
-            foreach (ComboBox_Llenado element in Cargando)
-            {
-                cbAsociación.Items.Add(element.Nombre);
-            }
-            Cargando = Cargar.LlenarCombo("[Cargar Ocupación]", "Trabajo");
-            foreach (ComboBox_Llenado element in Cargando)
-            {
-                cbOcupación.Items.Add(element.Nombre);
-            }
-            Cargando = Cargar.LlenarCombo("[Cargar Tipo Teléfono]", "TipoT");
-            foreach (ComboBox_Llenado element in Cargando)
-            {
-                cbTipoTeléfono.Items.Add(element.Nombre);
-            }
+            dt = Cargar.llenar_DataTable("[Cargar Tipo Socio]");
+            cbAsociación.DataSource = dt;
+            cbAsociación.DisplayMember = "TipoS";
+            dt = Cargar.llenar_DataTable("[Cargar Ocupaciones]");
+            cbOcupación.DataSource = dt;
+            cbOcupación.DisplayMember = "Trabajo";
+            dt = Cargar.llenar_DataTable("[Cargar Tipo Teléfono]");
+            cbTipoTeléfono.DataSource = dt;
+            cbTipoTeléfono.DisplayMember = "TipoT";
+            //Seleccionar un index
             if (cbAsociación.Items.Count > 0)
                 cbAsociación.SelectedIndex = 0;
             if (cbOcupación.Items.Count > 0)
                 cbOcupación.SelectedIndex = 0;
             if (cbTipoTeléfono.Items.Count > 0)
                 cbTipoTeléfono.SelectedIndex = 0;
-            dtNacimiento.MinDate = DateTime.Today.AddYears(-200);
+            //Establecer que no se pueda tener menos de 18 años
             dtNacimiento.MaxDate = DateTime.Now.AddYears(-18);
             dtNacimiento.Value = dtNacimiento.MaxDate;
         }
-#endregion
+        #endregion
 
         /*
             *********************************
@@ -68,7 +64,7 @@ namespace ACOPEDH
         private void bttAceptar_Click(object sender, EventArgs e)
         {
 #warning Añadir validaciones al escribir y el ingreso de teléfonos
-            if (validar.ValidarNomApe(ref txtNombres,ref errorProvider1)&&
+            if (validar.ValidarNomApe(ref txtNombres, ref errorProvider1) &&
                 validar.ValidarNomApe(ref txtApellidos, ref errorProvider1) &&
                 validar.validar_DUI(ref txtDUI, ref errorProvider1) &&
                 validar.validar_NIT(ref txtNIT, ref errorProvider1) &&
@@ -76,7 +72,7 @@ namespace ACOPEDH
             {
                 string datos = string.Format("Nombre: {0}\nApellidos: {1}\nDUI: {2}\n" +
                     "NIT: {3}\nFecha de Nacimiento: {4}\nLugar de Trabajo: {5}\nTipo de Asociación: " +
-                    "{6}\nDirección: {7}",txtNombres.Text, txtApellidos.Text, txtDUI.Text, txtNIT.Text,
+                    "{6}\nDirección: {7}", txtNombres.Text, txtApellidos.Text, txtDUI.Text, txtNIT.Text,
                     dtNacimiento.Text, cbOcupación.Text, cbAsociación.Text, txtDirección.Text);
                 if (MessageBox.Show("¿Seguro de ingresar los siguientes datos?: \n" + datos, "Confirmar registro", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
@@ -105,7 +101,7 @@ namespace ACOPEDH
                         DialogResult = DialogResult.OK;
                         Close();
                     }
-                    catch(SqlException ex)
+                    catch (SqlException ex)
                     {
                         MessageBox.Show("Ocurrió un error en el ingreso de datos:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -206,7 +202,6 @@ namespace ACOPEDH
                 button3.Enabled = false;
             }
         }
-
         #endregion
         #region Pintar Bordes
         private void Bordes_Paint(object sender, PaintEventArgs e)
@@ -216,7 +211,41 @@ namespace ACOPEDH
             Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0, Height - 1), new Point(Width, Height));
             Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(Width - 1, 0), new Point(Width, Height));
         }
+
         #endregion
 
+        #region KeyUp
+
+        #endregion
+
+        private void txtNombres_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void txtApellidos_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void txtDUI_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void txtNIT_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void txtDirección_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void txtTeléfono_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }

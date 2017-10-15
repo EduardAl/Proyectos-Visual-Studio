@@ -220,6 +220,7 @@ namespace ACOPEDH
             {
                 Abonos Accion = new Abonos(Dato);
                 Accion.ShowDialog();
+                Accion.Dispose();
             }
             else
                 MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -232,6 +233,7 @@ namespace ACOPEDH
             {
                 Retiros Accion = new Retiros(Dato);
                 Accion.ShowDialog();
+                Accion.Dispose();
             }
             else
                 MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -243,6 +245,9 @@ namespace ACOPEDH
             {
                 Estado_de_Cuenta Accion = new Estado_de_Cuenta(Dato);
                 Accion.ShowDialog();
+                if (Accion.DialogResult == DialogResult.OK)
+                    PAhorros_Click(null, null); //Probar esto
+                Accion.Dispose();
             }
             else
                 MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -251,6 +256,9 @@ namespace ACOPEDH
         {
             Nuevo_Ahorro Accion = new Nuevo_Ahorro();
             Accion.ShowDialog();
+            if (Accion.DialogResult == DialogResult.OK)
+                PAhorros_Click(null, null); //Probar esto
+            Accion.Dispose();
         }
         private void bttRealizarPago_Click(object sender, EventArgs e)
         {
@@ -258,6 +266,7 @@ namespace ACOPEDH
             {
                 Pagos Accion = new Pagos(Dato);
                 Accion.ShowDialog();
+                Accion.Dispose();
             }
             else
                 MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -268,6 +277,7 @@ namespace ACOPEDH
             {
                 Amortización Accion = new Amortización(Dato);
                 Accion.ShowDialog();
+                Accion.Dispose();
             }
             else
                 MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -278,6 +288,7 @@ namespace ACOPEDH
             {
                 Pagos_Realizados Accion = new Pagos_Realizados(Dato);
                 Accion.ShowDialog();
+                Accion.Dispose();
             }
             else
                 MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -287,6 +298,7 @@ namespace ACOPEDH
 
             Otorgar_Préstamo Accion = new Otorgar_Préstamo();
             Accion.ShowDialog();
+                Accion.Dispose();
         }
         private void bttDatosAsociado_Click(object sender, EventArgs e)
         {
@@ -294,6 +306,7 @@ namespace ACOPEDH
             {
                 Datos_Asociado Accion = new Datos_Asociado(Dato);
                 Accion.ShowDialog();
+                Accion.Dispose();
             }
             else
                 MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -305,6 +318,7 @@ namespace ACOPEDH
             {
                 Aportaciones Accion = new Aportaciones();
                 Accion.ShowDialog();
+                Accion.Dispose();
             }
             else
                 MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -314,6 +328,7 @@ namespace ACOPEDH
         {
             Nuevo_asociado Accion = new Nuevo_asociado();
             Accion.ShowDialog();
+                Accion.Dispose();
         }
         //Barta Título
         private void pictureBox2_Click(object sender, EventArgs e)

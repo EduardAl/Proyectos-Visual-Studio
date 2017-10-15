@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal_P));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Titulo = new System.Windows.Forms.Label();
@@ -115,7 +120,7 @@
             this.Titulo.ForeColor = System.Drawing.Color.White;
             this.Titulo.Location = new System.Drawing.Point(260, 44);
             this.Titulo.Name = "Titulo";
-            this.Titulo.Size = new System.Drawing.Size(873, 58);
+            this.Titulo.Size = new System.Drawing.Size(701, 48);
             this.Titulo.TabIndex = 2;
             this.Titulo.Text = "Asociación Cooperativa de Ahorro, Crédito y Consumo del Personal de la \r\nProcurad" +
     "uría para la Defensa de los Derechos Humanos";
@@ -288,12 +293,40 @@
             this.dgvBúsqueda.AllowUserToDeleteRows = false;
             this.dgvBúsqueda.AllowUserToResizeColumns = false;
             this.dgvBúsqueda.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvBúsqueda.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvBúsqueda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBúsqueda.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBúsqueda.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvBúsqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBúsqueda.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvBúsqueda.Location = new System.Drawing.Point(264, 233);
             this.dgvBúsqueda.Name = "dgvBúsqueda";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBúsqueda.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvBúsqueda.RowHeadersVisible = false;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvBúsqueda.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvBúsqueda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBúsqueda.Size = new System.Drawing.Size(632, 372);
             this.dgvBúsqueda.TabIndex = 24;
@@ -305,7 +338,7 @@
             this.labBuscar.BackColor = System.Drawing.Color.Transparent;
             this.labBuscar.Location = new System.Drawing.Point(255, 154);
             this.labBuscar.Name = "labBuscar";
-            this.labBuscar.Size = new System.Drawing.Size(107, 25);
+            this.labBuscar.Size = new System.Drawing.Size(86, 20);
             this.labBuscar.TabIndex = 20;
             this.labBuscar.Text = "Búsqueda:";
             this.labBuscar.Visible = false;
@@ -316,7 +349,7 @@
             this.txtBúsqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.txtBúsqueda.Location = new System.Drawing.Point(365, 154);
             this.txtBúsqueda.Name = "txtBúsqueda";
-            this.txtBúsqueda.Size = new System.Drawing.Size(356, 27);
+            this.txtBúsqueda.Size = new System.Drawing.Size(356, 22);
             this.txtBúsqueda.TabIndex = 19;
             this.txtBúsqueda.Visible = false;
             // 
@@ -550,7 +583,7 @@
             this.lkContra.Location = new System.Drawing.Point(564, 370);
             this.lkContra.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lkContra.Name = "lkContra";
-            this.lkContra.Size = new System.Drawing.Size(68, 25);
+            this.lkContra.Size = new System.Drawing.Size(57, 20);
             this.lkContra.TabIndex = 114;
             this.lkContra.TabStop = true;
             this.lkContra.Text = "Editar";
@@ -575,7 +608,7 @@
             this.lbCorreo.BackColor = System.Drawing.Color.Transparent;
             this.lbCorreo.Location = new System.Drawing.Point(216, 262);
             this.lbCorreo.Name = "lbCorreo";
-            this.lbCorreo.Size = new System.Drawing.Size(233, 25);
+            this.lbCorreo.Size = new System.Drawing.Size(189, 20);
             this.lbCorreo.TabIndex = 112;
             this.lbCorreo.Text = "Correo Electrónico Actual";
             // 
@@ -586,7 +619,7 @@
             this.lbApellido.BackColor = System.Drawing.Color.Transparent;
             this.lbApellido.Location = new System.Drawing.Point(156, 130);
             this.lbApellido.Name = "lbApellido";
-            this.lbApellido.Size = new System.Drawing.Size(142, 25);
+            this.lbApellido.Size = new System.Drawing.Size(114, 20);
             this.lbApellido.TabIndex = 111;
             this.lbApellido.Text = "Apellido Actual";
             // 
@@ -597,7 +630,7 @@
             this.lbNombre.BackColor = System.Drawing.Color.Transparent;
             this.lbNombre.Location = new System.Drawing.Point(156, 84);
             this.lbNombre.Name = "lbNombre";
-            this.lbNombre.Size = new System.Drawing.Size(141, 25);
+            this.lbNombre.Size = new System.Drawing.Size(114, 20);
             this.lbNombre.TabIndex = 110;
             this.lbNombre.Text = "Nombre Actual";
             // 
@@ -610,7 +643,7 @@
             this.txtCorreoElectrónicoNuevo.Location = new System.Drawing.Point(206, 259);
             this.txtCorreoElectrónicoNuevo.Name = "txtCorreoElectrónicoNuevo";
             this.txtCorreoElectrónicoNuevo.ReadOnly = true;
-            this.txtCorreoElectrónicoNuevo.Size = new System.Drawing.Size(349, 27);
+            this.txtCorreoElectrónicoNuevo.Size = new System.Drawing.Size(349, 22);
             this.txtCorreoElectrónicoNuevo.TabIndex = 2;
             this.txtCorreoElectrónicoNuevo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtCorreoElectrónicoNuevo_KeyUp);
             // 
@@ -639,7 +672,7 @@
             this.txtConfContraseña.Margin = new System.Windows.Forms.Padding(0);
             this.txtConfContraseña.Name = "txtConfContraseña";
             this.txtConfContraseña.ReadOnly = true;
-            this.txtConfContraseña.Size = new System.Drawing.Size(261, 25);
+            this.txtConfContraseña.Size = new System.Drawing.Size(261, 20);
             this.txtConfContraseña.TabIndex = 5;
             this.txtConfContraseña.UseSystemPasswordChar = true;
             this.txtConfContraseña.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtConfContraseña_KeyUp);
@@ -669,7 +702,7 @@
             this.txtNuevaContraseña.Margin = new System.Windows.Forms.Padding(0);
             this.txtNuevaContraseña.Name = "txtNuevaContraseña";
             this.txtNuevaContraseña.ReadOnly = true;
-            this.txtNuevaContraseña.Size = new System.Drawing.Size(260, 25);
+            this.txtNuevaContraseña.Size = new System.Drawing.Size(260, 20);
             this.txtNuevaContraseña.TabIndex = 4;
             this.txtNuevaContraseña.UseSystemPasswordChar = true;
             this.txtNuevaContraseña.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtNuevaContraseña_KeyUp);
@@ -681,7 +714,7 @@
             this.labCConfirmar.BackColor = System.Drawing.Color.Transparent;
             this.labCConfirmar.Location = new System.Drawing.Point(23, 478);
             this.labCConfirmar.Name = "labCConfirmar";
-            this.labCConfirmar.Size = new System.Drawing.Size(108, 25);
+            this.labCConfirmar.Size = new System.Drawing.Size(86, 20);
             this.labCConfirmar.TabIndex = 101;
             this.labCConfirmar.Text = "Confirmar: ";
             // 
@@ -692,7 +725,7 @@
             this.labCNueva.BackColor = System.Drawing.Color.Transparent;
             this.labCNueva.Location = new System.Drawing.Point(23, 435);
             this.labCNueva.Name = "labCNueva";
-            this.labCNueva.Size = new System.Drawing.Size(80, 25);
+            this.labCNueva.Size = new System.Drawing.Size(62, 20);
             this.labCNueva.TabIndex = 100;
             this.labCNueva.Text = "Nueva: ";
             // 
@@ -710,7 +743,7 @@
             this.LLEditar1.Location = new System.Drawing.Point(564, 7);
             this.LLEditar1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LLEditar1.Name = "LLEditar1";
-            this.LLEditar1.Size = new System.Drawing.Size(68, 25);
+            this.LLEditar1.Size = new System.Drawing.Size(57, 20);
             this.LLEditar1.TabIndex = 0;
             this.LLEditar1.TabStop = true;
             this.LLEditar1.Text = "Editar";
@@ -725,7 +758,7 @@
             this.txtApellidoActual.Location = new System.Drawing.Point(146, 127);
             this.txtApellidoActual.Name = "txtApellidoActual";
             this.txtApellidoActual.ReadOnly = true;
-            this.txtApellidoActual.Size = new System.Drawing.Size(349, 27);
+            this.txtApellidoActual.Size = new System.Drawing.Size(349, 22);
             this.txtApellidoActual.TabIndex = 1;
             this.txtApellidoActual.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtApellidoActual_KeyUp);
             // 
@@ -738,7 +771,7 @@
             this.txtNombreActual.Location = new System.Drawing.Point(146, 81);
             this.txtNombreActual.Name = "txtNombreActual";
             this.txtNombreActual.ReadOnly = true;
-            this.txtNombreActual.Size = new System.Drawing.Size(349, 27);
+            this.txtNombreActual.Size = new System.Drawing.Size(349, 22);
             this.txtNombreActual.TabIndex = 0;
             this.txtNombreActual.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtNombreActual_KeyUp);
             // 
@@ -749,7 +782,7 @@
             this.labContraseña.BackColor = System.Drawing.Color.Transparent;
             this.labContraseña.Location = new System.Drawing.Point(27, 371);
             this.labContraseña.Name = "labContraseña";
-            this.labContraseña.Size = new System.Drawing.Size(204, 25);
+            this.labContraseña.Size = new System.Drawing.Size(163, 20);
             this.labContraseña.TabIndex = 84;
             this.labContraseña.Text = "Cambiar Contraseña: ";
             // 
@@ -760,7 +793,7 @@
             this.labCorreo.BackColor = System.Drawing.Color.Transparent;
             this.labCorreo.Location = new System.Drawing.Point(27, 262);
             this.labCorreo.Name = "labCorreo";
-            this.labCorreo.Size = new System.Drawing.Size(184, 25);
+            this.labCorreo.Size = new System.Drawing.Size(148, 20);
             this.labCorreo.TabIndex = 83;
             this.labCorreo.Text = "Correo Electrónico: ";
             // 
@@ -771,7 +804,7 @@
             this.labApellidos.BackColor = System.Drawing.Color.Transparent;
             this.labApellidos.Location = new System.Drawing.Point(27, 130);
             this.labApellidos.Name = "labApellidos";
-            this.labApellidos.Size = new System.Drawing.Size(103, 25);
+            this.labApellidos.Size = new System.Drawing.Size(81, 20);
             this.labApellidos.TabIndex = 82;
             this.labApellidos.Text = "Apellidos: ";
             // 
@@ -782,7 +815,7 @@
             this.labNombre.BackColor = System.Drawing.Color.Transparent;
             this.labNombre.Location = new System.Drawing.Point(27, 84);
             this.labNombre.Name = "labNombre";
-            this.labNombre.Size = new System.Drawing.Size(102, 25);
+            this.labNombre.Size = new System.Drawing.Size(81, 20);
             this.labNombre.TabIndex = 81;
             this.labNombre.Text = "Nombres: ";
             // 
@@ -794,7 +827,7 @@
             this.labTítulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labTítulo.Location = new System.Drawing.Point(26, 7);
             this.labTítulo.Name = "labTítulo";
-            this.labTítulo.Size = new System.Drawing.Size(275, 25);
+            this.labTítulo.Size = new System.Drawing.Size(227, 20);
             this.labTítulo.TabIndex = 79;
             this.labTítulo.Text = "Configuración de la Cuenta";
             // 
@@ -812,7 +845,7 @@
             this.lkConfirmar.Location = new System.Drawing.Point(470, 501);
             this.lkConfirmar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lkConfirmar.Name = "lkConfirmar";
-            this.lkConfirmar.Size = new System.Drawing.Size(106, 25);
+            this.lkConfirmar.Size = new System.Drawing.Size(87, 20);
             this.lkConfirmar.TabIndex = 6;
             this.lkConfirmar.TabStop = true;
             this.lkConfirmar.Text = "Confirmar";
@@ -833,7 +866,7 @@
             this.lkCancelar.Location = new System.Drawing.Point(553, 501);
             this.lkCancelar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lkCancelar.Name = "lkCancelar";
-            this.lkCancelar.Size = new System.Drawing.Size(99, 25);
+            this.lkCancelar.Size = new System.Drawing.Size(80, 20);
             this.lkCancelar.TabIndex = 7;
             this.lkCancelar.TabStop = true;
             this.lkCancelar.Text = "Cancelar";

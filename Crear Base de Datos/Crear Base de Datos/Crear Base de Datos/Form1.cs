@@ -209,12 +209,13 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback tran Asociado " +
                 "End Catch ";
+            //Cambiado los nombres para cargar las variables
             String tabla22 = "Create Procedure[Cargar Asociados] " +
                 "@Código_Asociado varchar(5) " +
                  "As " +
                  "Begin Tran Cargar_Asociados " +
                  "Begin Try " +
-                 "Select [FK Tipo Socio] AS 'Tipo de Asociación', (Nombres + ' ' + Apellidos) AS 'Nombre', DUI, NIT, Dirección,[Fecha de Nacimiento],[Fecha de Asociación] " +
+                 "Select [FK Tipo Socio] AS 'Tipo de Asociación', (Nombres + ' ' + Apellidos) AS 'Nombre', DUI AS 'DDui', NIT AS 'DNit', Dirección AS 'Residencia',[Fecha de Nacimiento] AS 'FNacimiento',[Fecha de Asociación] AS 'FAsociación' " +
                  "From Asociado where [Código Asociado] = @Código_Asociado " +
                  "Commit Tran Cargar_Asociados " +
                  "End Try " +
@@ -322,11 +323,12 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback tran Asociado " +
                 "End Catch ";
+            //Cambiado para que se muestre el dui
             String tabla28 = "Create Procedure[Cargar Ahorros] " +
                 "As " +
                 "Begin Tran Cargar_Ahorros " +
                 "Begin Try " +
-                "Select Ahorro.[id Ahorro] as 'Código de Ahorro',(Asociado.Nombres+' ' +Asociado.Apellidos) as 'Persona Asociada',[Tipo de Ahorro].Nombre as 'Tipo de Ahorro' From Asociado inner join Ahorro " +
+                "Select Ahorro.[id Ahorro] as 'Código de Ahorro',(Asociado.Nombres+' ' +Asociado.Apellidos) as 'Persona Asociada', Asociado.DUI as 'Dui' ,[Tipo de Ahorro].Nombre as 'Tipo de Ahorro' From Asociado inner join Ahorro " +
                 "on Ahorro.[FK Código de Asociado] = Asociado.[Código Asociado] inner join [Tipo de Ahorro] on Ahorro.[FK Tipo Ahorro]=[Tipo de Ahorro].[id Tipo Ahorro] " +
                 "where Ahorro.Estado = 'ACTIVO' " +
                 "Commit Tran Cargar_Ahorros " +
@@ -386,29 +388,32 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran S_Aportaciones  " +
                 "End Catch ";
+            //Cambio para visualizar más campos en la consulta
             String tabla32 = "Create Procedure[Cargar Pagos] " +
                 "@ID_Préstamo varchar(9) " +
                 "As " +
                 "Begin Tran Cargar_Pagos " +
                 "Begin Try " +
-                "Select Pago.Pago as 'Monto Cancelado', Transacciones.[Fecha de Transacción] as 'Fecha de Pago' From Pago inner join Información on Pago.[id Pago] = Información.[id Pago] " +
-                "Inner join Préstamos on Información.[id Préstamo] = Préstamos.[id Préstamos] inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] " +
-                "where Préstamos.[id Préstamos]=@ID_Préstamo " +
+                "Select Pago.[Número de Cuota] as 'No Pago', Pago.Pago as 'Monto Cancelado', Pago.Intereses as 'Pago a Intereses', Pago.Capital as 'Pago a Capital', Información.Mora as 'Mora por retraso', Pago.Saldo as 'Saldo restante', Transacciones.[Fecha de Transacción] as 'Fecha de Pago', Información.[Fecha Límite] as 'Fecha Límite de Pago' From Pago " +
+                "inner join Información on Pago.[id Pago] = Información.[id Pago] Inner join Préstamos on Información.[id Préstamo] = Préstamos.[id Préstamos] " +
+                "inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] where Préstamos.[id Préstamos]=@ID_Préstamo " +
                 "Commit Tran Cargar_Pagos " +
                 "End Try " +
                 "Begin Catch " +
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Cargar_Pagos " +
                 "End Catch ";
+            //Se realizó cambio para que no pida el id del usuario
             String tabla33 = "Create Procedure[Abonar] " +
                 "@Abono smallmoney, " +
                 "@Fecha_Abono datetime, " +
-                "@FK_Ahorro varchar(40), " +
-                "@Id_Usuario varchar(5) " +
+                "@FK_Ahorro varchar(40) " +
                 "As " +
                 "Begin Tran Abono " +
                 "Begin Try " +
                 "Declare @id_Transación varchar(5) " +
+                "Declare @Id_Usuario varchar(5) " +
+                "set @Id_Usuario = (Select Ahorro.[FK Código de Asociado] from Ahorro where [id Ahorro]=@FK_Ahorro) " +
                 "Insert into Transacciones values(@Id_Usuario, 'TT002',@Fecha_Abono) " +
                 "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
                 "Insert into Abono values(@Abono, @FK_Ahorro, @id_Transación) " +
@@ -577,7 +582,7 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Pres " +
                 "Begin Try " +
-                "Select Préstamos.[id Préstamos] as 'Código de Préstamo', Asociado.[Código Asociado] as 'Código', [Tipo de Préstamo].[Tipo de Préstamo] " +
+                "Select Préstamos.[id Préstamos] as 'Código de Préstamo', (Asociado.Nombres + ' ' + Asociado.Apellidos) as 'Nombre', Asociado.DUI as 'Dui', [Tipo de Préstamo].[Tipo de Préstamo] " +
                 "From Asociado inner join Préstamos on Asociado.[Código Asociado] = Préstamos.[Código Asociado] inner join [Tipo de Préstamo] " +
                 "on Préstamos.[id Tipo de Préstamo] = [Tipo de Préstamo].[id Tipo de Préstamo] " +
                 "Commit Tran Pres " +
@@ -586,12 +591,12 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Pres " +
                 "End Catch";
+            //Cambiado para que muestre además el dui y el tipo de asociación
             String tabla45 = "Create Procedure[Asociado DVG]" +
                 "As " +
                 "Begin Tran Aso " +
                 "Begin Try " +
-                "Select Asociado.[Código Asociado] as 'Código', (Asociado.Nombres + ' ' + Asociado.Apellidos) as 'Persona Asociada' " +
-                "From Asociado where Asociado.[Estado] = 'Activo' " +
+                "Select Asociado.[Código Asociado] as 'Código', (Asociado.Nombres + ' ' + Asociado.Apellidos) as 'Persona Asociada',Asociado.DUI as 'Dui',[Tipo de Socio].[Nombre Tipo Socio] as 'Tipo Asociación'From Asociado inner join [Tipo de Socio] on [Tipo de Socio].[id Tipo de Socio]=Asociado.[FK Tipo Socio]where Asociado.[Estado] = 'Activo' " +
                 "Commit Tran Aso " +
                 "End Try " +
                 "Begin Catch " +
@@ -693,18 +698,18 @@ namespace Crear_Base_de_Datos
                 "Begin " +
                 "Select * from Ocupaciones " +
                 "End";
+            //Aqui se cambió para tener la referencia "TipoT"
             String tabla54 =
                 "Create procedure [Cargar Tipo Teléfono] " +
                 "As " +
                 "Begin " +
-                "Select*From [Tipos de Teléfonos] " +
+                "Select [Tipos de Teléfonos].[Tipo de Teléfono] as 'TipoT' From [Tipos de Teléfonos] " +
                 "End";
-
             String Usuario1 =
-    "CREATE LOGIN Master_ACOPEDH " +
-    "WITH PASSWORD = 'AUREO112358' " +
-    "USE " + txtNombre.Text + ";" +
-    "CREATE USER Master_ACOPEDH FOR LOGIN Master_ACOPEDH ";
+                "CREATE LOGIN Master_ACOPEDH " +
+                "WITH PASSWORD = 'AUREO112358' " +
+                "USE " + txtNombre.Text + ";" +
+                "CREATE USER Master_ACOPEDH FOR LOGIN Master_ACOPEDH ";
             String Usuario2 =
                 "CREATE LOGIN Administrador " +
                 "WITH PASSWORD = 'ACOPEDH365' " +
@@ -853,6 +858,9 @@ namespace Crear_Base_de_Datos
                 "insert into [Tipo de Préstamo] values ('Personal',17),('Emergencia',17)";
             String insertartiposdetransacciones =
                 "insert into [Tipo de Transacción] values ('Aportación'),('Abono'), ('Préstamo'), ('Pago'), ('Retiro')";
+            //Añadido, la inserción de teléfonos
+            String insertartiposdeteléfonos =
+                 "insert into [Tipo de Transacción] values ('Aportación'),('Abono'), ('Préstamo'), ('Pago'), ('Retiro')";
             SqlCommand cmd = new SqlCommand(cadena1, cnn);
             SqlCommand cmd1 = new SqlCommand(tabla1, cnn);
             SqlCommand cmd2 = new SqlCommand(tabla2, cnn);
@@ -922,83 +930,85 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd67 = new SqlCommand(insertartiposdetransacciones, cnn);
             SqlCommand cmd68 = new SqlCommand(tabla53, cnn);
             SqlCommand cmd69 = new SqlCommand(tabla54, cnn);
+            SqlCommand cmd70 = new SqlCommand(insertartiposdeteléfonos, cnn);
 
             //try
             //{
             //Abrimos la conexión y ejecutamos el comando
             cnn.Open();
-                cmd.ExecuteNonQuery();
-                cmd1.ExecuteNonQuery();
-                cmd2.ExecuteNonQuery();
-                cmd3.ExecuteNonQuery();
-                cmd4.ExecuteNonQuery();
-                cmd5.ExecuteNonQuery();
-                cmd6.ExecuteNonQuery();
-                cmd7.ExecuteNonQuery();
-                cmd8.ExecuteNonQuery();
-                cmd9.ExecuteNonQuery();
-                cmd10.ExecuteNonQuery();
-                cmd11.ExecuteNonQuery();
-                cmd12.ExecuteNonQuery();
-                cmd13.ExecuteNonQuery();
-                cmd14.ExecuteNonQuery();
-                cmd15.ExecuteNonQuery();
-                cmd16.ExecuteNonQuery();
-                cmd17.ExecuteNonQuery();
-                cmd18.ExecuteNonQuery();
-                cmd19.ExecuteNonQuery();
-                cmd20.ExecuteNonQuery();
-                cmd21.ExecuteNonQuery();
-                cmd22.ExecuteNonQuery();
-                cmd23.ExecuteNonQuery();
-                cmd24.ExecuteNonQuery();
-                cmd25.ExecuteNonQuery();
-                cmd26.ExecuteNonQuery();
-                cmd27.ExecuteNonQuery();
-                cmd28.ExecuteNonQuery();
-                cmd29.ExecuteNonQuery();
-                cmd30.ExecuteNonQuery();
-                cmd31.ExecuteNonQuery();
-                cmd32.ExecuteNonQuery();
-                cmd33.ExecuteNonQuery();
-                cmd34.ExecuteNonQuery();
-                cmd35.ExecuteNonQuery();
-                cmd36.ExecuteNonQuery();
-                cmd37.ExecuteNonQuery();
-                cmd38.ExecuteNonQuery();
-                cmd39.ExecuteNonQuery();
-                cmd41.ExecuteNonQuery();
-                cmd42.ExecuteNonQuery();
-                cmd43.ExecuteNonQuery();
-                cmd44.ExecuteNonQuery();
-                cmd45.ExecuteNonQuery();
-                cmd46.ExecuteNonQuery();
-                cmd47.ExecuteNonQuery();
-                cmd48.ExecuteNonQuery();
-                cmd49.ExecuteNonQuery();
-                cmd50.ExecuteNonQuery();
-                cmd51.ExecuteNonQuery();
-                cmd52.ExecuteNonQuery();
-                cmd53.ExecuteNonQuery();
-                cmd54.ExecuteNonQuery();
-                cmd55.ExecuteNonQuery();
-                cmd56.ExecuteNonQuery();
-                cmd57.ExecuteNonQuery();
-                cmd58.ExecuteNonQuery();
-                cmd59.ExecuteNonQuery();
-                cmd60.ExecuteNonQuery();
-                cmd61.ExecuteNonQuery();
-                cmd62.ExecuteNonQuery();
-                cmd63.ExecuteNonQuery();
-                cmd64.ExecuteNonQuery();
-                cmd65.ExecuteNonQuery();
-                cmd66.ExecuteNonQuery();
-                cmd67.ExecuteNonQuery();
-                cmd68.ExecuteNonQuery();
-                cmd69.ExecuteNonQuery();
-                cnn.Close();
-                MessageBox.Show("Base Creada");
-                this.Close();
+            cmd.ExecuteNonQuery();
+            cmd1.ExecuteNonQuery();
+            cmd2.ExecuteNonQuery();
+            cmd3.ExecuteNonQuery();
+            cmd4.ExecuteNonQuery();
+            cmd5.ExecuteNonQuery();
+            cmd6.ExecuteNonQuery();
+            cmd7.ExecuteNonQuery();
+            cmd8.ExecuteNonQuery();
+            cmd9.ExecuteNonQuery();
+            cmd10.ExecuteNonQuery();
+            cmd11.ExecuteNonQuery();
+            cmd12.ExecuteNonQuery();
+            cmd13.ExecuteNonQuery();
+            cmd14.ExecuteNonQuery();
+            cmd15.ExecuteNonQuery();
+            cmd16.ExecuteNonQuery();
+            cmd17.ExecuteNonQuery();
+            cmd18.ExecuteNonQuery();
+            cmd19.ExecuteNonQuery();
+            cmd20.ExecuteNonQuery();
+            cmd21.ExecuteNonQuery();
+            cmd22.ExecuteNonQuery();
+            cmd23.ExecuteNonQuery();
+            cmd24.ExecuteNonQuery();
+            cmd25.ExecuteNonQuery();
+            cmd26.ExecuteNonQuery();
+            cmd27.ExecuteNonQuery();
+            cmd28.ExecuteNonQuery();
+            cmd29.ExecuteNonQuery();
+            cmd30.ExecuteNonQuery();
+            cmd31.ExecuteNonQuery();
+            cmd32.ExecuteNonQuery();
+            cmd33.ExecuteNonQuery();
+            cmd34.ExecuteNonQuery();
+            cmd35.ExecuteNonQuery();
+            cmd36.ExecuteNonQuery();
+            cmd37.ExecuteNonQuery();
+            cmd38.ExecuteNonQuery();
+            cmd39.ExecuteNonQuery();
+            cmd41.ExecuteNonQuery();
+            cmd42.ExecuteNonQuery();
+            cmd43.ExecuteNonQuery();
+            cmd44.ExecuteNonQuery();
+            cmd45.ExecuteNonQuery();
+            cmd46.ExecuteNonQuery();
+            cmd47.ExecuteNonQuery();
+            cmd48.ExecuteNonQuery();
+            cmd49.ExecuteNonQuery();
+            cmd50.ExecuteNonQuery();
+            cmd51.ExecuteNonQuery();
+            cmd52.ExecuteNonQuery();
+            cmd53.ExecuteNonQuery();
+            cmd54.ExecuteNonQuery();
+            cmd55.ExecuteNonQuery();
+            cmd56.ExecuteNonQuery();
+            cmd57.ExecuteNonQuery();
+            cmd58.ExecuteNonQuery();
+            cmd59.ExecuteNonQuery();
+            cmd60.ExecuteNonQuery();
+            cmd61.ExecuteNonQuery();
+            cmd62.ExecuteNonQuery();
+            cmd63.ExecuteNonQuery();
+            cmd64.ExecuteNonQuery();
+            cmd65.ExecuteNonQuery();
+            cmd66.ExecuteNonQuery();
+            cmd67.ExecuteNonQuery();
+            cmd68.ExecuteNonQuery();
+            cmd69.ExecuteNonQuery();
+            cmd70.ExecuteNonQuery();
+            cnn.Close();
+            MessageBox.Show("Base Creada");
+            this.Close();
             //}
             //catch (Exception ex)
             //{
