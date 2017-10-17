@@ -705,7 +705,7 @@ namespace Crear_Base_de_Datos
                "As " +
                "Begin Tran Cargar_Ahorros " +
                "Begin Try " +
-               "Select Asociado.[Código Asociado] as 'Código_A', (Asociado.Nombres+' ' +Asociado.Apellidos) as 'Nombre', Ahorro.Estado as 'Est',  [Tipo de Ahorro].Nombre as 'TipoA', [Tipo de Ahorro].[Tasa de Interés] as 'Interés' " +
+               "Select Asociado.[Código Asociado] as 'Código_A', (Asociado.Nombres+' ' + Asociado.Apellidos) as 'Nombre', Ahorro.Estado as 'Est',  [Tipo de Ahorro].Nombre as 'TipoA', [Tipo de Ahorro].[Tasa de Interés] as 'Interés' from Ahorro inner join Asociado " +
                "on Ahorro.[FK Código de Asociado] = Asociado.[Código Asociado] inner join [Tipo de Ahorro] on Ahorro.[FK Tipo Ahorro]=[Tipo de Ahorro].[id Tipo Ahorro] " +
                "where Ahorro.[id Ahorro] = @Código_Ahorro " +
                "Commit Tran Cargar_Ahorros " +
@@ -999,27 +999,27 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd54 = new SqlCommand(Usuario2, cnn);
             SqlCommand cmd55 = new SqlCommand(Usuario3, cnn);
             SqlCommand cmd56 = new SqlCommand(Usuario4, cnn);
-            SqlCommand cmd57 = new SqlCommand(permisosMaster_ACOPEDH, cnn);
-            SqlCommand cmd58 = new SqlCommand(permisosAdministrador, cnn);
-            SqlCommand cmd59 = new SqlCommand(permisosUsuario, cnn);
-            SqlCommand cmd60 = new SqlCommand(permisosInicioSesión, cnn);
-            SqlCommand cmd61 = new SqlCommand(crearusuarios, cnn);
-            SqlCommand cmd62 = new SqlCommand(crearahorros, cnn);
-            SqlCommand cmd63 = new SqlCommand(crearpagos, cnn);
-            SqlCommand cmd64 = new SqlCommand(crearsocios, cnn);
-            SqlCommand cmd65 = new SqlCommand(creartrabajos, cnn);
-            SqlCommand cmd66 = new SqlCommand(crearpréstamos, cnn);
-            SqlCommand cmd67 = new SqlCommand(insertartiposdetransacciones, cnn);
-            SqlCommand cmd68 = new SqlCommand(tabla53, cnn);
-            SqlCommand cmd69 = new SqlCommand(tabla54, cnn);
-            SqlCommand cmd70 = new SqlCommand(tabla55, cnn);
-            SqlCommand cmd71 = new SqlCommand(tabla56, cnn);
-            SqlCommand cmd72 = new SqlCommand(tabla57, cnn);
-            SqlCommand cmd73 = new SqlCommand(tabla58, cnn);
+            SqlCommand cmd57 = new SqlCommand(tabla53, cnn);
+            SqlCommand cmd58 = new SqlCommand(tabla54, cnn);
+            SqlCommand cmd59 = new SqlCommand(tabla55, cnn);
+            SqlCommand cmd60 = new SqlCommand(tabla56, cnn);
+            SqlCommand cmd61 = new SqlCommand(tabla57, cnn);
+            SqlCommand cmd62 = new SqlCommand(tabla58, cnn);
+            SqlCommand cmd63 = new SqlCommand(permisosMaster_ACOPEDH, cnn);
+            SqlCommand cmd64 = new SqlCommand(permisosAdministrador, cnn);
+            SqlCommand cmd65 = new SqlCommand(permisosUsuario, cnn);
+            SqlCommand cmd66 = new SqlCommand(permisosInicioSesión, cnn);
+            SqlCommand cmd67 = new SqlCommand(crearusuarios, cnn);
+            SqlCommand cmd68 = new SqlCommand(crearahorros, cnn);
+            SqlCommand cmd69 = new SqlCommand(crearpagos, cnn);
+            SqlCommand cmd70 = new SqlCommand(crearsocios, cnn);
+            SqlCommand cmd71 = new SqlCommand(creartrabajos, cnn);
+            SqlCommand cmd72 = new SqlCommand(crearpréstamos, cnn);
+            SqlCommand cmd73 = new SqlCommand(insertartiposdetransacciones, cnn);
             SqlCommand cmd74 = new SqlCommand(insertartiposdeteléfonos, cnn);
 
-            try
-            {
+            //try
+            //{
                 //Abrimos la conexión y ejecutamos el comando
                 cnn.Open();
                 cmd.ExecuteNonQuery();
@@ -1099,13 +1099,13 @@ namespace Crear_Base_de_Datos
                 cnn.Close();
                 MessageBox.Show("Base Creada");
                 this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message,
-                    "Error al crear la base",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }        
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message,
+            //            "Error al crear la base",
+            //            MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+        }
     }
 }
