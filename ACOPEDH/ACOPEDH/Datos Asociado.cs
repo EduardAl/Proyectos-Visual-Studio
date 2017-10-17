@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace ACOPEDH
             ********************************* 
         */
         string Dato;
+        Procedimientos_select Cargar = new Procedimientos_select();
         #region Constructores
         //Normal
         public Datos_Asociado()
@@ -30,6 +32,23 @@ namespace ACOPEDH
         {
             InitializeComponent();
             Dato = dato;
+        }
+        #endregion
+        #region Load
+        private void Datos_Asociado_Load(object sender, EventArgs e)
+        {
+#warning Actualizar y luego verificar este procedimiento
+
+            //Llenado de los combobox
+            cbAsociación.DataSource = Cargar.llenar_DataTable("[Cargar Tipo Socio]");
+            cbAsociación.DisplayMember = "TipoS";
+            cbOcupación.DataSource = Cargar.llenar_DataTable("[Cargar Ocupaciones]");
+            cbOcupación.DisplayMember = "Trabajo";
+            cbTipoTeléfono.DataSource = Cargar.llenar_DataTable("[Cargar Tipo Teléfono]");
+            cbTipoTeléfono.DisplayMember = "TipoT";
+            //Código Asociado
+            lbCódigo.Text = "Código de Asociación: " + Dato;
+            CargarDatos();
         }
         #endregion
 
@@ -59,19 +78,26 @@ namespace ACOPEDH
         {
             if (!bttModificar.Enabled)
             {
-
+                if (MessageBox.Show("¿Desea guardar los cambios?", "Modificación", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    DialogResult = DialogResult.OK;
+                }
             }
             Close();
         }
         //Cancelar Modificación
         private void bttCancelar_Click(object sender, EventArgs e)
         {
-
+            if (MessageBox.Show("¿Desea Cancelar la modificación?","Cancelar Modificación",MessageBoxButtons.OKCancel,MessageBoxIcon.Question)==DialogResult.OK)
+            {
+                Modificar(false);
+                CargarDatos();
+            }
         }
         //Habilitar Modificaciones
         private void bttModificar_Click(object sender, EventArgs e)
         {
-
+            Modificar(true);
         }
         //Desasociar
         private void bttDesasociar_Click(object sender, EventArgs e)
@@ -79,7 +105,44 @@ namespace ACOPEDH
 
         }
         #endregion
-
+        /*
+            *********************************
+            *            Métodos            *
+            ********************************* 
+        */
+        #region Métodos
+        public void Modificar(bool enabled)
+        {
+#warning Verificar cuales datos se pueden cambiar y cuales no
+            txtApellidos.Enabled = enabled;
+            txtDirección.Enabled = enabled;
+            txtDUI.Enabled = enabled;
+            txtNIT.Enabled = enabled;
+            txtNombres.Enabled = enabled;
+            dtAso.Enabled = enabled;
+            dtDesaso.Enabled = enabled;
+            dtNacimiento.Enabled = enabled;
+            cbTipoTeléfono.Enabled = enabled;
+            bttModificar.Enabled = !enabled;
+        }
+        public void CargarDatos()
+        {
+            //Carga de Parámetros
+            SqlParameter[] Param = new SqlParameter[1];
+            //Llenado del datatable (y de los TextBox)
+            DataTable dt = Cargar.LlenarText("[Cargar Asociados]", "Name,LName,Residencia,DDui,DNit", Param, txtNombres, txtApellidos, txtDirección, txtDUI, txtNIT);
+            Param[0] = new SqlParameter("@Código_Asociado", Dato);
+            dtNacimiento.Value = DateTime.Parse(dt.Rows[0]["FNacimiento"].ToString());
+            dtAso.Value = DateTime.Parse(dt.Rows[0]["FAsociación"].ToString());
+            if (dt.Rows[0]["Est"].ToString() !="ACTIVO")
+            {
+                dtDesaso.Value = DateTime.Parse(dt.Rows[0]["FDesasociación"].ToString());
+                dtDesaso.Visible = true;
+                lbDesa.Visible = true;
+                bttDesasociar.Visible = false;
+            }
+        }
+        #endregion
         /*
             *********************************
             *            Eventos            *
@@ -109,5 +172,4 @@ namespace ACOPEDH
         }
         #endregion
     }
-
 }

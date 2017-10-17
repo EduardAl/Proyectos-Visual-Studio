@@ -12,7 +12,6 @@ namespace ACOPEDH
     {
         Usuarios usuarios = new Usuarios();
         Conexión con = new Conexión();
-        Validaciones validaciones = new Validaciones();
         Procedimientos_select ps = new Procedimientos_select();
         static String contraseña;
         static String contraseñac;
@@ -44,7 +43,7 @@ namespace ACOPEDH
         {
             contraseña = Cifrado.CreateRandomPassword(8);
             contraseñac = Cifrado.encriptar(contraseña);
-            if (validaciones.validar_correo(ref txtCorreo, ref errorProvider1))
+            if (Validaciones.validar_correo(ref txtCorreo, ref errorProvider1))
             {
                 if (usuarios.existe(txtCorreo.Text))
                 {
@@ -75,7 +74,7 @@ namespace ACOPEDH
 
         private void txtCorreo_KeyUp(object sender, KeyEventArgs e)
         {
-            validaciones.validar_correo(ref txtCorreo, ref errorProvider1);
+            Validaciones.validar_correo(ref txtCorreo, ref errorProvider1);
         }
     }
 }

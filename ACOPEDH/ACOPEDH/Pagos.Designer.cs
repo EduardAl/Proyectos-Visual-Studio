@@ -46,6 +46,7 @@
             this.nmCantidad = new System.Windows.Forms.NumericUpDown();
             this.txtPagoMax = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.lbMora = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttMin)).BeginInit();
@@ -110,7 +111,7 @@
             // bttAceptar
             // 
             this.bttAceptar.Font = new System.Drawing.Font("Folks-Light", 12F);
-            this.bttAceptar.Location = new System.Drawing.Point(209, 275);
+            this.bttAceptar.Location = new System.Drawing.Point(330, 223);
             this.bttAceptar.Name = "bttAceptar";
             this.bttAceptar.Size = new System.Drawing.Size(110, 45);
             this.bttAceptar.TabIndex = 1;
@@ -223,7 +224,7 @@
             // nmCantidad
             // 
             this.nmCantidad.DecimalPlaces = 2;
-            this.nmCantidad.Location = new System.Drawing.Point(207, 233);
+            this.nmCantidad.Location = new System.Drawing.Point(191, 233);
             this.nmCantidad.Name = "nmCantidad";
             this.nmCantidad.Size = new System.Drawing.Size(110, 27);
             this.nmCantidad.TabIndex = 0;
@@ -252,6 +253,19 @@
             this.label6.TabIndex = 41;
             this.label6.Text = "Un solo pago:";
             // 
+            // lbMora
+            // 
+            this.lbMora.AutoSize = true;
+            this.lbMora.BackColor = System.Drawing.Color.Transparent;
+            this.lbMora.Font = new System.Drawing.Font("Linotte-SemiBold", 10F);
+            this.lbMora.Location = new System.Drawing.Point(85, 289);
+            this.lbMora.Name = "lbMora";
+            this.lbMora.Size = new System.Drawing.Size(273, 34);
+            this.lbMora.TabIndex = 43;
+            this.lbMora.Text = "* La fecha límite para este pago ha pasado,\r\nse aplica un recargo a la cantidad d" +
+    "e Pago";
+            this.lbMora.Visible = false;
+            // 
             // Pagos
             // 
             this.AcceptButton = this.bttAceptar;
@@ -259,6 +273,7 @@
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(470, 336);
+            this.Controls.Add(this.lbMora);
             this.Controls.Add(this.txtPagoMax);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.nmCantidad);
@@ -318,5 +333,6 @@
         private System.Windows.Forms.NumericUpDown nmCantidad;
         private System.Windows.Forms.TextBox txtPagoMax;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lbMora;
     }
 }

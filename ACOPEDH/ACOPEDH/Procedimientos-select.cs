@@ -23,13 +23,13 @@ namespace ACOPEDH
                 SqlConnection conex = new SqlConnection(cn.cadena);
                 conex.InfoMessage += new SqlInfoMessageEventHandler(Conex_InfoMessage);
                 conex.Open();
-                    Comando = new SqlCommand(procedimiento, conex);
-                    Comando.CommandType = CommandType.StoredProcedure;
-                    Comando.CommandText = procedimiento;
-                    SqlDataAdapter da = new SqlDataAdapter(Comando);
-                    for (int x = 0; x < (param.Length); x++)
-                        Comando.Parameters.Add(param[x]);
-                    resultado = Comando.ExecuteNonQuery();
+                Comando = new SqlCommand(procedimiento, conex);
+                Comando.CommandType = CommandType.StoredProcedure;
+                Comando.CommandText = procedimiento;
+                SqlDataAdapter da = new SqlDataAdapter(Comando);
+                for (int x = 0; x < (param.Length); x++)
+                    Comando.Parameters.Add(param[x]);
+                resultado = Comando.ExecuteNonQuery();
             }
             catch (SqlException ex)
             {
@@ -44,7 +44,7 @@ namespace ACOPEDH
             try
             {
                 SqlConnection conex = new SqlConnection(cn.cadena);
-             //   SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
+                //   SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
 
                 conex.Open();
                 Comando = new SqlCommand(procedimiento, conex);
@@ -153,12 +153,14 @@ namespace ACOPEDH
             }
             Globales.gbError = mensaje;
         }
-#region NoUtilizar
-        public void LlenarText(string procedimiento, string Rows, params String[] Text)
+
+        #region Llamadas a internos
+        public DataTable LlenarText(string procedimiento, string Rows, params String[] Text)
         {
+            DataTable Llenado = new DataTable();
             try
             {
-                DataTable Llenado = llenar_DataTable(procedimiento);
+                Llenado = llenar_DataTable(procedimiento);
                 String[] Row = Rows.Split(',');
                 DataRow row = Llenado.Rows[0];
                 for (int j = 0; j < Text.Length; j++)
@@ -166,16 +168,18 @@ namespace ACOPEDH
                     Text[j] = Convert.ToString(row[Row[j]]);
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message, ex.ErrorCode.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            return Llenado;
         }
-        public void LlenarText(string procedimiento, string Rows,SqlParameter[] param, params TextBox[] Text)
+        public DataTable LlenarText(string procedimiento, string Rows,SqlParameter[] param, params TextBox[] Text)
         {
+            DataTable Llenado = new DataTable();
             try
             {
-                DataTable Llenado = llenar_DataTable(procedimiento, param);
+                Llenado = llenar_DataTable(procedimiento, param);
                 String[] Row = Rows.Split(',');
                 DataRow row = Llenado.Rows[0];
                 int j = 0;
@@ -189,35 +193,7 @@ namespace ACOPEDH
             {
                 MessageBox.Show(ex.Message, ex.ErrorCode.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-        public List<ComboBox_Llenado> LlenarCombo(string procedimiento, string Rows)
-        {
-            cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
-            List<ComboBox_Llenado> Retornar = new List<ComboBox_Llenado>();
-            try
-            {
-                SqlConnection conex = new SqlConnection(cn.cadena);
-                //SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
-                conex.Open();
-                Comando = new SqlCommand(procedimiento, conex);
-                Comando.CommandType = CommandType.StoredProcedure;
-                SqlDataReader DataReader = Comando.ExecuteReader();
-                string[] Row = Rows.Split(',');
-                while (DataReader.Read())
-                {
-                    ComboBox_Llenado Dato = new ComboBox_Llenado();
-                    Dato.Nombre = DataReader[Row[0]].ToString();
-                    if (Row.Length > 1)
-                        Dato.interes = Convert.ToDouble(DataReader[Row[1]]);
-                    Retornar.Add(Dato);
-                }
-                conex.Close();
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message, ex.ErrorCode.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return Retornar;
+            return Llenado;
         }
 #endregion
     }

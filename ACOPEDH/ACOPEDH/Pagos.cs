@@ -19,6 +19,8 @@ namespace ACOPEDH
             ********************************* 
         */
         string Datos;
+        bool arreglandopago=false;
+        public static double interes = 0.02;
         #region Constructores
         //Normal
         public Pagos()
@@ -62,6 +64,7 @@ namespace ACOPEDH
                 {
 #warning Añadir Imprimir
                 }
+
                 DialogResult = DialogResult.OK;
                 Close();
             }
@@ -119,7 +122,7 @@ namespace ACOPEDH
 
         private void Pagos_Load(object sender, EventArgs e)
         {
-            double interes=1, Monto=1;
+            double interes = 1, Monto = 1;
             TextBox Monto1 = new TextBox();
             TextBox interes1 = new TextBox();
             Procedimientos_select pro = new Procedimientos_select();
@@ -128,6 +131,9 @@ namespace ACOPEDH
             pro.LlenarText("[Cargar Préstamo]", "Nombre,PCuotas,Monto,Interés", Param, txtNombre, txtMontoMinimo, Monto1, interes1);
             Param[0] = new SqlParameter("@ID_Préstamo", Datos);
             pro.LlenarText("[Cargar Saldo]", "Pago Mínimo", Param, txtSaldo);
+            Param[0] = new SqlParameter("@Id_Préstamo", Datos);
+            DataTable dt = pro.llenar_DataTable("[Conseguir Límite]", Param);
+            DateTime time = Convert.ToDateTime(dt.Rows[0]["Límite"]).AddMonths(1);
             txtIdPréstamo.Text = Datos;
             try
             {
@@ -137,7 +143,7 @@ namespace ACOPEDH
             }
             catch
             {
-                nmCantidad.Maximum = Convert.ToDecimal(Monto) * (1+ (Convert.ToDecimal(interes) / 1200));
+                nmCantidad.Maximum = Convert.ToDecimal(Monto) * (1 + (Convert.ToDecimal(interes) / 1200));
                 txtSaldo.Text = Monto.ToString();
             }
             if (Convert.ToDecimal(txtMontoMinimo.Text) > nmCantidad.Maximum)
@@ -146,9 +152,17 @@ namespace ACOPEDH
                 txtMontoMinimo.Text = txtSaldo.Text;
             }
             else
+            {
                 nmCantidad.Minimum = Convert.ToDecimal(txtMontoMinimo.Text);
+            }
+            //Verificar esto
+            if(time<=DateTime.Now&&!arreglandopago)
+            {
+                nmCantidad.Minimum = Convert.ToDecimal(Convert.ToDouble(txtMontoMinimo.Text) * interes);
+            }
             nmCantidad.Value = nmCantidad.Minimum;
-            txtPagoMax.Text = Math.Round(nmCantidad.Maximum, 2).ToString();
+            txtPagoMax.Text =Math.Round(nmCantidad.Maximum, 2).ToString();
+            txtMontoMinimo.Text = "$" + Math.Round(double.Parse(txtMontoMinimo.Text),2);
         }
         #endregion
         #region Pintar Bordes

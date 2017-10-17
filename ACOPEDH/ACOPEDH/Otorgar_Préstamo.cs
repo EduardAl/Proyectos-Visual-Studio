@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,15 +13,16 @@ namespace ACOPEDH
 {
     public partial class Otorgar_Préstamo : Form
     {
-        public static DialogResult dr = DialogResult.Cancel;
-#warning FALTA TODO EL CÓDIGO
+#warning FALTA GUARDAR EL PRÉSTAMO Y LA BÚSQUEDA
+
         /*
             *********************************
             *     Componentes Iniciales     *
             ********************************* 
         */
+        public static DialogResult dr = DialogResult.Cancel;
         int Cuotas; double Monto, interes;
-        List<ComboBox_Llenado> TipoPréstamo = new List<ComboBox_Llenado>();
+        Procedimientos_select Cargar = new Procedimientos_select();
         #region Constructores
         //Normal
         public Otorgar_Préstamo()
@@ -31,17 +33,24 @@ namespace ACOPEDH
         #region Load
         private void Otorgar_Préstamo_Load(object sender, EventArgs e)
         {
-            Procedimientos_select Cargar = new Procedimientos_select();
-            TipoPréstamo = Cargar.LlenarCombo("[Cargar Tipo Préstamo]", "TipoP,Interés");
-            foreach (ComboBox_Llenado element in TipoPréstamo)
-            {
-                CBTipoPréstamo.Items.Add(element.Nombre);
-            }
+            dgvAsociado.DataSource = Cargar.llenar_DataTable("[Asociado DVG]");
+            CBTipoPréstamo.DataSource = Cargar.llenar_DataTable("[Cargar Tipo Préstamo]");
+            CBTipoPréstamo.DisplayMember = "TipoP";
+            CBTipoPréstamo.ValueMember = "Interés";
+            CBFormadePago.DataSource = Cargar.llenar_DataTable("[Cargar Tipo Pagos]");
+            CBFormadePago.DisplayMember = "FormaP";
+            CBFormadePago.ValueMember = "Id";
             if (CBTipoPréstamo.Items.Count > 0)
+            {
                 CBTipoPréstamo.SelectedIndex = 0;
+                TxtInterés.Text = CBTipoPréstamo.SelectedValue.ToString();
+            }
+            if (CBFormadePago.Items.Count > 0)
+                CBFormadePago.SelectedIndex = 0;
+            dgvAsociado.Refresh();
+            TxtBúsqueda.Focus();
         }
         #endregion
-
         /*
             *********************************
             *            Botones            *
@@ -51,12 +60,34 @@ namespace ACOPEDH
         //Otorgar Préstamo
         private void button1_Click(object sender, EventArgs e)
         {
-            if (TxtCódigoP.Text != "")
+            //Verificando que todos los datos estén correctos
+            if (Validaciones.IsNullOrEmty(ref TxtAsociadoP, ref Errores) &&
+                Validaciones.IsNullOrEmty(ref txtCuotaMensual, ref Errores))
             {
-                //Otorgar Préstamo
+                //Insertando los parametros
+                SqlParameter[] Parámetros = new SqlParameter[7];
+                Parámetros[0] = new SqlParameter("@FK_Tipo_Préstamo", CBTipoPréstamo.Text);
+                Parámetros[1] = new SqlParameter("@FK_Asociado", TxtCódigoP.Text);
+                Parámetros[2] = new SqlParameter("@Forma_Pago", CBFormadePago.SelectedValue);
+                Parámetros[3] = new SqlParameter("@NCuotas", int.Parse(txtNoCuota.Text));
+                Parámetros[4] = new SqlParameter("@Monto", double.Parse(TxtMonto.Text));
+                Parámetros[5] = new SqlParameter("@Cuota", double.Parse(txtCuotaMensual.Text));
+                Parámetros[6] = new SqlParameter("@Usuario", Globales.gbCodUsuario.ToString());
+                //Verificar que todo esté bien
+                if (Cargar.llenar_tabla("[Nuevo Préstamo]", Parámetros) > 0)
+                {
+                    MessageBox.Show("Préstamo guardado en la base de datos, procediendo a generar los documentos necesarios", "¡Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult = dr = DialogResult.OK;
+                    Close();
+                }
+                else
+                    DialogResult = DialogResult.None;
             }
             else
-                MessageBox.Show("No ha seleccionado a una persona asociada", "Persona Asociada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            {
+                MessageBox.Show("Falta de datos para proceder el registro", "Datos Faltantes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                DialogResult = DialogResult.None;
+            }
         }
         //Minimizar
         private void bttMin_Click(object sender, EventArgs e)
@@ -66,22 +97,21 @@ namespace ACOPEDH
         //Cerrar
         private void bttCer_Click(object sender, EventArgs e)
         {
-            dr = DialogResult.Cancel;
-            this.Close();
+            Close();
         }
         //Mostrar Amortización
         private void button2_Click(object sender, EventArgs e)
         {
-            try
+            if (Validaciones.IsNullOrEmty(ref txtCuotaMensual,ref Errores))
             {
                 Amortización Acción = new Amortización(double.Parse(TxtInterés.Text), Monto, Cuotas);
                 Acción.ShowDialog();
             }
-            catch
+            else
             {
-                MessageBox.Show("Aún no ha colocado los datos necesarios para generar una amortización");
+                MessageBox.Show("Aún no ha colocado los datos necesarios para generar una amortización","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
-            dr = DialogResult.OK;
+            DialogResult = DialogResult.None;
         }
         #endregion
 
@@ -154,13 +184,8 @@ namespace ACOPEDH
         {
             if (dr == DialogResult.Cancel)
             {
-                DialogResult = MessageBox.Show("¿Está seguro que desea salir?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                if (DialogResult == DialogResult.Cancel)
-                    e.Cancel = true;
-            }
-            else
-            {
-                e.Cancel = true;
+                if (MessageBox.Show("¿Está seguro que desea salir?", "Saliendo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+                { e.Cancel = true; }
             }
         }
         #endregion
@@ -169,10 +194,10 @@ namespace ACOPEDH
         {
             try
             {
-                TxtCódigoP.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-                TxtAsociadoP.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-                TxtDUIP.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-                TxtOcupación.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                TxtCódigoP.Text = dgvAsociado.CurrentRow.Cells[0].Value.ToString();
+                TxtAsociadoP.Text = dgvAsociado.CurrentRow.Cells[1].Value.ToString();
+                TxtDUIP.Text = dgvAsociado.CurrentRow.Cells[2].Value.ToString();
+                TxtOcupación.Text = dgvAsociado.CurrentRow.Cells[3].Value.ToString();
             }
             catch
             {
@@ -187,11 +212,10 @@ namespace ACOPEDH
         //Cambiar el tipo de préstamo
         private void CBTipoPréstamo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TxtInterés.Text = ComboBox_Llenado.ConseguirInterés(TipoPréstamo, CBTipoPréstamo.Text).ToString();
+            TxtInterés.Text = CBTipoPréstamo.SelectedValue.ToString();
         }
 
         #endregion
-
         #region Pintar Bordes
         private void Bordes_Paint(object sender, PaintEventArgs e)
         {

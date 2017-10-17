@@ -32,31 +32,31 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.BarraTítulo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtAsociado = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtCuenta = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtCódigo = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtTipoA = new System.Windows.Forms.TextBox();
+            this.txtEstado = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.txtAbonos = new System.Windows.Forms.TextBox();
+            this.txtRetiros = new System.Windows.Forms.TextBox();
+            this.txtSaldo = new System.Windows.Forms.TextBox();
+            this.dgvAbonos = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.bttCerrarCuenta = new System.Windows.Forms.Button();
             this.bttCer = new System.Windows.Forms.PictureBox();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgvRetiros = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAbonos)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRetiros)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox3
@@ -92,13 +92,13 @@
             this.label1.TabIndex = 62;
             this.label1.Text = "Persona\r\nAsociada:";
             // 
-            // textBox1
+            // txtAsociado
             // 
-            this.textBox1.Location = new System.Drawing.Point(115, 66);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(382, 27);
-            this.textBox1.TabIndex = 63;
+            this.txtAsociado.Location = new System.Drawing.Point(115, 66);
+            this.txtAsociado.Name = "txtAsociado";
+            this.txtAsociado.ReadOnly = true;
+            this.txtAsociado.Size = new System.Drawing.Size(382, 27);
+            this.txtAsociado.TabIndex = 63;
             // 
             // label2
             // 
@@ -110,13 +110,13 @@
             this.label2.TabIndex = 64;
             this.label2.Text = "No Cuenta:";
             // 
-            // textBox2
+            // txtCuenta
             // 
-            this.textBox2.Location = new System.Drawing.Point(115, 102);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(135, 27);
-            this.textBox2.TabIndex = 65;
+            this.txtCuenta.Location = new System.Drawing.Point(115, 102);
+            this.txtCuenta.Name = "txtCuenta";
+            this.txtCuenta.ReadOnly = true;
+            this.txtCuenta.Size = new System.Drawing.Size(135, 27);
+            this.txtCuenta.TabIndex = 65;
             // 
             // label3
             // 
@@ -128,13 +128,13 @@
             this.label3.TabIndex = 66;
             this.label3.Text = "Código Asociación:";
             // 
-            // textBox3
+            // txtCódigo
             // 
-            this.textBox3.Location = new System.Drawing.Point(676, 66);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(135, 27);
-            this.textBox3.TabIndex = 67;
+            this.txtCódigo.Location = new System.Drawing.Point(674, 66);
+            this.txtCódigo.Name = "txtCódigo";
+            this.txtCódigo.ReadOnly = true;
+            this.txtCódigo.Size = new System.Drawing.Size(135, 27);
+            this.txtCódigo.TabIndex = 67;
             // 
             // label4
             // 
@@ -156,21 +156,21 @@
             this.label5.TabIndex = 69;
             this.label5.Text = "Estado:";
             // 
-            // textBox4
+            // txtTipoA
             // 
-            this.textBox4.Location = new System.Drawing.Point(426, 102);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(135, 27);
-            this.textBox4.TabIndex = 70;
+            this.txtTipoA.Location = new System.Drawing.Point(426, 102);
+            this.txtTipoA.Name = "txtTipoA";
+            this.txtTipoA.ReadOnly = true;
+            this.txtTipoA.Size = new System.Drawing.Size(135, 27);
+            this.txtTipoA.TabIndex = 70;
             // 
-            // textBox5
+            // txtEstado
             // 
-            this.textBox5.Location = new System.Drawing.Point(676, 102);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(135, 27);
-            this.textBox5.TabIndex = 71;
+            this.txtEstado.Location = new System.Drawing.Point(674, 102);
+            this.txtEstado.Name = "txtEstado";
+            this.txtEstado.ReadOnly = true;
+            this.txtEstado.Size = new System.Drawing.Size(135, 27);
+            this.txtEstado.TabIndex = 71;
             // 
             // label6
             // 
@@ -205,49 +205,49 @@
             this.label8.TabIndex = 74;
             this.label8.Text = "Saldo Actual:";
             // 
-            // textBox6
+            // txtAbonos
             // 
-            this.textBox6.Font = new System.Drawing.Font("Linotte-Bold", 10F);
-            this.textBox6.Location = new System.Drawing.Point(152, 31);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(105, 23);
-            this.textBox6.TabIndex = 75;
+            this.txtAbonos.Font = new System.Drawing.Font("Linotte-Bold", 10F);
+            this.txtAbonos.Location = new System.Drawing.Point(152, 31);
+            this.txtAbonos.Name = "txtAbonos";
+            this.txtAbonos.ReadOnly = true;
+            this.txtAbonos.Size = new System.Drawing.Size(105, 23);
+            this.txtAbonos.TabIndex = 75;
             // 
-            // textBox7
+            // txtRetiros
             // 
-            this.textBox7.Font = new System.Drawing.Font("Linotte-Bold", 10F);
-            this.textBox7.Location = new System.Drawing.Point(152, 68);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(105, 23);
-            this.textBox7.TabIndex = 76;
+            this.txtRetiros.Font = new System.Drawing.Font("Linotte-Bold", 10F);
+            this.txtRetiros.Location = new System.Drawing.Point(152, 68);
+            this.txtRetiros.Name = "txtRetiros";
+            this.txtRetiros.ReadOnly = true;
+            this.txtRetiros.Size = new System.Drawing.Size(105, 23);
+            this.txtRetiros.TabIndex = 76;
             // 
-            // textBox8
+            // txtSaldo
             // 
-            this.textBox8.Font = new System.Drawing.Font("Linotte-Bold", 10F);
-            this.textBox8.Location = new System.Drawing.Point(152, 103);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(105, 23);
-            this.textBox8.TabIndex = 77;
+            this.txtSaldo.Font = new System.Drawing.Font("Linotte-Bold", 10F);
+            this.txtSaldo.Location = new System.Drawing.Point(152, 103);
+            this.txtSaldo.Name = "txtSaldo";
+            this.txtSaldo.ReadOnly = true;
+            this.txtSaldo.Size = new System.Drawing.Size(105, 23);
+            this.txtSaldo.TabIndex = 77;
             // 
-            // dataGridView1
+            // dgvAbonos
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(317, 162);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(247, 374);
-            this.dataGridView1.TabIndex = 78;
+            this.dgvAbonos.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvAbonos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvAbonos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAbonos.Location = new System.Drawing.Point(313, 162);
+            this.dgvAbonos.Name = "dgvAbonos";
+            this.dgvAbonos.Size = new System.Drawing.Size(247, 374);
+            this.dgvAbonos.TabIndex = 78;
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.textBox8);
-            this.groupBox1.Controls.Add(this.textBox7);
-            this.groupBox1.Controls.Add(this.textBox6);
+            this.groupBox1.Controls.Add(this.txtSaldo);
+            this.groupBox1.Controls.Add(this.txtRetiros);
+            this.groupBox1.Controls.Add(this.txtAbonos);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
@@ -283,15 +283,15 @@
             this.bttCer.TabStop = false;
             this.bttCer.Click += new System.EventHandler(this.bttCer_Click);
             // 
-            // dataGridView2
+            // dgvRetiros
             // 
-            this.dataGridView2.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(564, 162);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(247, 374);
-            this.dataGridView2.TabIndex = 82;
+            this.dgvRetiros.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvRetiros.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvRetiros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRetiros.Location = new System.Drawing.Point(560, 162);
+            this.dgvRetiros.Name = "dgvRetiros";
+            this.dgvRetiros.Size = new System.Drawing.Size(247, 374);
+            this.dgvRetiros.TabIndex = 82;
             // 
             // Estado_de_Cuenta
             // 
@@ -299,20 +299,20 @@
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(825, 548);
-            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.dgvRetiros);
             this.Controls.Add(this.bttCer);
             this.Controls.Add(this.bttCerrarCuenta);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.dgvAbonos);
+            this.Controls.Add(this.txtEstado);
+            this.Controls.Add(this.txtTipoA);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtCódigo);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtCuenta);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtAsociado);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.BarraTítulo);
@@ -328,11 +328,11 @@
             this.Load += new System.EventHandler(this.Estado_de_Cuenta_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAbonos)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRetiros)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -343,25 +343,25 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label BarraTítulo;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtAsociado;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtCuenta;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtCódigo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtTipoA;
+        private System.Windows.Forms.TextBox txtEstado;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox txtAbonos;
+        private System.Windows.Forms.TextBox txtRetiros;
+        private System.Windows.Forms.TextBox txtSaldo;
+        private System.Windows.Forms.DataGridView dgvAbonos;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button bttCerrarCuenta;
         private System.Windows.Forms.PictureBox bttCer;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgvRetiros;
     }
 }

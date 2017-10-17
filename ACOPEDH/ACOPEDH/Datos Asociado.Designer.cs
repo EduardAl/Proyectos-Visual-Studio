@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Datos_Asociado));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bttModificar = new System.Windows.Forms.Button();
             this.bttAceptar = new System.Windows.Forms.Button();
             this.dtNacimiento = new System.Windows.Forms.DateTimePicker();
@@ -49,22 +54,22 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.BarraTítulo = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtAso = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.lbDesa = new System.Windows.Forms.Label();
+            this.dtDesaso = new System.Windows.Forms.DateTimePicker();
             this.cbTipoTeléfono = new System.Windows.Forms.ComboBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.txtTeléfono = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvTeléfonos = new System.Windows.Forms.DataGridView();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lbCódigo = new System.Windows.Forms.Label();
             this.bttCancelar = new System.Windows.Forms.Button();
             this.bttDesasociar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTeléfonos)).BeginInit();
             this.SuspendLayout();
             // 
             // bttModificar
@@ -264,13 +269,13 @@
             this.BarraTítulo.Text = "         ACOPEDH .:. NUEVA PERSONA ASOCIADA";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dateTimePicker1
+            // dtAso
             // 
-            this.dateTimePicker1.Enabled = false;
-            this.dateTimePicker1.Location = new System.Drawing.Point(149, 539);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(286, 27);
-            this.dateTimePicker1.TabIndex = 99;
+            this.dtAso.Enabled = false;
+            this.dtAso.Location = new System.Drawing.Point(149, 539);
+            this.dtAso.Name = "dtAso";
+            this.dtAso.Size = new System.Drawing.Size(286, 27);
+            this.dtAso.TabIndex = 99;
             // 
             // label8
             // 
@@ -282,23 +287,25 @@
             this.label8.TabIndex = 100;
             this.label8.Text = "Fecha de\r\nAsociación:";
             // 
-            // label9
+            // lbDesa
             // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(40, 592);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(113, 38);
-            this.label9.TabIndex = 101;
-            this.label9.Text = "Fecha de\r\nDesasociación:";
+            this.lbDesa.AutoSize = true;
+            this.lbDesa.BackColor = System.Drawing.Color.Transparent;
+            this.lbDesa.Location = new System.Drawing.Point(40, 592);
+            this.lbDesa.Name = "lbDesa";
+            this.lbDesa.Size = new System.Drawing.Size(113, 38);
+            this.lbDesa.TabIndex = 101;
+            this.lbDesa.Text = "Fecha de\r\nDesasociación:";
+            this.lbDesa.Visible = false;
             // 
-            // dateTimePicker2
+            // dtDesaso
             // 
-            this.dateTimePicker2.Enabled = false;
-            this.dateTimePicker2.Location = new System.Drawing.Point(149, 602);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(286, 27);
-            this.dateTimePicker2.TabIndex = 102;
+            this.dtDesaso.Enabled = false;
+            this.dtDesaso.Location = new System.Drawing.Point(149, 602);
+            this.dtDesaso.Name = "dtDesaso";
+            this.dtDesaso.Size = new System.Drawing.Size(286, 27);
+            this.dtDesaso.TabIndex = 102;
+            this.dtDesaso.Visible = false;
             // 
             // cbTipoTeléfono
             // 
@@ -355,21 +362,53 @@
             this.txtTeléfono.Size = new System.Drawing.Size(178, 27);
             this.txtTeléfono.TabIndex = 103;
             // 
-            // dataGridView1
+            // dgvTeléfonos
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(493, 433);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(286, 141);
-            this.dataGridView1.TabIndex = 105;
-            this.dataGridView1.TabStop = false;
-            this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
+            this.dgvTeléfonos.AllowUserToResizeColumns = false;
+            this.dgvTeléfonos.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvTeléfonos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvTeléfonos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvTeléfonos.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvTeléfonos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Linotte-Bold", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTeléfonos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvTeléfonos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Linotte-Bold", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTeléfonos.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvTeléfonos.Location = new System.Drawing.Point(493, 433);
+            this.dgvTeléfonos.Name = "dgvTeléfonos";
+            this.dgvTeléfonos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Linotte-Bold", 12F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTeléfonos.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvTeléfonos.RowHeadersVisible = false;
+            this.dgvTeléfonos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvTeléfonos.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvTeléfonos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvTeléfonos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTeléfonos.Size = new System.Drawing.Size(286, 141);
+            this.dgvTeléfonos.TabIndex = 105;
+            this.dgvTeléfonos.TabStop = false;
+            this.dgvTeléfonos.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             // 
             // label10
             // 
@@ -381,15 +420,15 @@
             this.label10.TabIndex = 104;
             this.label10.Text = "Teléfonos:";
             // 
-            // label11
+            // lbCódigo
             // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Location = new System.Drawing.Point(163, 662);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(164, 19);
-            this.label11.TabIndex = 110;
-            this.label11.Text = "Código de Asociación:";
+            this.lbCódigo.AutoSize = true;
+            this.lbCódigo.BackColor = System.Drawing.Color.Transparent;
+            this.lbCódigo.Location = new System.Drawing.Point(163, 662);
+            this.lbCódigo.Name = "lbCódigo";
+            this.lbCódigo.Size = new System.Drawing.Size(164, 19);
+            this.lbCódigo.TabIndex = 110;
+            this.lbCódigo.Text = "Código de Asociación:";
             // 
             // bttCancelar
             // 
@@ -420,17 +459,17 @@
             this.ClientSize = new System.Drawing.Size(810, 709);
             this.Controls.Add(this.bttDesasociar);
             this.Controls.Add(this.bttCancelar);
-            this.Controls.Add(this.label11);
+            this.Controls.Add(this.lbCódigo);
             this.Controls.Add(this.cbTipoTeléfono);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtTeléfono);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvTeléfonos);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dtDesaso);
+            this.Controls.Add(this.lbDesa);
+            this.Controls.Add(this.dtAso);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.bttModificar);
             this.Controls.Add(this.bttAceptar);
@@ -460,9 +499,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Datos_Asociado";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Datos_Asociado_FormClosing);
+            this.Load += new System.EventHandler(this.Datos_Asociado_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTeléfonos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -490,18 +530,18 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label BarraTítulo;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtAso;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Label lbDesa;
+        private System.Windows.Forms.DateTimePicker dtDesaso;
         private System.Windows.Forms.ComboBox cbTipoTeléfono;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txtTeléfono;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvTeléfonos;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lbCódigo;
         private System.Windows.Forms.Button bttCancelar;
         private System.Windows.Forms.Button bttDesasociar;
     }

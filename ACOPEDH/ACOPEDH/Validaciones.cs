@@ -6,7 +6,7 @@ namespace ACOPEDH
 {
     public partial class Validaciones
     {
-        public bool validar_DUI(ref TextBox DUI, ref ErrorProvider Mostrar)
+        public static bool validar_DUI(ref TextBox DUI, ref ErrorProvider Mostrar)
         {
             Mostrar.Clear();
             String expresion;
@@ -29,7 +29,7 @@ namespace ACOPEDH
                 return false;
             }
         }
-        public bool validar_NIT(ref TextBox NIT, ref ErrorProvider Mostrar)
+        public static bool validar_NIT(ref TextBox NIT, ref ErrorProvider Mostrar)
         {
             Mostrar.Clear();
             String expresion;
@@ -52,7 +52,7 @@ namespace ACOPEDH
                 return false;
             }
         }
-        public bool validar_correo(ref TextBox correo, ref ErrorProvider Mostrar)
+        public static bool validar_correo(ref TextBox correo, ref ErrorProvider Mostrar)
         {
             Mostrar.Clear();
             String expresion;
@@ -80,7 +80,7 @@ namespace ACOPEDH
                 return false;
             }
         }
-        public bool validar_nombre(ref TextBox Nombre, ref ErrorProvider Mostrar)
+        public static bool validar_nombre(ref TextBox Nombre, ref ErrorProvider Mostrar)
         {
             Mostrar.Clear();
             String expresion;
@@ -103,7 +103,7 @@ namespace ACOPEDH
                 return false;
             }
         }
-        public bool validar_Teléfonos(ref TextBox Telefono, ref ErrorProvider Mostrar)
+        public static bool validar_Teléfonos(ref TextBox Telefono, ref ErrorProvider Mostrar)
         {
             Mostrar.Clear();
             String expresion;
@@ -126,7 +126,7 @@ namespace ACOPEDH
                 return false;
             }
         }
-        public bool validar_contraseñas(TextBox Contraseña1, ref ErrorProvider Mostrar)
+        public static bool validar_contraseñas(TextBox Contraseña1, ref ErrorProvider Mostrar)
         {
             Mostrar.Clear();
             String expresion;
@@ -151,7 +151,7 @@ namespace ACOPEDH
                 return false;
             }
         }
-        public bool claves_iguales(TextBox Contraseña1, TextBox Contraseña2, ref ErrorProvider Mostrar)
+        public static bool claves_iguales(TextBox Contraseña1, TextBox Contraseña2, ref ErrorProvider Mostrar)
         {
             Mostrar.Clear();
             if (Contraseña1.Text != Contraseña2.Text)
@@ -162,15 +162,50 @@ namespace ACOPEDH
             else
                 return true;
         }
-        public bool ValidarNomApe(ref TextBox txt, ref ErrorProvider Mostrar)
+        public static bool ValidarNomApe(ref TextBox txt, ref ErrorProvider Mostrar)
         {
             txt.Text = retornarMayúscula(ref txt);
             txt.SelectionStart = txt.Text.Length;
             validar_nombre(ref txt, ref Mostrar);
             return !string.IsNullOrEmpty(txt.Text);
         }
+        public static bool validar_Cheque(ref TextBox Cheque, ref ErrorProvider Mostrar)
+        {
+            Mostrar.Clear();
+            String expresion;
+            expresion = "[0-9]{6}\\-[0-9]{1}?$";
+            if (Regex.IsMatch(Cheque.Text, expresion))
+            {
+                if (Regex.Replace(Cheque.Text, expresion, String.Empty).Length == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    Mostrar.SetError(Cheque, "El cheque ingresado es inválido. Formato: 123456-1");
+                    return false;
+                }
+            }
+            else
+            {
+                Mostrar.SetError(Cheque, "El cheque ingresado es inválido. Formato: 123456-1");
+                return false;
+            }
+        }
+        public static bool IsNullOrEmty(ref TextBox Cadena, ref ErrorProvider Mostrar)
+        {
+            if (String.IsNullOrEmpty(Cadena.Text))
+            {
+                Mostrar.SetError(Cadena, "Campo obligatorio.");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
-        private string retornarMayúscula(ref TextBox Cadena)
+        private static string retornarMayúscula(ref TextBox Cadena)
         {
             while (Cadena.Text.Contains("  "))
             {
@@ -207,40 +242,6 @@ namespace ACOPEDH
             else
                 return null;
         }
-        public bool validar_Cheque(ref TextBox Cheque, ref ErrorProvider Mostrar)
-        {
-            Mostrar.Clear();
-            String expresion;
-            expresion = "[0-9]{6}\\-[0-9]{1}?$";
-            if (Regex.IsMatch(Cheque.Text, expresion))
-            {
-                if (Regex.Replace(Cheque.Text, expresion, String.Empty).Length == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    Mostrar.SetError(Cheque, "El cheque ingresado es inválido. Formato: 123456-1");
-                    return false;
-                }
-            }
-            else
-            {
-                Mostrar.SetError(Cheque, "El cheque ingresado es inválido. Formato: 123456-1");
-                return false;
-            }
-        }
-        public bool IsNullOrEmty(ref TextBox Cadena, ref ErrorProvider Mostrar)
-        {
-            if (String.IsNullOrEmpty(Cadena.Text))
-            {
-                Mostrar.SetError(Cadena, "Campo obligatorio.");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
+
     }
 }

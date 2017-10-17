@@ -16,10 +16,10 @@ namespace ACOPEDH
         {
             InitializeComponent();
         }
-        Validaciones validad = new Validaciones();
+
         private void btningresar_Click(object sender, EventArgs e)
         {
-            if (validad.validar_contraseñas(txtConfContraseña, ref errorProvider1))
+            if (Validaciones.validar_contraseñas(txtConfContraseña, ref errorProvider1))
                 {
                 if (Cifrado.desencriptar(txtConfContraseña.Text, Globales.gbClaveUsuario))
                 {
@@ -51,7 +51,8 @@ namespace ACOPEDH
 
         private void txtConfContraseña_KeyUp(object sender, KeyEventArgs e)
         {
-            validad.validar_contraseñas(txtConfContraseña, ref errorProvider1);
+            errorProvider1.Clear();
+            Validaciones.validar_contraseñas(txtConfContraseña, ref errorProvider1);
         }
     }
 }

@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Otorgar_Préstamo));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvAsociado = new System.Windows.Forms.DataGridView();
             this.TxtBúsqueda = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -62,62 +63,68 @@
             this.bttCer = new System.Windows.Forms.PictureBox();
             this.bttMin = new System.Windows.Forms.PictureBox();
             this.bttAmortización = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.Errores = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.CBFormadePago = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAsociado)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Errores)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvAsociado
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridView1.GridColor = System.Drawing.Color.Silver;
-            this.dataGridView1.Location = new System.Drawing.Point(458, 51);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridView1.RowHeadersVisible = false;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridView1.RowTemplate.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(452, 195);
-            this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
+            this.dgvAsociado.AllowUserToAddRows = false;
+            this.dgvAsociado.AllowUserToDeleteRows = false;
+            this.dgvAsociado.AllowUserToResizeColumns = false;
+            this.dgvAsociado.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvAsociado.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvAsociado.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAsociado.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvAsociado.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAsociado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvAsociado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAsociado.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvAsociado.GridColor = System.Drawing.Color.Silver;
+            this.dgvAsociado.Location = new System.Drawing.Point(458, 51);
+            this.dgvAsociado.MultiSelect = false;
+            this.dgvAsociado.Name = "dgvAsociado";
+            this.dgvAsociado.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAsociado.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvAsociado.RowHeadersVisible = false;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Linotte-Light", 11F);
+            this.dgvAsociado.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvAsociado.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvAsociado.RowTemplate.ReadOnly = true;
+            this.dgvAsociado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAsociado.Size = new System.Drawing.Size(452, 195);
+            this.dgvAsociado.TabIndex = 1;
+            this.dgvAsociado.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             // 
             // TxtBúsqueda
             // 
@@ -141,6 +148,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.CBFormadePago);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.txtCuotaMensual);
             this.groupBox1.Controls.Add(this.label12);
@@ -151,7 +160,6 @@
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.CBTipoPréstamo);
-            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.TxtOcupación);
             this.groupBox1.Controls.Add(this.TxtDUIP);
             this.groupBox1.Controls.Add(this.label7);
@@ -159,6 +167,7 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.TxtAsociadoP);
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Font = new System.Drawing.Font("Linotte-Light", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(50, 276);
             this.groupBox1.Name = "groupBox1";
@@ -171,7 +180,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(522, 150);
+            this.label13.Location = new System.Drawing.Point(464, 150);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(124, 19);
             this.label13.TabIndex = 21;
@@ -180,7 +189,7 @@
             // txtCuotaMensual
             // 
             this.txtCuotaMensual.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCuotaMensual.Location = new System.Drawing.Point(646, 145);
+            this.txtCuotaMensual.Location = new System.Drawing.Point(588, 145);
             this.txtCuotaMensual.Multiline = true;
             this.txtCuotaMensual.Name = "txtCuotaMensual";
             this.txtCuotaMensual.ReadOnly = true;
@@ -192,7 +201,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(323, 150);
+            this.label12.Location = new System.Drawing.Point(269, 150);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(112, 19);
             this.label12.TabIndex = 19;
@@ -201,18 +210,18 @@
             // txtNoCuota
             // 
             this.txtNoCuota.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoCuota.Location = new System.Drawing.Point(436, 145);
+            this.txtNoCuota.Location = new System.Drawing.Point(382, 145);
             this.txtNoCuota.Multiline = true;
             this.txtNoCuota.Name = "txtNoCuota";
             this.txtNoCuota.Size = new System.Drawing.Size(54, 29);
-            this.txtNoCuota.TabIndex = 4;
+            this.txtNoCuota.TabIndex = 5;
             this.txtNoCuota.TextChanged += new System.EventHandler(this.txtNoCuota_TextChanged);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(58, 150);
+            this.label11.Location = new System.Drawing.Point(16, 150);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(160, 19);
             this.label11.TabIndex = 17;
@@ -221,17 +230,17 @@
             // TxtMonto
             // 
             this.TxtMonto.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtMonto.Location = new System.Drawing.Point(218, 145);
+            this.TxtMonto.Location = new System.Drawing.Point(176, 145);
             this.TxtMonto.Multiline = true;
             this.TxtMonto.Name = "TxtMonto";
             this.TxtMonto.Size = new System.Drawing.Size(67, 29);
-            this.TxtMonto.TabIndex = 3;
+            this.TxtMonto.TabIndex = 4;
             this.TxtMonto.TextChanged += new System.EventHandler(this.txtNoCuota_TextChanged);
             // 
             // TxtInterés
             // 
             this.TxtInterés.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtInterés.Location = new System.Drawing.Point(742, 94);
+            this.TxtInterés.Location = new System.Drawing.Point(790, 145);
             this.TxtInterés.Multiline = true;
             this.TxtInterés.Name = "TxtInterés";
             this.TxtInterés.ReadOnly = true;
@@ -244,7 +253,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(621, 99);
+            this.label10.Location = new System.Drawing.Point(669, 150);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(124, 19);
             this.label10.TabIndex = 14;
@@ -254,18 +263,18 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(307, 99);
+            this.label9.Location = new System.Drawing.Point(293, 89);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(140, 19);
+            this.label9.Size = new System.Drawing.Size(80, 38);
             this.label9.TabIndex = 13;
-            this.label9.Text = "Tipo de Préstamo: ";
+            this.label9.Text = "Tipo de\r\nPréstamo:";
             // 
             // CBTipoPréstamo
             // 
             this.CBTipoPréstamo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBTipoPréstamo.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBTipoPréstamo.FormattingEnabled = true;
-            this.CBTipoPréstamo.Location = new System.Drawing.Point(450, 94);
+            this.CBTipoPréstamo.Location = new System.Drawing.Point(376, 94);
             this.CBTipoPréstamo.Name = "CBTipoPréstamo";
             this.CBTipoPréstamo.Size = new System.Drawing.Size(156, 27);
             this.CBTipoPréstamo.TabIndex = 2;
@@ -275,7 +284,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(25, 99);
+            this.label8.Location = new System.Drawing.Point(9, 99);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(92, 19);
             this.label8.TabIndex = 11;
@@ -284,7 +293,7 @@
             // TxtOcupación
             // 
             this.TxtOcupación.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtOcupación.Location = new System.Drawing.Point(119, 94);
+            this.TxtOcupación.Location = new System.Drawing.Point(98, 94);
             this.TxtOcupación.Multiline = true;
             this.TxtOcupación.Name = "TxtOcupación";
             this.TxtOcupación.ReadOnly = true;
@@ -361,7 +370,7 @@
             this.button1.Location = new System.Drawing.Point(325, 508);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(143, 57);
-            this.button1.TabIndex = 5;
+            this.button1.TabIndex = 6;
             this.button1.Text = "ACEPTAR";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -423,10 +432,34 @@
             this.bttAmortización.Location = new System.Drawing.Point(485, 508);
             this.bttAmortización.Name = "bttAmortización";
             this.bttAmortización.Size = new System.Drawing.Size(143, 57);
-            this.bttAmortización.TabIndex = 6;
+            this.bttAmortización.TabIndex = 7;
             this.bttAmortización.Text = "GENERAR AMORTIZACIÓN";
             this.bttAmortización.UseVisualStyleBackColor = true;
             this.bttAmortización.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // Errores
+            // 
+            this.Errores.ContainerControl = this;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(548, 89);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 38);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "Forma\r\nde Pago: ";
+            // 
+            // CBFormadePago
+            // 
+            this.CBFormadePago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBFormadePago.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CBFormadePago.FormattingEnabled = true;
+            this.CBFormadePago.Location = new System.Drawing.Point(643, 94);
+            this.CBFormadePago.Name = "CBFormadePago";
+            this.CBFormadePago.Size = new System.Drawing.Size(185, 27);
+            this.CBFormadePago.TabIndex = 3;
             // 
             // Otorgar_Préstamo
             // 
@@ -446,7 +479,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TxtBúsqueda);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvAsociado);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -461,12 +494,13 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Otorgar_Préstamo_FormClosing);
             this.Load += new System.EventHandler(this.Otorgar_Préstamo_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAsociado)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Errores)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -474,7 +508,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvAsociado;
         private System.Windows.Forms.TextBox TxtBúsqueda;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -502,6 +536,9 @@
         private System.Windows.Forms.PictureBox bttCer;
         private System.Windows.Forms.PictureBox bttMin;
         private System.Windows.Forms.Button bttAmortización;
+        private System.Windows.Forms.ErrorProvider Errores;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox CBFormadePago;
     }
 }
 

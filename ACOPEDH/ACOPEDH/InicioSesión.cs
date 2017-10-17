@@ -50,7 +50,6 @@ namespace ACOPEDH
         //Instancia para leer el servidor para tenerlo activo en todo el programa
         #region instancias y variables globales de clase
         Servidor server;
-        Validaciones validar;
         Usuarios cuenta;
         Emailsistema enviarcorreo = new Emailsistema();
         String asunto = "Alerta de inicio de sesión.";
@@ -73,8 +72,7 @@ namespace ACOPEDH
             Conexión con;
             con = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
             SqlConnection cn = new SqlConnection(con.cadena);
-            validar = new Validaciones();
-            if (validar.IsNullOrEmty(ref txtCorreo, ref errorProvider1) && validar.IsNullOrEmty(ref ttpass, ref errorProvider1))
+            if (Validaciones.IsNullOrEmty(ref txtCorreo, ref errorProvider1) && Validaciones.IsNullOrEmty(ref ttpass, ref errorProvider1))
             {
                 Properties.Settings.Default.UsuariosG = txtCorreo.Text;
                 Properties.Settings.Default.Save();
@@ -130,9 +128,8 @@ namespace ACOPEDH
 
         private void txtCorreo_KeyUp(object sender, KeyEventArgs e)
         {
-            validar = new Validaciones();
             if (!(e.KeyValue == (char)Keys.Enter || e.KeyValue == (char)Keys.Up || e.KeyValue == (char)Keys.Down || e.KeyValue == (char)Keys.Left || e.KeyValue == (char)Keys.Right))
-                validar.validar_correo(ref txtCorreo, ref errorProvider1);
+                Validaciones.validar_correo(ref txtCorreo, ref errorProvider1);
         }
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

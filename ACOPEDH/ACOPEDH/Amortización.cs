@@ -45,13 +45,16 @@ namespace ACOPEDH
         #region Load
         private void Amortización_Load(object sender, EventArgs e)
         {
+            DateTime Pago = DateTime.Today.AddDays(1).AddMinutes(-5);
             if (CódigoPréstamo != "")//Si se ha cargado desde código
             {
                 Procedimientos_select pro = new Procedimientos_select();
                 SqlParameter[] Param = new SqlParameter[1];
                 Param[0] = new SqlParameter("@ID_Préstamo", CódigoPréstamo);
-                pro.LlenarText("[Cargar Préstamo]", "Monto,NCuotas,Interés", Param, txtMonto, txtPlazo, txtInteres);
+                DataTable dt=pro.LlenarText("[Cargar Préstamo]", "Monto,NCuotas,Interés", Param, txtMonto, txtPlazo, txtInteres);
+                Pago = Convert.ToDateTime(dt.Rows[0]["FechaT"]);
             }
+            Pago = new DateTime(Pago.Year, Pago.Month, 23).AddMinutes(-5);
             try
             {
                 double interes = Convert.ToDouble(txtInteres.Text) / 1200;
@@ -66,7 +69,7 @@ namespace ACOPEDH
                 {
                     if (i == plazo)
                         cuota = Math.Round(Monto * (1 + interes), 2);
-                    dgvAmortizar.Rows.Add(i, "$" + cuota, "$" + (inte = Math.Round(interes * Monto, 2)), "$" + Math.Round(cuota - inte, 2), "$" + (Monto = Math.Round(Monto - cuota + inte, 2)));
+                    dgvAmortizar.Rows.Add(i, "$" + cuota, "$" + (inte = Math.Round(interes * Monto, 2)), "$" + Math.Round(cuota - inte, 2), "$" + (Monto = Math.Round(Monto - cuota + inte, 2)),(Pago = Pago.AddMonths(1)).ToShortDateString());
                 }
             }
             catch
@@ -148,9 +151,5 @@ namespace ACOPEDH
             Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(Width - 1, 0), new Point(Width, Height));
         }
         #endregion
-
-        private void Amortización_FormClosing(object sender, FormClosingEventArgs e)
-        {
-        }
     }
 }

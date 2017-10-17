@@ -6,7 +6,6 @@ namespace ACOPEDH
 {
     public partial class RegistroUsuario : Form
     {
-        Validaciones validar = new Validaciones();
         Usuarios NewAcount;
         Emailsistema enviaremail;
         #region Mover Form
@@ -63,29 +62,29 @@ namespace ACOPEDH
         private void txtNombre_KeyUp(object sender, KeyEventArgs e)
         {
             if (!(e.KeyValue == (char)Keys.Enter || e.KeyValue == (char)Keys.Up || e.KeyValue == (char)Keys.Down || e.KeyValue == (char)Keys.Left || e.KeyValue == (char)Keys.Right))
-                validar.ValidarNomApe(ref txtNombre, ref errorProvider1);
+                Validaciones.ValidarNomApe(ref txtNombre, ref errorProvider1);
         }
 
         private void txtApellido_KeyUp(object sender, KeyEventArgs e)
         {
             if (!(e.KeyValue == (char)Keys.Enter || e.KeyValue == (char)Keys.Up || e.KeyValue == (char)Keys.Down || e.KeyValue == (char)Keys.Left || e.KeyValue == (char)Keys.Right))
-                validar.ValidarNomApe(ref txtApellido, ref errorProvider1);
+                Validaciones.ValidarNomApe(ref txtApellido, ref errorProvider1);
         }
 
         private void txtCorreo_KeyUp(object sender, KeyEventArgs e)
         {
             if (!(e.KeyValue == (char)Keys.Enter || e.KeyValue == (char)Keys.Up || e.KeyValue == (char)Keys.Down || e.KeyValue == (char)Keys.Left || e.KeyValue == (char)Keys.Right))
-                validar.validar_correo(ref txtCorreo, ref errorProvider1);
+                Validaciones.validar_correo(ref txtCorreo, ref errorProvider1);
         }
 
         private void txtPassword_KeyUp(object sender, KeyEventArgs e)
         {
-            validar.validar_contraseñas(txtPassword, ref errorProvider1);
+            Validaciones.validar_contraseñas(txtPassword, ref errorProvider1);
         }
 
         private void txtConfPassword_KeyUp(object sender, KeyEventArgs e)
         {
-            validar.claves_iguales(txtPassword, txtConfPassword, ref errorProvider1);
+            Validaciones.claves_iguales(txtPassword, txtConfPassword, ref errorProvider1);
         }
 
         private void bttConfirmar_Click(object sender, EventArgs e)
@@ -95,16 +94,16 @@ namespace ACOPEDH
             String asunto = "Bienvenido a ACOPEDH";
             String mensaje = "Éste correo se ha generado automáticamente, por favor, no responder\n\nBienvenido a ACOPEDH.\n\nDesde éste momento puede ingresar a su cuenta.\n\n\nSu usuario: " + txtCorreo.Text + "\nSu clave: " + txtPassword.Text;
             if (
-                validar.IsNullOrEmty(ref txtNombre, ref errorProvider1) &&
-                validar.IsNullOrEmty(ref txtApellido, ref errorProvider1) &&
-                validar.IsNullOrEmty(ref txtCorreo, ref errorProvider1) &&
-                validar.IsNullOrEmty(ref txtPassword, ref errorProvider1) &&
-                validar.IsNullOrEmty(ref txtConfPassword, ref errorProvider1) &&
-                validar.ValidarNomApe(ref txtNombre, ref errorProvider1) &&
-                validar.ValidarNomApe(ref txtApellido, ref errorProvider1) &&
-                validar.validar_contraseñas(txtPassword, ref errorProvider1) &&
-                validar.claves_iguales(txtPassword, txtConfPassword, ref errorProvider1) &&
-                validar.validar_correo(ref txtCorreo, ref errorProvider1)
+                Validaciones.IsNullOrEmty(ref txtNombre, ref errorProvider1) &&
+                Validaciones.IsNullOrEmty(ref txtApellido, ref errorProvider1) &&
+                Validaciones.IsNullOrEmty(ref txtCorreo, ref errorProvider1) &&
+                Validaciones.IsNullOrEmty(ref txtPassword, ref errorProvider1) &&
+                Validaciones.IsNullOrEmty(ref txtConfPassword, ref errorProvider1) &&
+                Validaciones.ValidarNomApe(ref txtNombre, ref errorProvider1) &&
+                Validaciones.ValidarNomApe(ref txtApellido, ref errorProvider1) &&
+                Validaciones.validar_contraseñas(txtPassword, ref errorProvider1) &&
+                Validaciones.claves_iguales(txtPassword, txtConfPassword, ref errorProvider1) &&
+                Validaciones.validar_correo(ref txtCorreo, ref errorProvider1)
                 )
             {
                 errorProvider1.Clear();

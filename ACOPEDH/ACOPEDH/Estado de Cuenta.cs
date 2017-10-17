@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,12 +13,14 @@ namespace ACOPEDH
 {
     public partial class Estado_de_Cuenta : Form
     {
+#warning Falta implementar el cerrado de la cuenta
         /*
             *********************************
             *     Componentes Iniciales     *
             ********************************* 
         */
         string Dato;
+        DataTable dt;
         #region Componentes
         public Estado_de_Cuenta()
         {
@@ -32,6 +35,34 @@ namespace ACOPEDH
         #region Load
         private void Estado_de_Cuenta_Load(object sender, EventArgs e)
         {
+            Procedimientos_select Cargar = new Procedimientos_select();
+            SqlParameter[] Parámetros = new SqlParameter[1];
+
+            //Cargar los datos de la cuenta
+            Parámetros[0] = new SqlParameter("@Código_Ahorro", Dato);
+            Cargar.LlenarText("[Cargar Asociado]","Nombre,Código_A,Est,TipoA",Parámetros,txtAsociado,txtCódigo,txtEstado,txtTipoA);
+            Parámetros[0] = new SqlParameter("@Código_Ahorro", Dato);
+
+            //Cargar los registros de Abonos y Retiros a sus respectivos DGV
+            dgvAbonos.DataSource = Cargar.llenar_DataTable("[Cargar Abonos]",Parámetros);
+            dgvAbonos.Refresh();
+            Parámetros[0] = new SqlParameter("@ID_Ahorro", Dato);
+            dgvRetiros.DataSource = Cargar.llenar_DataTable("[Cargar Retiros]",Parámetros);
+            dgvRetiros.Refresh();
+            txtCuenta.Text = Dato;
+
+            //Cargar la suma de Abonos y Retiros
+            try
+            {
+                Parámetros[0] = new SqlParameter("@ID_Ahorro", Dato);
+                Cargar.LlenarText("[Suma Abonos]", "Suma de Abonos", Parámetros, txtAbonos);
+                Parámetros[0] = new SqlParameter("@ID_Ahorro", Dato);
+                Cargar.LlenarText("[Suma Retiros]", "Suma de Retiros", Parámetros, txtRetiros);
+                txtSaldo.Text = "$" + (double.Parse(txtAbonos.Text) - double.Parse(txtRetiros.Text));
+                txtAbonos.Text = "$" + txtAbonos.Text;
+                txtRetiros.Text = "$" + txtRetiros.Text;
+            }
+            catch { txtRetiros.Clear(); txtSaldo.Clear(); txtAbonos.Clear(); }
 
         }
         #endregion

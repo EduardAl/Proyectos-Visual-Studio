@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Drawing;
 
 namespace Crear_Base_de_Datos
 {
@@ -16,7 +17,6 @@ namespace Crear_Base_de_Datos
             this.Hide();
             ser.ShowDialog();
             txtNombre.Focus();
-
         }
         private void BttCrear_Click(object sender, EventArgs e)
         {
@@ -208,20 +208,22 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback tran Asociado " +
                 "End Catch ";
-            //Cambiado los nombres para cargar las variables
+            //Cambiado los nombres para cargar las variables y añadiendo campos
             String tabla22 = "Create Procedure[Cargar Asociados] " +
                 "@Código_Asociado varchar(5) " +
-                 "As " +
-                 "Begin Tran Cargar_Asociados " +
-                 "Begin Try " +
-                 "Select [FK Tipo Socio] AS 'Tipo de Asociación', (Nombres + ' ' + Apellidos) AS 'Nombre', DUI AS 'DDui', NIT AS 'DNit', Dirección AS 'Residencia',[Fecha de Nacimiento] AS 'FNacimiento',[Fecha de Asociación] AS 'FAsociación' " +
-                 "From Asociado where [Código Asociado] = @Código_Asociado " +
-                 "Commit Tran Cargar_Asociados " +
-                 "End Try " +
-                 "Begin Catch " +
-                 "Print ERROR_MESSAGE(); " +
-                 "Rollback Tran Cargar_Asociados " +
-                 "End Catch";
+                "As " +
+                "Begin Tran Cargar_Asociados " +
+                "Begin Try " +
+                "Select [Tipo de Socio].[Nombre Tipo Socio] AS 'Tipo de Asociación', Nombres AS 'Name', Apellidos AS 'LName',DUI AS 'DDui', NIT AS 'DNit', " +
+                "Dirección AS 'Residencia', [Fecha de Nacimiento] AS 'FNacimiento', [Fecha de Asociación] AS 'FAsociación', [Fecha de Desasociación] AS 'FDesasociación', " +
+                "Ocupación.[Nombre de la Empresa] AS 'Trabajo' From Asociado inner join [Tipo de Socio] on [Tipo de Socio].[id Tipo de Socio]=Asociado.[FK Tipo Socio] " +
+                "inner join Ocupación on Ocupación.[Id Ocupación] = Asociado.[FK Ocupación] where [Código Asociado] = @Código_Asociado " +
+                "Commit Tran Cargar_Asociados " +
+                "End Try " +
+                "Begin Catch " +
+                "Print ERROR_MESSAGE(); " +
+                "Rollback Tran Cargar_Asociados " +
+                "End Catch";
             String tabla23 = "Create Procedure[Insertar Teléfono] " +
                 "@Tipo_Teléfono varchar(50),  " +
                 "@Teléfono varchar(9), " +
@@ -322,15 +324,15 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback tran Asociado " +
                 "End Catch ";
-            //Cambiado para que se muestre el dui
-            String tabla28 = "Create Procedure[Cargar Ahorros] " +
+            //Cambiado para que se muestre el dui //Nombre Cambiado
+            String tabla28 = "Create Procedure[Ahorro DVG] " +
                 "As " +
-                "Begin Tran Cargar_Ahorros " +
+                "Begin Tran Ahorro_DVG " +
                 "Begin Try " +
                 "Select Ahorro.[id Ahorro] as 'Código de Ahorro',(Asociado.Nombres+' ' +Asociado.Apellidos) as 'Persona Asociada', Asociado.DUI as 'Dui' ,[Tipo de Ahorro].Nombre as 'Tipo de Ahorro' From Asociado inner join Ahorro " +
                 "on Ahorro.[FK Código de Asociado] = Asociado.[Código Asociado] inner join [Tipo de Ahorro] on Ahorro.[FK Tipo Ahorro]=[Tipo de Ahorro].[id Tipo Ahorro] " +
                 "where Ahorro.Estado = 'ACTIVO' " +
-                "Commit Tran Cargar_Ahorros " +
+                "Commit Tran Ahorro_DVG " +
                 "End Try " +
                 "Begin Catch " +
                 "Print ERROR_MESSAGE(); " +
@@ -491,41 +493,31 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Disponibles_Retiro " +
                 "End Catch ";
-            String tabla39 = "Create Procedure[Realizar Pago] " +
-                "@ID_Préstamo varchar(9), " +
+            //Cambiado por el n de cuota
+            String tabla39 = "Create Procedure[Realizar Pago] " + 
+                "@ID_Préstamo varchar(9), "+
                 "@Pago smallmoney, " +
-                "@No_Cuota int, " +
+                "@Id_Usuario varchar(5),  " +
                 "@Intereses smallmoney, " +
-                "@Capital smallmoney, " +
+                "@Capital smallmoney,  " +
                 "@Saldo smallmoney, " +
-                "@Mora smallmoney, " +
+                "@Mora smallmoney,  " +
                 "@Fecha_Límite datetime, " +
-                "@Fecha_Pago datetime, " +
-                "@Id_Usuario varchar(5) " +
-                "As " +
-                "Begin Tran Pago " +
+                "@Fecha_Pago datetime " +
+                "As Begin Tran Pago " +
                 "Begin Try " +
-                "Declare @ID_Pago as varchar(5) " +
+                "Declare @ID_Pago varchar(5)  " +
                 "Declare @id_Transación varchar(5) " +
-                "Insert into Transacciones values(@Id_Usuario, 'TT004',@Fecha_Pago) " +
-                "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
-                "If(@Fecha_Pago <= @Fecha_Límite) " +
-                "Begin " +
-                "Insert into Pago values(@Pago, @No_Cuota, @Intereses, @Capital, @Saldo, @id_Transación) " +
-                "Set @ID_Pago = (Select Max([id Pago])From Pago) " +
-                "Insert into Información values(@ID_Pago, @ID_Préstamo,null,@Fecha_Límite) " +
+                "Declare @No_Cuota int " +
+                "Insert into Transacciones values(@Id_Usuario, 'TT004', @Fecha_Pago) " +
+                "set @id_Transación = (Select MAX([id Transacción]) From Transacciones)  " +
+                "Set @No_Cuota = (Select MAX(Pago.[Número de Cuota]) From Pago inner join Información on Información.[id Pago] = Pago.[id Pago] inner join Préstamos on Préstamos.[id Préstamos] = Información.[id Préstamo] " +
+                "Where Préstamos.[Código Asociado]=@ID_Préstamo)  " +
+                "Insert into Pago values(@Pago, @No_Cuota + 1, @Intereses, @Capital, @Saldo, @id_Transación) " +
+                "Set @ID_Pago = (Select Max([id Pago])From Pago)  " +
+                "Insert into Información values(@ID_Pago, @ID_Préstamo, @mora, @Fecha_Límite) " +
                 "Commit Tran Pago " +
-                "End " +
-                "Else " +
-                "Insert into Pago values(@Pago, @No_Cuota, @Intereses, @Capital, @Saldo, @id_Transación) " +
-                "Set @ID_Pago = (Select Max([id Pago])From Pago) " +
-                "Insert into Información values(@ID_Pago, @ID_Préstamo, @Mora, @Fecha_Límite) " +
-                "Commit Tran Pago " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Pago " +
-                "End Catch ";
+                "End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Pago End Catch ";
             String tabla41 = "Create Procedure[Cargar Saldo] " +
                 "@ID_Préstamo varchar(9) " +
                 "As " +
@@ -561,16 +553,19 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE() " +
                 "Rollback Transaction " +
                 "End Catch ";
+                //Modificación
             String tabla43 = "Create Procedure[Cargar Préstamo] " +
                 "@ID_Préstamo varchar(9) " +
                  "As " +
                  "Begin Tran Cargar_P " +
                 "Begin Try " +
-                "Select Asociado.[Código Asociado],(Asociado.Nombres + ' ' + Asociado.Apellidos)AS 'Nombre', [Tipo de Préstamo].[Tipo de Préstamo]As 'TipoP', " +
-                "[Tipo de Préstamo].[Tasa de Interés] As Interés,Préstamos.[Monto del Préstamo] AS Monto,Transacciones.[Fecha de Transacción] AS FechaT, Préstamos.Cuotas AS NCuotas, " +
-                "Préstamos.[Cuota Mensual] AS PCuotas,Préstamos.Estado AS Estado From Asociado inner join Préstamos on " +
-                "Asociado.[Código Asociado]= Préstamos.[Código Asociado] inner join [Tipo de Préstamo] on Préstamos.[id Tipo de Préstamo] " +
-                "= [Tipo de Préstamo].[id Tipo de Préstamo] inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] where Préstamos.[id Préstamos]= @ID_Préstamo  " +
+                "Select Asociado.[Código Asociado] AS 'Código_A', (Asociado.Nombres + ' ' + Asociado.Apellidos) AS 'Nombre',[Forma de Pago].Nombre AS 'FormaP'," +
+                " [Tipo de Préstamo].[Tipo de Préstamo]As 'TipoP', [Tipo de Préstamo].[Tasa de Interés] As Interés, Préstamos.[Monto del Préstamo] AS Monto, " +
+                "Transacciones.[Fecha de Transacción] AS FechaT, Préstamos.Cuotas AS NCuotas, Préstamos.[Cuota Mensual] AS PCuotas, Préstamos.Estado AS Estado " +
+                "From Asociado inner join [Forma de Pago] on [Forma de Pago].[id Forma de Pago] = [id Forma de Pago] inner join Préstamos on " +
+                "Asociado.[Código Asociado] = Préstamos.[Código Asociado] inner join [Tipo de Préstamo] on Préstamos.[id Tipo de Préstamo] " +
+                "= [Tipo de Préstamo].[id Tipo de Préstamo] inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] " +
+                "where Préstamos.[id Préstamos]= @ID_Préstamo " +
                 "Commit Tran Cargar_P " +
                 "End Try " +
                 "Begin Catch " +
@@ -704,6 +699,86 @@ namespace Crear_Base_de_Datos
                 "Begin " +
                 "Select [Tipos de Teléfonos].[Tipo de Teléfono] as 'TipoT' From [Tipos de Teléfonos] " +
                 "End";
+            //Faltaba este procedimiento
+            String tabla55 = "Create Procedure[Cargar Ahorros] " +
+                "@Código_Ahorro varchar(5) " +
+               "As " +
+               "Begin Tran Cargar_Ahorros " +
+               "Begin Try " +
+               "Select Asociado.[Código Asociado] as 'Código_A', (Asociado.Nombres+' ' +Asociado.Apellidos) as 'Nombre', Ahorro.Estado as 'Est',  [Tipo de Ahorro].Nombre as 'TipoA', [Tipo de Ahorro].[Tasa de Interés] as 'Interés' " +
+               "on Ahorro.[FK Código de Asociado] = Asociado.[Código Asociado] inner join [Tipo de Ahorro] on Ahorro.[FK Tipo Ahorro]=[Tipo de Ahorro].[id Tipo Ahorro] " +
+               "where Ahorro.[id Ahorro] = @Código_Ahorro " +
+               "Commit Tran Cargar_Ahorros " +
+               "End Try " +
+               "Begin Catch " +
+               "Print ERROR_MESSAGE(); " +
+               "Rollback Tran Cargar_Ahorros " +
+               "End Catch";
+#warning Verificar cantidad de préstamos que se pueden otorgar
+            //Faltaba este procedimiento
+            String tabla56 = "Create Procedure[Nuevo Préstamo] " +
+                "@FK_Tipo_Préstamo varchar(20), " +
+                "@FK_Asociado varchar(5), " +
+                "@Forma_Pago varchar(5), " +
+                "@NCuotas int, " +
+                "@Monto smallmoney, " +
+                "@Cuota smallmoney, " +
+                "@Usuario varchar(5) " +
+                "As Begin Tran Préstamo Begin try " +
+                "Declare @ID_Tipo_Préstamo as varchar(5) " +
+                "Declare @Contar_Emergencia as int " +
+                "Declare @Contar_Normal as int " +
+                "Declare @Id_Transacción as varchar(5) " +
+                "set @ID_Tipo_Préstamo = (Select [id Tipo de Préstamo] From [Tipo de Préstamo] where [Tipo de Préstamo] = @FK_Tipo_Préstamo) " +
+                "set @Contar_Emergencia = (Select COUNT(Préstamos.[id Préstamos]) from Préstamos inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo] where Préstamos.[Código Asociado] = @FK_Asociado AND Estado = 'ACTIVO' AND [Tipo de Préstamo].[Tipo de Préstamo] = 'Emergencia') " +
+                "set @Contar_Normal = (Select COUNT(Préstamos.[id Préstamos]) from Préstamos inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo] where Préstamos.[Código Asociado] = @FK_Asociado AND Estado = 'ACTIVO' AND [Tipo de Préstamo].[Tipo de Préstamo] <> 'Emergencia') " +
+                "IF (@FK_Tipo_Préstamo <> 'Emergencia' AND @Contar_Normal < 2 ) OR (@FK_Tipo_Préstamo = 'Emergencia' AND @Contar_Emergencia < 1) " +
+                "	BEGIN " +
+                "	Insert into Transacciones values(@Usuario, 'TT003', GETDATE()) " +
+                "	Set @Id_Transacción = (Select MAX([id Transacción]) from Transacciones) " +
+                "	Insert into Préstamos values(@FK_Asociado, @Forma_Pago,@ID_Tipo_Préstamo,GETDATE(),@NCuotas,@Monto,@Cuota,@Id_Transacción,'ACTIVO') " +
+                "	Commit tran Préstamo " +
+                "END " +
+                "ELSE " +
+                "BEGIN " +
+                "	Print 'El usuario ya ha superado máximo de préstamos permitidos para este tipo de préstamo' " +
+                "   return 0 " +
+                "END " +
+                "End try " +
+                "Begin Catch " +
+                "Print ERROR_MESSAGE(); " +
+                "return 0 " +
+                "Rollback tran Préstamo " +
+                "End Catch";
+            //Añadido para el combobox
+            String tabla57 = "Create Procedure [dbo].[Cargar Tipo Pagos] " +
+                "As Begin Tran Tipo_Pagos " +
+                "Begin Try " +
+                "Select[Forma de Pago].Nombre AS 'FormaP', [Forma de Pago].[id Forma de Pago] as 'Id' from[Forma de Pago] " +
+                "Commit Tran Tipo_pagos End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Pre End Catch";
+            //Añadido para conseguir el límite anterior
+            String tabla58 = "Create Procedure [Conseguir Límite] "+
+                "@Id_Préstamo varchar(9) " +
+                "As Begin Tran Pago " +
+                "Begin Try " +
+                "Declare @NPagos int " +
+                "Set @NPagos = (Select Count(Pago.[Número de Cuota]) From Pago inner join Información on Información.[id Pago] = Pago.[id Pago] inner join Préstamos on Préstamos.[id Préstamos] = Información.[id Préstamo] " +
+                "where Préstamos.[id Préstamos] = @Id_Préstamo) " +
+                "IF @NPagos > 0 " +
+                "begin " +
+                "    Select Información.[Fecha Límite] as 'Límite' from Pago inner Join Información on Información.[id Pago] = Pago.[id Pago] where Pago.[Número de Cuota] = @NPagos " +
+                "END " +
+                "ELSE " +
+                "begin " +
+                "    Select Préstamos.[Fecha de Otorgamiento] as 'Límite' from Préstamos where Préstamos.[id Préstamos]= @Id_Préstamo " +
+                "END " +
+                "Commit tran Pago " +
+                "End Try " +
+                "Begin Catch " +
+                "Print ERROR_MESSAGE(); " +
+                "return 0 " +
+                "Rollback Tran Pago " +
+                "End Catch";
             String Usuario1 =
                 "CREATE LOGIN Master_ACOPEDH " +
                 "WITH PASSWORD = 'AUREO112358' " +
@@ -773,7 +848,9 @@ namespace Crear_Base_de_Datos
                 "to Administrador with grant option " +
                 "grant execute on object :: [Cargar Asociados] " +
                 "to Administrador with grant option " +
-                 "grant execute on object :: [Cargar Ahorros] " +
+                "grant execute on object :: [Ahorro DVG] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Cargar Ahorros] " +
                 "to Administrador with grant option " +
                 "grant execute on object :: [Cargar Abonos] " +
                 "to Administrador with grant option " +
@@ -818,7 +895,13 @@ namespace Crear_Base_de_Datos
                 "grant execute on object :: [Cargar Tipo Ahorro] " +
                 "to Administrador with grant option " +
                 "grant execute on object :: [Nuevo Usuario] " +
-                "to Administrador with grant option ";
+                "to Administrador with grant option " +
+                "grant execute on object :: [Nuevo Préstamo] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Cargar Tipo Pagos] " +
+                  "to Administrador with grant option " +
+                "grant execute on object :: [Conseguir Límite] " +
+                  "to Administrador with grant option ";
             String permisosUsuario =
                  "Use " + txtNombre.Text + ";" +
                  "Exec sp_addrolemember N'db_datareader',N'Usuario' " +
@@ -859,7 +942,7 @@ namespace Crear_Base_de_Datos
                 "insert into [Tipo de Transacción] values ('Aportación'),('Abono'), ('Préstamo'), ('Pago'), ('Retiro')";
             //Añadido, la inserción de teléfonos
             String insertartiposdeteléfonos =
-                 "insert into [Tipo de Transacción] values ('Aportación'),('Abono'), ('Préstamo'), ('Pago'), ('Retiro')";
+                 "insert into [Tipos de Teléfonos] values ('Celular'),('Casa'), ('Trabajo'), ('Fax')";
             SqlCommand cmd = new SqlCommand(cadena1, cnn);
             SqlCommand cmd1 = new SqlCommand(tabla1, cnn);
             SqlCommand cmd2 = new SqlCommand(tabla2, cnn);
@@ -929,92 +1012,100 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd67 = new SqlCommand(insertartiposdetransacciones, cnn);
             SqlCommand cmd68 = new SqlCommand(tabla53, cnn);
             SqlCommand cmd69 = new SqlCommand(tabla54, cnn);
-            SqlCommand cmd70 = new SqlCommand(insertartiposdeteléfonos, cnn);
+            SqlCommand cmd70 = new SqlCommand(tabla55, cnn);
+            SqlCommand cmd71 = new SqlCommand(tabla56, cnn);
+            SqlCommand cmd72 = new SqlCommand(tabla57, cnn);
+            SqlCommand cmd73 = new SqlCommand(tabla58, cnn);
+            SqlCommand cmd74 = new SqlCommand(insertartiposdeteléfonos, cnn);
 
-            //try
-            //{
-            //Abrimos la conexión y ejecutamos el comando
-            cnn.Open();
-            cmd.ExecuteNonQuery();
-            cmd1.ExecuteNonQuery();
-            cmd2.ExecuteNonQuery();
-            cmd3.ExecuteNonQuery();
-            cmd4.ExecuteNonQuery();
-            cmd5.ExecuteNonQuery();
-            cmd6.ExecuteNonQuery();
-            cmd7.ExecuteNonQuery();
-            cmd8.ExecuteNonQuery();
-            cmd9.ExecuteNonQuery();
-            cmd10.ExecuteNonQuery();
-            cmd11.ExecuteNonQuery();
-            cmd12.ExecuteNonQuery();
-            cmd13.ExecuteNonQuery();
-            cmd14.ExecuteNonQuery();
-            cmd15.ExecuteNonQuery();
-            cmd16.ExecuteNonQuery();
-            cmd17.ExecuteNonQuery();
-            cmd18.ExecuteNonQuery();
-            cmd19.ExecuteNonQuery();
-            cmd20.ExecuteNonQuery();
-            cmd21.ExecuteNonQuery();
-            cmd22.ExecuteNonQuery();
-            cmd23.ExecuteNonQuery();
-            cmd24.ExecuteNonQuery();
-            cmd25.ExecuteNonQuery();
-            cmd26.ExecuteNonQuery();
-            cmd27.ExecuteNonQuery();
-            cmd28.ExecuteNonQuery();
-            cmd29.ExecuteNonQuery();
-            cmd30.ExecuteNonQuery();
-            cmd31.ExecuteNonQuery();
-            cmd32.ExecuteNonQuery();
-            cmd33.ExecuteNonQuery();
-            cmd34.ExecuteNonQuery();
-            cmd35.ExecuteNonQuery();
-            cmd36.ExecuteNonQuery();
-            cmd37.ExecuteNonQuery();
-            cmd38.ExecuteNonQuery();
-            cmd39.ExecuteNonQuery();
-            cmd41.ExecuteNonQuery();
-            cmd42.ExecuteNonQuery();
-            cmd43.ExecuteNonQuery();
-            cmd44.ExecuteNonQuery();
-            cmd45.ExecuteNonQuery();
-            cmd46.ExecuteNonQuery();
-            cmd47.ExecuteNonQuery();
-            cmd48.ExecuteNonQuery();
-            cmd49.ExecuteNonQuery();
-            cmd50.ExecuteNonQuery();
-            cmd51.ExecuteNonQuery();
-            cmd52.ExecuteNonQuery();
-            cmd53.ExecuteNonQuery();
-            cmd54.ExecuteNonQuery();
-            cmd55.ExecuteNonQuery();
-            cmd56.ExecuteNonQuery();
-            cmd57.ExecuteNonQuery();
-            cmd58.ExecuteNonQuery();
-            cmd59.ExecuteNonQuery();
-            cmd60.ExecuteNonQuery();
-            cmd61.ExecuteNonQuery();
-            cmd62.ExecuteNonQuery();
-            cmd63.ExecuteNonQuery();
-            cmd64.ExecuteNonQuery();
-            cmd65.ExecuteNonQuery();
-            cmd66.ExecuteNonQuery();
-            cmd67.ExecuteNonQuery();
-            cmd68.ExecuteNonQuery();
-            cmd69.ExecuteNonQuery();
-            cmd70.ExecuteNonQuery();
-            cnn.Close();
-            MessageBox.Show("Base Creada");
-            this.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message,
-            //        "Error al crear la base",
-            //        MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-        }
+            try
+            {
+                //Abrimos la conexión y ejecutamos el comando
+                cnn.Open();
+                cmd.ExecuteNonQuery();
+                cmd1.ExecuteNonQuery();
+                cmd2.ExecuteNonQuery();
+                cmd3.ExecuteNonQuery();
+                cmd4.ExecuteNonQuery();
+                cmd5.ExecuteNonQuery();
+                cmd6.ExecuteNonQuery();
+                cmd7.ExecuteNonQuery();
+                cmd8.ExecuteNonQuery();
+                cmd9.ExecuteNonQuery();
+                cmd10.ExecuteNonQuery();
+                cmd11.ExecuteNonQuery();
+                cmd12.ExecuteNonQuery();
+                cmd13.ExecuteNonQuery();
+                cmd14.ExecuteNonQuery();
+                cmd15.ExecuteNonQuery();
+                cmd16.ExecuteNonQuery();
+                cmd17.ExecuteNonQuery();
+                cmd18.ExecuteNonQuery();
+                cmd19.ExecuteNonQuery();
+                cmd20.ExecuteNonQuery();
+                cmd21.ExecuteNonQuery();
+                cmd22.ExecuteNonQuery();
+                cmd23.ExecuteNonQuery();
+                cmd24.ExecuteNonQuery();
+                cmd25.ExecuteNonQuery();
+                cmd26.ExecuteNonQuery();
+                cmd27.ExecuteNonQuery();
+                cmd28.ExecuteNonQuery();
+                cmd29.ExecuteNonQuery();
+                cmd30.ExecuteNonQuery();
+                cmd31.ExecuteNonQuery();
+                cmd32.ExecuteNonQuery();
+                cmd33.ExecuteNonQuery();
+                cmd34.ExecuteNonQuery();
+                cmd35.ExecuteNonQuery();
+                cmd36.ExecuteNonQuery();
+                cmd37.ExecuteNonQuery();
+                cmd38.ExecuteNonQuery();
+                cmd39.ExecuteNonQuery();
+                cmd41.ExecuteNonQuery();
+                cmd42.ExecuteNonQuery();
+                cmd43.ExecuteNonQuery();
+                cmd44.ExecuteNonQuery();
+                cmd45.ExecuteNonQuery();
+                cmd46.ExecuteNonQuery();
+                cmd47.ExecuteNonQuery();
+                cmd48.ExecuteNonQuery();
+                cmd49.ExecuteNonQuery();
+                cmd50.ExecuteNonQuery();
+                cmd51.ExecuteNonQuery();
+                cmd52.ExecuteNonQuery();
+                cmd53.ExecuteNonQuery();
+                cmd54.ExecuteNonQuery();
+                cmd55.ExecuteNonQuery();
+                cmd56.ExecuteNonQuery();
+                cmd57.ExecuteNonQuery();
+                cmd58.ExecuteNonQuery();
+                cmd59.ExecuteNonQuery();
+                cmd60.ExecuteNonQuery();
+                cmd61.ExecuteNonQuery();
+                cmd62.ExecuteNonQuery();
+                cmd63.ExecuteNonQuery();
+                cmd64.ExecuteNonQuery();
+                cmd65.ExecuteNonQuery();
+                cmd66.ExecuteNonQuery();
+                cmd67.ExecuteNonQuery();
+                cmd68.ExecuteNonQuery();
+                cmd69.ExecuteNonQuery();
+                cmd70.ExecuteNonQuery();
+                cmd71.ExecuteNonQuery();
+                cmd72.ExecuteNonQuery();
+                cmd73.ExecuteNonQuery();
+                cmd74.ExecuteNonQuery();
+                cnn.Close();
+                MessageBox.Show("Base Creada");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,
+                    "Error al crear la base",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }        
     }
 }

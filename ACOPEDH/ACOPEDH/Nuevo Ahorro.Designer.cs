@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Nuevo_Ahorro));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.BarraTítulo = new System.Windows.Forms.Label();
             this.labBuscar = new System.Windows.Forms.Label();
@@ -47,9 +52,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.TxtCódigoA = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.TxtAsociadoP = new System.Windows.Forms.TextBox();
             this.bttAceptar = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.TxtOcupación = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAsociado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmAbono)).BeginInit();
@@ -93,13 +100,48 @@
             // 
             // dgvAsociado
             // 
+            this.dgvAsociado.AllowUserToAddRows = false;
+            this.dgvAsociado.AllowUserToDeleteRows = false;
+            this.dgvAsociado.AllowUserToResizeColumns = false;
+            this.dgvAsociado.AllowUserToResizeRows = false;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvAsociado.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
             this.dgvAsociado.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvAsociado.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Linotte-Bold", 12F);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAsociado.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dgvAsociado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Linotte-Bold", 12F);
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAsociado.DefaultCellStyle = dataGridViewCellStyle18;
             this.dgvAsociado.Location = new System.Drawing.Point(458, 51);
             this.dgvAsociado.Name = "dgvAsociado";
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Linotte-Bold", 12F);
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAsociado.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            this.dgvAsociado.RowHeadersVisible = false;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Linotte-Light", 10F);
+            this.dgvAsociado.RowsDefaultCellStyle = dataGridViewCellStyle20;
             this.dgvAsociado.Size = new System.Drawing.Size(452, 195);
             this.dgvAsociado.TabIndex = 1;
+            this.dgvAsociado.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvAsociado_CurrentCellDirtyStateChanged);
             // 
             // label7
             // 
@@ -133,7 +175,7 @@
             this.nmAbono.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nmAbono.ThousandsSeparator = true;
             this.nmAbono.Value = new decimal(new int[] {
-            1,
+            6,
             0,
             0,
             0});
@@ -175,6 +217,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.TxtOcupación);
             this.groupBox1.Controls.Add(this.TxtInterés);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
@@ -191,26 +235,27 @@
             this.groupBox1.Location = new System.Drawing.Point(50, 276);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(872, 207);
-            this.groupBox1.TabIndex = 103;
+            this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información del Ahorro";
             // 
             // TxtInterés
             // 
             this.TxtInterés.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtInterés.Location = new System.Drawing.Point(609, 102);
+            this.TxtInterés.Location = new System.Drawing.Point(772, 102);
             this.TxtInterés.Multiline = true;
             this.TxtInterés.Name = "TxtInterés";
             this.TxtInterés.ReadOnly = true;
             this.TxtInterés.Size = new System.Drawing.Size(56, 29);
             this.TxtInterés.TabIndex = 15;
             this.TxtInterés.TabStop = false;
+            this.TxtInterés.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(488, 108);
+            this.label10.Location = new System.Drawing.Point(651, 108);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(124, 19);
             this.label10.TabIndex = 14;
@@ -220,7 +265,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(88, 107);
+            this.label9.Location = new System.Drawing.Point(322, 107);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(123, 19);
             this.label9.TabIndex = 13;
@@ -231,10 +276,11 @@
             this.CBTipoAhorro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBTipoAhorro.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBTipoAhorro.FormattingEnabled = true;
-            this.CBTipoAhorro.Location = new System.Drawing.Point(231, 102);
+            this.CBTipoAhorro.Location = new System.Drawing.Point(468, 102);
             this.CBTipoAhorro.Name = "CBTipoAhorro";
             this.CBTipoAhorro.Size = new System.Drawing.Size(156, 27);
             this.CBTipoAhorro.TabIndex = 2;
+            this.CBTipoAhorro.SelectedIndexChanged += new System.EventHandler(this.CBTipoAhorro_SelectedIndexChanged);
             // 
             // TxtDUIP
             // 
@@ -244,7 +290,7 @@
             this.TxtDUIP.Name = "TxtDUIP";
             this.TxtDUIP.ReadOnly = true;
             this.TxtDUIP.Size = new System.Drawing.Size(146, 29);
-            this.TxtDUIP.TabIndex = 10;
+            this.TxtDUIP.TabIndex = 2;
             this.TxtDUIP.TabStop = false;
             // 
             // label3
@@ -265,7 +311,7 @@
             this.TxtCódigoA.Name = "TxtCódigoA";
             this.TxtCódigoA.ReadOnly = true;
             this.TxtCódigoA.Size = new System.Drawing.Size(136, 29);
-            this.TxtCódigoA.TabIndex = 10;
+            this.TxtCódigoA.TabIndex = 1;
             this.TxtCódigoA.TabStop = false;
             // 
             // label14
@@ -278,6 +324,16 @@
             this.label14.TabIndex = 10;
             this.label14.Text = "Código de \r\nAsociación:";
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(18, 38);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(78, 38);
+            this.label15.TabIndex = 10;
+            this.label15.Text = "Persona\r\nAsociada:";
+            // 
             // TxtAsociadoP
             // 
             this.TxtAsociadoP.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -286,7 +342,7 @@
             this.TxtAsociadoP.Name = "TxtAsociadoP";
             this.TxtAsociadoP.ReadOnly = true;
             this.TxtAsociadoP.Size = new System.Drawing.Size(289, 31);
-            this.TxtAsociadoP.TabIndex = 10;
+            this.TxtAsociadoP.TabIndex = 0;
             this.TxtAsociadoP.TabStop = false;
             // 
             // bttAceptar
@@ -299,15 +355,26 @@
             this.bttAceptar.Text = "ACEPTAR";
             this.bttAceptar.UseVisualStyleBackColor = true;
             // 
-            // label15
+            // label8
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(18, 38);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(78, 38);
-            this.label15.TabIndex = 10;
-            this.label15.Text = "Persona\r\nAsociada:";
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(26, 107);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(92, 19);
+            this.label8.TabIndex = 100;
+            this.label8.Text = "Ocupación: ";
+            // 
+            // TxtOcupación
+            // 
+            this.TxtOcupación.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtOcupación.Location = new System.Drawing.Point(120, 102);
+            this.TxtOcupación.Multiline = true;
+            this.TxtOcupación.Name = "TxtOcupación";
+            this.TxtOcupación.ReadOnly = true;
+            this.TxtOcupación.Size = new System.Drawing.Size(180, 29);
+            this.TxtOcupación.TabIndex = 3;
+            this.TxtOcupación.TabStop = false;
             // 
             // Nuevo_Ahorro
             // 
@@ -336,6 +403,7 @@
             this.Name = "Nuevo_Ahorro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ACOPEDH - NUEVO AHORRO";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Nuevo_Ahorro_FormClosing);
             this.Load += new System.EventHandler(this.Nuevo_Ahorro_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Nuevo_Ahorro_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -373,5 +441,7 @@
         private System.Windows.Forms.TextBox TxtAsociadoP;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button bttAceptar;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox TxtOcupación;
     }
 }

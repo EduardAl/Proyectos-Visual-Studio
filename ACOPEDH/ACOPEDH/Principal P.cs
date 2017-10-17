@@ -12,7 +12,6 @@ namespace ACOPEDH
         Color Original, Seleccionado;
         String Dato;
         Procedimientos_select Procedimientos_select = new Procedimientos_select();
-        Validaciones validar = new Validaciones();
         Emailsistema enviarEmail = new Emailsistema();
         public static bool confirmación = false;
         public bool editpass = false;
@@ -93,7 +92,7 @@ namespace ACOPEDH
             bttVerEstados.Visible = true;
             bttCrearCuenta.Visible = true;
             //Lenado de Datos
-            dgvBúsqueda.DataSource = Procedimientos_select.llenar_DataTable("[Cargar Ahorros]");
+            dgvBúsqueda.DataSource = Procedimientos_select.llenar_DataTable("[Ahorro DVG]");
             dgvBúsqueda.Refresh();
         }
         private void PPréstamos_Click(object sender, EventArgs e)
@@ -224,8 +223,8 @@ namespace ACOPEDH
             }
             else
                 MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            
-             
+
+
         }
         private void bttRetirar_Click(object sender, EventArgs e)
         {
@@ -298,7 +297,7 @@ namespace ACOPEDH
 
             Otorgar_Préstamo Accion = new Otorgar_Préstamo();
             Accion.ShowDialog();
-                Accion.Dispose();
+            Accion.Dispose();
         }
         private void bttDatosAsociado_Click(object sender, EventArgs e)
         {
@@ -328,7 +327,7 @@ namespace ACOPEDH
         {
             Nuevo_asociado Accion = new Nuevo_asociado();
             Accion.ShowDialog();
-                Accion.Dispose();
+            Accion.Dispose();
         }
         //Barta Título
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -466,16 +465,16 @@ namespace ACOPEDH
         {
             DataSet ds = new DataSet();
             if (
-                validar.IsNullOrEmty(ref txtNombreActual, ref errorProvider1) &&
-                validar.IsNullOrEmty(ref txtApellidoActual, ref errorProvider1) &&
-                validar.IsNullOrEmty(ref txtCorreoElectrónicoNuevo, ref errorProvider1) &&
-                validar.ValidarNomApe(ref txtNombreActual, ref errorProvider1) &&
-                validar.ValidarNomApe(ref txtApellidoActual, ref errorProvider1) &&
-                validar.validar_correo(ref txtCorreoElectrónicoNuevo, ref errorProvider1) &&
-                validar.IsNullOrEmty(ref txtNuevaContraseña, ref errorProvider1) &&
-                validar.IsNullOrEmty(ref txtConfContraseña, ref errorProvider1) &&
-                validar.validar_contraseñas(txtNuevaContraseña, ref errorProvider1) &&
-                validar.claves_iguales(txtNuevaContraseña, txtConfContraseña, ref errorProvider1)
+                Validaciones.IsNullOrEmty(ref txtNombreActual, ref errorProvider1) &&
+                Validaciones.IsNullOrEmty(ref txtApellidoActual, ref errorProvider1) &&
+                Validaciones.IsNullOrEmty(ref txtCorreoElectrónicoNuevo, ref errorProvider1) &&
+                Validaciones.ValidarNomApe(ref txtNombreActual, ref errorProvider1) &&
+                Validaciones.ValidarNomApe(ref txtApellidoActual, ref errorProvider1) &&
+                Validaciones.validar_correo(ref txtCorreoElectrónicoNuevo, ref errorProvider1) &&
+                Validaciones.IsNullOrEmty(ref txtNuevaContraseña, ref errorProvider1) &&
+                Validaciones.IsNullOrEmty(ref txtConfContraseña, ref errorProvider1) &&
+                Validaciones.validar_contraseñas(txtNuevaContraseña, ref errorProvider1) &&
+                Validaciones.claves_iguales(txtNuevaContraseña, txtConfContraseña, ref errorProvider1)
                 )
             {
                 if (!(Globales.gbNombre_Usuario == txtNombreActual.Text.Trim() && Globales.gbApellido_Usuario == txtApellidoActual.Text.Trim() &&
@@ -491,10 +490,10 @@ namespace ACOPEDH
                     {
                         if
                             (
-                                validar.IsNullOrEmty(ref txtNuevaContraseña, ref errorProvider1) &&
-                                validar.IsNullOrEmty(ref txtConfContraseña, ref errorProvider1) &&
-                                validar.validar_contraseñas(txtNuevaContraseña, ref errorProvider1) &&
-                                validar.claves_iguales(txtNuevaContraseña, txtConfContraseña, ref errorProvider1)
+                                Validaciones.IsNullOrEmty(ref txtNuevaContraseña, ref errorProvider1) &&
+                                Validaciones.IsNullOrEmty(ref txtConfContraseña, ref errorProvider1) &&
+                                Validaciones.validar_contraseñas(txtNuevaContraseña, ref errorProvider1) &&
+                                Validaciones.claves_iguales(txtNuevaContraseña, txtConfContraseña, ref errorProvider1)
                             )
                         {
                             parámetros[4] = new SqlParameter("@Contraseña", Cifrado.encriptar(txtNuevaContraseña.Text));
@@ -581,9 +580,9 @@ namespace ACOPEDH
 
         private void panelConfig_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawLine(new Pen(Brushes.Black,3), 10, 32, panelConfig.Width - 10, 32);//23
-            e.Graphics.DrawLine(new Pen(Brushes.Black,2), 10, 196, panelConfig.Width - 10, 196);//180
-            e.Graphics.DrawLine(new Pen(Brushes.Black,2), 10, 347, panelConfig.Width - 10, 347);//331
+            e.Graphics.DrawLine(new Pen(Brushes.Black, 3), 10, 32, panelConfig.Width - 10, 32);//23
+            e.Graphics.DrawLine(new Pen(Brushes.Black, 2), 10, 196, panelConfig.Width - 10, 196);//180
+            e.Graphics.DrawLine(new Pen(Brushes.Black, 2), 10, 347, panelConfig.Width - 10, 347);//331
         }
         private void PBMostrar2_MouseDown(object sender, MouseEventArgs e)
         {
@@ -608,31 +607,31 @@ namespace ACOPEDH
         private void txtNombreActual_KeyUp(object sender, KeyEventArgs e)
         {
             errorProvider1.Clear();
-            validar.ValidarNomApe(ref txtNombreActual, ref errorProvider1);
+            Validaciones.ValidarNomApe(ref txtNombreActual, ref errorProvider1);
         }
 
         private void txtApellidoActual_KeyUp(object sender, KeyEventArgs e)
         {
             errorProvider1.Clear();
-            validar.ValidarNomApe(ref txtApellidoActual, ref errorProvider1);
+            Validaciones.ValidarNomApe(ref txtApellidoActual, ref errorProvider1);
         }
 
         private void txtCorreoElectrónicoNuevo_KeyUp(object sender, KeyEventArgs e)
         {
             errorProvider1.Clear();
-            validar.validar_correo(ref txtCorreoElectrónicoNuevo, ref errorProvider1);
+            Validaciones.validar_correo(ref txtCorreoElectrónicoNuevo, ref errorProvider1);
         }
 
         private void txtNuevaContraseña_KeyUp(object sender, KeyEventArgs e)
         {
             errorProvider1.Clear();
-            validar.validar_contraseñas(txtNuevaContraseña, ref errorProvider1);
+            Validaciones.validar_contraseñas(txtNuevaContraseña, ref errorProvider1);
         }
 
         private void txtConfContraseña_KeyUp(object sender, KeyEventArgs e)
         {
             errorProvider1.Clear();
-            validar.claves_iguales(txtNuevaContraseña, txtConfContraseña, ref errorProvider1);
+            Validaciones.claves_iguales(txtNuevaContraseña, txtConfContraseña, ref errorProvider1);
         }
 
         private void Principal_P_FormClosing(object sender, FormClosingEventArgs e)

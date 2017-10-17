@@ -18,7 +18,6 @@ namespace ACOPEDH
             *     Componentes Iniciales     *
             ********************************* 
         */
-        Validaciones validar = new Validaciones();
         DataTable dt;
         #region Constructores
         public Nuevo_asociado()
@@ -64,11 +63,11 @@ namespace ACOPEDH
         private void bttAceptar_Click(object sender, EventArgs e)
         {
 #warning Añadir validaciones al escribir y el ingreso de teléfonos
-            if (validar.ValidarNomApe(ref txtNombres, ref errorProvider1) &&
-                validar.ValidarNomApe(ref txtApellidos, ref errorProvider1) &&
-                validar.validar_DUI(ref txtDUI, ref errorProvider1) &&
-                validar.validar_NIT(ref txtNIT, ref errorProvider1) &&
-                validar.IsNullOrEmty(ref txtDirección, ref errorProvider1))
+            if (Validaciones.ValidarNomApe(ref txtNombres, ref errorProvider1) &&
+                Validaciones.ValidarNomApe(ref txtApellidos, ref errorProvider1) &&
+                Validaciones.validar_DUI(ref txtDUI, ref errorProvider1) &&
+                Validaciones.validar_NIT(ref txtNIT, ref errorProvider1) &&
+                Validaciones.IsNullOrEmty(ref txtDirección, ref errorProvider1))
             {
                 string datos = string.Format("Nombre: {0}\nApellidos: {1}\nDUI: {2}\n" +
                     "NIT: {3}\nFecha de Nacimiento: {4}\nLugar de Trabajo: {5}\nTipo de Asociación: " +
@@ -116,7 +115,7 @@ namespace ACOPEDH
         //Añadir Teléfono
         private void button1_Click(object sender, EventArgs e)
         {
-            if (validar.validar_Teléfonos(ref txtTeléfono, ref errorProvider1))
+            if (Validaciones.validar_Teléfonos(ref txtTeléfono, ref errorProvider1))
             {
                 bool existe = false;
                 foreach (DataGridViewRow row in dgvTeléfonos.Rows)
@@ -140,7 +139,7 @@ namespace ACOPEDH
         //Modificar Teléfono
         private void button2_Click(object sender, EventArgs e)
         {
-            if (validar.validar_Teléfonos(ref txtTeléfono, ref errorProvider1))
+            if (Validaciones.validar_Teléfonos(ref txtTeléfono, ref errorProvider1))
             {
                 bool existe = false;
                 if (txtTeléfono.Text != dgvTeléfonos.CurrentRow.Cells[0].Value.ToString())
@@ -213,11 +212,7 @@ namespace ACOPEDH
         }
 
         #endregion
-
         #region KeyUp
-
-        #endregion
-
         private void txtNombres_KeyUp(object sender, KeyEventArgs e)
         {
 
@@ -247,5 +242,6 @@ namespace ACOPEDH
         {
 
         }
+        #endregion
     }
 }
