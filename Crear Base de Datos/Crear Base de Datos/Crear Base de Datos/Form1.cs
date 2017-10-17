@@ -705,7 +705,7 @@ namespace Crear_Base_de_Datos
                "As " +
                "Begin Tran Cargar_Ahorros " +
                "Begin Try " +
-               "Select Asociado.[Código Asociado] as 'Código_A', (Asociado.Nombres+' ' +Asociado.Apellidos) as 'Nombre', Ahorro.Estado as 'Est',  [Tipo de Ahorro].Nombre as 'TipoA', [Tipo de Ahorro].[Tasa de Interés] as 'Interés' " +
+               "Select Asociado.[Código Asociado] as 'Código_A', (Asociado.Nombres+' ' + Asociado.Apellidos) as 'Nombre', Ahorro.Estado as 'Est',  [Tipo de Ahorro].Nombre as 'TipoA', [Tipo de Ahorro].[Tasa de Interés] as 'Interés' from Ahorro inner join Asociado " +
                "on Ahorro.[FK Código de Asociado] = Asociado.[Código Asociado] inner join [Tipo de Ahorro] on Ahorro.[FK Tipo Ahorro]=[Tipo de Ahorro].[id Tipo Ahorro] " +
                "where Ahorro.[id Ahorro] = @Código_Ahorro " +
                "Commit Tran Cargar_Ahorros " +
@@ -1099,13 +1099,13 @@ namespace Crear_Base_de_Datos
                 cnn.Close();
                 MessageBox.Show("Base Creada");
                 this.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message,
-            //        "Error al crear la base",
-            //        MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-        }        
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message,
+            //            "Error al crear la base",
+            //            MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+        }
     }
 }
