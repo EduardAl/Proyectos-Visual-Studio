@@ -634,6 +634,11 @@ namespace ACOPEDH
             Validaciones.claves_iguales(txtNuevaContraseña, txtConfContraseña, ref errorProvider1);
         }
 
+        private void BarraTítulo_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void Principal_P_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (dr == DialogResult.Cancel)
