@@ -81,7 +81,10 @@ namespace ACOPEDH
                     Close();
                 }
                 else
+                {
+                    MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     DialogResult = DialogResult.None;
+                }
             }
             else
             {

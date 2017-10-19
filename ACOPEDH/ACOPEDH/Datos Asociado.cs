@@ -130,11 +130,11 @@ namespace ACOPEDH
             //Carga de Parámetros
             SqlParameter[] Param = new SqlParameter[1];
             //Llenado del datatable (y de los TextBox)
-            DataTable dt = Cargar.LlenarText("[Cargar Asociados]", "Name,LName,Residencia,DDui,DNit", Param, txtNombres, txtApellidos, txtDirección, txtDUI, txtNIT);
             Param[0] = new SqlParameter("@Código_Asociado", Dato);
+            DataTable dt = Cargar.LlenarText("[Cargar Asociados]", "Name,LName,Residencia,DDui,DNit", Param, txtNombres, txtApellidos, txtDirección, txtDUI, txtNIT);
             dtNacimiento.Value = DateTime.Parse(dt.Rows[0]["FNacimiento"].ToString());
             dtAso.Value = DateTime.Parse(dt.Rows[0]["FAsociación"].ToString());
-            if (dt.Rows[0]["Est"].ToString() !="ACTIVO")
+            if (dt.Rows[0]["Est"].ToString() != "ACTIVO")
             {
                 dtDesaso.Value = DateTime.Parse(dt.Rows[0]["FDesasociación"].ToString());
                 dtDesaso.Visible = true;

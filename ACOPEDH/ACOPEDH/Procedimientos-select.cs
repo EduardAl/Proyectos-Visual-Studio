@@ -13,14 +13,14 @@ namespace ACOPEDH
     {
         Conexión cn;
         SqlCommand Comando;
+        SqlConnection conex = new SqlConnection();
         public int llenar_tabla(string procedimiento, SqlParameter[] param)
         {
             int resultado = 0;
             cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
             try
             {
-                cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
-                SqlConnection conex = new SqlConnection(cn.cadena);
+                conex = new SqlConnection(cn.cadena);
                 conex.InfoMessage += new SqlInfoMessageEventHandler(Conex_InfoMessage);
                 conex.Open();
                 Comando = new SqlCommand(procedimiento, conex);
@@ -35,6 +35,10 @@ namespace ACOPEDH
             {
                 MessageBox.Show(ex.Message, ex.ErrorCode.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                conex.Close();
+            }
             return resultado;
         }
         public DataTable llenar_DataTable(string procedimiento)
@@ -43,20 +47,22 @@ namespace ACOPEDH
             DataTable dt = new DataTable();
             try
             {
-                SqlConnection conex = new SqlConnection(cn.cadena);
-                //   SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
-
+                //conex = new SqlConnection(cn.cadena);
+                conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
                 conex.Open();
                 Comando = new SqlCommand(procedimiento, conex);
                 Comando.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(Comando);
                 da.Fill(dt);
                 da.Dispose();
-                conex.Close();
             }
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message, ex.ErrorCode.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conex.Close();
             }
             return dt;
         }
@@ -66,8 +72,7 @@ namespace ACOPEDH
             DataTable dt = new DataTable();
             try
             {
-                SqlConnection conex = new SqlConnection(cn.cadena);
-                // SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
+                conex = new SqlConnection(cn.cadena);
                 conex.Open();
                 Comando = new SqlCommand(procedimiento, conex);
                 Comando.CommandType = CommandType.StoredProcedure;
@@ -76,11 +81,14 @@ namespace ACOPEDH
                     Comando.Parameters.Add(param[x]);
                 da.Fill(dt);
                 da.Dispose();
-                conex.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ha ocurrido un error al intentar extraer los datos.\n" + ex.Message);
+            }
+            finally
+            {
+                conex.Close();
             }
             return dt;
         }
@@ -90,7 +98,7 @@ namespace ACOPEDH
             DataSet ds = new DataSet();
             try
             {
-                SqlConnection conex = new SqlConnection(cn.cadena);
+                conex = new SqlConnection(cn.cadena);
                 conex.Open();
                 conex.InfoMessage += new SqlInfoMessageEventHandler(Conex_InfoMessage);
                 Comando = new SqlCommand(procedimiento, conex);
@@ -101,11 +109,14 @@ namespace ACOPEDH
                 int registro = da.Fill(ds, "Usuarios");
 
                 da.Dispose();
-                conex.Close();
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Ha ocurrido un error al intentar extraer los datos.\n" + ex.Message);
+            }
+            finally
+            {
+                conex.Close();
             }
             return ds;
         }
@@ -115,7 +126,7 @@ namespace ACOPEDH
             DataSet ds = new DataSet();
             try
             {
-                SqlConnection conex = new SqlConnection(cn.cadena);
+                conex = new SqlConnection(cn.cadena);
                 conex.InfoMessage += new SqlInfoMessageEventHandler(Conex_InfoMessage);
                 conex.Open();
                 Comando = new SqlCommand();
@@ -131,11 +142,14 @@ namespace ACOPEDH
                 int registro = da.Fill(ds, ptabla);
                 da.SelectCommand = Comando;
                 da.Dispose();
-                conex.Close();
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Ha ocurrido un error al intentar extraer los datos.\n" + ex.Message.ToString());
+            }
+            finally
+            {
+                conex.Close();
             }
             return ds;
         }
@@ -168,9 +182,9 @@ namespace ACOPEDH
                     Text[j] = Convert.ToString(row[Row[j]]);
                 }
             }
-            catch (SqlException ex)
+            catch
             {
-                MessageBox.Show(ex.Message, ex.ErrorCode.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ha ocurrido un error, por favor intentelo de nuevo más tarde", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return Llenado;
         }
@@ -189,12 +203,13 @@ namespace ACOPEDH
                     j++;
                 }
             }
-            catch(SqlException ex)
+            catch
             {
-                MessageBox.Show(ex.Message, ex.ErrorCode.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ha ocurrido un error, por favor intentelo de nuevo más tarde", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return Llenado;
         }
 #endregion
     }
 }
+// SqlConnection conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");

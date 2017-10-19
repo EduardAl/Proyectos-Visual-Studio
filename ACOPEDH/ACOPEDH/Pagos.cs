@@ -19,8 +19,10 @@ namespace ACOPEDH
             ********************************* 
         */
         string Datos;
-        bool arreglandopago=false;
-        public static double interes = 0.02;
+        bool arreglandopago = false;
+        double interes = 1, Monto = 1, Plazo = 1;
+        DateTime Límite;
+
         #region Constructores
         //Normal
         public Pagos()
@@ -56,22 +58,43 @@ namespace ACOPEDH
         //Pagar e Imprimir
         private void bttAceptar_Click(object sender, EventArgs e)
         {
-            DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de pago para la siguiente transacción?:\n$" + nmCantidad.Value + "\n N° Préstamo: " + txtIdPréstamo.Text + "\nPersona Asociada: " + txtNombre.Text, "Confirmar Pago", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-            if (Imprimir != DialogResult.Cancel)
+            if (nmCantidad.Value > 0)
             {
-                Procedimientos_select ingresar = new Procedimientos_select();
-                if (Imprimir == DialogResult.Yes)
+                DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de pago para la siguiente transacción?:\n$" + nmCantidad.Value + "\n N° Préstamo: " + txtIdPréstamo.Text + "\nPersona Asociada: " + txtNombre.Text, "Confirmar Pago", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (Imprimir != DialogResult.Cancel)
                 {
+                    double inte = Math.Round(Convert.ToDouble(txtSaldo.Text) * interes, 2);
+                    double Pago = Convert.ToDouble(nmCantidad.Value);
+                    double Capi = Pago - inte;
+                    double Mora = Convert.ToDouble(txtMora.Text);
+                    Procedimientos_select ingresar = new Procedimientos_select();
+                    SqlParameter[] Parámetros = new SqlParameter[8];
+                    Parámetros[0] = new SqlParameter("@ID_Préstamo", Datos);
+                    Parámetros[1] = new SqlParameter("@Pago", Pago + Mora);
+                    Parámetros[2] = new SqlParameter("@Id_Usuario", Globales.gbCodUsuario);
+                    Parámetros[3] = new SqlParameter("@Intereses", inte);
+                    Parámetros[4] = new SqlParameter("@Capital", Capi);
+                    Parámetros[5] = new SqlParameter("@Saldo", Convert.ToDouble(txtSaldo.Text) - Capi);
+                    Parámetros[6] = new SqlParameter("@Mora", Mora);
+                    Parámetros[7] = new SqlParameter("@Fecha_Límite", Límite);
+                   
+                    if (ingresar.llenar_tabla("[Realizar Pago]", Parámetros) > 0)
+                    {
+                        if (Imprimir == DialogResult.Yes)
+                        {
 #warning Añadir Imprimir
+                        }
+                        DialogResult = DialogResult.OK;
+                        Close();
+                    }
+                    else
+                        MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-                DialogResult = DialogResult.OK;
-                Close();
             }
         }
         #endregion
 
-        /*
+    /*
         *********************************
         *            Eventos            *
         ********************************* 
@@ -119,31 +142,29 @@ namespace ACOPEDH
         }
         #endregion
         #region Load
-
         private void Pagos_Load(object sender, EventArgs e)
         {
-            double interes = 1, Monto = 1;
-            TextBox Monto1 = new TextBox();
-            TextBox interes1 = new TextBox();
             Procedimientos_select pro = new Procedimientos_select();
             SqlParameter[] Param = new SqlParameter[1];
             Param[0] = new SqlParameter("@ID_Préstamo", Datos);
-            pro.LlenarText("[Cargar Préstamo]", "Nombre,PCuotas,Monto,Interés", Param, txtNombre, txtMontoMinimo, Monto1, interes1);
+            DataTable dt = pro.LlenarText("[Cargar Préstamo]", "Nombre,PCuotas,Monto,Interés", Param, txtNombre, txtMontoMinimo);
             Param[0] = new SqlParameter("@ID_Préstamo", Datos);
             pro.LlenarText("[Cargar Saldo]", "Pago Mínimo", Param, txtSaldo);
             Param[0] = new SqlParameter("@Id_Préstamo", Datos);
-            DataTable dt = pro.llenar_DataTable("[Conseguir Límite]", Param);
-            DateTime time = Convert.ToDateTime(dt.Rows[0]["Límite"]).AddMonths(1);
+            DataTable data = pro.llenar_DataTable("[Conseguir Límite]", Param);
+            Límite = Convert.ToDateTime(data.Rows[0]["Límite"]).AddMonths(1);
+            Límite = new DateTime(Límite.Year, Límite.Month, 23).AddMinutes(-5);
             txtIdPréstamo.Text = Datos;
             try
             {
-                Monto = double.Parse(Monto1.Text);
-                interes = double.Parse(interes1.Text);
-                nmCantidad.Maximum = Convert.ToDecimal(txtSaldo.Text) * (Convert.ToDecimal(interes) / 1200);
+                Monto = Math.Round(Convert.ToDouble(dt.Rows[0]["Monto"]),2);
+                Plazo = Math.Round(Convert.ToDouble(dt.Rows[0]["NCuotas"]), 0);
+                interes = Convert.ToDouble(dt.Rows[0]["Interés"])/1200;
+                nmCantidad.Maximum = Convert.ToDecimal(Math.Round(Convert.ToDouble(txtSaldo.Text) * (1 + interes),2));
             }
             catch
             {
-                nmCantidad.Maximum = Convert.ToDecimal(Monto) * (1 + (Convert.ToDecimal(interes) / 1200));
+                nmCantidad.Maximum = Convert.ToDecimal(Math.Round(Monto * (1 + interes),2));
                 txtSaldo.Text = Monto.ToString();
             }
             if (Convert.ToDecimal(txtMontoMinimo.Text) > nmCantidad.Maximum)
@@ -156,10 +177,13 @@ namespace ACOPEDH
                 nmCantidad.Minimum = Convert.ToDecimal(txtMontoMinimo.Text);
             }
             //Verificar esto
-            if(time<=DateTime.Now&&!arreglandopago)
+            if (Límite < DateTime.Now && !arreglandopago)
             {
-                nmCantidad.Minimum = Convert.ToDecimal(Convert.ToDouble(txtMontoMinimo.Text) * interes);
+                txtMora.Text = "2.00"/*Convert.ToString(Convert.ToDouble(txtMontoMinimo.Text) * interes)*/;
+                lbMora.Visible = true;
             }
+            else
+                txtMora.Text = "0.00";
             nmCantidad.Value = nmCantidad.Minimum;
             txtPagoMax.Text =Math.Round(nmCantidad.Maximum, 2).ToString();
             txtMontoMinimo.Text = "$" + Math.Round(double.Parse(txtMontoMinimo.Text),2);

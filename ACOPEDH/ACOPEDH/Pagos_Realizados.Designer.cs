@@ -55,9 +55,9 @@
             this.txtTipoPréstamo = new System.Windows.Forms.TextBox();
             this.bttImprimir = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtEstado = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtTInterés = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPagosRealizados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
@@ -235,6 +235,7 @@
             this.dgvPagosRealizados.RowHeadersVisible = false;
             this.dgvPagosRealizados.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Linotte-Light", 10F);
             this.dgvPagosRealizados.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvPagosRealizados.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgvPagosRealizados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -259,7 +260,7 @@
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
             this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
             this.BarraTítulo.Name = "BarraTítulo";
-            this.BarraTítulo.Size = new System.Drawing.Size(1017, 30);
+            this.BarraTítulo.Size = new System.Drawing.Size(930, 30);
             this.BarraTítulo.TabIndex = 37;
             this.BarraTítulo.Text = "         ACOPEDH .:. PAGOS REALIZADOS";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -274,7 +275,7 @@
             this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
             this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.bttCer.Image = ((System.Drawing.Image)(resources.GetObject("bttCer.Image")));
-            this.bttCer.Location = new System.Drawing.Point(899, 0);
+            this.bttCer.Location = new System.Drawing.Point(901, 0);
             this.bttCer.Name = "bttCer";
             this.bttCer.Size = new System.Drawing.Size(30, 26);
             this.bttCer.TabIndex = 39;
@@ -323,15 +324,15 @@
             this.label6.TabIndex = 98;
             this.label6.Text = "Estado: ";
             // 
-            // textBox1
+            // txtEstado
             // 
-            this.textBox1.Location = new System.Drawing.Point(451, 98);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(128, 33);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtEstado.Location = new System.Drawing.Point(451, 98);
+            this.txtEstado.Multiline = true;
+            this.txtEstado.Name = "txtEstado";
+            this.txtEstado.ReadOnly = true;
+            this.txtEstado.Size = new System.Drawing.Size(128, 33);
+            this.txtEstado.TabIndex = 4;
+            this.txtEstado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label7
             // 
@@ -343,15 +344,15 @@
             this.label7.TabIndex = 100;
             this.label7.Text = "Tasa de\r\nInterés: ";
             // 
-            // textBox2
+            // txtTInterés
             // 
-            this.textBox2.Location = new System.Drawing.Point(536, 157);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(66, 33);
-            this.textBox2.TabIndex = 8;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTInterés.Location = new System.Drawing.Point(536, 157);
+            this.txtTInterés.Multiline = true;
+            this.txtTInterés.Name = "txtTInterés";
+            this.txtTInterés.ReadOnly = true;
+            this.txtTInterés.Size = new System.Drawing.Size(66, 33);
+            this.txtTInterés.TabIndex = 8;
+            this.txtTInterés.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Pagos_Realizados
             // 
@@ -359,10 +360,10 @@
             this.AutoScroll = true;
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(929, 634);
-            this.Controls.Add(this.textBox2);
+            this.ClientSize = new System.Drawing.Size(929, 651);
+            this.Controls.Add(this.txtTInterés);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtEstado);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.bttImprimir);
             this.Controls.Add(this.txtTipoPréstamo);
@@ -428,8 +429,8 @@
         private System.Windows.Forms.TextBox txtTipoPréstamo;
         private System.Windows.Forms.Button bttImprimir;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtEstado;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtTInterés;
     }
 }

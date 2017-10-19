@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Abonos));
             this.bttCancelar = new System.Windows.Forms.Button();
             this.bttAceptar = new System.Windows.Forms.Button();
-            this.nCantidadRetiro = new System.Windows.Forms.NumericUpDown();
+            this.nmCantidadRetiro = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.txtAsociado = new System.Windows.Forms.TextBox();
             this.txtNoCuenta = new System.Windows.Forms.TextBox();
@@ -39,7 +39,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.BarraTítulo = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.nCantidadRetiro)).BeginInit();
+            this.txtTasa = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.nmCantidadRetiro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,14 +65,19 @@
             this.bttAceptar.UseVisualStyleBackColor = true;
             this.bttAceptar.Click += new System.EventHandler(this.bttAceptar_Click);
             // 
-            // nCantidadRetiro
+            // nmCantidadRetiro
             // 
-            this.nCantidadRetiro.DecimalPlaces = 2;
-            this.nCantidadRetiro.Location = new System.Drawing.Point(191, 130);
-            this.nCantidadRetiro.Name = "nCantidadRetiro";
-            this.nCantidadRetiro.Size = new System.Drawing.Size(96, 27);
-            this.nCantidadRetiro.TabIndex = 55;
-            this.nCantidadRetiro.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nmCantidadRetiro.DecimalPlaces = 2;
+            this.nmCantidadRetiro.Location = new System.Drawing.Point(115, 141);
+            this.nmCantidadRetiro.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nmCantidadRetiro.Name = "nmCantidadRetiro";
+            this.nmCantidadRetiro.Size = new System.Drawing.Size(96, 27);
+            this.nmCantidadRetiro.TabIndex = 55;
+            this.nmCantidadRetiro.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
             // 
@@ -78,13 +85,13 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Location = new System.Drawing.Point(23, 132);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(148, 19);
+            this.label4.Size = new System.Drawing.Size(79, 38);
             this.label4.TabIndex = 63;
-            this.label4.Text = "Cantidad a Abonar:";
+            this.label4.Text = "Cantidad \r\na Abonar:";
             // 
             // txtAsociado
             // 
-            this.txtAsociado.Location = new System.Drawing.Point(115, 80);
+            this.txtAsociado.Location = new System.Drawing.Point(115, 89);
             this.txtAsociado.Name = "txtAsociado";
             this.txtAsociado.ReadOnly = true;
             this.txtAsociado.Size = new System.Drawing.Size(321, 27);
@@ -102,11 +109,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(21, 83);
+            this.label2.Location = new System.Drawing.Point(21, 84);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 19);
+            this.label2.Size = new System.Drawing.Size(78, 38);
             this.label2.TabIndex = 61;
-            this.label2.Text = "Asociado:";
+            this.label2.Text = "Persona\r\nAsociada:";
             // 
             // label1
             // 
@@ -141,6 +148,24 @@
             this.BarraTítulo.Text = "         ACOPEDH .:. ABONOS";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtTasa
+            // 
+            this.txtTasa.Location = new System.Drawing.Point(303, 140);
+            this.txtTasa.Name = "txtTasa";
+            this.txtTasa.ReadOnly = true;
+            this.txtTasa.Size = new System.Drawing.Size(100, 27);
+            this.txtTasa.TabIndex = 64;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(234, 136);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(63, 38);
+            this.label3.TabIndex = 65;
+            this.label3.Text = "Tasa de\r\nInterés:";
+            // 
             // Abonos
             // 
             this.AcceptButton = this.bttAceptar;
@@ -148,9 +173,11 @@
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(487, 258);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtTasa);
             this.Controls.Add(this.bttCancelar);
             this.Controls.Add(this.bttAceptar);
-            this.Controls.Add(this.nCantidadRetiro);
+            this.Controls.Add(this.nmCantidadRetiro);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtAsociado);
             this.Controls.Add(this.txtNoCuenta);
@@ -171,7 +198,7 @@
             this.Text = "ACOPEDH - ABONOS";
             this.Load += new System.EventHandler(this.Abonos_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);
-            ((System.ComponentModel.ISupportInitialize)(this.nCantidadRetiro)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmCantidadRetiro)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -182,7 +209,7 @@
 
         private System.Windows.Forms.Button bttCancelar;
         private System.Windows.Forms.Button bttAceptar;
-        private System.Windows.Forms.NumericUpDown nCantidadRetiro;
+        private System.Windows.Forms.NumericUpDown nmCantidadRetiro;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtAsociado;
         private System.Windows.Forms.TextBox txtNoCuenta;
@@ -190,5 +217,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label BarraTítulo;
+        private System.Windows.Forms.TextBox txtTasa;
+        private System.Windows.Forms.Label label3;
     }
 }

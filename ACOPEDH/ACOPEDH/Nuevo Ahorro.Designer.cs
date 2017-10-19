@@ -44,6 +44,8 @@
             this.bttMin = new System.Windows.Forms.PictureBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.TxtOcupación = new System.Windows.Forms.TextBox();
             this.TxtInterés = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -55,8 +57,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.TxtAsociadoP = new System.Windows.Forms.TextBox();
             this.bttAceptar = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.TxtOcupación = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAsociado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmAbono)).BeginInit();
@@ -102,10 +102,10 @@
             // 
             this.dgvAsociado.AllowUserToAddRows = false;
             this.dgvAsociado.AllowUserToDeleteRows = false;
-            this.dgvAsociado.AllowUserToResizeColumns = false;
             this.dgvAsociado.AllowUserToResizeRows = false;
             dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgvAsociado.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            this.dgvAsociado.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAsociado.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvAsociado.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -139,9 +139,10 @@
             dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle20.Font = new System.Drawing.Font("Linotte-Light", 10F);
             this.dgvAsociado.RowsDefaultCellStyle = dataGridViewCellStyle20;
+            this.dgvAsociado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAsociado.Size = new System.Drawing.Size(452, 195);
             this.dgvAsociado.TabIndex = 1;
-            this.dgvAsociado.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvAsociado_CurrentCellDirtyStateChanged);
+            this.dgvAsociado.CurrentCellChanged += new System.EventHandler(this.dgvAsociado_CurrentCellChanged);
             // 
             // label7
             // 
@@ -192,6 +193,7 @@
             this.bttCer.Size = new System.Drawing.Size(30, 26);
             this.bttCer.TabIndex = 100;
             this.bttCer.TabStop = false;
+            this.bttCer.Click += new System.EventHandler(this.bttCer_Click);
             // 
             // bttMin
             // 
@@ -205,6 +207,7 @@
             this.bttMin.Size = new System.Drawing.Size(30, 26);
             this.bttMin.TabIndex = 101;
             this.bttMin.TabStop = false;
+            this.bttMin.Click += new System.EventHandler(this.bttMin_Click);
             // 
             // textBox3
             // 
@@ -238,6 +241,27 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información del Ahorro";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(26, 107);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(92, 19);
+            this.label8.TabIndex = 100;
+            this.label8.Text = "Ocupación: ";
+            // 
+            // TxtOcupación
+            // 
+            this.TxtOcupación.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtOcupación.Location = new System.Drawing.Point(120, 102);
+            this.TxtOcupación.Multiline = true;
+            this.TxtOcupación.Name = "TxtOcupación";
+            this.TxtOcupación.ReadOnly = true;
+            this.TxtOcupación.Size = new System.Drawing.Size(180, 29);
+            this.TxtOcupación.TabIndex = 3;
+            this.TxtOcupación.TabStop = false;
             // 
             // TxtInterés
             // 
@@ -354,27 +378,7 @@
             this.bttAceptar.TabIndex = 4;
             this.bttAceptar.Text = "ACEPTAR";
             this.bttAceptar.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(26, 107);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(92, 19);
-            this.label8.TabIndex = 100;
-            this.label8.Text = "Ocupación: ";
-            // 
-            // TxtOcupación
-            // 
-            this.TxtOcupación.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtOcupación.Location = new System.Drawing.Point(120, 102);
-            this.TxtOcupación.Multiline = true;
-            this.TxtOcupación.Name = "TxtOcupación";
-            this.TxtOcupación.ReadOnly = true;
-            this.TxtOcupación.Size = new System.Drawing.Size(180, 29);
-            this.TxtOcupación.TabIndex = 3;
-            this.TxtOcupación.TabStop = false;
+            this.bttAceptar.Click += new System.EventHandler(this.bttAceptar_Click);
             // 
             // Nuevo_Ahorro
             // 

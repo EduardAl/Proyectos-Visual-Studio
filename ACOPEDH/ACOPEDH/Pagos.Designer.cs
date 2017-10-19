@@ -47,6 +47,8 @@
             this.txtPagoMax = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.lbMora = new System.Windows.Forms.Label();
+            this.txtMora = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttMin)).BeginInit();
@@ -91,7 +93,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(245, 170);
+            this.label4.Location = new System.Drawing.Point(244, 149);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 19);
             this.label4.TabIndex = 3;
@@ -111,7 +113,7 @@
             // bttAceptar
             // 
             this.bttAceptar.Font = new System.Drawing.Font("Folks-Light", 12F);
-            this.bttAceptar.Location = new System.Drawing.Point(330, 223);
+            this.bttAceptar.Location = new System.Drawing.Point(330, 230);
             this.bttAceptar.Name = "bttAceptar";
             this.bttAceptar.Size = new System.Drawing.Size(110, 45);
             this.bttAceptar.TabIndex = 1;
@@ -158,7 +160,7 @@
             // txtSaldo
             // 
             this.txtSaldo.Font = new System.Drawing.Font("Folks-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSaldo.Location = new System.Drawing.Point(303, 168);
+            this.txtSaldo.Location = new System.Drawing.Point(302, 147);
             this.txtSaldo.Multiline = true;
             this.txtSaldo.Name = "txtSaldo";
             this.txtSaldo.ReadOnly = true;
@@ -266,6 +268,29 @@
     "e Pago";
             this.lbMora.Visible = false;
             // 
+            // txtMora
+            // 
+            this.txtMora.Font = new System.Drawing.Font("Folks-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMora.Location = new System.Drawing.Point(302, 189);
+            this.txtMora.Multiline = true;
+            this.txtMora.Name = "txtMora";
+            this.txtMora.ReadOnly = true;
+            this.txtMora.Size = new System.Drawing.Size(76, 25);
+            this.txtMora.TabIndex = 45;
+            this.txtMora.TabStop = false;
+            this.txtMora.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(244, 191);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(55, 19);
+            this.label7.TabIndex = 44;
+            this.label7.Text = "Mora: ";
+            // 
             // Pagos
             // 
             this.AcceptButton = this.bttAceptar;
@@ -273,6 +298,8 @@
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(470, 336);
+            this.Controls.Add(this.txtMora);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.lbMora);
             this.Controls.Add(this.txtPagoMax);
             this.Controls.Add(this.label6);
@@ -334,5 +361,7 @@
         private System.Windows.Forms.TextBox txtPagoMax;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lbMora;
+        private System.Windows.Forms.TextBox txtMora;
+        private System.Windows.Forms.Label label7;
     }
 }

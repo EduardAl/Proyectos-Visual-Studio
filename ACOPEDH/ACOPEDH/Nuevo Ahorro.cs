@@ -48,11 +48,26 @@ namespace ACOPEDH
             ********************************* 
         */
         #region Botones
-        private void bttCrear_Click(object sender, EventArgs e)
+        private void bttAceptar_Click(object sender, EventArgs e)
         {
+            if (nmAbono.Value > 0)
+            {
+                if (string.IsNullOrEmpty(TxtCódigoA.Text))
+                {
 
+                    dr = DialogResult.OK;
+                }
+                else
+                    MessageBox.Show("No ha seleccionado a una persona asociada para crear la cuenta\n\n Si no encuentra a la persona, es posible que no posea una cuenta o que haya sido desasociada", "Falta de Datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+                MessageBox.Show("No se puede crear una cuenta de ahorro sin algun abono", "Falta de Datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
-        private void bttCancelar_Click(object sender, EventArgs e)
+        private void bttMin_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+        private void bttCer_Click(object sender, EventArgs e)
         {
             Close();
         }
@@ -79,7 +94,7 @@ namespace ACOPEDH
         }
         #endregion
         #region Cambio de Celda
-        private void dgvAsociado_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        private void dgvAsociado_CurrentCellChanged(object sender, EventArgs e)
         {
             try
             {
@@ -105,5 +120,7 @@ namespace ACOPEDH
                     e.Cancel=true;
         }
         #endregion
+
+        
     }
 }
