@@ -482,7 +482,6 @@ namespace Crear_Base_de_Datos
                 "End Catch";
             String tabla36 = "Create Procedure[Realizar Retiros] " +
                 "@Retiro smallmoney, " +
-                "@Fecha_Retiro date, " +
                 "@Número_Cheque varchar(8), " +
                 "@FK_Ahorro varchar(30), " +
                 "@Id_Usuario varchar(5) " +
@@ -490,7 +489,7 @@ namespace Crear_Base_de_Datos
                 "Begin Try " +
                 "Begin Tran Retiro " +
                 "Declare @id_Transación varchar(5) " +
-                "Insert into Transacciones values(@Id_Usuario, 'TT005',@Fecha_Retiro) " +
+                "Insert into Transacciones values(@Id_Usuario, 'TT005',GETDATE()) " +
                 "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
                 "Insert into Retiros values(@Retiro,@Número_Cheque, @FK_Ahorro, @id_Transación) " +
                 "Commit Tran Retiro " +
