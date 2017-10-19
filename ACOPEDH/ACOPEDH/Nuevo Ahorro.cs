@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -52,10 +53,25 @@ namespace ACOPEDH
         {
             if (nmAbono.Value > 0)
             {
-                if (string.IsNullOrEmpty(TxtCódigoA.Text))
+                if (!string.IsNullOrEmpty(TxtCódigoA.Text))
                 {
+                    Procedimientos_select Cargar = new Procedimientos_select();
+                    SqlParameter[] Parámetros = new SqlParameter[4];
+                    Parámetros[0] = new SqlParameter("@FK_Tipo_Ahorro", CBTipoAhorro.Text);
+                    Parámetros[1] = new SqlParameter("@FK_Asociado", TxtCódigoA.Text);
+                    Parámetros[2] = new SqlParameter("@Abono_inicial", nmAbono.Value);
+                    Parámetros[3] = new SqlParameter("@ID_Usuario", Globales.gbCodUsuario);
 
-                    dr = DialogResult.OK;
+                    if (Cargar.llenar_tabla("[Nueva Cuenta de Ahorro]", Parámetros) > 0)
+                    {
+                        MessageBox.Show("Cuenta de Ahorros guardado en la base de datos, procediendo a generar los documentos necesarios", "¡Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        dr = DialogResult.OK;
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                     MessageBox.Show("No ha seleccionado a una persona asociada para crear la cuenta\n\n Si no encuentra a la persona, es posible que no posea una cuenta o que haya sido desasociada", "Falta de Datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

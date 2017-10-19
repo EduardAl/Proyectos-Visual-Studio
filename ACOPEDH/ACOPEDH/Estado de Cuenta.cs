@@ -40,8 +40,8 @@ namespace ACOPEDH
 
             //Cargar los datos de la cuenta
             Parámetros[0] = new SqlParameter("@Código_Ahorro", Dato);
-            Cargar.LlenarText("[Cargar Asociado]","Nombre,Código_A,Est,TipoA",Parámetros,txtAsociado,txtCódigo,txtEstado,txtTipoA);
-            Parámetros[0] = new SqlParameter("@Código_Ahorro", Dato);
+            Cargar.LlenarText("[Cargar Ahorros]","Nombre,Código_A,Est,TipoA",Parámetros,txtAsociado,txtCódigo,txtEstado,txtTipoA);
+            Parámetros[0] = new SqlParameter("@ID_Ahorro", Dato);
 
             //Cargar los registros de Abonos y Retiros a sus respectivos DGV
             dgvAbonos.DataSource = Cargar.llenar_DataTable("[Cargar Abonos]",Parámetros);
@@ -58,11 +58,11 @@ namespace ACOPEDH
                 Cargar.LlenarText("[Suma Abonos]", "Suma de Abonos", Parámetros, txtAbonos);
                 Parámetros[0] = new SqlParameter("@ID_Ahorro", Dato);
                 Cargar.LlenarText("[Suma Retiros]", "Suma de Retiros", Parámetros, txtRetiros);
-                txtSaldo.Text = "$" + (double.Parse(txtAbonos.Text) - double.Parse(txtRetiros.Text));
-                txtAbonos.Text = "$" + txtAbonos.Text;
-                txtRetiros.Text = "$" + txtRetiros.Text;
+                txtSaldo.Text = "$" + (Math.Round((double.Parse(txtAbonos.Text) - double.Parse(txtRetiros.Text)),2));
+                txtAbonos.Text = "$" + Math.Round(double.Parse(txtAbonos.Text),2);
+                txtRetiros.Text = "$" + Math.Round(double.Parse(txtRetiros.Text), 2);
             }
-            catch { txtRetiros.Clear(); txtSaldo.Clear(); txtAbonos.Clear(); }
+            catch { }
 
         }
         #endregion

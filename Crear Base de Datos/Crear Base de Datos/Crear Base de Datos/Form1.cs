@@ -321,36 +321,29 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Del_Teléfono " +
                 "End Catch ";
-            String tabla27 = "Create Procedure[Nueva Cuenta Ahorro] " +
-                "@FK_Tipo_Ahorro varchar(20), " +
-                "@FK_Asociado varchar(5) " +
-                "As " +
-                "Begin Tran Ahorro " +
-                "Begin try " +
-                "Declare @ID_Tipo_Ahorro as varchar(5) " +
-                "Declare @Contar_Activos as int " +
-                "set @ID_Tipo_Ahorro = (Select[id Tipo Ahorro] From[Tipo de Ahorro] where Nombre = @FK_Tipo_Ahorro) " +
-                "set @Contar_Activos = (Select COUNT([id Ahorro]) from Ahorro where [FK Código de Asociado] = @FK_Asociado AND Estado = 'ACTIVO') " +
-                "if @Contar_Activos < 3 " +
-                "Begin " +
-                "Insert into Ahorro values('ACTIVO',@ID_Tipo_Ahorro,@FK_Asociado) " +
-                "Commit tran Asociado " +
-                "End " +
-                "else " +
-                "Begin  " +
-                "Print 'El usuario ya tiene 3 cuentas de ahorro activas' " +
-                "End " +
-                "End try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback tran Asociado " +
-                "End Catch ";
+            String tabla27 = "Create Procedure[Abonar] " +
+               "@Abono smallmoney, " +
+               "@FK_Ahorro varchar(40), " +
+               "@Id_Usuario varchar(5) " +
+               "As " +
+               "Begin Tran Abono " +
+               "Begin Try " +
+               "Declare @id_Transación varchar(5) " +
+               "Insert into Transacciones values(@Id_Usuario, 'TT002',GETDATE()) " +
+               "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
+               "Insert into Abono values(@Abono, @FK_Ahorro, @id_Transación) " +
+               "Commit Tran Abono " +
+               "End Try " +
+               "Begin Catch " +
+               "Print ERROR_MESSAGE(); " +
+               "Rollback tran Abono " +
+               "End Catch ";
             //Cambiado para que se muestre el dui //Nombre Cambiado
             String tabla28 = "Create Procedure[Ahorro DVG] " +
                 "As " +
                 "Begin Tran Ahorro_DVG " +
                 "Begin Try " +
-                "Select Ahorro.[id Ahorro] as 'Código de Ahorro',(Asociado.Nombres+' ' +Asociado.Apellidos) as 'Persona Asociada', Asociado.DUI as 'Dui' ,[Tipo de Ahorro].Nombre as 'Tipo de Ahorro' From Asociado inner join Ahorro " +
+                "Select Ahorro.[id Ahorro] as 'Código de Ahorro',(Asociado.Nombres+' ' + Asociado.Apellidos) as 'Persona Asociada', Asociado.DUI as 'Dui' ,[Tipo de Ahorro].Nombre as 'Tipo de Ahorro' From Asociado inner join Ahorro " +
                 "on Ahorro.[FK Código de Asociado] = Asociado.[Código Asociado] inner join [Tipo de Ahorro] on Ahorro.[FK Tipo Ahorro]=[Tipo de Ahorro].[id Tipo Ahorro] " +
                 "where Ahorro.Estado = 'ACTIVO' " +
                 "Commit Tran Ahorro_DVG " +
@@ -402,12 +395,15 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran S_Aportaciones " +
                 "Begin Try " +
-                "Select SUM(Aportación) AS 'Suma de Aportaciones' From Aportaciones where @Código_Asociado = [FK Asociado] " +
-                "Commit Tran S_Aportaciones " +
+                "if (Select Count(Aportación) AS 'Suma de Aportaciones' From Aportaciones where @Código_Asociado = [FK Asociado] ) > 0 " +
+                "Begin Select SUM(Aportación) AS 'Suma de Aportaciones' From Aportaciones where @Código_Asociado = [FK Asociado] " +
+                "Commit Tran S_Aportaciones End " +
+                "Else Begin Select 0 AS 'Suma de Aportaciones' Commit Tran S_Aportaciones end " +
                 "End Try " +
                 "Begin Catch " +
                 "Print ERROR_MESSAGE(); " +
-                "Rollback Tran S_Aportaciones  " +
+                "Rollback Tran S_Aportaciones " +
+                "Select 0 AS 'Suma de Aportaciones' Commit Tran S_Aportaciones " +
                 "End Catch ";
             //Cambio para visualizar más campos en la consulta
             String tabla32 = "Create Procedure[Cargar Pagos] " +
@@ -424,23 +420,37 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Cargar_Pagos " +
                 "End Catch ";
-            String tabla33 = "Create Procedure[Abonar] " +
-                "@Abono smallmoney, " +
-                "@Fecha_Abono datetime, " +
-                "@FK_Ahorro varchar(40), " +
-                "@Id_Usuario varchar(5) " +
-                "As " +
-                "Begin Tran Abono " +
-                "Begin Try " +
-                "Declare @id_Transación varchar(5) " +
-                "Insert into Transacciones values(@Id_Usuario, 'TT002',@Fecha_Abono) " +
-                "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
-                "Insert into Abono values(@Abono, @FK_Ahorro, @id_Transación) " +
-                "Commit Tran Abono " +
-                "End Try " +
+#warning Podría causar errores
+            //Modificado para que ingrese además un abono
+            String tabla33 = "Create Procedure [Nueva Cuenta de Ahorro] " +
+                "@FK_Tipo_Ahorro varchar(20), " +
+                "@FK_Asociado varchar(5), " +
+                "@Abono_inicial smallmoney, " +
+                "@ID_Usuario varchar(5) " +
+                "As Begin Tran Ahorro " +
+                "Begin try " +
+                "Declare @ID_Tipo_Ahorro as varchar(5) " +
+                "Declare @Contar_Activos as int " +
+                "set @ID_Tipo_Ahorro = (Select[id Tipo Ahorro] From[Tipo de Ahorro] where Nombre = @FK_Tipo_Ahorro) " +
+                "set @Contar_Activos = (Select COUNT([id Ahorro]) from Ahorro where [FK Código de Asociado] = @FK_Asociado AND Estado = 'ACTIVO') " +
+                "if @Contar_Activos < 3 " +
+                "Begin " +
+                "Insert into Ahorro values('ACTIVO',@ID_Tipo_Ahorro,@FK_Asociado) " +
+                "Commit tran Ahorro " +
+                "Declare @FK_Ahorro_nuevo as varchar(5) " +
+                "set @FK_Ahorro_nuevo = (Select MAX([id Ahorro]) from Ahorro where [FK Código de Asociado] = @FK_Asociado) " +
+                "exec Abonar @Abono=@Abono_inicial,@FK_Ahorro=@FK_Ahorro_nuevo,@Id_Usuario=@ID_Usuario " +
+                "End " +
+                "else " +
+                "Begin " +
+                "Print 'El usuario ya tiene 3 cuentas de ahorro activas' " +
+                "Commit tran Ahorro " +
+                "End " +
+                "End try " +
                 "Begin Catch " +
                 "Print ERROR_MESSAGE(); " +
-                "Rollback tran Abono " +
+                "Rollback tran Ahorro " +
+                "return 0 " +
                 "End Catch ";
             String tabla34 = "Create Procedure[Cargar Abonos] " +
                 "@ID_Ahorro varchar(5) " +
@@ -460,12 +470,15 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Disponibles_Abono " +
                 "Begin Try " +
+                "if (Select Count(Abono) AS 'Suma de Abonos' From Abono where[FK Ahorro] = @ID_Ahorro) > 0 Begin " +
                 "Select SUM(Abono) AS 'Suma de Abonos' From Abono where[FK Ahorro] = @ID_Ahorro " +
-                "Commit Tran Disponibles_Abono  " +
+                "Commit Tran Disponibles_Abono End " +
+                "else begin Select 0 as 'Suma de Abonos' Commit Tran Disponibles_Abono End " +
                 "End Try " +
                 "Begin Catch " +
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Disponibles_Abono " +
+                "Select 0 as 'Suma de Abonos' " +
                 "End Catch";
             String tabla36 = "Create Procedure[Realizar Retiros] " +
                 "@Retiro smallmoney, " +
@@ -499,17 +512,23 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Cargar_Retiro " +
                 "End Catch ";
+            //Si no hay retiros
             String tabla38 = "Create Procedure[Suma Retiros] " +
                 "@ID_Ahorro varchar(5) " +
                 "As " +
                 "Begin Tran Disponibles_Retiro " +
                 "Begin Try " +
+                "if (Select Count(Retiro) From Retiros where[FK Ahorro] = @ID_Ahorro ) > 0 " +
+                "begin " +
                 "Select SUM(Retiro) AS 'Suma de Retiros' From Retiros where[FK Ahorro] = @ID_Ahorro " +
-                "Commit Tran Disponibles_Retiro " +
+                "Commit Tran Disponibles_Retiro end else " +
+                "begin "+
+                "Select 0 AS 'Suma de Retiros' "+
+                "commit tran Disponibles_Retiro end " +
                 "End Try " +
                 "Begin Catch " +
                 "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Disponibles_Retiro " +
+                "Rollback Tran Disponibles_Retiro Select 0 AS 'Suma de Retiros' " +
                 "End Catch ";
             //Cambiado por el n de cuota
             String tabla39 = "Create Procedure[Realizar Pago] " + 
@@ -866,7 +885,7 @@ namespace Crear_Base_de_Datos
                 "to Administrador with grant option " +
                 "grant execute on object :: [Modificar Teléfonos] " +
                 "to Administrador with grant option " +
-                "grant execute on object :: [Nueva Cuenta Ahorro] " +
+                "grant execute on object :: [Nueva Cuenta de Ahorro] " +
                 "to Administrador with grant option " +
                 "grant execute on object :: [Realizar Aportación] " +
                 "to Administrador with grant option " +

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace ACOPEDH
            ********************************* 
        */
         string Dato;
+        Procedimientos_select pro = new Procedimientos_select();
         #region Constructores
         //Normal
         public Retiros()
@@ -35,6 +37,22 @@ namespace ACOPEDH
         #region Load
         private void Retiros_Load(object sender, EventArgs e)
         {
+            try
+            {
+                SqlParameter[] Param = new SqlParameter[1];
+                Param[0] = new SqlParameter("@Código_Ahorro", Dato);
+                pro.LlenarText("[Cargar Ahorros]", "Nombre", Param, txtAsociado);
+                txtNoCuenta.Text = Dato;
+                Param[0] = new SqlParameter("@ID_Ahorro", Dato);
+                double Abono = Convert.ToDouble(pro.llenar_DataTable("[Suma Abonos]", Param).Rows[0]["Suma de Abonos"]);
+                Param[0] = new SqlParameter("@ID_Ahorro", Dato);
+                double Retiro = Convert.ToDouble(pro.llenar_DataTable("[Suma Retiros]", Param).Rows[0]["Suma de Retiros"]);
+                txtMontoDisponible.Text = "$" + Math.Round(Abono-Retiro,2);
+                nCantidadRetiro.Maximum = Convert.ToDecimal(txtMontoDisponible.Text);
+            }
+            catch { }
+
+
 #warning Cargar datos del retiro a efectuar
         }
         #endregion
@@ -53,8 +71,29 @@ namespace ACOPEDH
         //Efectuar retiro
         private void bttAceptar_Click(object sender, EventArgs e)
         {
-#warning falta código efectuar el retiro
-#warning añadir para imprimir constancia
+            if (nCantidadRetiro.Value > 0)
+            {
+                DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de retiro para la siguiente transacción?:\n$" + nCantidadRetiro.Value + "\n N° Préstamo: " + txtNoCuenta.Text + "\nPersona Asociada: " + txtAsociado.Text, "Confirmar Pago", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (Imprimir != DialogResult.Cancel)
+                {
+                    SqlParameter[] Parámetros = new SqlParameter[4];
+                    Parámetros[0] = new SqlParameter("@Retiro", nCantidadRetiro.Value);
+                    Parámetros[1] = new SqlParameter("@Número_Cheque", "Generado");
+                    Parámetros[2] = new SqlParameter("@FK_Ahorro", Dato);
+                    Parámetros[3] = new SqlParameter("@Id_Usuario", Globales.gbCodUsuario);
+                    if (Imprimir == DialogResult.Yes)
+                    {
+#warning Añadir Imprimir
+                    }
+                    if (pro.llenar_tabla("[Realizar Retiros]", Parámetros) > 0)
+                    {
+                        DialogResult = DialogResult.OK;
+                        Close();
+                    }
+                }
+            }
+            else
+                MessageBox.Show("Ingrese una cantidad a abonar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion
 

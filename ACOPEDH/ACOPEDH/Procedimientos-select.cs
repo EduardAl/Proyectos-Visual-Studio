@@ -47,8 +47,7 @@ namespace ACOPEDH
             DataTable dt = new DataTable();
             try
             {
-                //conex = new SqlConnection(cn.cadena);
-                conex = new SqlConnection(@"Data Source = GISSELLE-REYES\YIYEL501;Initial Catalog =ACOPEDH;User=sa;Password=1311");
+                conex = new SqlConnection(cn.cadena);
                 conex.Open();
                 Comando = new SqlCommand(procedimiento, conex);
                 Comando.CommandType = CommandType.StoredProcedure;

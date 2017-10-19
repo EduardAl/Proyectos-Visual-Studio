@@ -58,16 +58,15 @@ namespace ACOPEDH
         //Realizar Abono
         private void bttAceptar_Click(object sender, EventArgs e)
         {
-            if (nmCantidadRetiro.Value > 0)
+            if (nmCantidadAbono.Value > 0)
             {
-                DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de pago para la siguiente transacción?:\n$" + nmCantidadRetiro.Value + "\n N° Préstamo: " + txtNoCuenta.Text + "\nPersona Asociada: " + txtAsociado.Text, "Confirmar Pago", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de abono para la siguiente transacción?:\n$" + nmCantidadAbono.Value + "\n N° Préstamo: " + txtNoCuenta.Text + "\nPersona Asociada: " + txtAsociado.Text, "Confirmar Pago", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (Imprimir != DialogResult.Cancel)
                 {
-                    SqlParameter[] Parámetros = new SqlParameter[4];
-                    Parámetros[0] = new SqlParameter("@Abono",nmCantidadRetiro.Value);
-                    Parámetros[1] = new SqlParameter("@Fecha_Abono",DateTime.Now);
-                    Parámetros[2] = new SqlParameter("@FK_Ahorro", Dato);
-                    Parámetros[3] = new SqlParameter("@Id_Usuario",Globales.gbCodUsuario);
+                    SqlParameter[] Parámetros = new SqlParameter[3];
+                    Parámetros[0] = new SqlParameter("@Abono",nmCantidadAbono.Value);
+                    Parámetros[1] = new SqlParameter("@FK_Ahorro", Dato);
+                    Parámetros[2] = new SqlParameter("@Id_Usuario",Globales.gbCodUsuario);
                     if (Imprimir == DialogResult.Yes)
                     {
 #warning Añadir Imprimir
@@ -77,8 +76,6 @@ namespace ACOPEDH
                         DialogResult = DialogResult.OK;
                         Close();
                     }
-                    else
-                        MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else

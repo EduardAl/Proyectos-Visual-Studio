@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Estado_de_Cuenta));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.BarraTítulo = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -234,11 +238,28 @@
             // 
             // dgvAbonos
             // 
+            this.dgvAbonos.AllowUserToAddRows = false;
+            this.dgvAbonos.AllowUserToDeleteRows = false;
+            this.dgvAbonos.AllowUserToOrderColumns = true;
+            this.dgvAbonos.AllowUserToResizeRows = false;
+            this.dgvAbonos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAbonos.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvAbonos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Linotte-Bold", 12F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAbonos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAbonos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAbonos.Location = new System.Drawing.Point(313, 162);
             this.dgvAbonos.Name = "dgvAbonos";
+            this.dgvAbonos.RowHeadersVisible = false;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Linotte-Light", 10F);
+            this.dgvAbonos.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvAbonos.Size = new System.Drawing.Size(247, 374);
             this.dgvAbonos.TabIndex = 78;
             // 
@@ -285,11 +306,28 @@
             // 
             // dgvRetiros
             // 
+            this.dgvRetiros.AllowUserToAddRows = false;
+            this.dgvRetiros.AllowUserToDeleteRows = false;
+            this.dgvRetiros.AllowUserToOrderColumns = true;
+            this.dgvRetiros.AllowUserToResizeRows = false;
+            this.dgvRetiros.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRetiros.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvRetiros.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Linotte-Bold", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRetiros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRetiros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRetiros.Location = new System.Drawing.Point(560, 162);
             this.dgvRetiros.Name = "dgvRetiros";
+            this.dgvRetiros.RowHeadersVisible = false;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Linotte-Light", 10F);
+            this.dgvRetiros.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvRetiros.Size = new System.Drawing.Size(247, 374);
             this.dgvRetiros.TabIndex = 82;
             // 
