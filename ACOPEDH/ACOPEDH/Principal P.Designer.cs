@@ -316,6 +316,7 @@
             this.dgvBúsqueda.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvBúsqueda.Location = new System.Drawing.Point(264, 233);
             this.dgvBúsqueda.Name = "dgvBúsqueda";
+            this.dgvBúsqueda.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -352,6 +353,7 @@
             this.txtBúsqueda.Size = new System.Drawing.Size(356, 27);
             this.txtBúsqueda.TabIndex = 19;
             this.txtBúsqueda.Visible = false;
+            this.txtBúsqueda.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBúsqueda_KeyUp);
             // 
             // bttAbonar
             // 
@@ -563,7 +565,7 @@
             this.panelConfig.Controls.Add(this.labTítulo);
             this.panelConfig.Controls.Add(this.lkConfirmar);
             this.panelConfig.Controls.Add(this.lkCancelar);
-            this.panelConfig.Location = new System.Drawing.Point(259, 135);
+            this.panelConfig.Location = new System.Drawing.Point(259, 122);
             this.panelConfig.Name = "panelConfig";
             this.panelConfig.Size = new System.Drawing.Size(669, 544);
             this.panelConfig.TabIndex = 79;
