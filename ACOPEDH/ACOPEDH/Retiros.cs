@@ -14,7 +14,7 @@ namespace ACOPEDH
     public partial class Retiros : Form
     {
 #warning ¿Añadir el cheque?
-        /*
+       /*
            *********************************
            *     Componentes Iniciales     *
            ********************************* 
@@ -51,9 +51,6 @@ namespace ACOPEDH
                 nCantidadRetiro.Maximum = Convert.ToDecimal(txtMontoDisponible.Text);
             }
             catch { }
-
-
-#warning Cargar datos del retiro a efectuar
         }
         #endregion
 

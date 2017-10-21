@@ -260,6 +260,7 @@
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Linotte-Light", 10F);
             this.dgvAbonos.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvAbonos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAbonos.Size = new System.Drawing.Size(247, 374);
             this.dgvAbonos.TabIndex = 78;
             // 
@@ -328,6 +329,7 @@
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Linotte-Light", 10F);
             this.dgvRetiros.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvRetiros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRetiros.Size = new System.Drawing.Size(247, 374);
             this.dgvRetiros.TabIndex = 82;
             // 

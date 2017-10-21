@@ -22,5 +22,14 @@ namespace ACOPEDH
             InitializeComponent();
             Dato = dato;
         }
+
+        private void Aportaciones_Load(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch { }
+        }
     }
 }
