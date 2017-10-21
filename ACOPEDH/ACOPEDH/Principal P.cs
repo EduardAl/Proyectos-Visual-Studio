@@ -8,10 +8,13 @@ namespace ACOPEDH
 {
     public partial class Principal_P : Form
     {
+        String dgvControl;
         DialogResult dr = DialogResult.Cancel;
         Color Original, Seleccionado;
         String Dato;
         Procedimientos_select Procedimientos_select = new Procedimientos_select();
+        DataTable dsAhorro, dsPréstamo, dsAsociado;
+        DataView filtro;
         Emailsistema enviarEmail = new Emailsistema();
         public static bool confirmación = false;
         public bool editpass = false;
@@ -56,6 +59,9 @@ namespace ACOPEDH
         }
         private void Principal_P_Load(object sender, EventArgs e)
         {
+            LlenarDGV(ref dsAhorro, "[Ahorro DVG]");
+            LlenarDGV(ref dsPréstamo, "[Préstamo DVG]");
+            LlenarDGV(ref dsAsociado, "[Asociado DVG]");
             this.Cursor = Cursors.Default;
             Seleccionado = PInicio.BackColor;
             Original = PPréstamos.BackColor;
@@ -63,6 +69,11 @@ namespace ACOPEDH
             txtNuevaContraseña.UseSystemPasswordChar = true;
             txtConfContraseña.UseSystemPasswordChar = true;
             No_Editar();
+        }
+        public void LlenarDGV(ref DataTable dss, String tabla)
+        {
+            dgvBúsqueda.DataSource = null;
+            dss = Procedimientos_select.llenar_DataTable(tabla);
         }
 
         /*
@@ -92,8 +103,10 @@ namespace ACOPEDH
             bttVerEstados.Visible = true;
             bttCrearCuenta.Visible = true;
             //Lenado de Datos
-            dgvBúsqueda.DataSource = Procedimientos_select.llenar_DataTable("[Ahorro DVG]");
-            dgvBúsqueda.Refresh();
+            dgvControl = "Ahorro";
+            this.filtro = dsAhorro.DefaultView;
+            this.dgvBúsqueda.DataSource = filtro;
+            txtBúsqueda.Focus();
         }
         private void PPréstamos_Click(object sender, EventArgs e)
         {
@@ -110,8 +123,10 @@ namespace ACOPEDH
             bttPagosRealizados.Visible = true;
             bttRealizarPago.Visible = true;
             //Lenado de Datos
-            dgvBúsqueda.DataSource = Procedimientos_select.llenar_DataTable("[Préstamo DVG]");
-            dgvBúsqueda.Refresh();
+            dgvControl = "Préstamo";
+            this.filtro = dsPréstamo.DefaultView;
+            txtBúsqueda.Focus();
+            this.dgvBúsqueda.DataSource = filtro;
         }
         private void PAsociados_Click(object sender, EventArgs e)
         {
@@ -127,8 +142,10 @@ namespace ACOPEDH
             bttDatosAsociado.Visible = true;
             bttAportaciones.Visible = true;
             //Lenado de Datos
-            dgvBúsqueda.DataSource = Procedimientos_select.llenar_DataTable("[Asociado DVG]");
-            dgvBúsqueda.Refresh();
+            dgvControl = "Asociado";
+            this.filtro = dsAsociado.DefaultView;
+            txtBúsqueda.Focus();
+            this.dgvBúsqueda.DataSource = filtro;
         }
         private void PConfiguración_Click(object sender, EventArgs e)
         {
@@ -166,6 +183,7 @@ namespace ACOPEDH
                     int i = dgvBúsqueda.CurrentCell.RowIndex;
                     dgvv = dgvBúsqueda.Rows[i];
                     Dato = dgvv.Cells[0].Value.ToString();
+                    MessageBox.Show(Dato);
                     if (!String.IsNullOrEmpty(Dato))
                         return true;
                 }
@@ -626,6 +644,57 @@ namespace ACOPEDH
         {
             errorProvider1.Clear();
             Validaciones.validar_contraseñas(txtNuevaContraseña, ref errorProvider1);
+        }
+
+        private void txtBúsqueda_KeyUp(object sender, KeyEventArgs e)
+        {
+            string salida_datos = "";
+            string[] palabra_busqueda = this.txtBúsqueda.Text.Split(' ');
+            if (dgvControl == "Ahorro")
+            {
+                foreach (string palabra in palabra_busqueda)
+                {
+                    if (salida_datos.Length == 0)
+                    {
+                        salida_datos = "(Dui LIKE '%" + palabra + "%' OR [Código de Ahorro] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Tipo de Ahorro] LIKE '%" + palabra + "%')";
+                    }
+                    else
+                    {
+                        salida_datos += " AND(Dui LIKE '%" + palabra + "%' OR [Código de Ahorro] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Tipo de Ahorro] LIKE '%" + palabra + "%')";
+                    }
+                }
+                this.filtro.RowFilter = salida_datos;
+            }
+            if (dgvControl == "Préstamo")
+            {
+                foreach (string palabra in palabra_busqueda)
+                {
+                    if (salida_datos.Length == 0)
+                    {
+                        salida_datos = "(Dui LIKE '%" + palabra + "%' OR [Código de Préstamo] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Dui] LIKE '%" + palabra + "%')";
+                    }
+                    else
+                    {
+                        salida_datos += " AND(Dui LIKE '%" + palabra + "%' OR [Código de Préstamo] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Dui] LIKE '%" + palabra + "%')";
+                    }
+                }
+                this.filtro.RowFilter = salida_datos;
+            }
+            if (dgvControl == "Asociado")
+            {
+                foreach (string palabra in palabra_busqueda)
+                {
+                    if (salida_datos.Length == 0)
+                    {
+                        salida_datos = "(Código LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR Dui LIKE '%" + palabra + "%' OR [Tipo Asociación] LIKE '%" + palabra + "%')";
+                    }
+                    else
+                    {
+                        salida_datos += " AND(Código LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR Dui LIKE '%" + palabra + "%' OR [Tipo Asociación] LIKE '%" + palabra + "%')";
+                    }
+                }
+                this.filtro.RowFilter = salida_datos;
+            }
         }
 
         private void txtConfContraseña_KeyUp(object sender, KeyEventArgs e)
