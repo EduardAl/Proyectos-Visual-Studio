@@ -65,19 +65,27 @@ namespace ACOPEDH
                     if (Cargar.llenar_tabla("[Nueva Cuenta de Ahorro]", Parámetros) > 0)
                     {
                         MessageBox.Show("Cuenta de Ahorros guardado en la base de datos, procediendo a generar los documentos necesarios", "¡Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        dr = DialogResult.OK;
+                        DialogResult = dr = DialogResult.OK;
                         Close();
                     }
                     else
                     {
                         MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Globales.gbError = "";
+                        DialogResult = DialogResult.None;
                     }
                 }
                 else
+                {
                     MessageBox.Show("No ha seleccionado a una persona asociada para crear la cuenta\n\n Si no encuentra a la persona, es posible que no posea una cuenta o que haya sido desasociada", "Falta de Datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    DialogResult = DialogResult.None;
+                }
             }
             else
+            {
                 MessageBox.Show("No se puede crear una cuenta de ahorro sin algun abono", "Falta de Datos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                DialogResult = DialogResult.None;
+            }
         }
         private void bttMin_Click(object sender, EventArgs e)
         {

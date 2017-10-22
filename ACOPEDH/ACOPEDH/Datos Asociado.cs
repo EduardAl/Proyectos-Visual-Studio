@@ -13,13 +13,13 @@ namespace ACOPEDH
 {
     public partial class Datos_Asociado : Form
     {
-#warning FALTA TODO EL CÓDIGO
         /*
             *********************************
             *     Componentes Iniciales     *
             ********************************* 
         */
         string Dato;
+        public DialogResult dr = DialogResult.Cancel;
         Procedimientos_select Cargar = new Procedimientos_select();
         #region Constructores
         //Normal
@@ -102,7 +102,7 @@ namespace ACOPEDH
         //Desasociar
         private void bttDesasociar_Click(object sender, EventArgs e)
         {
-
+            dr = DialogResult.Yes;
         }
         #endregion
         /*

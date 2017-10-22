@@ -34,14 +34,14 @@
             this.bttCer = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.BarraTítulo = new System.Windows.Forms.Label();
-            this.dgvAbonos = new System.Windows.Forms.DataGridView();
+            this.dgvAportaciones = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtSaldo = new System.Windows.Forms.TextBox();
+            this.txtSuma = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.bttCerrarCuenta = new System.Windows.Forms.Button();
+            this.bttRealizarAportación = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAbonos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAportaciones)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +52,7 @@
             this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
             this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.bttCer.Image = ((System.Drawing.Image)(resources.GetObject("bttCer.Image")));
-            this.bttCer.Location = new System.Drawing.Point(696, 0);
+            this.bttCer.Location = new System.Drawing.Point(425, 0);
             this.bttCer.Name = "bttCer";
             this.bttCer.Size = new System.Drawing.Size(30, 26);
             this.bttCer.TabIndex = 84;
@@ -78,20 +78,20 @@
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
             this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
             this.BarraTítulo.Name = "BarraTítulo";
-            this.BarraTítulo.Size = new System.Drawing.Size(726, 30);
+            this.BarraTítulo.Size = new System.Drawing.Size(455, 30);
             this.BarraTítulo.TabIndex = 82;
             this.BarraTítulo.Text = "         ACOPEDH .:. APORTACIONES";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dgvAbonos
+            // dgvAportaciones
             // 
-            this.dgvAbonos.AllowUserToAddRows = false;
-            this.dgvAbonos.AllowUserToDeleteRows = false;
-            this.dgvAbonos.AllowUserToOrderColumns = true;
-            this.dgvAbonos.AllowUserToResizeRows = false;
-            this.dgvAbonos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvAbonos.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvAbonos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvAportaciones.AllowUserToAddRows = false;
+            this.dgvAportaciones.AllowUserToDeleteRows = false;
+            this.dgvAportaciones.AllowUserToOrderColumns = true;
+            this.dgvAportaciones.AllowUserToResizeRows = false;
+            this.dgvAportaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAportaciones.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvAportaciones.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Linotte-Bold", 12F);
@@ -99,67 +99,67 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAbonos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvAbonos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAbonos.Location = new System.Drawing.Point(403, 49);
-            this.dgvAbonos.Name = "dgvAbonos";
-            this.dgvAbonos.RowHeadersVisible = false;
+            this.dgvAportaciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvAportaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAportaciones.Location = new System.Drawing.Point(94, 133);
+            this.dgvAportaciones.Name = "dgvAportaciones";
+            this.dgvAportaciones.RowHeadersVisible = false;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Linotte-Light", 10F);
-            this.dgvAbonos.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvAbonos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAbonos.Size = new System.Drawing.Size(247, 374);
-            this.dgvAbonos.TabIndex = 85;
+            this.dgvAportaciones.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvAportaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAportaciones.Size = new System.Drawing.Size(257, 374);
+            this.dgvAportaciones.TabIndex = 85;
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.txtSaldo);
+            this.groupBox1.Controls.Add(this.txtSuma);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Font = new System.Drawing.Font("Linotte-Light", 9F);
             this.groupBox1.Location = new System.Drawing.Point(21, 49);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(281, 101);
+            this.groupBox1.Size = new System.Drawing.Size(281, 78);
             this.groupBox1.TabIndex = 86;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información";
             // 
-            // txtSaldo
+            // txtSuma
             // 
-            this.txtSaldo.Font = new System.Drawing.Font("Linotte-Bold", 10F);
-            this.txtSaldo.Location = new System.Drawing.Point(129, 40);
-            this.txtSaldo.Name = "txtSaldo";
-            this.txtSaldo.ReadOnly = true;
-            this.txtSaldo.Size = new System.Drawing.Size(105, 23);
-            this.txtSaldo.TabIndex = 77;
+            this.txtSuma.Font = new System.Drawing.Font("Linotte-Bold", 10F);
+            this.txtSuma.Location = new System.Drawing.Point(129, 27);
+            this.txtSuma.Name = "txtSuma";
+            this.txtSuma.ReadOnly = true;
+            this.txtSuma.Size = new System.Drawing.Size(105, 23);
+            this.txtSuma.TabIndex = 77;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Linotte-Bold", 10F);
-            this.label8.Location = new System.Drawing.Point(11, 37);
+            this.label8.Location = new System.Drawing.Point(11, 24);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(93, 34);
             this.label8.TabIndex = 74;
             this.label8.Text = "Suma de \r\nAportaciones:";
             // 
-            // bttCerrarCuenta
+            // bttRealizarAportación
             // 
-            this.bttCerrarCuenta.Location = new System.Drawing.Point(117, 156);
-            this.bttCerrarCuenta.Name = "bttCerrarCuenta";
-            this.bttCerrarCuenta.Size = new System.Drawing.Size(112, 50);
-            this.bttCerrarCuenta.TabIndex = 87;
-            this.bttCerrarCuenta.Text = "Realizar Aportación";
-            this.bttCerrarCuenta.UseVisualStyleBackColor = true;
+            this.bttRealizarAportación.Location = new System.Drawing.Point(321, 65);
+            this.bttRealizarAportación.Name = "bttRealizarAportación";
+            this.bttRealizarAportación.Size = new System.Drawing.Size(112, 50);
+            this.bttRealizarAportación.TabIndex = 87;
+            this.bttRealizarAportación.Text = "Realizar Aportación";
+            this.bttRealizarAportación.UseVisualStyleBackColor = true;
             // 
             // Aportaciones
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(726, 445);
-            this.Controls.Add(this.bttCerrarCuenta);
+            this.ClientSize = new System.Drawing.Size(455, 581);
+            this.Controls.Add(this.bttRealizarAportación);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.dgvAbonos);
+            this.Controls.Add(this.dgvAportaciones);
             this.Controls.Add(this.bttCer);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.BarraTítulo);
@@ -172,7 +172,7 @@
             this.Load += new System.EventHandler(this.Aportaciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAbonos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAportaciones)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -184,10 +184,10 @@
         private System.Windows.Forms.PictureBox bttCer;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label BarraTítulo;
-        private System.Windows.Forms.DataGridView dgvAbonos;
+        private System.Windows.Forms.DataGridView dgvAportaciones;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtSaldo;
+        private System.Windows.Forms.TextBox txtSuma;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button bttCerrarCuenta;
+        private System.Windows.Forms.Button bttRealizarAportación;
     }
 }

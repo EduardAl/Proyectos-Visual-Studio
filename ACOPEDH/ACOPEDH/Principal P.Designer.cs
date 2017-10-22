@@ -422,7 +422,6 @@
             this.BarraTítulo.TabIndex = 32;
             this.BarraTítulo.Text = "         ACOPEDH .:. Principal";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BarraTítulo.Click += new System.EventHandler(this.BarraTítulo_Click);
             this.BarraTítulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.BarraTítulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.BarraTítulo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
@@ -608,7 +607,7 @@
             // 
             this.lbCorreo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbCorreo.AutoSize = true;
-            this.lbCorreo.BackColor = System.Drawing.Color.Transparent;
+            this.lbCorreo.BackColor = System.Drawing.Color.White;
             this.lbCorreo.Location = new System.Drawing.Point(216, 262);
             this.lbCorreo.Name = "lbCorreo";
             this.lbCorreo.Size = new System.Drawing.Size(188, 19);
@@ -619,7 +618,7 @@
             // 
             this.lbApellido.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbApellido.AutoSize = true;
-            this.lbApellido.BackColor = System.Drawing.Color.Transparent;
+            this.lbApellido.BackColor = System.Drawing.Color.White;
             this.lbApellido.Location = new System.Drawing.Point(156, 130);
             this.lbApellido.Name = "lbApellido";
             this.lbApellido.Size = new System.Drawing.Size(115, 19);
@@ -630,7 +629,7 @@
             // 
             this.lbNombre.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbNombre.AutoSize = true;
-            this.lbNombre.BackColor = System.Drawing.Color.Transparent;
+            this.lbNombre.BackColor = System.Drawing.Color.White;
             this.lbNombre.Location = new System.Drawing.Point(156, 84);
             this.lbNombre.Name = "lbNombre";
             this.lbNombre.Size = new System.Drawing.Size(114, 19);

@@ -100,9 +100,9 @@ namespace ACOPEDH
                         DialogResult = DialogResult.OK;
                         Close();
                     }
-                    catch (SqlException ex)
+                    catch
                     {
-                        MessageBox.Show("Ocurrió un error en el ingreso de datos:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                     }
                 }
             }
