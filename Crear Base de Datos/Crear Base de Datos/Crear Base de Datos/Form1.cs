@@ -96,7 +96,7 @@ namespace Crear_Base_de_Datos
             String tabla9 = "CREATE TABLE [dbo].[Aportaciones](" +
                 "[Número] [int] IDENTITY(1,1) NOT NULL," +
                 "[id Aportación]  AS('AP' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
-                "[Aportación] [smallmoney] NOT NULL," +
+                "[Aportación] [money] NOT NULL," +
                 "[FK Asociado] [varchar](5) NOT NULL," +
                 "[FK Transacción] [varchar](5) references [Transacciones]([id Transacción])," +
                 "CONSTRAINT[PK_Aportaciones] PRIMARY KEY([id Aportación])," +
@@ -116,7 +116,7 @@ namespace Crear_Base_de_Datos
             String tabla11 = "CREATE TABLE [dbo].[Retiros](" +
                 "[Número][int] IDENTITY(1, 1) NOT NULL," +
                 "[id Retiro]  AS('RE' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
-                "[Retiro] [smallmoney] NOT NULL," +
+                "[Retiro] [money] NOT NULL," +
                 "[Número de Cheque] [varchar](8) NOT NULL," +
                 "[FK Ahorro] [varchar](5) NOT NULL," +
                 "[FK Transacción] [varchar](5) references [Transacciones]([id Transacción])," +
@@ -126,7 +126,8 @@ namespace Crear_Base_de_Datos
             String tabla12 = "CREATE TABLE [dbo].[Abono](" +
                 "[Número][int] IDENTITY(1,1) NOT NULL," +
                 "[id Abono]  AS('AB' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
-                "[Abono] [smallmoney] NOT NULL," +
+                "[Abono] [money] NOT NULL," +
+                "[Abono y Comisión] [money] NOT NULL," +
                 "[FK Ahorro] [varchar](5) NOT NULL," +
                 "[FK Transacción] [varchar](5) references [Transacciones]([id Transacción])," +
                 "CONSTRAINT [PK Abono] PRIMARY KEY ([id Abono])," +
@@ -144,8 +145,8 @@ namespace Crear_Base_de_Datos
                 "CONSTRAINT [PK Teléfono] PRIMARY KEY ([id Teléfono]))";
             String tabla15 = "CREATE TABLE [dbo].[Contacto](" +
                 "[FK Teléfono] [varchar](5) NOT NULL references[Teléfono]([id Teléfono])," +
-                "[FK Tipo de Teléfono][varchar](5) NOT NULL references [Tipos de Teléfonos]([id Tipo de Teléfono])," +
-                "[FK Código Asociado] [varchar](5) NOT NULL references Asociado([Código Asociado]))";
+                "[FK Código Asociado] [varchar](5) NOT NULL references Asociado([Código Asociado]), " +
+                "[FK Tipo de Teléfono][varchar](5) NOT NULL references [Tipos de Teléfonos]([id Tipo de Teléfono]))";
             String tabla16 = "Create table [dbo].[Forma de Pago](" +
                 "[Número] [int] identity(1, 1) NOT NULL," +
                 "[id Forma de Pago] AS('FP' + right('000' + Convert([varchar](3), [Número]), (3))) PERSISTED NOT NULL," +
@@ -165,20 +166,20 @@ namespace Crear_Base_de_Datos
                 "[id Tipo de Préstamo] [varchar](5) references [Tipo de Préstamo]([id Tipo de Préstamo]) NOT NULL," +
                 "[Fecha de Otorgamiento] [datetime] NOT NULL," +
                 "[Cuotas] [int] NOT NULL," +
-                "[Monto del Préstamo] [smallmoney] NOT NULL," +
-                "[Cuota Mensual] [smallmoney] NOT NULL," +
+                "[Monto del Préstamo] [money] NOT NULL," +
+                "[Cuota Mensual] [money] NOT NULL," +
                 "[FK Transacción] [varchar](5) references [Transacciones]([id Transacción])," +
                 "[Estado] [varchar](10) NOT NULL)";
             String tabla19 = "Create table [dbo].[Pago](" +
                 "[Número][int] identity(1, 1) NOT NULL," +
                 "[id Pago] AS('PA' + right('000' + Convert([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
-                "[Pago] [smallmoney] NOT NULL," +
+                "[Pago] [money] NOT NULL," +
                 "[Número de Cuota] [int] NOT NULL," +
-                "[Intereses] [smallmoney] NOT NULL," +
-                "[Capital] [smallmoney] NOT NULL," +
-                "[Saldo] [smallmoney] NOT NULL," +
+                "[Intereses] [money] NOT NULL," +
+                "[Capital] [money] NOT NULL," +
+                "[Saldo] [money] NOT NULL," +
                 "[id Préstamo] [varchar](9) references [Préstamos]([id Préstamos])NOT NULL," +
-                "[Mora] [smallmoney]," +
+                "[Mora] [money]," +
                 "[Fecha Límite][datetime] NOT NULL," +
                 "[FK Transacción] [varchar](5) references [Transacciones]([id Transacción])," +
                  "CONSTRAINT [PK Pago] PRIMARY KEY ([id Pago]))";
@@ -257,10 +258,10 @@ namespace Crear_Base_de_Datos
                 "Declare @ID_Teléfono varchar(5) " +
                 "Begin " +
                 "Set @ID_Asociado = (Select[Código Asociado] From Asociado where @DUI = DUI)  " +
-                "Set @ID_Tipo_Teléfono = (Select[id Tipo de Teléfono] From[Tipos de Teléfonos] where @Tipo_Teléfono =[Tipo de Teléfono]) " +
+                "Set @ID_Tipo_Teléfono = (Select [id Tipo de Teléfono] From[Tipos de Teléfonos] where @Tipo_Teléfono =[Tipo de Teléfono]) " +
                 "Insert into Teléfono values(@Teléfono) " +
                 "set @ID_Teléfono = (Select Max([id Teléfono]) From Teléfono) " +
-                "Insert into Contacto values(@ID_Teléfono, @ID_Tipo_Teléfono, @ID_Asociado) " +
+                "Insert into Contacto values(@ID_Teléfono, @ID_Asociado, @ID_Tipo_Teléfono) " +
                 "Commit Tran Teléfono " +
                 "End " +
                 "End Try " +
@@ -273,8 +274,8 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Cargar_Teléfonos " +
                 "Begin Try " +
-                "Select Teléfono.Teléfono AS 'Número de Teléfono',[Tipos de Teléfonos].[Tipo de Teléfono]  From Teléfono " +
-                "inner join Contacto on Teléfono.[id Teléfono]=Contacto.[FK Teléfono] inner join [Tipos de Teléfonos] on [Tipos de Teléfonos].[id Tipo de Teléfono] = Contacto.[FK Tipo de Teléfono] " +
+                "Select Teléfono.Teléfono AS 'Número de Teléfono',[Tipos de Teléfonos].[Tipo de Teléfono] From Teléfono " +
+                "inner join Contacto on Teléfono.[id Teléfono] = Contacto.[FK Teléfono] inner join [Tipos de Teléfonos] on [Tipos de Teléfonos].[id Tipo de Teléfono] = Contacto.[FK Tipo de Teléfono] " +
                 "where Contacto.[FK Código Asociado] = @Código_Asociado " +
                 "Commit Tran Cargar_Teléfonos " +
                 "End Try " +
@@ -296,25 +297,19 @@ namespace Crear_Base_de_Datos
                 "Begin " +
                 "Update Teléfono set Teléfono = @Teléfono where @ID_Teléfono =[id Teléfono] " +
                 "Commit Tran Mod_Tel " +
-                "End; " +
-                "Else " +
-                "Declare @ID_Tipo_Teléfono as varchar(5) " +
-                "set @ID_Tipo_Teléfono = (Select[id Tipo de Teléfono] From[Tipos de Teléfonos] where[Tipo de Teléfono] = @Tipo_Telefono) " +
-                "Update Teléfono set Teléfono = @Teléfono, [FK Tipo de Teléfono] = @ID_Tipo_Teléfono where @ID_Teléfono = [id Teléfono] " +
-                "Commit Tran Mod_Tel " +
                 "End Try " +
                 "Begin Catch " +
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Mod_Tel " +
                 "End Catch";
             String tabla26 = "Create Procedure[Eliminar Teléfono] " +
-                "@ID_Teléfono varchar(5) " +
+                "@ID_Teléfono varchar(5), " +
                 "@Id_Asociado varchar(5) " +
                 "As   " +
                 "Begin Tran Del_Teléfono " +
                 "Begin Try " +
                 "Begin " +
-                "Delete From Contacto where @ID_Teléfono = [FK Teléfono] AND @Id_Asociado = [FK Código Asociado]" +
+                "Delete From Contacto where @ID_Teléfono = [FK Teléfono] AND @Id_Asociado = [FK Código Asociado] " +
                 "Commit Tran Del_Teléfono " +
                 "End " +
                 "End Try " +
@@ -323,16 +318,19 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Del_Teléfono " +
                 "End Catch ";
             String tabla27 = "Create Procedure[Abonar] " +
-               "@Abono smallmoney, " +
+               "@Abono money, " +
                "@FK_Ahorro varchar(40), " +
                "@Id_Usuario varchar(5) " +
                "As " +
                "Begin Tran Abono " +
                "Begin Try " +
-               "Declare @id_Transación varchar(5) " +
+               "Declare @id_Transación varchar(5), @Comision money " +
+               "set @Comision = (@Abono *(1 + (Select [Tipo de Ahorro].[Tasa de Interés] from Ahorro " +
+               "inner join [Tipo de Ahorro] on [Tipo de Ahorro].[id Tipo Ahorro] = Ahorro.[FK Tipo Ahorro] " +
+               "where Ahorro.[id Ahorro] = @FK_Ahorro))) " +
                "Insert into Transacciones values(@Id_Usuario, 'TT002',GETDATE()) " +
                "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
-               "Insert into Abono values(@Abono, @FK_Ahorro, @id_Transación) " +
+               "Insert into Abono values(@Abono,@Comision,@FK_Ahorro, @id_Transación) " +
                "Commit Tran Abono " +
                "End Try " +
                "Begin Catch " +
@@ -354,7 +352,7 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Cargar_Ahorros " +
                 "End Catch";
             String tabla29 = "Create Procedure[dbo].[Realizar Aportación] " +
-                "@Aportación smallmoney, " +
+                "@Aportación money, " +
                 "@ID_Asociado varchar(5), " +
                 "@Id_Usuario varchar(5) " +
                 "As " +
@@ -426,21 +424,21 @@ namespace Crear_Base_de_Datos
             String tabla33 = "Create Procedure [Nueva Cuenta de Ahorro] " +
                 "@FK_Tipo_Ahorro varchar(20), " +
                 "@FK_Asociado varchar(5), " +
-                "@Abono_inicial smallmoney, " +
+                "@Abono_inicial money, " +
                 "@ID_Usuario varchar(5) " +
                 "As Begin Tran Ahorro " +
                 "Begin try " +
                 "Declare @ID_Tipo_Ahorro as varchar(5) " +
                 "Declare @Contar_Activos as int " +
-                "set @ID_Tipo_Ahorro = (Select[id Tipo Ahorro] From[Tipo de Ahorro] where Nombre = @FK_Tipo_Ahorro) " +
+                "set @ID_Tipo_Ahorro = (Select [id Tipo Ahorro] From [Tipo de Ahorro] where Nombre = @FK_Tipo_Ahorro) " +
                 "set @Contar_Activos = (Select COUNT([id Ahorro]) from Ahorro where [FK Código de Asociado] = @FK_Asociado AND Estado = 'ACTIVO') " +
                 "if @Contar_Activos < 3 " +
                 "Begin " +
-                "Insert into Ahorro values('ACTIVO',@ID_Tipo_Ahorro,@FK_Asociado) " +
-                "Commit tran Ahorro " +
+                "Insert into Ahorro values('ACTIVO', @ID_Tipo_Ahorro, @FK_Asociado) " +
                 "Declare @FK_Ahorro_nuevo as varchar(5) " +
                 "set @FK_Ahorro_nuevo = (Select MAX([id Ahorro]) from Ahorro where [FK Código de Asociado] = @FK_Asociado) " +
-                "exec Abonar @Abono=@Abono_inicial,@FK_Ahorro=@FK_Ahorro_nuevo,@Id_Usuario=@ID_Usuario " +
+                "exec Abonar @Abono = @Abono_inicial,@FK_Ahorro = @FK_Ahorro_nuevo, @Id_Usuario = @ID_Usuario " +
+                "Commit tran Ahorro " +
                 "End " +
                 "else " +
                 "Begin " +
@@ -458,7 +456,7 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Cargar_Abono " +
                 "Begin Try " +
-                "Select Abono.Abono as 'Monto Abonado',Transacciones.[Fecha de Transacción] as 'Fecha de Abono' From Abono inner join Transacciones on Abono.[FK Transacción] = Transacciones.[id Transacción] " +
+                "Select Abono.Abono as 'Monto Abonado', Abono.[Abono y Comisión] as 'Abono más Comisión',Transacciones.[Fecha de Transacción] as 'Fecha de Abono' From Abono inner join Transacciones on Abono.[FK Transacción] = Transacciones.[id Transacción] " +
                 "where[FK Ahorro] = @ID_Ahorro " +
                 "Commit Tran Cargar_Abono " +
                 "End Try " +
@@ -471,8 +469,8 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Disponibles_Abono " +
                 "Begin Try " +
-                "if (Select Count(Abono) AS 'Suma de Abonos' From Abono where[FK Ahorro] = @ID_Ahorro) > 0 Begin " +
-                "Select SUM(Abono) AS 'Suma de Abonos' From Abono where[FK Ahorro] = @ID_Ahorro " +
+                "if (Select Count([Abono y Comisión]) AS 'Suma de Abonos' From Abono where[FK Ahorro] = @ID_Ahorro) > 0 Begin " +
+                "Select SUM([Abono y Comisión]) AS 'Suma de Abonos' From Abono where[FK Ahorro] = @ID_Ahorro " +
                 "Commit Tran Disponibles_Abono End " +
                 "else begin Select 0 as 'Suma de Abonos' Commit Tran Disponibles_Abono End " +
                 "End Try " +
@@ -482,7 +480,7 @@ namespace Crear_Base_de_Datos
                 "Select 0 as 'Suma de Abonos' " +
                 "End Catch";
             String tabla36 = "Create Procedure[Realizar Retiros] " +
-                "@Retiro smallmoney, " +
+                "@Retiro money, " +
                 "@Número_Cheque varchar(8), " +
                 "@FK_Ahorro varchar(30), " +
                 "@Id_Usuario varchar(5) " +
@@ -533,23 +531,26 @@ namespace Crear_Base_de_Datos
             //Cambiado por el n de cuota
             String tabla39 = "Create Procedure[Realizar Pago] " + 
                 "@ID_Préstamo varchar(9), "+
-                "@Pago smallmoney, " +
+                "@Pago money, " +
                 "@Id_Usuario varchar(5), " +
-                "@Intereses smallmoney, " +
-                "@Capital smallmoney, " +
-                "@Saldo smallmoney, " +
-                "@Mora smallmoney, " +
+                "@Intereses money, " +
+                "@Capital money, " +
+                "@Saldo money, " +
+                "@Mora money, " +
                 "@Fecha_Límite datetime " +
                 "As Begin Tran Pagar " +
                 "Begin Try " +
                 "Declare @id_Transación varchar(5) " +
                 "Declare @No_Cuota int " +
+                "if (Select Estado from Préstamos where [id Préstamos] = @ID_Préstamo) = 'ACTIVO' Begin " +
                 "Insert into Transacciones values(@Id_Usuario, 'TT004', GETDATE()) " +
                 "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
                 "Set @No_Cuota = ((Select Count(Pago.[Número de Cuota]) From Pago inner join Préstamos on Préstamos.[id Préstamos] = Pago.[id Préstamo]" +
                 "Where Préstamos.[id Préstamos] = @ID_Préstamo) + 1) " +
-                "Insert into Pago values(@Pago, @No_Cuota, @Intereses, @Capital, @Saldo, @ID_Préstamo, @Mora, @Fecha_Límite, @id_Transación) Commit Tran Pagar " +
-                "Commit Tran Pagar End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Pagar End Catch ";
+                "Insert into Pago values(@Pago, @No_Cuota, @Intereses, @Capital, @Saldo, @ID_Préstamo, @Mora, @Fecha_Límite, @id_Transación) " +
+                "Commit Tran Pagar End " +
+                "Else Begin Print 'El préstamo ya fue cancelado' Commit Tran Pagar return 0 End " +
+                "End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Pagar End Catch ";
             String tabla41 = "Create Procedure[Cargar Saldo] " +
                   "@ID_Préstamo varchar(9) " +
                   "As " +
@@ -561,30 +562,23 @@ namespace Crear_Base_de_Datos
                   "End Try " +
                   "Begin Catch " +
                   "Print ERROR_MESSAGE(); " +
-                  "Rollback Tran Cargar_Saldo " +
+                  "Rollback Tran Cargar_Saldo \n" +
                   "End Catch ";
-            String tabla42 = "Create Trigger[Préstamo Cancelado] " +
-                "On Pago For Insert " +
-                "As " +
-                "Begin Transaction " +
-                "Begin Try " +
-                "Declare @Pago_Ultimo smallmoney " +
-                "Select @Pago_Ultimo = Pago.Saldo From inserted " +
-                "inner join Pago on Pago.[id Pago] = inserted.[id Pago] " +
-                "inner join Préstamos on Préstamos.[id Préstamos] = inserted.[id Préstamo] " +
-                "If(@Pago_Ultimo) = 0 " +
-                "Begin  " +
-                "Update Préstamos set Estado = 'CANCELADO' " +
-                "From Préstamos inner join Pago on Préstamos.[id Préstamos] = Pago.[id Préstamo] " +
-                "inner join inserted on Pago.[id Pago] = inserted.[id Pago] " +
-                "where Pago.[id Pago] = inserted.[id Pago] " +
-                "Commit Transaction " +
-                "End " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE() " +
-                "Rollback Transaction " +
-                "End Catch ";
+            //Trigger Feo
+            String tabla42 = "Create Trigger [Préstamo Cancelado] " +
+            "On Pago For Insert " +
+            "As " +
+            "Declare @Pago_Ultimo money " +
+            "Select @Pago_Ultimo = Pago.Saldo From inserted " +
+            "inner join Pago on Pago.[id Pago] = inserted.[id Pago] " +
+            "inner join Préstamos on Préstamos.[id Préstamos] = inserted.[id Préstamo] " +
+            "If (@Pago_Ultimo) = 0 " +
+            "Begin " +
+            "Update Préstamos set Estado = 'CANCELADO' " +
+            "From Préstamos inner join Pago on Préstamos.[id Préstamos] = Pago.[id Préstamo] " +
+            "inner join inserted on Pago.[id Pago] = inserted.[id Pago] " +
+            "where Pago.[id Pago] = inserted.[id Pago] " +
+            "End;";
             //Modificación
             String tabla43 = "Create Procedure[Cargar Préstamo] " +
                 "@ID_Préstamo varchar(9) " +
@@ -597,7 +591,7 @@ namespace Crear_Base_de_Datos
                 "From Asociado inner join [Forma de Pago] on [Forma de Pago].[id Forma de Pago] = [id Forma de Pago] inner join Préstamos on " +
                 "Asociado.[Código Asociado] = Préstamos.[Código Asociado] inner join [Tipo de Préstamo] on Préstamos.[id Tipo de Préstamo] " +
                 "= [Tipo de Préstamo].[id Tipo de Préstamo] inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] " +
-                "where Préstamos.[id Préstamos]= @ID_Préstamo " +
+                "where Préstamos.[id Préstamos]= @ID_Préstamo AND Préstamos.Estado = 'ACTIVO' " +
                 "Commit Tran Cargar_P " +
                 "End Try " +
                 "Begin Catch " +
@@ -623,7 +617,7 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Aso " +
                 "Begin Try " +
-                "Select Asociado.[Código Asociado] as 'Código', (Asociado.Nombres + ' ' + Asociado.Apellidos) as 'Persona Asociada',Asociado.DUI as 'Dui',[Tipo de Socio].[Nombre Tipo Socio] as 'Tipo Asociación'From Asociado inner join [Tipo de Socio] on [Tipo de Socio].[id Tipo de Socio]=Asociado.[FK Tipo Socio]where Asociado.[Estado] = 'Activo' " +
+                "Select Asociado.[Código Asociado] as 'Código', (Asociado.Nombres + ' ' + Asociado.Apellidos) as 'Persona Asociada',Asociado.DUI as 'Dui',[Tipo de Socio].[Nombre Tipo Socio] as 'Tipo Asociación'From Asociado inner join [Tipo de Socio] on [Tipo de Socio].[id Tipo de Socio]=Asociado.[FK Tipo Socio]where Asociado.[Estado] = 'ACTIVO' " +
                 "Commit Tran Aso " +
                 "End Try " +
                 "Begin Catch " +
@@ -666,6 +660,7 @@ namespace Crear_Base_de_Datos
                 "if exists(select Contraseña from Usuarios where Usuarios.[Id Usuario] = @Id) " +
                 "Begin " +
                 "update Usuarios set Correo = @Correo, Nombres = @Nombre, Apellidos = @Apellido, Contraseña = @Contraseña where[Id Usuario] = @Id; " +
+                "select * from Usuarios where [Id Usuario] = @Id " +
                 "End " +
                 "Else " +
                 "Begin " +
@@ -754,8 +749,8 @@ namespace Crear_Base_de_Datos
                 "@FK_Asociado varchar(5), " +
                 "@Forma_Pago varchar(5), " +
                 "@NCuotas int, " +
-                "@Monto smallmoney, " +
-                "@Cuota smallmoney, " +
+                "@Monto money, " +
+                "@Cuota money, " +
                 "@Usuario varchar(5) " +
                 "As Begin Tran Préstamo Begin try " +
                 "Declare @ID_Tipo_Préstamo as varchar(5) " +
@@ -1030,7 +1025,7 @@ namespace Crear_Base_de_Datos
 
             //try
             //{
-                //Abrimos la conexión y ejecutamos el comando
+                ////Abrimos la conexión y ejecutamos el comando
                 cnn.Open();
                 cmd.ExecuteNonQuery();
                 cmd1.ExecuteNonQuery();
@@ -1111,9 +1106,7 @@ namespace Crear_Base_de_Datos
             //    }
             //    catch (Exception ex)
             //    {
-            //        MessageBox.Show(ex.Message,
-            //            "Error al crear la base",
-            //            MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        MessageBox.Show(ex.Message,"Error al crear la base", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //    }
         }
     }

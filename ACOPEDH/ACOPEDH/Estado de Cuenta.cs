@@ -21,6 +21,7 @@ namespace ACOPEDH
         */
         string Dato;
         DataTable dt;
+        public DialogResult dr = DialogResult.Cancel;
         #region Componentes
         public Estado_de_Cuenta()
         {
@@ -81,6 +82,7 @@ namespace ACOPEDH
         //Cerrar Cuenta
         private void bttCerrarCuenta_Click(object sender, EventArgs e)
         {
+            dr = DialogResult.Yes;
             //Cerrar cuenta
         }
         #endregion

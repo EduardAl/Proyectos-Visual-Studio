@@ -77,7 +77,7 @@ namespace ACOPEDH
                     Parámetros[5] = new SqlParameter("@Saldo", Convert.ToDouble(txtSaldo.Text) - Capi);
                     Parámetros[6] = new SqlParameter("@Mora", Mora);
                     Parámetros[7] = new SqlParameter("@Fecha_Límite", Límite);
-                   
+
                     if (ingresar.llenar_tabla("[Realizar Pago]", Parámetros) > 0)
                     {
                         if (Imprimir == DialogResult.Yes)
@@ -88,7 +88,10 @@ namespace ACOPEDH
                         Close();
                     }
                     else
+                    {
                         MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Globales.gbError = "";
+                    }
                 }
             }
         }

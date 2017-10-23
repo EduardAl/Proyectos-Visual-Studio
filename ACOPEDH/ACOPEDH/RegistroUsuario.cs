@@ -131,6 +131,7 @@ namespace ACOPEDH
                 else
                 {
                     errorProvider1.SetError(txtCorreo, Globales.gbError);
+                    Globales.gbError = "";
                 }
             }
             this.Cursor = Cursors.Default;

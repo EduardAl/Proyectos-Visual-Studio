@@ -8,6 +8,11 @@ namespace ACOPEDH
 {
     public partial class Principal_P : Form
     {
+        /*
+            *********************************
+            *     Componentes iniciales     *
+            ********************************* 
+        */
         String dgvControl;
         DialogResult dr = DialogResult.Cancel;
         Color Original, Seleccionado;
@@ -19,44 +24,13 @@ namespace ACOPEDH
         public static bool confirmación = false;
         public bool editpass = false;
         public bool editdata = false;
-        #region Mover Form
-        bool Empezarmover = false;
-        int PosX;
-        int PosY;
-
-        private void Form1_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                Empezarmover = true;
-                PosX = e.X;
-                PosY = e.Y;
-            }
-        }
-
-        private void Form1_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                Empezarmover = false;
-            }
-        }
-
-        private void Form1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (Empezarmover)
-            {
-                Point temp = new Point();
-                temp.X = Location.X + (e.X - PosX);
-                temp.Y = Location.Y + (e.Y - PosY);
-                Location = temp;
-            }
-        }
-        #endregion
+        #region Constructores
         public Principal_P()
         {
             InitializeComponent();
         }
+        #endregion
+        #region Load
         private void Principal_P_Load(object sender, EventArgs e)
         {
             LlenarDGV(ref dsAhorro, "[Ahorro DVG]");
@@ -70,11 +44,7 @@ namespace ACOPEDH
             txtConfContraseña.UseSystemPasswordChar = true;
             No_Editar();
         }
-        public void LlenarDGV(ref DataTable dss, String tabla)
-        {
-            dgvBúsqueda.DataSource = null;
-            dss = Procedimientos_select.llenar_DataTable(tabla);
-        }
+        #endregion
 
         /*
             *********************************
@@ -173,26 +143,29 @@ namespace ACOPEDH
             *   Funciones y Procedimientos  *
             ********************************* 
         */
+        #region Cargar Datos en nuevos forms
         private bool DatoR()
-        {
-            if (dgvBúsqueda.SelectedRows.Count == 1)
-            {
-                try
                 {
-                    DataGridViewRow dgvv = null;
-                    int i = dgvBúsqueda.CurrentCell.RowIndex;
-                    dgvv = dgvBúsqueda.Rows[i];
-                    Dato = dgvv.Cells[0].Value.ToString();
-                    MessageBox.Show(Dato);
-                    if (!String.IsNullOrEmpty(Dato))
-                        return true;
+                    if (dgvBúsqueda.SelectedRows.Count == 1)
+                    {
+                        try
+                        {
+                            DataGridViewRow dgvv = null;
+                            int i = dgvBúsqueda.CurrentCell.RowIndex;
+                            dgvv = dgvBúsqueda.Rows[i];
+                            Dato = dgvv.Cells[0].Value.ToString();
+                            MessageBox.Show(Dato);
+                            if (!String.IsNullOrEmpty(Dato))
+                                return true;
+                        }
+                        catch
+                        {
+                        }
+                    }
+                    return false;
                 }
-                catch
-                {
-                }
-            }
-            return false;
-        }
+        #endregion
+        #region Botones Principales (Ocultar cosas)
         public void Ocultar()
         {
             //Colorear
@@ -224,153 +197,8 @@ namespace ACOPEDH
             //Configuración
             panelConfig.Visible = false;
         }
-        /*
-           *********************************
-           *      Botones Secundarios      *
-           ********************************* 
-       */
-        #region Botones
-        //Acciones
-        private void bttAbonar_Click(object sender, EventArgs e)
-        {
-            if (DatoR())
-            {
-                Abonos Accion = new Abonos(Dato);
-                Accion.ShowDialog();
-                Accion.Dispose();
-            }
-            else
-                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-
-        }
-        private void bttRetirar_Click(object sender, EventArgs e)
-        {
-            if (DatoR())
-            {
-                Retiros Accion = new Retiros(Dato);
-                Accion.ShowDialog();
-                Accion.Dispose();
-            }
-            else
-                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-        }
-        private void bttVerEstados_Click(object sender, EventArgs e)
-        {
-            if (DatoR())
-            {
-                Estado_de_Cuenta Accion = new Estado_de_Cuenta(Dato);
-                Accion.ShowDialog();
-                if (Accion.DialogResult == DialogResult.OK)
-                    PAhorros_Click(null, null); //Probar esto
-                Accion.Dispose();
-            }
-            else
-                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-        private void bttCrearCuenta_Click(object sender, EventArgs e)
-        {
-            Nuevo_Ahorro Accion = new Nuevo_Ahorro();
-            Accion.ShowDialog();
-            if (Accion.DialogResult == DialogResult.OK)
-                PAhorros_Click(null, null); //Probar esto
-            Accion.Dispose();
-        }
-        private void bttRealizarPago_Click(object sender, EventArgs e)
-        {
-            if (DatoR())
-            {
-                Pagos Accion = new Pagos(Dato);
-                Accion.ShowDialog();
-                Accion.Dispose();
-            }
-            else
-                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-        private void bttAmortización_Click(object sender, EventArgs e)
-        {
-            if (DatoR())
-            {
-                Amortización Accion = new Amortización(Dato);
-                Accion.ShowDialog();
-                Accion.Dispose();
-            }
-            else
-                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-        private void bttPagosRealizados_Click(object sender, EventArgs e)
-        {
-            if (DatoR())
-            {
-                Pagos_Realizados Accion = new Pagos_Realizados(Dato);
-                Accion.ShowDialog();
-                Accion.Dispose();
-            }
-            else
-                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-        private void bttOtorgarPréstamo_Click(object sender, EventArgs e)
-        {
-
-            Otorgar_Préstamo Accion = new Otorgar_Préstamo();
-            Accion.ShowDialog();
-            Accion.Dispose();
-        }
-        private void bttDatosAsociado_Click(object sender, EventArgs e)
-        {
-            if (DatoR())
-            {
-                Datos_Asociado Accion = new Datos_Asociado(Dato);
-                Accion.ShowDialog();
-                Accion.Dispose();
-            }
-            else
-                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-        }
-        private void bttAportaciones_Click(object sender, EventArgs e)
-        {
-            if (DatoR())
-            {
-                Aportaciones Accion = new Aportaciones();
-                Accion.ShowDialog();
-                Accion.Dispose();
-            }
-            else
-                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-        }
-        private void bttNuevoAsociado_Click(object sender, EventArgs e)
-        {
-            Nuevo_asociado Accion = new Nuevo_asociado();
-            Accion.ShowDialog();
-            Accion.Dispose();
-        }
-        //Barta Título
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-            if (WindowState == FormWindowState.Maximized)
-            {
-                WindowState = FormWindowState.Normal;
-                toolTip1.SetToolTip(bttMax, "Maximizar");
-            }
-            else
-            {
-                toolTip1.SetToolTip(bttMax, "Restaurar a tamaño normal");
-                WindowState = FormWindowState.Maximized;
-            }
-        }
-
         #endregion
+        #region Modificar datos de usuario
         private void Editar()
         {
             editdata = true;
@@ -446,6 +274,211 @@ namespace ACOPEDH
             editpass = false;
             editdata = false;
         }
+        #endregion
+        #region Cargar datos en DGV
+        public void LlenarDGV(ref DataTable dss, String tabla)
+        {
+            dgvBúsqueda.DataSource = null;
+            dss = Procedimientos_select.llenar_DataTable(tabla);
+        }
+        #endregion
+
+       /*
+          *********************************
+          *      Botones Secundarios      *
+          ********************************* 
+      */
+        #region Botones de Acción
+        private void bttAbonar_Click(object sender, EventArgs e)
+        {
+            if (DatoR())
+            {
+                Abonos Accion = new Abonos(Dato);
+                Accion.ShowDialog();
+                Accion.Dispose();
+            }
+            else
+                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+        }
+        private void bttRetirar_Click(object sender, EventArgs e)
+        {
+            if (DatoR())
+            {
+                Retiros Accion = new Retiros(Dato);
+                Accion.ShowDialog();
+                Accion.Dispose();
+            }
+            else
+                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+        }
+        private void bttVerEstados_Click(object sender, EventArgs e)
+        {
+            if (DatoR())
+            {
+                Estado_de_Cuenta Accion = new Estado_de_Cuenta(Dato);
+                Accion.ShowDialog();
+                if (Accion.dr == DialogResult.Yes)
+                {
+                    LlenarDGV(ref dsAhorro, "[Ahorro DVG]");
+                    dgvControl = "Ahorro";
+                    this.filtro = dsAhorro.DefaultView;
+                    txtBúsqueda.Focus();
+                    this.dgvBúsqueda.DataSource = filtro;
+                }
+                Accion.Dispose();
+            }
+            else
+                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        private void bttCrearCuenta_Click(object sender, EventArgs e)
+        {
+            Nuevo_Ahorro Accion = new Nuevo_Ahorro();
+            Accion.ShowDialog();
+            if (Accion.DialogResult == DialogResult.OK)
+            {
+                LlenarDGV(ref dsAhorro, "[Ahorro DVG]");
+                dgvControl = "Ahorro";
+                this.filtro = dsAhorro.DefaultView;
+                txtBúsqueda.Focus();
+                this.dgvBúsqueda.DataSource = filtro;
+            }
+            Accion.Dispose();
+        }
+        private void bttRealizarPago_Click(object sender, EventArgs e)
+        {
+            if (DatoR())
+            {
+                Pagos Accion = new Pagos(Dato);
+                Accion.ShowDialog();
+                if (Accion.DialogResult == DialogResult.OK)
+                {
+                    LlenarDGV(ref dsPréstamo, "[Préstamo DVG]");
+                    dgvControl = "Préstamo";
+                    this.filtro = dsPréstamo.DefaultView;
+                    txtBúsqueda.Focus();
+                    this.dgvBúsqueda.DataSource = filtro;
+                }
+                Accion.Dispose();
+            }
+            else
+                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        private void bttAmortización_Click(object sender, EventArgs e)
+        {
+            if (DatoR())
+            {
+                Amortización Accion = new Amortización(Dato);
+                Accion.ShowDialog();
+                Accion.Dispose();
+            }
+            else
+                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        private void bttPagosRealizados_Click(object sender, EventArgs e)
+        {
+            if (DatoR())
+            {
+                Pagos_Realizados Accion = new Pagos_Realizados(Dato);
+                Accion.ShowDialog();
+                Accion.Dispose();
+            }
+            else
+                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        private void bttOtorgarPréstamo_Click(object sender, EventArgs e)
+        {
+            Otorgar_Préstamo Accion = new Otorgar_Préstamo();
+            Accion.ShowDialog();
+            if (Accion.DialogResult == DialogResult.OK)
+            {
+                LlenarDGV(ref dsPréstamo, "[Préstamo DVG]");
+                dgvControl = "Préstamo";
+                this.filtro = dsPréstamo.DefaultView;
+                txtBúsqueda.Focus();
+                this.dgvBúsqueda.DataSource = filtro;
+            }
+            Accion.Dispose();
+        }
+        private void bttDatosAsociado_Click(object sender, EventArgs e)
+        {
+            if (DatoR())
+            {
+                Datos_Asociado Accion = new Datos_Asociado(Dato);
+                Accion.ShowDialog();
+                if (Accion.dr== DialogResult.Yes)
+                {
+                    LlenarDGV(ref dsAsociado, "[Asociado DVG]");
+                    dgvControl = "Asociado";
+                    this.filtro = dsAsociado.DefaultView;
+                    txtBúsqueda.Focus();
+                    this.dgvBúsqueda.DataSource = filtro;
+                }
+                Accion.Dispose();
+            }
+            else
+                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+        }
+        private void bttAportaciones_Click(object sender, EventArgs e)
+        {
+            if (DatoR())
+            {
+                Aportaciones Accion = new Aportaciones(Dato);
+                Accion.ShowDialog();
+                Accion.Dispose();
+            }
+            else
+                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+        }
+        private void bttNuevoAsociado_Click(object sender, EventArgs e)
+        {
+            Nuevo_asociado Accion = new Nuevo_asociado();
+            Accion.ShowDialog();
+            if (Accion.DialogResult == DialogResult.OK)
+            {
+                LlenarDGV(ref dsAsociado, "[Asociado DVG]");
+                dgvControl = "Asociado";
+                this.filtro = dsAsociado.DefaultView;
+                txtBúsqueda.Focus();
+                this.dgvBúsqueda.DataSource = filtro;
+            }
+            Accion.Dispose();
+        }
+        #endregion
+        #region Barra Título
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+            {
+                WindowState = FormWindowState.Normal;
+                toolTip1.SetToolTip(bttMax, "Maximizar");
+            }
+            else
+            {
+                toolTip1.SetToolTip(bttMax, "Restaurar a tamaño normal");
+                WindowState = FormWindowState.Maximized;
+            }
+        }
+        #endregion
+
+        /*
+           *********************************
+           *            Eventos            *
+           ********************************* 
+       */
+        #region Cambio de tamaño
         private void Principal_P_SizeChanged(object sender, EventArgs e)
         {
             BarraTítulo.Size = new Size(Width, BarraTítulo.Size.Height);
@@ -455,7 +488,7 @@ namespace ACOPEDH
             //                          Elementos
             Titulo.Location = new Point((Width / 2) - (Titulo.Width / 2) + 93, Titulo.Location.Y);
             panelConfig.Width = Width - 285;
-            panelConfig.Location = new Point((Width / 2) - (panelConfig.Width / 2) + 93, panelConfig.Location.Y);
+            panelConfig.Location = new Point((Width / 2) - (panelConfig.Width / 2) + 93, 122 /*panelConfig.Location.Y*/);
             dgvBúsqueda.Width = Width - dgvBúsqueda.Location.X - 87;
             dgvBúsqueda.Height = Height - dgvBúsqueda.Location.Y - 116;
 
@@ -473,12 +506,12 @@ namespace ACOPEDH
             bttAbonar.Location = bttRealizarPago.Location;
             Refresh();
         }
-
+        #endregion
+        #region Links
         public void LLEditar1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Editar();
         }
-
         public void lkConfirmar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             DataSet ds = new DataSet();
@@ -552,6 +585,7 @@ namespace ACOPEDH
                         else
                         {
                             MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            Globales.gbError = "";
                         }
                     }
                     else
@@ -573,6 +607,7 @@ namespace ACOPEDH
                         else
                         {
                             MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                            Globales.gbError = "";
                         }
                     }
                     etiqueta:
@@ -585,7 +620,6 @@ namespace ACOPEDH
                 }
             }
         }
-
         public void lkCancelar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             No_Editar();
@@ -595,57 +629,61 @@ namespace ACOPEDH
             Editar("contraseña");
             txtNuevaContraseña.Focus();
         }
-
+        #endregion
+        #region Pintar
         private void panelConfig_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawLine(new Pen(Brushes.Black, 3), 10, 32, panelConfig.Width - 10, 32);//23
             e.Graphics.DrawLine(new Pen(Brushes.Black, 2), 10, 196, panelConfig.Width - 10, 196);//180
             e.Graphics.DrawLine(new Pen(Brushes.Black, 2), 10, 347, panelConfig.Width - 10, 347);//331
         }
+        #endregion
+        #region Visibilidad contraseña
         private void PBMostrar2_MouseDown(object sender, MouseEventArgs e)
         {
             txtNuevaContraseña.UseSystemPasswordChar = false;
         }
-
         private void PBMostrar2_MouseUp(object sender, MouseEventArgs e)
         {
             txtNuevaContraseña.UseSystemPasswordChar = true;
         }
-
         private void PBMostrar3_MouseDown(object sender, MouseEventArgs e)
         {
             txtConfContraseña.UseSystemPasswordChar = false;
         }
-
         private void PBMostrar3_MouseUp(object sender, MouseEventArgs e)
         {
             txtConfContraseña.UseSystemPasswordChar = true;
         }
-
+        #endregion
+        #region Validaciones
         private void txtNombreActual_KeyUp(object sender, KeyEventArgs e)
         {
             errorProvider1.Clear();
             Validaciones.ValidarNomApe(ref txtNombreActual, ref errorProvider1);
         }
-
         private void txtApellidoActual_KeyUp(object sender, KeyEventArgs e)
         {
             errorProvider1.Clear();
             Validaciones.ValidarNomApe(ref txtApellidoActual, ref errorProvider1);
         }
-
         private void txtCorreoElectrónicoNuevo_KeyUp(object sender, KeyEventArgs e)
         {
             errorProvider1.Clear();
             Validaciones.validar_correo(ref txtCorreoElectrónicoNuevo, ref errorProvider1);
         }
-
         private void txtNuevaContraseña_KeyUp(object sender, KeyEventArgs e)
         {
             errorProvider1.Clear();
             Validaciones.validar_contraseñas(txtNuevaContraseña, ref errorProvider1);
         }
-
+        private void txtConfContraseña_KeyUp(object sender, KeyEventArgs e)
+        {
+            errorProvider1.Clear();
+            Validaciones.claves_iguales(txtNuevaContraseña, txtConfContraseña, ref errorProvider1);
+        }
+        #endregion
+        #region Búsqueda
         private void txtBúsqueda_KeyUp(object sender, KeyEventArgs e)
         {
             string salida_datos = "";
@@ -671,11 +709,11 @@ namespace ACOPEDH
                 {
                     if (salida_datos.Length == 0)
                     {
-                        salida_datos = "(Dui LIKE '%" + palabra + "%' OR [Código de Préstamo] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Dui] LIKE '%" + palabra + "%')";
+                        salida_datos = "(Dui LIKE '%" + palabra + "%' OR [Código de Préstamo] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Tipo de Préstamo] LIKE '%" + palabra + "%')";
                     }
                     else
                     {
-                        salida_datos += " AND(Dui LIKE '%" + palabra + "%' OR [Código de Préstamo] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Dui] LIKE '%" + palabra + "%')";
+                        salida_datos += " AND(Dui LIKE '%" + palabra + "%' OR [Código de Préstamo] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Tipo de Préstamo] LIKE '%" + palabra + "%')";
                     }
                 }
                 this.filtro.RowFilter = salida_datos;
@@ -696,18 +734,8 @@ namespace ACOPEDH
                 this.filtro.RowFilter = salida_datos;
             }
         }
-
-        private void txtConfContraseña_KeyUp(object sender, KeyEventArgs e)
-        {
-            errorProvider1.Clear();
-            Validaciones.claves_iguales(txtNuevaContraseña, txtConfContraseña, ref errorProvider1);
-        }
-
-        private void BarraTítulo_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        #endregion
+        #region Closing
         private void Principal_P_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (dr == DialogResult.Cancel)
@@ -716,8 +744,41 @@ namespace ACOPEDH
                 if (DialogResult == DialogResult.Cancel)
                     e.Cancel = true;
             }
+        }
+        #endregion
+        #region Mover Form
+        bool Empezarmover = false;
+        int PosX;
+        int PosY;
 
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Empezarmover = true;
+                PosX = e.X;
+                PosY = e.Y;
+            }
         }
 
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Empezarmover = false;
+            }
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Empezarmover)
+            {
+                Point temp = new Point();
+                temp.X = Location.X + (e.X - PosX);
+                temp.Y = Location.Y + (e.Y - PosY);
+                Location = temp;
+            }
+        }
+        #endregion
     }
 }

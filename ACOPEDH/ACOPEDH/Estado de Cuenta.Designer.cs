@@ -76,12 +76,14 @@
             // 
             // BarraTítulo
             // 
+            this.BarraTítulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
             this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
             this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
             this.BarraTítulo.Name = "BarraTítulo";
-            this.BarraTítulo.Size = new System.Drawing.Size(825, 30);
+            this.BarraTítulo.Size = new System.Drawing.Size(966, 30);
             this.BarraTítulo.TabIndex = 60;
             this.BarraTítulo.Text = "         ACOPEDH .:. ESTADO DE CUENTAS";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -126,7 +128,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(519, 69);
+            this.label3.Location = new System.Drawing.Point(538, 69);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(143, 19);
             this.label3.TabIndex = 66;
@@ -134,7 +136,7 @@
             // 
             // txtCódigo
             // 
-            this.txtCódigo.Location = new System.Drawing.Point(674, 66);
+            this.txtCódigo.Location = new System.Drawing.Point(693, 66);
             this.txtCódigo.Name = "txtCódigo";
             this.txtCódigo.ReadOnly = true;
             this.txtCódigo.Size = new System.Drawing.Size(135, 27);
@@ -144,7 +146,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(296, 105);
+            this.label4.Location = new System.Drawing.Point(317, 105);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(119, 19);
             this.label4.TabIndex = 68;
@@ -154,7 +156,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(600, 105);
+            this.label5.Location = new System.Drawing.Point(619, 105);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 19);
             this.label5.TabIndex = 69;
@@ -162,7 +164,7 @@
             // 
             // txtTipoA
             // 
-            this.txtTipoA.Location = new System.Drawing.Point(426, 102);
+            this.txtTipoA.Location = new System.Drawing.Point(445, 102);
             this.txtTipoA.Name = "txtTipoA";
             this.txtTipoA.ReadOnly = true;
             this.txtTipoA.Size = new System.Drawing.Size(135, 27);
@@ -170,7 +172,7 @@
             // 
             // txtEstado
             // 
-            this.txtEstado.Location = new System.Drawing.Point(674, 102);
+            this.txtEstado.Location = new System.Drawing.Point(693, 102);
             this.txtEstado.Name = "txtEstado";
             this.txtEstado.ReadOnly = true;
             this.txtEstado.Size = new System.Drawing.Size(135, 27);
@@ -254,13 +256,14 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvAbonos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAbonos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAbonos.Location = new System.Drawing.Point(313, 162);
+            this.dgvAbonos.Location = new System.Drawing.Point(313, 157);
             this.dgvAbonos.Name = "dgvAbonos";
             this.dgvAbonos.RowHeadersVisible = false;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Linotte-Light", 10F);
             this.dgvAbonos.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvAbonos.Size = new System.Drawing.Size(247, 374);
+            this.dgvAbonos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAbonos.Size = new System.Drawing.Size(391, 374);
             this.dgvAbonos.TabIndex = 78;
             // 
             // groupBox1
@@ -292,12 +295,12 @@
             // 
             // bttCer
             // 
-            this.bttCer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bttCer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bttCer.BackColor = System.Drawing.Color.Transparent;
             this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
             this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.bttCer.Image = ((System.Drawing.Image)(resources.GetObject("bttCer.Image")));
-            this.bttCer.Location = new System.Drawing.Point(795, 0);
+            this.bttCer.Location = new System.Drawing.Point(936, 0);
             this.bttCer.Name = "bttCer";
             this.bttCer.Size = new System.Drawing.Size(30, 26);
             this.bttCer.TabIndex = 81;
@@ -322,12 +325,13 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvRetiros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRetiros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRetiros.Location = new System.Drawing.Point(560, 162);
+            this.dgvRetiros.Location = new System.Drawing.Point(704, 157);
             this.dgvRetiros.Name = "dgvRetiros";
             this.dgvRetiros.RowHeadersVisible = false;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Linotte-Light", 10F);
             this.dgvRetiros.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvRetiros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRetiros.Size = new System.Drawing.Size(247, 374);
             this.dgvRetiros.TabIndex = 82;
             // 
@@ -336,7 +340,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(825, 548);
+            this.ClientSize = new System.Drawing.Size(966, 548);
             this.Controls.Add(this.dgvRetiros);
             this.Controls.Add(this.bttCer);
             this.Controls.Add(this.bttCerrarCuenta);
@@ -358,8 +362,6 @@
             this.Font = new System.Drawing.Font("Linotte-Bold", 12F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "Estado_de_Cuenta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ACOPEDH - ESTADO DE CUENTA";
