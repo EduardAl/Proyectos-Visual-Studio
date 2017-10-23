@@ -20,6 +20,7 @@ namespace ACOPEDH
            ********************************* 
        */
         string Dato;
+        public double Disponible = -1;
         Procedimientos_select pro = new Procedimientos_select();
         #region Constructores
         //Normal
@@ -47,8 +48,9 @@ namespace ACOPEDH
                 double Abono = Convert.ToDouble(pro.llenar_DataTable("[Suma Abonos]", Param).Rows[0]["Suma de Abonos"]);
                 Param[0] = new SqlParameter("@ID_Ahorro", Dato);
                 double Retiro = Convert.ToDouble(pro.llenar_DataTable("[Suma Retiros]", Param).Rows[0]["Suma de Retiros"]);
-                txtMontoDisponible.Text = "$" + Math.Round(Abono-Retiro,2);
-                nCantidadRetiro.Maximum = Convert.ToDecimal(txtMontoDisponible.Text);
+                txtMontoDisponible.Text = "$" + Math.Round(Abono - Retiro, 2);
+                nCantidadRetiro.Maximum = Convert.ToDecimal(txtMontoDisponible.Text.Substring(1));
+
             }
             catch { }
         }
@@ -84,6 +86,7 @@ namespace ACOPEDH
                     }
                     if (pro.llenar_tabla("[Realizar Retiros]", Parámetros) > 0)
                     {
+                        Disponible = Convert.ToDouble(txtMontoDisponible.Text.Substring(1)) - Convert.ToDouble(nCantidadRetiro.Value);
                         DialogResult = DialogResult.OK;
                         Close();
                     }

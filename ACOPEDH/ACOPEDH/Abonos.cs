@@ -19,6 +19,7 @@ namespace ACOPEDH
             ********************************* 
         */
         string Dato;
+        double interes = 0;
         Procedimientos_select ingresar = new Procedimientos_select();
         #region Constructores
         public Abonos()
@@ -39,6 +40,7 @@ namespace ACOPEDH
             Param[0] = new SqlParameter("@Código_Ahorro", Dato);
             pro.LlenarText("[Cargar Ahorros]", "Nombre,Interés", Param, txtAsociado,txtTasa);
             txtNoCuenta.Text = Dato;
+            interes = Convert.ToDouble(txtTasa.Text);
             txtTasa.Text = txtTasa.Text + "%";
         }
         #endregion
@@ -63,10 +65,13 @@ namespace ACOPEDH
                 DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de abono para la siguiente transacción?:\n$" + nmCantidadAbono.Value + "\n N° Préstamo: " + txtNoCuenta.Text + "\nPersona Asociada: " + txtAsociado.Text, "Confirmar Pago", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (Imprimir != DialogResult.Cancel)
                 {
-                    SqlParameter[] Parámetros = new SqlParameter[3];
-                    Parámetros[0] = new SqlParameter("@Abono",nmCantidadAbono.Value);
-                    Parámetros[1] = new SqlParameter("@FK_Ahorro", Dato);
-                    Parámetros[2] = new SqlParameter("@Id_Usuario",Globales.gbCodUsuario);
+                    double Convertir = Convert.ToDouble(nmCantidadAbono.Value);
+                    double comision = Math.Round(Convertir * interes/100 + Convertir, 2);
+                    SqlParameter[] Parámetros = new SqlParameter[4];
+                    Parámetros[0] = new SqlParameter("@Abono",Convertir);
+                    Parámetros[1] = new SqlParameter("@Comision",comision);
+                    Parámetros[2] = new SqlParameter("@FK_Ahorro", Dato);
+                    Parámetros[3] = new SqlParameter("@Id_Usuario",Globales.gbCodUsuario);
                     if (Imprimir == DialogResult.Yes)
                     {
 #warning Añadir Imprimir

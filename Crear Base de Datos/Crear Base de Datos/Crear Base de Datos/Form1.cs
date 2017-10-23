@@ -315,15 +315,13 @@ namespace Crear_Base_de_Datos
                 "End Catch ";
             String tabla27 = "Create Procedure[Abonar] " +
                "@Abono money, " +
+               "@Comision money, " +
                "@FK_Ahorro varchar(40), " +
                "@Id_Usuario varchar(5) " +
                "As " +
                "Begin Tran Abono " +
                "Begin Try " +
-               "Declare @id_Transación varchar(5), @Comision money " +
-               "set @Comision = (@Abono *(1 + (Select [Tipo de Ahorro].[Tasa de Interés] from Ahorro " +
-               "inner join [Tipo de Ahorro] on [Tipo de Ahorro].[id Tipo Ahorro] = Ahorro.[FK Tipo Ahorro] " +
-               "where Ahorro.[id Ahorro] = @FK_Ahorro))) " +
+               "Declare @id_Transación varchar(5) " +
                "Insert into Transacciones values(@Id_Usuario, 'TT002',GETDATE()) " +
                "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
                "Insert into Abono values(@Abono,@Comision,@FK_Ahorro, @id_Transación) " +
@@ -780,7 +778,48 @@ namespace Crear_Base_de_Datos
                 "Begin Try " +
                 "Select[Forma de Pago].Nombre AS 'FormaP', [Forma de Pago].[id Forma de Pago] as 'Id' from[Forma de Pago] " +
                 "Commit Tran Tipo_pagos End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Pre End Catch";
-        
+            //Añadido para cerrar ahorro
+            String tabla58 = "Create Procedure[dbo].[Cerrar Ahorro] " +
+                "@Id_Ahorro varchar(5) " +
+                "As Begin Tran Cuenta_Cerrada " +
+                "Begin Try " +
+                "If(Select Estado from Ahorro where [id Ahorro] = @Id_Ahorro) = 'ACTIVO' " +
+                "Begin " +
+                "    Update Ahorro Set Estado = 'INACTIVO' where[id Ahorro] = @Id_Ahorro " +
+                "    Print 'La cuenta ha sido cerrada' " +
+                "    Commit Tran Cuenta_Cerrada " +
+                "End " +
+                "Else " +
+                "Begin " +
+                "    Print 'La cuenta ya se encuentra cerrada' " +
+                "    Commit Tran Cuenta_Cerrada " +
+                "End " +
+                "End Try " +
+                "Begin Catch " +
+                "Print ERROR_MESSAGE(); " +
+                "Rollback Tran Cuenta_Cerrada " +
+                "End Catch ";
+            //Añadido para desasociar
+            String tabla59 = "Create Procedure[dbo].[Desasociar] " +
+                "@Código_Asociado varchar(5) " +
+                "As Begin Tran Desasociado " +
+                "Begin Try " +
+                "If(Select Estado from Asociado where[Código Asociado] = @Código_Asociado) = 'ACTIVO' " +
+                "Begin " +
+                "Update Asociado Set Estado = 'INACTIVO' where[Código Asociado] = @Código_Asociado " +
+                "Commit Tran Desasociado " +
+                "End " +
+                "Else " +
+                "Begin " +
+                "Print 'La persona ya se encuentra desasociada' " +
+                "Commit Tran Desasociado " +
+                "End " +
+                "End Try " +
+                "Begin Catch " +
+                "Print ERROR_MESSAGE(); " +
+                "Rollback Tran Desasociado " +
+                "End Catch ";
+
             String Usuario1 =
                 "CREATE LOGIN Master_ACOPEDH " +
                 "WITH PASSWORD = 'AUREO112358' " +
@@ -903,7 +942,11 @@ namespace Crear_Base_de_Datos
                 "grant execute on object :: [Cargar Tipo Pagos] " +
                   "to Administrador with grant option " +
                 "grant execute on object :: [Conseguir Límite] " +
-                  "to Administrador with grant option ";
+                  "to Administrador with grant option " +
+                "grant execute on object :: [Desasociar] " +
+                      "to Administrador with grant option " +
+                "grant execute on object :: [Cerrar Ahorro] " +
+                      "to Administrador with grant option ";
             String permisosUsuario =
                  "Use " + txtNombre.Text + ";" +
                  "Exec sp_addrolemember N'db_datareader',N'Usuario' " +
@@ -937,7 +980,7 @@ namespace Crear_Base_de_Datos
             String crearpagos =
                 "insert into [Forma de Pago] values ('Descuento a Planilla'), ('Pago Voluntario')";
             String crearahorros =
-                "insert into [Tipo de Ahorro] values ('A la Vista',0),('Vacaciones',0),('Navideño',0),('Escolar',0)";
+                "insert into [Tipo de Ahorro] values ('A la Vista',0),('Vacaciones',0),('Navideño',0),('Escolar',2)";
             String crearpréstamos =
                 "insert into [Tipo de Préstamo] values ('Personal',17),('Emergencia',17)";
             String insertartiposdetransacciones =
@@ -1006,18 +1049,20 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd59 = new SqlCommand(tabla55, cnn);
             SqlCommand cmd60 = new SqlCommand(tabla56, cnn);
             SqlCommand cmd61 = new SqlCommand(tabla57, cnn);
-            SqlCommand cmd62 = new SqlCommand(permisosMaster_ACOPEDH, cnn);
-            SqlCommand cmd63 = new SqlCommand(permisosAdministrador, cnn);
-            SqlCommand cmd64 = new SqlCommand(permisosUsuario, cnn);
-            SqlCommand cmd65 = new SqlCommand(permisosInicioSesión, cnn);
-            SqlCommand cmd66 = new SqlCommand(crearusuarios, cnn);
-            SqlCommand cmd67 = new SqlCommand(crearahorros, cnn);
-            SqlCommand cmd68 = new SqlCommand(crearpagos, cnn);
-            SqlCommand cmd69 = new SqlCommand(crearsocios, cnn);
-            SqlCommand cmd70 = new SqlCommand(creartrabajos, cnn);
-            SqlCommand cmd71 = new SqlCommand(crearpréstamos, cnn);
-            SqlCommand cmd72 = new SqlCommand(insertartiposdetransacciones, cnn);
-            SqlCommand cmd73 = new SqlCommand(insertartiposdeteléfonos, cnn);
+            SqlCommand cmd62 = new SqlCommand(tabla58, cnn);
+            SqlCommand cmd63 = new SqlCommand(tabla59, cnn);
+            SqlCommand cmd64 = new SqlCommand(permisosMaster_ACOPEDH, cnn);
+            SqlCommand cmd65 = new SqlCommand(permisosAdministrador, cnn);
+            SqlCommand cmd66 = new SqlCommand(permisosUsuario, cnn);
+            SqlCommand cmd67 = new SqlCommand(permisosInicioSesión, cnn);
+            SqlCommand cmd68 = new SqlCommand(crearusuarios, cnn);
+            SqlCommand cmd69 = new SqlCommand(crearahorros, cnn);
+            SqlCommand cmd70 = new SqlCommand(crearpagos, cnn);
+            SqlCommand cmd71 = new SqlCommand(crearsocios, cnn);
+            SqlCommand cmd72 = new SqlCommand(creartrabajos, cnn);
+            SqlCommand cmd73 = new SqlCommand(crearpréstamos, cnn);
+            SqlCommand cmd74 = new SqlCommand(insertartiposdetransacciones, cnn);
+            SqlCommand cmd75 = new SqlCommand(insertartiposdeteléfonos, cnn);
 
             //try
             //{
@@ -1096,7 +1141,9 @@ namespace Crear_Base_de_Datos
                 cmd71.ExecuteNonQuery();
                 cmd72.ExecuteNonQuery();
                 cmd73.ExecuteNonQuery();
-                cnn.Close();
+                cmd74.ExecuteNonQuery();
+                cmd75.ExecuteNonQuery();
+            cnn.Close();
                 MessageBox.Show("Base Creada");
                 this.Close();
             //    }
