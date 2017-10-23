@@ -283,7 +283,7 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Cargar_Teléfonos " +
                 "End Catch ";
-            String tabla25 = "Create Procedure[Modificar Teléfonos] " +
+            String tabla25 = "Create Procedure[Modificar Teléfono] " +
                 "@Tipo_Telefono varchar(50), " +
                 "@ID_Teléfono varchar(5), " +
                 "@Teléfono varchar(10), " +
@@ -291,6 +291,9 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Mod_Tel " +
                 "Begin Try " +
+                "If((Select [Tipos de Teléfonos].[Tipo de Teléfono] From[Tipos de Teléfonos] inner join Contacto " +
+                "on[Tipos de Teléfonos].[id Tipo de Teléfono] = Contacto.[FK Tipo de Teléfono] where Contacto.[FK Teléfono] = @ID_Teléfono AND Contacto.[FK Código Asociado] = @Código_Asociado) " +
+                "= @Tipo_Telefono) " +
                 "Update Teléfono set Teléfono = @Teléfono where @ID_Teléfono =[id Teléfono] " +
                 "Commit Tran Mod_Tel " +
                 "End Try " +
@@ -913,7 +916,7 @@ namespace Crear_Base_de_Datos
                 "to Administrador with grant option " +
                 "grant execute on object :: [Insertar Teléfono] " +
                 "to Administrador with grant option " +
-                "grant execute on object :: [Modificar Teléfonos] " +
+                "grant execute on object :: [Modificar Teléfono] " +
                 "to Administrador with grant option " +
                 "grant execute on object :: [Nueva Cuenta de Ahorro] " +
                 "to Administrador with grant option " +
