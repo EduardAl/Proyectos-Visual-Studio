@@ -141,10 +141,10 @@ namespace Crear_Base_de_Datos
                 "[Número][int] identity(1,1) NOT NULL," +
                 "[id Teléfono] AS('TE' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
                 "[Teléfono][varchar](10) NOT NULL," +
-                "[FK Tipo de Teléfono][varchar](5) NOT NULL references [Tipos de Teléfonos]([id Tipo de Teléfono])," +
                 "CONSTRAINT [PK Teléfono] PRIMARY KEY ([id Teléfono]))";
             String tabla15 = "CREATE TABLE [dbo].[Contacto](" +
                 "[FK Teléfono] [varchar](5) NOT NULL references[Teléfono]([id Teléfono])," +
+                "[FK Tipo de Teléfono][varchar](5) NOT NULL references [Tipos de Teléfonos]([id Tipo de Teléfono])," +
                 "[FK Código Asociado] [varchar](5) NOT NULL references Asociado([Código Asociado]))";
             String tabla16 = "Create table [dbo].[Forma de Pago](" +
                 "[Número] [int] identity(1, 1) NOT NULL," +
@@ -258,9 +258,9 @@ namespace Crear_Base_de_Datos
                 "Begin " +
                 "Set @ID_Asociado = (Select[Código Asociado] From Asociado where @DUI = DUI)  " +
                 "Set @ID_Tipo_Teléfono = (Select[id Tipo de Teléfono] From[Tipos de Teléfonos] where @Tipo_Teléfono =[Tipo de Teléfono]) " +
-                "Insert into Teléfono values(@Teléfono, @ID_Tipo_Teléfono) " +
+                "Insert into Teléfono values(@Teléfono) " +
                 "set @ID_Teléfono = (Select Max([id Teléfono]) From Teléfono) " +
-                "Insert into Contacto values(@ID_Teléfono, @ID_Asociado) " +
+                "Insert into Contacto values(@ID_Teléfono, @ID_Tipo_Teléfono, @ID_Asociado) " +
                 "Commit Tran Teléfono " +
                 "End " +
                 "End Try " +
@@ -274,7 +274,7 @@ namespace Crear_Base_de_Datos
                 "Begin Tran Cargar_Teléfonos " +
                 "Begin Try " +
                 "Select Teléfono.Teléfono AS 'Número de Teléfono',[Tipos de Teléfonos].[Tipo de Teléfono]  From Teléfono " +
-                "inner join Contacto on Teléfono.[id Teléfono]=Contacto.[FK Teléfono] inner join [Tipos de Teléfonos] on [Tipos de Teléfonos].[id Tipo de Teléfono] = Teléfono.[FK Tipo de Teléfono] " +
+                "inner join Contacto on Teléfono.[id Teléfono]=Contacto.[FK Teléfono] inner join [Tipos de Teléfonos] on [Tipos de Teléfonos].[id Tipo de Teléfono] = Contacto.[FK Tipo de Teléfono] " +
                 "where Contacto.[FK Código Asociado] = @Código_Asociado " +
                 "Commit Tran Cargar_Teléfonos " +
                 "End Try " +
@@ -290,8 +290,8 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Mod_Tel " +
                 "Begin Try " +
-                "If(Select [Tipos de Teléfonos].[Tipo de Teléfono] From[Tipos de Teléfonos] inner join Teléfono " +
-                "on[Tipos de Teléfonos].[id Tipo de Teléfono] = Teléfono.[FK Tipo de Teléfono] where Teléfono.[id Teléfono] = @ID_Teléfono) " +
+                "If(Select [Tipos de Teléfonos].[Tipo de Teléfono] From[Tipos de Teléfonos] inner join Contacto " +
+                "on[Tipos de Teléfonos].[id Tipo de Teléfono] = Contacto.[FK Tipo de Teléfono] where Contacto.[id Teléfono] = @ID_Teléfono AND Contacto.[FK Código Asociado = @Código_Asociado]) " +
                 "= @Tipo_Telefono " +
                 "Begin " +
                 "Update Teléfono set Teléfono = @Teléfono where @ID_Teléfono =[id Teléfono] " +
@@ -309,11 +309,12 @@ namespace Crear_Base_de_Datos
                 "End Catch";
             String tabla26 = "Create Procedure[Eliminar Teléfono] " +
                 "@ID_Teléfono varchar(5) " +
+                "@Id_Asociado varchar(5) " +
                 "As   " +
                 "Begin Tran Del_Teléfono " +
                 "Begin Try " +
                 "Begin " +
-                "Delete From Contacto where @ID_Teléfono = [FK Teléfono] " +
+                "Delete From Contacto where @ID_Teléfono = [FK Teléfono] AND @Id_Asociado = [FK Código Asociado]" +
                 "Commit Tran Del_Teléfono " +
                 "End " +
                 "End Try " +
