@@ -517,8 +517,8 @@ namespace Crear_Base_de_Datos
                 "begin " +
                 "Select SUM(Retiro) AS 'Suma de Retiros' From Retiros where[FK Ahorro] = @ID_Ahorro " +
                 "Commit Tran Disponibles_Retiro end else " +
-                "begin "+
-                "Select 0 AS 'Suma de Retiros' "+
+                "begin " +
+                "Select 0 AS 'Suma de Retiros' " +
                 "commit tran Disponibles_Retiro end " +
                 "End Try " +
                 "Begin Catch " +
@@ -526,8 +526,8 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Disponibles_Retiro Select 0 AS 'Suma de Retiros' " +
                 "End Catch ";
             //Cambiado por el n de cuota
-            String tabla39 = "Create Procedure[Realizar Pago] " + 
-                "@ID_Préstamo varchar(9), "+
+            String tabla39 = "Create Procedure[Realizar Pago] " +
+                "@ID_Préstamo varchar(9), " +
                 "@Pago money, " +
                 "@Id_Usuario varchar(5), " +
                 "@Intereses money, " +
@@ -822,8 +822,42 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Desasociado " +
                 "End Catch ";
-
-            String Usuario1 =
+            //Añadido Actualizar Asociado
+            String tabla60 = "Create procedure[dbo].[Actualizar Asociado] " +
+                "@Codigo_Asociado varchar(5), " +
+                "@FK_Tipo_Socio varchar(50), " +
+                "@Nombres varchar(50), " +
+                "@Apellidos varchar(50), " +
+                "@DUI varchar(10), " +
+                "@NIT varchar(17), " +
+                "@Residencia varchar(100), " +
+                "@Fecha_Nacimiento datetime, " +
+                "@Fecha_Asociación datetime, " +
+                "@FK_Ocupacion varchar(30) " +
+                "As " +
+                "Begin transaction " +
+                "Declare @ID_Tipo_Socio as varchar(5) " +
+                "Declare @ID_Ocupación as varchar(5) " +
+                "set @ID_Tipo_Socio = (Select[id Tipo de Socio] From[Tipo de Socio] where[Nombre Tipo Socio] = @FK_Tipo_Socio)  " +
+                "set @ID_Ocupación = (Select[Id Ocupación] From[Ocupación] where[Nombre de la Empresa] = @FK_Ocupacion) " +
+                "Update Asociado set[FK Tipo Socio] = @ID_Tipo_Socio, " +
+                        "Nombres = @Nombres, " +
+                        "Apellidos = @Apellidos, " +
+                        "DUI = @DUI, " +
+                        "NIT = @NIT, " +
+                        "Dirección = @Residencia, " +
+                        "[Fecha de Nacimiento] = @Fecha_Nacimiento, " +
+                        "[FK Ocupación] = @ID_Ocupación where[Código Asociado] = @Codigo_Asociado " +
+              "If @@error = 0 " +
+              "Begin " +
+                "COMMIT TRANSACTION " +
+              "End " +
+              "Else " +
+              "Begin " +
+                "ROLLBACK TRANSACTION " +
+                "Print 'Error en modificar datos de asociado ' + ERROR_MESSAGE(); " +
+              "End ";
+                        String Usuario1 =
                 "CREATE LOGIN Master_ACOPEDH " +
                 "WITH PASSWORD = 'AUREO112358' " +
                 "USE " + txtNombre.Text + ";" +
@@ -949,7 +983,9 @@ namespace Crear_Base_de_Datos
                 "grant execute on object :: [Desasociar] " +
                       "to Administrador with grant option " +
                 "grant execute on object :: [Cerrar Ahorro] " +
-                      "to Administrador with grant option ";
+                      "to Administrador with grant option " +
+                "grant execute on object :: [Actualizar Asociado] " +
+                       "to Administrador with grant option";
             String permisosUsuario =
                  "Use " + txtNombre.Text + ";" +
                  "Exec sp_addrolemember N'db_datareader',N'Usuario' " +
@@ -1054,18 +1090,19 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd61 = new SqlCommand(tabla57, cnn);
             SqlCommand cmd62 = new SqlCommand(tabla58, cnn);
             SqlCommand cmd63 = new SqlCommand(tabla59, cnn);
-            SqlCommand cmd64 = new SqlCommand(permisosMaster_ACOPEDH, cnn);
-            SqlCommand cmd65 = new SqlCommand(permisosAdministrador, cnn);
-            SqlCommand cmd66 = new SqlCommand(permisosUsuario, cnn);
-            SqlCommand cmd67 = new SqlCommand(permisosInicioSesión, cnn);
-            SqlCommand cmd68 = new SqlCommand(crearusuarios, cnn);
-            SqlCommand cmd69 = new SqlCommand(crearahorros, cnn);
-            SqlCommand cmd70 = new SqlCommand(crearpagos, cnn);
-            SqlCommand cmd71 = new SqlCommand(crearsocios, cnn);
-            SqlCommand cmd72 = new SqlCommand(creartrabajos, cnn);
-            SqlCommand cmd73 = new SqlCommand(crearpréstamos, cnn);
-            SqlCommand cmd74 = new SqlCommand(insertartiposdetransacciones, cnn);
-            SqlCommand cmd75 = new SqlCommand(insertartiposdeteléfonos, cnn);
+            SqlCommand cmd64 = new SqlCommand(tabla60, cnn);
+            SqlCommand cmd65 = new SqlCommand(permisosMaster_ACOPEDH, cnn);
+            SqlCommand cmd66 = new SqlCommand(permisosAdministrador, cnn);
+            SqlCommand cmd67 = new SqlCommand(permisosUsuario, cnn);
+            SqlCommand cmd68 = new SqlCommand(permisosInicioSesión, cnn);
+            SqlCommand cmd69 = new SqlCommand(crearusuarios, cnn);
+            SqlCommand cmd70 = new SqlCommand(crearahorros, cnn);
+            SqlCommand cmd71 = new SqlCommand(crearpagos, cnn);
+            SqlCommand cmd72 = new SqlCommand(crearsocios, cnn);
+            SqlCommand cmd73 = new SqlCommand(creartrabajos, cnn);
+            SqlCommand cmd74 = new SqlCommand(crearpréstamos, cnn);
+            SqlCommand cmd75 = new SqlCommand(insertartiposdetransacciones, cnn);
+            SqlCommand cmd76 = new SqlCommand(insertartiposdeteléfonos, cnn);
 
             //try
             //{
@@ -1146,6 +1183,7 @@ namespace Crear_Base_de_Datos
                 cmd73.ExecuteNonQuery();
                 cmd74.ExecuteNonQuery();
                 cmd75.ExecuteNonQuery();
+                cmd76.ExecuteNonQuery();
             cnn.Close();
                 MessageBox.Show("Base Creada");
                 this.Close();

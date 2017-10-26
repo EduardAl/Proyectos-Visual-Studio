@@ -80,7 +80,42 @@ namespace ACOPEDH
             {
                 if (MessageBox.Show("¿Desea guardar los cambios?", "Modificación", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    DialogResult = DialogResult.OK;
+                    if (Validaciones.ValidarNomApe(ref txtNombres, ref errorProvider1) &&
+                        Validaciones.ValidarNomApe(ref txtApellidos, ref errorProvider1) &&
+                        Validaciones.validar_DUI(ref txtDUI, ref errorProvider1) &&
+                        Validaciones.validar_NIT(ref txtNIT, ref errorProvider1) &&
+                        Validaciones.IsNullOrEmty(ref txtDirección, ref errorProvider1))
+                    {
+                        string datos = string.Format("Nombre: {0}\nApellidos: {1}\nDUI: {2}\n" +
+                            "NIT: {3}\nFecha de Nacimiento: {4}\nLugar de Trabajo: {5}\nTipo de Asociación: " +
+                            "{6}\nDirección: {7}", txtNombres.Text, txtApellidos.Text, txtDUI.Text, txtNIT.Text,
+                            dtNacimiento.Text, cbOcupación.Text, cbAsociación.Text, txtDirección.Text);
+                        if (MessageBox.Show("¿Seguro de modificar los siguientes datos?: \n" + datos, "Confirmar modificación", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                        {
+                            try
+                            {
+                                Procedimientos_select modificar = new Procedimientos_select();
+                                SqlParameter[] param = new SqlParameter[10];
+                                param[0] = new SqlParameter("@Codigo_Asociado", Dato);
+                                param[1] = new SqlParameter("@FK_Tipo_Socio", cbAsociación.Text);
+                                param[2] = new SqlParameter("@Nombres", txtNombres.Text);
+                                param[3] = new SqlParameter("@Apellidos", txtApellidos.Text);
+                                param[4] = new SqlParameter("@DUI", txtDUI.Text);
+                                param[5] = new SqlParameter("@NIT", txtNIT.Text);
+                                param[6] = new SqlParameter("@Residencia", txtDirección.Text);
+                                param[7] = new SqlParameter("@Fecha_Nacimiento", dtNacimiento.Value);
+                                param[8] = new SqlParameter("@Fecha_Asociación", dtAso.Value);
+                                param[9] = new SqlParameter("@FK_Ocupacion", cbOcupación.Text);
+                                MessageBox.Show(modificar.llenar_tabla("[Actualizar Asociado]", param).ToString());
+                                DialogResult = DialogResult.OK;
+                                Close();
+                            }
+                            catch
+                            {
+
+                            }
+                        }
+                    }
                 }
             }
             Close();
@@ -98,6 +133,7 @@ namespace ACOPEDH
         private void bttModificar_Click(object sender, EventArgs e)
         {
             Modificar(true);
+            
         }
         //Desasociar
         private void bttDesasociar_Click(object sender, EventArgs e)
