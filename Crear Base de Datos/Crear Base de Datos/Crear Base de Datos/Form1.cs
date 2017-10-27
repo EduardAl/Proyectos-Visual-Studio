@@ -809,7 +809,7 @@ namespace Crear_Base_de_Datos
                 "Begin Try " +
                 "If(Select Estado from Asociado where[Código Asociado] = @Código_Asociado) = 'ACTIVO' " +
                 "Begin " +
-                "Update Asociado Set Estado = 'INACTIVO' where[Código Asociado] = @Código_Asociado " +
+                "Update Asociado Set Estado = 'INACTIVO', [Fecha de Desasociación] = GetDate() where[Código Asociado] = @Código_Asociado " +
                 "Commit Tran Desasociado " +
                 "End " +
                 "Else " +

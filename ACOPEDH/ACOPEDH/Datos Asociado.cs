@@ -107,7 +107,6 @@ namespace ACOPEDH
                                 param[8] = new SqlParameter("@Fecha_Asociación", dtAso.Value);
                                 param[9] = new SqlParameter("@FK_Ocupacion", cbOcupación.Text);
                                 modificar.llenar_tabla("[Actualizar Asociado]", param);
-                              //  DialogResult = DialogResult.OK;
                                 dr = DialogResult.Yes;
                                 Close();
                             }
@@ -121,7 +120,6 @@ namespace ACOPEDH
             }
             else
             {
-              //  DialogResult = DialogResult.OK;
                 dr = DialogResult.OK;
                 Close();
             }
@@ -144,7 +142,21 @@ namespace ACOPEDH
         //Desasociar
         private void bttDesasociar_Click(object sender, EventArgs e)
         {
-            dr = DialogResult.Yes;
+            SqlParameter[] Parámetros = new SqlParameter[1];
+            Parámetros[0] = new SqlParameter("@Código_Asociado", DateTime.Now);
+            if (Cargar.llenar_tabla("[Desasociar]", Parámetros) > 0)
+            {
+                dtDesaso.Value = DateTime.Now;
+                dtDesaso.Visible = true;
+                lbDesa.Visible = true;
+                bttDesasociar.Visible = false;
+                dr = DialogResult.Yes;
+            }
+            else
+            {
+                MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Globales.gbError = "";
+            }
         }
         #endregion
         /*
