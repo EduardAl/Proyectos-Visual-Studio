@@ -106,8 +106,9 @@ namespace ACOPEDH
                                 param[7] = new SqlParameter("@Fecha_Nacimiento", dtNacimiento.Value);
                                 param[8] = new SqlParameter("@Fecha_Asociación", dtAso.Value);
                                 param[9] = new SqlParameter("@FK_Ocupacion", cbOcupación.Text);
-                                MessageBox.Show(modificar.llenar_tabla("[Actualizar Asociado]", param).ToString());
-                                DialogResult = DialogResult.OK;
+                                modificar.llenar_tabla("[Actualizar Asociado]", param);
+                              //  DialogResult = DialogResult.OK;
+                                dr = DialogResult.Yes;
                                 Close();
                             }
                             catch
@@ -118,7 +119,12 @@ namespace ACOPEDH
                     }
                 }
             }
-            Close();
+            else
+            {
+              //  DialogResult = DialogResult.OK;
+                dr = DialogResult.OK;
+                Close();
+            }
         }
         //Cancelar Modificación
         private void bttCancelar_Click(object sender, EventArgs e)
@@ -150,6 +156,7 @@ namespace ACOPEDH
         public void Modificar(bool enabled)
         {
 #warning Verificar cuales datos se pueden cambiar y cuales no
+            dr = enabled?DialogResult.Cancel:DialogResult.OK;
             txtApellidos.Enabled = enabled;
             txtDirección.Enabled = enabled;
             txtDUI.Enabled = enabled;
@@ -160,6 +167,7 @@ namespace ACOPEDH
             dtNacimiento.Enabled = enabled;
             cbTipoTeléfono.Enabled = enabled;
             bttModificar.Enabled = !enabled;
+            bttCancelar.Enabled = enabled;
         }
         public void CargarDatos()
         {
@@ -187,7 +195,7 @@ namespace ACOPEDH
         #region Closing
         private void Datos_Asociado_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (DialogResult != DialogResult.OK)//Si se cancelo la modificación
+            if (dr != DialogResult.OK&&dr!=DialogResult.Yes)//Si se cancelo la modificación
                 if (MessageBox.Show("¿Salir sin guardar cambios?", "Cancelar cambios", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
                     e.Cancel = true;
         }

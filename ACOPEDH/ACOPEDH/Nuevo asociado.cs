@@ -88,7 +88,7 @@ namespace ACOPEDH
                         param[6] = new SqlParameter("@Fecha_Nacimiento", dtNacimiento.Value);
                         param[7] = new SqlParameter("@Fecha_Asociación", DateTime.Now);
                         param[8] = new SqlParameter("@FK_Ocupacion", cbOcupación.Text);
-                        MessageBox.Show(ingresar.llenar_tabla("[Insertar Asociado]", param).ToString());
+                        ingresar.llenar_tabla("[Insertar Asociado]", param);
                         foreach (DataGridViewRow row in dgvTeléfonos.Rows)
                         {
                             param = new SqlParameter[3];
