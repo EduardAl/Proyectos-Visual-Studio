@@ -420,7 +420,7 @@
             this.BarraTítulo.Name = "BarraTítulo";
             this.BarraTítulo.Size = new System.Drawing.Size(980, 30);
             this.BarraTítulo.TabIndex = 32;
-            this.BarraTítulo.Text = "         ACOPEDH .:. Principal";
+            this.BarraTítulo.Text = "         ACOPEDH - Principal";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BarraTítulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.BarraTítulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);

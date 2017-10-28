@@ -65,7 +65,7 @@
             this.BarraTítulo.Name = "BarraTítulo";
             this.BarraTítulo.Size = new System.Drawing.Size(487, 30);
             this.BarraTítulo.TabIndex = 41;
-            this.BarraTítulo.Text = "         ACOPEDH .:. RETIROS";
+            this.BarraTítulo.Text = "         ACOPEDH - Retiros";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1
@@ -190,7 +190,7 @@
             this.MinimumSize = new System.Drawing.Size(487, 295);
             this.Name = "Retiros";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ACOPEDH - RETIROS";
+            this.Text = "ACOPEDH - Retiros";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Retiros_FormClosing);
             this.Load += new System.EventHandler(this.Retiros_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);

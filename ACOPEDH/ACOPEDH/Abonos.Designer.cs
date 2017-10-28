@@ -145,7 +145,7 @@
             this.BarraTítulo.Name = "BarraTítulo";
             this.BarraTítulo.Size = new System.Drawing.Size(487, 30);
             this.BarraTítulo.TabIndex = 58;
-            this.BarraTítulo.Text = "         ACOPEDH .:. ABONOS";
+            this.BarraTítulo.Text = "         ACOPEDH - Abonos";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtTasa

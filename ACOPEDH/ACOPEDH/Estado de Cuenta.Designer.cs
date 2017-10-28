@@ -85,7 +85,7 @@
             this.BarraTítulo.Name = "BarraTítulo";
             this.BarraTítulo.Size = new System.Drawing.Size(966, 30);
             this.BarraTítulo.TabIndex = 60;
-            this.BarraTítulo.Text = "         ACOPEDH .:. ESTADO DE CUENTAS";
+            this.BarraTítulo.Text = "         ACOPEDH - Estado de Cuentas";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1

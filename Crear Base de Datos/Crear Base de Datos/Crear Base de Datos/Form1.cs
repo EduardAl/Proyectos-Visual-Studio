@@ -603,7 +603,7 @@ namespace Crear_Base_de_Datos
                 "Begin Try " +
                 "Select Préstamos.[id Préstamos] as 'Código de Préstamo', (Asociado.Nombres + ' ' + Asociado.Apellidos) as 'Persona Asociada', Asociado.DUI as 'Dui', [Tipo de Préstamo].[Tipo de Préstamo] " +
                 "From Asociado inner join Préstamos on Asociado.[Código Asociado] = Préstamos.[Código Asociado] inner join [Tipo de Préstamo] " +
-                "on Préstamos.[id Tipo de Préstamo] = [Tipo de Préstamo].[id Tipo de Préstamo] where Asociado.Estado = 'ACTIVO' " +
+                "on Préstamos.[id Tipo de Préstamo] = [Tipo de Préstamo].[id Tipo de Préstamo] where Préstamos.Estado = 'ACTIVO' " +
                 "Commit Tran Pres " +
                 "End Try " +
                 "Begin Catch " +
