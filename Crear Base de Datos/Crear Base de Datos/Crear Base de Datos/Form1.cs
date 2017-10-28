@@ -844,6 +844,7 @@ namespace Crear_Base_de_Datos
                 "Begin Catch " +
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Desasociado " +
+                "return 0 "+
                 "End Catch ";
             //Añadido Actualizar Asociado
             String tabla60 = "Create procedure[dbo].[Actualizar Asociado] " +

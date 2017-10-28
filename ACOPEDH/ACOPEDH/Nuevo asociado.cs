@@ -88,17 +88,24 @@ namespace ACOPEDH
                         param[6] = new SqlParameter("@Fecha_Nacimiento", dtNacimiento.Value);
                         param[7] = new SqlParameter("@Fecha_Asociación", DateTime.Now);
                         param[8] = new SqlParameter("@FK_Ocupacion", cbOcupación.Text);
-                        ingresar.llenar_tabla("[Insertar Asociado]", param);
-                        foreach (DataGridViewRow row in dgvTeléfonos.Rows)
+                        if (ingresar.llenar_tabla("[Insertar Asociado]", param) > 0)
+
+                                { foreach (DataGridViewRow row in dgvTeléfonos.Rows)
+                            {
+                                param = new SqlParameter[3];
+                                param[0] = new SqlParameter("@Tipo_Teléfono", row.Cells[1].Value.ToString());
+                                param[1] = new SqlParameter("@Teléfono", row.Cells[0].Value.ToString());
+                                param[2] = new SqlParameter("@DUI", txtDUI.Text);
+                                ingresar.llenar_tabla("[Insertar Teléfono]", param);
+                            }
+                            DialogResult = DialogResult.OK;
+                            Close(); }
+                        else
                         {
-                            param = new SqlParameter[3];
-                            param[0] = new SqlParameter("@Tipo_Teléfono", row.Cells[1].Value.ToString());
-                            param[1] = new SqlParameter("@Teléfono", row.Cells[0].Value.ToString());
-                            param[2] = new SqlParameter("@DUI", txtDUI.Text);
-                            ingresar.llenar_tabla("[Insertar Teléfono]", param);
+                            MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Globales.gbError = "";
+                            DialogResult = DialogResult.None;
                         }
-                        DialogResult = DialogResult.OK;
-                        Close();
                     }
                     catch
                     {
