@@ -141,7 +141,6 @@ namespace ACOPEDH
                 Parámetros[0] = new SqlParameter("@ID_Ahorro", Dato);
                 dgvRetiros.DataSource = Cargar.llenar_DataTable("[Cargar Retiros]", Parámetros);
                 dgvRetiros.Columns[0].DefaultCellStyle.Format = "C2";
-                dgvRetiros.Columns[1].DefaultCellStyle.Format = "C2";
                 dgvRetiros.Refresh();
                 txtCuenta.Text = Dato;
 
@@ -150,9 +149,9 @@ namespace ACOPEDH
                 Cargar.LlenarText("[Suma Abonos]", "Suma de Abonos", Parámetros, txtAbonos);
                 Parámetros[0] = new SqlParameter("@ID_Ahorro", Dato);
                 Cargar.LlenarText("[Suma Retiros]", "Suma de Retiros", Parámetros, txtRetiros);
-                txtSaldo.Text = "$" + (Math.Round((double.Parse(txtAbonos.Text) - double.Parse(txtRetiros.Text)), 2));
-                txtAbonos.Text = "$" + Math.Round(double.Parse(txtAbonos.Text), 2);
-                txtRetiros.Text = "$" + Math.Round(double.Parse(txtRetiros.Text), 2);
+                txtSaldo.Text = Math.Round((double.Parse(txtAbonos.Text) - double.Parse(txtRetiros.Text)), 2).ToString("C2");
+                txtAbonos.Text = Math.Round(double.Parse(txtAbonos.Text), 2).ToString("C2");
+                txtRetiros.Text = Math.Round(double.Parse(txtRetiros.Text), 2).ToString("C2");
             }
             catch { }
         }
