@@ -486,7 +486,7 @@ namespace ACOPEDH
             bttMax.Location = new Point(bttCer.Location.X - 26, 0);
             bttMin.Location = new Point(bttMax.Location.X - 26, 0);
             //                          Elementos
-            Titulo.Location = new Point((Width / 2) - (Titulo.Width / 2) + 93, Titulo.Location.Y);
+            Titulo.Location = new Point((Width / 2) - (Titulo.Width / 2) + 93, 44);
             panelConfig.Width = Width - 285;
             panelConfig.Location = new Point((Width / 2) - (panelConfig.Width / 2) + 93, 122 /*panelConfig.Location.Y*/);
             dgvBúsqueda.Width = Width - dgvBúsqueda.Location.X - 87;
