@@ -422,6 +422,7 @@ namespace Crear_Base_de_Datos
                 "@FK_Tipo_Ahorro varchar(20), " +
                 "@FK_Asociado varchar(5), " +
                 "@Abono_inicial money, " +
+                "@Comision money, " +
                 "@ID_Usuario varchar(5) " +
                 "As Begin Tran Ahorro " +
                 "Begin try " +
@@ -434,7 +435,7 @@ namespace Crear_Base_de_Datos
                 "Insert into Ahorro values('ACTIVO', @ID_Tipo_Ahorro, @FK_Asociado) " +
                 "Declare @FK_Ahorro_nuevo as varchar(5) " +
                 "set @FK_Ahorro_nuevo = (Select MAX([id Ahorro]) from Ahorro where [FK Código de Asociado] = @FK_Asociado) " +
-                "exec Abonar @Abono = @Abono_inicial,@FK_Ahorro = @FK_Ahorro_nuevo, @Id_Usuario = @ID_Usuario " +
+                "exec Abonar @Abono_inicial,@Comision,@FK_Ahorro_nuevo,@ID_Usuario " +
                 "Commit tran Ahorro " +
                 "End " +
                 "else " +
@@ -588,7 +589,7 @@ namespace Crear_Base_de_Datos
                 "From Asociado inner join [Forma de Pago] on [Forma de Pago].[id Forma de Pago] = [id Forma de Pago] inner join Préstamos on " +
                 "Asociado.[Código Asociado] = Préstamos.[Código Asociado] inner join [Tipo de Préstamo] on Préstamos.[id Tipo de Préstamo] " +
                 "= [Tipo de Préstamo].[id Tipo de Préstamo] inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] " +
-                "where Préstamos.[id Préstamos]= @ID_Préstamo AND Préstamos.Estado = 'ACTIVO' " +
+                "where Préstamos.[id Préstamos]= @ID_Préstamo " +
                 "Commit Tran Cargar_P " +
                 "End Try " +
                 "Begin Catch " +
@@ -602,7 +603,7 @@ namespace Crear_Base_de_Datos
                 "Begin Try " +
                 "Select Préstamos.[id Préstamos] as 'Código de Préstamo', (Asociado.Nombres + ' ' + Asociado.Apellidos) as 'Persona Asociada', Asociado.DUI as 'Dui', [Tipo de Préstamo].[Tipo de Préstamo] " +
                 "From Asociado inner join Préstamos on Asociado.[Código Asociado] = Préstamos.[Código Asociado] inner join [Tipo de Préstamo] " +
-                "on Préstamos.[id Tipo de Préstamo] = [Tipo de Préstamo].[id Tipo de Préstamo] " +
+                "on Préstamos.[id Tipo de Préstamo] = [Tipo de Préstamo].[id Tipo de Préstamo] where Asociado.Estado = 'ACTIVO' " +
                 "Commit Tran Pres " +
                 "End Try " +
                 "Begin Catch " +

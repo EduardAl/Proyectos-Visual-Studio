@@ -20,7 +20,7 @@ namespace ACOPEDH
         */
         string Datos;
         bool arreglandopago = false;
-        double interes = 1, Monto = 1, Plazo = 1;
+        double interes = 1, Monto = 0, Plazo = 1;
         DateTime Límite;
 
         #region Constructores
@@ -147,17 +147,22 @@ namespace ACOPEDH
         #region Load
         private void Pagos_Load(object sender, EventArgs e)
         {
-            Procedimientos_select pro = new Procedimientos_select();
-            SqlParameter[] Param = new SqlParameter[1];
-            Param[0] = new SqlParameter("@ID_Préstamo", Datos);
-            DataTable dt = pro.LlenarText("[Cargar Préstamo]", "Nombre,PCuotas,Monto,Interés", Param, txtNombre, txtMontoMinimo);
-            Param[0] = new SqlParameter("@ID_Préstamo", Datos);
-            pro.LlenarText("[Cargar Saldo]", "Pago Mínimo", Param, txtSaldo);
-            Param[0] = new SqlParameter("@Id_Préstamo", Datos);
-            DataTable data = pro.llenar_DataTable("[Conseguir Límite]", Param);
-            Límite = Convert.ToDateTime(data.Rows[0]["Límite"]).AddMonths(1);
-            Límite = new DateTime(Límite.Year, Límite.Month, 23).AddMinutes(-5);
-            txtIdPréstamo.Text = Datos;
+            DataTable dt = new DataTable();
+            try
+            {
+                Procedimientos_select pro = new Procedimientos_select();
+                SqlParameter[] Param = new SqlParameter[1];
+                Param[0] = new SqlParameter("@ID_Préstamo", Datos);
+                dt = pro.LlenarText("[Cargar Préstamo]", "Nombre,PCuotas,Monto,Interés", Param, txtNombre, txtMontoMinimo);
+                Param[0] = new SqlParameter("@ID_Préstamo", Datos);
+                pro.LlenarText("[Cargar Saldo]", "Pago Mínimo", Param, txtSaldo);
+                Param[0] = new SqlParameter("@Id_Préstamo", Datos);
+                DataTable data = pro.llenar_DataTable("[Conseguir Límite]", Param);
+                Límite = Convert.ToDateTime(data.Rows[0]["Límite"]).AddMonths(1);
+                Límite = new DateTime(Límite.Year, Límite.Month, 23).AddMinutes(-5);
+                txtIdPréstamo.Text = Datos;
+            }
+            catch { txtMontoMinimo.Text = "0.00"; }
             try
             {
                 Monto = Math.Round(Convert.ToDouble(dt.Rows[0]["Monto"]),2);
