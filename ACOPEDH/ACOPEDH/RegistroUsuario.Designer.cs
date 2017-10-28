@@ -270,7 +270,7 @@
             this.BarraTítulo.Name = "BarraTítulo";
             this.BarraTítulo.Size = new System.Drawing.Size(391, 29);
             this.BarraTítulo.TabIndex = 56;
-            this.BarraTítulo.Text = "         ACOPEDH .:. REGISTRO DE USUARIO";
+            this.BarraTítulo.Text = "         ACOPEDH - Registro de Usuario";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BarraTítulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.BarraTítulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
