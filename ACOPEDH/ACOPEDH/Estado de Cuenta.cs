@@ -61,7 +61,7 @@ namespace ACOPEDH
                 {
                     if (MessageBox.Show("¿Seguro que desea cerrar la cuenta?","Cerrar Cuenta",MessageBoxButtons.OKCancel,MessageBoxIcon.Question)==DialogResult.OK)
                     {
-                        Desasociar();
+                        CerrarCuenta();
                     }
                 }
                 else
@@ -76,7 +76,7 @@ namespace ACOPEDH
                             Cargar_Datos();
                             if (Acción.Disponible == 0)
                             {
-                                Desasociar();
+                                CerrarCuenta();
                             }
                             else
                                 MessageBox.Show("Aún queda dinero disponible en la cuenta, no se puede cerrar","Dinero",MessageBoxButtons.OK,MessageBoxIcon.Warning);
@@ -97,7 +97,7 @@ namespace ACOPEDH
             ********************************* 
         */
         #region Métodos
-        private void Desasociar()
+        private void CerrarCuenta()
         {
             try
             {
@@ -135,9 +135,13 @@ namespace ACOPEDH
 
                 //Cargar los registros de Abonos y Retiros a sus respectivos DGV
                 dgvAbonos.DataSource = Cargar.llenar_DataTable("[Cargar Abonos]", Parámetros);
+                dgvAbonos.Columns[0].DefaultCellStyle.Format = "C2";
+                dgvAbonos.Columns[1].DefaultCellStyle.Format = "C2";
                 dgvAbonos.Refresh();
                 Parámetros[0] = new SqlParameter("@ID_Ahorro", Dato);
                 dgvRetiros.DataSource = Cargar.llenar_DataTable("[Cargar Retiros]", Parámetros);
+                dgvRetiros.Columns[0].DefaultCellStyle.Format = "C2";
+                dgvRetiros.Columns[1].DefaultCellStyle.Format = "C2";
                 dgvRetiros.Refresh();
                 txtCuenta.Text = Dato;
 
