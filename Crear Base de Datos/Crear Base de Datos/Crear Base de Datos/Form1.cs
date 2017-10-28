@@ -810,7 +810,28 @@ namespace Crear_Base_de_Datos
                 "Begin Try " +
                 "If(Select Estado from Asociado where[Código Asociado] = @Código_Asociado) = 'ACTIVO' " +
                 "Begin " +
-                "Update Asociado Set Estado = 'INACTIVO', [Fecha de Desasociación] = GetDate() where[Código Asociado] = @Código_Asociado " +
+                "Set @Ahorro = (Select COUNT([id Ahorro]) from Ahorro where [FK Código de Asociado] = @Código_Asociado AND Estado = 'ACTIVO')  " +
+                "If(@Ahorro = 0) " +
+                "Begin " +
+                "Set @Préstamo_E = (Select COUNT(Préstamos.[id Préstamos]) from Préstamos inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo] where Préstamos.[Código Asociado] = @Código_Asociado AND Estado = 'ACTIVO' AND[Tipo de Préstamo].[Tipo de Préstamo] = 'Emergencia') " +
+                "Set @Préstamo_N = (Select COUNT(Préstamos.[id Préstamos]) from Préstamos inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo] where Préstamos.[Código Asociado] = @Código_Asociado AND Estado = 'ACTIVO' AND[Tipo de Préstamo].[Tipo de Préstamo] <> 'Emergencia') " +
+                "if (@Préstamo_E = 0) AND(@Préstamo_N = 0) " +
+                "Begin " +
+                "Update Asociado Set Estado = 'INACTIVO', [Fecha de Desasociación] = GetDate() " +
+                "where[Código Asociado] = @Código_Asociado " +
+                "Commit Tran Desasociado " +
+                "End " +
+                "else " +
+                "Begin " +
+                "Print 'La persona asociada tiene préstamos sin cancelar' " +
+                "Commit Tran Desasociado " +
+                "End " +
+                "End " +
+                "Else " +
+                "Begin " +
+                "Print 'La persona asociada tiene cuentas de ahorro activas' " +
+                "Commit Tran Desasociado " +
+                "End " +
                 "Commit Tran Desasociado " +
                 "End " +
                 "Else " +

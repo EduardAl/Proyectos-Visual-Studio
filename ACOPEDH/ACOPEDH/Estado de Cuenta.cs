@@ -141,7 +141,6 @@ namespace ACOPEDH
                 Parámetros[0] = new SqlParameter("@ID_Ahorro", Dato);
                 dgvRetiros.DataSource = Cargar.llenar_DataTable("[Cargar Retiros]", Parámetros);
                 dgvRetiros.Columns[0].DefaultCellStyle.Format = "C2";
-                dgvRetiros.Columns[1].DefaultCellStyle.Format = "C2";
                 dgvRetiros.Refresh();
                 txtCuenta.Text = Dato;
 
