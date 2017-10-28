@@ -14,12 +14,15 @@ namespace ACOPEDH
     public partial class Nuevo_Ahorro : Form
     {
 #warning FALTA GUARDAR EL AHORRO Y LA BÚSQUEDA
+        DataTable dtAsociado;
+        DataView filtro;
         /*
             *********************************
             *     Componentes Iniciales     *
             ********************************* 
         */
         public static DialogResult dr = DialogResult.Cancel;
+        Procedimientos_select Cargar = new Procedimientos_select();
         #region Constructores
         public Nuevo_Ahorro()
         {
@@ -29,8 +32,9 @@ namespace ACOPEDH
         #region Load
         private void Nuevo_Ahorro_Load(object sender, EventArgs e)
         {
-            Procedimientos_select Cargar = new Procedimientos_select();
-            dgvAsociado.DataSource = Cargar.llenar_DataTable("[Asociado DVG]");
+            LlenarDGV(ref dtAsociado, "[Asociado DVG]");
+            this.filtro = dtAsociado.DefaultView;
+            dgvAsociado.DataSource = filtro;
             dgvAsociado.Refresh();
             CBTipoAhorro.DataSource = Cargar.llenar_DataTable("[Cargar Tipo Ahorro]");
             CBTipoAhorro.ValueMember = "Interés";
@@ -40,6 +44,11 @@ namespace ACOPEDH
                 CBTipoAhorro.SelectedIndex = 0;
                 TxtInterés.Text = CBTipoAhorro.SelectedValue.ToString();
             }
+        }
+        public void LlenarDGV(ref DataTable dss, String tabla)
+        {
+            dgvAsociado.DataSource = null;
+            dss = Cargar.llenar_DataTable(tabla);
         }
         #endregion
 
@@ -148,7 +157,23 @@ namespace ACOPEDH
                     e.Cancel=true;
         }
         #endregion
+        private void TxtBúsqueda_KeyUp(object sender, KeyEventArgs e)
+        {
+            string salida_datos = "";
+            string[] palabra_busqueda = this.textBox3.Text.Split(' ');
+            foreach (string palabra in palabra_busqueda)
+            {
+                if (salida_datos.Length == 0)
+                {
+                    salida_datos = "(Código LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR Dui LIKE '%" + palabra + "%' OR [Tipo Asociación] LIKE '%" + palabra + "%')";
+                }
+                else
+                {
+                    salida_datos += " AND(Código LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR Dui LIKE '%" + palabra + "%' OR [Tipo Asociación] LIKE '%" + palabra + "%')";
+                }
+            }
+            this.filtro.RowFilter = salida_datos;
+        }
 
-        
     }
 }
