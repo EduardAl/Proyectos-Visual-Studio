@@ -193,8 +193,8 @@ namespace ACOPEDH
             else
                 txtMora.Text = "0.00";
             nmCantidad.Value = nmCantidad.Minimum;
-            txtPagoMax.Text =Math.Round(nmCantidad.Maximum, 2).ToString();
-            txtMontoMinimo.Text = "$" + Math.Round(double.Parse(txtMontoMinimo.Text),2);
+            txtPagoMax.Text = Math.Round(nmCantidad.Maximum, 2).ToString();
+            txtMontoMinimo.Text = Math.Round(double.Parse(txtMontoMinimo.Text),2).ToString("C2");
         }
         #endregion
         #region Pintar Bordes

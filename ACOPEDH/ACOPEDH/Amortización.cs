@@ -64,12 +64,12 @@ namespace ACOPEDH
                 double cuota = Math.Round(Monto * ((Fijo * interes) / (Fijo - 1)),2);
                 double inte;
                 txtInteres.Text = txtInteres.Text + "%";
-                txtMonto.Text = "$" + txtMonto.Text;
+                txtMonto.Text = Convert.ToDouble(txtMonto.Text).ToString("C2");
                 for (int i = 1; i <= plazo; i++)
                 {
                     if (i == plazo)
                         cuota = Math.Round(Monto * (1 + interes), 2);
-                    dgvAmortizar.Rows.Add(i, "$" + cuota, "$" + (inte = Math.Round(interes * Monto, 2)), "$" + Math.Round(cuota - inte, 2), "$" + (Monto = Math.Round(Monto - cuota + inte, 2)),(Pago = Pago.AddMonths(1)).ToShortDateString());
+                    dgvAmortizar.Rows.Add(i, cuota.ToString("C2"), (inte = Math.Round(interes * Monto, 2)).ToString("C2"), Math.Round(cuota - inte, 2).ToString("C2"), (Monto = Math.Round(Monto - cuota + inte, 2)).ToString("C2"), (Pago = Pago.AddMonths(1)).ToShortDateString());
                 }
             }
             catch

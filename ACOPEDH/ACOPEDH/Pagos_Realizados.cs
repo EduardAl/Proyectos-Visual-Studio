@@ -51,8 +51,8 @@ namespace ACOPEDH
                 dgvPagosRealizados.Columns[4].DefaultCellStyle.Format = "C2";
                 dgvPagosRealizados.Columns[5].DefaultCellStyle.Format = "C2";
                 dgvPagosRealizados.Refresh();
-                txtMonto.Text = "$" + Math.Round(Convert.ToDouble(txtMonto.Text),2);
-                txtCuotaMensual.Text = "$" +Math.Round(Convert.ToDouble(txtCuotaMensual.Text),2);
+                txtMonto.Text = Math.Round(Convert.ToDouble(txtMonto.Text),2).ToString("C2");
+                txtCuotaMensual.Text = Math.Round(Convert.ToDouble(txtCuotaMensual.Text),2).ToString("C2");
             }
             catch { }
             Visible = true;
