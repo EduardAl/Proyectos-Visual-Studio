@@ -55,6 +55,7 @@ namespace ACOPEDH
                 txtCuotaMensual.Text = "$" +Math.Round(Convert.ToDouble(txtCuotaMensual.Text),2);
             }
             catch { }
+            Visible = true;
         }
         #endregion
 

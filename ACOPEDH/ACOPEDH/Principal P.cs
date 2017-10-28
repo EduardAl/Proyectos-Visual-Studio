@@ -382,6 +382,7 @@ namespace ACOPEDH
             if (DatoR())
             {
                 Pagos_Realizados Accion = new Pagos_Realizados(Dato);
+                Accion.Visible = false;
                 Accion.ShowDialog();
                 Accion.Dispose();
             }
