@@ -45,7 +45,7 @@ namespace Crear_Base_de_Datos
                 "[Nombres] [varchar](50) NOT NULL," +
                 "[Apellidos] [varchar](50) NOT NULL," +
                 "[Contraseña] [varchar](max) NOT NULL," +
-                "[Correo] [varchar](50) NOT NULL," +
+                "[Correo] [varchar](50) NOT NULL unique," +
                 "[FK Tipo Usuario] [varchar](5) NOT NULL references [Tipo de Usuarios]([Id Tipo Usuario])," +
                 "CONSTRAINT [PK_Usuarios] PRIMARY KEY ([Id Usuario]))";
             String tabla3 = "CREATE TABLE [dbo].[Tipo de Socio](" +
@@ -80,8 +80,8 @@ namespace Crear_Base_de_Datos
                 "[FK Tipo Socio] [varchar](5) NOT NULL," +
                 "[Nombres] [varchar](50) NOT NULL," +
                 "[Apellidos] [varchar](50) NOT NULL," +
-                "[DUI] [varchar](10) NOT NULL," +
-                "[NIT] [varchar](17) NOT NULL," +
+                "[DUI] [varchar](10) NOT NULL unique," +
+                "[NIT] [varchar](17) NOT NULL unique," +
                 "[Dirección] [varchar](100) NULL," +
                 "[Fecha de Nacimiento] [datetime] NOT NULL," +
                 "[Fecha de Asociación] [datetime] NOT NULL," +
