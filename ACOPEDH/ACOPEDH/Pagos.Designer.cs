@@ -328,7 +328,7 @@
             this.MinimumSize = new System.Drawing.Size(470, 336);
             this.Name = "Pagos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ACOPEDH - PAGOS";
+            this.Text = "ACOPEDH - Pagos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Pagos_FormClosing);
             this.Load += new System.EventHandler(this.Pagos_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);
