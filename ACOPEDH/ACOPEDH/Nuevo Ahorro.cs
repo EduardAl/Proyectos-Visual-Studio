@@ -55,16 +55,20 @@ namespace ACOPEDH
             {
                 if (!string.IsNullOrEmpty(TxtCódigoA.Text))
                 {
+                    decimal comision = nmAbono.Value * Convert.ToDecimal(TxtInterés.Text)/1200;
                     Procedimientos_select Cargar = new Procedimientos_select();
-                    SqlParameter[] Parámetros = new SqlParameter[4];
+                    SqlParameter[] Parámetros = new SqlParameter[5];
                     Parámetros[0] = new SqlParameter("@FK_Tipo_Ahorro", CBTipoAhorro.Text);
                     Parámetros[1] = new SqlParameter("@FK_Asociado", TxtCódigoA.Text);
                     Parámetros[2] = new SqlParameter("@Abono_inicial", nmAbono.Value);
-                    Parámetros[3] = new SqlParameter("@ID_Usuario", Globales.gbCodUsuario);
+                    Parámetros[3] = new SqlParameter("@Comision", comision);
+                    Parámetros[4] = new SqlParameter("@ID_Usuario", Globales.gbCodUsuario);
 
                     if (Cargar.llenar_tabla("[Nueva Cuenta de Ahorro]", Parámetros) > 0)
                     {
                         MessageBox.Show("Cuenta de Ahorros guardado en la base de datos, procediendo a generar los documentos necesarios", "¡Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Globales.gbError = "";
                         DialogResult = dr = DialogResult.OK;
                         Close();
                     }

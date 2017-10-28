@@ -143,7 +143,7 @@ namespace ACOPEDH
         private void bttDesasociar_Click(object sender, EventArgs e)
         {
             SqlParameter[] Parámetros = new SqlParameter[1];
-            Parámetros[0] = new SqlParameter("@Código_Asociado", DateTime.Now);
+            Parámetros[0] = new SqlParameter("@Código_Asociado", Dato);
             if (Cargar.llenar_tabla("[Desasociar]", Parámetros) > 0)
             {
                 dtDesaso.Value = DateTime.Now;
