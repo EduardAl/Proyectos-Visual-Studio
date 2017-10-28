@@ -810,6 +810,7 @@ namespace Crear_Base_de_Datos
                 "Begin Try " +
                 "If(Select Estado from Asociado where[Código Asociado] = @Código_Asociado) = 'ACTIVO' " +
                 "Begin " +
+                "Declare @Ahorro int, @Préstamo_E int , @Préstamo_N int " +
                 "Set @Ahorro = (Select COUNT([id Ahorro]) from Ahorro where [FK Código de Asociado] = @Código_Asociado AND Estado = 'ACTIVO')  " +
                 "If(@Ahorro = 0) " +
                 "Begin " +
