@@ -45,7 +45,7 @@ namespace Crear_Base_de_Datos
                 "[Nombres] [varchar](50) NOT NULL," +
                 "[Apellidos] [varchar](50) NOT NULL," +
                 "[Contraseña] [varchar](max) NOT NULL," +
-                "[Correo] [varchar](50) NOT NULL," +
+                "[Correo] [varchar](50) NOT NULL unique," +
                 "[FK Tipo Usuario] [varchar](5) NOT NULL references [Tipo de Usuarios]([Id Tipo Usuario])," +
                 "CONSTRAINT [PK_Usuarios] PRIMARY KEY ([Id Usuario]))";
             String tabla3 = "CREATE TABLE [dbo].[Tipo de Socio](" +
@@ -80,8 +80,8 @@ namespace Crear_Base_de_Datos
                 "[FK Tipo Socio] [varchar](5) NOT NULL," +
                 "[Nombres] [varchar](50) NOT NULL," +
                 "[Apellidos] [varchar](50) NOT NULL," +
-                "[DUI] [varchar](10) NOT NULL," +
-                "[NIT] [varchar](17) NOT NULL," +
+                "[DUI] [varchar](10) NOT NULL unique," +
+                "[NIT] [varchar](17) NOT NULL unique," +
                 "[Dirección] [varchar](100) NULL," +
                 "[Fecha de Nacimiento] [datetime] NOT NULL," +
                 "[Fecha de Asociación] [datetime] NOT NULL," +
@@ -810,7 +810,29 @@ namespace Crear_Base_de_Datos
                 "Begin Try " +
                 "If(Select Estado from Asociado where[Código Asociado] = @Código_Asociado) = 'ACTIVO' " +
                 "Begin " +
-                "Update Asociado Set Estado = 'INACTIVO', [Fecha de Desasociación] = GetDate() where[Código Asociado] = @Código_Asociado " +
+                "Declare @Ahorro int, @Préstamo_E int , @Préstamo_N int " +
+                "Set @Ahorro = (Select COUNT([id Ahorro]) from Ahorro where [FK Código de Asociado] = @Código_Asociado AND Estado = 'ACTIVO')  " +
+                "If(@Ahorro = 0) " +
+                "Begin " +
+                "Set @Préstamo_E = (Select COUNT(Préstamos.[id Préstamos]) from Préstamos inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo] where Préstamos.[Código Asociado] = @Código_Asociado AND Estado = 'ACTIVO' AND[Tipo de Préstamo].[Tipo de Préstamo] = 'Emergencia') " +
+                "Set @Préstamo_N = (Select COUNT(Préstamos.[id Préstamos]) from Préstamos inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo] where Préstamos.[Código Asociado] = @Código_Asociado AND Estado = 'ACTIVO' AND[Tipo de Préstamo].[Tipo de Préstamo] <> 'Emergencia') " +
+                "if (@Préstamo_E = 0) AND(@Préstamo_N = 0) " +
+                "Begin " +
+                "Update Asociado Set Estado = 'INACTIVO', [Fecha de Desasociación] = GetDate() " +
+                "where[Código Asociado] = @Código_Asociado " +
+                "Commit Tran Desasociado " +
+                "End " +
+                "else " +
+                "Begin " +
+                "Print 'La persona asociada tiene préstamos sin cancelar' " +
+                "Commit Tran Desasociado " +
+                "End " +
+                "End " +
+                "Else " +
+                "Begin " +
+                "Print 'La persona asociada tiene cuentas de ahorro activas' " +
+                "Commit Tran Desasociado " +
+                "End " +
                 "Commit Tran Desasociado " +
                 "End " +
                 "Else " +

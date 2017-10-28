@@ -22,6 +22,8 @@ namespace ACOPEDH
         */
         public static DialogResult dr = DialogResult.Cancel;
         int Cuotas; double Monto, interes;
+        DataTable dtAsociado;
+        DataView filtro;
         Procedimientos_select Cargar = new Procedimientos_select();
         #region Constructores
         //Normal
@@ -33,7 +35,9 @@ namespace ACOPEDH
         #region Load
         private void Otorgar_Préstamo_Load(object sender, EventArgs e)
         {
-            dgvAsociado.DataSource = Cargar.llenar_DataTable("[Asociado DVG]");
+            LlenarDGV(ref dtAsociado, "[Asociado DVG]");
+            this.filtro = dtAsociado.DefaultView;
+            dgvAsociado.DataSource = filtro;
             CBTipoPréstamo.DataSource = Cargar.llenar_DataTable("[Cargar Tipo Préstamo]");
             CBTipoPréstamo.DisplayMember = "TipoP";
             CBTipoPréstamo.ValueMember = "Interés";
@@ -49,6 +53,11 @@ namespace ACOPEDH
                 CBFormadePago.SelectedIndex = 0;
             dgvAsociado.Refresh();
             TxtBúsqueda.Focus();
+        }
+        public void LlenarDGV(ref DataTable dss, String tabla)
+        {
+            dgvAsociado.DataSource = null;
+            dss = Cargar.llenar_DataTable(tabla);
         }
         #endregion
         /*
@@ -219,7 +228,26 @@ namespace ACOPEDH
             TxtInterés.Text = CBTipoPréstamo.SelectedValue.ToString();
         }
 
+        private void TxtBúsqueda_KeyUp(object sender, KeyEventArgs e)
+        {
+            string salida_datos = "";
+            string[] palabra_busqueda = this.TxtBúsqueda.Text.Split(' ');
+            foreach (string palabra in palabra_busqueda)
+            {
+                if (salida_datos.Length == 0)
+                {
+                    salida_datos = "(Código LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR Dui LIKE '%" + palabra + "%' OR [Tipo Asociación] LIKE '%" + palabra + "%')";
+                }
+                else
+                {
+                    salida_datos += " AND(Código LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR Dui LIKE '%" + palabra + "%' OR [Tipo Asociación] LIKE '%" + palabra + "%')";
+                }
+            }
+            this.filtro.RowFilter = salida_datos;
+        }
+
         #endregion
+
         #region Pintar Bordes
         private void Bordes_Paint(object sender, PaintEventArgs e)
         {
