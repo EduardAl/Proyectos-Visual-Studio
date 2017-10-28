@@ -48,6 +48,7 @@ namespace ACOPEDH
                 dgvPagosRealizados.Refresh();
             }
             catch { }
+            Visible = true;
         }
         #endregion
 

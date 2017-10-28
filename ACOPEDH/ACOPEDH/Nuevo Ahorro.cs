@@ -55,7 +55,7 @@ namespace ACOPEDH
             {
                 if (!string.IsNullOrEmpty(TxtCódigoA.Text))
                 {
-                    decimal comision = nmAbono.Value * Convert.ToDecimal(TxtInterés.Text)/1200;
+                    decimal comision = nmAbono.Value * (1 + Convert.ToDecimal(TxtInterés.Text)/100);
                     Procedimientos_select Cargar = new Procedimientos_select();
                     SqlParameter[] Parámetros = new SqlParameter[5];
                     Parámetros[0] = new SqlParameter("@FK_Tipo_Ahorro", CBTipoAhorro.Text);
