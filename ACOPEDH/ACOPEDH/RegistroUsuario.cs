@@ -148,7 +148,8 @@ namespace ACOPEDH
         }
         private void RegistroUsuario_AutoSizeChanged(object sender, EventArgs e)
         {
-            this.StartPosition = FormStartPosition.CenterScreen;
+            CenterToScreen();
+            PBACOPEDH.Location = new Point ((Width- PBACOPEDH.Width)/2, (label1.Location.Y - PBACOPEDH.Height  +  BarraTítulo.Height)/2);
         }
         private void RegistroUsuario_SizeChanged(object sender, EventArgs e)
         {

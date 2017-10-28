@@ -76,8 +76,6 @@ namespace ACOPEDH
                     if (Cargar.llenar_tabla("[Nueva Cuenta de Ahorro]", Parámetros) > 0)
                     {
                         MessageBox.Show("Cuenta de Ahorros guardado en la base de datos, procediendo a generar los documentos necesarios", "¡Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Globales.gbError = "";
                         DialogResult = dr = DialogResult.OK;
                         Close();
                     }

@@ -50,7 +50,7 @@
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(4, 0);
+            this.pictureBox3.Location = new System.Drawing.Point(5, 2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(30, 30);
             this.pictureBox3.TabIndex = 42;
@@ -61,9 +61,9 @@
             this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
             this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
-            this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
+            this.BarraTítulo.Location = new System.Drawing.Point(2, 2);
             this.BarraTítulo.Name = "BarraTítulo";
-            this.BarraTítulo.Size = new System.Drawing.Size(487, 30);
+            this.BarraTítulo.Size = new System.Drawing.Size(483, 30);
             this.BarraTítulo.TabIndex = 41;
             this.BarraTítulo.Text = "         ACOPEDH - Retiros";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -126,7 +126,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(23, 166);
+            this.label4.Location = new System.Drawing.Point(23, 169);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(144, 19);
             this.label4.TabIndex = 51;
@@ -135,7 +135,7 @@
             // nCantidadRetiro
             // 
             this.nCantidadRetiro.DecimalPlaces = 2;
-            this.nCantidadRetiro.Location = new System.Drawing.Point(191, 164);
+            this.nCantidadRetiro.Location = new System.Drawing.Point(191, 167);
             this.nCantidadRetiro.Name = "nCantidadRetiro";
             this.nCantidadRetiro.Size = new System.Drawing.Size(96, 27);
             this.nCantidadRetiro.TabIndex = 3;

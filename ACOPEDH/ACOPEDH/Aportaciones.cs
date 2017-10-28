@@ -35,6 +35,7 @@ namespace ACOPEDH
                 Param[0] = new SqlParameter("@Código_Asociado", Dato);
                 pro.LlenarText("[Suma Aportaciones]", "Suma de Aportaciones", Param, txtSuma);
                 txtSuma.Text = double.Parse(txtSuma.Text).ToString("C2");
+                dgvAportaciones.Columns[0].DefaultCellStyle.Format = "C2";
                 dgvAportaciones.Sort(dgvAportaciones.Columns[1], ListSortDirection.Ascending);
                 dgvAportaciones.Refresh();
             }

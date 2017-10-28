@@ -5,6 +5,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -103,7 +105,19 @@ namespace ACOPEDH
                 MessageBox.Show("Ingrese una cantidad a abonar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion
+        #region Sombra
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int CS_DROPSHADOW = 0x20000;
+                CreateParams cp = base.CreateParams;
+                    cp.ClassStyle |= CS_DROPSHADOW;
 
+                return cp;
+            }
+        }
+        #endregion
         /*
             *********************************
             *            Eventos            *
@@ -118,12 +132,14 @@ namespace ACOPEDH
         }
         #endregion
         #region Pintar Bordes
+
         private void Bordes_Paint(object sender, PaintEventArgs e)
         {
             Graphics Linea = CreateGraphics();
-            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0, 0), new Point(0, Height));
-            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0, Height - 1), new Point(Width, Height));
-            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(Width - 1, 0), new Point(Width, Height));
+            Linea.DrawLine(new Pen(Brushes.Black, 4), new Point(0, 0), new Point(0, Height));
+            Linea.DrawLine(new Pen(Brushes.Black, 4), new Point(0, Height), new Point(Width, Height)); //
+            Linea.DrawLine(new Pen(Brushes.Black, 4), new Point(Width , Height), new Point(Width, 0)); //
+            Linea.DrawLine(new Pen(Brushes.Black, 4), new Point(Width, 0), new Point(0,0));
         }
         #endregion
     }

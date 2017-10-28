@@ -607,7 +607,7 @@
             // 
             this.lbCorreo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbCorreo.AutoSize = true;
-            this.lbCorreo.BackColor = System.Drawing.Color.White;
+            this.lbCorreo.BackColor = System.Drawing.Color.Transparent;
             this.lbCorreo.Location = new System.Drawing.Point(216, 262);
             this.lbCorreo.Name = "lbCorreo";
             this.lbCorreo.Size = new System.Drawing.Size(188, 19);
@@ -618,7 +618,7 @@
             // 
             this.lbApellido.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbApellido.AutoSize = true;
-            this.lbApellido.BackColor = System.Drawing.Color.White;
+            this.lbApellido.BackColor = System.Drawing.Color.Transparent;
             this.lbApellido.Location = new System.Drawing.Point(156, 130);
             this.lbApellido.Name = "lbApellido";
             this.lbApellido.Size = new System.Drawing.Size(115, 19);
@@ -629,7 +629,7 @@
             // 
             this.lbNombre.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbNombre.AutoSize = true;
-            this.lbNombre.BackColor = System.Drawing.Color.White;
+            this.lbNombre.BackColor = System.Drawing.Color.Transparent;
             this.lbNombre.Location = new System.Drawing.Point(156, 84);
             this.lbNombre.Name = "lbNombre";
             this.lbNombre.Size = new System.Drawing.Size(114, 19);
