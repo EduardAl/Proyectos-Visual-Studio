@@ -353,7 +353,7 @@ namespace Crear_Base_de_Datos
                 "@ID_Asociado varchar(5), " +
                 "@Id_Usuario varchar(5) " +
                 "As " +
-                "Begin Tran Aportación " +
+                "Begin Tran Asociado " +
                 "Begin try " +
                 "If Exists(Select Aportaciones.[id Aportación] from Aportaciones inner join Transacciones on Aportaciones.[FK Transacción]= Transacciones.[id Transacción] " +
                 "where MONTH(Transacciones.[Fecha de Transacción])= MONTH(GETDATE())AND YEAR(Transacciones.[Fecha de Transacción]) = YEAR(GETDATE()) " +
@@ -363,11 +363,14 @@ namespace Crear_Base_de_Datos
                 "Rollback tran Asociado " +
                 "End " +
                 "Else " +
+                "Begin " +
                 "Declare @id_Transación varchar(5) " +
                 "Insert into Transacciones values(@Id_Usuario, 'TT001',GETDATE()) " +
                 "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
                 "Insert into Aportaciones values(@Aportación, @ID_Asociado, @id_Transación) " +
+                "Print 'Aporte realizado con éxito' " +
                 "Commit tran Asociado " +
+                "End " +
                 "End try " +
                 "Begin Catch " +
                 "Print ERROR_MESSAGE(); " +
