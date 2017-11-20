@@ -184,7 +184,7 @@ namespace Crear_Base_de_Datos
                 "[FK Transacción] [varchar](5) references [Transacciones]([id Transacción])," +
                  "CONSTRAINT [PK Pago] PRIMARY KEY ([id Pago]))";
             //Añadido para conseguir el límite anterior
-            String tabla20 = "Create Procedure [Conseguir Límite] " +
+            String procedimiento1 = "Create Procedure [Conseguir Límite] " +
                 "@Id_Préstamo varchar(9) " +
                 "As Begin Tran Pagar " +
                 "Begin Try " +
@@ -206,7 +206,7 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Pagar " +
                 "return 0 " +
                 "End Catch";
-            String tabla21 = "Create Procedure[Insertar Asociado]" +
+            String procedimiento2 = "Create Procedure[Insertar Asociado]" +
                 "@FK_Tipo_Socio varchar(50), " +
                 "@Nombres varchar(80), " +
                 "@Apellidos varchar(80), " +
@@ -231,7 +231,7 @@ namespace Crear_Base_de_Datos
                 "Rollback tran Asociado " +
                 "End Catch ";
             //Cambiado los nombres para cargar las variables y añadiendo campos
-            String tabla22 = "Create Procedure[Cargar Asociados] " +
+            String procedimiento3 = "Create Procedure[Cargar Asociados] " +
                 "@Código_Asociado varchar(5) " +
                 "As " +
                 "Begin Tran Cargar_Asociados " +
@@ -246,7 +246,7 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Cargar_Asociados " +
                 "End Catch";
-            String tabla23 = "Create Procedure[Insertar Teléfono] " +
+            String procedimiento4 = "Create Procedure[Insertar Teléfono] " +
                 "@Tipo_Teléfono varchar(50),  " +
                 "@Teléfono varchar(9), " +
                 "@DUI varchar(10) " +
@@ -269,7 +269,7 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Teléfono " +
                 "End Catch";
-            String tabla24 = "Create Procedure[Cargar Teléfonos] " +
+            String procedimiento5 = "Create Procedure[Cargar Teléfonos] " +
                 "@Código_Asociado varchar(5) " +
                 "As " +
                 "Begin Tran Cargar_Teléfonos " +
@@ -283,7 +283,7 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Cargar_Teléfonos " +
                 "End Catch ";
-            String tabla25 = "Create Procedure[Modificar Teléfono] " +
+            String procedimiento6 = "Create Procedure[Modificar Teléfono] " +
                 "@Tipo_Telefono varchar(50), " +
                 "@ID_Teléfono varchar(5), " +
                 "@Teléfono varchar(10), " +
@@ -301,7 +301,7 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Mod_Tel " +
                 "End Catch";
-            String tabla26 = "Create Procedure[Eliminar Teléfono] " +
+            String procedimiento7 = "Create Procedure[Eliminar Teléfono] " +
                 "@ID_Teléfono varchar(5), " +
                 "@Id_Asociado varchar(5) " +
                 "As   " +
@@ -316,7 +316,7 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Del_Teléfono " +
                 "End Catch ";
-            String tabla27 = "Create Procedure[Abonar] " +
+            String procedimiento8 = "Create Procedure[Abonar] " +
                "@Abono money, " +
                "@Comision money, " +
                "@FK_Ahorro varchar(40), " +
@@ -335,7 +335,7 @@ namespace Crear_Base_de_Datos
                "Rollback tran Abono " +
                "End Catch ";
             //Cambiado para que se muestre el dui //Nombre Cambiado
-            String tabla28 = "Create Procedure[Ahorro DVG] " +
+            String procedimiento9 = "Create Procedure[Ahorro DVG] " +
                 "As " +
                 "Begin Tran Ahorro_DVG " +
                 "Begin Try " +
@@ -348,7 +348,7 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Cargar_Ahorros " +
                 "End Catch";
-            String tabla29 = "Create Procedure[dbo].[Realizar Aportación] " +
+            String procedimiento10 = "Create Procedure[dbo].[Realizar Aportación] " +
                 "@Aportación money, " +
                 "@ID_Asociado varchar(5), " +
                 "@Id_Usuario varchar(5) " +
@@ -376,7 +376,7 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback tran Asociado " +
                 "End Catch ";
-            String tabla30 = "Create Procedure[Cargar Aportaciones] " +
+            String procedimiento11 = "Create Procedure[Cargar Aportaciones] " +
                 "@Código_Asociado varchar(5) " +
                 "As " +
                 "Begin Tran C_Aportaciones " +
@@ -389,7 +389,7 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran C_Aportaciones " +
                 "End Catch";
-            String tabla31 = "Create Procedure[Suma Aportaciones] " +
+            String procedimiento12 = "Create Procedure[Suma Aportaciones] " +
                 "@Código_Asociado varchar(5) " +
                 "As " +
                 "Begin Tran S_Aportaciones " +
@@ -405,7 +405,7 @@ namespace Crear_Base_de_Datos
                 "Select 0 AS 'Suma de Aportaciones' Commit Tran S_Aportaciones " +
                 "End Catch ";
             //Cambio para visualizar más campos en la consulta
-            String tabla32 = "Create Procedure[Cargar Pagos] " +
+            String procedimiento13 = "Create Procedure[Cargar Pagos] " +
                 "@ID_Préstamo varchar(9) " +
                 "As " +
                 "Begin Tran Cargar_Pagos " +
@@ -421,7 +421,7 @@ namespace Crear_Base_de_Datos
                 "End Catch ";
 #warning Podría causar errores
             //Modificado para que ingrese además un abono
-            String tabla33 = "Create Procedure [Nueva Cuenta de Ahorro] " +
+            String procedimiento14 = "Create Procedure [Nueva Cuenta de Ahorro] " +
                 "@FK_Tipo_Ahorro varchar(20), " +
                 "@FK_Asociado varchar(5), " +
                 "@Abono_inicial money, " +
@@ -452,7 +452,7 @@ namespace Crear_Base_de_Datos
                 "Rollback tran Ahorro " +
                 "return 0 " +
                 "End Catch ";
-            String tabla34 = "Create Procedure[Cargar Abonos] " +
+            String procedimiento15 = "Create Procedure[Cargar Abonos] " +
                 "@ID_Ahorro varchar(5) " +
                 "As " +
                 "Begin Tran Cargar_Abono " +
@@ -465,7 +465,7 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Cargar_Abono " +
                 "End Catch";
-            String tabla35 = "Create Procedure[Suma Abonos] " +
+            String procedimiento16 = "Create Procedure[Suma Abonos] " +
                 "@ID_Ahorro varchar(5) " +
                 "As " +
                 "Begin Tran Disponibles_Abono " +
@@ -480,7 +480,7 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Disponibles_Abono " +
                 "Select 0 as 'Suma de Abonos' " +
                 "End Catch";
-            String tabla36 = "Create Procedure[Realizar Retiros] " +
+            String procedimiento17 = "Create Procedure[Realizar Retiros] " +
                 "@Retiro money, " +
                 "@Número_Cheque varchar(8), " +
                 "@FK_Ahorro varchar(30), " +
@@ -498,7 +498,7 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback tran Retiro " +
                 "End Catch ";
-            String tabla37 = "Create Procedure[Cargar Retiros] " +
+            String procedimiento18 = "Create Procedure[Cargar Retiros] " +
                 "@ID_Ahorro varchar(5) " +
                 "As " +
                 "Begin Tran Cargar_Retiro " +
@@ -512,7 +512,7 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Cargar_Retiro " +
                 "End Catch ";
             //Si no hay retiros
-            String tabla38 = "Create Procedure[Suma Retiros] " +
+            String procedimiento19 = "Create Procedure[Suma Retiros] " +
                 "@ID_Ahorro varchar(5) " +
                 "As " +
                 "Begin Tran Disponibles_Retiro " +
@@ -530,7 +530,7 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Disponibles_Retiro Select 0 AS 'Suma de Retiros' " +
                 "End Catch ";
             //Cambiado por el n de cuota
-            String tabla39 = "Create Procedure[Realizar Pago] " +
+            String procedimiento20 = "Create Procedure[Realizar Pago] " +
                 "@ID_Préstamo varchar(9), " +
                 "@Pago money, " +
                 "@Id_Usuario varchar(5), " +
@@ -552,7 +552,7 @@ namespace Crear_Base_de_Datos
                 "Commit Tran Pagar End " +
                 "Else Begin Print 'El préstamo ya fue cancelado' Commit Tran Pagar return 0 End " +
                 "End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Pagar End Catch ";
-            String tabla41 = "Create Procedure[Cargar Saldo] " +
+            String procedimiento21 = "Create Procedure[Cargar Saldo] " +
                   "@ID_Préstamo varchar(9) " +
                   "As " +
                   "Begin Tran Cargar_Saldo " +
@@ -566,7 +566,7 @@ namespace Crear_Base_de_Datos
                   "Rollback Tran Cargar_Saldo \n" +
                   "End Catch ";
             //Trigger Feo
-            String tabla42 = "Create Trigger [Préstamo Cancelado] " +
+            String Trigger1 = "Create Trigger [Préstamo Cancelado] " +
             "On Pago For Insert " +
             "As " +
             "Declare @Pago_Ultimo money " +
@@ -581,7 +581,7 @@ namespace Crear_Base_de_Datos
             "where Pago.[id Pago] = inserted.[id Pago] " +
             "End;";
             //Modificación
-            String tabla43 = "Create Procedure[Cargar Préstamo] " +
+            String procedimiento22 = "Create Procedure[Cargar Préstamo] " +
                 "@ID_Préstamo varchar(9) " +
                  "As " +
                  "Begin Tran Cargar_P " +
@@ -600,7 +600,7 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Cargar_P " +
                 "End Catch ";
             //Variables a mostrar cambiadas
-            String tabla44 = "Create Procedure[Préstamo DVG] " +
+            String procedimiento23 = "Create Procedure[Préstamo DVG] " +
                 "As " +
                 "Begin Tran Pres " +
                 "Begin Try " +
@@ -614,7 +614,7 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Pres " +
                 "End Catch";
             //Cambiado para que muestre además el dui y el tipo de asociación
-            String tabla45 = "Create Procedure[Asociado DVG]" +
+            String procedimiento24 = "Create Procedure[Asociado DVG]" +
                 "As " +
                 "Begin Tran Aso " +
                 "Begin Try " +
@@ -625,17 +625,17 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Aso " +
                 "End Catch";
-            String tabla46 = "Create Procedure [Cargar Tipo Préstamo] As Begin Tran Pre Begin Try " +
+            String procedimiento25 = "Create Procedure [Cargar Tipo Préstamo] As Begin Tran Pre Begin Try " +
                 "Select[Tipo de Préstamo].[Tipo de Préstamo] AS 'TipoP',[Tipo de Préstamo].[Tasa de Interés] AS 'Interés' from[Tipo de Préstamo] " +
                 "Commit Tran Pre End Try Begin Catch Print ERROR_MESSAGE(); " +
                 "Rollback Tran Pre End Catch";
-            String tabla47 = "Create Procedure [Cargar Tipo Socio] As Begin Tran Aso Begin Try " +
+            String procedimiento26 = "Create Procedure [Cargar Tipo Socio] As Begin Tran Aso Begin Try " +
                 "Select [Tipo de Socio].[Nombre Tipo Socio] AS 'TipoS' from [Tipo de Socio] " +
                 "Commit Tran Aso End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Aso End Catch";
-            String tabla48 = "Create Procedure [Cargar Tipo Ahorro] As Begin Tran Aho Begin Try " +
+            String procedimiento27 = "Create Procedure [Cargar Tipo Ahorro] As Begin Tran Aho Begin Try " +
                 "Select [Tipo de Ahorro].Nombre AS 'TipoA',[Tipo de Ahorro].[Tasa de Interés] AS 'Interés' from [Tipo de Ahorro] " +
                 "Commit Tran Aho End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Aho End Catch";
-            String tabla49 = "create Procedure[dbo].[Recuperar Contraseña] " +
+            String procedimiento28 = "create Procedure[dbo].[Recuperar Contraseña] " +
                 "@Correo varchar(50), " +
                 "@Contraseña varchar(MAX) " +
                 "As " +
@@ -649,7 +649,7 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Mod_Tel " +
                 "End Catch ";
-            String tabla50 =
+            String procedimiento29 =
                 "create Procedure[ModificarDatos] " +
                 "@Id varchar(5), " +
                 "@Correo varchar(50), " +
@@ -674,7 +674,7 @@ namespace Crear_Base_de_Datos
                 "print ERROR_MESSAGE(); " +
                 "End " +
                 "End Catch";
-            String tabla51 =
+            String procedimiento30 =
                 "create Procedure[dbo].[InicioDeSesión] " +
                 "@Correo varchar(50) " +
                 "As " +
@@ -691,7 +691,7 @@ namespace Crear_Base_de_Datos
                 "Begin Catch " +
                 "Print ERROR_MESSAGE(); " +
                 "End Catch";
-            String tabla52 =
+            String procedimiento31 =
                 "create Procedure[dbo].[Nuevo Usuario] " +
                 "@Correo varchar(50), " +
                 "@Nombre varchar(50), " +
@@ -715,21 +715,21 @@ namespace Crear_Base_de_Datos
                 "print ERROR_MESSAGE(); " +
                 "End " +
                 "End Catch";
-            String tabla53 =
+            String procedimiento32 =
                 "Create procedure [Cargar Ocupaciones] " +
                 "As " +
                 "Begin " +
                 "Select [Nombre de la Empresa] As 'Trabajo' from Ocupación " +
                 "End";
             //Aqui se cambió para tener la referencia "TipoT"
-            String tabla54 =
+            String procedimiento33 =
                 "Create procedure [Cargar Tipo Teléfono] " +
                 "As " +
                 "Begin " +
                 "Select [Tipos de Teléfonos].[Tipo de Teléfono] as 'TipoT' From [Tipos de Teléfonos] " +
                 "End";
             //Faltaba este procedimiento
-            String tabla55 = "Create Procedure[Cargar Ahorros] " +
+            String procedimiento34 = "Create Procedure[Cargar Ahorros] " +
                 "@Código_Ahorro varchar(5) " +
                "As " +
                "Begin Tran Cargar_Ahorros " +
@@ -745,7 +745,7 @@ namespace Crear_Base_de_Datos
                "End Catch";
 #warning Verificar cantidad de préstamos que se pueden otorgar
             //Faltaba este procedimiento
-            String tabla56 = "Create Procedure[Nuevo Préstamo] " +
+            String procedimiento35 = "Create Procedure[Nuevo Préstamo] " +
                 "@FK_Tipo_Préstamo varchar(20), " +
                 "@FK_Asociado varchar(5), " +
                 "@Forma_Pago varchar(5), " +
@@ -780,13 +780,13 @@ namespace Crear_Base_de_Datos
                 "return 0 " +
                 "End Catch";
             //Añadido para el combobox
-            String tabla57 = "Create Procedure [dbo].[Cargar Tipo Pagos] " +
+            String procedimiento36 = "Create Procedure [dbo].[Cargar Tipo Pagos] " +
                 "As Begin Tran Tipo_Pagos " +
                 "Begin Try " +
                 "Select[Forma de Pago].Nombre AS 'FormaP', [Forma de Pago].[id Forma de Pago] as 'Id' from[Forma de Pago] " +
                 "Commit Tran Tipo_pagos End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Pre End Catch";
             //Añadido para cerrar ahorro
-            String tabla58 = "Create Procedure[dbo].[Cerrar Ahorro] " +
+            String procedimiento37 = "Create Procedure[dbo].[Cerrar Ahorro] " +
                 "@Id_Ahorro varchar(5) " +
                 "As Begin Tran Cuenta_Cerrada " +
                 "Begin Try " +
@@ -807,7 +807,7 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Cuenta_Cerrada " +
                 "End Catch ";
             //Añadido para desasociar
-            String tabla59 = "Create Procedure[dbo].[Desasociar] " +
+            String procedimiento38 = "Create Procedure[dbo].[Desasociar] " +
                 "@Código_Asociado varchar(5) " +
                 "As Begin Tran Desasociado " +
                 "Begin Try " +
@@ -847,10 +847,10 @@ namespace Crear_Base_de_Datos
                 "Begin Catch " +
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Desasociado " +
-                "return 0 "+
+                "return 0 " +
                 "End Catch ";
             //Añadido Actualizar Asociado
-            String tabla60 = "Create procedure[dbo].[Actualizar Asociado] " +
+            String procedimiento39 = "Create procedure[dbo].[Actualizar Asociado] " +
                 "@Codigo_Asociado varchar(5), " +
                 "@FK_Tipo_Socio varchar(50), " +
                 "@Nombres varchar(50), " +
@@ -884,24 +884,28 @@ namespace Crear_Base_de_Datos
                 "ROLLBACK TRANSACTION " +
                 "Print 'Error en modificar datos de asociado ' + ERROR_MESSAGE(); " +
               "End ";
-                        String Usuario1 =
+            String Login1 =
                 "CREATE LOGIN Master_ACOPEDH " +
-                "WITH PASSWORD = 'AUREO112358' " +
-                "USE " + txtNombre.Text + ";" +
-                "CREATE USER Master_ACOPEDH FOR LOGIN Master_ACOPEDH ";
-            String Usuario2 =
+                "WITH PASSWORD = 'AUREO112358' ";
+            String Login2 =
                 "CREATE LOGIN Administrador " +
-                "WITH PASSWORD = 'ACOPEDH365' " +
+                "WITH PASSWORD = 'ACOPEDH365' ";
+            String Login3 =
+                "CREATE LOGIN Usuario " +
+                "WITH PASSWORD = 'User123' ";
+            String Login4 =
+                "CREATE LOGIN InicioSesion " +
+                "WITH PASSWORD = 'In112358' " ;
+            String Usuario1 =
+               "USE " + txtNombre.Text + ";" +
+               "CREATE USER Master_ACOPEDH FOR LOGIN Master_ACOPEDH ";
+            String Usuario2 =
                 "USE " + txtNombre.Text + ";" +
                 "CREATE USER Administrador FOR LOGIN Administrador";
             String Usuario3 =
-                "CREATE LOGIN Usuario " +
-                "WITH PASSWORD = 'User123' " +
                 "USE " + txtNombre.Text + ";" +
                 "CREATE USER Usuario FOR LOGIN Usuario ";
             String Usuario4 =
-                "CREATE LOGIN InicioSesion " +
-                "WITH PASSWORD = 'In112358' " +
                 "USE " + txtNombre.Text + ";" +
                 "CREATE USER InicioSesion FOR LOGIN InicioSesion ";
             String permisosMaster_ACOPEDH =
@@ -1054,7 +1058,13 @@ namespace Crear_Base_de_Datos
             //Añadido, la inserción de teléfonos
             String insertartiposdeteléfonos =
                  "insert into [Tipos de Teléfonos] values ('Celular'),('Casa'), ('Trabajo'), ('Fax')";
+
+            //Creación Base de Datos
+
             SqlCommand cmd = new SqlCommand(cadena1, cnn);
+
+            //Creación Tablas
+
             SqlCommand cmd1 = new SqlCommand(tabla1, cnn);
             SqlCommand cmd2 = new SqlCommand(tabla2, cnn);
             SqlCommand cmd3 = new SqlCommand(tabla3, cnn);
@@ -1074,146 +1084,178 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd17 = new SqlCommand(tabla17, cnn);
             SqlCommand cmd18 = new SqlCommand(tabla18, cnn);
             SqlCommand cmd19 = new SqlCommand(tabla19, cnn);
-            SqlCommand cmd20 = new SqlCommand(tabla20, cnn);
-            SqlCommand cmd21 = new SqlCommand(tabla21, cnn);
-            SqlCommand cmd22 = new SqlCommand(tabla22, cnn);
-            SqlCommand cmd23 = new SqlCommand(tabla23, cnn);
-            SqlCommand cmd24 = new SqlCommand(tabla24, cnn);
-            SqlCommand cmd25 = new SqlCommand(tabla25, cnn);
-            SqlCommand cmd26 = new SqlCommand(tabla26, cnn);
-            SqlCommand cmd27 = new SqlCommand(tabla27, cnn);
-            SqlCommand cmd28 = new SqlCommand(tabla28, cnn);
-            SqlCommand cmd29 = new SqlCommand(tabla29, cnn);
-            SqlCommand cmd30 = new SqlCommand(tabla30, cnn);
-            SqlCommand cmd31 = new SqlCommand(tabla31, cnn);
-            SqlCommand cmd32 = new SqlCommand(tabla32, cnn);
-            SqlCommand cmd33 = new SqlCommand(tabla33, cnn);
-            SqlCommand cmd34 = new SqlCommand(tabla34, cnn);
-            SqlCommand cmd35 = new SqlCommand(tabla35, cnn);
-            SqlCommand cmd36 = new SqlCommand(tabla36, cnn);
-            SqlCommand cmd37 = new SqlCommand(tabla37, cnn);
-            SqlCommand cmd38 = new SqlCommand(tabla38, cnn);
-            SqlCommand cmd39 = new SqlCommand(tabla39, cnn);
-            SqlCommand cmd41 = new SqlCommand(tabla41, cnn);
-            SqlCommand cmd42 = new SqlCommand(tabla42, cnn);
-            SqlCommand cmd43 = new SqlCommand(tabla43, cnn);
-            SqlCommand cmd44 = new SqlCommand(tabla44, cnn);
-            SqlCommand cmd45 = new SqlCommand(tabla45, cnn);
-            SqlCommand cmd46 = new SqlCommand(tabla46, cnn);
-            SqlCommand cmd47 = new SqlCommand(tabla47, cnn);
-            SqlCommand cmd48 = new SqlCommand(tabla48, cnn);
-            SqlCommand cmd49 = new SqlCommand(tabla49, cnn);
-            SqlCommand cmd50 = new SqlCommand(tabla50, cnn);
-            SqlCommand cmd51 = new SqlCommand(tabla51, cnn);
-            SqlCommand cmd52 = new SqlCommand(tabla52, cnn);
-            SqlCommand cmd53 = new SqlCommand(Usuario1, cnn);
-            SqlCommand cmd54 = new SqlCommand(Usuario2, cnn);
-            SqlCommand cmd55 = new SqlCommand(Usuario3, cnn);
-            SqlCommand cmd56 = new SqlCommand(Usuario4, cnn);
-            SqlCommand cmd57 = new SqlCommand(tabla53, cnn);
-            SqlCommand cmd58 = new SqlCommand(tabla54, cnn);
-            SqlCommand cmd59 = new SqlCommand(tabla55, cnn);
-            SqlCommand cmd60 = new SqlCommand(tabla56, cnn);
-            SqlCommand cmd61 = new SqlCommand(tabla57, cnn);
-            SqlCommand cmd62 = new SqlCommand(tabla58, cnn);
-            SqlCommand cmd63 = new SqlCommand(tabla59, cnn);
-            SqlCommand cmd64 = new SqlCommand(tabla60, cnn);
-            SqlCommand cmd65 = new SqlCommand(permisosMaster_ACOPEDH, cnn);
-            SqlCommand cmd66 = new SqlCommand(permisosAdministrador, cnn);
-            SqlCommand cmd67 = new SqlCommand(permisosUsuario, cnn);
-            SqlCommand cmd68 = new SqlCommand(permisosInicioSesión, cnn);
-            SqlCommand cmd69 = new SqlCommand(crearusuarios, cnn);
-            SqlCommand cmd70 = new SqlCommand(crearahorros, cnn);
-            SqlCommand cmd71 = new SqlCommand(crearpagos, cnn);
-            SqlCommand cmd72 = new SqlCommand(crearsocios, cnn);
-            SqlCommand cmd73 = new SqlCommand(creartrabajos, cnn);
-            SqlCommand cmd74 = new SqlCommand(crearpréstamos, cnn);
-            SqlCommand cmd75 = new SqlCommand(insertartiposdetransacciones, cnn);
-            SqlCommand cmd76 = new SqlCommand(insertartiposdeteléfonos, cnn);
+
+            //Creación Procedimientos
+
+            SqlCommand cmd_01 = new SqlCommand(procedimiento1, cnn);
+            SqlCommand cmd_02 = new SqlCommand(procedimiento2, cnn);
+            SqlCommand cmd_03 = new SqlCommand(procedimiento3, cnn);
+            SqlCommand cmd_04 = new SqlCommand(procedimiento4, cnn);
+            SqlCommand cmd_05 = new SqlCommand(procedimiento5, cnn);
+            SqlCommand cmd_06 = new SqlCommand(procedimiento6, cnn);
+            SqlCommand cmd_07 = new SqlCommand(procedimiento7, cnn);
+            SqlCommand cmd_08 = new SqlCommand(procedimiento8, cnn);
+            SqlCommand cmd_09 = new SqlCommand(procedimiento9, cnn);
+            SqlCommand cmd_10 = new SqlCommand(procedimiento10, cnn);
+            SqlCommand cmd_11 = new SqlCommand(procedimiento11, cnn);
+            SqlCommand cmd_12 = new SqlCommand(procedimiento12, cnn);
+            SqlCommand cmd_13 = new SqlCommand(procedimiento13, cnn);
+            SqlCommand cmd_14 = new SqlCommand(procedimiento14, cnn);
+            SqlCommand cmd_15 = new SqlCommand(procedimiento15, cnn);
+            SqlCommand cmd_16 = new SqlCommand(procedimiento16, cnn);
+            SqlCommand cmd_17 = new SqlCommand(procedimiento17, cnn);
+            SqlCommand cmd_18 = new SqlCommand(procedimiento18, cnn);
+            SqlCommand cmd_19 = new SqlCommand(procedimiento19, cnn);
+            SqlCommand cmd_20 = new SqlCommand(procedimiento20, cnn);
+            SqlCommand cmd_21 = new SqlCommand(procedimiento21, cnn);
+            SqlCommand cmd_22 = new SqlCommand(procedimiento22, cnn);
+            SqlCommand cmd_23 = new SqlCommand(procedimiento23, cnn);
+            SqlCommand cmd_24 = new SqlCommand(procedimiento24, cnn);
+            SqlCommand cmd_25 = new SqlCommand(procedimiento25, cnn);
+            SqlCommand cmd_26 = new SqlCommand(procedimiento26, cnn);
+            SqlCommand cmd_27 = new SqlCommand(procedimiento27, cnn);
+            SqlCommand cmd_28 = new SqlCommand(procedimiento28, cnn);
+            SqlCommand cmd_29 = new SqlCommand(procedimiento29, cnn);
+            SqlCommand cmd_30 = new SqlCommand(procedimiento30, cnn);
+            SqlCommand cmd_31 = new SqlCommand(procedimiento31, cnn);
+            SqlCommand cmd_32 = new SqlCommand(procedimiento32, cnn);
+            SqlCommand cmd_33 = new SqlCommand(procedimiento33, cnn);
+            SqlCommand cmd_34 = new SqlCommand(procedimiento34, cnn);
+            SqlCommand cmd_35 = new SqlCommand(procedimiento35, cnn);
+            SqlCommand cmd_36 = new SqlCommand(procedimiento36, cnn);
+            SqlCommand cmd_37 = new SqlCommand(procedimiento37, cnn);
+            SqlCommand cmd_38 = new SqlCommand(procedimiento38, cnn);
+            SqlCommand cmd_39 = new SqlCommand(procedimiento39, cnn);
+
+            //Creación Triggers
+
+            SqlCommand cmdTrigger1 = new SqlCommand(Trigger1, cnn);
+
+            //Creación Login
+
+            SqlCommand cmdLogin1 = new SqlCommand(Login1, cnn);
+            SqlCommand cmdLogin2 = new SqlCommand(Login2, cnn);
+            SqlCommand cmdLogin3 = new SqlCommand(Login3, cnn);
+            SqlCommand cmdLogin4 = new SqlCommand(Login4, cnn);
+
+            //Creación Usuarios
+
+            SqlCommand cmdUsuario1 = new SqlCommand(Usuario1, cnn);
+            SqlCommand cmdUsuario2 = new SqlCommand(Usuario2, cnn);
+            SqlCommand cmdUsuario3 = new SqlCommand(Usuario3, cnn);
+            SqlCommand cmdUsuario4 = new SqlCommand(Usuario4, cnn);
+
+            //Otorgar Permisos
+
+            SqlCommand cmdPermisosMaster = new SqlCommand(permisosMaster_ACOPEDH, cnn);
+            SqlCommand cmdPermisosAdmin = new SqlCommand(permisosAdministrador, cnn);
+            SqlCommand cmdPermisosUsuario = new SqlCommand(permisosUsuario, cnn);
+            SqlCommand cmdPermisosInicio = new SqlCommand(permisosInicioSesión, cnn);
+
+            //Insertar estáticos
+
+            SqlCommand cmdCrearUsuarios = new SqlCommand(crearusuarios, cnn);
+            SqlCommand cmdCrearAhorros = new SqlCommand(crearahorros, cnn);
+            SqlCommand cmdCrearPagos = new SqlCommand(crearpagos, cnn);
+            SqlCommand cmdCrearSocios = new SqlCommand(crearsocios, cnn);
+            SqlCommand cmdCrearTrabajos = new SqlCommand(creartrabajos, cnn);
+            SqlCommand cmdCrearPréstamos = new SqlCommand(crearpréstamos, cnn);
+            SqlCommand cmdCrearTransacciones = new SqlCommand(insertartiposdetransacciones, cnn);
+            SqlCommand cmdCrearTeléfonos = new SqlCommand(insertartiposdeteléfonos, cnn);
 
             //try
             //{
-                ////Abrimos la conexión y ejecutamos el comando
-                cnn.Open();
-                cmd.ExecuteNonQuery();
-                cmd1.ExecuteNonQuery();
-                cmd2.ExecuteNonQuery();
-                cmd3.ExecuteNonQuery();
-                cmd4.ExecuteNonQuery();
-                cmd5.ExecuteNonQuery();
-                cmd6.ExecuteNonQuery();
-                cmd7.ExecuteNonQuery();
-                cmd8.ExecuteNonQuery();
-                cmd9.ExecuteNonQuery();
-                cmd10.ExecuteNonQuery();
-                cmd11.ExecuteNonQuery();
-                cmd12.ExecuteNonQuery();
-                cmd13.ExecuteNonQuery();
-                cmd14.ExecuteNonQuery();
-                cmd15.ExecuteNonQuery();
-                cmd16.ExecuteNonQuery();
-                cmd17.ExecuteNonQuery();
-                cmd18.ExecuteNonQuery();
-                cmd19.ExecuteNonQuery();
-                cmd20.ExecuteNonQuery();
-                cmd21.ExecuteNonQuery();
-                cmd22.ExecuteNonQuery();
-                cmd23.ExecuteNonQuery();
-                cmd24.ExecuteNonQuery();
-                cmd25.ExecuteNonQuery();
-                cmd26.ExecuteNonQuery();
-                cmd27.ExecuteNonQuery();
-                cmd28.ExecuteNonQuery();
-                cmd29.ExecuteNonQuery();
-                cmd30.ExecuteNonQuery();
-                cmd31.ExecuteNonQuery();
-                cmd32.ExecuteNonQuery();
-                cmd33.ExecuteNonQuery();
-                cmd34.ExecuteNonQuery();
-                cmd35.ExecuteNonQuery();
-                cmd36.ExecuteNonQuery();
-                cmd37.ExecuteNonQuery();
-                cmd38.ExecuteNonQuery();
-                cmd39.ExecuteNonQuery();
-                cmd41.ExecuteNonQuery();
-                cmd42.ExecuteNonQuery();
-                cmd43.ExecuteNonQuery();
-                cmd44.ExecuteNonQuery();
-                cmd45.ExecuteNonQuery();
-                cmd46.ExecuteNonQuery();
-                cmd47.ExecuteNonQuery();
-                cmd48.ExecuteNonQuery();
-                cmd49.ExecuteNonQuery();
-                cmd50.ExecuteNonQuery();
-                cmd51.ExecuteNonQuery();
-                cmd52.ExecuteNonQuery();
-                cmd53.ExecuteNonQuery();
-                cmd54.ExecuteNonQuery();
-                cmd55.ExecuteNonQuery();
-                cmd56.ExecuteNonQuery();
-                cmd57.ExecuteNonQuery();
-                cmd58.ExecuteNonQuery();
-                cmd59.ExecuteNonQuery();
-                cmd60.ExecuteNonQuery();
-                cmd61.ExecuteNonQuery();
-                cmd62.ExecuteNonQuery();
-                cmd63.ExecuteNonQuery();
-                cmd64.ExecuteNonQuery();
-                cmd65.ExecuteNonQuery();
-                cmd66.ExecuteNonQuery();
-                cmd67.ExecuteNonQuery();
-                cmd68.ExecuteNonQuery();
-                cmd69.ExecuteNonQuery();
-                cmd70.ExecuteNonQuery();
-                cmd71.ExecuteNonQuery();
-                cmd72.ExecuteNonQuery();
-                cmd73.ExecuteNonQuery();
-                cmd74.ExecuteNonQuery();
-                cmd75.ExecuteNonQuery();
-                cmd76.ExecuteNonQuery();
+            ////Abrimos la conexión y ejecutamos el comando
+            cnn.Open();
+            cmd.ExecuteNonQuery();
+            cmd1.ExecuteNonQuery();
+            cmd2.ExecuteNonQuery();
+            cmd3.ExecuteNonQuery();
+            cmd4.ExecuteNonQuery();
+            cmd5.ExecuteNonQuery();
+            cmd6.ExecuteNonQuery();
+            cmd7.ExecuteNonQuery();
+            cmd8.ExecuteNonQuery();
+            cmd9.ExecuteNonQuery();
+            cmd10.ExecuteNonQuery();
+            cmd11.ExecuteNonQuery();
+            cmd12.ExecuteNonQuery();
+            cmd13.ExecuteNonQuery();
+            cmd14.ExecuteNonQuery();
+            cmd15.ExecuteNonQuery();
+            cmd16.ExecuteNonQuery();
+            cmd17.ExecuteNonQuery();
+            cmd18.ExecuteNonQuery();
+            cmd19.ExecuteNonQuery();
+
+            cmd_01.ExecuteNonQuery();
+            cmd_02.ExecuteNonQuery();
+            cmd_03.ExecuteNonQuery();
+            cmd_04.ExecuteNonQuery();
+            cmd_05.ExecuteNonQuery();
+            cmd_06.ExecuteNonQuery();
+            cmd_07.ExecuteNonQuery();
+            cmd_08.ExecuteNonQuery();
+            cmd_09.ExecuteNonQuery();
+            cmd_10.ExecuteNonQuery();
+            cmd_11.ExecuteNonQuery();
+            cmd_12.ExecuteNonQuery();
+            cmd_13.ExecuteNonQuery();
+            cmd_14.ExecuteNonQuery();
+            cmd_15.ExecuteNonQuery();
+            cmd_16.ExecuteNonQuery();
+            cmd_17.ExecuteNonQuery();
+            cmd_18.ExecuteNonQuery();
+            cmd_19.ExecuteNonQuery();
+            cmd_20.ExecuteNonQuery();
+            cmd_21.ExecuteNonQuery();
+            cmd_22.ExecuteNonQuery();
+            cmd_23.ExecuteNonQuery();
+            cmd_24.ExecuteNonQuery();
+            cmd_25.ExecuteNonQuery();
+            cmd_26.ExecuteNonQuery();
+            cmd_27.ExecuteNonQuery();
+            cmd_28.ExecuteNonQuery();
+            cmd_29.ExecuteNonQuery();
+            cmd_30.ExecuteNonQuery();
+            cmd_31.ExecuteNonQuery();
+            cmd_32.ExecuteNonQuery();
+            cmd_33.ExecuteNonQuery();
+            cmd_34.ExecuteNonQuery();
+            cmd_35.ExecuteNonQuery();
+            cmd_36.ExecuteNonQuery();
+            cmd_37.ExecuteNonQuery();
+            cmd_38.ExecuteNonQuery();
+            cmd_39.ExecuteNonQuery();
+
+            cmdTrigger1.ExecuteNonQuery();
+
+            cmdLogin1.ExecuteNonQuery();
+            cmdLogin2.ExecuteNonQuery();
+            cmdLogin3.ExecuteNonQuery();
+            cmdLogin4.ExecuteNonQuery();
+
+            cmdUsuario1.ExecuteNonQuery();
+            cmdUsuario2.ExecuteNonQuery();
+            cmdUsuario3.ExecuteNonQuery();
+            cmdUsuario4.ExecuteNonQuery();
+
+            cmdPermisosMaster.ExecuteNonQuery();
+            cmdPermisosAdmin.ExecuteNonQuery();
+            cmdPermisosUsuario.ExecuteNonQuery();
+            cmdPermisosInicio.ExecuteNonQuery();
+
+            cmdCrearUsuarios.ExecuteNonQuery();
+            cmdCrearAhorros.ExecuteNonQuery();
+            cmdCrearPagos.ExecuteNonQuery();
+            cmdCrearSocios.ExecuteNonQuery();
+            cmdCrearTrabajos.ExecuteNonQuery();
+            cmdCrearPréstamos.ExecuteNonQuery();
+            cmdCrearTransacciones.ExecuteNonQuery();
+            cmdCrearTeléfonos.ExecuteNonQuery();
             cnn.Close();
-                MessageBox.Show("Base Creada");
-                this.Close();
+            MessageBox.Show("Base Creada");
+            this.Close();
             //    }
             //    catch (Exception ex)
             //    {
