@@ -39,14 +39,8 @@
             this.txtSuma = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.bttRealizarAportación = new System.Windows.Forms.Button();
-            this.txtEstado = new System.Windows.Forms.TextBox();
-            this.txtTipoA = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.txtCódigo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtCuenta = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.txtAsociado = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
@@ -111,7 +105,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvAportaciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAportaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAportaciones.Location = new System.Drawing.Point(378, 186);
+            this.dgvAportaciones.Location = new System.Drawing.Point(378, 128);
             this.dgvAportaciones.Name = "dgvAportaciones";
             this.dgvAportaciones.RowHeadersVisible = false;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -127,7 +121,7 @@
             this.groupBox1.Controls.Add(this.txtSuma);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Font = new System.Drawing.Font("Linotte-Light", 9F);
-            this.groupBox1.Location = new System.Drawing.Point(34, 206);
+            this.groupBox1.Location = new System.Drawing.Point(34, 121);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(281, 78);
             this.groupBox1.TabIndex = 86;
@@ -156,48 +150,13 @@
             // 
             // bttRealizarAportación
             // 
-            this.bttRealizarAportación.Location = new System.Drawing.Point(111, 304);
+            this.bttRealizarAportación.Location = new System.Drawing.Point(111, 219);
             this.bttRealizarAportación.Name = "bttRealizarAportación";
             this.bttRealizarAportación.Size = new System.Drawing.Size(112, 50);
             this.bttRealizarAportación.TabIndex = 87;
             this.bttRealizarAportación.Text = "Realizar Aportación";
             this.bttRealizarAportación.UseVisualStyleBackColor = true;
-            // 
-            // txtEstado
-            // 
-            this.txtEstado.Location = new System.Drawing.Point(664, 106);
-            this.txtEstado.Name = "txtEstado";
-            this.txtEstado.ReadOnly = true;
-            this.txtEstado.Size = new System.Drawing.Size(135, 27);
-            this.txtEstado.TabIndex = 97;
-            // 
-            // txtTipoA
-            // 
-            this.txtTipoA.Location = new System.Drawing.Point(401, 106);
-            this.txtTipoA.Name = "txtTipoA";
-            this.txtTipoA.ReadOnly = true;
-            this.txtTipoA.Size = new System.Drawing.Size(135, 27);
-            this.txtTipoA.TabIndex = 96;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(591, 114);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 19);
-            this.label5.TabIndex = 95;
-            this.label5.Text = "Estado:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(273, 109);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(119, 19);
-            this.label4.TabIndex = 94;
-            this.label4.Text = "Tipo de Ahorro:";
+            this.bttRealizarAportación.Click += new System.EventHandler(this.bttRealizarAportación_Click);
             // 
             // txtCódigo
             // 
@@ -216,24 +175,6 @@
             this.label3.Size = new System.Drawing.Size(143, 19);
             this.label3.TabIndex = 92;
             this.label3.Text = "Código Asociación:";
-            // 
-            // txtCuenta
-            // 
-            this.txtCuenta.Location = new System.Drawing.Point(120, 106);
-            this.txtCuenta.Name = "txtCuenta";
-            this.txtCuenta.ReadOnly = true;
-            this.txtCuenta.Size = new System.Drawing.Size(135, 27);
-            this.txtCuenta.TabIndex = 91;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(30, 109);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 19);
-            this.label2.TabIndex = 90;
-            this.label2.Text = "No Cuenta:";
             // 
             // txtAsociado
             // 
@@ -258,15 +199,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(838, 581);
-            this.Controls.Add(this.txtEstado);
-            this.Controls.Add(this.txtTipoA);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
+            this.ClientSize = new System.Drawing.Size(838, 508);
             this.Controls.Add(this.txtCódigo);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtCuenta);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.txtAsociado);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.bttRealizarAportación);
@@ -303,14 +238,8 @@
         private System.Windows.Forms.TextBox txtSuma;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button bttRealizarAportación;
-        private System.Windows.Forms.TextBox txtEstado;
-        private System.Windows.Forms.TextBox txtTipoA;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtCódigo;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtCuenta;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtAsociado;
         private System.Windows.Forms.Label label1;
     }

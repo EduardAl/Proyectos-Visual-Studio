@@ -17,7 +17,7 @@ namespace ACOPEDH
         String dgvControl;
         DialogResult dr = DialogResult.Cancel;
         Color Original, Seleccionado;
-        String Dato;
+        String Dato,Extra;
         Procedimientos_select Procedimientos_select = new Procedimientos_select();
         DataTable dsAhorro, dsPréstamo, dsAsociado;
         DataView filtro;
@@ -146,24 +146,26 @@ namespace ACOPEDH
         */
         #region Cargar Datos en nuevos forms
         private bool DatoR()
+        {
+            if (dgvBúsqueda.SelectedRows.Count == 1)
+            {
+                try
                 {
-                    if (dgvBúsqueda.SelectedRows.Count == 1)
-                    {
-                        try
-                        {
-                            DataGridViewRow dgvv = null;
-                            int i = dgvBúsqueda.CurrentCell.RowIndex;
-                            dgvv = dgvBúsqueda.Rows[i];
-                            Dato = dgvv.Cells[0].Value.ToString();
-                            if (!String.IsNullOrEmpty(Dato))
-                                return true;
-                        }
-                        catch
-                        {
-                        }
-                    }
-                    return false;
+                    Extra = "";
+                    DataGridViewRow dgvv = null;
+                    int i = dgvBúsqueda.CurrentCell.RowIndex;
+                    dgvv = dgvBúsqueda.Rows[i];
+                    Dato = dgvv.Cells[0].Value.ToString();
+                    Extra = dgvv.Cells[1].Value.ToString();
+                    if (!String.IsNullOrEmpty(Dato))
+                        return true;
                 }
+                catch
+                {
+                }
+            }
+            return false;
+        }
         #endregion
         #region Botones Principales (Ocultar cosas)
         public void Ocultar()
@@ -425,9 +427,9 @@ namespace ACOPEDH
         }
         private void bttAportaciones_Click(object sender, EventArgs e)
         {
-            if (DatoR())
+            if (DatoR()&&Extra!="")
             {
-                Aportaciones Accion = new Aportaciones(Dato);
+                Aportaciones Accion = new Aportaciones(Dato,Extra);
                 Accion.ShowDialog();
                 Accion.Dispose();
             }
