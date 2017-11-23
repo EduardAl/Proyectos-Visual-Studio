@@ -24,7 +24,6 @@ namespace Crear_Base_de_Datos
             try
             {
                 cnn.Open();
-                cnn.Close();
             }
             catch
             {
