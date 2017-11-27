@@ -333,14 +333,13 @@ namespace Crear_Base_de_Datos
                "Print ERROR_MESSAGE(); " +
                "Rollback tran Abono " +
                "End Catch ";
-            //Cambiado para que se muestre el dui //Nombre Cambiado
+            //Cambiado para que se muestren activos e inactivos
             String procedimiento9 = "Create Procedure[Ahorro DVG] " +
                 "As " +
                 "Begin Tran Ahorro_DVG " +
                 "Begin Try " +
-                "Select Ahorro.[id Ahorro] as 'Código de Ahorro',(Asociado.Nombres+' ' + Asociado.Apellidos) as 'Persona Asociada', Asociado.DUI as 'Dui' ,[Tipo de Ahorro].Nombre as 'Tipo de Ahorro' From Asociado inner join Ahorro " +
+                "Select Ahorro.[id Ahorro] as 'Código de Ahorro',(Asociado.Nombres+' ' + Asociado.Apellidos) as 'Persona Asociada', Asociado.DUI as 'DUI' ,[Tipo de Ahorro].Nombre as 'Tipo de Ahorro', Ahorro.Estado as 'Estado' From Asociado inner join Ahorro " +
                 "on Ahorro.[FK Código de Asociado] = Asociado.[Código Asociado] inner join [Tipo de Ahorro] on Ahorro.[FK Tipo Ahorro]=[Tipo de Ahorro].[id Tipo Ahorro] " +
-                "where Ahorro.Estado = 'ACTIVO' " +
                 "Commit Tran Ahorro_DVG " +
                 "End Try " +
                 "Begin Catch " +
@@ -598,26 +597,26 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Cargar_P " +
                 "End Catch ";
-            //Variables a mostrar cambiadas
+            //Modificado para que se vean también los no activos
             String procedimiento23 = "Create Procedure[Préstamo DVG] " +
                 "As " +
                 "Begin Tran Pres " +
                 "Begin Try " +
-                "Select Préstamos.[id Préstamos] as 'Código de Préstamo', (Asociado.Nombres + ' ' + Asociado.Apellidos) as 'Persona Asociada', Asociado.DUI as 'Dui', [Tipo de Préstamo].[Tipo de Préstamo] " +
+                "Select Préstamos.[id Préstamos] as 'Código de Préstamo', (Asociado.Nombres + ' ' + Asociado.Apellidos) as 'Persona Asociada', Asociado.DUI as 'Dui', [Tipo de Préstamo].[Tipo de Préstamo], Préstamos.Estado as 'Estado' " +
                 "From Asociado inner join Préstamos on Asociado.[Código Asociado] = Préstamos.[Código Asociado] inner join [Tipo de Préstamo] " +
-                "on Préstamos.[id Tipo de Préstamo] = [Tipo de Préstamo].[id Tipo de Préstamo] where Préstamos.Estado = 'ACTIVO' " +
+                "on Préstamos.[id Tipo de Préstamo] = [Tipo de Préstamo].[id Tipo de Préstamo] " +
                 "Commit Tran Pres " +
                 "End Try " +
                 "Begin Catch " +
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Pres " +
                 "End Catch";
-            //Cambiado para que muestre además el dui y el tipo de asociación
+            //Cambiado para que muestre los activos y no activos
             String procedimiento24 = "Create Procedure[Asociado DVG]" +
                 "As " +
                 "Begin Tran Aso " +
                 "Begin Try " +
-                "Select Asociado.[Código Asociado] as 'Código', (Asociado.Nombres + ' ' + Asociado.Apellidos) as 'Persona Asociada',Asociado.DUI as 'Dui',[Tipo de Socio].[Nombre Tipo Socio] as 'Tipo Asociación'From Asociado inner join [Tipo de Socio] on [Tipo de Socio].[id Tipo de Socio]=Asociado.[FK Tipo Socio]where Asociado.[Estado] = 'ACTIVO' " +
+                "Select Asociado.[Código Asociado] as 'Código', (Asociado.Nombres + ' ' + Asociado.Apellidos) as 'Persona Asociada',Asociado.DUI as 'Dui',[Tipo de Socio].[Nombre Tipo Socio] as 'Tipo Asociación', Asociado.Estado as 'Estado' From Asociado inner join [Tipo de Socio] on [Tipo de Socio].[id Tipo de Socio]=Asociado.[FK Tipo Socio] " +
                 "Commit Tran Aso " +
                 "End Try " +
                 "Begin Catch " +
@@ -1165,7 +1164,7 @@ namespace Crear_Base_de_Datos
             //try
             //{
             ////Abrimos la conexión y ejecutamos el comando
-            cnn.Open();
+           // cnn.Open();
             cmd.ExecuteNonQuery();
             cmd1.ExecuteNonQuery();
             cmd2.ExecuteNonQuery();
