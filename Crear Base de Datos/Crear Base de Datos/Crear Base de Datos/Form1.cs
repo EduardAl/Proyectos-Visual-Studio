@@ -107,6 +107,7 @@ namespace Crear_Base_de_Datos
                 "[Estado] [varchar](10) NOT NULL," +
                 "[FK Tipo Ahorro] [varchar](5) NOT NULL," +
                 "[FK Código de Asociado] [varchar](5) NOT NULL," +
+                "[FK Transacción] [varchar](5) references [Transacciones]([id Transacción])," +
                 "CONSTRAINT [PK_Ahorro] PRIMARY KEY ([id Ahorro])," +
                 "CONSTRAINT [FK Tipo Ahorro] FOREIGN KEY ([FK Tipo Ahorro])" +
                 "REFERENCES [Tipo de Ahorro]([id Tipo Ahorro])," +
@@ -435,11 +436,14 @@ namespace Crear_Base_de_Datos
                 "Begin try " +
                 "Declare @ID_Tipo_Ahorro as varchar(5) " +
                 "Declare @Contar_Activos as int " +
+                "Declare @id_Transacción as varchar(5)" +
                 "set @ID_Tipo_Ahorro = (Select [id Tipo Ahorro] From [Tipo de Ahorro] where Nombre = @FK_Tipo_Ahorro) " +
                 "set @Contar_Activos = (Select COUNT([id Ahorro]) from Ahorro where [FK Código de Asociado] = @FK_Asociado AND Estado = 'ACTIVO') " +
                 "if @Contar_Activos < 3 " +
                 "Begin " +
-                "Insert into Ahorro values('ACTIVO', @ID_Tipo_Ahorro, @FK_Asociado) " +
+                "Insert into Transacciones values(@Id_Usuario, 'TT006', GETDATE()) " +
+                "set @id_Transacción = (Select MAX([id Transacción]) From Transacciones) " +
+                "Insert into Ahorro values('ACTIVO', @ID_Tipo_Ahorro, @FK_Asociado, @id_Transacción) " +
                 "Declare @FK_Ahorro_nuevo as varchar(5) " +
                 "set @FK_Ahorro_nuevo = (Select MAX([id Ahorro]) from Ahorro where [FK Código de Asociado] = @FK_Asociado) " +
                 "exec Abonar @Abono_inicial,@Comision,@FK_Ahorro_nuevo,@ID_Usuario " +
@@ -1091,7 +1095,7 @@ namespace Crear_Base_de_Datos
             String crearpréstamos =
                 "insert into [Tipo de Préstamo] values ('Personal',17),('Emergencia',17)";
             String insertartiposdetransacciones =
-                "insert into [Tipo de Transacción] values ('Aportación'),('Abono'), ('Préstamo'), ('Pago'), ('Retiro')";
+                "insert into [Tipo de Transacción] values ('Aportación'),('Abono'), ('Préstamo'), ('Pago'), ('Retiro'), ('Ahorro')";
             //Añadido, la inserción de teléfonos
             String insertartiposdeteléfonos =
                  "insert into [Tipos de Teléfonos] values ('Celular'),('Casa'), ('Trabajo'), ('Fax')";
