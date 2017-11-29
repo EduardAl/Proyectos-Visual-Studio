@@ -182,6 +182,12 @@ namespace Crear_Base_de_Datos
                 "[Fecha Límite][datetime] NOT NULL," +
                 "[FK Transacción] [varchar](5) references [Transacciones]([id Transacción])," +
                  "CONSTRAINT [PK Pago] PRIMARY KEY ([id Pago]))";
+            String tabla20 = "create table Imagenes(" +
+                "Cod_Imagen int identity(1, 1) primary key, " +
+                "Imagen Image, " +
+                "[Tipo imagen] int, " +
+                "Estado varchar(8), " +
+                "Descripcion varchar(MAX)); ";
             //Añadido para conseguir el límite anterior
             String procedimiento1 = "Create Procedure [Conseguir Límite] " +
                 "@Id_Préstamo varchar(9) " +
@@ -882,6 +888,31 @@ namespace Crear_Base_de_Datos
                 "ROLLBACK TRANSACTION " +
                 "Print 'Error en modificar datos de asociado ' + ERROR_MESSAGE(); " +
               "End ";
+            String procedimiento40 = "create procedure[Cargar Imagenes] " +
+                "As Begin " +
+                "select Imagen, [Tipo imagen], Descripcion from Imagenes where Estado = 'Activa' " +
+                "End; ";
+            String procedimiento41 = "create procedure[Nueva Imagen] " +
+                "@Imagen image, " +
+                "@Tipo_imagen int, " +
+                "@Descripcion varchar(MAX)" +
+                "As Begin " +
+                "If exists(select Cod_Imagen from Imagenes where [Tipo imagen] = @Tipo_imagen) " +
+                "Begin " +
+                "Update Imagenes set Estado = 'Inactiva' where Cod_Imagen = (select Cod_Imagen from Imagenes where [Tipo imagen] = @Tipo_imagen); " +
+                "Insert into Imagenes values(@Imagen, @Tipo_imagen, 'Activa', @Descripcion); " +
+                "End " +
+                "Else " +
+                "Begin " +
+                "Insert into Imagenes values(@Imagen, @Tipo_imagen, 'Activa', @Descripcion); " +
+                "End " +
+                "End ";
+            String procedimiento42 = "create procedure[Eliminar Imagen] " +
+                "@Cod_Imagen int " +
+                "As " +
+                "Begin " +
+                "delete from Imagenes where Cod_Imagen = @Cod_Imagen " +
+                "End; ";
             String Login1 =
                 "CREATE LOGIN Master_ACOPEDH " +
                 "WITH PASSWORD = 'AUREO112358' ";
@@ -912,6 +943,8 @@ namespace Crear_Base_de_Datos
             String permisosAdministrador =
                 "Use " + txtNombre.Text + ";" +
                 "grant select, update, references, insert on object :: Ahorro " +
+                "to Administrador with grant option " +
+                "grant select, update, references, insert on object :: Imagenes " +
                 "to Administrador with grant option " +
                 "grant select, update, references, insert on object :: [Tipo de Ahorro]" +
                 "to Administrador with grant option " +
@@ -1006,15 +1039,21 @@ namespace Crear_Base_de_Datos
                 "grant execute on object :: [Nuevo Préstamo] " +
                 "to Administrador with grant option " +
                 "grant execute on object :: [Cargar Tipo Pagos] " +
-                  "to Administrador with grant option " +
+                "to Administrador with grant option " +
                 "grant execute on object :: [Conseguir Límite] " +
-                  "to Administrador with grant option " +
+                "to Administrador with grant option " +
                 "grant execute on object :: [Desasociar] " +
-                      "to Administrador with grant option " +
+                "to Administrador with grant option " +
                 "grant execute on object :: [Cerrar Ahorro] " +
-                      "to Administrador with grant option " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Cargar Imagenes] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Nueva Imagen] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Eliminar Imagen] " +
+                "to Administrador with grant option " +
                 "grant execute on object :: [Actualizar Asociado] " +
-                       "to Administrador with grant option";
+                "to Administrador with grant option";
             String permisosUsuario =
                  "Use " + txtNombre.Text + ";" +
                  "Exec sp_addrolemember N'db_datareader',N'Usuario' " +
@@ -1082,6 +1121,7 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd17 = new SqlCommand(tabla17, cnn);
             SqlCommand cmd18 = new SqlCommand(tabla18, cnn);
             SqlCommand cmd19 = new SqlCommand(tabla19, cnn);
+            SqlCommand cmd20 = new SqlCommand(tabla20, cnn);
 
             //Creación Procedimientos
 
@@ -1124,6 +1164,9 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd_37 = new SqlCommand(procedimiento37, cnn);
             SqlCommand cmd_38 = new SqlCommand(procedimiento38, cnn);
             SqlCommand cmd_39 = new SqlCommand(procedimiento39, cnn);
+            SqlCommand cmd_40 = new SqlCommand(procedimiento40, cnn);
+            SqlCommand cmd_41 = new SqlCommand(procedimiento41, cnn);
+            SqlCommand cmd_42 = new SqlCommand(procedimiento42, cnn);
 
             //Creación Triggers
 
@@ -1164,7 +1207,7 @@ namespace Crear_Base_de_Datos
             //try
             //{
             ////Abrimos la conexión y ejecutamos el comando
-           // cnn.Open();
+            cnn.Open();
             cmd.ExecuteNonQuery();
             cmd1.ExecuteNonQuery();
             cmd2.ExecuteNonQuery();
@@ -1185,6 +1228,7 @@ namespace Crear_Base_de_Datos
             cmd17.ExecuteNonQuery();
             cmd18.ExecuteNonQuery();
             cmd19.ExecuteNonQuery();
+            cmd20.ExecuteNonQuery();
 
             cmd_01.ExecuteNonQuery();
             cmd_02.ExecuteNonQuery();
@@ -1225,6 +1269,9 @@ namespace Crear_Base_de_Datos
             cmd_37.ExecuteNonQuery();
             cmd_38.ExecuteNonQuery();
             cmd_39.ExecuteNonQuery();
+            cmd_40.ExecuteNonQuery();
+            cmd_41.ExecuteNonQuery();
+            cmd_42.ExecuteNonQuery();
 
             cmdTrigger1.ExecuteNonQuery();
 

@@ -112,6 +112,7 @@ namespace ACOPEDH
             bttNuevoAsociado.Visible = true;
             bttDatosAsociado.Visible = true;
             bttAportaciones.Visible = true;
+            btnRegAsociado.Visible = true;
             //Lenado de Datos
             dgvControl = "Asociado";
             this.filtro = dsAsociado.DefaultView;
@@ -195,6 +196,7 @@ namespace ACOPEDH
             bttAportaciones.Visible = false;
             bttNuevoAsociado.Visible = false;
             bttDatosAsociado.Visible = false;
+            btnRegAsociado.Visible = false;
 
             //Configuración
             panelConfig.Visible = false;
@@ -507,6 +509,7 @@ namespace ACOPEDH
             bttDatosAsociado.Location = bttAmortización.Location;
             bttRealizarPago.Location = new Point(bttAmortización.Location.X - bttRealizarPago.Width - 89, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
             bttAbonar.Location = bttRealizarPago.Location;
+            btnRegAsociado.Location = bttRealizarPago.Location;
             Refresh();
         }
         #endregion
@@ -818,6 +821,12 @@ namespace ACOPEDH
 
         private const int WM_NCHITTEST = 0x84;          // variables for dragging the form
         private const int HTCLIENT = 0x1;
+
+        private void btnRegAsociado_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private const int HTCAPTION = 0x2;
 
         protected override CreateParams CreateParams
