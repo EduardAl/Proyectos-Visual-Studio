@@ -55,7 +55,7 @@ namespace Crear_Base_de_Datos
             String tabla4 = "CREATE TABLE [Tipo de Transacción](" +
                 "[Número][int] IDENTITY(1, 1) NOT NULL," +
                 "[id Tipo de Transacción]  AS('TT' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL primary key," +
-                "[Tipo de Transacción] varchar(20) unique NOT NULL)";
+                "[Tipo de Transacción] varchar(30) unique NOT NULL)";
             String tabla5 = "CREATE TABLE Transacciones(" +
                  "[Número][int] IDENTITY(1, 1) NOT NULL," +
                 "[id Transacción]  AS('TR' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL primary key," +
@@ -189,6 +189,13 @@ namespace Crear_Base_de_Datos
                 "[Tipo imagen] int, " +
                 "Estado varchar(8), " +
                 "Descripcion varchar(MAX)); ";
+            String tabla21 = "Create table[Retiros Aportaciones](" +
+                "[Número][int] IDENTITY(1, 1) NOT NULL, " +
+                "[Id Retiro Aportación]  AS('RA' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL, " +
+                "[Retiro] money NOT NULL, " +
+                "[Número de Cheque] varchar(8), " +
+                "[FK Asociado] varchar(5) NOT NULL references Asociado([Código Asociado]), " +
+                "[FK Transacción] varchar(5) NOT NULL references Transacciones([id Transacción])) ";
             //Añadido para conseguir el límite anterior
             String procedimiento1 = "Create Procedure [Conseguir Límite] " +
                 "@Id_Préstamo varchar(9) " +
@@ -844,7 +851,6 @@ namespace Crear_Base_de_Datos
                 "Print 'La persona asociada tiene cuentas de ahorro activas' " +
                 "Commit Tran Desasociado " +
                 "End " +
-                "Commit Tran Desasociado " +
                 "End " +
                 "Else " +
                 "Begin " +
@@ -917,7 +923,40 @@ namespace Crear_Base_de_Datos
                 "Begin " +
                 "delete from Imagenes where Cod_Imagen = @Cod_Imagen " +
                 "End; ";
-            String Login1 =
+            //Procedimiento para retirar las aportaciones al desasociar.
+            String procedimiento43 = "create procedure [dbo].[Retirar Aportaciones] " +
+                "@Código_Asociado varchar(5), " +
+                "@Total_Retiro money, " +
+                "@No_Cheque varchar(8), " +
+                "@Id_Usuario varchar(5) " +
+                "As Begin Tran Retiro " +
+                "Begin Try " +
+                "If(Select Estado from Asociado where[Código Asociado] = @Código_Asociado) = 'ACTIVO' " +
+                "Begin "+
+                "if (Select SUM(Aportación) from Aportaciones where [FK Asociado] = @Código_Asociado) <> 0 " +
+                "Begin " +
+                "Declare @Id_Transacción varchar(5) " +
+                "Insert into Transacciones values(@Id_Usuario,'TT007',GETDATE()) " +
+                "set @Id_Transacción = (Select MAX([id Transacción]) From Transacciones) " +
+                "Insert into[Retiros Aportaciones] values(@Total_Retiro, @No_Cheque, @Código_Asociado, @Id_Transacción) " +
+                "Commit Tran Retiro " +
+                "End " +
+                "Else "+
+                "Begin " +
+                "Print 'No hay aportaciones que retirar.' " +
+                "Commit Tran Retiro " +
+                "End " +
+                "End "+
+                "Else Begin "+
+                "Print 'La persona se encuentra desasociada.' "+
+                "Commit Tran Retiro " +
+                "End " +
+                "End Try " +
+                "Begin Catch " +
+                "Print ERROR_MESSAGE(); " +
+                "Rollback Tran Retiro " +
+                "End Catch ";
+                    String Login1 =
                 "CREATE LOGIN Master_ACOPEDH " +
                 "WITH PASSWORD = 'AUREO112358' ";
             String Login2 =
@@ -988,6 +1027,8 @@ namespace Crear_Base_de_Datos
                 "to Administrador with grant option " +
                 "grant select, references, insert on object :: [Transacciones] " +
                 "to Administrador with grant option " +
+                "grant select, references, insert on object :: [Retiros Aportaciones] " +
+                "to Administrador with grant option " +
                 "grant execute on object :: [Insertar Asociado] " +
                 "to Administrador with grant option " +
                 "grant execute on object :: [Cargar Asociados] " +
@@ -1056,6 +1097,8 @@ namespace Crear_Base_de_Datos
                 "to Administrador with grant option " +
                 "grant execute on object :: [Eliminar Imagen] " +
                 "to Administrador with grant option " +
+                "grant execute on object :: [Retirar Aportaciones] " +
+                "to Administrador with grant option " +
                 "grant execute on object :: [Actualizar Asociado] " +
                 "to Administrador with grant option";
             String permisosUsuario =
@@ -1095,7 +1138,7 @@ namespace Crear_Base_de_Datos
             String crearpréstamos =
                 "insert into [Tipo de Préstamo] values ('Personal',17),('Emergencia',17)";
             String insertartiposdetransacciones =
-                "insert into [Tipo de Transacción] values ('Aportación'),('Abono'), ('Préstamo'), ('Pago'), ('Retiro'), ('Ahorro')";
+                "insert into [Tipo de Transacción] values ('Aportación'),('Abono'), ('Préstamo'), ('Pago'), ('Retiro'), ('Ahorro'),('Retiro de Aportaciones')";
             //Añadido, la inserción de teléfonos
             String insertartiposdeteléfonos =
                  "insert into [Tipos de Teléfonos] values ('Celular'),('Casa'), ('Trabajo'), ('Fax')";
@@ -1126,6 +1169,7 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd18 = new SqlCommand(tabla18, cnn);
             SqlCommand cmd19 = new SqlCommand(tabla19, cnn);
             SqlCommand cmd20 = new SqlCommand(tabla20, cnn);
+            SqlCommand cmd21 = new SqlCommand(tabla21, cnn);
 
             //Creación Procedimientos
 
@@ -1171,6 +1215,7 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd_40 = new SqlCommand(procedimiento40, cnn);
             SqlCommand cmd_41 = new SqlCommand(procedimiento41, cnn);
             SqlCommand cmd_42 = new SqlCommand(procedimiento42, cnn);
+            SqlCommand cmd_43 = new SqlCommand(procedimiento43, cnn);
 
             //Creación Triggers
 
@@ -1211,7 +1256,7 @@ namespace Crear_Base_de_Datos
             //try
             //{
             ////Abrimos la conexión y ejecutamos el comando
-            cnn.Open();
+            //cnn.Open();
             cmd.ExecuteNonQuery();
             cmd1.ExecuteNonQuery();
             cmd2.ExecuteNonQuery();
@@ -1233,6 +1278,7 @@ namespace Crear_Base_de_Datos
             cmd18.ExecuteNonQuery();
             cmd19.ExecuteNonQuery();
             cmd20.ExecuteNonQuery();
+            cmd21.ExecuteNonQuery();
 
             cmd_01.ExecuteNonQuery();
             cmd_02.ExecuteNonQuery();
@@ -1276,6 +1322,7 @@ namespace Crear_Base_de_Datos
             cmd_40.ExecuteNonQuery();
             cmd_41.ExecuteNonQuery();
             cmd_42.ExecuteNonQuery();
+            cmd_43.ExecuteNonQuery();
 
             cmdTrigger1.ExecuteNonQuery();
 
