@@ -142,7 +142,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(24, 123);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 24);
+            this.label1.Size = new System.Drawing.Size(87, 19);
             this.label1.TabIndex = 5;
             this.label1.Text = "Busqueda: ";
             // 
@@ -183,7 +183,7 @@
             this.label2.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(548, 89);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 48);
+            this.label2.Size = new System.Drawing.Size(74, 38);
             this.label2.TabIndex = 23;
             this.label2.Text = "Forma\r\nde Pago: ";
             // 
@@ -194,7 +194,7 @@
             this.CBFormadePago.FormattingEnabled = true;
             this.CBFormadePago.Location = new System.Drawing.Point(643, 94);
             this.CBFormadePago.Name = "CBFormadePago";
-            this.CBFormadePago.Size = new System.Drawing.Size(185, 32);
+            this.CBFormadePago.Size = new System.Drawing.Size(185, 27);
             this.CBFormadePago.TabIndex = 3;
             // 
             // label13
@@ -203,7 +203,7 @@
             this.label13.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(464, 150);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(154, 24);
+            this.label13.Size = new System.Drawing.Size(124, 19);
             this.label13.TabIndex = 21;
             this.label13.Text = "Cuota Mensual: ";
             // 
@@ -224,7 +224,7 @@
             this.label12.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(269, 150);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(140, 24);
+            this.label12.Size = new System.Drawing.Size(112, 19);
             this.label12.TabIndex = 19;
             this.label12.Text = "No de Cuotas: ";
             // 
@@ -245,7 +245,7 @@
             this.label11.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(16, 150);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(202, 24);
+            this.label11.Size = new System.Drawing.Size(160, 19);
             this.label11.TabIndex = 17;
             this.label11.Text = "Monto del Préstamo: ";
             // 
@@ -278,7 +278,7 @@
             this.label10.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(669, 150);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(157, 24);
+            this.label10.Size = new System.Drawing.Size(124, 19);
             this.label10.TabIndex = 14;
             this.label10.Text = "Tasa de Interés: ";
             // 
@@ -288,7 +288,7 @@
             this.label9.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(293, 89);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(102, 48);
+            this.label9.Size = new System.Drawing.Size(80, 38);
             this.label9.TabIndex = 13;
             this.label9.Text = "Tipo de\r\nPréstamo:";
             // 
@@ -299,7 +299,7 @@
             this.CBTipoPréstamo.FormattingEnabled = true;
             this.CBTipoPréstamo.Location = new System.Drawing.Point(376, 94);
             this.CBTipoPréstamo.Name = "CBTipoPréstamo";
-            this.CBTipoPréstamo.Size = new System.Drawing.Size(156, 32);
+            this.CBTipoPréstamo.Size = new System.Drawing.Size(156, 27);
             this.CBTipoPréstamo.TabIndex = 2;
             this.CBTipoPréstamo.SelectedIndexChanged += new System.EventHandler(this.CBTipoPréstamo_SelectedIndexChanged);
             // 
@@ -331,7 +331,7 @@
             this.label7.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(639, 45);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(54, 24);
+            this.label7.Size = new System.Drawing.Size(44, 19);
             this.label7.TabIndex = 10;
             this.label7.Text = "DUI: ";
             // 
@@ -352,7 +352,7 @@
             this.label6.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(400, 38);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(110, 48);
+            this.label6.Size = new System.Drawing.Size(89, 38);
             this.label6.TabIndex = 10;
             this.label6.Text = "Código de \r\nAsociación:";
             // 
@@ -362,7 +362,7 @@
             this.label5.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(18, 38);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(98, 48);
+            this.label5.Size = new System.Drawing.Size(78, 38);
             this.label5.TabIndex = 10;
             this.label5.Text = "Persona\r\nAsociada:";
             // 
@@ -383,7 +383,7 @@
             this.label8.Font = new System.Drawing.Font("Linotte-Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(9, 99);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(115, 24);
+            this.label8.Size = new System.Drawing.Size(92, 19);
             this.label8.TabIndex = 11;
             this.label8.Text = "Ocupación: ";
             // 
@@ -412,13 +412,13 @@
             // BarraTítulo
             // 
             this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
-            this.BarraTítulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F);
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
             this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
             this.BarraTítulo.Name = "BarraTítulo";
             this.BarraTítulo.Size = new System.Drawing.Size(982, 30);
             this.BarraTítulo.TabIndex = 35;
-            this.BarraTítulo.Text = "         ACOPEDH .:. OTORGAR PRÉSTAMO";
+            this.BarraTítulo.Text = "         ACOPEDH - Otorgar Préstamo";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // bttCer

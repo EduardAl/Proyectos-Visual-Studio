@@ -19,6 +19,7 @@ namespace ACOPEDH
             ********************************* 
         */
         string Datos;
+        Fonts F;
         #region Constructores
         //Solo iniciando
         public Pagos_Realizados()
@@ -53,6 +54,8 @@ namespace ACOPEDH
                 dgvPagosRealizados.Refresh();
                 txtMonto.Text = Math.Round(Convert.ToDouble(txtMonto.Text),2).ToString("C2");
                 txtCuotaMensual.Text = Math.Round(Convert.ToDouble(txtCuotaMensual.Text),2).ToString("C2");
+                F = new Fonts(dgvPagosRealizados);
+                F.Diseño();
             }
             catch { }
             Visible = true;

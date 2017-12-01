@@ -25,6 +25,7 @@ namespace ACOPEDH
         DataTable dtAsociado;
         DataView filtro;
         Procedimientos_select Cargar = new Procedimientos_select();
+        Fonts F;
         #region Constructores
         //Normal
         public Otorgar_Préstamo()
@@ -53,6 +54,8 @@ namespace ACOPEDH
                 CBFormadePago.SelectedIndex = 0;
             dgvAsociado.Refresh();
             TxtBúsqueda.Focus();
+            F = new Fonts(dgvAsociado);
+            F.Diseño();
         }
         public void LlenarDGV(ref DataTable dss, String tabla)
         {

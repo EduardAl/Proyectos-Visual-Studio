@@ -52,7 +52,7 @@
             this.BarraTítulo.Name = "BarraTítulo";
             this.BarraTítulo.Size = new System.Drawing.Size(491, 30);
             this.BarraTítulo.TabIndex = 33;
-            this.BarraTítulo.Text = "         ACOPEDH .:. Confirmación";
+            this.BarraTítulo.Text = "         ACOPEDH - Confirmación";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox3
@@ -90,7 +90,7 @@
             this.txtConfContraseña.Location = new System.Drawing.Point(103, 159);
             this.txtConfContraseña.Margin = new System.Windows.Forms.Padding(0);
             this.txtConfContraseña.Name = "txtConfContraseña";
-            this.txtConfContraseña.Size = new System.Drawing.Size(259, 26);
+            this.txtConfContraseña.Size = new System.Drawing.Size(259, 21);
             this.txtConfContraseña.TabIndex = 110;
             this.txtConfContraseña.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtConfContraseña.UseSystemPasswordChar = true;
@@ -151,7 +151,7 @@
             // 
             // Confirmación
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;

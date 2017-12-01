@@ -56,11 +56,12 @@
             this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
             this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.bttCer.Image = ((System.Drawing.Image)(resources.GetObject("bttCer.Image")));
-            this.bttCer.Location = new System.Drawing.Point(808, 0);
+            this.bttCer.Location = new System.Drawing.Point(813, 4);
             this.bttCer.Name = "bttCer";
-            this.bttCer.Size = new System.Drawing.Size(30, 26);
+            this.bttCer.Size = new System.Drawing.Size(21, 21);
             this.bttCer.TabIndex = 84;
             this.bttCer.TabStop = false;
+            this.bttCer.Click += new System.EventHandler(this.bttCer_Click);
             // 
             // pictureBox3
             // 

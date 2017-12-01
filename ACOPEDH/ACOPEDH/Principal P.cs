@@ -14,6 +14,7 @@ namespace ACOPEDH
             *     Componentes iniciales     *
             ********************************* 
         */
+        Fonts F;
         String dgvControl;
         DialogResult dr = DialogResult.Cancel;
         Color Original, Seleccionado;
@@ -44,6 +45,8 @@ namespace ACOPEDH
             txtNuevaContraseña.UseSystemPasswordChar = true;
             txtConfContraseña.UseSystemPasswordChar = true;
             No_Editar();
+            F = new Fonts(dgvBúsqueda);
+            F.Diseño();
         }
         #endregion
 

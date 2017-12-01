@@ -22,6 +22,7 @@ namespace ACOPEDH
         string Dato;
         DataTable dt;
         public DialogResult dr = DialogResult.Cancel;
+        Fonts F;
         #region Componentes
         public Estado_de_Cuenta()
         {
@@ -37,7 +38,10 @@ namespace ACOPEDH
         private void Estado_de_Cuenta_Load(object sender, EventArgs e)
         {
             Cargar_Datos();
-
+            F = new Fonts(dgvAbonos);
+            F.Diseño();
+            F = new Fonts(dgvRetiros);
+            F.Diseño();
         }
         #endregion
 
@@ -55,8 +59,8 @@ namespace ACOPEDH
         //Cerrar Cuenta
         private void bttCerrarCuenta_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 if (Convert.ToDouble(txtSaldo.Text.Substring(1)) == 0)
                 {
                     if (MessageBox.Show("¿Seguro que desea cerrar la cuenta?","Cerrar Cuenta",MessageBoxButtons.OKCancel,MessageBoxIcon.Question)==DialogResult.OK)
@@ -84,10 +88,10 @@ namespace ACOPEDH
                         Acción.Dispose();
                     }
                 }
-            }
-            catch
-            {
-            }
+            //}
+            //catch
+            //{
+            //}
         }
         #endregion
 

@@ -11,6 +11,7 @@ namespace ACOPEDH
         [DllImport("gdi32.dll")]
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbfont, uint cbfont, IntPtr pdv, [In] ref uint pcFonts);
 
+        DataGridView dvg;
         FontFamily FontFam;
         Font Fonty;
 
@@ -22,7 +23,26 @@ namespace ACOPEDH
         {
             Iniciar(CargarFuente);
         }
-
+        public Fonts(DataGridView dvgBúsqueda)
+        {
+            dvg = dvgBúsqueda;
+        }
+        //Procedimiento para el diseño del DataGridView
+        public void Diseño()
+        {
+            dvg.BorderStyle = BorderStyle.None;
+            dvg.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dvg.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            dvg.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dvg.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dvg.BackgroundColor = Color.White;
+            dvg.EnableHeadersVisualStyles = false;
+            dvg.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dvg.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dvg.ColumnHeadersDefaultCellStyle.ForeColor = Color.LightBlue;
+            dvg.ColumnHeadersDefaultCellStyle.Font = new Font("Linotte-SemiBold", 12);
+            dvg.DefaultCellStyle.Font = new Font("Linotte-Light", 12);
+        }
         private void Iniciar()
         {
             byte[] FontArray = Properties.Resources.Folks_Light;
