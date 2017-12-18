@@ -956,6 +956,21 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Retiro " +
                 "End Catch ";
+            //Procedimiento para cerrar un préstamo
+            String procedimiento44 = "Create procedure [dbo].[Cerrar Préstamo] " +
+                "@Id_Préstamo varchar(9), " +
+                "@Id_Usuario varchar(5) " +
+                "As Begin Tran Cancelar " +
+                "Begin Try " +
+                "Declare @Id_Transacción varchar(5) " +
+                "Update Préstamos set Estado = 'CANCELADO' From Préstamos where[id Préstamos] = @Id_Préstamo " +
+                "Insert into Transacciones values(@Id_Usuario, 'TT008', GETDATE()) " +
+                "Commit Tran Cancelar " +
+                "End Try " +
+                "Begin Catch " +
+                "Print ERROR_MESSAGE(); " +
+                "Rollback Tran Cancelar  " +
+                "End catch ";
                     String Login1 =
                 "CREATE LOGIN Master_ACOPEDH " +
                 "WITH PASSWORD = 'AUREO112358' ";
@@ -1099,6 +1114,8 @@ namespace Crear_Base_de_Datos
                 "to Administrador with grant option " +
                 "grant execute on object :: [Retirar Aportaciones] " +
                 "to Administrador with grant option " +
+                "grant execute on object :: [Cerrar Préstamo] " +
+                "to Administrador with grant option " +
                 "grant execute on object :: [Actualizar Asociado] " +
                 "to Administrador with grant option";
             String permisosUsuario =
@@ -1138,7 +1155,7 @@ namespace Crear_Base_de_Datos
             String crearpréstamos =
                 "insert into [Tipo de Préstamo] values ('Personal',17),('Emergencia',17)";
             String insertartiposdetransacciones =
-                "insert into [Tipo de Transacción] values ('Aportación'),('Abono'), ('Préstamo'), ('Pago'), ('Retiro'), ('Ahorro'),('Retiro de Aportaciones')";
+                "insert into [Tipo de Transacción] values ('Aportación'),('Abono'), ('Préstamo'), ('Pago'), ('Retiro'), ('Ahorro'),('Retiro de Aportaciones'), ('Refinanciamiento de Préstamo')";
             //Añadido, la inserción de teléfonos
             String insertartiposdeteléfonos =
                  "insert into [Tipos de Teléfonos] values ('Celular'),('Casa'), ('Trabajo'), ('Fax')";
@@ -1216,6 +1233,7 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd_41 = new SqlCommand(procedimiento41, cnn);
             SqlCommand cmd_42 = new SqlCommand(procedimiento42, cnn);
             SqlCommand cmd_43 = new SqlCommand(procedimiento43, cnn);
+            SqlCommand cmd_44 = new SqlCommand(procedimiento44, cnn);
 
             //Creación Triggers
 
@@ -1323,6 +1341,7 @@ namespace Crear_Base_de_Datos
             cmd_41.ExecuteNonQuery();
             cmd_42.ExecuteNonQuery();
             cmd_43.ExecuteNonQuery();
+            cmd_44.ExecuteNonQuery();
 
             cmdTrigger1.ExecuteNonQuery();
 

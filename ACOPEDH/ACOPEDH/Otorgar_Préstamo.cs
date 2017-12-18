@@ -32,6 +32,11 @@ namespace ACOPEDH
         {
             InitializeComponent();
         }
+        public Otorgar_Préstamo(string dato)
+        {
+            InitializeComponent();
+
+        }
         #endregion        
         #region Load
         private void Otorgar_Préstamo_Load(object sender, EventArgs e)

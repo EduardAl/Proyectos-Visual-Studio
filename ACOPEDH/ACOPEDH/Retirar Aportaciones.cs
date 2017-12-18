@@ -34,7 +34,7 @@ namespace ACOPEDH
                 SqlParameter[] Parámetro = new SqlParameter[1];
                 Parámetro[0] = new SqlParameter("@Código_Asociado", Dato);
                 pro.LlenarText("[Suma Aportaciones]", "Suma de Aportaciones", Parámetro, txtSuma);
-                txtSuma.Text = double.Parse(txtSuma.Text).ToString();
+                txtSuma.Text = double.Parse(txtSuma.Text).ToString("C2");
             }
             catch
             {
