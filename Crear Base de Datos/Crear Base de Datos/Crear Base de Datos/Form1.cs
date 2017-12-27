@@ -971,7 +971,45 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Cancelar  " +
                 "End catch ";
-                    String Login1 =
+            //Procedimiento para Constancia de Pago
+            String procedimiento45 = "Create procedure[dbo].[Constancia Pago] " +
+                "@Id_Préstamo varchar(9) " +
+                "As begin tran Constancia " +
+                "Begin try " +
+                "declare @id_Pago varchar(9) " +
+                "Set @id_Pago = (Select Max([id Pago]) From Pago where Pago.[id Préstamo] = @Id_Préstamo) " +
+                "Select Pago.[id Pago] as 'Pid_Pago', Préstamos.[id Préstamos] as 'PPréstamo', (Asociado.Nombres +' '+ Asociado.Apellidos) as 'PNombre', " +
+                "Préstamos.[Cuota Mensual] as 'Monto mínimo',Pago.Saldo as 'Psaldo',  Pago.Pago as 'PPago', Pago.Mora as 'Pmora', " +
+                "Transacciones.[Fecha de Transacción] as 'PFecha' From Asociado inner join Préstamos on Asociado.[Código Asociado] = Préstamos.[Código Asociado] " +
+                "inner join Pago on Préstamos.[id Préstamos] = Pago.[id Préstamo] inner join Transacciones on Pago.[FK Transacción] = Transacciones.[id Transacción] " +
+                "where Pago.[id Pago] = @id_Pago and Préstamos.[id Préstamos]= @Id_Préstamo " +
+                "Commit Tran Constancia " +
+                "End try " +
+                "Begin Catch " +
+                "Print ERROR_MESSAGE(); " +
+                "Rollback tran Constancia " +
+                "End Catch ";
+            //Procedimiento para Informe de Préstamo
+            String procedimiento46 = "Create Procedure[dbo].[Informe Préstamo] " +
+                "@Codigo varchar(5) " +
+                "As Begin " +
+                "Tran Informe " +
+                "Begin Try " +
+                "Declare @Id_Préstamo varchar(9) " +
+                "Set @Id_Préstamo = (Select Max(Préstamos.[id Préstamos]) From Préstamos inner join Asociado on Préstamos.[Código Asociado] = Asociado.[Código Asociado] " +
+                "where Asociado.[Código Asociado] = @Codigo) " +
+                "Select Asociado.[Código Asociado] AS 'Código_A', (Asociado.Nombres + ' ' + Asociado.Apellidos) AS 'Nombre', " +
+                "Asociado.Apellidos as 'Ape', Préstamos.[id Préstamos] as 'Préstamo', " +
+                "Asociado.Dirección as 'Dir', Ocupación.[Nombre de la Empresa] as 'Trabajo',[Forma de Pago].Nombre AS 'FormaP', [Tipo de Préstamo].[Tipo de Préstamo] As 'TipoP',  " +
+                "Asociado.DUI as 'PDUI',[Tipo de Préstamo].[Tasa de Interés] As 'Interés',  " +
+                "Préstamos.[Monto del Préstamo] AS 'Monto', Transacciones.[Fecha de Transacción] AS 'FechaT', Préstamos.Cuotas AS 'NCuotas', " +
+                "Préstamos.[Cuota Mensual] AS 'PCuotas', Préstamos.Estado AS 'Estado' From Ocupación inner join Asociado on " +
+                "Ocupación.[Id Ocupación] = Asociado.[FK Ocupación] inner join Préstamos on Asociado.[Código Asociado] = Préstamos.[Código Asociado] " +
+                "inner join [Tipo de Préstamo] on Préstamos.[id Tipo de Préstamo] = [Tipo de Préstamo].[id Tipo de Préstamo] " +
+                "inner join [Forma de Pago] on Préstamos.[id Forma de Pago] = [Forma de Pago].[id Forma de Pago] " +
+                "inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] where Préstamos.[id Préstamos]= @Id_Préstamo " +
+                "Commit Tran Informe End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Informe End Catch ";
+                        String Login1 =
                 "CREATE LOGIN Master_ACOPEDH " +
                 "WITH PASSWORD = 'AUREO112358' ";
             String Login2 =
@@ -1116,6 +1154,10 @@ namespace Crear_Base_de_Datos
                 "to Administrador with grant option " +
                 "grant execute on object :: [Cerrar Préstamo] " +
                 "to Administrador with grant option " +
+                "grant execute on object :: [Constancia Pago] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Informe Préstamo] " +
+                "to Administrador with grant option " +
                 "grant execute on object :: [Actualizar Asociado] " +
                 "to Administrador with grant option";
             String permisosUsuario =
@@ -1234,6 +1276,8 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd_42 = new SqlCommand(procedimiento42, cnn);
             SqlCommand cmd_43 = new SqlCommand(procedimiento43, cnn);
             SqlCommand cmd_44 = new SqlCommand(procedimiento44, cnn);
+            SqlCommand cmd_45 = new SqlCommand(procedimiento45, cnn);
+            SqlCommand cmd_46 = new SqlCommand(procedimiento46, cnn);
 
             //Creación Triggers
 
@@ -1342,6 +1386,8 @@ namespace Crear_Base_de_Datos
             cmd_42.ExecuteNonQuery();
             cmd_43.ExecuteNonQuery();
             cmd_44.ExecuteNonQuery();
+            cmd_45.ExecuteNonQuery();
+            cmd_46.ExecuteNonQuery();
 
             cmdTrigger1.ExecuteNonQuery();
 
