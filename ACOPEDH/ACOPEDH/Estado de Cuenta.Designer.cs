@@ -56,6 +56,7 @@
             this.bttCerrarCuenta = new System.Windows.Forms.Button();
             this.bttCer = new System.Windows.Forms.PictureBox();
             this.dgvRetiros = new System.Windows.Forms.DataGridView();
+            this.bttImprimir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAbonos)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -92,18 +93,18 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(25, 58);
+            this.label1.Location = new System.Drawing.Point(25, 68);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 38);
+            this.label1.Size = new System.Drawing.Size(139, 19);
             this.label1.TabIndex = 62;
-            this.label1.Text = "Persona\r\nAsociada:";
+            this.label1.Text = "Persona Asociada:";
             // 
             // txtAsociado
             // 
-            this.txtAsociado.Location = new System.Drawing.Point(115, 66);
+            this.txtAsociado.Location = new System.Drawing.Point(167, 66);
             this.txtAsociado.Name = "txtAsociado";
             this.txtAsociado.ReadOnly = true;
-            this.txtAsociado.Size = new System.Drawing.Size(382, 27);
+            this.txtAsociado.Size = new System.Drawing.Size(434, 27);
             this.txtAsociado.TabIndex = 63;
             // 
             // label2
@@ -118,7 +119,7 @@
             // 
             // txtCuenta
             // 
-            this.txtCuenta.Location = new System.Drawing.Point(115, 102);
+            this.txtCuenta.Location = new System.Drawing.Point(167, 102);
             this.txtCuenta.Name = "txtCuenta";
             this.txtCuenta.ReadOnly = true;
             this.txtCuenta.Size = new System.Drawing.Size(135, 27);
@@ -128,7 +129,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(538, 69);
+            this.label3.Location = new System.Drawing.Point(628, 72);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(143, 19);
             this.label3.TabIndex = 66;
@@ -136,7 +137,7 @@
             // 
             // txtCódigo
             // 
-            this.txtCódigo.Location = new System.Drawing.Point(693, 66);
+            this.txtCódigo.Location = new System.Drawing.Point(783, 69);
             this.txtCódigo.Name = "txtCódigo";
             this.txtCódigo.ReadOnly = true;
             this.txtCódigo.Size = new System.Drawing.Size(135, 27);
@@ -156,7 +157,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(619, 105);
+            this.label5.Location = new System.Drawing.Point(709, 108);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 19);
             this.label5.TabIndex = 69;
@@ -167,12 +168,12 @@
             this.txtTipoA.Location = new System.Drawing.Point(445, 102);
             this.txtTipoA.Name = "txtTipoA";
             this.txtTipoA.ReadOnly = true;
-            this.txtTipoA.Size = new System.Drawing.Size(135, 27);
+            this.txtTipoA.Size = new System.Drawing.Size(156, 27);
             this.txtTipoA.TabIndex = 70;
             // 
             // txtEstado
             // 
-            this.txtEstado.Location = new System.Drawing.Point(693, 102);
+            this.txtEstado.Location = new System.Drawing.Point(783, 105);
             this.txtEstado.Name = "txtEstado";
             this.txtEstado.ReadOnly = true;
             this.txtEstado.Size = new System.Drawing.Size(135, 27);
@@ -276,7 +277,7 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Font = new System.Drawing.Font("Linotte-Light", 9F);
-            this.groupBox1.Location = new System.Drawing.Point(15, 191);
+            this.groupBox1.Location = new System.Drawing.Point(15, 183);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(281, 153);
             this.groupBox1.TabIndex = 79;
@@ -285,7 +286,7 @@
             // 
             // bttCerrarCuenta
             // 
-            this.bttCerrarCuenta.Location = new System.Drawing.Point(98, 423);
+            this.bttCerrarCuenta.Location = new System.Drawing.Point(82, 462);
             this.bttCerrarCuenta.Name = "bttCerrarCuenta";
             this.bttCerrarCuenta.Size = new System.Drawing.Size(112, 50);
             this.bttCerrarCuenta.TabIndex = 80;
@@ -335,12 +336,23 @@
             this.dgvRetiros.Size = new System.Drawing.Size(247, 374);
             this.dgvRetiros.TabIndex = 82;
             // 
+            // bttImprimir
+            // 
+            this.bttImprimir.Location = new System.Drawing.Point(66, 368);
+            this.bttImprimir.Name = "bttImprimir";
+            this.bttImprimir.Size = new System.Drawing.Size(162, 61);
+            this.bttImprimir.TabIndex = 83;
+            this.bttImprimir.Text = "Imprimir Estado de Cuenta";
+            this.bttImprimir.UseVisualStyleBackColor = true;
+            this.bttImprimir.Click += new System.EventHandler(this.bttImprimir_Click);
+            // 
             // Estado_de_Cuenta
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(966, 548);
+            this.Controls.Add(this.bttImprimir);
             this.Controls.Add(this.dgvRetiros);
             this.Controls.Add(this.bttCer);
             this.Controls.Add(this.bttCerrarCuenta);
@@ -403,5 +415,6 @@
         private System.Windows.Forms.Button bttCerrarCuenta;
         private System.Windows.Forms.PictureBox bttCer;
         private System.Windows.Forms.DataGridView dgvRetiros;
+        private System.Windows.Forms.Button bttImprimir;
     }
 }

@@ -174,6 +174,14 @@ namespace ACOPEDH
             Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(Width - 1, 0), new Point(Width, Height));
         }
         #endregion
-
+        //Botón Imprimir
+        private void bttImprimir_Click(object sender, EventArgs e)
+        {
+            Imprimir Acción = new Imprimir(Dato, "Estado");
+            this.Cursor = Cursors.WaitCursor;
+            Acción.ShowDialog();
+            Acción.Dispose();
+            this.Cursor = Cursors.Default;
+        }
     }
 }

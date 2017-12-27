@@ -169,6 +169,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Confirmación";
             this.Text = "Confirmación";
+            this.Load += new System.EventHandler(this.Confirmación_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBMostrar3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

@@ -94,7 +94,11 @@ namespace ACOPEDH
                 if (Cargar.llenar_tabla("[Nuevo Préstamo]", Parámetros) > 0)
                 {
                     MessageBox.Show("Préstamo guardado en la base de datos, procediendo a generar los documentos necesarios", "¡Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Opciones_Informes Acción = new Opciones_Informes(TxtCódigoP.Text);
+                    this.Cursor = Cursors.WaitCursor;
+                    Acción.ShowDialog();
                     DialogResult = dr = DialogResult.OK;
+                    Acción.Dispose();
                     Close();
                 }
                 else
