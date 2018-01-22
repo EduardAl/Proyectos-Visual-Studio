@@ -54,5 +54,10 @@ namespace ACOPEDH
             errorProvider1.Clear();
             Validaciones.validar_contraseñas(txtConfContraseña, ref errorProvider1);
         }
+
+        private void Confirmación_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

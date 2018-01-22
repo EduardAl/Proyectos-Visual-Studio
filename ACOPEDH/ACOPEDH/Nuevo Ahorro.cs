@@ -15,6 +15,7 @@ namespace ACOPEDH
     {
         DataTable dtAsociado;
         DataView filtro;
+        Fonts F;
         /*
             *********************************
             *     Componentes Iniciales     *
@@ -43,6 +44,8 @@ namespace ACOPEDH
                 CBTipoAhorro.SelectedIndex = 0;
                 TxtInterés.Text = CBTipoAhorro.SelectedValue.ToString();
             }
+            F = new Fonts(dgvAsociado);
+            F.Diseño();
         }
         public void LlenarDGV(ref DataTable dss, String tabla)
         {
