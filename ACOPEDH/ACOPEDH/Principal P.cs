@@ -14,17 +14,21 @@ namespace ACOPEDH
             *     Componentes iniciales     *
             ********************************* 
         */
+        #region Variables
         String dgvControl;
         DialogResult dr = DialogResult.Cancel;
         Color Original, Seleccionado;
         String Dato,Extra;
-        Procedimientos_select Procedimientos_select = new Procedimientos_select();
+        Procedimientos_select Cargar = new Procedimientos_select();
         DataTable dsAhorro, dsPréstamo, dsAsociado;
         DataView filtro;
+        DataTable Gráfica;
         Emailsistema enviarEmail = new Emailsistema();
+        bool Cargando = true; 
         public static bool confirmación = false;
         public bool editpass = false;
         public bool editdata = false;
+        #endregion
         #region Constructores
         public Principal_P()
         {
@@ -43,6 +47,11 @@ namespace ACOPEDH
             MaximumSize = new Size(SystemInformation.PrimaryMonitorMaximizedWindowSize.Width - 15, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 15);
             txtNuevaContraseña.UseSystemPasswordChar = true;
             txtConfContraseña.UseSystemPasswordChar = true;
+            dtDesde.Value = new DateTime(2008, 1, 1);
+            dtHasta.Value = DateTime.Today.AddDays(1).AddSeconds(-1);
+            dtHasta.MinDate = dtDesde.MinDate = dtDesde.Value;
+            dtHasta.MaxDate = dtDesde.MaxDate = dtHasta.Value;
+            cbTransacción.SelectedIndex = 0;
             No_Editar();
         }
         #endregion
@@ -112,6 +121,7 @@ namespace ACOPEDH
             bttNuevoAsociado.Visible = true;
             bttDatosAsociado.Visible = true;
             bttAportaciones.Visible = true;
+            bttRegistros.Visible = true;
             //Lenado de Datos
             dgvControl = "Asociado";
             this.filtro = dsAsociado.DefaultView;
@@ -132,6 +142,25 @@ namespace ACOPEDH
             Ocultar();
             //Colorear
             PEstadoAsociación.BackColor = Seleccionado;
+            //Mostrando
+            bttGráfica.Visible = true;
+            cbTransacción.Visible = true;
+            labDesde.Visible = true;
+            labHasta.Visible = true;
+            labTTran.Visible = true;
+            dtDesde.Visible = true;
+            dtHasta.Visible = true;
+            dgvTransacciones.Visible = true;
+            gbAhorros.Visible = true;
+            gbAportaciones.Visible = true;
+            gbPréstamos.Visible = true;
+            //Cargando
+            if (Cargando)
+            {
+                Cargando_Datos_DGV();
+                Cargando_Datos_Text();
+                Cargando = false;
+            }
         }
         private void PCerrarSesion_Click(object sender, EventArgs e)
         {
@@ -195,9 +224,23 @@ namespace ACOPEDH
             bttAportaciones.Visible = false;
             bttNuevoAsociado.Visible = false;
             bttDatosAsociado.Visible = false;
+            bttRegistros.Visible = false;
 
             //Configuración
             panelConfig.Visible = false;
+
+            //Estado Asociación
+            bttGráfica.Visible = false;
+            cbTransacción.Visible = false;
+            labDesde.Visible = false;
+            labHasta.Visible = false;
+            labTTran.Visible = false;
+            dtDesde.Visible = false;
+            dtHasta.Visible = false;
+            dgvTransacciones.Visible = false;
+            gbAhorros.Visible = false;
+            gbAportaciones.Visible = false;
+            gbPréstamos.Visible = false;
         }
         #endregion
         #region Modificar datos de usuario
@@ -281,15 +324,71 @@ namespace ACOPEDH
         public void LlenarDGV(ref DataTable dss, String tabla)
         {
             dgvBúsqueda.DataSource = null;
-            dss = Procedimientos_select.llenar_DataTable(tabla);
+            dss = Cargar.llenar_DataTable(tabla);
+        }
+        #endregion
+        #region Cargar Transacciones
+        private void Cargando_Datos_Text()
+        {
+            double mora = 0, intereses = 0, ingresos = 0, capital = 0, pago = 0, prestamos = 0;
+            double abono = 0, retiros = 0;
+            double aportaciones = 0, retirado_A = 0;
+            SqlParameter[] Parámetros = new SqlParameter[2];
+
+            //Cargar los datos de la cuenta
+            Parámetros[0] = new SqlParameter("@Fecha_Inicial", dtDesde.Value);
+            Parámetros[1] = new SqlParameter("@Fecha_Final", dtHasta.Value);
+
+            Gráfica = Cargar.LlenarText("[Conseguir Datos Cooperativa]", "Abonos,Retiros,Aportaciones," +
+                  "RetiroAportación,Préstamos_Otorgados,Pago_Capital,Intereses_Pagados,Mora_Pagada", Parámetros,
+                  txtAbonos_Ahorro, txtRetiros_Ahorros, txtAbonos_Aportaciones, txtRetiros_Aportaciones,
+                  txtPréstamos, txtCapital, txtIntereses, txtMora);
+            Parámetros[0] = new SqlParameter("@Fecha_Inicial", dtDesde.Value);
+            Parámetros[1] = new SqlParameter("@Fecha_Final", dtHasta.Value);
+            //Conversiones
+
+            double.TryParse(txtAbonos_Ahorro.Text, out abono);
+            double.TryParse(txtAbonos_Aportaciones.Text, out aportaciones);
+            double.TryParse(txtCapital.Text, out capital);
+            double.TryParse(txtIntereses.Text, out intereses);
+            double.TryParse(txtMora.Text, out mora);
+            double.TryParse(txtPago.Text, out pago);
+            double.TryParse(txtPréstamos.Text, out prestamos);
+            double.TryParse(txtRetiros_Ahorros.Text, out retiros);
+            double.TryParse(txtRetiros_Aportaciones.Text, out retirado_A);
+
+            ingresos = mora + intereses;
+            pago = ingresos * 0.125;
+
+            //TextBox a formato
+            txtAbonos_Ahorro.Text = abono.ToString("C2");
+            txtAbonos_Aportaciones.Text = aportaciones.ToString("C2");
+            txtCapital.Text = capital.ToString("C2");
+            txtIngresos.Text = ingresos.ToString("C2");
+            txtIntereses.Text = intereses.ToString("C2");
+            txtMora.Text = mora.ToString("C2");
+            txtPago.Text = pago.ToString("C2");
+            txtPréstamos.Text = prestamos.ToString("C2");
+            txtRetiros_Ahorros.Text = retiros.ToString("C2");
+            txtRetiros_Aportaciones.Text = retirado_A.ToString("C2");
+        }
+        private void Cargando_Datos_DGV()
+        {
+            //Cargar los registros en su respectivo DGV
+            SqlParameter[] Parámetros = new SqlParameter[3];
+            Parámetros[0] = new SqlParameter("@Fecha_Inicial", dtDesde.Value);
+            Parámetros[1] = new SqlParameter("@Fecha_Final", dtHasta.Value);
+            Parámetros[2] = new SqlParameter("@Tipo_Transaccion", cbTransacción.Text);
+            dgvTransacciones.DataSource = Cargar.llenar_DataTable("[Conseguir Transacciones]", Parámetros);
+            dgvTransacciones.Refresh();
         }
         #endregion
 
-       /*
-          *********************************
-          *      Botones Secundarios      *
-          ********************************* 
-      */
+        /*
+           *********************************
+           *      Botones Secundarios      *
+           ********************************* 
+       */
         #region Botones de Acción
         private void bttAbonar_Click(object sender, EventArgs e)
         {
@@ -298,6 +397,7 @@ namespace ACOPEDH
                 Abonos Accion = new Abonos(Dato);
                 Accion.ShowDialog();
                 Accion.Dispose();
+                Cargando = true;
             }
             else
                 MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -311,6 +411,7 @@ namespace ACOPEDH
                 Retiros Accion = new Retiros(Dato);
                 Accion.ShowDialog();
                 Accion.Dispose();
+                Cargando = true;
             }
             else
                 MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -329,6 +430,7 @@ namespace ACOPEDH
                     this.filtro = dsAhorro.DefaultView;
                     txtBúsqueda.Focus();
                     this.dgvBúsqueda.DataSource = filtro;
+                Cargando = true;
                 }
                 Accion.Dispose();
             }
@@ -346,6 +448,7 @@ namespace ACOPEDH
                 this.filtro = dsAhorro.DefaultView;
                 txtBúsqueda.Focus();
                 this.dgvBúsqueda.DataSource = filtro;
+                Cargando = true;
             }
             Accion.Dispose();
         }
@@ -362,6 +465,7 @@ namespace ACOPEDH
                     this.filtro = dsPréstamo.DefaultView;
                     txtBúsqueda.Focus();
                     this.dgvBúsqueda.DataSource = filtro;
+                Cargando = true;
                 }
                 Accion.Dispose();
             }
@@ -402,8 +506,13 @@ namespace ACOPEDH
                 this.filtro = dsPréstamo.DefaultView;
                 txtBúsqueda.Focus();
                 this.dgvBúsqueda.DataSource = filtro;
+                Cargando = true;
             }
             Accion.Dispose();
+        }
+        private void bttRegistros_Click(object sender, EventArgs e)
+        {
+
         }
         private void bttDatosAsociado_Click(object sender, EventArgs e)
         {
@@ -418,6 +527,7 @@ namespace ACOPEDH
                     this.filtro = dsAsociado.DefaultView;
                     txtBúsqueda.Focus();
                     this.dgvBúsqueda.DataSource = filtro;
+                Cargando = true;
                 }
                 Accion.Dispose();
             }
@@ -432,6 +542,7 @@ namespace ACOPEDH
                 Aportaciones Accion = new Aportaciones(Dato,Extra);
                 Accion.ShowDialog();
                 Accion.Dispose();
+                Cargando = true;
             }
             else
                 MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -448,7 +559,14 @@ namespace ACOPEDH
                 this.filtro = dsAsociado.DefaultView;
                 txtBúsqueda.Focus();
                 this.dgvBúsqueda.DataSource = filtro;
+                Cargando = true;
             }
+            Accion.Dispose();
+        }
+        private void bttGráfica_Click(object sender, EventArgs e)
+        {
+            Gráfica Accion = new Gráfica(Gráfica,dtDesde.Value,dtHasta.Value);
+            Accion.ShowDialog();
             Accion.Dispose();
         }
         #endregion
@@ -488,25 +606,24 @@ namespace ACOPEDH
             bttCer.Location = new Point(Width - 26, 0);
             bttMax.Location = new Point(bttCer.Location.X - 26, 0);
             bttMin.Location = new Point(bttMax.Location.X - 26, 0);
-            //                          Elementos
+            //Elementos
             Titulo.Location = new Point((Width / 2) - (Titulo.Width / 2) + 93, 44);
             panelConfig.Width = Width - 285;
+            panelConfig.Height = 544;
             panelConfig.Location = new Point((Width / 2) - (panelConfig.Width / 2) + 93, 122 /*panelConfig.Location.Y*/);
             dgvBúsqueda.Width = Width - dgvBúsqueda.Location.X - 87;
             dgvBúsqueda.Height = Height - dgvBúsqueda.Location.Y - 116;
+            dgvTransacciones.Width = gbAhorros.Location.X - dgvTransacciones.Location.X - 30;
 
             //Botones
             bttOtorgarPréstamo.Location = new Point(dgvBúsqueda.Width - bttOtorgarPréstamo.Width + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y - bttOtorgarPréstamo.Height - 23);
-            bttCrearCuenta.Location = bttOtorgarPréstamo.Location;
-            bttNuevoAsociado.Location = bttOtorgarPréstamo.Location;
+            bttCrearCuenta.Location = bttNuevoAsociado.Location = bttOtorgarPréstamo.Location;
             bttPagosRealizados.Location = new Point(dgvBúsqueda.Width - bttPagosRealizados.Width + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
-            bttVerEstados.Location = bttPagosRealizados.Location;
-            bttAportaciones.Location = bttPagosRealizados.Location;
+            bttVerEstados.Location = bttAportaciones.Location = bttPagosRealizados.Location;
             bttAmortización.Location = new Point(bttPagosRealizados.Location.X - bttAmortización.Width - 89, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
-            bttRetirar.Location = bttAmortización.Location;
-            bttDatosAsociado.Location = bttAmortización.Location;
+            bttRetirar.Location = bttDatosAsociado.Location = bttAmortización.Location;
             bttRealizarPago.Location = new Point(bttAmortización.Location.X - bttRealizarPago.Width - 89, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
-            bttAbonar.Location = bttRealizarPago.Location;
+            bttAbonar.Location = bttRegistros.Location = bttRealizarPago.Location;
             Refresh();
         }
         #endregion
@@ -563,7 +680,7 @@ namespace ACOPEDH
                     this.Cursor = Cursors.WaitCursor;
                     if (confirmación)
                     {
-                        ds = Procedimientos_select.llenar_DataSet("ModificarDatos", parámetros);
+                        ds = Cargar.llenar_DataSet("ModificarDatos", parámetros);
                     }
                     else
                     {
@@ -833,7 +950,6 @@ namespace ACOPEDH
                 return cp;
             }
         }
-
         private bool CheckAeroEnabled()
         {
             if (Environment.OSVersion.Version.Major >= 6)
@@ -873,7 +989,26 @@ namespace ACOPEDH
                 m.Result = (IntPtr)HTCAPTION;
 
         }
-        
+        #endregion
+        #region Cambio de Fecha
+        private void dtDesde_ValueChanged(object sender, EventArgs e)
+        {
+            dtHasta.MinDate = dtDesde.Value;
+            Cargando_Datos_DGV();
+            Cargando_Datos_Text();
+        }
+        private void dtHasta_ValueChanged(object sender, EventArgs e)
+        {
+            dtDesde.MaxDate = dtHasta.Value;
+            Cargando_Datos_DGV();
+            Cargando_Datos_Text();
+        }
+        #endregion
+        #region Cambio Index
+        private void cbTransacción_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Cargando_Datos_DGV();
+        }
         #endregion
 
     }

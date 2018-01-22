@@ -55,6 +55,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -105,13 +106,31 @@
     <Compile Include="Estado de Cuenta.Designer.cs">
       <DependentUpon>Estado de Cuenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fonts.cs" />
+    <Compile Include="Img.cs" />
     <Compile Include="Globales.cs" />
+    <Compile Include="Gráfica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gráfica.Designer.cs">
+      <DependentUpon>Gráfica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Imágenes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Imágenes.Designer.cs">
+      <DependentUpon>Imágenes.cs</DependentUpon>
+    </Compile>
     <Compile Include="InicioSesión.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="InicioSesión.Designer.cs">
       <DependentUpon>InicioSesión.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nueva Imagen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nueva Imagen.Designer.cs">
+      <DependentUpon>Nueva Imagen.cs</DependentUpon>
     </Compile>
     <Compile Include="Nuevo Ahorro.cs">
       <SubType>Form</SubType>
@@ -158,6 +177,12 @@
     <Compile Include="RecuperarCuenta.Designer.cs">
       <DependentUpon>RecuperarCuenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Registros Asociado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registros Asociado.Designer.cs">
+      <DependentUpon>Registros Asociado.cs</DependentUpon>
+    </Compile>
     <Compile Include="RegistroUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +196,12 @@
       <DependentUpon>Retiros.cs</DependentUpon>
     </Compile>
     <Compile Include="Servidor.cs" />
+    <Compile Include="Teléfonos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Teléfonos.Designer.cs">
+      <DependentUpon>Teléfonos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Usuarios.cs" />
     <Compile Include="Validaciones.cs" />
     <EmbeddedResource Include="Abonos.resx">
@@ -191,8 +222,17 @@
     <EmbeddedResource Include="Estado de Cuenta.resx">
       <DependentUpon>Estado de Cuenta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Gráfica.resx">
+      <DependentUpon>Gráfica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Imágenes.resx">
+      <DependentUpon>Imágenes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InicioSesión.resx">
       <DependentUpon>InicioSesión.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nueva Imagen.resx">
+      <DependentUpon>Nueva Imagen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Nuevo Ahorro.resx">
       <DependentUpon>Nuevo Ahorro.cs</DependentUpon>
@@ -225,11 +265,17 @@
     <EmbeddedResource Include="RecuperarCuenta.resx">
       <DependentUpon>RecuperarCuenta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Registros Asociado.resx">
+      <DependentUpon>Registros Asociado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RegistroUsuario.resx">
       <DependentUpon>RegistroUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Retiros.resx">
       <DependentUpon>Retiros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Teléfonos.resx">
+      <DependentUpon>Teléfonos.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

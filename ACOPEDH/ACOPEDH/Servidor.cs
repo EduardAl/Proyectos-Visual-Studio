@@ -34,7 +34,7 @@ namespace ACOPEDH
                         }
                     }
 #warning Cambiar los servidores 
-                    Globales.Servidor = listaServidores[1];
+                    Globales.Servidor = listaServidores[0];
                 }
             }
             catch (SqlException ex)

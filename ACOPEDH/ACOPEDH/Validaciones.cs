@@ -164,11 +164,13 @@ namespace ACOPEDH
         }
         public static bool ValidarNomApe(ref TextBox txt, ref ErrorProvider Mostrar)
         {
-            txt.Text = retornarMayúscula(ref txt);
-            txt.SelectionStart = txt.Text.Length;
+            int k = txt.SelectionStart;
+            txt.Text = retornarMayúscula(ref txt,ref k);
+            txt.SelectionStart = (k>=0)?k:0;
             validar_nombre(ref txt, ref Mostrar);
             return !string.IsNullOrEmpty(txt.Text);
         }
+
         public static bool validar_Cheque(ref TextBox Cheque, ref ErrorProvider Mostrar)
         {
             Mostrar.Clear();
@@ -194,6 +196,7 @@ namespace ACOPEDH
         }
         public static bool IsNullOrEmty(ref TextBox Cadena, ref ErrorProvider Mostrar)
         {
+            Mostrar.Clear();
             if (String.IsNullOrEmpty(Cadena.Text))
             {
                 Mostrar.SetError(Cadena, "Campo obligatorio.");
@@ -222,10 +225,10 @@ namespace ACOPEDH
                     try
                     {
                         string[] modificado = Cadena.Text.Split(' ');
-                        string retornar = modificado[0].Substring(0, 1).ToUpper() + modificado[0].Substring(1, modificado[0].Length - 1);
+                        string retornar = modificado[0].Substring(0, 1).ToUpper() + modificado[0].Substring(1, modificado[0].Length - 1).ToLower();
                         for (int i = 1; i < modificado.Length; i++)
                         {
-                            retornar = retornar + ' ' + modificado[i].Substring(0, 1).ToUpper() + modificado[i].Substring(1, modificado[i].Length - 1);
+                            retornar = retornar + ' ' + modificado[i].Substring(0, 1).ToUpper() + modificado[i].Substring(1, modificado[i].Length - 1).ToLower();
                         }
                         return retornar;
                     }
@@ -242,6 +245,46 @@ namespace ACOPEDH
             else
                 return null;
         }
+        private static string retornarMayúscula(ref TextBox Cadena, ref int k)
+        {
+            while (Cadena.Text.Contains("  "))
+            {
+                Cadena.Text = Cadena.Text.Replace("  ", " ");
+                k--;
+            }
+            if (Cadena.Text == " ")
+            {
+                Cadena.Text = Cadena.Text.Trim();
+                k--;
+            }
+            if ((Cadena.Text.Length >= 1))
+            {
+                if (!(string.IsNullOrEmpty(Cadena.Text)))
+                {
+                    try
+                    {
+                        string[] modificado = Cadena.Text.Split(' ');
+                        string retornar = modificado[0].Substring(0, 1).ToUpper() + modificado[0].Substring(1, modificado[0].Length - 1).ToLower();
+                        for (int i = 1; i < modificado.Length; i++)
+                        {
+                            retornar = retornar + ' ' + modificado[i].Substring(0, 1).ToUpper() + modificado[i].Substring(1, modificado[i].Length - 1).ToLower();
+                        }
+                        return retornar;
+                    }
+                    catch
+                    {
+                        return Cadena.Text;
+                    }
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+                return null;
+        }
+
 
     }
 }

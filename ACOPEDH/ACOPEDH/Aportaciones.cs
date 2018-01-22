@@ -49,6 +49,11 @@ namespace ACOPEDH
             catch { }
         }
 
+        private void bttCer_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
         private void bttRealizarAportación_Click(object sender, EventArgs e)
         {
             try

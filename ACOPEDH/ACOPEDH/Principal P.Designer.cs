@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal_P));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Titulo = new System.Windows.Forms.Label();
@@ -64,6 +64,7 @@
             this.bttNuevoAsociado = new System.Windows.Forms.Button();
             this.bttAportaciones = new System.Windows.Forms.Button();
             this.bttDatosAsociado = new System.Windows.Forms.Button();
+            this.bttRegistros = new System.Windows.Forms.Button();
             this.panelConfig = new System.Windows.Forms.Panel();
             this.lkContra = new System.Windows.Forms.LinkLabel();
             this.lbContraseña = new System.Windows.Forms.Label();
@@ -88,6 +89,37 @@
             this.lkConfirmar = new System.Windows.Forms.LinkLabel();
             this.lkCancelar = new System.Windows.Forms.LinkLabel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.labTTran = new System.Windows.Forms.Label();
+            this.labDesde = new System.Windows.Forms.Label();
+            this.labHasta = new System.Windows.Forms.Label();
+            this.gbPréstamos = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtPago = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtIngresos = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtMora = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtIntereses = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtCapital = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtPréstamos = new System.Windows.Forms.TextBox();
+            this.gbAportaciones = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtRetiros_Aportaciones = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtAbonos_Aportaciones = new System.Windows.Forms.TextBox();
+            this.gbAhorros = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtRetiros_Ahorros = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtAbonos_Ahorro = new System.Windows.Forms.TextBox();
+            this.bttGráfica = new System.Windows.Forms.Button();
+            this.cbTransacción = new System.Windows.Forms.ComboBox();
+            this.dtHasta = new System.Windows.Forms.DateTimePicker();
+            this.dtDesde = new System.Windows.Forms.DateTimePicker();
+            this.dgvTransacciones = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBúsqueda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
@@ -98,6 +130,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.PBMostrar3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBMostrar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.gbPréstamos.SuspendLayout();
+            this.gbAportaciones.SuspendLayout();
+            this.gbAhorros.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTransacciones)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -293,41 +329,41 @@
             this.dgvBúsqueda.AllowUserToDeleteRows = false;
             this.dgvBúsqueda.AllowUserToResizeColumns = false;
             this.dgvBúsqueda.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvBúsqueda.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvBúsqueda.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvBúsqueda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBúsqueda.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBúsqueda.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBúsqueda.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvBúsqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBúsqueda.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBúsqueda.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvBúsqueda.Location = new System.Drawing.Point(264, 233);
             this.dgvBúsqueda.Name = "dgvBúsqueda";
             this.dgvBúsqueda.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBúsqueda.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBúsqueda.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvBúsqueda.RowHeadersVisible = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvBúsqueda.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvBúsqueda.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvBúsqueda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBúsqueda.Size = new System.Drawing.Size(632, 372);
             this.dgvBúsqueda.TabIndex = 24;
@@ -428,7 +464,7 @@
             // 
             // bttCer
             // 
-            this.bttCer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bttCer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bttCer.BackColor = System.Drawing.Color.Transparent;
             this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
             this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -454,7 +490,7 @@
             // 
             // bttMax
             // 
-            this.bttMax.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bttMax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bttMax.BackColor = System.Drawing.Color.Transparent;
             this.bttMax.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttMax.BackgroundImage")));
             this.bttMax.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -469,7 +505,7 @@
             // 
             // bttMin
             // 
-            this.bttMin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bttMin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bttMin.BackColor = System.Drawing.Color.Transparent;
             this.bttMin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttMin.BackgroundImage")));
             this.bttMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -538,6 +574,20 @@
             this.bttDatosAsociado.Visible = false;
             this.bttDatosAsociado.Click += new System.EventHandler(this.bttDatosAsociado_Click);
             // 
+            // bttRegistros
+            // 
+            this.bttRegistros.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttRegistros.Location = new System.Drawing.Point(261, 607);
+            this.bttRegistros.Name = "bttRegistros";
+            this.bttRegistros.Size = new System.Drawing.Size(150, 59);
+            this.bttRegistros.TabIndex = 91;
+            this.bttRegistros.TabStop = false;
+            this.bttRegistros.Text = "Registros";
+            this.toolTip1.SetToolTip(this.bttRegistros, "Abonar efectivo a la cuenta de ahorro seleccionada");
+            this.bttRegistros.UseVisualStyleBackColor = true;
+            this.bttRegistros.Visible = false;
+            this.bttRegistros.Click += new System.EventHandler(this.bttRegistros_Click);
+            // 
             // panelConfig
             // 
             this.panelConfig.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -564,9 +614,9 @@
             this.panelConfig.Controls.Add(this.labTítulo);
             this.panelConfig.Controls.Add(this.lkConfirmar);
             this.panelConfig.Controls.Add(this.lkCancelar);
-            this.panelConfig.Location = new System.Drawing.Point(259, 122);
+            this.panelConfig.Location = new System.Drawing.Point(294, 109);
             this.panelConfig.Name = "panelConfig";
-            this.panelConfig.Size = new System.Drawing.Size(669, 544);
+            this.panelConfig.Size = new System.Drawing.Size(33, 29);
             this.panelConfig.TabIndex = 79;
             this.panelConfig.Visible = false;
             this.panelConfig.Paint += new System.Windows.Forms.PaintEventHandler(this.panelConfig_Paint);
@@ -582,7 +632,7 @@
             this.lkContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.lkContra.ForeColor = System.Drawing.Color.Navy;
             this.lkContra.LinkColor = System.Drawing.Color.Navy;
-            this.lkContra.Location = new System.Drawing.Point(564, 370);
+            this.lkContra.Location = new System.Drawing.Point(-72, 112);
             this.lkContra.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lkContra.Name = "lkContra";
             this.lkContra.Size = new System.Drawing.Size(57, 20);
@@ -595,7 +645,7 @@
             // 
             this.lbContraseña.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbContraseña.BackColor = System.Drawing.Color.Transparent;
-            this.lbContraseña.Location = new System.Drawing.Point(27, 400);
+            this.lbContraseña.Location = new System.Drawing.Point(-291, -115);
             this.lbContraseña.Name = "lbContraseña";
             this.lbContraseña.Size = new System.Drawing.Size(436, 126);
             this.lbContraseña.TabIndex = 113;
@@ -608,7 +658,7 @@
             this.lbCorreo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbCorreo.AutoSize = true;
             this.lbCorreo.BackColor = System.Drawing.Color.Transparent;
-            this.lbCorreo.Location = new System.Drawing.Point(216, 262);
+            this.lbCorreo.Location = new System.Drawing.Point(-102, -253);
             this.lbCorreo.Name = "lbCorreo";
             this.lbCorreo.Size = new System.Drawing.Size(188, 19);
             this.lbCorreo.TabIndex = 112;
@@ -619,7 +669,7 @@
             this.lbApellido.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbApellido.AutoSize = true;
             this.lbApellido.BackColor = System.Drawing.Color.Transparent;
-            this.lbApellido.Location = new System.Drawing.Point(156, 130);
+            this.lbApellido.Location = new System.Drawing.Point(-162, -385);
             this.lbApellido.Name = "lbApellido";
             this.lbApellido.Size = new System.Drawing.Size(115, 19);
             this.lbApellido.TabIndex = 111;
@@ -630,7 +680,7 @@
             this.lbNombre.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lbNombre.AutoSize = true;
             this.lbNombre.BackColor = System.Drawing.Color.Transparent;
-            this.lbNombre.Location = new System.Drawing.Point(156, 84);
+            this.lbNombre.Location = new System.Drawing.Point(-162, -431);
             this.lbNombre.Name = "lbNombre";
             this.lbNombre.Size = new System.Drawing.Size(114, 19);
             this.lbNombre.TabIndex = 110;
@@ -642,7 +692,7 @@
             this.txtCorreoElectrónicoNuevo.BackColor = System.Drawing.Color.White;
             this.txtCorreoElectrónicoNuevo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCorreoElectrónicoNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.txtCorreoElectrónicoNuevo.Location = new System.Drawing.Point(206, 259);
+            this.txtCorreoElectrónicoNuevo.Location = new System.Drawing.Point(-112, -256);
             this.txtCorreoElectrónicoNuevo.Name = "txtCorreoElectrónicoNuevo";
             this.txtCorreoElectrónicoNuevo.ReadOnly = true;
             this.txtCorreoElectrónicoNuevo.Size = new System.Drawing.Size(349, 22);
@@ -654,7 +704,7 @@
             this.PBMostrar3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.PBMostrar3.BackColor = System.Drawing.Color.White;
             this.PBMostrar3.Image = global::ACOPEDH.Properties.Resources.show;
-            this.PBMostrar3.Location = new System.Drawing.Point(433, 476);
+            this.PBMostrar3.Location = new System.Drawing.Point(115, -39);
             this.PBMostrar3.Margin = new System.Windows.Forms.Padding(2);
             this.PBMostrar3.Name = "PBMostrar3";
             this.PBMostrar3.Size = new System.Drawing.Size(30, 24);
@@ -670,7 +720,7 @@
             this.txtConfContraseña.BackColor = System.Drawing.Color.White;
             this.txtConfContraseña.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtConfContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.txtConfContraseña.Location = new System.Drawing.Point(202, 477);
+            this.txtConfContraseña.Location = new System.Drawing.Point(-116, -38);
             this.txtConfContraseña.Margin = new System.Windows.Forms.Padding(0);
             this.txtConfContraseña.Name = "txtConfContraseña";
             this.txtConfContraseña.ReadOnly = true;
@@ -684,7 +734,7 @@
             this.PBMostrar2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.PBMostrar2.BackColor = System.Drawing.Color.White;
             this.PBMostrar2.Image = global::ACOPEDH.Properties.Resources.show;
-            this.PBMostrar2.Location = new System.Drawing.Point(433, 434);
+            this.PBMostrar2.Location = new System.Drawing.Point(115, -81);
             this.PBMostrar2.Margin = new System.Windows.Forms.Padding(2);
             this.PBMostrar2.Name = "PBMostrar2";
             this.PBMostrar2.Size = new System.Drawing.Size(30, 24);
@@ -700,7 +750,7 @@
             this.txtNuevaContraseña.BackColor = System.Drawing.Color.White;
             this.txtNuevaContraseña.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNuevaContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.txtNuevaContraseña.Location = new System.Drawing.Point(202, 434);
+            this.txtNuevaContraseña.Location = new System.Drawing.Point(-116, -81);
             this.txtNuevaContraseña.Margin = new System.Windows.Forms.Padding(0);
             this.txtNuevaContraseña.Name = "txtNuevaContraseña";
             this.txtNuevaContraseña.ReadOnly = true;
@@ -714,7 +764,7 @@
             this.labCConfirmar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labCConfirmar.AutoSize = true;
             this.labCConfirmar.BackColor = System.Drawing.Color.Transparent;
-            this.labCConfirmar.Location = new System.Drawing.Point(23, 478);
+            this.labCConfirmar.Location = new System.Drawing.Point(-295, -37);
             this.labCConfirmar.Name = "labCConfirmar";
             this.labCConfirmar.Size = new System.Drawing.Size(88, 19);
             this.labCConfirmar.TabIndex = 101;
@@ -725,7 +775,7 @@
             this.labCNueva.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labCNueva.AutoSize = true;
             this.labCNueva.BackColor = System.Drawing.Color.Transparent;
-            this.labCNueva.Location = new System.Drawing.Point(23, 435);
+            this.labCNueva.Location = new System.Drawing.Point(-295, -80);
             this.labCNueva.Name = "labCNueva";
             this.labCNueva.Size = new System.Drawing.Size(62, 19);
             this.labCNueva.TabIndex = 100;
@@ -742,7 +792,7 @@
             this.LLEditar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.LLEditar1.ForeColor = System.Drawing.Color.Navy;
             this.LLEditar1.LinkColor = System.Drawing.Color.Navy;
-            this.LLEditar1.Location = new System.Drawing.Point(564, 7);
+            this.LLEditar1.Location = new System.Drawing.Point(-72, -251);
             this.LLEditar1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LLEditar1.Name = "LLEditar1";
             this.LLEditar1.Size = new System.Drawing.Size(57, 20);
@@ -757,7 +807,7 @@
             this.txtApellidoActual.BackColor = System.Drawing.Color.White;
             this.txtApellidoActual.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtApellidoActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.txtApellidoActual.Location = new System.Drawing.Point(146, 127);
+            this.txtApellidoActual.Location = new System.Drawing.Point(-172, -388);
             this.txtApellidoActual.Name = "txtApellidoActual";
             this.txtApellidoActual.ReadOnly = true;
             this.txtApellidoActual.Size = new System.Drawing.Size(349, 22);
@@ -770,7 +820,7 @@
             this.txtNombreActual.BackColor = System.Drawing.Color.White;
             this.txtNombreActual.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNombreActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.txtNombreActual.Location = new System.Drawing.Point(146, 81);
+            this.txtNombreActual.Location = new System.Drawing.Point(-172, -434);
             this.txtNombreActual.Name = "txtNombreActual";
             this.txtNombreActual.ReadOnly = true;
             this.txtNombreActual.Size = new System.Drawing.Size(349, 22);
@@ -782,7 +832,7 @@
             this.labContraseña.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labContraseña.AutoSize = true;
             this.labContraseña.BackColor = System.Drawing.Color.Transparent;
-            this.labContraseña.Location = new System.Drawing.Point(27, 371);
+            this.labContraseña.Location = new System.Drawing.Point(-291, -144);
             this.labContraseña.Name = "labContraseña";
             this.labContraseña.Size = new System.Drawing.Size(163, 19);
             this.labContraseña.TabIndex = 84;
@@ -793,7 +843,7 @@
             this.labCorreo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labCorreo.AutoSize = true;
             this.labCorreo.BackColor = System.Drawing.Color.Transparent;
-            this.labCorreo.Location = new System.Drawing.Point(27, 262);
+            this.labCorreo.Location = new System.Drawing.Point(-291, -253);
             this.labCorreo.Name = "labCorreo";
             this.labCorreo.Size = new System.Drawing.Size(147, 19);
             this.labCorreo.TabIndex = 83;
@@ -804,7 +854,7 @@
             this.labApellidos.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labApellidos.AutoSize = true;
             this.labApellidos.BackColor = System.Drawing.Color.Transparent;
-            this.labApellidos.Location = new System.Drawing.Point(27, 130);
+            this.labApellidos.Location = new System.Drawing.Point(-291, -385);
             this.labApellidos.Name = "labApellidos";
             this.labApellidos.Size = new System.Drawing.Size(81, 19);
             this.labApellidos.TabIndex = 82;
@@ -815,7 +865,7 @@
             this.labNombre.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labNombre.AutoSize = true;
             this.labNombre.BackColor = System.Drawing.Color.Transparent;
-            this.labNombre.Location = new System.Drawing.Point(27, 84);
+            this.labNombre.Location = new System.Drawing.Point(-291, -431);
             this.labNombre.Name = "labNombre";
             this.labNombre.Size = new System.Drawing.Size(80, 19);
             this.labNombre.TabIndex = 81;
@@ -827,7 +877,7 @@
             this.labTítulo.AutoSize = true;
             this.labTítulo.BackColor = System.Drawing.Color.Transparent;
             this.labTítulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labTítulo.Location = new System.Drawing.Point(26, 7);
+            this.labTítulo.Location = new System.Drawing.Point(26, -251);
             this.labTítulo.Name = "labTítulo";
             this.labTítulo.Size = new System.Drawing.Size(227, 20);
             this.labTítulo.TabIndex = 79;
@@ -844,7 +894,7 @@
             this.lkConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.lkConfirmar.ForeColor = System.Drawing.Color.Navy;
             this.lkConfirmar.LinkColor = System.Drawing.Color.Navy;
-            this.lkConfirmar.Location = new System.Drawing.Point(470, 501);
+            this.lkConfirmar.Location = new System.Drawing.Point(-166, 243);
             this.lkConfirmar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lkConfirmar.Name = "lkConfirmar";
             this.lkConfirmar.Size = new System.Drawing.Size(87, 20);
@@ -865,7 +915,7 @@
             this.lkCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.lkCancelar.ForeColor = System.Drawing.Color.Navy;
             this.lkCancelar.LinkColor = System.Drawing.Color.Navy;
-            this.lkCancelar.Location = new System.Drawing.Point(553, 501);
+            this.lkCancelar.Location = new System.Drawing.Point(-83, 243);
             this.lkCancelar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lkCancelar.Name = "lkCancelar";
             this.lkCancelar.Size = new System.Drawing.Size(80, 20);
@@ -880,6 +930,350 @@
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             // 
+            // labTTran
+            // 
+            this.labTTran.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labTTran.AutoSize = true;
+            this.labTTran.BackColor = System.Drawing.Color.Transparent;
+            this.labTTran.Location = new System.Drawing.Point(745, 206);
+            this.labTTran.Name = "labTTran";
+            this.labTTran.Size = new System.Drawing.Size(128, 19);
+            this.labTTran.TabIndex = 90;
+            this.labTTran.Text = "Tipo Transacción";
+            this.labTTran.Visible = false;
+            // 
+            // labDesde
+            // 
+            this.labDesde.AutoSize = true;
+            this.labDesde.BackColor = System.Drawing.Color.Transparent;
+            this.labDesde.Location = new System.Drawing.Point(260, 154);
+            this.labDesde.Name = "labDesde";
+            this.labDesde.Size = new System.Drawing.Size(52, 19);
+            this.labDesde.TabIndex = 89;
+            this.labDesde.Text = "Desde";
+            this.labDesde.Visible = false;
+            // 
+            // labHasta
+            // 
+            this.labHasta.AutoSize = true;
+            this.labHasta.BackColor = System.Drawing.Color.Transparent;
+            this.labHasta.Location = new System.Drawing.Point(260, 206);
+            this.labHasta.Name = "labHasta";
+            this.labHasta.Size = new System.Drawing.Size(51, 19);
+            this.labHasta.TabIndex = 85;
+            this.labHasta.Text = "Hasta";
+            this.labHasta.Visible = false;
+            // 
+            // gbPréstamos
+            // 
+            this.gbPréstamos.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gbPréstamos.BackColor = System.Drawing.Color.Transparent;
+            this.gbPréstamos.Controls.Add(this.label9);
+            this.gbPréstamos.Controls.Add(this.txtPago);
+            this.gbPréstamos.Controls.Add(this.label10);
+            this.gbPréstamos.Controls.Add(this.txtIngresos);
+            this.gbPréstamos.Controls.Add(this.label8);
+            this.gbPréstamos.Controls.Add(this.txtMora);
+            this.gbPréstamos.Controls.Add(this.label7);
+            this.gbPréstamos.Controls.Add(this.txtIntereses);
+            this.gbPréstamos.Controls.Add(this.label5);
+            this.gbPréstamos.Controls.Add(this.txtCapital);
+            this.gbPréstamos.Controls.Add(this.label6);
+            this.gbPréstamos.Controls.Add(this.txtPréstamos);
+            this.gbPréstamos.Location = new System.Drawing.Point(651, 446);
+            this.gbPréstamos.Name = "gbPréstamos";
+            this.gbPréstamos.Size = new System.Drawing.Size(313, 219);
+            this.gbPréstamos.TabIndex = 88;
+            this.gbPréstamos.TabStop = false;
+            this.gbPréstamos.Text = "Préstamos";
+            this.gbPréstamos.Visible = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Location = new System.Drawing.Point(185, 141);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(113, 19);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Pago a Cuenta";
+            // 
+            // txtPago
+            // 
+            this.txtPago.Location = new System.Drawing.Point(186, 166);
+            this.txtPago.Name = "txtPago";
+            this.txtPago.ReadOnly = true;
+            this.txtPago.Size = new System.Drawing.Size(100, 27);
+            this.txtPago.TabIndex = 15;
+            this.txtPago.TabStop = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Location = new System.Drawing.Point(23, 141);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(69, 19);
+            this.label10.TabIndex = 14;
+            this.label10.Text = "Ingresos";
+            // 
+            // txtIngresos
+            // 
+            this.txtIngresos.Location = new System.Drawing.Point(24, 166);
+            this.txtIngresos.Name = "txtIngresos";
+            this.txtIngresos.ReadOnly = true;
+            this.txtIngresos.Size = new System.Drawing.Size(100, 27);
+            this.txtIngresos.TabIndex = 13;
+            this.txtIngresos.TabStop = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Location = new System.Drawing.Point(185, 83);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(47, 19);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "Mora";
+            // 
+            // txtMora
+            // 
+            this.txtMora.Location = new System.Drawing.Point(186, 108);
+            this.txtMora.Name = "txtMora";
+            this.txtMora.ReadOnly = true;
+            this.txtMora.Size = new System.Drawing.Size(100, 27);
+            this.txtMora.TabIndex = 11;
+            this.txtMora.TabStop = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Location = new System.Drawing.Point(185, 28);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 19);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Intereses";
+            // 
+            // txtIntereses
+            // 
+            this.txtIntereses.Location = new System.Drawing.Point(186, 53);
+            this.txtIntereses.Name = "txtIntereses";
+            this.txtIntereses.ReadOnly = true;
+            this.txtIntereses.Size = new System.Drawing.Size(100, 27);
+            this.txtIntereses.TabIndex = 9;
+            this.txtIntereses.TabStop = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Location = new System.Drawing.Point(23, 83);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(113, 19);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Pago a Capital";
+            // 
+            // txtCapital
+            // 
+            this.txtCapital.Location = new System.Drawing.Point(24, 108);
+            this.txtCapital.Name = "txtCapital";
+            this.txtCapital.ReadOnly = true;
+            this.txtCapital.Size = new System.Drawing.Size(100, 27);
+            this.txtCapital.TabIndex = 7;
+            this.txtCapital.TabStop = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Location = new System.Drawing.Point(23, 28);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(147, 19);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Cantidad Otorgada";
+            // 
+            // txtPréstamos
+            // 
+            this.txtPréstamos.Location = new System.Drawing.Point(24, 53);
+            this.txtPréstamos.Name = "txtPréstamos";
+            this.txtPréstamos.ReadOnly = true;
+            this.txtPréstamos.Size = new System.Drawing.Size(100, 27);
+            this.txtPréstamos.TabIndex = 5;
+            this.txtPréstamos.TabStop = false;
+            // 
+            // gbAportaciones
+            // 
+            this.gbAportaciones.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gbAportaciones.BackColor = System.Drawing.Color.Transparent;
+            this.gbAportaciones.Controls.Add(this.label3);
+            this.gbAportaciones.Controls.Add(this.txtRetiros_Aportaciones);
+            this.gbAportaciones.Controls.Add(this.label4);
+            this.gbAportaciones.Controls.Add(this.txtAbonos_Aportaciones);
+            this.gbAportaciones.Location = new System.Drawing.Point(815, 275);
+            this.gbAportaciones.Name = "gbAportaciones";
+            this.gbAportaciones.Size = new System.Drawing.Size(149, 163);
+            this.gbAportaciones.TabIndex = 87;
+            this.gbAportaciones.TabStop = false;
+            this.gbAportaciones.Text = "Aportaciones";
+            this.gbAportaciones.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(23, 83);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 19);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Retiros";
+            // 
+            // txtRetiros_Aportaciones
+            // 
+            this.txtRetiros_Aportaciones.Location = new System.Drawing.Point(24, 108);
+            this.txtRetiros_Aportaciones.Name = "txtRetiros_Aportaciones";
+            this.txtRetiros_Aportaciones.ReadOnly = true;
+            this.txtRetiros_Aportaciones.Size = new System.Drawing.Size(100, 27);
+            this.txtRetiros_Aportaciones.TabIndex = 7;
+            this.txtRetiros_Aportaciones.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(23, 28);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 19);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Abonos";
+            // 
+            // txtAbonos_Aportaciones
+            // 
+            this.txtAbonos_Aportaciones.Location = new System.Drawing.Point(24, 53);
+            this.txtAbonos_Aportaciones.Name = "txtAbonos_Aportaciones";
+            this.txtAbonos_Aportaciones.ReadOnly = true;
+            this.txtAbonos_Aportaciones.Size = new System.Drawing.Size(100, 27);
+            this.txtAbonos_Aportaciones.TabIndex = 5;
+            this.txtAbonos_Aportaciones.TabStop = false;
+            // 
+            // gbAhorros
+            // 
+            this.gbAhorros.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.gbAhorros.BackColor = System.Drawing.Color.Transparent;
+            this.gbAhorros.Controls.Add(this.label2);
+            this.gbAhorros.Controls.Add(this.txtRetiros_Ahorros);
+            this.gbAhorros.Controls.Add(this.label1);
+            this.gbAhorros.Controls.Add(this.txtAbonos_Ahorro);
+            this.gbAhorros.Location = new System.Drawing.Point(651, 275);
+            this.gbAhorros.Name = "gbAhorros";
+            this.gbAhorros.Size = new System.Drawing.Size(149, 163);
+            this.gbAhorros.TabIndex = 86;
+            this.gbAhorros.TabStop = false;
+            this.gbAhorros.Text = "Ahorros";
+            this.gbAhorros.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(23, 83);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 19);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Retiros";
+            // 
+            // txtRetiros_Ahorros
+            // 
+            this.txtRetiros_Ahorros.Location = new System.Drawing.Point(24, 108);
+            this.txtRetiros_Ahorros.Name = "txtRetiros_Ahorros";
+            this.txtRetiros_Ahorros.ReadOnly = true;
+            this.txtRetiros_Ahorros.Size = new System.Drawing.Size(100, 27);
+            this.txtRetiros_Ahorros.TabIndex = 7;
+            this.txtRetiros_Ahorros.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(23, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 19);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Abonos";
+            // 
+            // txtAbonos_Ahorro
+            // 
+            this.txtAbonos_Ahorro.Location = new System.Drawing.Point(24, 53);
+            this.txtAbonos_Ahorro.Name = "txtAbonos_Ahorro";
+            this.txtAbonos_Ahorro.ReadOnly = true;
+            this.txtAbonos_Ahorro.Size = new System.Drawing.Size(100, 27);
+            this.txtAbonos_Ahorro.TabIndex = 5;
+            this.txtAbonos_Ahorro.TabStop = false;
+            // 
+            // bttGráfica
+            // 
+            this.bttGráfica.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.bttGráfica.Location = new System.Drawing.Point(743, 135);
+            this.bttGráfica.Name = "bttGráfica";
+            this.bttGráfica.Size = new System.Drawing.Size(150, 58);
+            this.bttGráfica.TabIndex = 84;
+            this.bttGráfica.Text = "Generar Gráfica";
+            this.bttGráfica.UseVisualStyleBackColor = true;
+            this.bttGráfica.Visible = false;
+            this.bttGráfica.Click += new System.EventHandler(this.bttGráfica_Click);
+            // 
+            // cbTransacción
+            // 
+            this.cbTransacción.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cbTransacción.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTransacción.FormattingEnabled = true;
+            this.cbTransacción.Items.AddRange(new object[] {
+            "Todas las transacciones",
+            "Abono",
+            "Aportación",
+            "Préstamo"});
+            this.cbTransacción.Location = new System.Drawing.Point(678, 228);
+            this.cbTransacción.Name = "cbTransacción";
+            this.cbTransacción.Size = new System.Drawing.Size(261, 27);
+            this.cbTransacción.TabIndex = 83;
+            this.cbTransacción.Visible = false;
+            this.cbTransacción.SelectedIndexChanged += new System.EventHandler(this.cbTransacción_SelectedIndexChanged);
+            // 
+            // dtHasta
+            // 
+            this.dtHasta.Location = new System.Drawing.Point(264, 228);
+            this.dtHasta.Name = "dtHasta";
+            this.dtHasta.Size = new System.Drawing.Size(297, 27);
+            this.dtHasta.TabIndex = 82;
+            this.dtHasta.Visible = false;
+            this.dtHasta.ValueChanged += new System.EventHandler(this.dtHasta_ValueChanged);
+            // 
+            // dtDesde
+            // 
+            this.dtDesde.Location = new System.Drawing.Point(264, 175);
+            this.dtDesde.Name = "dtDesde";
+            this.dtDesde.Size = new System.Drawing.Size(297, 27);
+            this.dtDesde.TabIndex = 81;
+            this.dtDesde.Visible = false;
+            this.dtDesde.ValueChanged += new System.EventHandler(this.dtDesde_ValueChanged);
+            // 
+            // dgvTransacciones
+            // 
+            this.dgvTransacciones.AllowUserToAddRows = false;
+            this.dgvTransacciones.AllowUserToDeleteRows = false;
+            this.dgvTransacciones.AllowUserToResizeRows = false;
+            this.dgvTransacciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvTransacciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTransacciones.Location = new System.Drawing.Point(264, 275);
+            this.dgvTransacciones.Name = "dgvTransacciones";
+            this.dgvTransacciones.ReadOnly = true;
+            this.dgvTransacciones.RowHeadersVisible = false;
+            this.dgvTransacciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTransacciones.Size = new System.Drawing.Size(360, 391);
+            this.dgvTransacciones.TabIndex = 80;
+            this.dgvTransacciones.TabStop = false;
+            this.dgvTransacciones.Visible = false;
+            // 
             // Principal_P
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -888,6 +1282,16 @@
             this.ClientSize = new System.Drawing.Size(980, 705);
             this.ControlBox = false;
             this.Controls.Add(this.panelConfig);
+            this.Controls.Add(this.labTTran);
+            this.Controls.Add(this.labDesde);
+            this.Controls.Add(this.labHasta);
+            this.Controls.Add(this.gbPréstamos);
+            this.Controls.Add(this.gbAportaciones);
+            this.Controls.Add(this.gbAhorros);
+            this.Controls.Add(this.bttGráfica);
+            this.Controls.Add(this.cbTransacción);
+            this.Controls.Add(this.dtHasta);
+            this.Controls.Add(this.dtDesde);
             this.Controls.Add(this.bttCer);
             this.Controls.Add(this.bttMin);
             this.Controls.Add(this.bttMax);
@@ -916,6 +1320,8 @@
             this.Controls.Add(this.bttVerEstados);
             this.Controls.Add(this.bttCrearCuenta);
             this.Controls.Add(this.bttDatosAsociado);
+            this.Controls.Add(this.dgvTransacciones);
+            this.Controls.Add(this.bttRegistros);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -938,6 +1344,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.PBMostrar3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBMostrar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.gbPréstamos.ResumeLayout(false);
+            this.gbPréstamos.PerformLayout();
+            this.gbAportaciones.ResumeLayout(false);
+            this.gbAportaciones.PerformLayout();
+            this.gbAhorros.ResumeLayout(false);
+            this.gbAhorros.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTransacciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -998,5 +1411,37 @@
         private System.Windows.Forms.LinkLabel lkConfirmar;
         private System.Windows.Forms.LinkLabel lkCancelar;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label labTTran;
+        private System.Windows.Forms.Label labDesde;
+        private System.Windows.Forms.Label labHasta;
+        private System.Windows.Forms.GroupBox gbPréstamos;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtPago;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtIngresos;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtMora;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtIntereses;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtCapital;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtPréstamos;
+        private System.Windows.Forms.GroupBox gbAportaciones;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtRetiros_Aportaciones;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtAbonos_Aportaciones;
+        private System.Windows.Forms.GroupBox gbAhorros;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtRetiros_Ahorros;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtAbonos_Ahorro;
+        private System.Windows.Forms.Button bttGráfica;
+        private System.Windows.Forms.ComboBox cbTransacción;
+        private System.Windows.Forms.DateTimePicker dtHasta;
+        private System.Windows.Forms.DateTimePicker dtDesde;
+        private System.Windows.Forms.DataGridView dgvTransacciones;
+        private System.Windows.Forms.Button bttRegistros;
     }
 }
