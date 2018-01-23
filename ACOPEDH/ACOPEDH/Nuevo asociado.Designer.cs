@@ -90,7 +90,7 @@
             this.BarraTítulo.Name = "BarraTítulo";
             this.BarraTítulo.Size = new System.Drawing.Size(650, 30);
             this.BarraTítulo.TabIndex = 62;
-            this.BarraTítulo.Text = "         ACOPEDH .:. NUEVA PERSONA ASOCIADA";
+            this.BarraTítulo.Text = "         ACOPEDH - Nueva Persona Asociada";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1

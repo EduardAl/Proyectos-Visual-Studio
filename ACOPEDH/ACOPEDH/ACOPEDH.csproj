@@ -52,10 +52,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\BCrypt\BCrypt.Net.dll</HintPath>
     </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
-    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -85,6 +93,12 @@
     <Compile Include="Aportaciones.Designer.cs">
       <DependentUpon>Aportaciones.cs</DependentUpon>
     </Compile>
+    <Compile Include="Carta Comunicación.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Carta Comunicación.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Cifrado.cs" />
     <Compile Include="Conexión.cs" />
     <Compile Include="Confirmación.cs">
@@ -92,6 +106,12 @@
     </Compile>
     <Compile Include="Confirmación.Designer.cs">
       <DependentUpon>Confirmación.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Constancia Pago.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Constancia Pago.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Datos Asociado.cs">
       <SubType>Form</SubType>
@@ -106,19 +126,31 @@
     <Compile Include="Estado de Cuenta.Designer.cs">
       <DependentUpon>Estado de Cuenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Img.cs" />
+    <Compile Include="Estado.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Estado.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Fonts.cs" />
+    <Compile Include="Informe Estado Cuenta.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Informe Estado Cuenta.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Globales.cs" />
-    <Compile Include="Gráfica.cs">
+    <Compile Include="Hoja Desembolso.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Hoja Desembolso.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Imprimir.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Gráfica.Designer.cs">
-      <DependentUpon>Gráfica.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Imágenes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Imágenes.Designer.cs">
-      <DependentUpon>Imágenes.cs</DependentUpon>
+    <Compile Include="Imprimir.Designer.cs">
+      <DependentUpon>Imprimir.cs</DependentUpon>
     </Compile>
     <Compile Include="InicioSesión.cs">
       <SubType>Form</SubType>
@@ -144,11 +176,23 @@
     <Compile Include="Nuevo asociado.Designer.cs">
       <DependentUpon>Nuevo asociado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Opciones Informes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Opciones Informes.Designer.cs">
+      <DependentUpon>Opciones Informes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Otorgar_Préstamo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Otorgar_Préstamo.Designer.cs">
       <DependentUpon>Otorgar_Préstamo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pagaré.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pagaré.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Pagos.cs">
       <SubType>Form</SubType>
@@ -171,23 +215,35 @@
     <Compile Include="Procedimientos-select.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recibo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Recibo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="RecuperarCuenta.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RecuperarCuenta.Designer.cs">
       <DependentUpon>RecuperarCuenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Registros Asociado.cs">
+    <Compile Include="Registros.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Registros Asociado.Designer.cs">
-      <DependentUpon>Registros Asociado.cs</DependentUpon>
+    <Compile Include="Registros.Designer.cs">
+      <DependentUpon>Registros.cs</DependentUpon>
     </Compile>
     <Compile Include="RegistroUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RegistroUsuario.Designer.cs">
       <DependentUpon>RegistroUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Retirar Aportaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Retirar Aportaciones.Designer.cs">
+      <DependentUpon>Retirar Aportaciones.cs</DependentUpon>
     </Compile>
     <Compile Include="Retiros.cs">
       <SubType>Form</SubType>
@@ -213,8 +269,16 @@
     <EmbeddedResource Include="Aportaciones.resx">
       <DependentUpon>Aportaciones.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Carta Comunicación.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Carta Comunicación.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Confirmación.resx">
       <DependentUpon>Confirmación.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Constancia Pago.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Constancia Pago.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Datos Asociado.resx">
       <DependentUpon>Datos Asociado.cs</DependentUpon>
@@ -222,11 +286,20 @@
     <EmbeddedResource Include="Estado de Cuenta.resx">
       <DependentUpon>Estado de Cuenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Gráfica.resx">
-      <DependentUpon>Gráfica.cs</DependentUpon>
+    <EmbeddedResource Include="Estado.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Estado.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Imágenes.resx">
-      <DependentUpon>Imágenes.cs</DependentUpon>
+    <EmbeddedResource Include="Informe Estado Cuenta.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Informe Estado Cuenta.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hoja Desembolso.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Hoja Desembolso.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Imprimir.resx">
+      <DependentUpon>Imprimir.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InicioSesión.resx">
       <DependentUpon>InicioSesión.cs</DependentUpon>
@@ -240,8 +313,15 @@
     <EmbeddedResource Include="Nuevo asociado.resx">
       <DependentUpon>Nuevo asociado.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Opciones Informes.resx">
+      <DependentUpon>Opciones Informes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Otorgar_Préstamo.resx">
       <DependentUpon>Otorgar_Préstamo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pagaré.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Pagaré.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Pagos.resx">
       <DependentUpon>Pagos.cs</DependentUpon>
@@ -262,14 +342,21 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Recibo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Recibo.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="RecuperarCuenta.resx">
       <DependentUpon>RecuperarCuenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Registros Asociado.resx">
-      <DependentUpon>Registros Asociado.cs</DependentUpon>
+    <EmbeddedResource Include="Registros.resx">
+      <DependentUpon>Registros.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegistroUsuario.resx">
       <DependentUpon>RegistroUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Retirar Aportaciones.resx">
+      <DependentUpon>Retirar Aportaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Retiros.resx">
       <DependentUpon>Retiros.cs</DependentUpon>
@@ -317,6 +404,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Photo_1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -25,11 +25,17 @@ namespace ACOPEDH
         DataTable dtAsociado;
         DataView filtro;
         Procedimientos_select Cargar = new Procedimientos_select();
+        Fonts F;
         #region Constructores
         //Normal
         public Otorgar_Préstamo()
         {
             InitializeComponent();
+        }
+        public Otorgar_Préstamo(string dato)
+        {
+            InitializeComponent();
+
         }
         #endregion        
         #region Load
@@ -53,6 +59,8 @@ namespace ACOPEDH
                 CBFormadePago.SelectedIndex = 0;
             dgvAsociado.Refresh();
             TxtBúsqueda.Focus();
+            F = new Fonts(dgvAsociado);
+            F.Diseño();
         }
         public void LlenarDGV(ref DataTable dss, String tabla)
         {
@@ -86,7 +94,11 @@ namespace ACOPEDH
                 if (Cargar.llenar_tabla("[Nuevo Préstamo]", Parámetros) > 0)
                 {
                     MessageBox.Show("Préstamo guardado en la base de datos, procediendo a generar los documentos necesarios", "¡Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Opciones_Informes Acción = new Opciones_Informes(TxtCódigoP.Text);
+                    this.Cursor = Cursors.WaitCursor;
+                    Acción.ShowDialog();
                     DialogResult = dr = DialogResult.OK;
+                    Acción.Dispose();
                     Close();
                 }
                 else

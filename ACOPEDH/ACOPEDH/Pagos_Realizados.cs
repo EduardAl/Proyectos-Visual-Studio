@@ -19,6 +19,8 @@ namespace ACOPEDH
             ********************************* 
         */
         string Datos;
+        Fonts F;
+
         #region Constructores
         //Solo iniciando
         public Pagos_Realizados()
@@ -53,6 +55,8 @@ namespace ACOPEDH
                 dgvPagosRealizados.Refresh();
                 txtMonto.Text = Math.Round(Convert.ToDouble(txtMonto.Text),2).ToString("C2");
                 txtCuotaMensual.Text = Math.Round(Convert.ToDouble(txtCuotaMensual.Text),2).ToString("C2");
+                F = new Fonts(dgvPagosRealizados);
+                F.Diseño();
             }
             catch { }
             Visible = true;
@@ -68,7 +72,7 @@ namespace ACOPEDH
         //Minimizar
         private void bttMin_Click(object sender, EventArgs e)
         {
-            WindowState = FormWindowState.Minimized;
+            this.WindowState = FormWindowState.Minimized;
         }
         //Cerrar
         private void bttCer_Click(object sender, EventArgs e)
@@ -79,6 +83,22 @@ namespace ACOPEDH
         private void bttImprimir_Click(object sender, EventArgs e)
         {
 #warning Imprimir el estado del préstamo
+        }
+        //Refinanciar el Préstamo. 
+        private void bttRefinanciar_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("¿Desea continuar con el procedimiento para refinanciar este préstamo?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                Procedimientos_select pro = new Procedimientos_select();
+                SqlParameter[] Param = new SqlParameter[2];
+                Param[0] = new SqlParameter("@Id_Préstamo", Datos);
+                Param[1] = new SqlParameter("@Id_Usuario", Globales.gbCodUsuario);
+                pro.llenar_tabla("[Cerrar Préstamo]", Param);
+                Otorgar_Préstamo Acción = new Otorgar_Préstamo();
+                //Abrimos el Form para otorgar un nuevo préstamo
+                Acción.Show();
+            }
         }
 
         #endregion
@@ -131,5 +151,7 @@ namespace ACOPEDH
             Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(Width - 1, 0), new Point(Width, Height));
         }
         #endregion
+
+
     }
 }

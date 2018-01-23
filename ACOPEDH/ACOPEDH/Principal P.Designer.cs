@@ -29,11 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal_P));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Titulo = new System.Windows.Forms.Label();
@@ -64,7 +61,6 @@
             this.bttNuevoAsociado = new System.Windows.Forms.Button();
             this.bttAportaciones = new System.Windows.Forms.Button();
             this.bttDatosAsociado = new System.Windows.Forms.Button();
-            this.bttRegistros = new System.Windows.Forms.Button();
             this.panelConfig = new System.Windows.Forms.Panel();
             this.lkContra = new System.Windows.Forms.LinkLabel();
             this.lbContraseña = new System.Windows.Forms.Label();
@@ -120,6 +116,7 @@
             this.dtHasta = new System.Windows.Forms.DateTimePicker();
             this.dtDesde = new System.Windows.Forms.DateTimePicker();
             this.dgvTransacciones = new System.Windows.Forms.DataGridView();
+            this.btnRegAsociado = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBúsqueda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
@@ -152,11 +149,11 @@
             this.Titulo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Titulo.AutoSize = true;
             this.Titulo.BackColor = System.Drawing.Color.Transparent;
-            this.Titulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
+            this.Titulo.Font = new System.Drawing.Font("Linotte-Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Titulo.ForeColor = System.Drawing.Color.White;
             this.Titulo.Location = new System.Drawing.Point(260, 44);
             this.Titulo.Name = "Titulo";
-            this.Titulo.Size = new System.Drawing.Size(701, 48);
+            this.Titulo.Size = new System.Drawing.Size(632, 46);
             this.Titulo.TabIndex = 2;
             this.Titulo.Text = "Asociación Cooperativa de Ahorro, Crédito y Consumo del Personal de la \r\nProcurad" +
     "uría para la Defensa de los Derechos Humanos";
@@ -168,7 +165,7 @@
             this.PInicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(182)))), ((int)(((byte)(11)))));
             this.PInicio.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PInicio.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.PInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F);
+            this.PInicio.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
             this.PInicio.ForeColor = System.Drawing.Color.Black;
             this.PInicio.Location = new System.Drawing.Point(31, 217);
             this.PInicio.Name = "PInicio";
@@ -185,7 +182,7 @@
             this.PAhorros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
             this.PAhorros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PAhorros.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.PAhorros.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F);
+            this.PAhorros.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
             this.PAhorros.ForeColor = System.Drawing.Color.Black;
             this.PAhorros.Location = new System.Drawing.Point(31, 281);
             this.PAhorros.Name = "PAhorros";
@@ -202,7 +199,7 @@
             this.PPréstamos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
             this.PPréstamos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PPréstamos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.PPréstamos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F);
+            this.PPréstamos.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
             this.PPréstamos.ForeColor = System.Drawing.Color.Black;
             this.PPréstamos.Location = new System.Drawing.Point(31, 345);
             this.PPréstamos.Name = "PPréstamos";
@@ -219,7 +216,7 @@
             this.PAsociados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
             this.PAsociados.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PAsociados.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.PAsociados.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F);
+            this.PAsociados.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
             this.PAsociados.ForeColor = System.Drawing.Color.Black;
             this.PAsociados.Location = new System.Drawing.Point(31, 409);
             this.PAsociados.Name = "PAsociados";
@@ -236,7 +233,7 @@
             this.PConfiguración.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
             this.PConfiguración.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PConfiguración.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.PConfiguración.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F);
+            this.PConfiguración.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
             this.PConfiguración.ForeColor = System.Drawing.Color.Black;
             this.PConfiguración.Location = new System.Drawing.Point(31, 473);
             this.PConfiguración.Name = "PConfiguración";
@@ -253,7 +250,7 @@
             this.PEstadoAsociación.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
             this.PEstadoAsociación.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PEstadoAsociación.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.PEstadoAsociación.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F);
+            this.PEstadoAsociación.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
             this.PEstadoAsociación.ForeColor = System.Drawing.Color.Black;
             this.PEstadoAsociación.Location = new System.Drawing.Point(31, 537);
             this.PEstadoAsociación.Name = "PEstadoAsociación";
@@ -270,7 +267,7 @@
             this.PCerrarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
             this.PCerrarSesion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.PCerrarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F);
+            this.PCerrarSesion.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
             this.PCerrarSesion.ForeColor = System.Drawing.Color.Black;
             this.PCerrarSesion.Location = new System.Drawing.Point(31, 601);
             this.PCerrarSesion.Name = "PCerrarSesion";
@@ -298,6 +295,7 @@
             // bttAmortización
             // 
             this.bttAmortización.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttAmortización.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
             this.bttAmortización.Location = new System.Drawing.Point(504, 607);
             this.bttAmortización.Name = "bttAmortización";
             this.bttAmortización.Size = new System.Drawing.Size(150, 59);
@@ -329,41 +327,17 @@
             this.dgvBúsqueda.AllowUserToDeleteRows = false;
             this.dgvBúsqueda.AllowUserToResizeColumns = false;
             this.dgvBúsqueda.AllowUserToResizeRows = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvBúsqueda.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvBúsqueda.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvBúsqueda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBúsqueda.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBúsqueda.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvBúsqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBúsqueda.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvBúsqueda.Location = new System.Drawing.Point(264, 233);
             this.dgvBúsqueda.Name = "dgvBúsqueda";
             this.dgvBúsqueda.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBúsqueda.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvBúsqueda.RowHeadersVisible = false;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvBúsqueda.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvBúsqueda.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvBúsqueda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBúsqueda.Size = new System.Drawing.Size(632, 372);
             this.dgvBúsqueda.TabIndex = 24;
@@ -373,9 +347,10 @@
             // 
             this.labBuscar.AutoSize = true;
             this.labBuscar.BackColor = System.Drawing.Color.Transparent;
+            this.labBuscar.Font = new System.Drawing.Font("Linotte-SemiBold", 13.2F);
             this.labBuscar.Location = new System.Drawing.Point(255, 154);
             this.labBuscar.Name = "labBuscar";
-            this.labBuscar.Size = new System.Drawing.Size(83, 19);
+            this.labBuscar.Size = new System.Drawing.Size(92, 22);
             this.labBuscar.TabIndex = 20;
             this.labBuscar.Text = "Búsqueda:";
             this.labBuscar.Visible = false;
@@ -383,10 +358,10 @@
             // txtBúsqueda
             // 
             this.txtBúsqueda.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtBúsqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.txtBúsqueda.Font = new System.Drawing.Font("Linotte-Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBúsqueda.Location = new System.Drawing.Point(365, 154);
             this.txtBúsqueda.Name = "txtBúsqueda";
-            this.txtBúsqueda.Size = new System.Drawing.Size(356, 22);
+            this.txtBúsqueda.Size = new System.Drawing.Size(356, 23);
             this.txtBúsqueda.TabIndex = 19;
             this.txtBúsqueda.Visible = false;
             this.txtBúsqueda.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBúsqueda_KeyUp);
@@ -450,7 +425,7 @@
             // BarraTítulo
             // 
             this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
-            this.BarraTítulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F);
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
             this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
             this.BarraTítulo.Name = "BarraTítulo";
@@ -535,6 +510,7 @@
             // bttNuevoAsociado
             // 
             this.bttNuevoAsociado.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttNuevoAsociado.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
             this.bttNuevoAsociado.Location = new System.Drawing.Point(743, 135);
             this.bttNuevoAsociado.Name = "bttNuevoAsociado";
             this.bttNuevoAsociado.Size = new System.Drawing.Size(150, 59);
@@ -549,6 +525,7 @@
             // bttAportaciones
             // 
             this.bttAportaciones.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bttAportaciones.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
             this.bttAportaciones.Location = new System.Drawing.Point(743, 607);
             this.bttAportaciones.Name = "bttAportaciones";
             this.bttAportaciones.Size = new System.Drawing.Size(150, 59);
@@ -573,20 +550,6 @@
             this.bttDatosAsociado.UseVisualStyleBackColor = true;
             this.bttDatosAsociado.Visible = false;
             this.bttDatosAsociado.Click += new System.EventHandler(this.bttDatosAsociado_Click);
-            // 
-            // bttRegistros
-            // 
-            this.bttRegistros.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttRegistros.Location = new System.Drawing.Point(261, 607);
-            this.bttRegistros.Name = "bttRegistros";
-            this.bttRegistros.Size = new System.Drawing.Size(150, 59);
-            this.bttRegistros.TabIndex = 91;
-            this.bttRegistros.TabStop = false;
-            this.bttRegistros.Text = "Registros";
-            this.toolTip1.SetToolTip(this.bttRegistros, "Abonar efectivo a la cuenta de ahorro seleccionada");
-            this.bttRegistros.UseVisualStyleBackColor = true;
-            this.bttRegistros.Visible = false;
-            this.bttRegistros.Click += new System.EventHandler(this.bttRegistros_Click);
             // 
             // panelConfig
             // 
@@ -1274,6 +1237,22 @@
             this.dgvTransacciones.TabStop = false;
             this.dgvTransacciones.Visible = false;
             // 
+            // btnRegAsociado
+            // 
+            this.btnRegAsociado.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegAsociado.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
+            this.btnRegAsociado.Location = new System.Drawing.Point(261, 607);
+            this.btnRegAsociado.Name = "btnRegAsociado";
+            this.btnRegAsociado.Size = new System.Drawing.Size(150, 59);
+            this.btnRegAsociado.TabIndex = 80;
+            this.btnRegAsociado.TabStop = false;
+            this.btnRegAsociado.Text = "Ver registros";
+            this.toolTip1.SetToolTip(this.btnRegAsociado, "Abonar efectivo a la cuenta de ahorro seleccionada");
+            this.btnRegAsociado.UseVisualStyleBackColor = true;
+            this.btnRegAsociado.Visible = false;
+            this.btnRegAsociado.Click += new System.EventHandler(this.btnRegAsociado_Click);
+
+            // 
             // Principal_P
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1281,7 +1260,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(980, 705);
             this.ControlBox = false;
-            this.Controls.Add(this.panelConfig);
+            this.Controls.Add(this.btnRegAsociado);
             this.Controls.Add(this.labTTran);
             this.Controls.Add(this.labDesde);
             this.Controls.Add(this.labHasta);
@@ -1309,19 +1288,19 @@
             this.Controls.Add(this.PInicio);
             this.Controls.Add(this.Titulo);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.bttAbonar);
-            this.Controls.Add(this.bttAportaciones);
             this.Controls.Add(this.bttRealizarPago);
-            this.Controls.Add(this.bttAmortización);
             this.Controls.Add(this.bttPagosRealizados);
-            this.Controls.Add(this.bttNuevoAsociado);
             this.Controls.Add(this.bttOtorgarPréstamo);
             this.Controls.Add(this.bttRetirar);
             this.Controls.Add(this.bttVerEstados);
             this.Controls.Add(this.bttCrearCuenta);
             this.Controls.Add(this.bttDatosAsociado);
+            this.Controls.Add(this.bttAmortización);
+            this.Controls.Add(this.bttAportaciones);
+            this.Controls.Add(this.bttNuevoAsociado);
+            this.Controls.Add(this.panelConfig);
+            this.Controls.Add(this.bttAbonar);
             this.Controls.Add(this.dgvTransacciones);
-            this.Controls.Add(this.bttRegistros);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -1443,5 +1422,6 @@
         private System.Windows.Forms.DateTimePicker dtDesde;
         private System.Windows.Forms.DataGridView dgvTransacciones;
         private System.Windows.Forms.Button bttRegistros;
+        private System.Windows.Forms.Button btnRegAsociado;
     }
 }

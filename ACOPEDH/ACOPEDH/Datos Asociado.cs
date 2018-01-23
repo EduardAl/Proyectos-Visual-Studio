@@ -126,20 +126,30 @@ namespace ACOPEDH
         //Desasociar
         private void bttDesasociar_Click(object sender, EventArgs e)
         {
-            SqlParameter[] Parámetros = new SqlParameter[1];
-            Parámetros[0] = new SqlParameter("@Código_Asociado", Dato);
-            if (Cargar.llenar_tabla("[Desasociar]", Parámetros) > 0)
+            DialogResult Desasociar = MessageBox.Show("¿Desea desasociar a "+txtNombres.Text +" ?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (Desasociar != DialogResult.No)
             {
-                dtDesaso.Value = DateTime.Now;
-                dtDesaso.Visible = true;
-                lbDesa.Visible = true;
-                bttDesasociar.Visible = false;
-                dr = DialogResult.Yes;
-            }
-            else
-            {
-                MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Globales.gbError = "";
+                Retirar_Aportaciones Acción = new Retirar_Aportaciones(Dato);
+                Acción.ShowDialog();
+                SqlParameter[] Parámetros = new SqlParameter[1];
+                Parámetros[0] = new SqlParameter("@Código_Asociado", Dato);
+                if (Desasociar == DialogResult.Yes)
+                {
+                    if (Cargar.llenar_tabla("[Desasociar]", Parámetros) > 0)
+                    {
+                        dtDesaso.Value = DateTime.Now;
+                        dtDesaso.Visible = true;
+                        lbDesa.Visible = true;
+                        bttDesasociar.Visible = false;
+                        dr = DialogResult.Yes;
+                    }
+                    else
+                    {
+                        MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Globales.gbError = "";
+                    }
+                }
+                Acción.Dispose();
             }
         }
         //Mostrar Teléfonos
@@ -205,6 +215,10 @@ namespace ACOPEDH
                 Dato2 = txtDUI.Text;
             }
             catch { }
+        }
+        public void RetirarAportaciones()
+        {
+
         }
         #endregion
         /*

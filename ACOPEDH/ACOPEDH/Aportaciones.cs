@@ -15,7 +15,7 @@ namespace ACOPEDH
     {
         string Dato, Nombre;
         Procedimientos_select pro = new Procedimientos_select();
-
+        Fonts F;
         public Aportaciones()
         {
             InitializeComponent();
@@ -45,6 +45,8 @@ namespace ACOPEDH
                 txtAsociado.Text = Nombre;
                 txtCódigo.Text = Dato;
                 Cargar();
+                F = new Fonts(dgvAportaciones);
+                F.Diseño();
             }
             catch { }
         }
