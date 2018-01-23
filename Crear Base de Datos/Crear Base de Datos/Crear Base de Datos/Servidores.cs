@@ -23,6 +23,7 @@ namespace Crear_Base_de_Datos
         private void Servidores_Load(object sender, EventArgs e)
         {
             this.dataGridView1.DataSource = Instancias();
+            Focus();
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

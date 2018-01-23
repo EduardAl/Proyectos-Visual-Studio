@@ -225,7 +225,6 @@
             this.txtDirección.Name = "txtDirección";
             this.txtDirección.Size = new System.Drawing.Size(286, 77);
             this.txtDirección.TabIndex = 7;
-            this.txtDirección.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDirección_KeyUp);
             // 
             // label
             // 

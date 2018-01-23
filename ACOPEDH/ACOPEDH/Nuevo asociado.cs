@@ -29,6 +29,7 @@ namespace ACOPEDH
         #region Load
         private void Nuevo_asociado_Load(object sender, EventArgs e)
         {
+           
             //Llenar los ComboBox
             Procedimientos_select Cargar = new Procedimientos_select();
             dt = Cargar.llenar_DataTable("[Cargar Tipo Socio]");
@@ -40,6 +41,7 @@ namespace ACOPEDH
             dt = Cargar.llenar_DataTable("[Cargar Tipo Teléfono]");
             cbTipoTeléfono.DataSource = dt;
             cbTipoTeléfono.DisplayMember = "TipoT";
+            cbTipoTeléfono.ValueMember = "Cod";
             //Seleccionar un index
             if (cbAsociación.Items.Count > 0)
                 cbAsociación.SelectedIndex = 0;
@@ -62,12 +64,10 @@ namespace ACOPEDH
         // Ingresar Asociado
         private void bttAceptar_Click(object sender, EventArgs e)
         {
-#warning Añadir validaciones al escribir y el ingreso de teléfonos
             if (Validaciones.ValidarNomApe(ref txtNombres, ref errorProvider1) &&
                 Validaciones.ValidarNomApe(ref txtApellidos, ref errorProvider1) &&
                 Validaciones.validar_DUI(ref txtDUI, ref errorProvider1) &&
-                Validaciones.validar_NIT(ref txtNIT, ref errorProvider1) &&
-                Validaciones.IsNullOrEmty(ref txtDirección, ref errorProvider1))
+                Validaciones.validar_NIT(ref txtNIT, ref errorProvider1))
             {
                 string datos = string.Format("Nombre: {0}\nApellidos: {1}\nDUI: {2}\n" +
                     "NIT: {3}\nFecha de Nacimiento: {4}\nLugar de Trabajo: {5}\nTipo de Asociación: " +
@@ -90,16 +90,26 @@ namespace ACOPEDH
                         param[8] = new SqlParameter("@FK_Ocupacion", cbOcupación.Text);
                         if (ingresar.llenar_tabla("[Insertar Asociado]", param) > 0)
 
-                                { foreach (DataGridViewRow row in dgvTeléfonos.Rows)
+                        {
+
+                            param = new SqlParameter[3];
+                            foreach (DataGridViewRow row in dgvTeléfonos.Rows)
                             {
-                                param = new SqlParameter[3];
-                                param[0] = new SqlParameter("@Tipo_Teléfono", row.Cells[1].Value.ToString());
+                                cbTipoTeléfono.SelectedIndex = cbTipoTeléfono.FindString(row.Cells[1].Value.ToString());
+                                param[0] = new SqlParameter("@Tipo_Teléfono", cbTipoTeléfono.SelectedValue);
                                 param[1] = new SqlParameter("@Teléfono", row.Cells[0].Value.ToString());
                                 param[2] = new SqlParameter("@DUI", txtDUI.Text);
-                                ingresar.llenar_tabla("[Insertar Teléfono]", param);
+                                if (ingresar.llenar_tabla("[Insertar Teléfono]", param) < 0)
+                                {
+                                    MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    Globales.gbError = "";
+                                    DialogResult = DialogResult.None;
+                                    break;
+                                }
                             }
                             DialogResult = DialogResult.OK;
-                            Close(); }
+                            Close();
+                        }
                         else
                         {
                             MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -196,7 +206,7 @@ namespace ACOPEDH
             try
             {
                 txtTeléfono.Text = dgvTeléfonos.CurrentRow.Cells[0].Value.ToString();
-                cbTipoTeléfono.SelectedIndex = cbTipoTeléfono.Items.IndexOf(dgvTeléfonos.CurrentRow.Cells[1].Value.ToString());
+                cbTipoTeléfono.SelectedIndex = cbTipoTeléfono.FindString(dgvTeléfonos.CurrentRow.Cells[1].Value.ToString());
                 button2.Enabled = true;
                 button3.Enabled = true;
             }
@@ -222,32 +232,28 @@ namespace ACOPEDH
         #region KeyUp
         private void txtNombres_KeyUp(object sender, KeyEventArgs e)
         {
-
+            if (!(e.KeyValue == (char)Keys.Enter || e.KeyValue == (char)Keys.Up || e.KeyValue == (char)Keys.Down || e.KeyValue == (char)Keys.Left || e.KeyValue == (char)Keys.Right))
+                Validaciones.ValidarNomApe (ref txtNombres, ref errorProvider1);
         }
-
         private void txtApellidos_KeyUp(object sender, KeyEventArgs e)
         {
-
+            if (!(e.KeyValue == (char)Keys.Enter || e.KeyValue == (char)Keys.Up || e.KeyValue == (char)Keys.Down || e.KeyValue == (char)Keys.Left || e.KeyValue == (char)Keys.Right))
+                Validaciones.ValidarNomApe(ref txtApellidos, ref errorProvider1);
         }
-
         private void txtDUI_KeyUp(object sender, KeyEventArgs e)
         {
-
+            if (!(e.KeyValue == (char)Keys.Enter || e.KeyValue == (char)Keys.Up || e.KeyValue == (char)Keys.Down || e.KeyValue == (char)Keys.Left || e.KeyValue == (char)Keys.Right))
+                Validaciones.validar_DUI(ref txtDUI, ref errorProvider1);
         }
-
         private void txtNIT_KeyUp(object sender, KeyEventArgs e)
         {
-
+            if (!(e.KeyValue == (char)Keys.Enter || e.KeyValue == (char)Keys.Up || e.KeyValue == (char)Keys.Down || e.KeyValue == (char)Keys.Left || e.KeyValue == (char)Keys.Right))
+                Validaciones.validar_NIT(ref txtNIT, ref errorProvider1);
         }
-
-        private void txtDirección_KeyUp(object sender, KeyEventArgs e)
-        {
-
-        }
-
         private void txtTeléfono_KeyUp(object sender, KeyEventArgs e)
         {
-
+            if (!(e.KeyValue == (char)Keys.Enter || e.KeyValue == (char)Keys.Up || e.KeyValue == (char)Keys.Down || e.KeyValue == (char)Keys.Left || e.KeyValue == (char)Keys.Right))
+                Validaciones.validar_Teléfonos(ref txtTeléfono, ref errorProvider1);
         }
         #endregion
     }

@@ -13,7 +13,6 @@ namespace ACOPEDH
 {
     public partial class Nuevo_Ahorro : Form
     {
-#warning FALTA GUARDAR EL AHORRO Y LA BÚSQUEDA
         DataTable dtAsociado;
         DataView filtro;
         Fonts F;
@@ -67,7 +66,7 @@ namespace ACOPEDH
             {
                 if (!string.IsNullOrEmpty(TxtCódigoA.Text))
                 {
-                    decimal comision = nmAbono.Value * (1 + Convert.ToDecimal(TxtInterés.Text)/100);
+                    decimal comision = nmAbono.Value * (1 + Convert.ToDecimal(TxtInterés.Text) / 100);
                     Procedimientos_select Cargar = new Procedimientos_select();
                     SqlParameter[] Parámetros = new SqlParameter[5];
                     Parámetros[0] = new SqlParameter("@FK_Tipo_Ahorro", CBTipoAhorro.Text);
@@ -155,9 +154,10 @@ namespace ACOPEDH
         {
             if (dr == DialogResult.Cancel)
                 if (MessageBox.Show("¿Seguro que desea cancelar el registro?", "Nuevo Ahorro Cancelado", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
-                    e.Cancel=true;
+                    e.Cancel = true;
         }
         #endregion
+        #region KeyUp
         private void TxtBúsqueda_KeyUp(object sender, KeyEventArgs e)
         {
             string salida_datos = "";
@@ -175,6 +175,6 @@ namespace ACOPEDH
             }
             this.filtro.RowFilter = salida_datos;
         }
-
+        #endregion
     }
 }

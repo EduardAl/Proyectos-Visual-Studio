@@ -181,8 +181,13 @@
     </Compile>
     <Compile Include="InicioSesión.Designer.cs">
       <DependentUpon>InicioSesión.cs</DependentUpon>
+	 <Compile Include="Nueva Imagen.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modelos\model_abonos.cs" />
+    <Compile Include="Nueva Imagen.Designer.cs">
+      <DependentUpon>Nueva Imagen.cs</DependentUpon>
+    </Compile>
+	<Compile Include="Modelos\model_abonos.cs" />
     <Compile Include="Modelos\model_Amortización.cs" />
     <Compile Include="Modelos\model_pagosRealizados.cs" />
     <Compile Include="Modelos\model_retiros.cs" />
@@ -274,6 +279,12 @@
       <DependentUpon>Retiros.cs</DependentUpon>
     </Compile>
     <Compile Include="Servidor.cs" />
+    <Compile Include="Teléfonos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Teléfonos.Designer.cs">
+      <DependentUpon>Teléfonos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Usuarios.cs" />
     <Compile Include="Validaciones.cs" />
     <EmbeddedResource Include="Abonos.resx">
@@ -336,6 +347,9 @@
     <EmbeddedResource Include="InicioSesión.resx">
       <DependentUpon>InicioSesión.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Nueva Imagen.resx">
+      <DependentUpon>Nueva Imagen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Nuevo Ahorro.resx">
       <DependentUpon>Nuevo Ahorro.cs</DependentUpon>
     </EmbeddedResource>
@@ -389,6 +403,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Retiros.resx">
       <DependentUpon>Retiros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Teléfonos.resx">
+      <DependentUpon>Teléfonos.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

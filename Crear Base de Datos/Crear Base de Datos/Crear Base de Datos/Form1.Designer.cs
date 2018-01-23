@@ -35,43 +35,39 @@
             // 
             // BttCrear
             // 
-            this.BttCrear.Location = new System.Drawing.Point(157, 156);
-            this.BttCrear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BttCrear.Location = new System.Drawing.Point(118, 127);
             this.BttCrear.Name = "BttCrear";
-            this.BttCrear.Size = new System.Drawing.Size(116, 47);
-            this.BttCrear.TabIndex = 0;
+            this.BttCrear.Size = new System.Drawing.Size(87, 38);
+            this.BttCrear.TabIndex = 1;
             this.BttCrear.Text = "Crear";
             this.BttCrear.UseVisualStyleBackColor = true;
             this.BttCrear.Click += new System.EventHandler(this.BttCrear_Click);
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(100, 108);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNombre.Location = new System.Drawing.Point(75, 88);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(223, 22);
+            this.txtNombre.Size = new System.Drawing.Size(168, 20);
             this.txtNombre.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(119, 69);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(89, 56);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(187, 17);
+            this.label1.Size = new System.Drawing.Size(140, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Nombre de la base de datos";
             // 
             // Principal
             // 
             this.AcceptButton = this.BttCrear;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(424, 260);
+            this.ClientSize = new System.Drawing.Size(318, 211);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.BttCrear);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Principal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Crear Base de Datos";

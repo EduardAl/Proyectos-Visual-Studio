@@ -18,7 +18,7 @@ namespace ACOPEDH
             *     Componentes Iniciales     *
             ********************************* 
         */
-        string Dato;
+        string Dato, Dato2;
         public DialogResult dr = DialogResult.Cancel;
         Procedimientos_select Cargar = new Procedimientos_select();
         #region Constructores
@@ -44,8 +44,6 @@ namespace ACOPEDH
             cbAsociación.DisplayMember = "TipoS";
             cbOcupación.DataSource = Cargar.llenar_DataTable("[Cargar Ocupaciones]");
             cbOcupación.DisplayMember = "Trabajo";
-            cbTipoTeléfono.DataSource = Cargar.llenar_DataTable("[Cargar Tipo Teléfono]");
-            cbTipoTeléfono.DisplayMember = "TipoT";
             //Código Asociado
             lbCódigo.Text = "Código de Asociación: " + Dato;
             CargarDatos();
@@ -58,33 +56,19 @@ namespace ACOPEDH
             ********************************* 
         */
         #region Botones
-        //Ingresar Número
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-        //Modificar Número
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-        //Eliminar Número
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-        //Verificar si modificó y cerrar
+        //Verificar si modificó
         private void bttAceptar_Click(object sender, EventArgs e)
         {
             if (!bttModificar.Enabled)
             {
-                if (MessageBox.Show("¿Desea guardar los cambios?", "Modificación", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                {
+               
                     if (Validaciones.ValidarNomApe(ref txtNombres, ref errorProvider1) &&
                         Validaciones.ValidarNomApe(ref txtApellidos, ref errorProvider1) &&
                         Validaciones.validar_DUI(ref txtDUI, ref errorProvider1) &&
                         Validaciones.validar_NIT(ref txtNIT, ref errorProvider1) &&
                         Validaciones.IsNullOrEmty(ref txtDirección, ref errorProvider1))
+                    {
+                    if (MessageBox.Show("¿Desea guardar los cambios?", "Modificación", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                     {
                         string datos = string.Format("Nombre: {0}\nApellidos: {1}\nDUI: {2}\n" +
                             "NIT: {3}\nFecha de Nacimiento: {4}\nLugar de Trabajo: {5}\nTipo de Asociación: " +
@@ -107,8 +91,8 @@ namespace ACOPEDH
                                 param[8] = new SqlParameter("@Fecha_Asociación", dtAso.Value);
                                 param[9] = new SqlParameter("@FK_Ocupacion", cbOcupación.Text);
                                 modificar.llenar_tabla("[Actualizar Asociado]", param);
+                                Modificar(false);
                                 dr = DialogResult.Yes;
-                                Close();
                             }
                             catch
                             {
@@ -168,6 +152,25 @@ namespace ACOPEDH
                 Acción.Dispose();
             }
         }
+        //Mostrar Teléfonos
+        private void bttTeléfonos_Click(object sender, EventArgs e)
+        {
+            Teléfonos Accion = new Teléfonos(Dato, Dato2);
+            Accion.ShowDialog();
+            Accion.Dispose();
+        }
+        //Mostrar Imágenes
+        private void bttImágenes_Click(object sender, EventArgs e)
+        {
+            Imágenes Accion = new Imágenes(Dato);
+            Accion.ShowDialog();
+            Accion.Dispose();
+        }
+        //Cerrar
+        private void bttCer_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
         #endregion
         /*
             *********************************
@@ -187,26 +190,31 @@ namespace ACOPEDH
             dtAso.Enabled = enabled;
             dtDesaso.Enabled = enabled;
             dtNacimiento.Enabled = enabled;
-            cbTipoTeléfono.Enabled = enabled;
             bttModificar.Enabled = !enabled;
-            bttCancelar.Enabled = enabled;
+            bttAceptar.Enabled=bttCancelar.Enabled = enabled;
+            errorProvider1.Clear();
         }
         public void CargarDatos()
         {
-            //Carga de Parámetros
-            SqlParameter[] Param = new SqlParameter[1];
-            //Llenado del datatable (y de los TextBox)
-            Param[0] = new SqlParameter("@Código_Asociado", Dato);
-            DataTable dt = Cargar.LlenarText("[Cargar Asociados]", "Name,LName,Residencia,DDui,DNit", Param, txtNombres, txtApellidos, txtDirección, txtDUI, txtNIT);
-            dtNacimiento.Value = DateTime.Parse(dt.Rows[0]["FNacimiento"].ToString());
-            dtAso.Value = DateTime.Parse(dt.Rows[0]["FAsociación"].ToString());
-            if (dt.Rows[0]["Est"].ToString() != "ACTIVO")
+            try
             {
-                dtDesaso.Value = DateTime.Parse(dt.Rows[0]["FDesasociación"].ToString());
-                dtDesaso.Visible = true;
-                lbDesa.Visible = true;
-                bttDesasociar.Visible = false;
+                //Carga de Parámetros
+                SqlParameter[] Param = new SqlParameter[1];
+                //Llenado del datatable (y de los TextBox)
+                Param[0] = new SqlParameter("@Código_Asociado", Dato);
+                DataTable dt = Cargar.LlenarText("[Cargar Asociados]", "Name,LName,Residencia,DDui,DNit", Param, txtNombres, txtApellidos, txtDirección, txtDUI, txtNIT);
+                dtNacimiento.Value = DateTime.Parse(dt.Rows[0]["FNacimiento"].ToString());
+                dtAso.Value = DateTime.Parse(dt.Rows[0]["FAsociación"].ToString());
+                if (dt.Rows[0]["Est"].ToString() != "ACTIVO")
+                {
+                    dtDesaso.Value = DateTime.Parse(dt.Rows[0]["FDesasociación"].ToString());
+                    dtDesaso.Visible = true;
+                    lbDesa.Visible = true;
+                    bttDesasociar.Visible = false;
+                }
+                Dato2 = txtDUI.Text;
             }
+            catch { }
         }
         public void RetirarAportaciones()
         {
@@ -239,6 +247,28 @@ namespace ACOPEDH
             Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0, 0), new Point(0, Height));
             Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0, Height - 1), new Point(Width, Height));
             Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(Width - 1, 0), new Point(Width, Height));
+        }
+        #endregion
+        #region KeyUp
+        private void txtNombres_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!(e.KeyValue == (char)Keys.Enter || e.KeyValue == (char)Keys.Up || e.KeyValue == (char)Keys.Down || e.KeyValue == (char)Keys.Left || e.KeyValue == (char)Keys.Right))
+                Validaciones.ValidarNomApe(ref txtNombres, ref errorProvider1);
+        }
+        private void txtApellidos_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!(e.KeyValue == (char)Keys.Enter || e.KeyValue == (char)Keys.Up || e.KeyValue == (char)Keys.Down || e.KeyValue == (char)Keys.Left || e.KeyValue == (char)Keys.Right))
+                Validaciones.ValidarNomApe(ref txtApellidos, ref errorProvider1);
+        }
+        private void txtDUI_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!(e.KeyValue == (char)Keys.Enter || e.KeyValue == (char)Keys.Up || e.KeyValue == (char)Keys.Down || e.KeyValue == (char)Keys.Left || e.KeyValue == (char)Keys.Right))
+                Validaciones.validar_DUI(ref txtDUI, ref errorProvider1);
+        }
+        private void txtNIT_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!(e.KeyValue == (char)Keys.Enter || e.KeyValue == (char)Keys.Up || e.KeyValue == (char)Keys.Down || e.KeyValue == (char)Keys.Left || e.KeyValue == (char)Keys.Right))
+                Validaciones.validar_NIT(ref txtNIT, ref errorProvider1);
         }
         #endregion
     }

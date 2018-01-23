@@ -30,11 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Datos_Asociado));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bttModificar = new System.Windows.Forms.Button();
             this.bttAceptar = new System.Windows.Forms.Button();
             this.dtNacimiento = new System.Windows.Forms.DateTimePicker();
@@ -59,20 +54,18 @@
             this.label8 = new System.Windows.Forms.Label();
             this.lbDesa = new System.Windows.Forms.Label();
             this.dtDesaso = new System.Windows.Forms.DateTimePicker();
-            this.cbTipoTeléfono = new System.Windows.Forms.ComboBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.txtTeléfono = new System.Windows.Forms.TextBox();
-            this.dgvTeléfonos = new System.Windows.Forms.DataGridView();
             this.label10 = new System.Windows.Forms.Label();
             this.lbCódigo = new System.Windows.Forms.Label();
             this.bttCancelar = new System.Windows.Forms.Button();
             this.bttDesasociar = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.bttTeléfonos = new System.Windows.Forms.Button();
+            this.bttImágenes = new System.Windows.Forms.Button();
+            this.lab9 = new System.Windows.Forms.Label();
+            this.bttCer = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTeléfonos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
             this.SuspendLayout();
             // 
             // bttModificar
@@ -87,6 +80,7 @@
             // 
             // bttAceptar
             // 
+            this.bttAceptar.Enabled = false;
             this.bttAceptar.Location = new System.Drawing.Point(484, 82);
             this.bttAceptar.Name = "bttAceptar";
             this.bttAceptar.Size = new System.Drawing.Size(112, 50);
@@ -116,7 +110,7 @@
             // txtDirección
             // 
             this.txtDirección.Enabled = false;
-            this.txtDirección.Location = new System.Drawing.Point(149, 369);
+            this.txtDirección.Location = new System.Drawing.Point(149, 376);
             this.txtDirección.MaxLength = 100;
             this.txtDirección.Multiline = true;
             this.txtDirección.Name = "txtDirección";
@@ -151,6 +145,7 @@
             this.txtNIT.Name = "txtNIT";
             this.txtNIT.Size = new System.Drawing.Size(178, 27);
             this.txtNIT.TabIndex = 82;
+            this.txtNIT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtNIT_KeyUp);
             // 
             // txtDUI
             // 
@@ -160,6 +155,7 @@
             this.txtDUI.Name = "txtDUI";
             this.txtDUI.Size = new System.Drawing.Size(178, 27);
             this.txtDUI.TabIndex = 81;
+            this.txtDUI.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDUI_KeyUp);
             // 
             // txtApellidos
             // 
@@ -169,6 +165,7 @@
             this.txtApellidos.Name = "txtApellidos";
             this.txtApellidos.Size = new System.Drawing.Size(286, 27);
             this.txtApellidos.TabIndex = 80;
+            this.txtApellidos.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtApellidos_KeyUp);
             // 
             // txtNombres
             // 
@@ -178,12 +175,13 @@
             this.txtNombres.Name = "txtNombres";
             this.txtNombres.Size = new System.Drawing.Size(286, 27);
             this.txtNombres.TabIndex = 79;
+            this.txtNombres.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtNombres_KeyUp);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(40, 374);
+            this.label7.Location = new System.Drawing.Point(40, 381);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(78, 19);
             this.label7.TabIndex = 97;
@@ -269,13 +267,13 @@
             this.BarraTítulo.Name = "BarraTítulo";
             this.BarraTítulo.Size = new System.Drawing.Size(810, 30);
             this.BarraTítulo.TabIndex = 89;
-            this.BarraTítulo.Text = "         ACOPEDH - Nueva Persona Asociada";
+            this.BarraTítulo.Text = "         ACOPEDH - Datos Persona Asociada";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // dtAso
             // 
             this.dtAso.Enabled = false;
-            this.dtAso.Location = new System.Drawing.Point(149, 539);
+            this.dtAso.Location = new System.Drawing.Point(149, 472);
             this.dtAso.Name = "dtAso";
             this.dtAso.Size = new System.Drawing.Size(286, 27);
             this.dtAso.TabIndex = 99;
@@ -284,7 +282,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(40, 534);
+            this.label8.Location = new System.Drawing.Point(40, 467);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(89, 38);
             this.label8.TabIndex = 100;
@@ -294,7 +292,7 @@
             // 
             this.lbDesa.AutoSize = true;
             this.lbDesa.BackColor = System.Drawing.Color.Transparent;
-            this.lbDesa.Location = new System.Drawing.Point(40, 592);
+            this.lbDesa.Location = new System.Drawing.Point(40, 525);
             this.lbDesa.Name = "lbDesa";
             this.lbDesa.Size = new System.Drawing.Size(113, 38);
             this.lbDesa.TabIndex = 101;
@@ -304,120 +302,17 @@
             // dtDesaso
             // 
             this.dtDesaso.Enabled = false;
-            this.dtDesaso.Location = new System.Drawing.Point(149, 602);
+            this.dtDesaso.Location = new System.Drawing.Point(149, 535);
             this.dtDesaso.Name = "dtDesaso";
             this.dtDesaso.Size = new System.Drawing.Size(286, 27);
             this.dtDesaso.TabIndex = 102;
             this.dtDesaso.Visible = false;
             // 
-            // cbTipoTeléfono
-            // 
-            this.cbTipoTeléfono.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTipoTeléfono.FormattingEnabled = true;
-            this.cbTipoTeléfono.Location = new System.Drawing.Point(149, 487);
-            this.cbTipoTeléfono.Name = "cbTipoTeléfono";
-            this.cbTipoTeléfono.Size = new System.Drawing.Size(178, 27);
-            this.cbTipoTeléfono.TabIndex = 109;
-            // 
-            // button3
-            // 
-            this.button3.Enabled = false;
-            this.button3.Font = new System.Drawing.Font("Linotte-Bold", 10F);
-            this.button3.Location = new System.Drawing.Point(412, 489);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 108;
-            this.button3.TabStop = false;
-            this.button3.Text = "Eliminar";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button2
-            // 
-            this.button2.Enabled = false;
-            this.button2.Font = new System.Drawing.Font("Linotte-Bold", 10F);
-            this.button2.Location = new System.Drawing.Point(335, 489);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 107;
-            this.button2.TabStop = false;
-            this.button2.Text = "Modificar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Linotte-Bold", 10F);
-            this.button1.Location = new System.Drawing.Point(373, 459);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 106;
-            this.button1.TabStop = false;
-            this.button1.Text = "Añadir";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // txtTeléfono
-            // 
-            this.txtTeléfono.Location = new System.Drawing.Point(149, 456);
-            this.txtTeléfono.MaxLength = 9;
-            this.txtTeléfono.Name = "txtTeléfono";
-            this.txtTeléfono.Size = new System.Drawing.Size(178, 27);
-            this.txtTeléfono.TabIndex = 103;
-            // 
-            // dgvTeléfonos
-            // 
-            this.dgvTeléfonos.AllowUserToResizeColumns = false;
-            this.dgvTeléfonos.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvTeléfonos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvTeléfonos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvTeléfonos.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvTeléfonos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Linotte-Bold", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTeléfonos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvTeléfonos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Linotte-Bold", 12F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTeléfonos.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvTeléfonos.Location = new System.Drawing.Point(493, 433);
-            this.dgvTeléfonos.Name = "dgvTeléfonos";
-            this.dgvTeléfonos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Linotte-Bold", 12F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTeléfonos.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvTeléfonos.RowHeadersVisible = false;
-            this.dgvTeléfonos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvTeléfonos.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvTeléfonos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvTeléfonos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTeléfonos.Size = new System.Drawing.Size(286, 141);
-            this.dgvTeléfonos.TabIndex = 105;
-            this.dgvTeléfonos.TabStop = false;
-            this.dgvTeléfonos.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(40, 459);
+            this.label10.Location = new System.Drawing.Point(592, 279);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(81, 19);
             this.label10.TabIndex = 104;
@@ -427,7 +322,7 @@
             // 
             this.lbCódigo.AutoSize = true;
             this.lbCódigo.BackColor = System.Drawing.Color.Transparent;
-            this.lbCódigo.Location = new System.Drawing.Point(163, 662);
+            this.lbCódigo.Location = new System.Drawing.Point(163, 585);
             this.lbCódigo.Name = "lbCódigo";
             this.lbCódigo.Size = new System.Drawing.Size(164, 19);
             this.lbCódigo.TabIndex = 110;
@@ -458,22 +353,68 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // bttTeléfonos
+            // 
+            this.bttTeléfonos.Font = new System.Drawing.Font("Linotte-Bold", 10F);
+            this.bttTeléfonos.Location = new System.Drawing.Point(701, 278);
+            this.bttTeléfonos.Name = "bttTeléfonos";
+            this.bttTeléfonos.Size = new System.Drawing.Size(75, 23);
+            this.bttTeléfonos.TabIndex = 114;
+            this.bttTeléfonos.TabStop = false;
+            this.bttTeléfonos.Text = "Ver";
+            this.bttTeléfonos.UseVisualStyleBackColor = true;
+            this.bttTeléfonos.Click += new System.EventHandler(this.bttTeléfonos_Click);
+            // 
+            // bttImágenes
+            // 
+            this.bttImágenes.Font = new System.Drawing.Font("Linotte-Bold", 10F);
+            this.bttImágenes.Location = new System.Drawing.Point(701, 310);
+            this.bttImágenes.Name = "bttImágenes";
+            this.bttImágenes.Size = new System.Drawing.Size(75, 23);
+            this.bttImágenes.TabIndex = 115;
+            this.bttImágenes.TabStop = false;
+            this.bttImágenes.Text = "Ver";
+            this.bttImágenes.UseVisualStyleBackColor = true;
+            this.bttImágenes.Click += new System.EventHandler(this.bttImágenes_Click);
+            // 
+            // lab9
+            // 
+            this.lab9.AutoSize = true;
+            this.lab9.BackColor = System.Drawing.Color.Transparent;
+            this.lab9.Location = new System.Drawing.Point(592, 311);
+            this.lab9.Name = "lab9";
+            this.lab9.Size = new System.Drawing.Size(81, 19);
+            this.lab9.TabIndex = 116;
+            this.lab9.Text = "Imágenes:";
+            // 
+            // bttCer
+            // 
+            this.bttCer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bttCer.BackColor = System.Drawing.Color.Transparent;
+            this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
+            this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bttCer.Image = ((System.Drawing.Image)(resources.GetObject("bttCer.Image")));
+            this.bttCer.Location = new System.Drawing.Point(780, 0);
+            this.bttCer.Name = "bttCer";
+            this.bttCer.Size = new System.Drawing.Size(30, 26);
+            this.bttCer.TabIndex = 120;
+            this.bttCer.TabStop = false;
+            this.bttCer.Click += new System.EventHandler(this.bttCer_Click);
+            // 
             // Datos_Asociado
             // 
             this.AcceptButton = this.bttAceptar;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(810, 709);
+            this.ClientSize = new System.Drawing.Size(810, 622);
+            this.Controls.Add(this.bttCer);
+            this.Controls.Add(this.lab9);
+            this.Controls.Add(this.bttImágenes);
+            this.Controls.Add(this.bttTeléfonos);
             this.Controls.Add(this.bttDesasociar);
             this.Controls.Add(this.bttCancelar);
             this.Controls.Add(this.lbCódigo);
-            this.Controls.Add(this.cbTipoTeléfono);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.txtTeléfono);
-            this.Controls.Add(this.dgvTeléfonos);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.dtDesaso);
             this.Controls.Add(this.lbDesa);
@@ -510,8 +451,8 @@
             this.Load += new System.EventHandler(this.Datos_Asociado_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTeléfonos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -543,16 +484,14 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lbDesa;
         private System.Windows.Forms.DateTimePicker dtDesaso;
-        private System.Windows.Forms.ComboBox cbTipoTeléfono;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox txtTeléfono;
-        private System.Windows.Forms.DataGridView dgvTeléfonos;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lbCódigo;
         private System.Windows.Forms.Button bttCancelar;
         private System.Windows.Forms.Button bttDesasociar;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label lab9;
+        private System.Windows.Forms.Button bttImágenes;
+        private System.Windows.Forms.Button bttTeléfonos;
+        private System.Windows.Forms.PictureBox bttCer;
     }
 }

@@ -14,12 +14,14 @@ namespace ACOPEDH
     public partial class Estado_de_Cuenta : Form
     {
 #warning Falta implementar el cerrado de la cuenta
+
         /*
             *********************************
             *     Componentes Iniciales     *
             ********************************* 
         */
         string Dato;
+        double dato;
         DataTable dt;
         public DialogResult dr = DialogResult.Cancel;
         Fonts F;
@@ -59,9 +61,9 @@ namespace ACOPEDH
         //Cerrar Cuenta
         private void bttCerrarCuenta_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-                if (Convert.ToDouble(txtSaldo.Text.Substring(1)) == 0)
+            try
+            {
+                if (dato == 0)
                 {
                     if (MessageBox.Show("¿Seguro que desea cerrar la cuenta?","Cerrar Cuenta",MessageBoxButtons.OKCancel,MessageBoxIcon.Question)==DialogResult.OK)
                     {
@@ -70,11 +72,10 @@ namespace ACOPEDH
                 }
                 else
                 {
-                    if(MessageBox.Show("La persona cuenta con dinero disponible en la cuenta\n ¿Desea Retirar la cantidad de $"+txtSaldo.Text+"?","Cuenta de Ahorro",MessageBoxButtons.OKCancel,MessageBoxIcon.Question)==DialogResult.OK)
+                    if(MessageBox.Show("La persona cuenta con dinero disponible en la cuenta\n ¿Desea Retirar la cantidad de "+txtSaldo.Text+"?","Cuenta de Ahorro",MessageBoxButtons.OKCancel,MessageBoxIcon.Question)==DialogResult.OK)
                     {
                         Retiros Acción = new Retiros(Dato);
                         Acción.ShowDialog();
-                        MessageBox.Show(Acción.DialogResult.ToString());
                         if (Acción.DialogResult == DialogResult.OK)
                         {
                             Cargar_Datos();
@@ -129,6 +130,7 @@ namespace ACOPEDH
         {
             try
             {
+                dato = 0;
                 Procedimientos_select Cargar = new Procedimientos_select();
                 SqlParameter[] Parámetros = new SqlParameter[1];
 
@@ -153,7 +155,7 @@ namespace ACOPEDH
                 Cargar.LlenarText("[Suma Abonos]", "Suma de Abonos", Parámetros, txtAbonos);
                 Parámetros[0] = new SqlParameter("@ID_Ahorro", Dato);
                 Cargar.LlenarText("[Suma Retiros]", "Suma de Retiros", Parámetros, txtRetiros);
-                txtSaldo.Text = Math.Round((double.Parse(txtAbonos.Text) - double.Parse(txtRetiros.Text)), 2).ToString("C2");
+                txtSaldo.Text = (dato = Math.Round((double.Parse(txtAbonos.Text) - double.Parse(txtRetiros.Text)), 2)).ToString("C2");
                 txtAbonos.Text = Math.Round(double.Parse(txtAbonos.Text), 2).ToString("C2");
                 txtRetiros.Text = Math.Round(double.Parse(txtRetiros.Text), 2).ToString("C2");
             }
