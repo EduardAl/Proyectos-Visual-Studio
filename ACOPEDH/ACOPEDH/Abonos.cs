@@ -74,7 +74,10 @@ namespace ACOPEDH
                     Parámetros[3] = new SqlParameter("@Id_Usuario",Globales.gbCodUsuario);
                     if (Imprimir == DialogResult.Yes)
                     {
-#warning Añadir Imprimir
+                        this.Cursor = Cursors.WaitCursor;
+                        Imprimir Acción = new Imprimir(Dato, "Abono");
+                        Acción.ShowDialog();
+                        Acción.Dispose();
                     }
                     if (ingresar.llenar_tabla("[Abonar]", Parámetros) > 0)
                     {

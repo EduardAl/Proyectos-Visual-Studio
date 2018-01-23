@@ -107,10 +107,40 @@
     <Compile Include="Confirmación.Designer.cs">
       <DependentUpon>Confirmación.cs</DependentUpon>
     </Compile>
+    <Compile Include="Constancia Amortización.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Constancia Amortización.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Constancia Aportación.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Constancia Aportación.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Constancia de Abono.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Constancia de Abono.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Constancia de Retiro.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Constancia de Retiro.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Constancia Pago.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Constancia Pago.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Constancia Pagos Realizados.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Constancia Pagos Realizados.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Datos Asociado.cs">
@@ -130,12 +160,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Estado.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Informe Estado Cuenta.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Informe Estado Cuenta.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Fonts.cs" />
@@ -158,6 +182,10 @@
     <Compile Include="InicioSesión.Designer.cs">
       <DependentUpon>InicioSesión.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modelos\model_abonos.cs" />
+    <Compile Include="Modelos\model_Amortización.cs" />
+    <Compile Include="Modelos\model_pagosRealizados.cs" />
+    <Compile Include="Modelos\model_retiros.cs" />
     <Compile Include="Nuevo Ahorro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,9 +292,29 @@
     <EmbeddedResource Include="Confirmación.resx">
       <DependentUpon>Confirmación.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Constancia Amortización.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Constancia Amortización.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Constancia Aportación.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Constancia Aportación.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Constancia de Abono.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Constancia de Abono.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Constancia de Retiro.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Constancia de Retiro.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Constancia Pago.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Constancia Pago.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Constancia Pagos Realizados.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Constancia Pagos Realizados.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Datos Asociado.resx">
       <DependentUpon>Datos Asociado.cs</DependentUpon>
@@ -277,10 +325,6 @@
     <EmbeddedResource Include="Estado.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Estado.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Informe Estado Cuenta.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>Informe Estado Cuenta.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Hoja Desembolso.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -390,6 +434,7 @@
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -16,14 +16,14 @@ namespace ACOPEDH {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class Estado : ReportClass {
+    public class Constancia_Pagos_Realizados : ReportClass {
         
-        public Estado() {
+        public Constancia_Pagos_Realizados() {
         }
         
         public override string ResourceName {
             get {
-                return "Estado.rpt";
+                return "Constancia Pagos Realizados.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ACOPEDH {
         
         public override string FullResourceName {
             get {
-                return "ACOPEDH.Estado.rpt";
+                return "ACOPEDH.Constancia Pagos Realizados.rpt";
             }
             set {
                 // Do nothing
@@ -74,7 +74,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section DetailSection2 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
             get {
                 return this.ReportDefinition.Sections[3];
             }
@@ -82,17 +82,9 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
-            get {
-                return this.ReportDefinition.Sections[4];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.CrystalReports.Engine.Section Section5 {
             get {
-                return this.ReportDefinition.Sections[5];
+                return this.ReportDefinition.Sections[4];
             }
         }
         
@@ -106,7 +98,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Tipo_Ahorro {
+        public CrystalDecisions.Shared.IParameterField Parameter_Monto {
             get {
                 return this.DataDefinition.ParameterFields[1];
             }
@@ -114,7 +106,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Código {
+        public CrystalDecisions.Shared.IParameterField Parameter_Plazo {
             get {
                 return this.DataDefinition.ParameterFields[2];
             }
@@ -122,7 +114,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Suma_Abonos {
+        public CrystalDecisions.Shared.IParameterField Parameter_Fecha {
             get {
                 return this.DataDefinition.ParameterFields[3];
             }
@@ -130,7 +122,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Total_Retiros {
+        public CrystalDecisions.Shared.IParameterField Parameter_Pago_mensual {
             get {
                 return this.DataDefinition.ParameterFields[4];
             }
@@ -138,7 +130,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Saldo_Actual {
+        public CrystalDecisions.Shared.IParameterField Parameter_Tipo_préstamo {
             get {
                 return this.DataDefinition.ParameterFields[5];
             }
@@ -146,17 +138,33 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Ahorro {
+        public CrystalDecisions.Shared.IParameterField Parameter_Estado {
             get {
                 return this.DataDefinition.ParameterFields[6];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_ID_Préstamo {
+            get {
+                return this.DataDefinition.ParameterFields[7];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_Tasa_de_Interés {
+            get {
+                return this.DataDefinition.ParameterFields[8];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedEstado : Component, ICachedReport {
+    public class CachedConstancia_Pagos_Realizados : Component, ICachedReport {
         
-        public CachedEstado() {
+        public CachedConstancia_Pagos_Realizados() {
         }
         
         [Browsable(false)]
@@ -193,7 +201,7 @@ namespace ACOPEDH {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            Estado rpt = new Estado();
+            Constancia_Pagos_Realizados rpt = new Constancia_Pagos_Realizados();
             rpt.Site = this.Site;
             return rpt;
         }

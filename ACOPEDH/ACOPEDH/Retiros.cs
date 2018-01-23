@@ -86,7 +86,10 @@ namespace ACOPEDH
                     Parámetros[3] = new SqlParameter("@Id_Usuario", Globales.gbCodUsuario);
                     if (Imprimir == DialogResult.Yes)
                     {
-#warning Añadir Imprimir
+                        this.Cursor = Cursors.WaitCursor;
+                        Imprimir Acción = new Imprimir(Dato, "Retiro");
+                        Acción.ShowDialog();
+                        Acción.Dispose();
                     }
                     if (pro.llenar_tabla("[Realizar Retiros]", Parámetros) > 0)
                     {

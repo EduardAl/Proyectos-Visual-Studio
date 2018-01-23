@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
+using ACOPEDH.Modelos;
 
 namespace ACOPEDH
 {
@@ -152,6 +153,125 @@ namespace ACOPEDH
             }
             return ds;
         }
+        public List<model_abonos> ConsultaLista_Abono(string procedimiento, SqlParameter[] param)
+        {
+            List<model_abonos> lista = new List<model_abonos>();
+            try
+            {
+                cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
+                conex = new SqlConnection(cn.cadena);
+                conex.InfoMessage += new SqlInfoMessageEventHandler(Conex_InfoMessage);
+                conex.Open();
+                Comando = new SqlCommand();
+                Comando.Connection = conex;
+                Comando.CommandText = procedimiento;
+                Comando.CommandType = CommandType.StoredProcedure;
+                for (int x = 0; x < (param.Length); x++)
+                    Comando.Parameters.Add(param[x]);
+                SqlDataReader dr = (Comando.ExecuteReader());
+                //Read the data and store them in the list
+                while (dr.Read())
+                {
+                    model_abonos modelo = new model_abonos();
+                    modelo.Monto = double.Parse(dr["Monto Abonado"].ToString());
+                    modelo.AbonoComision = double.Parse(dr["Abono más Comisión"].ToString());
+                    modelo.FechaRetiro =DateTime.Parse(dr["Fecha de Abono"].ToString());
+                    lista.Add(modelo);
+                }
+                //close Data Reader
+                dr.Close();
+                //close Connection
+                conex.Close();
+                //return list to be displayed
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("PROBLEMAS CON DATOS DE CONEXION" + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return lista;
+            }
+        }
+        public List<model_retiros> ConsultaLista_Retiro(string procedimiento, SqlParameter[] param)
+        {
+            List<model_retiros> lista = new List<model_retiros>();
+            try
+            {
+                cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
+                conex = new SqlConnection(cn.cadena);
+                conex.InfoMessage += new SqlInfoMessageEventHandler(Conex_InfoMessage);
+                conex.Open();
+                Comando = new SqlCommand();
+                Comando.Connection = conex;
+                Comando.CommandText = procedimiento;
+                Comando.CommandType = CommandType.StoredProcedure;
+                for (int x = 0; x < (param.Length); x++)
+                    Comando.Parameters.Add(param[x]);
+                SqlDataReader dr = (Comando.ExecuteReader());
+                //Read the data and store them in the list
+                while (dr.Read())
+                {
+                    model_retiros modelo = new model_retiros();
+                    modelo.MontoRetiro= double.Parse(dr["Monto Retirado"].ToString());
+                    modelo.Fecha_retiro = DateTime.Parse(dr["Fecha de Retiro"].ToString());
+                    lista.Add(modelo);
+                }
+                //close Data Reader
+                dr.Close();
+                //close Connection
+                conex.Close();
+                //return list to be displayed
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("PROBLEMAS CON DATOS DE CONEXION" + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return lista;
+            }
+        }
+        public List<model_pagosRealizados> ConsultaLista_Pagos(string procedimiento, SqlParameter[] param)
+        {
+            List<model_pagosRealizados> lista = new List<model_pagosRealizados>();
+            try
+            {
+                cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
+                conex = new SqlConnection(cn.cadena);
+                conex.InfoMessage += new SqlInfoMessageEventHandler(Conex_InfoMessage);
+                conex.Open();
+                Comando = new SqlCommand();
+                Comando.Connection = conex;
+                Comando.CommandText = procedimiento;
+                Comando.CommandType = CommandType.StoredProcedure;
+                for (int x = 0; x < (param.Length); x++)
+                    Comando.Parameters.Add(param[x]);
+                SqlDataReader dr = (Comando.ExecuteReader());
+                //Read the data and store them in the list
+                while (dr.Read())
+                {
+                    model_pagosRealizados modelo = new model_pagosRealizados();
+                    modelo.N_pagos = int.Parse(dr["No Pago"].ToString());
+                    modelo.Pago = double.Parse(dr["Monto Cancelado"].ToString());
+                    modelo.PagoIntereses = double.Parse(dr["Pago a Intereses"].ToString());
+                    modelo.PagoCapital = double.Parse(dr["Pago a Capital"].ToString());
+                    modelo.Mora = double.Parse(dr["Mora por retraso"].ToString());
+                    modelo.Saldo = double.Parse(dr["Saldo restante"].ToString());
+                    modelo.FechaPago = DateTime.Parse(dr["Fecha de Pago"].ToString());
+                    modelo.FechaLimite = DateTime.Parse(dr["Fecha Límite de Pago"].ToString());
+                    lista.Add(modelo);
+                }
+                //close Data Reader
+                dr.Close();
+                //close Connection
+                conex.Close();
+                //return list to be displayed
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("PROBLEMAS CON DATOS DE CONEXION" + ex, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return lista;
+            }
+        }
+
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
         //   Obtinene los mensajes o errores de un procedimiento almacenado por medio de la cadena de conexión   //
@@ -202,9 +322,9 @@ namespace ACOPEDH
                     j++;
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error, por favor intentelo de nuevo más tarde", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ha ocurrido un error, por favor intentelo de nuevo más tarde" + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return Llenado;
         }

@@ -301,7 +301,7 @@ namespace ACOPEDH
             if (DatoR())
             {
                 Abonos Accion = new Abonos(Dato);
-                Accion.Show();
+                Accion.ShowDialog();
                 Accion.Dispose();
             }
             else

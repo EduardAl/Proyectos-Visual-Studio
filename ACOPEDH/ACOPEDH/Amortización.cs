@@ -22,6 +22,8 @@ namespace ACOPEDH
         */
         public string CódigoPréstamo="";
         Fonts F;
+        List<Modelos.model_Amortización> Lista = new List<Modelos.model_Amortización>();
+
         #region Constructores
         //Normal
         public Amortización()
@@ -71,6 +73,7 @@ namespace ACOPEDH
                     if (i == plazo)
                         cuota = Math.Round(Monto * (1 + interes), 2);
                     dgvAmortizar.Rows.Add(i, cuota.ToString("C2"), (inte = Math.Round(interes * Monto, 2)).ToString("C2"), Math.Round(cuota - inte, 2).ToString("C2"), (Monto = Math.Round(Monto - cuota + inte, 2)).ToString("C2"), (Pago = Pago.AddMonths(1)).ToShortDateString());
+                    Lista.Add(new Modelos.model_Amortización(i,cuota,inte, Math.Round(cuota - inte, 2),Monto,Pago));
                 }
             }
             catch
@@ -92,7 +95,10 @@ namespace ACOPEDH
         //Imprimir
         private void bttImprimir_Click(object sender, EventArgs e)
         {
-#warning Falta Imprimir
+            this.Cursor = Cursors.WaitCursor;
+            Imprimir Acción = new Imprimir();
+            Acción.ShowDialog();
+            Acción.Dispose();
         }
         //Cerrar
         private void bttCer_Click(object sender, EventArgs e)
