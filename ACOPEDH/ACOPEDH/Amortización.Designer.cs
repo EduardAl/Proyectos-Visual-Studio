@@ -68,7 +68,7 @@
             this.dgvAmortizar.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -187,7 +187,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(51, 76);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 40);
+            this.label1.Size = new System.Drawing.Size(81, 38);
             this.label1.TabIndex = 4;
             this.label1.Text = "Monto del\r\nPréstamo:";
             // 
@@ -197,7 +197,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(228, 76);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 40);
+            this.label2.Size = new System.Drawing.Size(68, 38);
             this.label2.TabIndex = 5;
             this.label2.Text = "Plazo en\r\nMeses: ";
             // 
@@ -207,20 +207,20 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Location = new System.Drawing.Point(392, 76);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 40);
+            this.label3.Size = new System.Drawing.Size(58, 38);
             this.label3.TabIndex = 6;
             this.label3.Text = "Interés\r\nAnual:";
             // 
             // BarraTítulo
             // 
             this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
-            this.BarraTítulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F);
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
             this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
             this.BarraTítulo.Name = "BarraTítulo";
             this.BarraTítulo.Size = new System.Drawing.Size(708, 30);
             this.BarraTítulo.TabIndex = 33;
-            this.BarraTítulo.Text = "         ACOPEDH .:. AMORTIZACIÓN DEL PRÉSTAMO";
+            this.BarraTítulo.Text = "         ACOPEDH - Amortización del Préstamo";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BarraTítulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.BarraTítulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
@@ -295,7 +295,7 @@
             this.Controls.Add(this.txtMonto);
             this.Controls.Add(this.dgvAmortizar);
             this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Font = new System.Drawing.Font("Linotte-SemiBold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

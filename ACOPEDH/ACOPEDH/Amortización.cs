@@ -21,6 +21,7 @@ namespace ACOPEDH
             ********************************* 
         */
         public string CódigoPréstamo="";
+        Fonts F;
         #region Constructores
         //Normal
         public Amortización()
@@ -76,6 +77,8 @@ namespace ACOPEDH
             {
 
             }
+            F = new Fonts(dgvAmortizar);
+            F.Diseño();
         }
 
         #endregion
