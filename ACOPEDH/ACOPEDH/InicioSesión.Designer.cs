@@ -171,10 +171,10 @@
             this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
             this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.bttCer.Image = ((System.Drawing.Image)(resources.GetObject("bttCer.Image")));
-            this.bttCer.Location = new System.Drawing.Point(361, 1);
+            this.bttCer.Location = new System.Drawing.Point(367, 4);
             this.bttCer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.bttCer.Name = "bttCer";
-            this.bttCer.Size = new System.Drawing.Size(30, 26);
+            this.bttCer.Size = new System.Drawing.Size(21, 21);
             this.bttCer.TabIndex = 61;
             this.bttCer.TabStop = false;
             this.bttCer.Click += new System.EventHandler(this.bttCer_Click);
@@ -187,19 +187,19 @@
             this.pictureBox3.Location = new System.Drawing.Point(4, 0);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox3.Size = new System.Drawing.Size(29, 29);
             this.pictureBox3.TabIndex = 60;
             this.pictureBox3.TabStop = false;
             // 
             // BarraTítulo
             // 
             this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
-            this.BarraTítulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F);
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
             this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
             this.BarraTítulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.BarraTítulo.Name = "BarraTítulo";
-            this.BarraTítulo.Size = new System.Drawing.Size(391, 30);
+            this.BarraTítulo.Size = new System.Drawing.Size(391, 29);
             this.BarraTítulo.TabIndex = 59;
             this.BarraTítulo.Text = "         ACOPEDH - Inicio de Sesión";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -212,7 +212,7 @@
             this.PBACOPEDH.BackgroundImage = global::ACOPEDH.Properties.Resources.Photo_1;
             this.PBACOPEDH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PBACOPEDH.Location = new System.Drawing.Point(95, 68);
-            this.PBACOPEDH.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PBACOPEDH.Margin = new System.Windows.Forms.Padding(2);
             this.PBACOPEDH.Name = "PBACOPEDH";
             this.PBACOPEDH.Size = new System.Drawing.Size(200, 181);
             this.PBACOPEDH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -225,7 +225,7 @@
             this.PBMostrar1.BackColor = System.Drawing.Color.Gainsboro;
             this.PBMostrar1.Image = global::ACOPEDH.Properties.Resources.show;
             this.PBMostrar1.Location = new System.Drawing.Point(298, 373);
-            this.PBMostrar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PBMostrar1.Margin = new System.Windows.Forms.Padding(2);
             this.PBMostrar1.Name = "PBMostrar1";
             this.PBMostrar1.Size = new System.Drawing.Size(25, 27);
             this.PBMostrar1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -255,7 +255,7 @@
             this.Controls.Add(this.txtCorreo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "InicioSesión";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

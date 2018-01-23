@@ -137,7 +137,7 @@
             // 
             this.txtCheque.Font = new System.Drawing.Font("Linotte-Bold", 12F);
             this.txtCheque.Location = new System.Drawing.Point(204, 90);
-            this.txtCheque.MaxLength = 8;
+            this.txtCheque.MaxLength = 15;
             this.txtCheque.Name = "txtCheque";
             this.txtCheque.Size = new System.Drawing.Size(135, 27);
             this.txtCheque.TabIndex = 96;

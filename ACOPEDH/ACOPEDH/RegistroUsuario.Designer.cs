@@ -63,11 +63,11 @@
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(134, 445);
+            this.label6.Font = new System.Drawing.Font("Linotte-SemiBold", 13.2F);
+            this.label6.Location = new System.Drawing.Point(126, 445);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(128, 20);
+            this.label6.Size = new System.Drawing.Size(142, 22);
             this.label6.TabIndex = 55;
             this.label6.Text = "Tipo de Usuario: ";
             // 
@@ -78,7 +78,7 @@
             this.cbTipoUsuario.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cbTipoUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbTipoUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTipoUsuario.Font = new System.Drawing.Font("Linotte-SemiBold", 13.2F);
             this.cbTipoUsuario.FormattingEnabled = true;
             this.cbTipoUsuario.Items.AddRange(new object[] {
             "Usuario",
@@ -87,7 +87,7 @@
             this.cbTipoUsuario.Location = new System.Drawing.Point(106, 468);
             this.cbTipoUsuario.Margin = new System.Windows.Forms.Padding(0);
             this.cbTipoUsuario.Name = "cbTipoUsuario";
-            this.cbTipoUsuario.Size = new System.Drawing.Size(178, 24);
+            this.cbTipoUsuario.Size = new System.Drawing.Size(178, 30);
             this.cbTipoUsuario.TabIndex = 6;
             this.cbTipoUsuario.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cbTipoUsuario_DrawItem);
             // 
@@ -96,7 +96,7 @@
             this.bttCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bttCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.bttCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttCancelar.Font = new System.Drawing.Font("Linotte-Bold", 12.5F);
             this.bttCancelar.Location = new System.Drawing.Point(212, 506);
             this.bttCancelar.Margin = new System.Windows.Forms.Padding(0);
             this.bttCancelar.Name = "bttCancelar";
@@ -155,11 +155,11 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(114, 391);
+            this.label5.Font = new System.Drawing.Font("Linotte-SemiBold", 13.2F);
+            this.label5.Location = new System.Drawing.Point(106, 391);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(170, 20);
+            this.label5.Size = new System.Drawing.Size(192, 22);
             this.label5.TabIndex = 49;
             this.label5.Text = "Confirmar contraseña: ";
             // 
@@ -167,11 +167,11 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(151, 332);
+            this.label4.Font = new System.Drawing.Font("Linotte-SemiBold", 13.2F);
+            this.label4.Location = new System.Drawing.Point(143, 332);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 20);
+            this.label4.Size = new System.Drawing.Size(106, 22);
             this.label4.TabIndex = 48;
             this.label4.Text = "Contraseña:";
             // 
@@ -179,11 +179,11 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(167, 272);
+            this.label3.Font = new System.Drawing.Font("Linotte-SemiBold", 13.2F);
+            this.label3.Location = new System.Drawing.Point(159, 272);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 20);
+            this.label3.Size = new System.Drawing.Size(68, 22);
             this.label3.TabIndex = 47;
             this.label3.Text = "Correo:";
             // 
@@ -206,11 +206,11 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(159, 218);
+            this.label2.Font = new System.Drawing.Font("Linotte-SemiBold", 13.2F);
+            this.label2.Location = new System.Drawing.Point(151, 218);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 20);
+            this.label2.Size = new System.Drawing.Size(88, 22);
             this.label2.TabIndex = 45;
             this.label2.Text = "Apellidos:";
             // 
@@ -218,11 +218,11 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(163, 159);
+            this.label1.Font = new System.Drawing.Font("Linotte-SemiBold", 13.2F);
+            this.label1.Location = new System.Drawing.Point(155, 159);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 20);
+            this.label1.Size = new System.Drawing.Size(78, 22);
             this.label1.TabIndex = 44;
             this.label1.Text = "Nombre:";
             // 
@@ -245,7 +245,7 @@
             // 
             this.bttConfirmar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bttConfirmar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttConfirmar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bttConfirmar.Font = new System.Drawing.Font("Linotte-Bold", 12.5F);
             this.bttConfirmar.Location = new System.Drawing.Point(67, 506);
             this.bttConfirmar.Margin = new System.Windows.Forms.Padding(0);
             this.bttConfirmar.Name = "bttConfirmar";
@@ -263,7 +263,7 @@
             // BarraTítulo
             // 
             this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
-            this.BarraTítulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F);
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
             this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
             this.BarraTítulo.Margin = new System.Windows.Forms.Padding(0);

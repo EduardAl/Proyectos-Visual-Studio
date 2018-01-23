@@ -3,14 +3,12 @@ using System.Data;
 using System.Windows.Forms;
 using System.Data.Sql;
 using System.Data.SqlClient;
-
 namespace Crear_Base_de_Datos
 {
     public partial class Servidores : Form
     {
         public static DataTable Instancias()
         {
-
             return SqlDataSourceEnumerator.Instance.GetDataSources();
         }
         public static string Servidor;
@@ -19,6 +17,7 @@ namespace Crear_Base_de_Datos
         public Servidores()
         {
             InitializeComponent();
+           
         }
 
         private void Servidores_Load(object sender, EventArgs e)
@@ -51,11 +50,6 @@ namespace Crear_Base_de_Datos
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void Servidores_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (String.IsNullOrEmpty(Servidor) || String.IsNullOrEmpty(Servidor2))
@@ -67,7 +61,6 @@ namespace Crear_Base_de_Datos
                 DialogResult = DialogResult.No;
             }
         }
-
         private void Servidores_FormClosed(object sender, FormClosedEventArgs e)
         {
             if(DialogResult == DialogResult.OK)
