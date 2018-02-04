@@ -1355,21 +1355,21 @@ namespace Crear_Base_de_Datos
                 "grant execute on object :: [Informe Préstamo] " +
                 "to Administrador with grant option " +
                 "grant execute on object :: [Conseguir Transacciones] " +
-                "to Administrador with grant option" +
+                "to Administrador with grant option " +
                 "grant execute on object :: [Conseguir Datos Cooperativa] " +
-                "to Administrador with grant option" +
+                "to Administrador with grant option " +
                 "grant execute on object :: [Conseguir Imágenes] " +
-                "to Administrador with grant option" +
+                "to Administrador with grant option " +
                 "grant execute on object :: [Insertar Imagen] " +
-                "to Administrador with grant option" +
+                "to Administrador with grant option " +
                 "grant execute on object :: [Actualizar Imagen] " +
-                "to Administrador with grant option" +
+                "to Administrador with grant option " +
                 "grant execute on object :: [Eliminar Imagen] " +
-                "to Administrador with grant option" +
+                "to Administrador with grant option " +
                 "grant execute on object :: [Cargar Tipo Imagen] " +
-                "to Administrador with grant option" +
+                "to Administrador with grant option " +
                 "grant execute on object :: [Actualizar Asociado] " +
-                 "to Administrador with grant option";
+                 "to Administrador with grant option ";
             String permisosUsuario =
                  "Use " + txtNombre.Text + ";" +
                  "Exec sp_addrolemember N'db_datareader',N'Usuario' " +
