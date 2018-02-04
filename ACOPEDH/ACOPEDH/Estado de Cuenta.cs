@@ -89,10 +89,10 @@ namespace ACOPEDH
                         Acción.Dispose();
                     }
                 }
-            //}
-            //catch
-            //{
-            //}
+            }
+            catch
+            {
+            }
         }
         #endregion
 
