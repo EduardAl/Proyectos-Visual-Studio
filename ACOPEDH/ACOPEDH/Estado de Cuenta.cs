@@ -24,6 +24,7 @@ namespace ACOPEDH
         double dato;
         DataTable dt;
         public DialogResult dr = DialogResult.Cancel;
+        Fonts F;
         #region Componentes
         public Estado_de_Cuenta()
         {
@@ -39,7 +40,10 @@ namespace ACOPEDH
         private void Estado_de_Cuenta_Load(object sender, EventArgs e)
         {
             Cargar_Datos();
-
+            F = new Fonts(dgvAbonos);
+            F.Diseño();
+            F = new Fonts(dgvRetiros);
+            F.Diseño();
         }
         #endregion
 
@@ -85,10 +89,10 @@ namespace ACOPEDH
                         Acción.Dispose();
                     }
                 }
-            }
-            catch
-            {
-            }
+            //}
+            //catch
+            //{
+            //}
         }
         #endregion
 
@@ -172,6 +176,14 @@ namespace ACOPEDH
             Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(Width - 1, 0), new Point(Width, Height));
         }
         #endregion
-
+        //Botón Imprimir
+        private void bttImprimir_Click(object sender, EventArgs e)
+        {
+            Imprimir Acción = new Imprimir(Dato, "Estado");
+            this.Cursor = Cursors.WaitCursor;
+            Acción.ShowDialog();
+            Acción.Dispose();
+            this.Cursor = Cursors.Default;
+        }
     }
 }

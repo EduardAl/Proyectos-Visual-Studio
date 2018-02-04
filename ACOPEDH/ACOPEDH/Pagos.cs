@@ -82,7 +82,10 @@ namespace ACOPEDH
                     {
                         if (Imprimir == DialogResult.Yes)
                         {
-#warning Añadir Imprimir
+                            this.Cursor = Cursors.WaitCursor;
+                            Imprimir Acción = new Imprimir(Datos, "Pago");
+                            Acción.ShowDialog();
+                            Acción.Dispose();
                         }
                         DialogResult = DialogResult.OK;
                         Close();

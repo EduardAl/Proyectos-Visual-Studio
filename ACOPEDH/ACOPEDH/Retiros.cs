@@ -81,7 +81,7 @@ namespace ACOPEDH
                 {
                     SqlParameter[] Parámetros = new SqlParameter[4];
                     Parámetros[0] = new SqlParameter("@Retiro", nCantidadRetiro.Value);
-                    Parámetros[1] = new SqlParameter("@Número_Cheque", "Generado");
+                    Parámetros[1] = new SqlParameter("@Número_Cheque", txtCheque.Text);
                     Parámetros[2] = new SqlParameter("@FK_Ahorro", Dato);
                     Parámetros[3] = new SqlParameter("@Id_Usuario", Globales.gbCodUsuario);
                     if (Imprimir == DialogResult.Yes)
@@ -142,5 +142,10 @@ namespace ACOPEDH
             Linea.DrawLine(new Pen(Brushes.Black, 4), new Point(Width, 0), new Point(0,0));
         }
         #endregion
+
+        private void txtNoCuenta_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

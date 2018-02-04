@@ -15,6 +15,7 @@ namespace ACOPEDH
             ********************************* 
         */
         #region Variables
+        Fonts F;
         String dgvControl;
         DialogResult dr = DialogResult.Cancel;
         Color Original, Seleccionado;
@@ -53,6 +54,8 @@ namespace ACOPEDH
             dtHasta.MaxDate = dtDesde.MaxDate = dtHasta.Value;
             cbTransacción.SelectedIndex = 0;
             No_Editar();
+            F = new Fonts(dgvBúsqueda);
+            F.Diseño();
         }
         #endregion
 
@@ -121,7 +124,6 @@ namespace ACOPEDH
             bttNuevoAsociado.Visible = true;
             bttDatosAsociado.Visible = true;
             bttAportaciones.Visible = true;
-            bttRegistros.Visible = true;
             //Lenado de Datos
             dgvControl = "Asociado";
             this.filtro = dsAsociado.DefaultView;
@@ -224,7 +226,6 @@ namespace ACOPEDH
             bttAportaciones.Visible = false;
             bttNuevoAsociado.Visible = false;
             bttDatosAsociado.Visible = false;
-            bttRegistros.Visible = false;
 
             //Configuración
             panelConfig.Visible = false;
@@ -395,7 +396,7 @@ namespace ACOPEDH
             if (DatoR())
             {
                 Abonos Accion = new Abonos(Dato);
-                Accion.ShowDialog();
+                Accion.Show();
                 Accion.Dispose();
                 Cargando = true;
             }
@@ -623,7 +624,7 @@ namespace ACOPEDH
             bttAmortización.Location = new Point(bttPagosRealizados.Location.X - bttAmortización.Width - 89, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
             bttRetirar.Location = bttDatosAsociado.Location = bttAmortización.Location;
             bttRealizarPago.Location = new Point(bttAmortización.Location.X - bttRealizarPago.Width - 89, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
-            bttAbonar.Location = bttRegistros.Location = bttRealizarPago.Location;
+            bttAbonar.Location = bttRealizarPago.Location;
             Refresh();
         }
         #endregion
@@ -935,6 +936,12 @@ namespace ACOPEDH
 
         private const int WM_NCHITTEST = 0x84;          // variables for dragging the form
         private const int HTCLIENT = 0x1;
+
+        private void btnRegAsociado_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private const int HTCAPTION = 0x2;
 
         protected override CreateParams CreateParams

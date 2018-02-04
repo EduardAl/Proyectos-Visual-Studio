@@ -164,7 +164,7 @@
             this.AcceptButton = this.bttConfirmar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(390, 592);
+            this.ClientSize = new System.Drawing.Size(390, 528);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.PBACOPEDH);
             this.Controls.Add(this.bttConfirmar);
