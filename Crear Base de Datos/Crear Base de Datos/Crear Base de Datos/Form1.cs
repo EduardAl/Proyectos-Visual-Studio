@@ -1392,9 +1392,9 @@ namespace Crear_Base_de_Datos
             String crearusuarios =
                  "Use " + txtNombre.Text + ";" +
                  "insert into [Tipo de Usuarios] values" +
-                 "('Master_ACOPEDH', 'AUREO112358')," +
-                 "('Administrador', 'ACOPEDH365')," +
-                 "('Usuario', 'User123')," +
+                 "('Master_ACOPEDH', 'Aureo112358')," +
+                 "('Administrador', 'Acopedh365')," +
+                 "('Usuario', 'User12345')," +
                  "('InicioSesion', 'In112358')";
             String crearsocios =
                 "insert into [Tipo de Socio] values ('Asociado'), ('Fundador')";
@@ -1540,7 +1540,7 @@ namespace Crear_Base_de_Datos
             //try
             //{
             ////Abrimos la conexión y ejecutamos el comando
-            //cnn.Open();
+            cnn.Open();
             cmd.ExecuteNonQuery();
             cmdUse.ExecuteNonQuery();
             cmd0.ExecuteNonQuery();
