@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal_P));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Titulo = new System.Windows.Forms.Label();
@@ -119,6 +119,10 @@
             this.dtHasta = new System.Windows.Forms.DateTimePicker();
             this.dtDesde = new System.Windows.Forms.DateTimePicker();
             this.dgvTransacciones = new System.Windows.Forms.DataGridView();
+            this.bttAgregarAsociado = new System.Windows.Forms.Button();
+            this.bttAmortizacion = new System.Windows.Forms.Button();
+            this.bttAbono = new System.Windows.Forms.Button();
+            this.bttAportar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBúsqueda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
@@ -329,8 +333,8 @@
             this.dgvBúsqueda.AllowUserToDeleteRows = false;
             this.dgvBúsqueda.AllowUserToResizeColumns = false;
             this.dgvBúsqueda.AllowUserToResizeRows = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvBúsqueda.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvBúsqueda.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvBúsqueda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBúsqueda.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -362,8 +366,8 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvBúsqueda.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvBúsqueda.RowHeadersVisible = false;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvBúsqueda.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvBúsqueda.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvBúsqueda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBúsqueda.Size = new System.Drawing.Size(632, 372);
             this.dgvBúsqueda.TabIndex = 24;
@@ -927,7 +931,7 @@
             this.labTTran.BackColor = System.Drawing.Color.Transparent;
             this.labTTran.Location = new System.Drawing.Point(745, 206);
             this.labTTran.Name = "labTTran";
-            this.labTTran.Size = new System.Drawing.Size(128, 19);
+            this.labTTran.Size = new System.Drawing.Size(129, 20);
             this.labTTran.TabIndex = 90;
             this.labTTran.Text = "Tipo Transacción";
             this.labTTran.Visible = false;
@@ -938,7 +942,7 @@
             this.labDesde.BackColor = System.Drawing.Color.Transparent;
             this.labDesde.Location = new System.Drawing.Point(260, 154);
             this.labDesde.Name = "labDesde";
-            this.labDesde.Size = new System.Drawing.Size(52, 19);
+            this.labDesde.Size = new System.Drawing.Size(56, 20);
             this.labDesde.TabIndex = 89;
             this.labDesde.Text = "Desde";
             this.labDesde.Visible = false;
@@ -949,7 +953,7 @@
             this.labHasta.BackColor = System.Drawing.Color.Transparent;
             this.labHasta.Location = new System.Drawing.Point(260, 206);
             this.labHasta.Name = "labHasta";
-            this.labHasta.Size = new System.Drawing.Size(51, 19);
+            this.labHasta.Size = new System.Drawing.Size(52, 20);
             this.labHasta.TabIndex = 85;
             this.labHasta.Text = "Hasta";
             this.labHasta.Visible = false;
@@ -984,7 +988,7 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Location = new System.Drawing.Point(185, 141);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(113, 19);
+            this.label9.Size = new System.Drawing.Size(115, 20);
             this.label9.TabIndex = 16;
             this.label9.Text = "Pago a Cuenta";
             // 
@@ -993,7 +997,7 @@
             this.txtPago.Location = new System.Drawing.Point(186, 166);
             this.txtPago.Name = "txtPago";
             this.txtPago.ReadOnly = true;
-            this.txtPago.Size = new System.Drawing.Size(100, 27);
+            this.txtPago.Size = new System.Drawing.Size(100, 26);
             this.txtPago.TabIndex = 15;
             this.txtPago.TabStop = false;
             // 
@@ -1003,7 +1007,7 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Location = new System.Drawing.Point(23, 141);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(69, 19);
+            this.label10.Size = new System.Drawing.Size(71, 20);
             this.label10.TabIndex = 14;
             this.label10.Text = "Ingresos";
             // 
@@ -1012,7 +1016,7 @@
             this.txtIngresos.Location = new System.Drawing.Point(24, 166);
             this.txtIngresos.Name = "txtIngresos";
             this.txtIngresos.ReadOnly = true;
-            this.txtIngresos.Size = new System.Drawing.Size(100, 27);
+            this.txtIngresos.Size = new System.Drawing.Size(100, 26);
             this.txtIngresos.TabIndex = 13;
             this.txtIngresos.TabStop = false;
             // 
@@ -1022,7 +1026,7 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Location = new System.Drawing.Point(185, 83);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 19);
+            this.label8.Size = new System.Drawing.Size(45, 20);
             this.label8.TabIndex = 12;
             this.label8.Text = "Mora";
             // 
@@ -1031,7 +1035,7 @@
             this.txtMora.Location = new System.Drawing.Point(186, 108);
             this.txtMora.Name = "txtMora";
             this.txtMora.ReadOnly = true;
-            this.txtMora.Size = new System.Drawing.Size(100, 27);
+            this.txtMora.Size = new System.Drawing.Size(100, 26);
             this.txtMora.TabIndex = 11;
             this.txtMora.TabStop = false;
             // 
@@ -1041,7 +1045,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Location = new System.Drawing.Point(185, 28);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 19);
+            this.label7.Size = new System.Drawing.Size(76, 20);
             this.label7.TabIndex = 10;
             this.label7.Text = "Intereses";
             // 
@@ -1050,7 +1054,7 @@
             this.txtIntereses.Location = new System.Drawing.Point(186, 53);
             this.txtIntereses.Name = "txtIntereses";
             this.txtIntereses.ReadOnly = true;
-            this.txtIntereses.Size = new System.Drawing.Size(100, 27);
+            this.txtIntereses.Size = new System.Drawing.Size(100, 26);
             this.txtIntereses.TabIndex = 9;
             this.txtIntereses.TabStop = false;
             // 
@@ -1060,7 +1064,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Location = new System.Drawing.Point(23, 83);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(113, 19);
+            this.label5.Size = new System.Drawing.Size(112, 20);
             this.label5.TabIndex = 8;
             this.label5.Text = "Pago a Capital";
             // 
@@ -1069,7 +1073,7 @@
             this.txtCapital.Location = new System.Drawing.Point(24, 108);
             this.txtCapital.Name = "txtCapital";
             this.txtCapital.ReadOnly = true;
-            this.txtCapital.Size = new System.Drawing.Size(100, 27);
+            this.txtCapital.Size = new System.Drawing.Size(100, 26);
             this.txtCapital.TabIndex = 7;
             this.txtCapital.TabStop = false;
             // 
@@ -1079,7 +1083,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Location = new System.Drawing.Point(23, 28);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(147, 19);
+            this.label6.Size = new System.Drawing.Size(144, 20);
             this.label6.TabIndex = 6;
             this.label6.Text = "Cantidad Otorgada";
             // 
@@ -1088,7 +1092,7 @@
             this.txtPréstamos.Location = new System.Drawing.Point(24, 53);
             this.txtPréstamos.Name = "txtPréstamos";
             this.txtPréstamos.ReadOnly = true;
-            this.txtPréstamos.Size = new System.Drawing.Size(100, 27);
+            this.txtPréstamos.Size = new System.Drawing.Size(100, 26);
             this.txtPréstamos.TabIndex = 5;
             this.txtPréstamos.TabStop = false;
             // 
@@ -1114,7 +1118,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Location = new System.Drawing.Point(23, 83);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 19);
+            this.label3.Size = new System.Drawing.Size(60, 20);
             this.label3.TabIndex = 8;
             this.label3.Text = "Retiros";
             // 
@@ -1123,7 +1127,7 @@
             this.txtRetiros_Aportaciones.Location = new System.Drawing.Point(24, 108);
             this.txtRetiros_Aportaciones.Name = "txtRetiros_Aportaciones";
             this.txtRetiros_Aportaciones.ReadOnly = true;
-            this.txtRetiros_Aportaciones.Size = new System.Drawing.Size(100, 27);
+            this.txtRetiros_Aportaciones.Size = new System.Drawing.Size(100, 26);
             this.txtRetiros_Aportaciones.TabIndex = 7;
             this.txtRetiros_Aportaciones.TabStop = false;
             // 
@@ -1133,7 +1137,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Location = new System.Drawing.Point(23, 28);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 19);
+            this.label4.Size = new System.Drawing.Size(64, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "Abonos";
             // 
@@ -1142,7 +1146,7 @@
             this.txtAbonos_Aportaciones.Location = new System.Drawing.Point(24, 53);
             this.txtAbonos_Aportaciones.Name = "txtAbonos_Aportaciones";
             this.txtAbonos_Aportaciones.ReadOnly = true;
-            this.txtAbonos_Aportaciones.Size = new System.Drawing.Size(100, 27);
+            this.txtAbonos_Aportaciones.Size = new System.Drawing.Size(100, 26);
             this.txtAbonos_Aportaciones.TabIndex = 5;
             this.txtAbonos_Aportaciones.TabStop = false;
             // 
@@ -1168,7 +1172,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(23, 83);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 19);
+            this.label2.Size = new System.Drawing.Size(60, 20);
             this.label2.TabIndex = 8;
             this.label2.Text = "Retiros";
             // 
@@ -1177,7 +1181,7 @@
             this.txtRetiros_Ahorros.Location = new System.Drawing.Point(24, 108);
             this.txtRetiros_Ahorros.Name = "txtRetiros_Ahorros";
             this.txtRetiros_Ahorros.ReadOnly = true;
-            this.txtRetiros_Ahorros.Size = new System.Drawing.Size(100, 27);
+            this.txtRetiros_Ahorros.Size = new System.Drawing.Size(100, 26);
             this.txtRetiros_Ahorros.TabIndex = 7;
             this.txtRetiros_Ahorros.TabStop = false;
             // 
@@ -1187,7 +1191,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(23, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 19);
+            this.label1.Size = new System.Drawing.Size(64, 20);
             this.label1.TabIndex = 6;
             this.label1.Text = "Abonos";
             // 
@@ -1196,7 +1200,7 @@
             this.txtAbonos_Ahorro.Location = new System.Drawing.Point(24, 53);
             this.txtAbonos_Ahorro.Name = "txtAbonos_Ahorro";
             this.txtAbonos_Ahorro.ReadOnly = true;
-            this.txtAbonos_Ahorro.Size = new System.Drawing.Size(100, 27);
+            this.txtAbonos_Ahorro.Size = new System.Drawing.Size(100, 26);
             this.txtAbonos_Ahorro.TabIndex = 5;
             this.txtAbonos_Ahorro.TabStop = false;
             // 
@@ -1224,7 +1228,7 @@
             "Préstamo"});
             this.cbTransacción.Location = new System.Drawing.Point(678, 228);
             this.cbTransacción.Name = "cbTransacción";
-            this.cbTransacción.Size = new System.Drawing.Size(261, 27);
+            this.cbTransacción.Size = new System.Drawing.Size(261, 28);
             this.cbTransacción.TabIndex = 83;
             this.cbTransacción.Visible = false;
             this.cbTransacción.SelectedIndexChanged += new System.EventHandler(this.cbTransacción_SelectedIndexChanged);
@@ -1233,7 +1237,7 @@
             // 
             this.dtHasta.Location = new System.Drawing.Point(264, 228);
             this.dtHasta.Name = "dtHasta";
-            this.dtHasta.Size = new System.Drawing.Size(297, 27);
+            this.dtHasta.Size = new System.Drawing.Size(297, 26);
             this.dtHasta.TabIndex = 82;
             this.dtHasta.Visible = false;
             this.dtHasta.ValueChanged += new System.EventHandler(this.dtHasta_ValueChanged);
@@ -1242,7 +1246,7 @@
             // 
             this.dtDesde.Location = new System.Drawing.Point(264, 175);
             this.dtDesde.Name = "dtDesde";
-            this.dtDesde.Size = new System.Drawing.Size(297, 27);
+            this.dtDesde.Size = new System.Drawing.Size(297, 26);
             this.dtDesde.TabIndex = 81;
             this.dtDesde.Visible = false;
             this.dtDesde.ValueChanged += new System.EventHandler(this.dtDesde_ValueChanged);
@@ -1264,6 +1268,54 @@
             this.dgvTransacciones.TabStop = false;
             this.dgvTransacciones.Visible = false;
             // 
+            // bttAgregarAsociado
+            // 
+            this.bttAgregarAsociado.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.bttAgregarAsociado.Location = new System.Drawing.Point(744, 135);
+            this.bttAgregarAsociado.Name = "bttAgregarAsociado";
+            this.bttAgregarAsociado.Size = new System.Drawing.Size(150, 58);
+            this.bttAgregarAsociado.TabIndex = 91;
+            this.bttAgregarAsociado.Text = "Nueva Persona\r\nAsociada";
+            this.bttAgregarAsociado.UseVisualStyleBackColor = true;
+            this.bttAgregarAsociado.Visible = false;
+            this.bttAgregarAsociado.Click += new System.EventHandler(this.bttNuevoAsociado_Click);
+            // 
+            // bttAmortizacion
+            // 
+            this.bttAmortizacion.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.bttAmortizacion.Location = new System.Drawing.Point(504, 608);
+            this.bttAmortizacion.Name = "bttAmortizacion";
+            this.bttAmortizacion.Size = new System.Drawing.Size(150, 58);
+            this.bttAmortizacion.TabIndex = 92;
+            this.bttAmortizacion.Text = "Amortización";
+            this.bttAmortizacion.UseVisualStyleBackColor = true;
+            this.bttAmortizacion.Visible = false;
+            this.bttAmortizacion.Click += new System.EventHandler(this.bttAmortización_Click);
+            // 
+            // bttAbono
+            // 
+            this.bttAbono.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.bttAbono.Location = new System.Drawing.Point(263, 608);
+            this.bttAbono.Name = "bttAbono";
+            this.bttAbono.Size = new System.Drawing.Size(150, 58);
+            this.bttAbono.TabIndex = 93;
+            this.bttAbono.Text = "Abonar";
+            this.bttAbono.UseVisualStyleBackColor = true;
+            this.bttAbono.Visible = false;
+            this.bttAbono.Click += new System.EventHandler(this.bttAbonar_Click);
+            // 
+            // bttAportar
+            // 
+            this.bttAportar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.bttAportar.Location = new System.Drawing.Point(264, 609);
+            this.bttAportar.Name = "bttAportar";
+            this.bttAportar.Size = new System.Drawing.Size(150, 58);
+            this.bttAportar.TabIndex = 94;
+            this.bttAportar.Text = "Aportaciones";
+            this.bttAportar.UseVisualStyleBackColor = true;
+            this.bttAportar.Visible = false;
+            this.bttAportar.Click += new System.EventHandler(this.bttAportaciones_Click);
+            // 
             // Principal_P
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1271,6 +1323,10 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(980, 705);
             this.ControlBox = false;
+            this.Controls.Add(this.bttAportar);
+            this.Controls.Add(this.bttAbono);
+            this.Controls.Add(this.bttAmortizacion);
+            this.Controls.Add(this.bttAgregarAsociado);
             this.Controls.Add(this.panelConfig);
             this.Controls.Add(this.labTTran);
             this.Controls.Add(this.labDesde);
@@ -1428,5 +1484,9 @@
         private System.Windows.Forms.DateTimePicker dtDesde;
         private System.Windows.Forms.DataGridView dgvTransacciones;
         private System.Windows.Forms.Button bttRegistros;
+        private System.Windows.Forms.Button bttAgregarAsociado;
+        private System.Windows.Forms.Button bttAmortizacion;
+        private System.Windows.Forms.Button bttAbono;
+        private System.Windows.Forms.Button bttAportar;
     }
 }
