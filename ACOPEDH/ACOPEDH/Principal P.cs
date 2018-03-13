@@ -81,7 +81,7 @@ namespace ACOPEDH
             labBuscar.Visible = true;
             txtBúsqueda.Visible = true;
             dgvBúsqueda.Visible = true;
-            bttAbonar.Visible = true;
+            bttAbono.Visible = true;
             bttRetirar.Visible = true;
             bttVerEstados.Visible = true;
             bttCrearCuenta.Visible = true;
@@ -101,7 +101,7 @@ namespace ACOPEDH
             labBuscar.Visible = true;
             txtBúsqueda.Visible = true;
             dgvBúsqueda.Visible = true;
-            bttAmortización.Visible = true;
+            bttAmortizacion.Visible = true;
             bttOtorgarPréstamo.Visible = true;
             bttPagosRealizados.Visible = true;
             bttRealizarPago.Visible = true;
@@ -121,9 +121,9 @@ namespace ACOPEDH
             labBuscar.Visible = true;
             txtBúsqueda.Visible = true;
             dgvBúsqueda.Visible = true;
-            bttNuevoAsociado.Visible = true;
+            bttAgregarAsociado.Visible = true;
             bttDatosAsociado.Visible = true;
-            bttAportaciones.Visible = true;
+            bttAportar.Visible = true;
             //Lenado de Datos
             dgvControl = "Asociado";
             this.filtro = dsAsociado.DefaultView;
@@ -215,16 +215,16 @@ namespace ACOPEDH
             dgvBúsqueda.Visible = false;
 
             //Botones
-            bttAmortización.Visible = false;
+            bttAmortizacion.Visible = false;
             bttOtorgarPréstamo.Visible = false;
             bttPagosRealizados.Visible = false;
             bttRealizarPago.Visible = false;
-            bttAbonar.Visible = false;
+            bttAbono.Visible = false;
             bttRetirar.Visible = false;
             bttVerEstados.Visible = false;
             bttCrearCuenta.Visible = false;
-            bttAportaciones.Visible = false;
-            bttNuevoAsociado.Visible = false;
+            bttAportar.Visible = false;
+            bttAgregarAsociado.Visible = false;
             bttDatosAsociado.Visible = false;
 
             //Configuración
@@ -396,7 +396,7 @@ namespace ACOPEDH
             if (DatoR())
             {
                 Abonos Accion = new Abonos(Dato);
-                Accion.Show();
+                Accion.ShowDialog();
                 Accion.Dispose();
                 Cargando = true;
             }
@@ -618,13 +618,13 @@ namespace ACOPEDH
 
             //Botones
             bttOtorgarPréstamo.Location = new Point(dgvBúsqueda.Width - bttOtorgarPréstamo.Width + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y - bttOtorgarPréstamo.Height - 23);
-            bttCrearCuenta.Location = bttNuevoAsociado.Location = bttOtorgarPréstamo.Location;
+            bttCrearCuenta.Location = bttAgregarAsociado.Location = bttOtorgarPréstamo.Location;
             bttPagosRealizados.Location = new Point(dgvBúsqueda.Width - bttPagosRealizados.Width + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
-            bttVerEstados.Location = bttAportaciones.Location = bttPagosRealizados.Location;
-            bttAmortización.Location = new Point(bttPagosRealizados.Location.X - bttAmortización.Width - 89, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
-            bttRetirar.Location = bttDatosAsociado.Location = bttAmortización.Location;
-            bttRealizarPago.Location = new Point(bttAmortización.Location.X - bttRealizarPago.Width - 89, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
-            bttAbonar.Location = bttRealizarPago.Location;
+            bttVerEstados.Location = bttAportar.Location = bttPagosRealizados.Location;
+            bttAmortizacion.Location = new Point(bttPagosRealizados.Location.X - bttAmortizacion.Width - 89, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
+            bttRetirar.Location = bttDatosAsociado.Location = bttAmortizacion.Location;
+            bttRealizarPago.Location = new Point(bttAmortizacion.Location.X - bttRealizarPago.Width - 89, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
+            bttAbono.Location = bttRealizarPago.Location;
             Refresh();
         }
         #endregion
