@@ -32,7 +32,7 @@ namespace ACOPEDH.Modelos
         }
         public double Monto { get => monto; set => monto = value; }
         public double AbonoComision { get => abonoComision; set => abonoComision = value; }
-        public DateTime FechaRetiro { get => fechaAbono; set => fechaAbono = value; }
+        public DateTime FechaAbono { get => fechaAbono; set => fechaAbono = value; }
         public modelo_Retiro Modelo1 { get => Modelo; set => Modelo = value; }
         public DateTime Fecha_Retiro { get => fecha_Retiro; set => fecha_Retiro = value; }
         public double MontoRetiro { get => montoRetiro; set => montoRetiro = value; }
