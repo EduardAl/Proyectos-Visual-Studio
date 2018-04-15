@@ -16,14 +16,14 @@ namespace ACOPEDH {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class Recibo : ReportClass {
+    public class Constancia_Aportación : ReportClass {
         
-        public Recibo() {
+        public Constancia_Aportación() {
         }
         
         public override string ResourceName {
             get {
-                return "Recibo.rpt";
+                return "Constancia Aportación.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ACOPEDH {
         
         public override string FullResourceName {
             get {
-                return "ACOPEDH.Recibo.rpt";
+                return "ACOPEDH.Constancia Aportación.rpt";
             }
             set {
                 // Do nothing
@@ -90,7 +90,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Monto_de_Préstamo {
+        public CrystalDecisions.Shared.IParameterField Parameter_Nombre {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
@@ -98,7 +98,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Ingresar_Cantidad_en_Letras {
+        public CrystalDecisions.Shared.IParameterField Parameter_Codigo {
             get {
                 return this.DataDefinition.ParameterFields[1];
             }
@@ -106,7 +106,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_No_de_Cuotas {
+        public CrystalDecisions.Shared.IParameterField Parameter_Aportaciones {
             get {
                 return this.DataDefinition.ParameterFields[2];
             }
@@ -114,7 +114,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_PNombre {
+        public CrystalDecisions.Shared.IParameterField Parameter_Sumatoria {
             get {
                 return this.DataDefinition.ParameterFields[3];
             }
@@ -122,7 +122,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_DUI {
+        public CrystalDecisions.Shared.IParameterField Parameter_Apellido {
             get {
                 return this.DataDefinition.ParameterFields[4];
             }
@@ -130,9 +130,9 @@ namespace ACOPEDH {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRecibo : Component, ICachedReport {
+    public class CachedConstancia_Aportación : Component, ICachedReport {
         
-        public CachedRecibo() {
+        public CachedConstancia_Aportación() {
         }
         
         [Browsable(false)]
@@ -169,7 +169,7 @@ namespace ACOPEDH {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            Recibo rpt = new Recibo();
+            Constancia_Aportación rpt = new Constancia_Aportación();
             rpt.Site = this.Site;
             return rpt;
         }

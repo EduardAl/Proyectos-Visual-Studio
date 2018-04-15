@@ -60,12 +60,22 @@ namespace ACOPEDH
         {
             try
             {
+                DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de aportación para la siguiente transacción?", "Confirmar Aportación", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 SqlParameter[] Parámetros = new SqlParameter[3];
                 Parámetros[0] = new SqlParameter("@Aportación", 5);
                 Parámetros[1] = new SqlParameter("@ID_Asociado", Dato);
                 Parámetros[2] = new SqlParameter("@Id_Usuario", Globales.gbCodUsuario);
                 if (pro.llenar_tabla("[Realizar Aportación]", Parámetros) > 0)
                 {
+                    if (Imprimir == DialogResult.Yes)
+                    {
+                        this.Cursor = Cursors.WaitCursor;
+                        Imprimir Acción = new Imprimir(Dato, "Aportación");
+                        Acción.ShowDialog();
+                        Acción.Dispose();
+                    }
+                    DialogResult = DialogResult.OK;
+                    Close();
                     MessageBox.Show(Globales.gbError, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Cargar();
                 }

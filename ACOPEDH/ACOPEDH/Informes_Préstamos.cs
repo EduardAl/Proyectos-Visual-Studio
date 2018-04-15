@@ -16,14 +16,14 @@ namespace ACOPEDH {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class Constancia_Pago : ReportClass {
+    public class Informes_Préstamos : ReportClass {
         
-        public Constancia_Pago() {
+        public Informes_Préstamos() {
         }
         
         public override string ResourceName {
             get {
-                return "Constancia Pago.rpt";
+                return "Informes_Préstamos.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ACOPEDH {
         
         public override string FullResourceName {
             get {
-                return "ACOPEDH.Constancia Pago.rpt";
+                return "ACOPEDH.Informes_Préstamos.rpt";
             }
             set {
                 // Do nothing
@@ -74,7 +74,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
+        public CrystalDecisions.CrystalReports.Engine.Section DetailSection3 {
             get {
                 return this.ReportDefinition.Sections[3];
             }
@@ -82,7 +82,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
+        public CrystalDecisions.CrystalReports.Engine.Section DetailSection4 {
             get {
                 return this.ReportDefinition.Sections[4];
             }
@@ -90,7 +90,39 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Pago {
+        public CrystalDecisions.CrystalReports.Engine.Section DetailSection2 {
+            get {
+                return this.ReportDefinition.Sections[5];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.CrystalReports.Engine.Section DetailSection5 {
+            get {
+                return this.ReportDefinition.Sections[6];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
+            get {
+                return this.ReportDefinition.Sections[7];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
+            get {
+                return this.ReportDefinition.Sections[8];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Lugar_de_Trabajo {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
@@ -98,7 +130,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Nombre {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Nombre {
             get {
                 return this.DataDefinition.ParameterFields[1];
             }
@@ -106,7 +138,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Monto {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Monto_de_Préstamo {
             get {
                 return this.DataDefinition.ParameterFields[2];
             }
@@ -114,7 +146,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Saldo {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Tasa_de_Interés {
             get {
                 return this.DataDefinition.ParameterFields[3];
             }
@@ -122,7 +154,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Fecha {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Tipo_de_Préstamo {
             get {
                 return this.DataDefinition.ParameterFields[4];
             }
@@ -130,7 +162,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Mora {
+        public CrystalDecisions.Shared.IParameterField Parameter_Descuento {
             get {
                 return this.DataDefinition.ParameterFields[5];
             }
@@ -138,7 +170,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_No_Pago {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Cuota_Mensual {
             get {
                 return this.DataDefinition.ParameterFields[6];
             }
@@ -154,7 +186,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Nombre {
+        public CrystalDecisions.Shared.IParameterField Parameter_Insertar_Cantidad_de_Préstamo_en_Letras {
             get {
                 return this.DataDefinition.ParameterFields[8];
             }
@@ -162,7 +194,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Apellido {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_DUI {
             get {
                 return this.DataDefinition.ParameterFields[9];
             }
@@ -170,7 +202,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Cuota_Mensual {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Dirección {
             get {
                 return this.DataDefinition.ParameterFields[10];
             }
@@ -178,7 +210,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Saldo {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Teléfono {
             get {
                 return this.DataDefinition.ParameterFields[11];
             }
@@ -186,7 +218,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Cantidad_Pago {
+        public CrystalDecisions.Shared.IParameterField Parameter_Llamado {
             get {
                 return this.DataDefinition.ParameterFields[12];
             }
@@ -194,7 +226,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Fecha {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Apellido {
             get {
                 return this.DataDefinition.ParameterFields[13];
             }
@@ -202,17 +234,25 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Mora {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_NoCuotas {
             get {
                 return this.DataDefinition.ParameterFields[14];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Forma_de_Pago {
+            get {
+                return this.DataDefinition.ParameterFields[15];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedConstancia_Pago : Component, ICachedReport {
+    public class CachedInformes_Préstamos : Component, ICachedReport {
         
-        public CachedConstancia_Pago() {
+        public CachedInformes_Préstamos() {
         }
         
         [Browsable(false)]
@@ -249,7 +289,7 @@ namespace ACOPEDH {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            Constancia_Pago rpt = new Constancia_Pago();
+            Informes_Préstamos rpt = new Informes_Préstamos();
             rpt.Site = this.Site;
             return rpt;
         }

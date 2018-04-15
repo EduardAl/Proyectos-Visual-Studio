@@ -71,6 +71,7 @@ namespace ACOPEDH
                     if (i == plazo)
                         cuota = Math.Round(Monto * (1 + interes), 2);
                     dgvAmortizar.Rows.Add(i, cuota.ToString("C2"), (inte = Math.Round(interes * Monto, 2)).ToString("C2"), Math.Round(cuota - inte, 2).ToString("C2"), (Monto = Math.Round(Monto - cuota + inte, 2)).ToString("C2"), (Pago = Pago.AddMonths(1)).ToShortDateString());
+                    
                 }
             }
             catch
@@ -92,7 +93,10 @@ namespace ACOPEDH
         //Imprimir
         private void bttImprimir_Click(object sender, EventArgs e)
         {
-#warning Falta Imprimir
+            this.Cursor = Cursors.WaitCursor;
+            Imprimir Acción = new Imprimir(CódigoPréstamo,"Amortización");
+            Acción.ShowDialog();
+            Acción.Dispose();
         }
         //Cerrar
         private void bttCer_Click(object sender, EventArgs e)

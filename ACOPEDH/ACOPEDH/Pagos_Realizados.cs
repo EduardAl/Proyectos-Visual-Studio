@@ -82,7 +82,11 @@ namespace ACOPEDH
         //Imprimir
         private void bttImprimir_Click(object sender, EventArgs e)
         {
-#warning Imprimir el estado del préstamo
+            Imprimir Acción = new Imprimir(Datos, "Pagos_Realizados");
+            this.Cursor = Cursors.WaitCursor;
+            Acción.ShowDialog();
+            Acción.Dispose();
+            this.Cursor = Cursors.Default;
         }
         //Refinanciar el Préstamo. 
         private void bttRefinanciar_Click(object sender, EventArgs e)
