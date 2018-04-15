@@ -1022,8 +1022,8 @@ namespace Crear_Base_de_Datos
                 "Declare @Id_Préstamo varchar(9) " +
                 "Set @Id_Préstamo = (Select Max(Préstamos.[id Préstamos]) From Préstamos inner join Asociado on Préstamos.[Código Asociado] = Asociado.[Código Asociado] " +
                 "where Asociado.[Código Asociado] = @Codigo) " +
-                "Select Asociado.[Código Asociado] AS 'Código_A', (Asociado.Nombres + ' ' + Asociado.Apellidos) AS 'Nombre', " +
-                "Asociado.Apellidos as 'Ape', Préstamos.[id Préstamos] as 'Préstamo', " +
+                "Select Asociado.[Código Asociado] AS 'Código_A', Asociado.Nombres AS 'Nombre', " +
+                "Asociado.Apellidos as 'Apellido', Préstamos.[id Préstamos] as 'Préstamo', " +
                 "Asociado.Dirección as 'Dir', Ocupación.[Nombre de la Empresa] as 'Trabajo',[Forma de Pago].Nombre AS 'FormaP', [Tipo de Préstamo].[Tipo de Préstamo] As 'TipoP',  " +
                 "Asociado.DUI as 'PDUI',[Tipo de Préstamo].[Tasa de Interés] As 'Interés',  " +
                 "Préstamos.[Monto del Préstamo] AS 'Monto', Transacciones.[Fecha de Transacción] AS 'FechaT', Préstamos.Cuotas AS 'NCuotas', " +
@@ -1540,7 +1540,7 @@ namespace Crear_Base_de_Datos
             //try
             //{
             ////Abrimos la conexión y ejecutamos el comando
-            cnn.Open();
+            //cnn.Open();
             cmd.ExecuteNonQuery();
             cmdUse.ExecuteNonQuery();
             cmd0.ExecuteNonQuery();
