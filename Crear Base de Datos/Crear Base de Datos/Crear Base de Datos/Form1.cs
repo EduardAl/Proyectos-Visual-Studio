@@ -24,6 +24,7 @@ namespace Crear_Base_de_Datos
             try
             {
                 cnn.Open();
+                cnn.Close();
             }
             catch
             {
@@ -1283,6 +1284,10 @@ namespace Crear_Base_de_Datos
                 "grant execute on object :: [Cargar Asociados] " +
                 "to Administrador with grant option " +
                 "grant execute on object :: [Ahorro DVG] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Asociado DVG] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Préstamo DVG] " +
                 "to Administrador with grant option " +
                 "grant execute on object :: [Cargar Ahorros] " +
                 "to Administrador with grant option " +
