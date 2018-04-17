@@ -67,7 +67,8 @@ namespace ACOPEDH
             if (Validaciones.ValidarNomApe(ref txtNombres, ref errorProvider1) &&
                 Validaciones.ValidarNomApe(ref txtApellidos, ref errorProvider1) &&
                 Validaciones.validar_DUI(ref txtDUI, ref errorProvider1) &&
-                Validaciones.validar_NIT(ref txtNIT, ref errorProvider1))
+                Validaciones.validar_NIT(ref txtNIT, ref errorProvider1) &&
+                Validaciones.IsNullOrEmty(ref txtDirección, ref errorProvider1))
             {
                 string datos = string.Format("Nombre: {0}\nApellidos: {1}\nDUI: {2}\n" +
                     "NIT: {3}\nFecha de Nacimiento: {4}\nLugar de Trabajo: {5}\nTipo de Asociación: " +
@@ -256,5 +257,10 @@ namespace ACOPEDH
                 Validaciones.validar_Teléfonos(ref txtTeléfono, ref errorProvider1);
         }
         #endregion
+
+        private void txtDirección_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }

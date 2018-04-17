@@ -207,6 +207,19 @@ namespace ACOPEDH
                 return true;
             }
         }
+        public static bool IsNullOrEmty(ref RichTextBox Cadena, ref ErrorProvider Mostrar)
+        {
+            Mostrar.Clear();
+            if (String.IsNullOrEmpty(Cadena.Text))
+            {
+                Mostrar.SetError(Cadena, "Campo obligatorio.");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
         private static string retornarMayúscula(ref TextBox Cadena)
         {

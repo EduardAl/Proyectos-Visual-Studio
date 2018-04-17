@@ -766,7 +766,7 @@ namespace Crear_Base_de_Datos
                 "Create procedure [Cargar Tipo Teléfono] " +
                 "As " +
                 "Begin " +
-                "Select [Tipos de Teléfonos].[Tipo de Teléfono] as 'TipoT' From [Tipos de Teléfonos] " +
+                "Select [Tipos de Teléfonos].[Tipo de Teléfono] as 'TipoT',[Tipos de Teléfonos].[id Tipo de Teléfono] 'Cod' From [Tipos de Teléfonos] " +
                 "End";
             //Faltaba este procedimiento
             String procedimiento34 = "Create Procedure[Cargar Ahorros] " +

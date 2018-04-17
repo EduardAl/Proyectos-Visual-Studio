@@ -50,7 +50,6 @@
             this.txtNIT = new System.Windows.Forms.TextBox();
             this.cbOcupación = new System.Windows.Forms.ComboBox();
             this.cbAsociación = new System.Windows.Forms.ComboBox();
-            this.txtDirección = new System.Windows.Forms.TextBox();
             this.label = new System.Windows.Forms.Label();
             this.dtNacimiento = new System.Windows.Forms.DateTimePicker();
             this.bttAceptar = new System.Windows.Forms.Button();
@@ -65,6 +64,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.cbTipoTeléfono = new System.Windows.Forms.ComboBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtDirección = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeléfonos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -216,15 +216,6 @@
             this.cbAsociación.Name = "cbAsociación";
             this.cbAsociación.Size = new System.Drawing.Size(178, 27);
             this.cbAsociación.TabIndex = 6;
-            // 
-            // txtDirección
-            // 
-            this.txtDirección.Location = new System.Drawing.Point(149, 369);
-            this.txtDirección.MaxLength = 100;
-            this.txtDirección.Multiline = true;
-            this.txtDirección.Name = "txtDirección";
-            this.txtDirección.Size = new System.Drawing.Size(286, 77);
-            this.txtDirección.TabIndex = 7;
             // 
             // label
             // 
@@ -405,6 +396,14 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // txtDirección
+            // 
+            this.txtDirección.Location = new System.Drawing.Point(149, 374);
+            this.txtDirección.Name = "txtDirección";
+            this.txtDirección.Size = new System.Drawing.Size(286, 79);
+            this.txtDirección.TabIndex = 7;
+            this.txtDirección.Text = "";
+            // 
             // Nuevo_asociado
             // 
             this.AcceptButton = this.bttAceptar;
@@ -412,6 +411,7 @@
             this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(650, 690);
+            this.Controls.Add(this.txtDirección);
             this.Controls.Add(this.cbTipoTeléfono);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -423,7 +423,6 @@
             this.Controls.Add(this.bttAceptar);
             this.Controls.Add(this.dtNacimiento);
             this.Controls.Add(this.label);
-            this.Controls.Add(this.txtDirección);
             this.Controls.Add(this.cbAsociación);
             this.Controls.Add(this.cbOcupación);
             this.Controls.Add(this.txtNIT);
@@ -474,7 +473,6 @@
         private System.Windows.Forms.TextBox txtNIT;
         private System.Windows.Forms.ComboBox cbOcupación;
         private System.Windows.Forms.ComboBox cbAsociación;
-        private System.Windows.Forms.TextBox txtDirección;
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.DateTimePicker dtNacimiento;
         private System.Windows.Forms.Button bttAceptar;
@@ -489,5 +487,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.RichTextBox txtDirección;
     }
 }
