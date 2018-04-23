@@ -108,6 +108,12 @@
       <DependentUpon>Constancia Abono.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CConstancia Amortización.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CConstancia Amortización.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Constancia Amortización.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -184,7 +190,7 @@
     <Compile Include="InicioSesión.Designer.cs">
       <DependentUpon>InicioSesión.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modelos\modelo_Abonos.cs" />
+    <Compile Include="modelo_Abonos.cs" />
     <Compile Include="Modelos\modelo_Amortización.cs" />
     <Compile Include="Modelos\modelo_PagosRealizados.cs" />
     <Compile Include="Modelos\modelo_Retiro.cs" />
@@ -287,6 +293,10 @@
     <EmbeddedResource Include="Constancia Abono.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Constancia Abono.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CConstancia Amortización.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CConstancia Amortización.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Constancia Amortización.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

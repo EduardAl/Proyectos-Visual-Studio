@@ -16,14 +16,14 @@ namespace ACOPEDH {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class Constancia_Amortización : ReportClass {
+    public class CConstancia_Amortización : ReportClass {
         
-        public Constancia_Amortización() {
+        public CConstancia_Amortización() {
         }
         
         public override string ResourceName {
             get {
-                return "Constancia Amortización.rpt";
+                return "CConstancia Amortización.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ACOPEDH {
         
         public override string FullResourceName {
             get {
-                return "ACOPEDH.Constancia Amortización.rpt";
+                return "ACOPEDH.CConstancia Amortización.rpt";
             }
             set {
                 // Do nothing
@@ -98,7 +98,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Monto {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Código {
             get {
                 return this.DataDefinition.ParameterFields[1];
             }
@@ -106,7 +106,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Código {
+        public CrystalDecisions.Shared.IParameterField Parameter_Monto {
             get {
                 return this.DataDefinition.ParameterFields[2];
             }
@@ -130,7 +130,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Fecha {
+        public CrystalDecisions.Shared.IParameterField Parameter_Pago_mensual {
             get {
                 return this.DataDefinition.ParameterFields[5];
             }
@@ -138,7 +138,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Pago_mensual {
+        public CrystalDecisions.Shared.IParameterField Parameter_Fecha {
             get {
                 return this.DataDefinition.ParameterFields[6];
             }
@@ -146,9 +146,9 @@ namespace ACOPEDH {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedConstancia_Amortización : Component, ICachedReport {
+    public class CachedCConstancia_Amortización : Component, ICachedReport {
         
-        public CachedConstancia_Amortización() {
+        public CachedCConstancia_Amortización() {
         }
         
         [Browsable(false)]
@@ -185,7 +185,7 @@ namespace ACOPEDH {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            Constancia_Amortización rpt = new Constancia_Amortización();
+            CConstancia_Amortización rpt = new CConstancia_Amortización();
             rpt.Site = this.Site;
             return rpt;
         }
