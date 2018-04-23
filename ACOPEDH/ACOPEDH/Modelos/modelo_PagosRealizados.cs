@@ -25,5 +25,6 @@ namespace ACOPEDH.Modelos
         public double Saldo { get => saldo; set => saldo = value; }
         public DateTime FechaPago { get => fechaPago; set => fechaPago = value; }
         public DateTime FechaLimite { get => fechaLimite; set => fechaLimite = value; }
+
     }
 }

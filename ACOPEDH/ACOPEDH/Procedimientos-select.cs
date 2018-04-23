@@ -153,6 +153,7 @@ namespace ACOPEDH
             }
             return ds;
         }
+        #region Listas
         public List<modelo_Abonos> ConsultaLista_Abono(string procedimiento, SqlParameter[] param)
         {
             List<modelo_Abonos> lista = new List<modelo_Abonos>();
@@ -271,11 +272,13 @@ namespace ACOPEDH
                 return lista;
             }
         }
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //   Obtinene los mensajes o errores de un procedimiento almacenado por medio de la cadena de conexión   //
-        //   añadiendo .InfoMessage a la cadena y llamando a esta funcion ver el procedimiento "LlenarDataSet"   //
-        /// ///////////////////////////////////////////////////////////////////////////////////////////////////////
-        public void Conex_InfoMessage(object sender, SqlInfoMessageEventArgs e)
+            #endregion
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //   Obtinene los mensajes o errores de un procedimiento almacenado por medio de la cadena de conexión   //
+            //   añadiendo .InfoMessage a la cadena y llamando a esta funcion ver el procedimiento "LlenarDataSet"   //
+            /// ///////////////////////////////////////////////////////////////////////////////////////////////////////
+            public void Conex_InfoMessage(object sender, SqlInfoMessageEventArgs e)
         {
             String mensaje = "";
             if (e.Errors.Count > 0)

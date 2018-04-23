@@ -18,7 +18,7 @@ namespace ACOPEDH
         DataTable dt;
         Procedimientos_select seleccionar = new Procedimientos_select();
         SqlParameter[] Param = new SqlParameter[1];
-        List<modelo_Amortización> lista = new List<modelo_Amortización>();
+        public List<modelo_Amortización> ListaDatos;
 
         #region Constructores
         public Imprimir()
@@ -28,6 +28,13 @@ namespace ACOPEDH
         public Imprimir(string dato, string op)
         {
             InitializeComponent();
+            Datos = dato;
+            Opción = op;
+        }
+        public Imprimir(List<modelo_Amortización> datos, string dato,string op)
+        {
+            InitializeComponent();
+            ListaDatos = new List<modelo_Amortización>(datos);
             Datos = dato;
             Opción = op;
         }
@@ -42,9 +49,6 @@ namespace ACOPEDH
             //Procedimiento para imprimir
             Imprimiendo_Informes(Opción);
             crystalReportViewer1.Refresh();
-            //Prueba
-            //CrystalDecisions.CrystalReports.Engine.ReportDocument reporte = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-            
         }
         #endregion
         #region Procedimientos
@@ -86,19 +90,24 @@ namespace ACOPEDH
 #warning Aquí me da problemas mostrar los datos del DVG Abonos y Retiros
                 case "Estado":
                     Informe_EstadoCuenta info = new Informe_EstadoCuenta();
-                    DataSet ds = new DataSet();
-                    info.DataSourceConnections[0].SetConnection(Globales.Servidor, "ACOPEDH", Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
+                    Informe_EstadoCuenta info2 = new Informe_EstadoCuenta();
                     Param[0] = new SqlParameter("@ID_Ahorro", Datos);
-                    ds = seleccionar.llenar_DataSet("[Cargar Abonos]", Param, "Abono");
-                    info.Database.Tables["Abonos"].SetDataSource(ds);
-                    crystalReportViewer1.ReportSource = info;
+                    info.SetDataSource(seleccionar.ConsultaLista_Abono("[Cargar Abonos]", Param));
+                    Param[0] = new SqlParameter("@ID_Ahorro", Datos);
+                    info2.SetDataSource(seleccionar.ConsultaLista_Retiro("[Cargar Retiros]", Param));
+                    // info.DataSourceConnections[0].SetConnection(Globales.Servidor, "ACOPEDH", Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
+                    //Param[0] = new SqlParameter("@ID_Ahorro", Datos);
+                    //ds = seleccionar.llenar_DataSet("[Cargar Abonos]", Param, "Abono");
+                    //info.Database.Tables["Abonos"].SetDataSource(ds);
+                    //crystalReportViewer1.ReportSource = info;
                     //dt = seleccionar.llenar_DataTable("[Cargar Abonos]", Param);
                     //info.Database.Tables["Abonos"].SetDataSource(dt);
                     //crystalReportViewer1.ReportSource = info;
                     //Param[0] = new SqlParameter("@ID_Ahorro", Datos);
                     //dtt = seleccionar.llenar_DataTable("[Cargar Retiros]", Param);
                     //info.Database.Tables["Retiros"].SetDataSource(dtt);
-                    //crystalReportViewer1.ReportSource = info;
+                    crystalReportViewer1.ReportSource = info;
+                    crystalReportViewer1.ReportSource = info2;
                     break;
                 case "Préstamo":
                     Informes_Préstamos P = new Informes_Préstamos();
@@ -124,7 +133,35 @@ namespace ACOPEDH
                 //Tabla de Amortización
                 case "Amortización":
                     Constancia_Amortización ca = new Constancia_Amortización();
-                    ca.SetDataSource(lista);
+                    ca.SetDataSource(ListaDatos);
+                    if (Datos != "")
+                    {
+                        Param[0] = new SqlParameter("@ID_Préstamo", Datos);
+                        dt = seleccionar.LlenarText("[Cargar Préstamo]", "Nombre,PCuotas,Código_A,Monto,FechaT,NCuotas,TipoP,Estado,Interés", Param);
+                        ca.SetParameterValue("Nombre", dt.Rows[0]["Nombre"]);
+                        ca.SetParameterValue("Pago mensual", dt.Rows[0]["PCuotas"]);
+                        ca.SetParameterValue("P_Código", dt.Rows[0]["Código_A"]);
+                        ca.SetParameterValue("Monto", dt.Rows[0]["Monto"]);
+                        ca.SetParameterValue("Fecha", dt.Rows[0]["FechaT"]);
+                        ca.SetParameterValue("Plazo", dt.Rows[0]["NCuotas"]);
+                        ca.SetParameterValue("Tipo préstamo", dt.Rows[0]["TipoP"]);
+                        ca.SetParameterValue("PInterés", dt.Rows[0]["Interés"]);
+                        ca.SetParameterValue("Estado", dt.Rows[0]["Estado"]);
+                        ca.SetParameterValue("id_Préstamo", Datos);
+                    }
+                    else
+                    {
+                        ca.SetParameterValue("Nombre", "");
+                        ca.SetParameterValue("Pago mensual", 0);
+                        ca.SetParameterValue("P_Código", "");
+                        ca.SetParameterValue("Monto",0);
+                        ca.SetParameterValue("Fecha", "");
+                        ca.SetParameterValue("Plazo", "");
+                        ca.SetParameterValue("Tipo préstamo", "");
+                        ca.SetParameterValue("PInterés", 17);
+                        ca.SetParameterValue("Estado","");
+                        ca.SetParameterValue("id_Préstamo", " ");
+                    }
                     crystalReportViewer1.ReportSource = ca;
                     break;
                 case "Pagos_Realizados":
@@ -190,6 +227,49 @@ namespace ACOPEDH
         private void bttMin_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
+        }
+        #endregion
+        #region Mover Form
+        bool Empezarmover = false;
+        int PosX;
+        int PosY;
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Empezarmover = true;
+                PosX = e.X;
+                PosY = e.Y;
+            }
+        }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Empezarmover = false;
+            }
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Empezarmover)
+            {
+                Point temp = new Point();
+                temp.X = Location.X + (e.X - PosX);
+                temp.Y = Location.Y + (e.Y - PosY);
+                Location = temp;
+            }
+        }
+        #endregion
+        #region Pintar Bordes
+        private void Bordes_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics Linea = CreateGraphics();
+            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0, 0), new Point(0, Height));
+            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0, Height - 1), new Point(Width, Height));
+            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(Width - 1, 0), new Point(Width, Height));
         }
         #endregion
     }

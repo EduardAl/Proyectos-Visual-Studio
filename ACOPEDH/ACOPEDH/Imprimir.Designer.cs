@@ -95,6 +95,9 @@
             this.BarraTítulo.TabIndex = 40;
             this.BarraTítulo.Text = "         ACOPEDH - Pago";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BarraTítulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            this.BarraTítulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+            this.BarraTítulo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             // 
             // bttMin
             // 
@@ -142,6 +145,7 @@
             this.Text = "Imprimir";
             this.Load += new System.EventHandler(this.Imprimir_Load);
             this.SizeChanged += new System.EventHandler(this.Imprimir_SizeChanged);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttMin)).EndInit();
