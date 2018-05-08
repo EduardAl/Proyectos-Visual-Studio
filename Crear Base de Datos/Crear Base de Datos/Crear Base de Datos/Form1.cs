@@ -285,21 +285,19 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Cargar_Asociados " +
                 "End Catch";
             String procedimiento4 = "Create Procedure[Insertar Teléfono] " +
-                "@Tipo_Teléfono varchar(50),  " +
+                "@Tipo_Teléfono varchar(5),  " +
                 "@Teléfono varchar(9), " +
                 "@DUI varchar(10) " +
                 "As " +
                 "Begin Tran Teléfono " +
                 "Begin Try " +
                 "Declare @ID_Asociado varchar(5) " +
-                "Declare @ID_Tipo_Teléfono varchar(5) " +
                 "Declare @ID_Teléfono varchar(5) " +
                 "Begin " +
                 "Set @ID_Asociado = (Select[Código Asociado] From Asociado where @DUI = DUI)  " +
-                "Set @ID_Tipo_Teléfono = (Select [id Tipo de Teléfono] From[Tipos de Teléfonos] where @Tipo_Teléfono =[Tipo de Teléfono]) " +
                 "Insert into Teléfono values(@Teléfono) " +
                 "set @ID_Teléfono = (Select Max([id Teléfono]) From Teléfono) " +
-                "Insert into Contacto values(@ID_Teléfono, @ID_Asociado, @ID_Tipo_Teléfono) " +
+                "Insert into Contacto values(@ID_Teléfono, @ID_Asociado, @Tipo_Teléfono) " +
                 "Commit Tran Teléfono " +
                 "End " +
                 "End Try " +
@@ -1545,7 +1543,7 @@ namespace Crear_Base_de_Datos
             //try
             //{
             ////Abrimos la conexión y ejecutamos el comando
-            //cnn.Open();
+            cnn.Open();
             cmd.ExecuteNonQuery();
             cmdUse.ExecuteNonQuery();
             cmd0.ExecuteNonQuery();

@@ -105,7 +105,7 @@ namespace ACOPEDH
                     Param[0] = new SqlParameter("@Codigo", Datos);
                     dt = seleccionar.LlenarText("[Informe Préstamo]", "Código_A,Nombre,Apellido,Préstamo,Dir,Trabajo,FormaP,TipoP,PDUI,Interés,Monto,FechaT,NCuotas,PCuotas,Estado", Param);
                     P.SetParameterValue("P_Nombre", dt.Rows[0]["Nombre"]);
-                    P.SetParameterValue("P_Apellido", dt.Rows[0]["Apellido"]);
+                    P.SetParameterValue("P_Apellido", dt.Rows[0]["Ape"]);
                     P.SetParameterValue("P_DUI", dt.Rows[0]["PDUI"]);
                     P.SetParameterValue("P_Dirección", dt.Rows[0]["Dir"]);
                     P.SetParameterValue("P_Lugar_de_Trabajo", dt.Rows[0]["Trabajo"]);

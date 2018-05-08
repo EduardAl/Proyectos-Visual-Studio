@@ -90,22 +90,29 @@ namespace ACOPEDH
                         param[7] = new SqlParameter("@Fecha_Asociación", DateTime.Now);
                         param[8] = new SqlParameter("@FK_Ocupacion", cbOcupación.Text);
                         if (ingresar.llenar_tabla("[Insertar Asociado]", param) > 0)
-
                         {
-
                             param = new SqlParameter[3];
+                            MessageBox.Show("Llega aquí (Inserta Asociado)");
+                            int i= 0;
                             foreach (DataGridViewRow row in dgvTeléfonos.Rows)
                             {
+                                MessageBox.Show("Llega aquí (Teléfonos)");
                                 cbTipoTeléfono.SelectedIndex = cbTipoTeléfono.FindString(row.Cells[1].Value.ToString());
                                 param[0] = new SqlParameter("@Tipo_Teléfono", cbTipoTeléfono.SelectedValue);
                                 param[1] = new SqlParameter("@Teléfono", row.Cells[0].Value.ToString());
                                 param[2] = new SqlParameter("@DUI", txtDUI.Text);
+                                MessageBox.Show("Llega aquí ("+cbTipoTeléfono.SelectedValue+")");
                                 if (ingresar.llenar_tabla("[Insertar Teléfono]", param) < 0)
                                 {
+                                    MessageBox.Show("Llega aquí (Error)");
                                     MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     Globales.gbError = "";
                                     DialogResult = DialogResult.None;
                                     break;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Llega aquí (Insertado "+(i++)+")");
                                 }
                             }
                             DialogResult = DialogResult.OK;
