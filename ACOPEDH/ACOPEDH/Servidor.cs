@@ -34,12 +34,16 @@ namespace ACOPEDH
                         }
                     }
 #warning Cambiar los servidores 
-                    Globales.Servidor = listaServidores[0];
+                    Globales.Servidor = listaServidores[1];
                 }
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("Error al conectar con el servidor.\n" + "Número del error: " + ex.Number + "\nCódigo del error: " + ex.ErrorCode + "\nError: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al conectar con el servidor." +"\nError: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
         }
     }
