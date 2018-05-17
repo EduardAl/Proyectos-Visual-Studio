@@ -50,17 +50,21 @@ namespace ACOPEDH
         #region Load
         private void Gráfica_Load(object sender, EventArgs e)
         {
-            chGráfica.Series[0].ChartType = SeriesChartType.Bubble;
-            Validar1 = dtDesde.Value;
-            Validar2 = dtHasta.Value;
-            gbPersonalizado.Size = new Size(375, 280);
-            gbPersonalizado.Location =
-                new Point((int)((chGráfica.Location.X - 375) / 2), (int)((Height + BarraTítulo.Height - 280) / 2));
-            cbComparación.SelectedIndex =
-            cbFechas.SelectedIndex = 0;
-            GenerarOriginal();
-            chGráfica.Legends[0].Font = new Font("Linotte-Regular", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            chGráfica.Legends[0].IsTextAutoFit = true;
+            try
+            {
+                cbComparación.SelectedIndex =
+                cbFechas.SelectedIndex = 0;
+                chGráfica.Series[0].ChartType = SeriesChartType.Bubble;
+                Validar1 = dtDesde.Value;
+                Validar2 = dtHasta.Value;
+                gbPersonalizado.Size = new Size(375, 280);
+                gbPersonalizado.Location =
+                    new Point((int)((chGráfica.Location.X - 375) / 2), (int)((Height + BarraTítulo.Height - 280) / 2));
+                GenerarOriginal();
+                chGráfica.Legends[0].Font = new Font("Linotte-Regular", 10F, FontStyle.Regular, GraphicsUnit.Point);
+                chGráfica.Legends[0].IsTextAutoFit = true;
+            }
+            catch { }
         }
         #endregion
 
@@ -84,14 +88,18 @@ namespace ACOPEDH
             }
             else
             {
-                if (Validar1 != dtDesde.Value || Validar2 != dtHasta.Value)
+                try
                 {
-                    SqlParameter[] Parámetros = new SqlParameter[2];
-                    Parámetros[0] = new SqlParameter("@Fecha_Inicial", dtDesde.Value);
-                    Parámetros[1] = new SqlParameter("@Fecha_Final", dtHasta.Value);
-                    Data = Cargar.llenar_DataTable("[Conseguir Datos Cooperativa]", Parámetros);
+                    if (Validar1 != dtDesde.Value || Validar2 != dtHasta.Value)
+                    {
+                        SqlParameter[] Parámetros = new SqlParameter[2];
+                        Parámetros[0] = new SqlParameter("@Fecha_Inicial", dtDesde.Value);
+                        Parámetros[1] = new SqlParameter("@Fecha_Final", dtHasta.Value);
+                        Data = Cargar.llenar_DataTable("[Conseguir Datos Cooperativa]", Parámetros);
+                    }
+                    GenerarComparaciones();
                 }
-                GenerarComparaciones();
+                catch { }
             }
         }
         #endregion

@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal_P));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Titulo = new System.Windows.Forms.Label();
             this.PInicio = new System.Windows.Forms.Button();
@@ -142,7 +142,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImage = global::ACOPEDH.Properties.Resources.Photo_1;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Location = new System.Drawing.Point(29, 45);
             this.pictureBox1.Name = "pictureBox1";
@@ -156,8 +156,8 @@
             this.Titulo.AutoSize = true;
             this.Titulo.BackColor = System.Drawing.Color.Transparent;
             this.Titulo.Font = new System.Drawing.Font("Linotte-Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Titulo.ForeColor = System.Drawing.Color.White;
-            this.Titulo.Location = new System.Drawing.Point(260, 44);
+            this.Titulo.ForeColor = System.Drawing.Color.Black;
+            this.Titulo.Location = new System.Drawing.Point(260, 57);
             this.Titulo.Name = "Titulo";
             this.Titulo.Size = new System.Drawing.Size(632, 46);
             this.Titulo.TabIndex = 2;
@@ -168,11 +168,11 @@
             // PInicio
             // 
             this.PInicio.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.PInicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(182)))), ((int)(((byte)(11)))));
+            this.PInicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
             this.PInicio.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PInicio.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PInicio.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
-            this.PInicio.ForeColor = System.Drawing.Color.Black;
+            this.PInicio.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.PInicio.Location = new System.Drawing.Point(31, 217);
             this.PInicio.Name = "PInicio";
             this.PInicio.Size = new System.Drawing.Size(163, 65);
@@ -185,7 +185,7 @@
             // PAhorros
             // 
             this.PAhorros.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.PAhorros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
+            this.PAhorros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(219)))), ((int)(((byte)(252)))));
             this.PAhorros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PAhorros.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PAhorros.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
@@ -202,7 +202,7 @@
             // PPréstamos
             // 
             this.PPréstamos.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.PPréstamos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
+            this.PPréstamos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(219)))), ((int)(((byte)(252)))));
             this.PPréstamos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PPréstamos.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PPréstamos.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
@@ -219,7 +219,7 @@
             // PAsociados
             // 
             this.PAsociados.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.PAsociados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
+            this.PAsociados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(219)))), ((int)(((byte)(252)))));
             this.PAsociados.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PAsociados.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PAsociados.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
@@ -236,7 +236,7 @@
             // PConfiguración
             // 
             this.PConfiguración.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.PConfiguración.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
+            this.PConfiguración.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(219)))), ((int)(((byte)(252)))));
             this.PConfiguración.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PConfiguración.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PConfiguración.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
@@ -253,7 +253,7 @@
             // PEstadoAsociación
             // 
             this.PEstadoAsociación.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.PEstadoAsociación.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
+            this.PEstadoAsociación.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(219)))), ((int)(((byte)(252)))));
             this.PEstadoAsociación.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PEstadoAsociación.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PEstadoAsociación.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
@@ -270,7 +270,7 @@
             // PCerrarSesion
             // 
             this.PCerrarSesion.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.PCerrarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(247)))), ((int)(((byte)(214)))));
+            this.PCerrarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(219)))), ((int)(((byte)(252)))));
             this.PCerrarSesion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.PCerrarSesion.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
@@ -333,41 +333,41 @@
             this.dgvBúsqueda.AllowUserToDeleteRows = false;
             this.dgvBúsqueda.AllowUserToResizeColumns = false;
             this.dgvBúsqueda.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvBúsqueda.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvBúsqueda.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.dgvBúsqueda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBúsqueda.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBúsqueda.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Linotte-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBúsqueda.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvBúsqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBúsqueda.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Linotte-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBúsqueda.DefaultCellStyle = dataGridViewCellStyle13;
             this.dgvBúsqueda.Location = new System.Drawing.Point(264, 233);
             this.dgvBúsqueda.Name = "dgvBúsqueda";
             this.dgvBúsqueda.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBúsqueda.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Linotte-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBúsqueda.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dgvBúsqueda.RowHeadersVisible = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvBúsqueda.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvBúsqueda.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.dgvBúsqueda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBúsqueda.Size = new System.Drawing.Size(632, 372);
             this.dgvBúsqueda.TabIndex = 24;
@@ -456,12 +456,13 @@
             // 
             this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
             this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F);
+            this.BarraTítulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
             this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
             this.BarraTítulo.Name = "BarraTítulo";
-            this.BarraTítulo.Size = new System.Drawing.Size(980, 30);
+            this.BarraTítulo.Size = new System.Drawing.Size(980, 35);
             this.BarraTítulo.TabIndex = 32;
-            this.BarraTítulo.Text = "         ACOPEDH - Principal";
+            this.BarraTítulo.Text = "           ACOPEDH - Principal";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BarraTítulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.BarraTítulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
@@ -474,9 +475,9 @@
             this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
             this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.bttCer.Image = ((System.Drawing.Image)(resources.GetObject("bttCer.Image")));
-            this.bttCer.Location = new System.Drawing.Point(951, 0);
+            this.bttCer.Location = new System.Drawing.Point(947, 1);
             this.bttCer.Name = "bttCer";
-            this.bttCer.Size = new System.Drawing.Size(30, 26);
+            this.bttCer.Size = new System.Drawing.Size(30, 33);
             this.bttCer.TabIndex = 33;
             this.bttCer.TabStop = false;
             this.toolTip1.SetToolTip(this.bttCer, "Cerrar");
@@ -487,9 +488,10 @@
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(4, 0);
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(4, 1);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox3.Size = new System.Drawing.Size(34, 34);
             this.pictureBox3.TabIndex = 34;
             this.pictureBox3.TabStop = false;
             // 
@@ -500,9 +502,9 @@
             this.bttMax.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttMax.BackgroundImage")));
             this.bttMax.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.bttMax.Image = ((System.Drawing.Image)(resources.GetObject("bttMax.Image")));
-            this.bttMax.Location = new System.Drawing.Point(924, 0);
+            this.bttMax.Location = new System.Drawing.Point(914, 2);
             this.bttMax.Name = "bttMax";
-            this.bttMax.Size = new System.Drawing.Size(30, 26);
+            this.bttMax.Size = new System.Drawing.Size(32, 31);
             this.bttMax.TabIndex = 35;
             this.bttMax.TabStop = false;
             this.toolTip1.SetToolTip(this.bttMax, "Maximizar");
@@ -515,9 +517,9 @@
             this.bttMin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttMin.BackgroundImage")));
             this.bttMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.bttMin.Image = ((System.Drawing.Image)(resources.GetObject("bttMin.Image")));
-            this.bttMin.Location = new System.Drawing.Point(898, 0);
+            this.bttMin.Location = new System.Drawing.Point(882, 1);
             this.bttMin.Name = "bttMin";
-            this.bttMin.Size = new System.Drawing.Size(30, 26);
+            this.bttMin.Size = new System.Drawing.Size(30, 33);
             this.bttMin.TabIndex = 36;
             this.bttMin.TabStop = false;
             this.toolTip1.SetToolTip(this.bttMin, "Minimizar");
@@ -931,7 +933,7 @@
             this.labTTran.BackColor = System.Drawing.Color.Transparent;
             this.labTTran.Location = new System.Drawing.Point(745, 206);
             this.labTTran.Name = "labTTran";
-            this.labTTran.Size = new System.Drawing.Size(129, 20);
+            this.labTTran.Size = new System.Drawing.Size(128, 19);
             this.labTTran.TabIndex = 90;
             this.labTTran.Text = "Tipo Transacción";
             this.labTTran.Visible = false;
@@ -942,7 +944,7 @@
             this.labDesde.BackColor = System.Drawing.Color.Transparent;
             this.labDesde.Location = new System.Drawing.Point(260, 154);
             this.labDesde.Name = "labDesde";
-            this.labDesde.Size = new System.Drawing.Size(56, 20);
+            this.labDesde.Size = new System.Drawing.Size(52, 19);
             this.labDesde.TabIndex = 89;
             this.labDesde.Text = "Desde";
             this.labDesde.Visible = false;
@@ -953,7 +955,7 @@
             this.labHasta.BackColor = System.Drawing.Color.Transparent;
             this.labHasta.Location = new System.Drawing.Point(260, 206);
             this.labHasta.Name = "labHasta";
-            this.labHasta.Size = new System.Drawing.Size(52, 20);
+            this.labHasta.Size = new System.Drawing.Size(51, 19);
             this.labHasta.TabIndex = 85;
             this.labHasta.Text = "Hasta";
             this.labHasta.Visible = false;
@@ -988,7 +990,7 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Location = new System.Drawing.Point(185, 141);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(115, 20);
+            this.label9.Size = new System.Drawing.Size(113, 19);
             this.label9.TabIndex = 16;
             this.label9.Text = "Pago a Cuenta";
             // 
@@ -997,7 +999,7 @@
             this.txtPago.Location = new System.Drawing.Point(186, 166);
             this.txtPago.Name = "txtPago";
             this.txtPago.ReadOnly = true;
-            this.txtPago.Size = new System.Drawing.Size(100, 26);
+            this.txtPago.Size = new System.Drawing.Size(100, 27);
             this.txtPago.TabIndex = 15;
             this.txtPago.TabStop = false;
             // 
@@ -1007,7 +1009,7 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Location = new System.Drawing.Point(23, 141);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(71, 20);
+            this.label10.Size = new System.Drawing.Size(68, 19);
             this.label10.TabIndex = 14;
             this.label10.Text = "Ingresos";
             // 
@@ -1016,7 +1018,7 @@
             this.txtIngresos.Location = new System.Drawing.Point(24, 166);
             this.txtIngresos.Name = "txtIngresos";
             this.txtIngresos.ReadOnly = true;
-            this.txtIngresos.Size = new System.Drawing.Size(100, 26);
+            this.txtIngresos.Size = new System.Drawing.Size(100, 27);
             this.txtIngresos.TabIndex = 13;
             this.txtIngresos.TabStop = false;
             // 
@@ -1026,7 +1028,7 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Location = new System.Drawing.Point(185, 83);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(45, 20);
+            this.label8.Size = new System.Drawing.Size(47, 19);
             this.label8.TabIndex = 12;
             this.label8.Text = "Mora";
             // 
@@ -1035,7 +1037,7 @@
             this.txtMora.Location = new System.Drawing.Point(186, 108);
             this.txtMora.Name = "txtMora";
             this.txtMora.ReadOnly = true;
-            this.txtMora.Size = new System.Drawing.Size(100, 26);
+            this.txtMora.Size = new System.Drawing.Size(100, 27);
             this.txtMora.TabIndex = 11;
             this.txtMora.TabStop = false;
             // 
@@ -1045,7 +1047,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Location = new System.Drawing.Point(185, 28);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(76, 20);
+            this.label7.Size = new System.Drawing.Size(72, 19);
             this.label7.TabIndex = 10;
             this.label7.Text = "Intereses";
             // 
@@ -1054,7 +1056,7 @@
             this.txtIntereses.Location = new System.Drawing.Point(186, 53);
             this.txtIntereses.Name = "txtIntereses";
             this.txtIntereses.ReadOnly = true;
-            this.txtIntereses.Size = new System.Drawing.Size(100, 26);
+            this.txtIntereses.Size = new System.Drawing.Size(100, 27);
             this.txtIntereses.TabIndex = 9;
             this.txtIntereses.TabStop = false;
             // 
@@ -1064,7 +1066,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Location = new System.Drawing.Point(23, 83);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(112, 20);
+            this.label5.Size = new System.Drawing.Size(113, 19);
             this.label5.TabIndex = 8;
             this.label5.Text = "Pago a Capital";
             // 
@@ -1073,7 +1075,7 @@
             this.txtCapital.Location = new System.Drawing.Point(24, 108);
             this.txtCapital.Name = "txtCapital";
             this.txtCapital.ReadOnly = true;
-            this.txtCapital.Size = new System.Drawing.Size(100, 26);
+            this.txtCapital.Size = new System.Drawing.Size(100, 27);
             this.txtCapital.TabIndex = 7;
             this.txtCapital.TabStop = false;
             // 
@@ -1083,7 +1085,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Location = new System.Drawing.Point(23, 28);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(144, 20);
+            this.label6.Size = new System.Drawing.Size(147, 19);
             this.label6.TabIndex = 6;
             this.label6.Text = "Cantidad Otorgada";
             // 
@@ -1092,7 +1094,7 @@
             this.txtPréstamos.Location = new System.Drawing.Point(24, 53);
             this.txtPréstamos.Name = "txtPréstamos";
             this.txtPréstamos.ReadOnly = true;
-            this.txtPréstamos.Size = new System.Drawing.Size(100, 26);
+            this.txtPréstamos.Size = new System.Drawing.Size(100, 27);
             this.txtPréstamos.TabIndex = 5;
             this.txtPréstamos.TabStop = false;
             // 
@@ -1118,7 +1120,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Location = new System.Drawing.Point(23, 83);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 20);
+            this.label3.Size = new System.Drawing.Size(59, 19);
             this.label3.TabIndex = 8;
             this.label3.Text = "Retiros";
             // 
@@ -1127,7 +1129,7 @@
             this.txtRetiros_Aportaciones.Location = new System.Drawing.Point(24, 108);
             this.txtRetiros_Aportaciones.Name = "txtRetiros_Aportaciones";
             this.txtRetiros_Aportaciones.ReadOnly = true;
-            this.txtRetiros_Aportaciones.Size = new System.Drawing.Size(100, 26);
+            this.txtRetiros_Aportaciones.Size = new System.Drawing.Size(100, 27);
             this.txtRetiros_Aportaciones.TabIndex = 7;
             this.txtRetiros_Aportaciones.TabStop = false;
             // 
@@ -1137,7 +1139,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Location = new System.Drawing.Point(23, 28);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(64, 20);
+            this.label4.Size = new System.Drawing.Size(62, 19);
             this.label4.TabIndex = 6;
             this.label4.Text = "Abonos";
             // 
@@ -1146,7 +1148,7 @@
             this.txtAbonos_Aportaciones.Location = new System.Drawing.Point(24, 53);
             this.txtAbonos_Aportaciones.Name = "txtAbonos_Aportaciones";
             this.txtAbonos_Aportaciones.ReadOnly = true;
-            this.txtAbonos_Aportaciones.Size = new System.Drawing.Size(100, 26);
+            this.txtAbonos_Aportaciones.Size = new System.Drawing.Size(100, 27);
             this.txtAbonos_Aportaciones.TabIndex = 5;
             this.txtAbonos_Aportaciones.TabStop = false;
             // 
@@ -1172,7 +1174,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(23, 83);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 20);
+            this.label2.Size = new System.Drawing.Size(59, 19);
             this.label2.TabIndex = 8;
             this.label2.Text = "Retiros";
             // 
@@ -1181,7 +1183,7 @@
             this.txtRetiros_Ahorros.Location = new System.Drawing.Point(24, 108);
             this.txtRetiros_Ahorros.Name = "txtRetiros_Ahorros";
             this.txtRetiros_Ahorros.ReadOnly = true;
-            this.txtRetiros_Ahorros.Size = new System.Drawing.Size(100, 26);
+            this.txtRetiros_Ahorros.Size = new System.Drawing.Size(100, 27);
             this.txtRetiros_Ahorros.TabIndex = 7;
             this.txtRetiros_Ahorros.TabStop = false;
             // 
@@ -1191,7 +1193,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(23, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 20);
+            this.label1.Size = new System.Drawing.Size(62, 19);
             this.label1.TabIndex = 6;
             this.label1.Text = "Abonos";
             // 
@@ -1200,7 +1202,7 @@
             this.txtAbonos_Ahorro.Location = new System.Drawing.Point(24, 53);
             this.txtAbonos_Ahorro.Name = "txtAbonos_Ahorro";
             this.txtAbonos_Ahorro.ReadOnly = true;
-            this.txtAbonos_Ahorro.Size = new System.Drawing.Size(100, 26);
+            this.txtAbonos_Ahorro.Size = new System.Drawing.Size(100, 27);
             this.txtAbonos_Ahorro.TabIndex = 5;
             this.txtAbonos_Ahorro.TabStop = false;
             // 
@@ -1228,7 +1230,7 @@
             "Préstamo"});
             this.cbTransacción.Location = new System.Drawing.Point(678, 228);
             this.cbTransacción.Name = "cbTransacción";
-            this.cbTransacción.Size = new System.Drawing.Size(261, 28);
+            this.cbTransacción.Size = new System.Drawing.Size(261, 27);
             this.cbTransacción.TabIndex = 83;
             this.cbTransacción.Visible = false;
             this.cbTransacción.SelectedIndexChanged += new System.EventHandler(this.cbTransacción_SelectedIndexChanged);
@@ -1237,7 +1239,7 @@
             // 
             this.dtHasta.Location = new System.Drawing.Point(264, 228);
             this.dtHasta.Name = "dtHasta";
-            this.dtHasta.Size = new System.Drawing.Size(297, 26);
+            this.dtHasta.Size = new System.Drawing.Size(297, 27);
             this.dtHasta.TabIndex = 82;
             this.dtHasta.Visible = false;
             this.dtHasta.ValueChanged += new System.EventHandler(this.dtHasta_ValueChanged);
@@ -1246,7 +1248,7 @@
             // 
             this.dtDesde.Location = new System.Drawing.Point(264, 175);
             this.dtDesde.Name = "dtDesde";
-            this.dtDesde.Size = new System.Drawing.Size(297, 26);
+            this.dtDesde.Size = new System.Drawing.Size(297, 27);
             this.dtDesde.TabIndex = 81;
             this.dtDesde.Visible = false;
             this.dtDesde.ValueChanged += new System.EventHandler(this.dtDesde_ValueChanged);
@@ -1319,7 +1321,7 @@
             // Principal_P
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(980, 705);
             this.ControlBox = false;
@@ -1364,7 +1366,7 @@
             this.Controls.Add(this.bttDatosAsociado);
             this.Controls.Add(this.dgvTransacciones);
             this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Linotte-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(980, 705);

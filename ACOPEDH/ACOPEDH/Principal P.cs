@@ -18,7 +18,7 @@ namespace ACOPEDH
         Fonts F;
         String dgvControl;
         DialogResult dr = DialogResult.Cancel;
-        Color Original, Seleccionado;
+        Color Original, Seleccionado, Fuente, FuenteO;
         String Dato,Extra;
         Procedimientos_select Cargar = new Procedimientos_select();
         DataTable dsAhorro, dsPréstamo, dsAsociado;
@@ -43,8 +43,14 @@ namespace ACOPEDH
             LlenarDGV(ref dsPréstamo, "[Préstamo DVG]");
             LlenarDGV(ref dsAsociado, "[Asociado DVG]");
             this.Cursor = Cursors.Default;
+            Fuente = PInicio.ForeColor;
+            FuenteO = PPréstamos.ForeColor;
             Seleccionado = PInicio.BackColor;
             Original = PPréstamos.BackColor;
+            panelConfig.BackColor = Original;
+            pictureBox3.BackColor = 
+            bttMin.BackColor=bttMax.BackColor=bttCer.BackColor=
+            BarraTítulo.BackColor = Seleccionado;
             MaximumSize = new Size(SystemInformation.PrimaryMonitorMaximizedWindowSize.Width - 15, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 15);
             txtNuevaContraseña.UseSystemPasswordChar = true;
             txtConfContraseña.UseSystemPasswordChar = true;
@@ -55,6 +61,8 @@ namespace ACOPEDH
             cbTransacción.SelectedIndex = 0;
             No_Editar();
             F = new Fonts(dgvBúsqueda);
+            F.Diseño();
+            F = new Fonts(dgvTransacciones);
             F.Diseño();
         }
         #endregion
@@ -70,12 +78,14 @@ namespace ACOPEDH
             Ocultar();
             //Colorear
             PInicio.BackColor = Seleccionado;
+            PInicio.ForeColor = Fuente;
         }
         private void PAhorros_Click(object sender, EventArgs e)
         {
             Ocultar();
             //Colorear
             PAhorros.BackColor = Seleccionado;
+            PAhorros.ForeColor = Fuente;
 
             // Mostrando
             labBuscar.Visible = true;
@@ -96,6 +106,7 @@ namespace ACOPEDH
             Ocultar();
             //Colorear
             PPréstamos.BackColor = Seleccionado;
+            PPréstamos.ForeColor = Fuente;
 
             // Mostrando
             labBuscar.Visible = true;
@@ -116,7 +127,8 @@ namespace ACOPEDH
             Ocultar();
             //Colorear
             PAsociados.BackColor = Seleccionado;
-            DataView dv = new DataView();
+            PAsociados.ForeColor = Fuente;
+
             //Mostrando
             labBuscar.Visible = true;
             txtBúsqueda.Visible = true;
@@ -135,7 +147,7 @@ namespace ACOPEDH
             Ocultar();
             //Colorear
             PConfiguración.BackColor = Seleccionado;
-            DataView dv = new DataView();
+            PConfiguración.ForeColor = Fuente;
             //Mostrando
             panelConfig.Visible = true;
         }
@@ -144,6 +156,8 @@ namespace ACOPEDH
             Ocultar();
             //Colorear
             PEstadoAsociación.BackColor = Seleccionado;
+            PEstadoAsociación.ForeColor = Fuente;
+
             //Mostrando
             bttGráfica.Visible = true;
             cbTransacción.Visible = true;
@@ -208,6 +222,12 @@ namespace ACOPEDH
             PAsociados.BackColor = Original;
             PConfiguración.BackColor = Original;
             PEstadoAsociación.BackColor = Original;
+            PInicio.ForeColor = FuenteO;
+            PAhorros.ForeColor = FuenteO;
+            PPréstamos.ForeColor = FuenteO;
+            PAsociados.ForeColor = FuenteO;
+            PConfiguración.ForeColor = FuenteO;
+            PEstadoAsociación.ForeColor = FuenteO;
 
             //Búsqueda
             labBuscar.Visible = false;
@@ -604,9 +624,6 @@ namespace ACOPEDH
         private void Principal_P_SizeChanged(object sender, EventArgs e)
         {
             BarraTítulo.Size = new Size(Width, BarraTítulo.Size.Height);
-            bttCer.Location = new Point(Width - 26, 0);
-            bttMax.Location = new Point(bttCer.Location.X - 26, 0);
-            bttMin.Location = new Point(bttMax.Location.X - 26, 0);
             //Elementos
             Titulo.Location = new Point((Width / 2) - (Titulo.Width / 2) + 93, 44);
             panelConfig.Width = Width - 285;
