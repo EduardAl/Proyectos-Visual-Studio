@@ -21,8 +21,8 @@ namespace ACOPEDH
         Color Original, Seleccionado, Fuente, FuenteO;
         String Dato,Extra;
         Procedimientos_select Cargar = new Procedimientos_select();
-        DataTable dsAhorro, dsPréstamo, dsAsociado;
-        DataView filtro;
+        DataTable dsAhorro, dsPréstamo, dsAsociado,dsTransacciones;
+        DataView filtro,filtro1;
         DataTable Gráfica;
         Emailsistema enviarEmail = new Emailsistema();
         bool Cargando = true; 
@@ -400,7 +400,9 @@ namespace ACOPEDH
             Parámetros[0] = new SqlParameter("@Fecha_Inicial", dtDesde.Value);
             Parámetros[1] = new SqlParameter("@Fecha_Final", dtHasta.Value);
             Parámetros[2] = new SqlParameter("@Tipo_Transaccion", cbTransacción.Text);
-            dgvTransacciones.DataSource = Cargar.llenar_DataTable("[Conseguir Transacciones]", Parámetros);
+            dsTransacciones= Cargar.llenar_DataTable("[Conseguir Transacciones]", Parámetros);
+            filtro1 = dsTransacciones.DefaultView;
+            dgvTransacciones.DataSource = filtro1;
             dgvTransacciones.Refresh();
         }
         #endregion
@@ -625,7 +627,7 @@ namespace ACOPEDH
         {
             BarraTítulo.Size = new Size(Width, BarraTítulo.Size.Height);
             //Elementos
-            Titulo.Location = new Point((Width / 2) - (Titulo.Width / 2) + 93, 44);
+            Titulo.Location = new Point((Width / 2) - (Titulo.Width / 2) + 93, Titulo.Location.Y);
             panelConfig.Width = Width - 285;
             panelConfig.Height = 544;
             panelConfig.Location = new Point((Width / 2) - (panelConfig.Width / 2) + 93, 122 /*panelConfig.Location.Y*/);
@@ -1031,9 +1033,14 @@ namespace ACOPEDH
         #region Cambio Index
         private void cbTransacción_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Cargando_Datos_DGV();
+            string salida_datos = "";
+            if (cbTransacción.SelectedIndex != 0)
+            {
+                string palabras = cbTransacción.Text;
+                salida_datos = "(Transacción LIKE '%" + palabras + "%')";
+            }
+            this.filtro1.RowFilter = salida_datos;
         }
         #endregion
-
     }
 }
