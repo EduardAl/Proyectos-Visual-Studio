@@ -625,7 +625,6 @@ namespace ACOPEDH
         #region Cambio de tamaño
         private void Principal_P_SizeChanged(object sender, EventArgs e)
         {
-            BarraTítulo.Size = new Size(Width, BarraTítulo.Size.Height);
             //Elementos
             Titulo.Location = new Point((Width / 2) - (Titulo.Width / 2) + 93, Titulo.Location.Y);
             panelConfig.Width = Width - 285;
@@ -777,6 +776,15 @@ namespace ACOPEDH
             e.Graphics.DrawLine(new Pen(Brushes.Black, 2), 10, 196, panelConfig.Width - 10, 196);//180
             e.Graphics.DrawLine(new Pen(Brushes.Black, 2), 10, 347, panelConfig.Width - 10, 347);//331
         }
+        private void Bordes_Paint(object sender, PaintEventArgs e)
+        {
+            Pen c= (new Pen(Brushes.Purple,2));
+            Graphics Linea = CreateGraphics();
+            Linea.DrawLine(c, new Point(Width-1, 0), new Point(Width-1, Height-2));
+            Linea.DrawLine(c, new Point(1, 0), new Point(1, Height));
+            Linea.DrawLine(c, new Point(0, Height-1), new Point(Width, Height-1));
+            Linea.DrawLine(c, new Point(Width, 1), new Point(0,1));
+        }
         #endregion
         #region Visibilidad contraseña
         private void PBMostrar2_MouseDown(object sender, MouseEventArgs e)
@@ -826,53 +834,57 @@ namespace ACOPEDH
         #region Búsqueda
         private void txtBúsqueda_KeyUp(object sender, KeyEventArgs e)
         {
-            string salida_datos = "";
-            string[] palabra_busqueda = this.txtBúsqueda.Text.Split(' ');
-            if (dgvControl == "Ahorro")
+            try
             {
-                foreach (string palabra in palabra_busqueda)
+                string salida_datos = "";
+                string[] palabra_busqueda = this.txtBúsqueda.Text.Split(' ');
+                if (dgvControl == "Ahorro")
                 {
-                    if (salida_datos.Length == 0)
+                    foreach (string palabra in palabra_busqueda)
                     {
-                        salida_datos = "(Dui LIKE '%" + palabra + "%' OR [Código de Ahorro] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Tipo de Ahorro] LIKE '%" + palabra + "%')";
+                        if (salida_datos.Length == 0)
+                        {
+                            salida_datos = "(Dui LIKE '%" + palabra + "%' OR [Código de Ahorro] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Tipo de Ahorro] LIKE '%" + palabra + "%')";
+                        }
+                        else
+                        {
+                            salida_datos += " AND(Dui LIKE '%" + palabra + "%' OR [Código de Ahorro] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Tipo de Ahorro] LIKE '%" + palabra + "%')";
+                        }
                     }
-                    else
-                    {
-                        salida_datos += " AND(Dui LIKE '%" + palabra + "%' OR [Código de Ahorro] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Tipo de Ahorro] LIKE '%" + palabra + "%')";
-                    }
+                    this.filtro.RowFilter = salida_datos;
                 }
-                this.filtro.RowFilter = salida_datos;
-            }
-            if (dgvControl == "Préstamo")
-            {
-                foreach (string palabra in palabra_busqueda)
+                if (dgvControl == "Préstamo")
                 {
-                    if (salida_datos.Length == 0)
+                    foreach (string palabra in palabra_busqueda)
                     {
-                        salida_datos = "(Dui LIKE '%" + palabra + "%' OR [Código de Préstamo] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Tipo de Préstamo] LIKE '%" + palabra + "%')";
+                        if (salida_datos.Length == 0)
+                        {
+                            salida_datos = "(Dui LIKE '%" + palabra + "%' OR [Código de Préstamo] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Tipo de Préstamo] LIKE '%" + palabra + "%')";
+                        }
+                        else
+                        {
+                            salida_datos += " AND(Dui LIKE '%" + palabra + "%' OR [Código de Préstamo] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Tipo de Préstamo] LIKE '%" + palabra + "%')";
+                        }
                     }
-                    else
-                    {
-                        salida_datos += " AND(Dui LIKE '%" + palabra + "%' OR [Código de Préstamo] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Tipo de Préstamo] LIKE '%" + palabra + "%')";
-                    }
+                    this.filtro.RowFilter = salida_datos;
                 }
-                this.filtro.RowFilter = salida_datos;
-            }
-            if (dgvControl == "Asociado")
-            {
-                foreach (string palabra in palabra_busqueda)
+                if (dgvControl == "Asociado")
                 {
-                    if (salida_datos.Length == 0)
+                    foreach (string palabra in palabra_busqueda)
                     {
-                        salida_datos = "(Código LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR Dui LIKE '%" + palabra + "%' OR [Tipo Asociación] LIKE '%" + palabra + "%')";
+                        if (salida_datos.Length == 0)
+                        {
+                            salida_datos = "(Código LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR Dui LIKE '%" + palabra + "%' OR [Tipo Asociación] LIKE '%" + palabra + "%')";
+                        }
+                        else
+                        {
+                            salida_datos += " AND(Código LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR Dui LIKE '%" + palabra + "%' OR [Tipo Asociación] LIKE '%" + palabra + "%')";
+                        }
                     }
-                    else
-                    {
-                        salida_datos += " AND(Código LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR Dui LIKE '%" + palabra + "%' OR [Tipo Asociación] LIKE '%" + palabra + "%')";
-                    }
+                    this.filtro.RowFilter = salida_datos;
                 }
-                this.filtro.RowFilter = salida_datos;
             }
+            catch { }
         }
         #endregion
         #region Closing
@@ -955,12 +967,6 @@ namespace ACOPEDH
 
         private const int WM_NCHITTEST = 0x84;          // variables for dragging the form
         private const int HTCLIENT = 0x1;
-
-        private void btnRegAsociado_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private const int HTCAPTION = 0x2;
 
         protected override CreateParams CreateParams
@@ -1033,14 +1039,65 @@ namespace ACOPEDH
         #region Cambio Index
         private void cbTransacción_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string salida_datos = "";
-            if (cbTransacción.SelectedIndex != 0)
+            try
             {
-                string palabras = cbTransacción.Text;
-                salida_datos = "(Transacción LIKE '%" + palabras + "%')";
+                string salida_datos = "";
+                if (cbTransacción.SelectedIndex != 0)
+                {
+                    string palabras = cbTransacción.Text;
+                    salida_datos = "(Transacción LIKE '%" + palabras + "%')";
+                }
+                this.filtro1.RowFilter = salida_datos;
             }
-            this.filtro1.RowFilter = salida_datos;
+            catch { }
         }
         #endregion
+        #region Efecto botones barra título
+        private void bttMin_MouseHover(object sender, EventArgs e)
+        {
+            bttMin.BackColor = Color.FromArgb(35, 45, 129);
+        }
+
+        private void bttMin_MouseLeave(object sender, EventArgs e)
+        {
+            bttMin.BackColor = Seleccionado;
+        }
+
+        private void bttMin_MouseDown(object sender, MouseEventArgs e)
+        {
+            bttMin.BackColor = Color.Blue;
+        }
+
+        private void bttMax_MouseDown(object sender, MouseEventArgs e)
+        {
+            bttMax.BackColor = Color.Blue;
+        }
+
+        private void bttMax_MouseHover(object sender, EventArgs e)
+        {
+            bttMax.BackColor = Color.FromArgb(35, 45, 129);
+        }
+
+        private void bttMax_MouseLeave(object sender, EventArgs e)
+        {
+            bttMax.BackColor = Seleccionado;
+        }
+
+        private void bttCer_MouseLeave(object sender, EventArgs e)
+        {
+            bttCer.BackColor = Seleccionado;
+        }
+
+        private void bttCer_MouseHover(object sender, EventArgs e)
+        {
+            bttCer.BackColor = Color.Red;
+        }
+
+        private void bttCer_MouseDown(object sender, MouseEventArgs e)
+        {
+            bttCer.BackColor = Color.DarkRed;
+        }
+        #endregion
+
     }
 }

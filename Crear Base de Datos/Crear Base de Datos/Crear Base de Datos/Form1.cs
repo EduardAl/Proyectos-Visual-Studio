@@ -84,25 +84,39 @@ namespace Crear_Base_de_Datos
                 "[Id Ocupación]  AS('OC' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
                 "[Nombre de la Empresa] [varchar](60) NOT NULL," +
                 "CONSTRAINT[PK_Ocupación] PRIMARY KEY ([Id Ocupación]))";
+            String tabla08 = "CREATE TABLE [dbo].[Persona](" +
+                "[Número][int] IDENTITY(1, 1) NOT NULL," +
+                "[Código Persona]  AS('PC' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
+                "[Nombres] [varchar](50) NOT NULL," +
+                "[Apellidos] [varchar](50) NOT NULL," +
+                "[DUI] [varchar](10) NULL unique," +
+                "[NIT] [varchar](17) NULL unique," +
+                "[Dirección] [varchar](100) NULL," +
+                "[Fecha de Nacimiento] [datetime] NOT NULL," +
+                "CONSTRAINT [PK_Persona] PRIMARY KEY ([Código Asociado])";
             String tabla8 = "CREATE TABLE [dbo].[Asociado](" +
                 "[Número][int] IDENTITY(1, 1) NOT NULL," +
                 "[Código Asociado]  AS('AS' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
+                "[FK Persona] [varchar](5) NOT NULL," +
                 "[FK Tipo Socio] [varchar](5) NOT NULL," +
-                "[Nombres] [varchar](50) NOT NULL," +
-                "[Apellidos] [varchar](50) NOT NULL," +
-                "[DUI] [varchar](10) NOT NULL unique," +
-                "[NIT] [varchar](17) NOT NULL unique," +
-                "[Dirección] [varchar](100) NULL," +
-                "[Fecha de Nacimiento] [datetime] NOT NULL," +
                 "[Fecha de Asociación] [datetime] NOT NULL," +
                 "[Fecha de Desasociación] [datetime] NULL," +
                 "[Estado] [varchar](10) NOT NULL, " +
                 "[FK Ocupación] [varchar](5) NOT NULL," +
                 "CONSTRAINT [PK_Asociado] PRIMARY KEY ([Código Asociado])," +
+                "CONSTRAINT [FK Persona] FOREIGN KEY ([FK Persona])" +
+                "REFERENCES [Persona]([Código Persona])," +
                 "CONSTRAINT [FK Tipo Socio] FOREIGN KEY ([FK Tipo Socio])" +
                 "REFERENCES [Tipo de Socio]([id Tipo de Socio])," +
                 "CONSTRAINT [FK Ocupación] FOREIGN KEY ([FK Ocupación])" +
                 "REFERENCES Ocupación([Id Ocupación]))";
+            String tabla010 = "CREATE TABLE [dbo].[Beneficiario](" +
+                "[FK Persona] [varchar](5) NOT NULL," +
+                "[FK Asociado] [varchar](5) NOT NULL," +
+                "CONSTRAINT [FK Persona] FOREIGN KEY ([FK Persona])" +
+                "REFERENCES [Persona]([Código Persona])," +
+                "CONSTRAINT [FK Asociado] FOREIGN KEY ([FK Asociado])" +
+                "REFERENCES [Asociado]([Código Asociado]))";
             String tabla9 = "CREATE TABLE [dbo].[Aportaciones](" +
                 "[Número] [int] IDENTITY(1,1) NOT NULL," +
                 "[id Aportación]  AS('AP' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
@@ -156,7 +170,7 @@ namespace Crear_Base_de_Datos
                 "CONSTRAINT [PK Teléfono] PRIMARY KEY ([id Teléfono]))";
             String tabla15 = "CREATE TABLE [dbo].[Contacto](" +
                 "[FK Teléfono] [varchar](5) NOT NULL references[Teléfono]([id Teléfono])," +
-                "[FK Código Asociado] [varchar](5) NOT NULL references Asociado([Código Asociado]), " +
+                "[FK Persona] [varchar](5) NOT NULL references Persona([Código Persona]), " +
                 "[FK Tipo de Teléfono][varchar](5) NOT NULL references [Tipos de Teléfonos]([id Tipo de Teléfono]))";
             String tabla16 = "Create table [dbo].[Forma de Pago](" +
                 "[Número] [int] identity(1, 1) NOT NULL," +
@@ -245,7 +259,8 @@ namespace Crear_Base_de_Datos
                 "return 0 " +
                 "End Catch";
             String procedimiento2 = "Create Procedure[Insertar Asociado]" +
-                "@FK_Tipo_Socio varchar(50), " +
+                "@FK_Persona varchar(5), " +
+                "@FK_Tipo_Socio varchar(5), " +
                 "@Nombres varchar(80), " +
                 "@Apellidos varchar(80), " +
                 "@DUI varchar(10), " +
@@ -253,15 +268,24 @@ namespace Crear_Base_de_Datos
                 "@Residencia varchar(100), " +
                 "@Fecha_Nacimiento datetime, " +
                 "@Fecha_Asociación datetime, " +
-                "@FK_Ocupacion varchar(30) " +
+                "@FK_Ocupacion varchar(5) " +
                 "As " +
-                "Begin Tran Asociado " +
-                "Begin try " +
-                "Declare @ID_Tipo_Socio as varchar(5) " +
-                "Declare @ID_Ocupación as varchar(5) " +
-                "set @ID_Tipo_Socio = (Select[id Tipo de Socio] From[Tipo de Socio] where[Nombre Tipo Socio] = @FK_Tipo_Socio) " +
-                "set @ID_Ocupación = (Select[Id Ocupación] From[Ocupación] where[Nombre de la Empresa] = @FK_Ocupacion) " +
-                "Insert into Asociado values(@ID_Tipo_Socio, @Nombres, @Apellidos, @DUI, @NIT, @Residencia, @Fecha_Nacimiento, @Fecha_Asociación, null, 'ACTIVO', @ID_Ocupación) " +
+                "Begin Tran Asociado Begin try " +
+                "Declare @Persona int Declare @FK_Per varchar(5) " +
+                "if(@FK_Persona='') begin " +
+                "Set @FK_Per=(Select [Código Persona] from Persona where [DUI]=@DUI) " +
+                "if(@FK_Per is null) begin " +
+                "Insert into Persona values(@Nombres,@Apellidos,@DUI,@NIT,@Residencia,@Fecha_Nacimiento) " + 
+                "end end " +
+                "else begin Set @FK_Per=@FK_Persona end " +
+                "set @Persona=(Select count([Código Asociado]) from Asociado where [FK Persona]=@FK_Per) " +
+                "if @Persona=0 " +
+                "begin " +
+                "Insert into Asociado values(@FK_Per,@FK_Tipo_Socio, @Fecha_Asociación, null, 'ACTIVO', @FK_Ocupación) " +
+                "end " +
+                "else " +
+                "begin Print 'Ya existe una persona registrada con ese DUI' " +
+                "end " +
                 "Commit tran Asociado " +
                 "End try " +
                 "Begin Catch " +
@@ -274,10 +298,11 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Cargar_Asociados " +
                 "Begin Try " +
-                "Select [Tipo de Socio].[Nombre Tipo Socio] AS 'Tipo de Asociación', Nombres AS 'Name', Apellidos AS 'LName',DUI AS 'DDui', NIT AS 'DNit', " +
-                "Dirección AS 'Residencia', [Fecha de Nacimiento] AS 'FNacimiento', [Fecha de Asociación] AS 'FAsociación', [Fecha de Desasociación] AS 'FDesasociación', Estado AS 'Est', " +
+                "Select [Tipo de Socio].[Nombre Tipo Socio] AS 'Tipo de Asociación', p.Nombres AS 'Name', p.Apellidos AS 'LName',p.DUI AS 'DDui', p.NIT AS 'DNit', " +
+                "p.Dirección AS 'Residencia', p.[Fecha de Nacimiento] AS 'FNacimiento', [Fecha de Asociación] AS 'FAsociación', [Fecha de Desasociación] AS 'FDesasociación', Estado AS 'Est', " +
                 "Ocupación.[Nombre de la Empresa] AS 'Trabajo' From Asociado inner join [Tipo de Socio] on [Tipo de Socio].[id Tipo de Socio]=Asociado.[FK Tipo Socio] " +
-                "inner join Ocupación on Ocupación.[Id Ocupación] = Asociado.[FK Ocupación] where [Código Asociado] = @Código_Asociado " +
+                "inner join Ocupación on Ocupación.[Id Ocupación] = Asociado.[FK Ocupación] " +
+                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] where [Código Asociado] = @Código_Asociado " +
                 "Commit Tran Cargar_Asociados " +
                 "End Try " +
                 "Begin Catch " +
@@ -291,13 +316,13 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Teléfono " +
                 "Begin Try " +
-                "Declare @ID_Asociado varchar(5) " +
+                "Declare @ID_Persona varchar(5) " +
                 "Declare @ID_Teléfono varchar(5) " +
                 "Begin " +
-                "Set @ID_Asociado = (Select[Código Asociado] From Asociado where @DUI = DUI)  " +
+                "Set @ID_Persona = (Select[Código Persona] From Persona where @DUI = DUI)  " +
                 "Insert into Teléfono values(@Teléfono) " +
                 "set @ID_Teléfono = (Select Max([id Teléfono]) From Teléfono) " +
-                "Insert into Contacto values(@ID_Teléfono, @ID_Asociado, @Tipo_Teléfono) " +
+                "Insert into Contacto values(@ID_Teléfono, @ID_Persona, @Tipo_Teléfono) " +
                 "Commit Tran Teléfono " +
                 "End " +
                 "End Try " +
@@ -306,13 +331,13 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Teléfono " +
                 "End Catch";
             String procedimiento5 = "Create Procedure[Cargar Teléfonos] " +
-                "@Código_Asociado varchar(5) " +
+                "@Código_Persona varchar(5) " +
                 "As " +
                 "Begin Tran Cargar_Teléfonos " +
                 "Begin Try " +
                 "Select Teléfono.Teléfono AS 'Número de Teléfono',[Tipos de Teléfonos].[Tipo de Teléfono] From Teléfono " +
                 "inner join Contacto on Teléfono.[id Teléfono] = Contacto.[FK Teléfono] inner join [Tipos de Teléfonos] on [Tipos de Teléfonos].[id Tipo de Teléfono] = Contacto.[FK Tipo de Teléfono] " +
-                "where Contacto.[FK Código Asociado] = @Código_Asociado " +
+                "where Contacto.[FK Persona] = @Código_Persona " +
                 "Commit Tran Cargar_Teléfonos " +
                 "End Try " +
                 "Begin Catch " +
@@ -323,12 +348,12 @@ namespace Crear_Base_de_Datos
                 "@Tipo_Telefono varchar(50), " +
                 "@ID_Teléfono varchar(5), " +
                 "@Teléfono varchar(10), " +
-                "@Código_Asociado varchar(5) " +
+                "@Código_Persona varchar(5) " +
                 "As " +
                 "Begin Tran Mod_Tel " +
                 "Begin Try " +
                 "If((Select [Tipos de Teléfonos].[Tipo de Teléfono] From[Tipos de Teléfonos] inner join Contacto " +
-                "on[Tipos de Teléfonos].[id Tipo de Teléfono] = Contacto.[FK Tipo de Teléfono] where Contacto.[FK Teléfono] = @ID_Teléfono AND Contacto.[FK Código Asociado] = @Código_Asociado) " +
+                "on[Tipos de Teléfonos].[id Tipo de Teléfono] = Contacto.[FK Tipo de Teléfono] where Contacto.[FK Teléfono] = @ID_Teléfono AND Contacto.[FK Persona] = @Código_Persona) " +
                 "= @Tipo_Telefono) " +
                 "Update Teléfono set Teléfono = @Teléfono where @ID_Teléfono =[id Teléfono] " +
                 "Commit Tran Mod_Tel " +
@@ -339,12 +364,12 @@ namespace Crear_Base_de_Datos
                 "End Catch";
             String procedimiento7 = "Create Procedure[Eliminar Teléfono] " +
                 "@ID_Teléfono varchar(5), " +
-                "@Id_Asociado varchar(5) " +
+                "@Id_Persona varchar(5) " +
                 "As   " +
                 "Begin Tran Del_Teléfono " +
                 "Begin Try " +
                 "Begin " +
-                "Delete From Contacto where @ID_Teléfono = [FK Teléfono] AND @Id_Asociado = [FK Código Asociado] " +
+                "Delete From Contacto where @ID_Teléfono = [FK Teléfono] AND @Id_Persona = [FK Persona] " +
                 "Commit Tran Del_Teléfono " +
                 "End " +
                 "End Try " +
@@ -375,8 +400,9 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Ahorro_DVG " +
                 "Begin Try " +
-                "Select Ahorro.[id Ahorro] as 'Código de Ahorro',(Asociado.Nombres+' ' + Asociado.Apellidos) as 'Persona Asociada', Asociado.DUI as 'DUI' ,[Tipo de Ahorro].Nombre as 'Tipo de Ahorro', Ahorro.Estado as 'Estado' From Asociado inner join Ahorro " +
+                "Select Ahorro.[id Ahorro] as 'Código de Ahorro',(p.Nombres+' ' + p.Apellidos) as 'Persona Asociada', p.DUI as 'DUI' ,[Tipo de Ahorro].Nombre as 'Tipo de Ahorro', Ahorro.Estado as 'Estado' From Asociado inner join Ahorro " +
                 "on Ahorro.[FK Código de Asociado] = Asociado.[Código Asociado] inner join [Tipo de Ahorro] on Ahorro.[FK Tipo Ahorro]=[Tipo de Ahorro].[id Tipo Ahorro] " +
+                "inner join Persona p on p.[Código Persona]= Asociado.[FK Persona]" +
                 "Commit Tran Ahorro_DVG " +
                 "End Try " +
                 "Begin Catch " +
@@ -416,7 +442,7 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran C_Aportaciones " +
                 "Begin Try " +
-                "Select Aportaciones.Aportación as ' Monto de la Aportación',Transacciones.[Fecha de Transacción] as 'Fecha de Aportación' From Aportaciones inner join Transacciones on Aportaciones.[FK Transacción] =" +
+                "Select Aportaciones.Aportación as 'Monto de la Aportación',Transacciones.[Fecha de Transacción] as 'Fecha de Aportación' From Aportaciones inner join Transacciones on Aportaciones.[FK Transacción] =" +
                 "Transacciones.[id Transacción] where @Código_Asociado = Aportaciones.[FK Asociado] " +
                 "Commit Tran C_Aportaciones " +
                 "End Try " +
@@ -624,12 +650,13 @@ namespace Crear_Base_de_Datos
                  "As " +
                  "Begin Tran Cargar_P " +
                 "Begin Try " +
-                "Select Asociado.[Código Asociado] AS 'Código_A', (Asociado.Nombres + ' ' + Asociado.Apellidos) AS 'Nombre',[Forma de Pago].Nombre AS 'FormaP'," +
+                "Select p.[Código Asociado] AS 'Código_A', (p.Nombres + ' ' + p.Apellidos) AS 'Nombre',[Forma de Pago].Nombre AS 'FormaP'," +
                 " [Tipo de Préstamo].[Tipo de Préstamo]As 'TipoP', [Tipo de Préstamo].[Tasa de Interés] As Interés, Préstamos.[Monto del Préstamo] AS Monto, " +
                 "Transacciones.[Fecha de Transacción] AS FechaT, Préstamos.Cuotas AS NCuotas, Préstamos.[Cuota Mensual] AS PCuotas, Préstamos.Estado AS Estado " +
                 "From Asociado inner join [Forma de Pago] on [Forma de Pago].[id Forma de Pago] = [id Forma de Pago] inner join Préstamos on " +
                 "Asociado.[Código Asociado] = Préstamos.[Código Asociado] inner join [Tipo de Préstamo] on Préstamos.[id Tipo de Préstamo] " +
                 "= [Tipo de Préstamo].[id Tipo de Préstamo] inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] " +
+                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona]" +
                 "where Préstamos.[id Préstamos]= @ID_Préstamo " +
                 "Commit Tran Cargar_P " +
                 "End Try " +
@@ -642,9 +669,10 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Pres " +
                 "Begin Try " +
-                "Select Préstamos.[id Préstamos] as 'Código de Préstamo', (Asociado.Nombres + ' ' + Asociado.Apellidos) as 'Persona Asociada', Asociado.DUI as 'Dui', [Tipo de Préstamo].[Tipo de Préstamo], Préstamos.Estado as 'Estado' " +
+                "Select Préstamos.[id Préstamos] as 'Código de Préstamo', (p.Nombres + ' ' + p.Apellidos) as 'Persona Asociada', p.DUI as 'Dui', [Tipo de Préstamo].[Tipo de Préstamo], Préstamos.Estado as 'Estado' " +
                 "From Asociado inner join Préstamos on Asociado.[Código Asociado] = Préstamos.[Código Asociado] inner join [Tipo de Préstamo] " +
                 "on Préstamos.[id Tipo de Préstamo] = [Tipo de Préstamo].[id Tipo de Préstamo] " +
+                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] " +
                 "Commit Tran Pres " +
                 "End Try " +
                 "Begin Catch " +
@@ -656,7 +684,9 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Aso " +
                 "Begin Try " +
-                "Select Asociado.[Código Asociado] as 'Código', (Asociado.Nombres + ' ' + Asociado.Apellidos) as 'Persona Asociada',Asociado.DUI as 'Dui',[Tipo de Socio].[Nombre Tipo Socio] as 'Tipo Asociación', Asociado.Estado as 'Estado' From Asociado inner join [Tipo de Socio] on [Tipo de Socio].[id Tipo de Socio]=Asociado.[FK Tipo Socio] " +
+                "Select Asociado.[Código Asociado] as 'Código', (p.Nombres + ' ' + p.Apellidos) as 'Persona Asociada',p.DUI as 'Dui',[Tipo de Socio].[Nombre Tipo Socio] as 'Tipo Asociación', Asociado.Estado as 'Estado' " +
+                "From Asociado inner join [Tipo de Socio] on [Tipo de Socio].[id Tipo de Socio]=Asociado.[FK Tipo Socio] " +
+                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] " +
                 "Commit Tran Aso " +
                 "End Try " +
                 "Begin Catch " +
@@ -772,9 +802,9 @@ namespace Crear_Base_de_Datos
                "As " +
                "Begin Tran Cargar_Ahorros " +
                "Begin Try " +
-               "Select Asociado.[Código Asociado] as 'Código_A', (Asociado.Nombres+' ' + Asociado.Apellidos) as 'Nombre', Ahorro.Estado as 'Est',  [Tipo de Ahorro].Nombre as 'TipoA', [Tipo de Ahorro].[Tasa de Interés] as 'Interés' from Ahorro inner join Asociado " +
+               "Select Asociado.[Código Asociado] as 'Código_A', (p.Nombres+' ' + p.Apellidos) as 'Nombre', Ahorro.Estado as 'Est',  [Tipo de Ahorro].Nombre as 'TipoA', [Tipo de Ahorro].[Tasa de Interés] as 'Interés' from Ahorro inner join Asociado " +
                "on Ahorro.[FK Código de Asociado] = Asociado.[Código Asociado] inner join [Tipo de Ahorro] on Ahorro.[FK Tipo Ahorro]=[Tipo de Ahorro].[id Tipo Ahorro] " +
-               "where Ahorro.[id Ahorro] = @Código_Ahorro " +
+               "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] where Ahorro.[id Ahorro] = @Código_Ahorro " +
                "Commit Tran Cargar_Ahorros " +
                "End Try " +
                "Begin Catch " +
@@ -887,16 +917,14 @@ namespace Crear_Base_de_Datos
                 "return 0 " +
                 "End Catch ";
             //Añadido Actualizar Asociado
-            String procedimiento39 = "Create procedure[dbo].[Actualizar Asociado] " +
-                "@Codigo_Asociado varchar(5), " +
-                "@FK_Tipo_Socio varchar(50), " +
+            String procedimiento039 = "Create procedure[dbo].[Actualizar Persona] " +
+                "@Codigo_Persona varchar(5), " +
                 "@Nombres varchar(50), " +
                 "@Apellidos varchar(50), " +
                 "@DUI varchar(10), " +
                 "@NIT varchar(17), " +
                 "@Residencia varchar(100), " +
                 "@Fecha_Nacimiento datetime, " +
-                "@Fecha_Asociación datetime, " +
                 "@FK_Ocupacion varchar(30) " +
                 "As " +
                 "Begin transaction " +
@@ -904,14 +932,14 @@ namespace Crear_Base_de_Datos
                 "Declare @ID_Ocupación as varchar(5) " +
                 "set @ID_Tipo_Socio = (Select[id Tipo de Socio] From[Tipo de Socio] where[Nombre Tipo Socio] = @FK_Tipo_Socio)  " +
                 "set @ID_Ocupación = (Select[Id Ocupación] From[Ocupación] where[Nombre de la Empresa] = @FK_Ocupacion) " +
-                "Update Asociado set[FK Tipo Socio] = @ID_Tipo_Socio, " +
+                "Update Persona set[FK Tipo Socio] = @ID_Tipo_Socio, " +
                         "Nombres = @Nombres, " +
                         "Apellidos = @Apellidos, " +
                         "DUI = @DUI, " +
                         "NIT = @NIT, " +
                         "Dirección = @Residencia, " +
                         "[Fecha de Nacimiento] = @Fecha_Nacimiento, " +
-                        "[FK Ocupación] = @ID_Ocupación where[Código Asociado] = @Codigo_Asociado " +
+                        "[FK Ocupación] = @ID_Ocupación where[Código Persona] = @Codigo_Persona " +
               "If @@error = 0 " +
               "Begin " +
                 "COMMIT TRANSACTION " +
@@ -919,7 +947,24 @@ namespace Crear_Base_de_Datos
               "Else " +
               "Begin " +
                 "ROLLBACK TRANSACTION " +
-                "Print 'Error en modificar datos de asociado ' + ERROR_MESSAGE(); " +
+                "Print 'Error en modificar datos de la persona ' + ERROR_MESSAGE(); " +
+              "End ";
+            String procedimiento39 = "Create procedure[dbo].[Actualizar Asociado] " +
+                "@Codigo_Asociado varchar(5), " +
+                "@FK_Tipo_Socio varchar(5), " +
+                "@FK_Ocupacion varchar(5) " +
+                "As " +
+                "Begin transaction " +
+                "Update Asociado set[FK Tipo Socio] = @FK_Tipo_Socio, " +
+                        "[FK Ocupación] = @FK_Ocupación where[Código Asociado] = @Codigo_Asociado " +
+              "If @@error = 0 " +
+              "Begin " +
+                "COMMIT TRANSACTION " +
+              "End " +
+              "Else " +
+              "Begin " +
+                "ROLLBACK TRANSACTION " +
+                "Print 'Error en modificar datos de la persona asociada ' + ERROR_MESSAGE(); " +
               "End ";
             String procedimiento40 = "create procedure[Cargar Imagenes] " +
                 "As Begin " +
@@ -1001,10 +1046,11 @@ namespace Crear_Base_de_Datos
                 "Begin try " +
                 "declare @id_Pago varchar(9) " +
                 "Set @id_Pago = (Select Max([id Pago]) From Pago where Pago.[id Préstamo] = @Id_Préstamo) " +
-                "Select Pago.[id Pago] as 'Pid_Pago', Préstamos.[id Préstamos] as 'PPréstamo', (Asociado.Nombres +' '+ Asociado.Apellidos) as 'PNombre', " +
+                "Select Pago.[id Pago] as 'Pid_Pago', Préstamos.[id Préstamos] as 'PPréstamo', (p.Nombres +' '+ p.Apellidos) as 'PNombre', " +
                 "Préstamos.[Cuota Mensual] as 'Monto mínimo',Pago.Saldo as 'Psaldo',  Pago.Pago as 'PPago', Pago.Mora as 'Pmora', " +
                 "Transacciones.[Fecha de Transacción] as 'PFecha' From Asociado inner join Préstamos on Asociado.[Código Asociado] = Préstamos.[Código Asociado] " +
                 "inner join Pago on Préstamos.[id Préstamos] = Pago.[id Préstamo] inner join Transacciones on Pago.[FK Transacción] = Transacciones.[id Transacción] " +
+                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] " +
                 "where Pago.[id Pago] = @id_Pago and Préstamos.[id Préstamos]= @Id_Préstamo " +
                 "Commit Tran Constancia " +
                 "End try " +
@@ -1021,16 +1067,17 @@ namespace Crear_Base_de_Datos
                 "Declare @Id_Préstamo varchar(9) " +
                 "Set @Id_Préstamo = (Select Max(Préstamos.[id Préstamos]) From Préstamos inner join Asociado on Préstamos.[Código Asociado] = Asociado.[Código Asociado] " +
                 "where Asociado.[Código Asociado] = @Codigo) " +
-                "Select Asociado.[Código Asociado] AS 'Código_A', Asociado.Nombres AS 'Nombre', " +
-                "Asociado.Apellidos as 'Apellido', Préstamos.[id Préstamos] as 'Préstamo', " +
-                "Asociado.Dirección as 'Dir', Ocupación.[Nombre de la Empresa] as 'Trabajo',[Forma de Pago].Nombre AS 'FormaP', [Tipo de Préstamo].[Tipo de Préstamo] As 'TipoP',  " +
-                "Asociado.DUI as 'PDUI',[Tipo de Préstamo].[Tasa de Interés] As 'Interés',  " +
+                "Select Asociado.[Código Asociado] AS 'Código_A', p.Nombres AS 'Nombre', " +
+                "p.Apellidos as 'Apellido', Préstamos.[id Préstamos] as 'Préstamo', " +
+                "p.Dirección as 'Dir', Ocupación.[Nombre de la Empresa] as 'Trabajo',[Forma de Pago].Nombre AS 'FormaP', [Tipo de Préstamo].[Tipo de Préstamo] As 'TipoP',  " +
+                "p.DUI as 'PDUI',[Tipo de Préstamo].[Tasa de Interés] As 'Interés',  " +
                 "Préstamos.[Monto del Préstamo] AS 'Monto', Transacciones.[Fecha de Transacción] AS 'FechaT', Préstamos.Cuotas AS 'NCuotas', " +
                 "Préstamos.[Cuota Mensual] AS 'PCuotas', Préstamos.Estado AS 'Estado' From Ocupación inner join Asociado on " +
                 "Ocupación.[Id Ocupación] = Asociado.[FK Ocupación] inner join Préstamos on Asociado.[Código Asociado] = Préstamos.[Código Asociado] " +
                 "inner join [Tipo de Préstamo] on Préstamos.[id Tipo de Préstamo] = [Tipo de Préstamo].[id Tipo de Préstamo] " +
                 "inner join [Forma de Pago] on Préstamos.[id Forma de Pago] = [Forma de Pago].[id Forma de Pago] " +
-                "inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] where Préstamos.[id Préstamos]= @Id_Préstamo " +
+                "inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] " +
+                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] where Préstamos.[id Préstamos]= @Id_Préstamo " +
                 "Commit Tran Informe End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Informe End Catch ";
             //Añadido para cargar datos cooperativa
             String procedimiento47 = "Create Procedure [dbo].[Conseguir Transacciones]  " +

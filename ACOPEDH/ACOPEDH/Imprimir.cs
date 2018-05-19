@@ -64,7 +64,7 @@ namespace ACOPEDH
                     cons.SetParameterValue("Apellido", dt.Rows[0]["LName"]);
                     cons.SetParameterValue("Codigo", Datos);
                     Param[0] = new SqlParameter("@Código_Asociado",Datos);
-                    dt = seleccionar.LlenarText("[Cargar Aportaciones]","Monto de la Aportación",Param);
+                    dt = seleccionar.LlenarText("[Cargar Aportaciones]","[Monto de la Aportación]",Param);
                     cons.SetParameterValue("Aportaciones",dt.Rows[0]["Monto de la Aportación"]);
                     crystalReportViewer1.ReportSource = cons;
                     break;

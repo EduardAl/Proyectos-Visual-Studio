@@ -103,7 +103,7 @@
             this.chGráfica.Legends.Add(legend1);
             this.chGráfica.Location = new System.Drawing.Point(413, 71);
             this.chGráfica.Name = "chGráfica";
-            this.chGráfica.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
+            this.chGráfica.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             series1.Legend = "Legend1";

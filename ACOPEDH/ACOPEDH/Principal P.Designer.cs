@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal_P));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Titulo = new System.Windows.Forms.Label();
             this.PInicio = new System.Windows.Forms.Button();
@@ -287,7 +287,7 @@
             // bttPagosRealizados
             // 
             this.bttPagosRealizados.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttPagosRealizados.Location = new System.Drawing.Point(743, 607);
+            this.bttPagosRealizados.Location = new System.Drawing.Point(746, 609);
             this.bttPagosRealizados.Name = "bttPagosRealizados";
             this.bttPagosRealizados.Size = new System.Drawing.Size(150, 59);
             this.bttPagosRealizados.TabIndex = 27;
@@ -316,9 +316,9 @@
             // bttRealizarPago
             // 
             this.bttRealizarPago.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttRealizarPago.Location = new System.Drawing.Point(261, 607);
+            this.bttRealizarPago.Location = new System.Drawing.Point(264, 609);
             this.bttRealizarPago.Name = "bttRealizarPago";
-            this.bttRealizarPago.Size = new System.Drawing.Size(150, 59);
+            this.bttRealizarPago.Size = new System.Drawing.Size(150, 58);
             this.bttRealizarPago.TabIndex = 25;
             this.bttRealizarPago.TabStop = false;
             this.bttRealizarPago.Text = "Realizar Pago";
@@ -333,41 +333,41 @@
             this.dgvBúsqueda.AllowUserToDeleteRows = false;
             this.dgvBúsqueda.AllowUserToResizeColumns = false;
             this.dgvBúsqueda.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvBúsqueda.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvBúsqueda.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
             this.dgvBúsqueda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBúsqueda.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Linotte-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBúsqueda.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Linotte-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBúsqueda.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dgvBúsqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Linotte-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBúsqueda.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Linotte-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBúsqueda.DefaultCellStyle = dataGridViewCellStyle18;
             this.dgvBúsqueda.Location = new System.Drawing.Point(264, 233);
             this.dgvBúsqueda.Name = "dgvBúsqueda";
             this.dgvBúsqueda.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Linotte-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvBúsqueda.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Linotte-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBúsqueda.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.dgvBúsqueda.RowHeadersVisible = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvBúsqueda.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvBúsqueda.RowsDefaultCellStyle = dataGridViewCellStyle20;
             this.dgvBúsqueda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBúsqueda.Size = new System.Drawing.Size(632, 372);
             this.dgvBúsqueda.TabIndex = 24;
@@ -413,7 +413,7 @@
             // bttRetirar
             // 
             this.bttRetirar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttRetirar.Location = new System.Drawing.Point(504, 607);
+            this.bttRetirar.Location = new System.Drawing.Point(504, 609);
             this.bttRetirar.Name = "bttRetirar";
             this.bttRetirar.Size = new System.Drawing.Size(150, 59);
             this.bttRetirar.TabIndex = 29;
@@ -427,7 +427,7 @@
             // bttVerEstados
             // 
             this.bttVerEstados.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttVerEstados.Location = new System.Drawing.Point(743, 607);
+            this.bttVerEstados.Location = new System.Drawing.Point(746, 609);
             this.bttVerEstados.Name = "bttVerEstados";
             this.bttVerEstados.Size = new System.Drawing.Size(150, 59);
             this.bttVerEstados.TabIndex = 30;
@@ -443,7 +443,7 @@
             this.bttCrearCuenta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttCrearCuenta.Location = new System.Drawing.Point(743, 135);
             this.bttCrearCuenta.Name = "bttCrearCuenta";
-            this.bttCrearCuenta.Size = new System.Drawing.Size(150, 59);
+            this.bttCrearCuenta.Size = new System.Drawing.Size(150, 58);
             this.bttCrearCuenta.TabIndex = 31;
             this.bttCrearCuenta.TabStop = false;
             this.bttCrearCuenta.Text = "Crear Cuenta";
@@ -454,13 +454,14 @@
             // 
             // BarraTítulo
             // 
+            this.BarraTítulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
             this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F);
             this.BarraTítulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
-            this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
+            this.BarraTítulo.Location = new System.Drawing.Point(2, 2);
             this.BarraTítulo.Name = "BarraTítulo";
-            this.BarraTítulo.Size = new System.Drawing.Size(980, 35);
+            this.BarraTítulo.Size = new System.Drawing.Size(976, 35);
             this.BarraTítulo.TabIndex = 32;
             this.BarraTítulo.Text = "           ACOPEDH - Principal";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -474,22 +475,23 @@
             this.bttCer.BackColor = System.Drawing.Color.Transparent;
             this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
             this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.bttCer.Image = ((System.Drawing.Image)(resources.GetObject("bttCer.Image")));
-            this.bttCer.Location = new System.Drawing.Point(947, 1);
+            this.bttCer.Location = new System.Drawing.Point(946, 3);
             this.bttCer.Name = "bttCer";
             this.bttCer.Size = new System.Drawing.Size(30, 33);
             this.bttCer.TabIndex = 33;
             this.bttCer.TabStop = false;
             this.toolTip1.SetToolTip(this.bttCer, "Cerrar");
             this.bttCer.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.bttCer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bttCer_MouseDown);
+            this.bttCer.MouseLeave += new System.EventHandler(this.bttCer_MouseLeave);
+            this.bttCer.MouseHover += new System.EventHandler(this.bttCer_MouseHover);
             // 
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(4, 1);
+            this.pictureBox3.Location = new System.Drawing.Point(4, 2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(34, 34);
             this.pictureBox3.TabIndex = 34;
@@ -501,14 +503,16 @@
             this.bttMax.BackColor = System.Drawing.Color.Transparent;
             this.bttMax.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttMax.BackgroundImage")));
             this.bttMax.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.bttMax.Image = ((System.Drawing.Image)(resources.GetObject("bttMax.Image")));
-            this.bttMax.Location = new System.Drawing.Point(914, 2);
+            this.bttMax.Location = new System.Drawing.Point(914, 3);
             this.bttMax.Name = "bttMax";
-            this.bttMax.Size = new System.Drawing.Size(32, 31);
+            this.bttMax.Size = new System.Drawing.Size(30, 33);
             this.bttMax.TabIndex = 35;
             this.bttMax.TabStop = false;
             this.toolTip1.SetToolTip(this.bttMax, "Maximizar");
             this.bttMax.Click += new System.EventHandler(this.pictureBox4_Click);
+            this.bttMax.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bttMax_MouseDown);
+            this.bttMax.MouseLeave += new System.EventHandler(this.bttMax_MouseLeave);
+            this.bttMax.MouseHover += new System.EventHandler(this.bttMax_MouseHover);
             // 
             // bttMin
             // 
@@ -516,21 +520,25 @@
             this.bttMin.BackColor = System.Drawing.Color.Transparent;
             this.bttMin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttMin.BackgroundImage")));
             this.bttMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.bttMin.Image = ((System.Drawing.Image)(resources.GetObject("bttMin.Image")));
-            this.bttMin.Location = new System.Drawing.Point(882, 1);
+            this.bttMin.Location = new System.Drawing.Point(882, 3);
             this.bttMin.Name = "bttMin";
             this.bttMin.Size = new System.Drawing.Size(30, 33);
             this.bttMin.TabIndex = 36;
             this.bttMin.TabStop = false;
             this.toolTip1.SetToolTip(this.bttMin, "Minimizar");
             this.bttMin.Click += new System.EventHandler(this.pictureBox5_Click);
+            this.bttMin.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bttMin_MouseDown);
+            this.bttMin.MouseLeave += new System.EventHandler(this.bttMin_MouseLeave);
+            this.bttMin.MouseHover += new System.EventHandler(this.bttMin_MouseHover);
             // 
             // bttOtorgarPréstamo
             // 
             this.bttOtorgarPréstamo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttOtorgarPréstamo.Location = new System.Drawing.Point(743, 135);
+            this.bttOtorgarPréstamo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttOtorgarPréstamo.Font = new System.Drawing.Font("Linotte-SemiBold", 12F);
+            this.bttOtorgarPréstamo.Location = new System.Drawing.Point(744, 135);
             this.bttOtorgarPréstamo.Name = "bttOtorgarPréstamo";
-            this.bttOtorgarPréstamo.Size = new System.Drawing.Size(150, 59);
+            this.bttOtorgarPréstamo.Size = new System.Drawing.Size(150, 58);
             this.bttOtorgarPréstamo.TabIndex = 23;
             this.bttOtorgarPréstamo.TabStop = false;
             this.bttOtorgarPréstamo.Text = "Otorgar Préstamo";
@@ -558,7 +566,7 @@
             // 
             this.bttAportaciones.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bttAportaciones.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
-            this.bttAportaciones.Location = new System.Drawing.Point(743, 607);
+            this.bttAportaciones.Location = new System.Drawing.Point(746, 609);
             this.bttAportaciones.Name = "bttAportaciones";
             this.bttAportaciones.Size = new System.Drawing.Size(150, 59);
             this.bttAportaciones.TabIndex = 38;
@@ -572,7 +580,7 @@
             // bttDatosAsociado
             // 
             this.bttDatosAsociado.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttDatosAsociado.Location = new System.Drawing.Point(504, 607);
+            this.bttDatosAsociado.Location = new System.Drawing.Point(504, 609);
             this.bttDatosAsociado.Name = "bttDatosAsociado";
             this.bttDatosAsociado.Size = new System.Drawing.Size(150, 59);
             this.bttDatosAsociado.TabIndex = 39;
@@ -1209,7 +1217,9 @@
             // bttGráfica
             // 
             this.bttGráfica.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.bttGráfica.Location = new System.Drawing.Point(743, 135);
+            this.bttGráfica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttGráfica.Font = new System.Drawing.Font("Linotte-SemiBold", 12F);
+            this.bttGráfica.Location = new System.Drawing.Point(744, 135);
             this.bttGráfica.Name = "bttGráfica";
             this.bttGráfica.Size = new System.Drawing.Size(150, 58);
             this.bttGráfica.TabIndex = 84;
@@ -1273,6 +1283,8 @@
             // bttAgregarAsociado
             // 
             this.bttAgregarAsociado.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.bttAgregarAsociado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttAgregarAsociado.Font = new System.Drawing.Font("Linotte-SemiBold", 12F);
             this.bttAgregarAsociado.Location = new System.Drawing.Point(744, 135);
             this.bttAgregarAsociado.Name = "bttAgregarAsociado";
             this.bttAgregarAsociado.Size = new System.Drawing.Size(150, 58);
@@ -1285,7 +1297,7 @@
             // bttAmortizacion
             // 
             this.bttAmortizacion.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.bttAmortizacion.Location = new System.Drawing.Point(504, 608);
+            this.bttAmortizacion.Location = new System.Drawing.Point(504, 609);
             this.bttAmortizacion.Name = "bttAmortizacion";
             this.bttAmortizacion.Size = new System.Drawing.Size(150, 58);
             this.bttAmortizacion.TabIndex = 92;
@@ -1297,7 +1309,7 @@
             // bttAbono
             // 
             this.bttAbono.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.bttAbono.Location = new System.Drawing.Point(263, 608);
+            this.bttAbono.Location = new System.Drawing.Point(264, 609);
             this.bttAbono.Name = "bttAbono";
             this.bttAbono.Size = new System.Drawing.Size(150, 58);
             this.bttAbono.TabIndex = 93;
@@ -1325,10 +1337,6 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(980, 705);
             this.ControlBox = false;
-            this.Controls.Add(this.bttAportar);
-            this.Controls.Add(this.bttAbono);
-            this.Controls.Add(this.bttAmortizacion);
-            this.Controls.Add(this.bttAgregarAsociado);
             this.Controls.Add(this.panelConfig);
             this.Controls.Add(this.labTTran);
             this.Controls.Add(this.labDesde);
@@ -1336,7 +1344,6 @@
             this.Controls.Add(this.gbPréstamos);
             this.Controls.Add(this.gbAportaciones);
             this.Controls.Add(this.gbAhorros);
-            this.Controls.Add(this.bttGráfica);
             this.Controls.Add(this.cbTransacción);
             this.Controls.Add(this.dtHasta);
             this.Controls.Add(this.dtDesde);
@@ -1357,14 +1364,19 @@
             this.Controls.Add(this.PInicio);
             this.Controls.Add(this.Titulo);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.bttRealizarPago);
             this.Controls.Add(this.bttPagosRealizados);
-            this.Controls.Add(this.bttOtorgarPréstamo);
-            this.Controls.Add(this.bttRetirar);
             this.Controls.Add(this.bttVerEstados);
-            this.Controls.Add(this.bttCrearCuenta);
-            this.Controls.Add(this.bttDatosAsociado);
             this.Controls.Add(this.dgvTransacciones);
+            this.Controls.Add(this.bttAportar);
+            this.Controls.Add(this.bttAbono);
+            this.Controls.Add(this.bttRealizarPago);
+            this.Controls.Add(this.bttAmortizacion);
+            this.Controls.Add(this.bttRetirar);
+            this.Controls.Add(this.bttDatosAsociado);
+            this.Controls.Add(this.bttOtorgarPréstamo);
+            this.Controls.Add(this.bttCrearCuenta);
+            this.Controls.Add(this.bttAgregarAsociado);
+            this.Controls.Add(this.bttGráfica);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Linotte-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -1376,6 +1388,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Principal_P_FormClosing);
             this.Load += new System.EventHandler(this.Principal_P_Load);
             this.SizeChanged += new System.EventHandler(this.Principal_P_SizeChanged);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBúsqueda)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();

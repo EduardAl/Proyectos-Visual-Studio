@@ -29,26 +29,30 @@ namespace ACOPEDH
         #region Load
         private void Nuevo_asociado_Load(object sender, EventArgs e)
         {
-           
+
             //Llenar los ComboBox
-            Procedimientos_select Cargar = new Procedimientos_select();
-            dt = Cargar.llenar_DataTable("[Cargar Tipo Socio]");
-            cbAsociación.DataSource = dt;
-            cbAsociación.DisplayMember = "TipoS";
-            dt = Cargar.llenar_DataTable("[Cargar Ocupaciones]");
-            cbOcupación.DataSource = dt;
-            cbOcupación.DisplayMember = "Trabajo";
-            dt = Cargar.llenar_DataTable("[Cargar Tipo Teléfono]");
-            cbTipoTeléfono.DataSource = dt;
-            cbTipoTeléfono.DisplayMember = "TipoT";
-            cbTipoTeléfono.ValueMember = "Cod";
-            //Seleccionar un index
-            if (cbAsociación.Items.Count > 0)
-                cbAsociación.SelectedIndex = 0;
-            if (cbOcupación.Items.Count > 0)
-                cbOcupación.SelectedIndex = 0;
-            if (cbTipoTeléfono.Items.Count > 0)
-                cbTipoTeléfono.SelectedIndex = 0;
+            try
+            {
+                Procedimientos_select Cargar = new Procedimientos_select();
+                dt = Cargar.llenar_DataTable("[Cargar Tipo Socio]");
+                cbAsociación.DataSource = dt;
+                cbAsociación.DisplayMember = "TipoS";
+                dt = Cargar.llenar_DataTable("[Cargar Ocupaciones]");
+                cbOcupación.DataSource = dt;
+                cbOcupación.DisplayMember = "Trabajo";
+                dt = Cargar.llenar_DataTable("[Cargar Tipo Teléfono]");
+                cbTipoTeléfono.DataSource = dt;
+                cbTipoTeléfono.DisplayMember = "TipoT";
+                cbTipoTeléfono.ValueMember = "Cod";
+                //Seleccionar un index
+                if (cbAsociación.Items.Count > 0)
+                    cbAsociación.SelectedIndex = 0;
+                if (cbOcupación.Items.Count > 0)
+                    cbOcupación.SelectedIndex = 0;
+                if (cbTipoTeléfono.Items.Count > 0)
+                    cbTipoTeléfono.SelectedIndex = 0;
+            }
+            catch { }
             //Establecer que no se pueda tener menos de 18 años
             dtNacimiento.MaxDate = DateTime.Now.AddYears(-18);
             dtNacimiento.Value = dtNacimiento.MaxDate;
@@ -89,6 +93,7 @@ namespace ACOPEDH
                         param[6] = new SqlParameter("@Fecha_Nacimiento", dtNacimiento.Value);
                         param[7] = new SqlParameter("@Fecha_Asociación", DateTime.Now);
                         param[8] = new SqlParameter("@FK_Ocupacion", cbOcupación.Text);
+                    //    param[9] = new SqlParameter("@FK_Persona", txtIdPersona.Text);
                         if (ingresar.llenar_tabla("[Insertar Asociado]", param) > 0)
                         {
                             param = new SqlParameter[3];
