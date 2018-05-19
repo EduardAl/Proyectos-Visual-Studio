@@ -40,8 +40,6 @@
             this.dgvAsociado = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.nmAbono = new System.Windows.Forms.NumericUpDown();
-            this.bttCer = new System.Windows.Forms.PictureBox();
-            this.bttMin = new System.Windows.Forms.PictureBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -57,20 +55,22 @@
             this.label15 = new System.Windows.Forms.Label();
             this.TxtAsociadoP = new System.Windows.Forms.TextBox();
             this.bttAceptar = new System.Windows.Forms.Button();
+            this.bttCer = new System.Windows.Forms.PictureBox();
+            this.bttMin = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAsociado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmAbono)).BeginInit();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttMin)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox3
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
+            this.pictureBox3.BackgroundImage = global::ACOPEDH.Properties.Resources.photo_sinlietras;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(4, 0);
+            this.pictureBox3.Location = new System.Drawing.Point(6, 2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(30, 30);
             this.pictureBox3.TabIndex = 63;
@@ -78,15 +78,19 @@
             // 
             // BarraTítulo
             // 
-            this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
+            this.BarraTítulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
             this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F);
+            this.BarraTítulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
-            this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
+            this.BarraTítulo.Location = new System.Drawing.Point(2, 2);
             this.BarraTítulo.Name = "BarraTítulo";
-            this.BarraTítulo.Size = new System.Drawing.Size(982, 30);
+            this.BarraTítulo.Size = new System.Drawing.Size(979, 30);
             this.BarraTítulo.TabIndex = 62;
             this.BarraTítulo.Text = "         ACOPEDH - Nueva Cuenta de Ahorros";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BarraTítulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            this.BarraTítulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+            this.BarraTítulo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             // 
             // labBuscar
             // 
@@ -180,34 +184,6 @@
             0,
             0,
             0});
-            // 
-            // bttCer
-            // 
-            this.bttCer.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.bttCer.BackColor = System.Drawing.Color.Transparent;
-            this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
-            this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.bttCer.Image = ((System.Drawing.Image)(resources.GetObject("bttCer.Image")));
-            this.bttCer.Location = new System.Drawing.Point(952, 0);
-            this.bttCer.Name = "bttCer";
-            this.bttCer.Size = new System.Drawing.Size(30, 26);
-            this.bttCer.TabIndex = 100;
-            this.bttCer.TabStop = false;
-            this.bttCer.Click += new System.EventHandler(this.bttCer_Click);
-            // 
-            // bttMin
-            // 
-            this.bttMin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.bttMin.BackColor = System.Drawing.Color.Transparent;
-            this.bttMin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttMin.BackgroundImage")));
-            this.bttMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.bttMin.Image = ((System.Drawing.Image)(resources.GetObject("bttMin.Image")));
-            this.bttMin.Location = new System.Drawing.Point(922, 0);
-            this.bttMin.Name = "bttMin";
-            this.bttMin.Size = new System.Drawing.Size(30, 26);
-            this.bttMin.TabIndex = 101;
-            this.bttMin.TabStop = false;
-            this.bttMin.Click += new System.EventHandler(this.bttMin_Click);
             // 
             // textBox3
             // 
@@ -381,18 +357,50 @@
             this.bttAceptar.UseVisualStyleBackColor = true;
             this.bttAceptar.Click += new System.EventHandler(this.bttAceptar_Click);
             // 
+            // bttCer
+            // 
+            this.bttCer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bttCer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
+            this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
+            this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bttCer.Location = new System.Drawing.Point(946, 2);
+            this.bttCer.Name = "bttCer";
+            this.bttCer.Size = new System.Drawing.Size(30, 30);
+            this.bttCer.TabIndex = 129;
+            this.bttCer.TabStop = false;
+            this.bttCer.Click += new System.EventHandler(this.bttCer_Click);
+            this.bttCer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bttCer_MouseDown);
+            this.bttCer.MouseLeave += new System.EventHandler(this.bttCer_MouseLeave);
+            this.bttCer.MouseHover += new System.EventHandler(this.bttCer_MouseHover);
+            // 
+            // bttMin
+            // 
+            this.bttMin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bttMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
+            this.bttMin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttMin.BackgroundImage")));
+            this.bttMin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bttMin.Location = new System.Drawing.Point(915, 2);
+            this.bttMin.Name = "bttMin";
+            this.bttMin.Size = new System.Drawing.Size(30, 30);
+            this.bttMin.TabIndex = 130;
+            this.bttMin.TabStop = false;
+            this.bttMin.Click += new System.EventHandler(this.bttMin_Click);
+            this.bttMin.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bttMin_MouseDown);
+            this.bttMin.MouseLeave += new System.EventHandler(this.bttMin_MouseLeave);
+            this.bttMin.MouseHover += new System.EventHandler(this.bttMin_MouseHover);
+            // 
             // Nuevo_Ahorro
             // 
             this.AcceptButton = this.bttAceptar;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(184)))), ((int)(((byte)(192)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(982, 618);
+            this.Controls.Add(this.bttMin);
+            this.Controls.Add(this.bttCer);
             this.Controls.Add(this.bttAceptar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.bttCer);
-            this.Controls.Add(this.bttMin);
             this.Controls.Add(this.dgvAsociado);
             this.Controls.Add(this.labBuscar);
             this.Controls.Add(this.pictureBox3);
@@ -414,10 +422,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAsociado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmAbono)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bttMin)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttMin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -431,8 +439,6 @@
         private System.Windows.Forms.DataGridView dgvAsociado;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown nmAbono;
-        private System.Windows.Forms.PictureBox bttCer;
-        private System.Windows.Forms.PictureBox bttMin;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox TxtInterés;
@@ -448,5 +454,7 @@
         private System.Windows.Forms.Button bttAceptar;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TxtOcupación;
+        private System.Windows.Forms.PictureBox bttCer;
+        private System.Windows.Forms.PictureBox bttMin;
     }
 }

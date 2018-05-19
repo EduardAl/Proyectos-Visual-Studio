@@ -38,16 +38,16 @@
             this.ttpass = new System.Windows.Forms.TextBox();
             this.txtCorreo = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.bttCer = new System.Windows.Forms.PictureBox();
+            this.PBMostrar1 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.BarraTítulo = new System.Windows.Forms.Label();
+            this.bttCer = new System.Windows.Forms.PictureBox();
             this.PBACOPEDH = new System.Windows.Forms.PictureBox();
-            this.PBMostrar1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PBACOPEDH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBMostrar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBACOPEDH)).BeginInit();
             this.SuspendLayout();
             // 
             // linkLabel3
@@ -56,12 +56,12 @@
             this.linkLabel3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.linkLabel3.AutoSize = true;
             this.linkLabel3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.linkLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel3.Font = new System.Drawing.Font("Linotte-Regular", 13F);
             this.linkLabel3.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel3.Location = new System.Drawing.Point(132, 450);
+            this.linkLabel3.Location = new System.Drawing.Point(117, 450);
             this.linkLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(132, 20);
+            this.linkLabel3.Size = new System.Drawing.Size(143, 22);
             this.linkLabel3.TabIndex = 57;
             this.linkLabel3.TabStop = true;
             this.linkLabel3.Text = "Crear una cuenta";
@@ -73,12 +73,12 @@
             this.LLOlvidoContraseña.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.LLOlvidoContraseña.AutoSize = true;
             this.LLOlvidoContraseña.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LLOlvidoContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LLOlvidoContraseña.Font = new System.Drawing.Font("Linotte-Regular", 13F);
             this.LLOlvidoContraseña.LinkColor = System.Drawing.Color.Black;
-            this.LLOlvidoContraseña.Location = new System.Drawing.Point(95, 419);
+            this.LLOlvidoContraseña.Location = new System.Drawing.Point(80, 419);
             this.LLOlvidoContraseña.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LLOlvidoContraseña.Name = "LLOlvidoContraseña";
-            this.LLOlvidoContraseña.Size = new System.Drawing.Size(210, 20);
+            this.LLOlvidoContraseña.Size = new System.Drawing.Size(231, 22);
             this.LLOlvidoContraseña.TabIndex = 56;
             this.LLOlvidoContraseña.TabStop = true;
             this.LLOlvidoContraseña.Text = "¿Ha olvidado la contraseña?";
@@ -106,11 +106,11 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Linotte-Regular", 13F);
             this.label5.Location = new System.Drawing.Point(165, 284);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 20);
+            this.label5.Size = new System.Drawing.Size(62, 22);
             this.label5.TabIndex = 54;
             this.label5.Text = "Correo";
             // 
@@ -118,11 +118,11 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Linotte-Regular", 13F);
             this.label2.Location = new System.Drawing.Point(148, 349);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 20);
+            this.label2.Size = new System.Drawing.Size(100, 22);
             this.label2.TabIndex = 53;
             this.label2.Text = "Contraseña";
             // 
@@ -164,61 +164,6 @@
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             // 
-            // bttCer
-            // 
-            this.bttCer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bttCer.BackColor = System.Drawing.Color.Transparent;
-            this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
-            this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.bttCer.Image = ((System.Drawing.Image)(resources.GetObject("bttCer.Image")));
-            this.bttCer.Location = new System.Drawing.Point(367, 4);
-            this.bttCer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.bttCer.Name = "bttCer";
-            this.bttCer.Size = new System.Drawing.Size(21, 21);
-            this.bttCer.TabIndex = 61;
-            this.bttCer.TabStop = false;
-            this.bttCer.Click += new System.EventHandler(this.bttCer_Click);
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(4, 0);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(29, 29);
-            this.pictureBox3.TabIndex = 60;
-            this.pictureBox3.TabStop = false;
-            // 
-            // BarraTítulo
-            // 
-            this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
-            this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F);
-            this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
-            this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
-            this.BarraTítulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.BarraTítulo.Name = "BarraTítulo";
-            this.BarraTítulo.Size = new System.Drawing.Size(391, 29);
-            this.BarraTítulo.TabIndex = 59;
-            this.BarraTítulo.Text = "         ACOPEDH - Inicio de Sesión";
-            this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BarraTítulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
-            this.BarraTítulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
-            this.BarraTítulo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
-            // 
-            // PBACOPEDH
-            // 
-            this.PBACOPEDH.BackgroundImage = global::ACOPEDH.Properties.Resources.Photo_1;
-            this.PBACOPEDH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PBACOPEDH.Location = new System.Drawing.Point(95, 68);
-            this.PBACOPEDH.Margin = new System.Windows.Forms.Padding(2);
-            this.PBACOPEDH.Name = "PBACOPEDH";
-            this.PBACOPEDH.Size = new System.Drawing.Size(200, 181);
-            this.PBACOPEDH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PBACOPEDH.TabIndex = 63;
-            this.PBACOPEDH.TabStop = false;
-            // 
             // PBMostrar1
             // 
             this.PBMostrar1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -235,15 +180,72 @@
             this.PBMostrar1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PBMostrar1_MouseDown);
             this.PBMostrar1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PBMostrar1_MouseUp);
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
+            this.pictureBox3.BackgroundImage = global::ACOPEDH.Properties.Resources.photo_sinlietras;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Location = new System.Drawing.Point(4, 1);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(28, 28);
+            this.pictureBox3.TabIndex = 60;
+            this.pictureBox3.TabStop = false;
+            // 
+            // BarraTítulo
+            // 
+            this.BarraTítulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
+            this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F);
+            this.BarraTítulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
+            this.BarraTítulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.BarraTítulo.Name = "BarraTítulo";
+            this.BarraTítulo.Size = new System.Drawing.Size(391, 31);
+            this.BarraTítulo.TabIndex = 59;
+            this.BarraTítulo.Text = "         ACOPEDH - Inicio de Sesión";
+            this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BarraTítulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            this.BarraTítulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+            this.BarraTítulo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
+            // 
+            // bttCer
+            // 
+            this.bttCer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bttCer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
+            this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
+            this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bttCer.Location = new System.Drawing.Point(363, 2);
+            this.bttCer.Name = "bttCer";
+            this.bttCer.Size = new System.Drawing.Size(25, 25);
+            this.bttCer.TabIndex = 65;
+            this.bttCer.TabStop = false;
+            this.bttCer.DoubleClick += new System.EventHandler(this.bttCer_Click);
+            this.bttCer.MouseLeave += new System.EventHandler(this.bttCer_MouseLeave);
+            this.bttCer.MouseHover += new System.EventHandler(this.bttCer_MouseHover);
+            // 
+            // PBACOPEDH
+            // 
+            this.PBACOPEDH.BackColor = System.Drawing.Color.Transparent;
+            this.PBACOPEDH.BackgroundImage = global::ACOPEDH.Properties.Resources.photo;
+            this.PBACOPEDH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PBACOPEDH.Location = new System.Drawing.Point(65, 56);
+            this.PBACOPEDH.Margin = new System.Windows.Forms.Padding(2);
+            this.PBACOPEDH.Name = "PBACOPEDH";
+            this.PBACOPEDH.Size = new System.Drawing.Size(250, 250);
+            this.PBACOPEDH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PBACOPEDH.TabIndex = 63;
+            this.PBACOPEDH.TabStop = false;
+            // 
             // InicioSesión
             // 
             this.AcceptButton = this.btningresar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(390, 592);
+            this.Controls.Add(this.bttCer);
             this.Controls.Add(this.PBMostrar1);
             this.Controls.Add(this.PBACOPEDH);
-            this.Controls.Add(this.bttCer);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.BarraTítulo);
             this.Controls.Add(this.linkLabel3);
@@ -263,11 +265,12 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InicioSesión_FormClosing);
             this.Load += new System.EventHandler(this.InicioSesión_Load);
             this.SizeChanged += new System.EventHandler(this.InicioSesión_SizeChanged);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PBACOPEDH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBMostrar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PBACOPEDH)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -283,10 +286,10 @@
         private System.Windows.Forms.TextBox ttpass;
         private System.Windows.Forms.TextBox txtCorreo;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.PictureBox bttCer;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label BarraTítulo;
-        private System.Windows.Forms.PictureBox PBACOPEDH;
         private System.Windows.Forms.PictureBox PBMostrar1;
+        private System.Windows.Forms.PictureBox bttCer;
+        private System.Windows.Forms.PictureBox PBACOPEDH;
     }
 }

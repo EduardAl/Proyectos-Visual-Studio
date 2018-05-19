@@ -271,10 +271,35 @@ namespace ACOPEDH
             RC.ShowDialog();
             this.Show();
         }
+        private void bttCer_MouseLeave(object sender, EventArgs e)
+        {
+            bttCer.BackColor = Color.FromArgb(20,25,72) ;
+        }
 
+        private void bttCer_MouseHover(object sender, EventArgs e)
+        {
+            bttCer.BackColor = Color.Red;
+        }
+
+        private void bttCer_MouseDown(object sender, MouseEventArgs e)
+        {
+            bttCer.BackColor = Color.DarkRed;
+        }
         private void PBMostrar1_Click(object sender, EventArgs e)
         {
 
         }
+        #region Pintar Bordes
+        private void Bordes_Paint(object sender, PaintEventArgs e)
+        {
+            Pen c = (new Pen(Brushes.LightBlue, 2));
+            Graphics Linea = CreateGraphics();
+            Linea.DrawLine(c, new Point(Width - 1, 0), new Point(Width - 1, Height - 2));
+            Linea.DrawLine(c, new Point(1, 0), new Point(1, Height));
+            Linea.DrawLine(c, new Point(0, Height - 1), new Point(Width, Height - 1));
+            Linea.DrawLine(c, new Point(Width, 1), new Point(0, 1));
+        }
+
+        #endregion
     }
 }

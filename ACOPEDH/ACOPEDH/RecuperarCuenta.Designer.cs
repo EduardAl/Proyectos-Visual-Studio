@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecuperarCuenta));
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.bttCer = new System.Windows.Forms.PictureBox();
             this.BarraTítulo = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtCorreo = new System.Windows.Forms.TextBox();
@@ -39,50 +38,40 @@
             this.PBACOPEDH = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.bttCer = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBACOPEDH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox3
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
+            this.pictureBox3.BackgroundImage = global::ACOPEDH.Properties.Resources.photo_sinlietras;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(-4, 0);
+            this.pictureBox3.Location = new System.Drawing.Point(-2, 2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(30, 29);
             this.pictureBox3.TabIndex = 64;
             this.pictureBox3.TabStop = false;
             // 
-            // bttCer
-            // 
-            this.bttCer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bttCer.BackColor = System.Drawing.Color.Transparent;
-            this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
-            this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.bttCer.Image = ((System.Drawing.Image)(resources.GetObject("bttCer.Image")));
-            this.bttCer.Location = new System.Drawing.Point(362, 1);
-            this.bttCer.Margin = new System.Windows.Forms.Padding(0);
-            this.bttCer.Name = "bttCer";
-            this.bttCer.Size = new System.Drawing.Size(30, 26);
-            this.bttCer.TabIndex = 63;
-            this.bttCer.TabStop = false;
-            this.bttCer.Click += new System.EventHandler(this.bttCer_Click);
-            // 
             // BarraTítulo
             // 
-            this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
+            this.BarraTítulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
             this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarraTítulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
-            this.BarraTítulo.Location = new System.Drawing.Point(-7, 0);
+            this.BarraTítulo.Location = new System.Drawing.Point(-5, 2);
             this.BarraTítulo.Margin = new System.Windows.Forms.Padding(0);
             this.BarraTítulo.Name = "BarraTítulo";
-            this.BarraTítulo.Size = new System.Drawing.Size(398, 29);
+            this.BarraTítulo.Size = new System.Drawing.Size(395, 29);
             this.BarraTítulo.TabIndex = 62;
             this.BarraTítulo.Text = "         ACOPEDH - Recuperar Contraseña";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BarraTítulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            this.BarraTítulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+            this.BarraTítulo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             // 
             // label5
             // 
@@ -130,12 +119,12 @@
             // PBACOPEDH
             // 
             this.PBACOPEDH.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.PBACOPEDH.BackgroundImage = global::ACOPEDH.Properties.Resources.Photo_1;
+            this.PBACOPEDH.BackgroundImage = global::ACOPEDH.Properties.Resources.photo;
             this.PBACOPEDH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PBACOPEDH.Location = new System.Drawing.Point(94, 64);
-            this.PBACOPEDH.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PBACOPEDH.Margin = new System.Windows.Forms.Padding(2);
             this.PBACOPEDH.Name = "PBACOPEDH";
-            this.PBACOPEDH.Size = new System.Drawing.Size(200, 181);
+            this.PBACOPEDH.Size = new System.Drawing.Size(210, 191);
             this.PBACOPEDH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PBACOPEDH.TabIndex = 70;
             this.PBACOPEDH.TabStop = false;
@@ -159,30 +148,47 @@
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             // 
+            // bttCer
+            // 
+            this.bttCer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bttCer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
+            this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
+            this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bttCer.Location = new System.Drawing.Point(360, 2);
+            this.bttCer.Name = "bttCer";
+            this.bttCer.Size = new System.Drawing.Size(29, 29);
+            this.bttCer.TabIndex = 135;
+            this.bttCer.TabStop = false;
+            this.bttCer.Click += new System.EventHandler(this.bttCer_Click);
+            this.bttCer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bttCer_MouseDown);
+            this.bttCer.MouseLeave += new System.EventHandler(this.bttCer_MouseLeave);
+            this.bttCer.MouseHover += new System.EventHandler(this.bttCer_MouseHover);
+            // 
             // RecuperarCuenta
             // 
             this.AcceptButton = this.bttConfirmar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(390, 528);
+            this.Controls.Add(this.bttCer);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.PBACOPEDH);
             this.Controls.Add(this.bttConfirmar);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtCorreo);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.bttCer);
             this.Controls.Add(this.BarraTítulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "RecuperarCuenta";
             this.Text = "RecuperarCuenta";
             this.Load += new System.EventHandler(this.RecuperarCuenta_Load);
             this.SizeChanged += new System.EventHandler(this.RecuperarCuenta_SizeChanged);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBACOPEDH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,7 +197,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox bttCer;
         private System.Windows.Forms.Label BarraTítulo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtCorreo;
@@ -199,5 +204,6 @@
         private System.Windows.Forms.PictureBox PBACOPEDH;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.PictureBox bttCer;
     }
 }

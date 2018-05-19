@@ -39,14 +39,14 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.BarraTítulo = new System.Windows.Forms.Label();
             this.odNuevaImagen = new System.Windows.Forms.OpenFileDialog();
+            this.gbDatos = new System.Windows.Forms.GroupBox();
             this.bttCer = new System.Windows.Forms.PictureBox();
             this.bttMax = new System.Windows.Forms.PictureBox();
-            this.gbDatos = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbNuevaImagen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.gbDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttMax)).BeginInit();
-            this.gbDatos.SuspendLayout();
             this.SuspendLayout();
             // 
             // bttSeleccionar
@@ -126,10 +126,10 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
+            this.pictureBox3.BackgroundImage = global::ACOPEDH.Properties.Resources.photo_sinlietras;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(4, 0);
+            this.pictureBox3.Location = new System.Drawing.Point(6, 2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(30, 30);
             this.pictureBox3.TabIndex = 124;
@@ -139,15 +139,19 @@
             // 
             this.BarraTítulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
+            this.BarraTítulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
             this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarraTítulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
-            this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
+            this.BarraTítulo.Location = new System.Drawing.Point(2, 2);
             this.BarraTítulo.Name = "BarraTítulo";
-            this.BarraTítulo.Size = new System.Drawing.Size(620, 30);
+            this.BarraTítulo.Size = new System.Drawing.Size(616, 30);
             this.BarraTítulo.TabIndex = 1;
             this.BarraTítulo.Text = "         ACOPEDH - Nueva Imagen";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BarraTítulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            this.BarraTítulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+            this.BarraTítulo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             // 
             // odNuevaImagen
             // 
@@ -155,34 +159,6 @@
             this.odNuevaImagen.Filter = "Archivos JPG|*.jpg|Archivos PNG|*.png|Archivos GIF|.gif";
             this.odNuevaImagen.ShowHelp = true;
             this.odNuevaImagen.Title = "Seleccione una imagen...";
-            // 
-            // bttCer
-            // 
-            this.bttCer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bttCer.BackColor = System.Drawing.Color.Transparent;
-            this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
-            this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.bttCer.Image = ((System.Drawing.Image)(resources.GetObject("bttCer.Image")));
-            this.bttCer.Location = new System.Drawing.Point(590, 0);
-            this.bttCer.Name = "bttCer";
-            this.bttCer.Size = new System.Drawing.Size(30, 26);
-            this.bttCer.TabIndex = 125;
-            this.bttCer.TabStop = false;
-            this.bttCer.Click += new System.EventHandler(this.bttCancelar_Click);
-            // 
-            // bttMax
-            // 
-            this.bttMax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bttMax.BackColor = System.Drawing.Color.Transparent;
-            this.bttMax.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttMax.BackgroundImage")));
-            this.bttMax.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.bttMax.Image = ((System.Drawing.Image)(resources.GetObject("bttMax.Image")));
-            this.bttMax.Location = new System.Drawing.Point(563, 0);
-            this.bttMax.Name = "bttMax";
-            this.bttMax.Size = new System.Drawing.Size(30, 26);
-            this.bttMax.TabIndex = 126;
-            this.bttMax.TabStop = false;
-            this.bttMax.Click += new System.EventHandler(this.bttMax_Click);
             // 
             // gbDatos
             // 
@@ -200,16 +176,48 @@
             this.gbDatos.TabIndex = 127;
             this.gbDatos.TabStop = false;
             // 
+            // bttCer
+            // 
+            this.bttCer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bttCer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
+            this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
+            this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bttCer.Location = new System.Drawing.Point(586, 2);
+            this.bttCer.Name = "bttCer";
+            this.bttCer.Size = new System.Drawing.Size(30, 30);
+            this.bttCer.TabIndex = 128;
+            this.bttCer.TabStop = false;
+            this.bttCer.Click += new System.EventHandler(this.bttCancelar_Click);
+            this.bttCer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bttCer_MouseDown);
+            this.bttCer.MouseLeave += new System.EventHandler(this.bttCer_MouseLeave);
+            this.bttCer.MouseHover += new System.EventHandler(this.bttCer_MouseHover);
+            // 
+            // bttMax
+            // 
+            this.bttMax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bttMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
+            this.bttMax.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttMax.BackgroundImage")));
+            this.bttMax.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bttMax.Location = new System.Drawing.Point(554, 2);
+            this.bttMax.Name = "bttMax";
+            this.bttMax.Size = new System.Drawing.Size(30, 30);
+            this.bttMax.TabIndex = 129;
+            this.bttMax.TabStop = false;
+            this.bttMax.Click += new System.EventHandler(this.bttMax_Click);
+            this.bttMax.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bttMax_MouseDown);
+            this.bttMax.MouseLeave += new System.EventHandler(this.bttMax_MouseLeave);
+            this.bttMax.MouseHover += new System.EventHandler(this.bttMax_MouseHover);
+            // 
             // Nueva_Imagen
             // 
             this.AcceptButton = this.bttGuardar;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(184)))), ((int)(((byte)(192)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(620, 448);
-            this.Controls.Add(this.gbDatos);
             this.Controls.Add(this.bttCer);
             this.Controls.Add(this.bttMax);
+            this.Controls.Add(this.gbDatos);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.BarraTítulo);
             this.Controls.Add(this.pbNuevaImagen);
@@ -223,12 +231,13 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Nueva_Imagen_FormClosing);
             this.Load += new System.EventHandler(this.Nueva_Imagen_Load);
             this.SizeChanged += new System.EventHandler(this.Nueva_Imagen_SizeChanged);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pbNuevaImagen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bttMax)).EndInit();
             this.gbDatos.ResumeLayout(false);
             this.gbDatos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttMax)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -245,8 +254,8 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label BarraTítulo;
         private System.Windows.Forms.OpenFileDialog odNuevaImagen;
+        private System.Windows.Forms.GroupBox gbDatos;
         private System.Windows.Forms.PictureBox bttCer;
         private System.Windows.Forms.PictureBox bttMax;
-        private System.Windows.Forms.GroupBox gbDatos;
     }
 }

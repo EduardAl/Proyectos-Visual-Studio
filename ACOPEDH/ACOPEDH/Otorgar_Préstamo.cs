@@ -119,10 +119,36 @@ namespace ACOPEDH
         {
             WindowState = FormWindowState.Minimized;
         }
+        private void bttMin_MouseHover(object sender, EventArgs e)
+        {
+            bttMin.BackColor = Color.FromArgb(35, 45, 129);
+        }
+
+        private void bttMin_MouseLeave(object sender, EventArgs e)
+        {
+            bttMin.BackColor = Color.FromArgb(20, 25, 72);
+        }
+
+        private void bttMin_MouseDown(object sender, MouseEventArgs e)
+        {
+            bttMin.BackColor = Color.Blue;
+        }
         //Cerrar
         private void bttCer_Click(object sender, EventArgs e)
         {
             Close();
+        }
+        private void bttCer_MouseLeave(object sender, EventArgs e)
+        {
+            bttCer.BackColor = Color.FromArgb(20, 25, 72); ;
+        }
+        private void bttCer_MouseHover(object sender, EventArgs e)
+        {
+            bttCer.BackColor = Color.Red;
+        }
+        private void bttCer_MouseDown(object sender, MouseEventArgs e)
+        {
+            bttCer.BackColor = Color.DarkRed;
         }
         //Mostrar Amortización
         private void button2_Click(object sender, EventArgs e)
@@ -259,14 +285,29 @@ namespace ACOPEDH
         }
 
         #endregion
+        #region Sombra
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int CS_DROPSHADOW = 0x20000;
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= CS_DROPSHADOW;
+
+                return cp;
+            }
+        }
+        #endregion
 
         #region Pintar Bordes
         private void Bordes_Paint(object sender, PaintEventArgs e)
         {
+            Pen c = (new Pen(Brushes.Purple, 2));
             Graphics Linea = CreateGraphics();
-            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0, 0), new Point(0, Height));
-            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(0, Height - 1), new Point(Width, Height));
-            Linea.DrawLine(new Pen(Brushes.Black, 2), new Point(Width - 1, 0), new Point(Width, Height));
+            Linea.DrawLine(c, new Point(Width - 1, 0), new Point(Width - 1, Height - 2));
+            Linea.DrawLine(c, new Point(1, 0), new Point(1, Height));
+            Linea.DrawLine(c, new Point(0, Height - 1), new Point(Width, Height - 1));
+            Linea.DrawLine(c, new Point(Width, 1), new Point(0, 1));
         }
         #endregion
 

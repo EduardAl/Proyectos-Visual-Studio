@@ -44,19 +44,19 @@
             this.label10 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.BarraTítulo = new System.Windows.Forms.Label();
-            this.bttCer = new System.Windows.Forms.PictureBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.bttCer = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeléfonos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
             this.SuspendLayout();
             // 
             // cbTipoTeléfono
             // 
             this.cbTipoTeléfono.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoTeléfono.FormattingEnabled = true;
-            this.cbTipoTeléfono.Location = new System.Drawing.Point(99, 92);
+            this.cbTipoTeléfono.Location = new System.Drawing.Point(99, 99);
             this.cbTipoTeléfono.Name = "cbTipoTeléfono";
             this.cbTipoTeléfono.Size = new System.Drawing.Size(178, 27);
             this.cbTipoTeléfono.TabIndex = 116;
@@ -65,9 +65,9 @@
             // 
             this.bttEliminar.Enabled = false;
             this.bttEliminar.Font = new System.Drawing.Font("Linotte-Bold", 10F);
-            this.bttEliminar.Location = new System.Drawing.Point(372, 93);
+            this.bttEliminar.Location = new System.Drawing.Point(372, 98);
             this.bttEliminar.Name = "bttEliminar";
-            this.bttEliminar.Size = new System.Drawing.Size(75, 23);
+            this.bttEliminar.Size = new System.Drawing.Size(75, 30);
             this.bttEliminar.TabIndex = 115;
             this.bttEliminar.TabStop = false;
             this.bttEliminar.Text = "Eliminar";
@@ -78,9 +78,9 @@
             // 
             this.bttModificar.Enabled = false;
             this.bttModificar.Font = new System.Drawing.Font("Linotte-Bold", 10F);
-            this.bttModificar.Location = new System.Drawing.Point(295, 93);
+            this.bttModificar.Location = new System.Drawing.Point(295, 98);
             this.bttModificar.Name = "bttModificar";
-            this.bttModificar.Size = new System.Drawing.Size(75, 23);
+            this.bttModificar.Size = new System.Drawing.Size(75, 30);
             this.bttModificar.TabIndex = 114;
             this.bttModificar.TabStop = false;
             this.bttModificar.Text = "Modificar";
@@ -92,7 +92,7 @@
             this.bttAñadir.Font = new System.Drawing.Font("Linotte-Bold", 10F);
             this.bttAñadir.Location = new System.Drawing.Point(333, 64);
             this.bttAñadir.Name = "bttAñadir";
-            this.bttAñadir.Size = new System.Drawing.Size(75, 23);
+            this.bttAñadir.Size = new System.Drawing.Size(75, 30);
             this.bttAñadir.TabIndex = 113;
             this.bttAñadir.TabStop = false;
             this.bttAñadir.Text = "Añadir";
@@ -101,7 +101,7 @@
             // 
             // txtTeléfono
             // 
-            this.txtTeléfono.Location = new System.Drawing.Point(99, 59);
+            this.txtTeléfono.Location = new System.Drawing.Point(99, 62);
             this.txtTeléfono.MaxLength = 9;
             this.txtTeléfono.Name = "txtTeléfono";
             this.txtTeléfono.Size = new System.Drawing.Size(178, 27);
@@ -136,7 +136,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvTeléfonos.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvTeléfonos.Location = new System.Drawing.Point(99, 134);
+            this.dgvTeléfonos.Location = new System.Drawing.Point(99, 145);
             this.dgvTeléfonos.MultiSelect = false;
             this.dgvTeléfonos.Name = "dgvTeléfonos";
             this.dgvTeléfonos.ReadOnly = true;
@@ -164,7 +164,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Location = new System.Drawing.Point(12, 63);
+            this.label10.Location = new System.Drawing.Point(12, 66);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(74, 19);
             this.label10.TabIndex = 111;
@@ -172,10 +172,10 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
+            this.pictureBox3.BackgroundImage = global::ACOPEDH.Properties.Resources.photo_sinlietras;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(4, 0);
+            this.pictureBox3.Location = new System.Drawing.Point(6, 2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(30, 30);
             this.pictureBox3.TabIndex = 118;
@@ -183,38 +183,44 @@
             // 
             // BarraTítulo
             // 
-            this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
+            this.BarraTítulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
             this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BarraTítulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
-            this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
+            this.BarraTítulo.Location = new System.Drawing.Point(2, 2);
             this.BarraTítulo.Name = "BarraTítulo";
-            this.BarraTítulo.Size = new System.Drawing.Size(506, 30);
+            this.BarraTítulo.Size = new System.Drawing.Size(502, 30);
             this.BarraTítulo.TabIndex = 117;
             this.BarraTítulo.Text = "         ACOPEDH - Teléfonos de la Persona Asociada";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // bttCer
-            // 
-            this.bttCer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bttCer.BackColor = System.Drawing.Color.Transparent;
-            this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
-            this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.bttCer.Image = ((System.Drawing.Image)(resources.GetObject("bttCer.Image")));
-            this.bttCer.Location = new System.Drawing.Point(476, 0);
-            this.bttCer.Name = "bttCer";
-            this.bttCer.Size = new System.Drawing.Size(30, 26);
-            this.bttCer.TabIndex = 119;
-            this.bttCer.TabStop = false;
-            this.bttCer.Click += new System.EventHandler(this.bttCer_Click);
+            this.BarraTítulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            this.BarraTítulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+            this.BarraTítulo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // bttCer
+            // 
+            this.bttCer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bttCer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
+            this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
+            this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bttCer.Location = new System.Drawing.Point(475, 2);
+            this.bttCer.Name = "bttCer";
+            this.bttCer.Size = new System.Drawing.Size(29, 29);
+            this.bttCer.TabIndex = 138;
+            this.bttCer.TabStop = false;
+            this.bttCer.Click += new System.EventHandler(this.bttCer_Click);
+            this.bttCer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bttCer_MouseDown);
+            this.bttCer.MouseLeave += new System.EventHandler(this.bttCer_MouseLeave);
+            this.bttCer.MouseHover += new System.EventHandler(this.bttCer_MouseHover);
+            // 
             // Teléfonos
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackgroundImage = global::ACOPEDH.Properties.Resources.Fondo_Lalalala;
+            this.BackColor = System.Drawing.Color.LightBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(506, 311);
             this.Controls.Add(this.bttCer);
@@ -235,10 +241,11 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Teléfonos";
             this.Load += new System.EventHandler(this.Teléfonos_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeléfonos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,7 +262,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label BarraTítulo;
-        private System.Windows.Forms.PictureBox bttCer;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.PictureBox bttCer;
     }
 }

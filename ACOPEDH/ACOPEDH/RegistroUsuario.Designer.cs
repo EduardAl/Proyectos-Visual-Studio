@@ -46,17 +46,17 @@
             this.bttConfirmar = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.BarraTítulo = new System.Windows.Forms.Label();
-            this.bttCer = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.PBMostrar1 = new System.Windows.Forms.PictureBox();
             this.PBMostrar2 = new System.Windows.Forms.PictureBox();
             this.PBACOPEDH = new System.Windows.Forms.PictureBox();
+            this.bttCer = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBMostrar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBMostrar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBACOPEDH)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
             this.SuspendLayout();
             // 
             // label6
@@ -262,13 +262,14 @@
             // 
             // BarraTítulo
             // 
-            this.BarraTítulo.BackColor = System.Drawing.Color.Transparent;
+            this.BarraTítulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
             this.BarraTítulo.Font = new System.Drawing.Font("Gotham Narrow Medium", 12F);
+            this.BarraTítulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.BarraTítulo.Image = ((System.Drawing.Image)(resources.GetObject("BarraTítulo.Image")));
-            this.BarraTítulo.Location = new System.Drawing.Point(0, 0);
+            this.BarraTítulo.Location = new System.Drawing.Point(2, 2);
             this.BarraTítulo.Margin = new System.Windows.Forms.Padding(0);
             this.BarraTítulo.Name = "BarraTítulo";
-            this.BarraTítulo.Size = new System.Drawing.Size(391, 29);
+            this.BarraTítulo.Size = new System.Drawing.Size(387, 29);
             this.BarraTítulo.TabIndex = 56;
             this.BarraTítulo.Text = "         ACOPEDH - Registro de Usuario";
             this.BarraTítulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -276,27 +277,12 @@
             this.BarraTítulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.BarraTítulo.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             // 
-            // bttCer
-            // 
-            this.bttCer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bttCer.BackColor = System.Drawing.Color.Transparent;
-            this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
-            this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.bttCer.Image = ((System.Drawing.Image)(resources.GetObject("bttCer.Image")));
-            this.bttCer.Location = new System.Drawing.Point(361, 1);
-            this.bttCer.Margin = new System.Windows.Forms.Padding(0);
-            this.bttCer.Name = "bttCer";
-            this.bttCer.Size = new System.Drawing.Size(30, 26);
-            this.bttCer.TabIndex = 58;
-            this.bttCer.TabStop = false;
-            this.bttCer.Click += new System.EventHandler(this.bttCer_Click_1);
-            // 
             // pictureBox3
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
+            this.pictureBox3.BackgroundImage = global::ACOPEDH.Properties.Resources.photo_sinlietras;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(3, 0);
+            this.pictureBox3.Location = new System.Drawing.Point(5, 2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(30, 29);
             this.pictureBox3.TabIndex = 61;
@@ -335,15 +321,31 @@
             // PBACOPEDH
             // 
             this.PBACOPEDH.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.PBACOPEDH.BackgroundImage = global::ACOPEDH.Properties.Resources.Photo_1;
+            this.PBACOPEDH.BackgroundImage = global::ACOPEDH.Properties.Resources.photo;
             this.PBACOPEDH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PBACOPEDH.Location = new System.Drawing.Point(95, 50);
             this.PBACOPEDH.Margin = new System.Windows.Forms.Padding(2);
             this.PBACOPEDH.Name = "PBACOPEDH";
-            this.PBACOPEDH.Size = new System.Drawing.Size(200, 181);
+            this.PBACOPEDH.Size = new System.Drawing.Size(210, 210);
             this.PBACOPEDH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PBACOPEDH.TabIndex = 65;
             this.PBACOPEDH.TabStop = false;
+            // 
+            // bttCer
+            // 
+            this.bttCer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bttCer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
+            this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
+            this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bttCer.Location = new System.Drawing.Point(360, 2);
+            this.bttCer.Name = "bttCer";
+            this.bttCer.Size = new System.Drawing.Size(29, 29);
+            this.bttCer.TabIndex = 137;
+            this.bttCer.TabStop = false;
+            this.bttCer.Click += new System.EventHandler(this.bttCer_Click_1);
+            this.bttCer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bttCer_MouseDown);
+            this.bttCer.MouseLeave += new System.EventHandler(this.bttCer_MouseLeave);
+            this.bttCer.MouseHover += new System.EventHandler(this.bttCer_MouseHover);
             // 
             // RegistroUsuario
             // 
@@ -352,10 +354,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bttCancelar;
             this.ClientSize = new System.Drawing.Size(390, 592);
+            this.Controls.Add(this.bttCer);
             this.Controls.Add(this.PBMostrar2);
             this.Controls.Add(this.PBMostrar1);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.bttCer);
             this.Controls.Add(this.BarraTítulo);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cbTipoUsuario);
@@ -381,12 +383,13 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RegistroUsuario_FormClosing);
             this.Load += new System.EventHandler(this.RegistroUsuario_Load);
             this.SizeChanged += new System.EventHandler(this.RegistroUsuario_SizeChanged);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Bordes_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBMostrar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBMostrar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PBACOPEDH)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bttCer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -410,10 +413,10 @@
         private System.Windows.Forms.Button bttConfirmar;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Label BarraTítulo;
-        private System.Windows.Forms.PictureBox bttCer;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox PBMostrar2;
         private System.Windows.Forms.PictureBox PBMostrar1;
         private System.Windows.Forms.PictureBox PBACOPEDH;
+        private System.Windows.Forms.PictureBox bttCer;
     }
 }
