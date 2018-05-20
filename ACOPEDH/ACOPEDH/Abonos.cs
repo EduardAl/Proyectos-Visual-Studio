@@ -72,13 +72,6 @@ namespace ACOPEDH
                     Parámetros[1] = new SqlParameter("@Comision",comision);
                     Parámetros[2] = new SqlParameter("@FK_Ahorro", Dato);
                     Parámetros[3] = new SqlParameter("@Id_Usuario",Globales.gbCodUsuario);
-                    if (Imprimir == DialogResult.Yes)
-                    {
-                        this.Cursor = Cursors.WaitCursor;
-                        Imprimir Acción = new Imprimir(Dato, "Abono");
-                        Acción.ShowDialog();
-                        Acción.Dispose();
-                    }
                     if (ingresar.llenar_tabla("[Abonar]", Parámetros) > 0)
                     {
                         DialogResult = DialogResult.OK;
@@ -88,6 +81,13 @@ namespace ACOPEDH
                     {
                         MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Globales.gbError = "";
+                    }
+                    if (Imprimir == DialogResult.Yes)
+                    {
+                        this.Cursor = Cursors.WaitCursor;
+                        Imprimir Acción = new Imprimir(Dato, "Abono");
+                        Acción.ShowDialog();
+                        Acción.Dispose();
                     }
                 }
             }

@@ -50,8 +50,6 @@ namespace ACOPEDH
             //Procedimiento para imprimir
             Imprimiendo_Informes(Opción);
             crystalReportViewer1.Refresh();
-            //Prueba
-            //CrystalDecisions.CrystalReports.Engine.ReportDocument reporte = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
             
         }
         #endregion
@@ -201,6 +199,17 @@ namespace ACOPEDH
                     abono.SetParameterValue("P_Abono", dt.Rows[0]["Abono"]);
                     abono.SetParameterValue("No_Ahorro", Datos);
                     crystalReportViewer1.ReportSource = abono;
+                    break;
+                case "Nuevo Ahorro":
+                    Constancia_Nuevo_Ahorro ahorro = new Constancia_Nuevo_Ahorro();
+                    Param[0] = new SqlParameter("@ID_Asociado",Datos);
+                    dt = seleccionar.LlenarText("[Constancia Nuevo Ahorro]","Nombre,id_Ahorro,Tipo,Interés,Abono,Pid_Abono",Param);
+                    ahorro.SetParameterValue("P_Nombre", dt.Rows[0]["Nombre"]);
+                    ahorro.SetParameterValue("P_Tipo_Ahorro", dt.Rows[0]["Tipo"]);
+                    ahorro.SetParameterValue("P_Interés", dt.Rows[0]["Interés"]);
+                    ahorro.SetParameterValue("P_Abono", dt.Rows[0]["Abono"]);
+                    ahorro.SetParameterValue("No_Ahorro",dt.Rows[0]["id_Ahorro"]);
+                    crystalReportViewer1.ReportSource = ahorro;
                     break;
             }
         }
