@@ -131,7 +131,19 @@ namespace ACOPEDH
                 //Tabla de Amortización
                 case "Amortización":
                     Constancia_Amortización ca = new Constancia_Amortización();
-                    ca.SetDataSource(lista);
+                    //Mostrando la tabla de amortización
+                    ca.SetDataSource(seleccionar.);
+                    //Mostrando los datos del encabezado
+                    Param[0] = new SqlParameter("@ID_Préstamo", Datos);
+                    dt = seleccionar.LlenarText("[Cargar Préstamo]","Nombre,Monto,PCuotas,Código_A,NCuotas,Interés,FechaT",Param);
+                    ca.SetParameterValue("Nombre", dt.Rows[0]["Nombre"]);
+                    ca.SetParameterValue("Monto", dt.Rows[0]["Monto"]);
+                    ca.SetParameterValue("Pago mensual", dt.Rows[0]["PCuotas"]);
+                    ca.SetParameterValue("P_Código", dt.Rows[0]["Código_A"]);
+                    ca.SetParameterValue("Plazo", dt.Rows[0]["NCuotas"]);
+                    ca.SetParameterValue("Interés", dt.Rows[0]["Interés"]);
+                    ca.SetParameterValue("Fecha", dt.Rows[0]["FechaT"]);
+                    ca.SetParameterValue("ID_Préstamo", Datos);
                     crystalReportViewer1.ReportSource = ca;
                     break;
                 case "Pagos_Realizados":

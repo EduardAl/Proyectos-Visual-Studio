@@ -122,7 +122,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Interés_ {
+        public CrystalDecisions.Shared.IParameterField Parameter_Fecha {
             get {
                 return this.DataDefinition.ParameterFields[4];
             }
@@ -130,7 +130,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Fecha {
+        public CrystalDecisions.Shared.IParameterField Parameter_Pago_mensual {
             get {
                 return this.DataDefinition.ParameterFields[5];
             }
@@ -138,9 +138,17 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Pago_mensual {
+        public CrystalDecisions.Shared.IParameterField Parameter_ID_Préstamo {
             get {
                 return this.DataDefinition.ParameterFields[6];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_Interés {
+            get {
+                return this.DataDefinition.ParameterFields[7];
             }
         }
     }

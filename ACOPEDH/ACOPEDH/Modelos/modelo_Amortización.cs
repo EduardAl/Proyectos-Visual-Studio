@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ACOPEDH.Modelos
 {
-    class modelo_Amortización
+    public class modelo_Amortización
     {
         private int i;
         private double cuota;
@@ -14,16 +14,6 @@ namespace ACOPEDH.Modelos
         private double pagoCapital;
         private double saldo;
         private DateTime fechaPago;
-
-        public modelo_Amortización(int i, double Pcuota, double Ppagointeres, double PpagoCapital, double Psaldo, DateTime PfechaPago)
-        {
-            this.i = i;
-            cuota = Pcuota;
-            pagoInteres = Ppagointeres;
-            pagoCapital = PpagoCapital;
-            saldo = Psaldo;
-            FechaPago = PfechaPago;
-        }
 
         public int I { get => i; set => i = value; }
         public double Cuota { get => cuota; set => cuota = value; }
