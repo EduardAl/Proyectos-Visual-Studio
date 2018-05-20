@@ -84,10 +84,7 @@ namespace ACOPEDH
                     Parámetros[1] = new SqlParameter("@Número_Cheque", txtCheque.Text);
                     Parámetros[2] = new SqlParameter("@FK_Ahorro", Dato);
                     Parámetros[3] = new SqlParameter("@Id_Usuario", Globales.gbCodUsuario);
-                    if (Imprimir == DialogResult.Yes)
-                    {
-#warning Añadir Imprimir
-                    }
+
                     if (pro.llenar_tabla("[Realizar Retiros]", Parámetros) > 0)
                     {
                         Disponible = aqui - Convert.ToDouble(nCantidadRetiro.Value);
@@ -98,6 +95,13 @@ namespace ACOPEDH
                     {
                         MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Globales.gbError = "";
+                    }
+                    if (Imprimir == DialogResult.Yes)
+                    {
+                        this.Cursor = Cursors.WaitCursor;
+                        Imprimir Acción = new Imprimir(Dato, "Retiro");
+                        Acción.ShowDialog();
+                        Acción.Dispose();
                     }
                 }
             }

@@ -120,6 +120,12 @@
       <DependentUpon>Constancia Aportación.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Constancia de Retiro.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Constancia de Retiro.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Constancia Nuevo Ahorro.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -302,6 +308,10 @@
     <EmbeddedResource Include="Constancia Aportación.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Constancia Aportación.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Constancia de Retiro.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Constancia de Retiro.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Constancia Nuevo Ahorro.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

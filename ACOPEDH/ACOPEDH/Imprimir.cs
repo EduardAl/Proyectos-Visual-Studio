@@ -15,6 +15,7 @@ namespace ACOPEDH
     public partial class Imprimir : Form
     {
         public string Datos, Opción;
+        private double aqui = 0;
         DataTable dt;
         Procedimientos_select seleccionar = new Procedimientos_select();
         SqlParameter[] Param = new SqlParameter[1];
@@ -199,6 +200,24 @@ namespace ACOPEDH
                     abono.SetParameterValue("P_Abono", dt.Rows[0]["Abono"]);
                     abono.SetParameterValue("No_Ahorro", Datos);
                     crystalReportViewer1.ReportSource = abono;
+                    break;
+                case "Retiro":
+                    Constancia_de_Retiro retiro = new Constancia_de_Retiro();
+                    Param[0] = new SqlParameter("@ID_Ahorro", Datos);
+                    dt = seleccionar.LlenarText("[Constancia Retiro]", "CantidadRetiro,idRetiro,Nombre,Tipo,Interés,Código,Cheque", Param);
+                    retiro.SetParameterValue("Retiro", dt.Rows[0]["CantidadRetiro"]);
+                    retiro.SetParameterValue("Nombre", dt.Rows[0]["Nombre"]);
+                    retiro.SetParameterValue("Codigo", dt.Rows[0]["Código"]);
+                    retiro.SetParameterValue("Cheque", dt.Rows[0]["Cheque"]);
+                    retiro.SetParameterValue("id_Ahorro", Datos);
+                    //Mostrar Monto disponible
+                    Param[0] = new SqlParameter("@ID_Ahorro", Datos);
+                    double Abono = Convert.ToDouble(seleccionar.llenar_DataTable("[Suma Abonos]", Param).Rows[0]["Suma de Abonos"]);
+                    Param[0] = new SqlParameter("@ID_Ahorro", Datos);
+                    double Retiro = Convert.ToDouble(seleccionar.llenar_DataTable("[Suma Retiros]", Param).Rows[0]["Suma de Retiros"]);
+                    aqui = Math.Round(Abono - Retiro, 2);
+                    retiro.SetParameterValue("Disponible",aqui);
+                    crystalReportViewer1.ReportSource = retiro;
                     break;
                 case "Nuevo Ahorro":
                     Constancia_Nuevo_Ahorro ahorro = new Constancia_Nuevo_Ahorro();
