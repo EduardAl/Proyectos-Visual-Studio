@@ -186,7 +186,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Insertar_Cantidad_de_Préstamo_en_Letras {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_DUI {
             get {
                 return this.DataDefinition.ParameterFields[8];
             }
@@ -194,7 +194,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_DUI {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Dirección {
             get {
                 return this.DataDefinition.ParameterFields[9];
             }
@@ -202,7 +202,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Dirección {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Teléfono {
             get {
                 return this.DataDefinition.ParameterFields[10];
             }
@@ -210,7 +210,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Teléfono {
+        public CrystalDecisions.Shared.IParameterField Parameter_Llamado {
             get {
                 return this.DataDefinition.ParameterFields[11];
             }
@@ -218,7 +218,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Llamado {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Apellido {
             get {
                 return this.DataDefinition.ParameterFields[12];
             }
@@ -226,7 +226,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Apellido {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_NoCuotas {
             get {
                 return this.DataDefinition.ParameterFields[13];
             }
@@ -234,7 +234,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_NoCuotas {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Forma_de_Pago {
             get {
                 return this.DataDefinition.ParameterFields[14];
             }
@@ -242,7 +242,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Forma_de_Pago {
+        public CrystalDecisions.Shared.IParameterField Parameter_MontoLetras {
             get {
                 return this.DataDefinition.ParameterFields[15];
             }

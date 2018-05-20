@@ -102,24 +102,31 @@ namespace ACOPEDH
                     break;
                 case "Préstamo":
                     Informes_Préstamos P = new Informes_Préstamos();
+                    ConversiónNúmeros conv = new ConversiónNúmeros();
+                    string montoletras = ""; ;
                     Param[0] = new SqlParameter("@Codigo", Datos);
                     dt = seleccionar.LlenarText("[Informe Préstamo]", "Código_A,Nombre,Apellido,Préstamo,Dir,Trabajo,FormaP,TipoP,PDUI,Interés,Monto,FechaT,NCuotas,PCuotas,Estado", Param);
-                    P.SetParameterValue("P_Nombre", dt.Rows[0]["Nombre"]);
-                    P.SetParameterValue("P_Apellido", dt.Rows[0]["Apellido"]);
-                    P.SetParameterValue("P_DUI", dt.Rows[0]["PDUI"]);
-                    P.SetParameterValue("P_Dirección", dt.Rows[0]["Dir"]);
-                    P.SetParameterValue("P_Lugar_de_Trabajo", dt.Rows[0]["Trabajo"]);
-                    P.SetParameterValue("P_Cuota_Mensual", dt.Rows[0]["PCuotas"]);
-                    P.SetParameterValue("P_NoCuotas", dt.Rows[0]["NCuotas"]);
-                    P.SetParameterValue("P_Tipo_de_Préstamo", dt.Rows[0]["TipoP"]);
-                    P.SetParameterValue("P_Forma_de_Pago", dt.Rows[0]["FormaP"]);
-                    P.SetParameterValue("P_Monto_de_Préstamo", dt.Rows[0]["Monto"]);
-                    P.SetParameterValue("P_Tasa_de_Interés", dt.Rows[0]["Interés"]);
-                    P.SetParameterValue("No_Préstamo", dt.Rows[0]["Préstamo"]);
-                    P.SetParameterValue("Llamado", "Señor, Señora, Señorita");
-                    P.SetParameterValue("Insertar Cantidad de Préstamo en Letras", "[Insertar Cantidad de Préstamo en Letras aquí]");
-                    P.SetParameterValue("Descuento", "—");
-                    crystalReportViewer1.ReportSource = P;
+                    montoletras = conv.Decimales(dt.Rows[0]["Monto"].ToString());
+                    try
+                    {
+                        P.SetParameterValue("P_Nombre", dt.Rows[0]["Nombre"]);
+                        P.SetParameterValue("P_Apellido", dt.Rows[0]["Apellido"]);
+                        P.SetParameterValue("P_DUI", dt.Rows[0]["PDUI"]);
+                        P.SetParameterValue("P_Dirección", dt.Rows[0]["Dir"]);
+                        P.SetParameterValue("P_Lugar_de_Trabajo", dt.Rows[0]["Trabajo"]);
+                        P.SetParameterValue("P_Cuota_Mensual", dt.Rows[0]["PCuotas"]);
+                        P.SetParameterValue("P_NoCuotas", dt.Rows[0]["NCuotas"]);
+                        P.SetParameterValue("P_Tipo_de_Préstamo", dt.Rows[0]["TipoP"]);
+                        P.SetParameterValue("P_Forma_de_Pago", dt.Rows[0]["FormaP"]);
+                        P.SetParameterValue("P_Monto_de_Préstamo", dt.Rows[0]["Monto"]);
+                        P.SetParameterValue("P_Tasa_de_Interés", dt.Rows[0]["Interés"]);
+                        P.SetParameterValue("No_Préstamo", dt.Rows[0]["Préstamo"]);
+                        P.SetParameterValue("Llamado", "Señor, Señora, Señorita");
+                        P.SetParameterValue("MontoLetras", montoletras);
+                        P.SetParameterValue("Descuento", "—");
+                        crystalReportViewer1.ReportSource = P;
+                    }
+                    catch { }
                     break;
                 //Tabla de Amortización
                 case "Amortización":
@@ -190,6 +197,86 @@ namespace ACOPEDH
         private void bttMin_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
+        }
+        #endregion
+        #region Mover Form
+        bool Empezarmover = false;
+        int PosX;
+        int PosY;
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Empezarmover = true;
+                PosX = e.X;
+                PosY = e.Y;
+            }
+        }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                Empezarmover = false;
+            }
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (Empezarmover)
+            {
+                Point temp = new Point();
+                temp.X = Location.X + (e.X - PosX);
+                temp.Y = Location.Y + (e.Y - PosY);
+                Location = temp;
+            }
+        }
+        #endregion
+        #region Efecto botones barra título
+        private void bttMin_MouseHover(object sender, EventArgs e)
+        {
+            bttMin.BackColor = Color.FromArgb(35, 45, 129);
+        }
+
+        private void bttMin_MouseLeave(object sender, EventArgs e)
+        {
+            bttMin.BackColor = Color.FromArgb(20, 25, 72);
+        }
+
+        private void bttMin_MouseDown(object sender, MouseEventArgs e)
+        {
+            bttMin.BackColor = Color.Blue;
+        }
+
+        private void bttMax_MouseDown(object sender, MouseEventArgs e)
+        {
+            bttMax.BackColor = Color.Blue;
+        }
+
+        private void bttMax_MouseHover(object sender, EventArgs e)
+        {
+            bttMax.BackColor = Color.FromArgb(35, 45, 129);
+        }
+
+        private void bttMax_MouseLeave(object sender, EventArgs e)
+        {
+            bttMax.BackColor = Color.FromArgb(20, 25, 72);
+        }
+
+        private void bttCer_MouseLeave(object sender, EventArgs e)
+        {
+            bttCer.BackColor = Color.FromArgb(20,25,72);
+        }
+
+        private void bttCer_MouseHover(object sender, EventArgs e)
+        {
+            bttCer.BackColor = Color.Red;
+        }
+
+        private void bttCer_MouseDown(object sender, MouseEventArgs e)
+        {
+            bttCer.BackColor = Color.DarkRed;
         }
         #endregion
     }

@@ -138,6 +138,7 @@
       <DependentUpon>Constancia Pagos Realizados.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ConversiónNúmeros.cs" />
     <Compile Include="Datos Asociado.cs">
       <SubType>Form</SubType>
     </Compile>
