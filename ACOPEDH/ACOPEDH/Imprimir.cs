@@ -18,7 +18,7 @@ namespace ACOPEDH
         DataTable dt;
         Procedimientos_select seleccionar = new Procedimientos_select();
         SqlParameter[] Param = new SqlParameter[1];
-        List<modelo_Amortización> lista = new List<modelo_Amortización>();
+        public List<modelo_Amortización> ListaDatos;
 
         #region Constructores
         public Imprimir()
@@ -31,11 +31,19 @@ namespace ACOPEDH
             Datos = dato;
             Opción = op;
         }
+        public Imprimir(List<modelo_Amortización> datos, string dato, string op)
+        {
+            InitializeComponent();
+            ListaDatos = new List<modelo_Amortización>(datos);
+            Datos = dato;
+            Opción = op;
+        }
         #endregion
         #region Load
         private void Imprimir_Load(object sender, EventArgs e)
         {
             this.Cursor = Cursors.Default;
+            MaximumSize = new Size(SystemInformation.PrimaryMonitorMaximizedWindowSize.Width - 15, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 15);
         }
         private void crystalReportViewer1_Load(object sender, EventArgs e)
         {
@@ -131,19 +139,35 @@ namespace ACOPEDH
                 //Tabla de Amortización
                 case "Amortización":
                     Constancia_Amortización ca = new Constancia_Amortización();
-                    //Mostrando la tabla de amortización
-                    ca.SetDataSource(seleccionar.);
-                    //Mostrando los datos del encabezado
-                    Param[0] = new SqlParameter("@ID_Préstamo", Datos);
-                    dt = seleccionar.LlenarText("[Cargar Préstamo]","Nombre,Monto,PCuotas,Código_A,NCuotas,Interés,FechaT",Param);
-                    ca.SetParameterValue("Nombre", dt.Rows[0]["Nombre"]);
-                    ca.SetParameterValue("Monto", dt.Rows[0]["Monto"]);
-                    ca.SetParameterValue("Pago mensual", dt.Rows[0]["PCuotas"]);
-                    ca.SetParameterValue("P_Código", dt.Rows[0]["Código_A"]);
-                    ca.SetParameterValue("Plazo", dt.Rows[0]["NCuotas"]);
-                    ca.SetParameterValue("Interés", dt.Rows[0]["Interés"]);
-                    ca.SetParameterValue("Fecha", dt.Rows[0]["FechaT"]);
-                    ca.SetParameterValue("ID_Préstamo", Datos);
+                    ca.SetDataSource(ListaDatos);
+                    if (Datos != "")
+                    {
+                        Param[0] = new SqlParameter("@ID_Préstamo", Datos);
+                        dt = seleccionar.LlenarText("[Cargar Préstamo]", "Nombre,PCuotas,Código_A,Monto,FechaT,NCuotas,TipoP,Estado,Interés", Param);
+                        ca.SetParameterValue("Nombre", dt.Rows[0]["Nombre"]);
+                        ca.SetParameterValue("Pago mensual", dt.Rows[0]["PCuotas"]);
+                        ca.SetParameterValue("P_Código", dt.Rows[0]["Código_A"]);
+                        ca.SetParameterValue("Monto", dt.Rows[0]["Monto"]);
+                        ca.SetParameterValue("Fecha", dt.Rows[0]["FechaT"]);
+                        ca.SetParameterValue("Plazo", dt.Rows[0]["NCuotas"]);
+                        ca.SetParameterValue("Tipo préstamo", dt.Rows[0]["TipoP"]);
+                        ca.SetParameterValue("PInterés", dt.Rows[0]["Interés"]);
+                        ca.SetParameterValue("Estado", dt.Rows[0]["Estado"]);
+                        ca.SetParameterValue("id_Préstamo", Datos);
+                    }
+                    else
+                    {
+                        ca.SetParameterValue("Nombre", "");
+                        ca.SetParameterValue("Pago mensual", 0);
+                        ca.SetParameterValue("P_Código", "");
+                        ca.SetParameterValue("Monto", 0);
+                        ca.SetParameterValue("Fecha", "");
+                        ca.SetParameterValue("Plazo", "");
+                        ca.SetParameterValue("Tipo préstamo", "");
+                        ca.SetParameterValue("PInterés", 17);
+                        ca.SetParameterValue("Estado", "");
+                        ca.SetParameterValue("id_Préstamo", " ");
+                    }
                     crystalReportViewer1.ReportSource = ca;
                     break;
                 case "Pagos_Realizados":

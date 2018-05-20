@@ -15,6 +15,16 @@ namespace ACOPEDH.Modelos
         private double saldo;
         private DateTime fechaPago;
 
+        public modelo_Amortización(int i, double Pcuota, double Ppagointeres, double PpagoCapital, double Psaldo, DateTime PfechaPago)
+        {
+            this.i = i;
+            cuota = Pcuota;
+            pagoInteres = Ppagointeres;
+            pagoCapital = PpagoCapital;
+            saldo = Psaldo;
+            FechaPago = PfechaPago;
+        }
+
         public int I { get => i; set => i = value; }
         public double Cuota { get => cuota; set => cuota = value; }
         public double PagoInteres { get => pagoInteres; set => pagoInteres = value; }
