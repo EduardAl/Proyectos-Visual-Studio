@@ -106,7 +106,7 @@ namespace ACOPEDH
                 }
             }
             else
-                MessageBox.Show("Ingrese una cantidad a abonar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ingrese una cantidad a retirar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion
         #region Sombra

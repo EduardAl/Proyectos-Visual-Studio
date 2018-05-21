@@ -15,7 +15,7 @@ namespace ACOPEDH
     public partial class Imprimir : Form
     {
         public string Datos, Opción;
-        private double aqui = 0;
+        private double aqui = 0, Abono = 0, Retiro = 0;
         DataTable dt;
         Procedimientos_select seleccionar = new Procedimientos_select();
         SqlParameter[] Param = new SqlParameter[1];
@@ -191,30 +191,41 @@ namespace ACOPEDH
                     break;
                 case "Abono":
                     Constancia_Abono abono = new Constancia_Abono();
-                    Param[0] = new SqlParameter("@ID_Ahorro", Datos);
-                    dt = seleccionar.LlenarText("[Constancia Abono]", "Pid_Abono,PNombre,PTipo,PInterés,Abono", Param);
-                    abono.SetParameterValue("No_Abono", dt.Rows[0]["Pid_Abono"]);
-                    abono.SetParameterValue("P_Nombre", dt.Rows[0]["PNombre"]);
-                    abono.SetParameterValue("P_Tipo_Ahorro", dt.Rows[0]["PTipo"]);
-                    abono.SetParameterValue("P_Interés", dt.Rows[0]["PInterés"]);
-                    abono.SetParameterValue("P_Abono", dt.Rows[0]["Abono"]);
-                    abono.SetParameterValue("No_Ahorro", Datos);
-                    crystalReportViewer1.ReportSource = abono;
+                    try
+                    {
+                        Param[0] = new SqlParameter("@ID_Ahorro", Datos);
+                        dt = seleccionar.LlenarText("[Constancia Abono]", "Pid_Abono,PNombre,PTipo,PInterés,Abono", Param);
+                        abono.SetParameterValue("P_Nombre", dt.Rows[0]["PNombre"]);
+                        abono.SetParameterValue("P_Tipo_Ahorro", dt.Rows[0]["PTipo"]);
+                        abono.SetParameterValue("P_Interés", dt.Rows[0]["PInterés"]);
+                        abono.SetParameterValue("P_Abono", dt.Rows[0]["Abono"]);
+                        abono.SetParameterValue("No_Ahorro", Datos);
+                        //Mostrar Monto disponible
+                        Param[0] = new SqlParameter("@ID_Ahorro", Datos);
+                        double Abono = Convert.ToDouble(seleccionar.llenar_DataTable("[Suma Abonos]", Param).Rows[0]["Suma de Abonos"]);
+                        Param[0] = new SqlParameter("@ID_Ahorro", Datos);
+                        double Retiro = Convert.ToDouble(seleccionar.llenar_DataTable("[Suma Retiros]", Param).Rows[0]["Suma de Retiros"]);
+                        aqui = Math.Round(Abono - Retiro, 2);
+                        abono.SetParameterValue("Disponible", aqui);
+                        crystalReportViewer1.ReportSource = abono;
+                    }
+                    catch { }
                     break;
                 case "Retiro":
                     Constancia_de_Retiro retiro = new Constancia_de_Retiro();
                     Param[0] = new SqlParameter("@ID_Ahorro", Datos);
-                    dt = seleccionar.LlenarText("[Constancia Retiro]", "CantidadRetiro,idRetiro,Nombre,Tipo,Interés,Código,Cheque", Param);
+                    dt = seleccionar.LlenarText("[Constancia Retiro]", "CantidadRetiro,idRetiro,Nombre,Tipo,Interés,Código,Cheque,Estado", Param);
                     retiro.SetParameterValue("Retiro", dt.Rows[0]["CantidadRetiro"]);
                     retiro.SetParameterValue("Nombre", dt.Rows[0]["Nombre"]);
                     retiro.SetParameterValue("Codigo", dt.Rows[0]["Código"]);
                     retiro.SetParameterValue("Cheque", dt.Rows[0]["Cheque"]);
+                    retiro.SetParameterValue("Estado", dt.Rows[0]["Estado"]);
                     retiro.SetParameterValue("id_Ahorro", Datos);
                     //Mostrar Monto disponible
                     Param[0] = new SqlParameter("@ID_Ahorro", Datos);
-                    double Abono = Convert.ToDouble(seleccionar.llenar_DataTable("[Suma Abonos]", Param).Rows[0]["Suma de Abonos"]);
+                    Abono = Convert.ToDouble(seleccionar.llenar_DataTable("[Suma Abonos]", Param).Rows[0]["Suma de Abonos"]);
                     Param[0] = new SqlParameter("@ID_Ahorro", Datos);
-                    double Retiro = Convert.ToDouble(seleccionar.llenar_DataTable("[Suma Retiros]", Param).Rows[0]["Suma de Retiros"]);
+                    Retiro = Convert.ToDouble(seleccionar.llenar_DataTable("[Suma Retiros]", Param).Rows[0]["Suma de Retiros"]);
                     aqui = Math.Round(Abono - Retiro, 2);
                     retiro.SetParameterValue("Disponible",aqui);
                     crystalReportViewer1.ReportSource = retiro;
@@ -229,6 +240,8 @@ namespace ACOPEDH
                     ahorro.SetParameterValue("P_Abono", dt.Rows[0]["Abono"]);
                     ahorro.SetParameterValue("No_Ahorro",dt.Rows[0]["id_Ahorro"]);
                     crystalReportViewer1.ReportSource = ahorro;
+                    break;
+                default:
                     break;
             }
         }

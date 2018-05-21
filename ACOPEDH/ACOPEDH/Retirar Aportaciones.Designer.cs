@@ -37,8 +37,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtCódigo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtCheque = new System.Windows.Forms.TextBox();
             this.bttRetirarAportación = new System.Windows.Forms.Button();
+            this.txtCheque = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
@@ -137,15 +137,6 @@
             this.label1.TabIndex = 95;
             this.label1.Text = "No de Cheque:\r\n";
             // 
-            // txtCheque
-            // 
-            this.txtCheque.Font = new System.Drawing.Font("Linotte-Bold", 12F);
-            this.txtCheque.Location = new System.Drawing.Point(204, 90);
-            this.txtCheque.MaxLength = 15;
-            this.txtCheque.Name = "txtCheque";
-            this.txtCheque.Size = new System.Drawing.Size(135, 27);
-            this.txtCheque.TabIndex = 96;
-            // 
             // bttRetirarAportación
             // 
             this.bttRetirarAportación.Font = new System.Drawing.Font("Linotte-Bold", 12F);
@@ -157,6 +148,14 @@
             this.bttRetirarAportación.UseVisualStyleBackColor = true;
             this.bttRetirarAportación.Click += new System.EventHandler(this.bttRealizarAportación_Click);
             // 
+            // txtCheque
+            // 
+            this.txtCheque.Font = new System.Drawing.Font("Linotte-Bold", 12F);
+            this.txtCheque.Location = new System.Drawing.Point(204, 95);
+            this.txtCheque.Name = "txtCheque";
+            this.txtCheque.Size = new System.Drawing.Size(135, 27);
+            this.txtCheque.TabIndex = 98;
+            // 
             // Retirar_Aportaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -164,8 +163,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(184)))), ((int)(((byte)(192)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(417, 326);
-            this.Controls.Add(this.bttRetirarAportación);
             this.Controls.Add(this.txtCheque);
+            this.Controls.Add(this.bttRetirarAportación);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCódigo);
             this.Controls.Add(this.label3);
@@ -197,7 +196,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtCódigo;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtCheque;
         private System.Windows.Forms.Button bttRetirarAportación;
+        private System.Windows.Forms.TextBox txtCheque;
     }
 }

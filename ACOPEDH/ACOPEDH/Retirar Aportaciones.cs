@@ -49,36 +49,37 @@ namespace ACOPEDH
 
         private void bttRealizarAportación_Click(object sender, EventArgs e)
         {
-            try
-            {
-                DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de retiro para la siguiente transacción?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (Imprimir == DialogResult.Yes || Imprimir == DialogResult.No)
+            //    try
+            //    {
+            DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de retiro para la siguiente transacción?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (Imprimir != DialogResult.Cancel)
                 {
-                    if (!String.IsNullOrEmpty(txtCheque.Text))
+                //double suma = Convert.ToDouble(txtSuma.Text);
+                MessageBox.Show(txtSuma.Text);
+                    SqlParameter[] Parámetros = new SqlParameter[4];
+                    Parámetros[0] = new SqlParameter("@Código_Asociado", Dato);
+                    Parámetros[2] = new SqlParameter("@No_Cheque", txtCheque.Text);
+                    Parámetros[2] = new SqlParameter("@Id_Usuario", Globales.gbCodUsuario);
+                    if (pro.llenar_tabla("[Retirar Aportaciones]", Parámetros) > 0)
                     {
-                        SqlParameter[] Parámetros = new SqlParameter[4];
-                        Parámetros[0] = new SqlParameter("@Código_Asociado", Dato);
-                        Parámetros[1] = new SqlParameter("@Total_Retiro", double.Parse(txtSuma.Text));
-                        Parámetros[2] = new SqlParameter("No_Cheque", txtCheque.Text);
-                        Parámetros[3] = new SqlParameter("@Id_Usuario", Globales.gbCodUsuario);
-                        if (Imprimir == DialogResult.Yes)
-                        {
-#warning Añadir Imprimir
-                        }
-                        if (pro.llenar_tabla("[Retirar Aportaciones]", Parámetros) > 0)
-                        {
-                            Close();
-                        }
-                        else
-                            MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        DialogResult = DialogResult.OK;
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Globales.gbError = "";
                     }
+                    if (Imprimir == DialogResult.Yes)
+                    {
+#warning Añadir Imprimir
+                    }
                 }
-            }
-            catch
-            {
-                MessageBox.Show("Ha ocurrido un error en la transacción.Inténtelo más tarde.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Ha ocurrido un error en la transacción.Inténtelo más tarde.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         #region Mover Form

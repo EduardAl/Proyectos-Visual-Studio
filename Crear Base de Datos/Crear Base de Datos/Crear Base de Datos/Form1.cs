@@ -84,7 +84,7 @@ namespace Crear_Base_de_Datos
                 "[Id Ocupación]  AS('OC' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
                 "[Nombre de la Empresa] [varchar](60) NOT NULL," +
                 "CONSTRAINT[PK_Ocupación] PRIMARY KEY ([Id Ocupación]))";
-            String tabla08 = "CREATE TABLE [dbo].[Persona](" +
+          /*  String tabla08 = "CREATE TABLE [dbo].[Persona](" +
                 "[Número][int] IDENTITY(1, 1) NOT NULL," +
                 "[Código Persona]  AS('PC' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
                 "[Nombres] [varchar](50) NOT NULL," +
@@ -93,7 +93,7 @@ namespace Crear_Base_de_Datos
                 "[NIT] [varchar](17) NULL unique," +
                 "[Dirección] [varchar](100) NULL," +
                 "[Fecha de Nacimiento] [datetime] NOT NULL," +
-                "CONSTRAINT [PK_Persona] PRIMARY KEY ([Código Asociado])";
+                "CONSTRAINT [PK_Persona] PRIMARY KEY ([Código Asociado])";*/
             String tabla8 = "CREATE TABLE [dbo].[Asociado](" +
                 "[Número][int] IDENTITY(1, 1) NOT NULL," +
                 "[Código Asociado]  AS('AS' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
@@ -110,13 +110,13 @@ namespace Crear_Base_de_Datos
                 "REFERENCES [Tipo de Socio]([id Tipo de Socio])," +
                 "CONSTRAINT [FK Ocupación] FOREIGN KEY ([FK Ocupación])" +
                 "REFERENCES Ocupación([Id Ocupación]))";
-            String tabla010 = "CREATE TABLE [dbo].[Beneficiario](" +
+            /*String tabla010 = "CREATE TABLE [dbo].[Beneficiario](" +
                 "[FK Persona] [varchar](5) NOT NULL," +
                 "[FK Asociado] [varchar](5) NOT NULL," +
                 "CONSTRAINT [FK Persona] FOREIGN KEY ([FK Persona])" +
                 "REFERENCES [Persona]([Código Persona])," +
                 "CONSTRAINT [FK Asociado] FOREIGN KEY ([FK Asociado])" +
-                "REFERENCES [Asociado]([Código Asociado]))";
+                "REFERENCES [Asociado]([Código Asociado]))";*/
             String tabla9 = "CREATE TABLE [dbo].[Aportaciones](" +
                 "[Número] [int] IDENTITY(1,1) NOT NULL," +
                 "[id Aportación]  AS('AP' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
@@ -218,7 +218,7 @@ namespace Crear_Base_de_Datos
                 "[Número][int] IDENTITY(1, 1) NOT NULL, " +
                 "[Id Retiro Aportación]  AS('RA' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL, " +
                 "[Retiro] money NOT NULL, " +
-                "[Número de Cheque] varchar(8), " +
+                "[Número de Cheque] varchar(8) NOT NULL, " +
                 "[FK Asociado] varchar(5) NOT NULL references Asociado([Código Asociado]), " +
                 "[FK Transacción] varchar(5) NOT NULL references Transacciones([id Transacción])) ";
             String tabla22 = "Create table [dbo].[Tipos de Imágenes](" +
@@ -917,7 +917,7 @@ namespace Crear_Base_de_Datos
                 "return 0 " +
                 "End Catch ";
             //Añadido Actualizar Asociado
-            String procedimiento039 = "Create procedure[dbo].[Actualizar Persona] " +
+         /*   String procedimiento039 = "Create procedure[dbo].[Actualizar Persona] " +
                 "@Codigo_Persona varchar(5), " +
                 "@Nombres varchar(50), " +
                 "@Apellidos varchar(50), " +
@@ -948,7 +948,7 @@ namespace Crear_Base_de_Datos
               "Begin " +
                 "ROLLBACK TRANSACTION " +
                 "Print 'Error en modificar datos de la persona ' + ERROR_MESSAGE(); " +
-              "End ";
+              "End ";*/
             String procedimiento39 = "Create procedure[dbo].[Actualizar Asociado] " +
                 "@Codigo_Asociado varchar(5), " +
                 "@FK_Tipo_Socio varchar(5), " +

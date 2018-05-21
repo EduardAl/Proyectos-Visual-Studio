@@ -20,6 +20,7 @@ namespace ACOPEDH
         */
         string Dato;
         double interes = 0;
+        bool imprimir = false;
         Procedimientos_select ingresar = new Procedimientos_select();
         #region Constructores
         public Abonos()
@@ -76,13 +77,15 @@ namespace ACOPEDH
                     {
                         DialogResult = DialogResult.OK;
                         Close();
+                        imprimir = true;
                     }
                     else
                     {
                         MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Globales.gbError = "";
+                        imprimir = false;
                     }
-                    if (Imprimir == DialogResult.Yes)
+                    if (Imprimir == DialogResult.Yes && imprimir == true)
                     {
                         this.Cursor = Cursors.WaitCursor;
                         Imprimir Acción = new Imprimir(Dato, "Abono");

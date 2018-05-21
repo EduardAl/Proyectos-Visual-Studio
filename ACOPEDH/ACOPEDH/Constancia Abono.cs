@@ -114,7 +114,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Total {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Tipo_Ahorro {
             get {
                 return this.DataDefinition.ParameterFields[3];
             }
@@ -122,7 +122,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Tipo_Ahorro {
+        public CrystalDecisions.Shared.IParameterField Parameter_No_Ahorro {
             get {
                 return this.DataDefinition.ParameterFields[4];
             }
@@ -130,17 +130,9 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_No_Abono {
+        public CrystalDecisions.Shared.IParameterField Parameter_Disponible {
             get {
                 return this.DataDefinition.ParameterFields[5];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_No_Ahorro {
-            get {
-                return this.DataDefinition.ParameterFields[6];
             }
         }
     }
