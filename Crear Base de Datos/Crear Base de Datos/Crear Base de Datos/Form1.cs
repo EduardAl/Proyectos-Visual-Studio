@@ -385,11 +385,18 @@ namespace Crear_Base_de_Datos
                "As " +
                "Begin Tran Abono " +
                "Begin Try " +
+               "if ((Select Estado From Ahorro where Ahorro.[id Ahorro] = @FK_Ahorro) <> 'INACTIVO') "+
+               "Begin "+
                "Declare @id_Transación varchar(5) " +
                "Insert into Transacciones values(@Id_Usuario, 'TT002',GETDATE()) " +
                "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
                "Insert into Abono values(@Abono,@Comision,@FK_Ahorro, @id_Transación) " +
                "Commit Tran Abono " +
+               "End "+
+               "Else begin "+
+               "Print 'Cuenta INACTIVA. No se puede abonar.' "+
+               "Commit Tran Abono "+
+               "end "+
                "End Try " +
                "Begin Catch " +
                "Print ERROR_MESSAGE(); " +
@@ -416,6 +423,8 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Asociado " +
                 "Begin try " +
+                "if ((Select Estado From Asociado where Asociado.[Código Asociado] = @ID_Asociado) = 'ACTIVO') " +
+                "Begin " +
                 "If Exists(Select Aportaciones.[id Aportación] from Aportaciones inner join Transacciones on Aportaciones.[FK Transacción]= Transacciones.[id Transacción] " +
                 "where MONTH(Transacciones.[Fecha de Transacción])= MONTH(GETDATE())AND YEAR(Transacciones.[Fecha de Transacción]) = YEAR(GETDATE()) " +
                 "AND Aportaciones.[FK Asociado]= @ID_Asociado) " +
@@ -431,6 +440,11 @@ namespace Crear_Base_de_Datos
                 "Insert into Aportaciones values(@Aportación, @ID_Asociado, @id_Transación) " +
                 "Print 'Aporte realizado con éxito' " +
                 "Commit tran Asociado " +
+                "End " +
+                "End " +
+                "Else begin " +
+                "Print 'No se puede realizar aportación. La persona está desasociada.' " +
+                "Commit Tran Asociado " +
                 "End " +
                 "End try " +
                 "Begin Catch " +
@@ -917,7 +931,7 @@ namespace Crear_Base_de_Datos
                 "return 0 " +
                 "End Catch ";
             //Añadido Actualizar Asociado
-         /*   String procedimiento039 = "Create procedure[dbo].[Actualizar Persona] " +
+            String procedimiento039 = "Create procedure[dbo].[Actualizar Persona] " +
                 "@Codigo_Persona varchar(5), " +
                 "@Nombres varchar(50), " +
                 "@Apellidos varchar(50), " +
@@ -948,7 +962,7 @@ namespace Crear_Base_de_Datos
               "Begin " +
                 "ROLLBACK TRANSACTION " +
                 "Print 'Error en modificar datos de la persona ' + ERROR_MESSAGE(); " +
-              "End ";*/
+              "End ";
             String procedimiento39 = "Create procedure[dbo].[Actualizar Asociado] " +
                 "@Codigo_Asociado varchar(5), " +
                 "@FK_Tipo_Socio varchar(5), " +
@@ -993,33 +1007,33 @@ namespace Crear_Base_de_Datos
                 "End; ";
             //Procedimiento para retirar las aportaciones al desasociar.
             String procedimiento43 = "create procedure [dbo].[Retirar Aportaciones] " +
-                "@Código_Asociado varchar(5), " +
-                "@Total_Retiro money, " +
-                "@No_Cheque varchar(8), " +
-                "@Id_Usuario varchar(5) " +
-                "As Begin Tran Retiro " +
-                "Begin Try " +
-                "If(Select Estado from Asociado where[Código Asociado] = @Código_Asociado) = 'ACTIVO' " +
+                "@Código_Asociado varchar(5), "+
+                "@No_Cheque varchar(8), "+
+                "@Id_Usuario varchar(5) "+
+                "As Begin Tran Retiro "+
+                "Begin Try "+
+                "declare @total_Retiro money "+
+                "If(Select Estado from Asociado where[Código Asociado] = @Código_Asociado) = 'ACTIVO' "+
                 "Begin "+
-                "if (Select SUM(Aportación) from Aportaciones where [FK Asociado] = @Código_Asociado) <> 0 " +
-                "Begin " +
-                "Declare @Id_Transacción varchar(5) " +
-                "Insert into Transacciones values(@Id_Usuario,'TT007',GETDATE()) " +
-                "set @Id_Transacción = (Select MAX([id Transacción]) From Transacciones) " +
-                "Insert into[Retiros Aportaciones] values(@Total_Retiro, @No_Cheque, @Código_Asociado, @Id_Transacción) " +
-                "Commit Tran Retiro " +
-                "End " +
-                "Else "+
-                "Begin " +
-                "Print 'No hay aportaciones que retirar.' " +
-                "Commit Tran Retiro " +
-                "End " +
+                "if (Select SUM(Aportación) from Aportaciones where [FK Asociado] = @Código_Asociado) <> 0 "+
+                "Begin "+
+                "set @total_Retiro = (Select SUM(Aportación) from Aportaciones where [FK Asociado] = @Código_Asociado) "+
+			    "Declare @Id_Transacción varchar(5) "+
+                "Insert into Transacciones values(@Id_Usuario,'TT007',GETDATE()) "+
+			    "set @Id_Transacción = (Select MAX([id Transacción]) From Transacciones) "+
+			    "Insert into[Retiros Aportaciones] values(@total_Retiro, @No_Cheque, @Código_Asociado, @Id_Transacción) "+
+                "Commit Tran Retiro "+
+                "End "+
+                "Else Begin "+
+                "Print 'No hay aportaciones que retirar.' "+
+                "Commit Tran Retiro "+
+                "End "+
                 "End "+
                 "Else Begin "+
                 "Print 'La persona se encuentra desasociada.' "+
-                "Commit Tran Retiro " +
-                "End " +
-                "End Try " +
+                "Commit Tran Retiro "+
+                "End "+
+                "End Try "+
                 "Begin Catch " +
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran Retiro " +
@@ -1249,7 +1263,67 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran img " +
                 "End Catch ";
-
+            String procedimeinto54 = "Create Procedure[dbo].[Constancia Retiro] " +
+                "@ID_Ahorro varchar(5) " +
+                "As Begin Tran C_Abono " +
+                "Begin Try " +
+                "declare @id_Retiro varchar(9) " +
+                "Set @id_Retiro = (Select Max([id Retiro]) From Retiros where Retiros.[FK Ahorro] = @ID_Ahorro) " +
+                "Select Retiros.Retiro as 'CantidadRetiro', Retiros.[id Retiro] as 'idRetiro', (Asociado.Nombres + ' ' + Asociado.Apellidos) as 'Nombre', " +
+                "[Tipo de Ahorro].Nombre as 'Tipo',[Tipo de Ahorro].[Tasa de Interés] as 'Interés',Asociado.[Código Asociado] as 'Código', " +
+                "Retiros.[Número de Cheque] as 'Cheque', Ahorro.Estado as 'Estado' " +
+                "from Asociado inner join Ahorro on Asociado.[Código Asociado]= Ahorro.[FK Código de Asociado] inner join Retiros on Retiros.[FK Ahorro] = Ahorro.[id Ahorro] " +
+                "inner join [Tipo de Ahorro] on[Tipo de Ahorro].[id Tipo Ahorro] = Ahorro.[FK Tipo Ahorro] " +
+                "where @ID_Ahorro = Ahorro.[id Ahorro] and Retiros.[id Retiro] = @id_Retiro " +
+                "Commit Tran C_Abono " +
+                "End Try " +
+                "Begin Catch " +
+                "Print ERROR_MESSAGE(); " +
+                "Rollback Tran C_Abono " +
+                "End Catch ";
+            String procedimiento55 = "Create Procedure[dbo].[Constancia Abono] " +
+                "@ID_Ahorro varchar(5) " +
+                "As Begin Tran C_Abono " +
+                "Begin Try " +
+                "if ((Select Estado From Ahorro where Ahorro.[id Ahorro] = @ID_Ahorro) <> 'INACTIVO') " +
+                "Begin " +
+                "declare @id_Abono varchar(9) " +
+                "Set @id_Abono = (Select Max([id Abono]) From Abono where Abono.[FK Ahorro] = @ID_Ahorro) " +
+                "Select Abono.[id Abono] as 'Pid_Abono', Abono.Abono as 'Abono', (Asociado.Nombres + ' ' + Asociado.Apellidos) as 'PNombre', " +
+                "[Tipo de Ahorro].Nombre as 'PTipo',[Tipo de Ahorro].[Tasa de Interés] as 'PInterés'from Asociado inner join Ahorro " +
+                "on Asociado.[Código Asociado]= Ahorro.[FK Código de Asociado] inner join Abono on Abono.[FK Ahorro] = Ahorro.[id Ahorro] " +
+                "inner join [Tipo de Ahorro] on[Tipo de Ahorro].[id Tipo Ahorro] = Ahorro.[FK Tipo Ahorro] where @ID_Ahorro = Ahorro.[id Ahorro] " +
+                "and Abono.[id Abono] = @id_Abono " +
+                "Commit Tran C_Abono " +
+                "end " +
+                "Else begin " +
+                "Commit Tran C_Abono " +
+                "End " +
+                "End Try " +
+                "Begin Catch " +
+                "Print ERROR_MESSAGE(); " +
+                "Rollback Tran C_Abono " +
+                "End Catch ";
+            String procedimiento56 = "Create Procedure[Constancia Nuevo Ahorro] " +
+                "@ID_Asociado varchar(5) " +
+                "As " +
+                "Begin Tran N_Ahorro " +
+                "Begin Try " +
+                "declare @id_Ahorro varchar(15) " +
+                "Set @id_Ahorro = (Select Max([FK Ahorro]) from Abono inner join Ahorro on Abono.[FK Ahorro] = Ahorro.[id Ahorro] where Ahorro.[FK Código de Asociado] = @ID_Asociado) " +
+                "Select(Asociado.Nombres + ' ' + Asociado.Apellidos) as 'Nombre', " +
+                "Ahorro.[id Ahorro] as 'id_Ahorro',[Tipo de Ahorro].Nombre as 'Tipo', " +
+                "[Tipo de Ahorro].[Tasa de Interés] as 'Interés', " +
+                "Abono.Abono as 'Abono', Abono.[id Abono] as 'Pid_Abono' From Asociado inner join Ahorro " +
+                "on Asociado.[Código Asociado]=Ahorro.[FK Código de Asociado] inner join Abono " +
+                "on Abono.[FK Ahorro]= Ahorro.[id Ahorro] inner join [Tipo de Ahorro] on[Tipo de Ahorro].[id Tipo Ahorro] = Ahorro.[FK Tipo Ahorro] " +
+                "where Ahorro.[FK Código de Asociado] = @ID_Asociado and Ahorro.[id Ahorro] = @id_Ahorro " +
+                "Commit Tran N_Ahorro " +
+                "End Try " +
+                "Begin Catch " +
+                "Print ERROR_MESSAGE(); " +
+                "Rollback Tran N_Ahorro " +
+                "End Catch ";
             String Login1 =
                 "CREATE LOGIN Master_ACOPEDH " +
                 "WITH PASSWORD = 'Aureo112358' ";
@@ -1418,6 +1492,12 @@ namespace Crear_Base_de_Datos
                 "to Administrador with grant option " +
                 "grant execute on object :: [Cargar Tipo Imagen] " +
                 "to Administrador with grant option " +
+                "grant execute on object :: [Constancia Retiro] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Constancia Abono] " +
+                "to Administrador with grant option " +
+                "grant execute on object :: [Constancia Nuevo Ahorro] " +
+                "to Administrador with grant option " +
                 "grant execute on object :: [Actualizar Asociado] " +
                  "to Administrador with grant option ";
             String permisosUsuario =
@@ -1550,6 +1630,9 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd_51 = new SqlCommand(procedimiento51, cnn);
             SqlCommand cmd_52 = new SqlCommand(procedimiento52, cnn);
             SqlCommand cmd_53 = new SqlCommand(procedimiento53, cnn);
+            SqlCommand cmd_54 = new SqlCommand(procedimiento53, cnn);
+            SqlCommand cmd_55 = new SqlCommand(procedimiento53, cnn);
+            SqlCommand cmd_56 = new SqlCommand(procedimiento53, cnn);
 
             //Creación Triggers
 
@@ -1671,6 +1754,9 @@ namespace Crear_Base_de_Datos
             cmd_51.ExecuteNonQuery();
             cmd_52.ExecuteNonQuery();
             cmd_53.ExecuteNonQuery();
+            cmd_54.ExecuteNonQuery();
+            cmd_55.ExecuteNonQuery();
+            cmd_56.ExecuteNonQuery();
 
 
             cmdTrigger1.ExecuteNonQuery();
