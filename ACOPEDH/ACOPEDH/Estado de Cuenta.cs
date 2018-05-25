@@ -242,11 +242,11 @@ namespace ACOPEDH
         //Botón Imprimir
         private void bttImprimir_Click(object sender, EventArgs e)
         {
-            //Imprimir Acción = new Imprimir(Dato, "Estado");
-            //this.Cursor = Cursors.WaitCursor;
-            //Acción.ShowDialog();
-            //Acción.Dispose();
-            //this.Cursor = Cursors.Default;
+            Imprimir Acción = new Imprimir(Dato, "Estado");
+            this.Cursor = Cursors.WaitCursor;
+            Acción.ShowDialog();
+            Acción.Dispose();
+            this.Cursor = Cursors.Default;
         }
     }
 }

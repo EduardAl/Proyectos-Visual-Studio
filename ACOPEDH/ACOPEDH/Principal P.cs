@@ -633,7 +633,6 @@ namespace ACOPEDH
             dgvBúsqueda.Width = Width - dgvBúsqueda.Location.X - 87;
             dgvBúsqueda.Height = Height - dgvBúsqueda.Location.Y - 116;
             dgvTransacciones.Width = gbAhorros.Location.X - dgvTransacciones.Location.X - 30;
-
             //Botones
             bttOtorgarPréstamo.Location = new Point(dgvBúsqueda.Width - bttOtorgarPréstamo.Width + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y - bttOtorgarPréstamo.Height - 23);
             bttCrearCuenta.Location = bttAgregarAsociado.Location = bttOtorgarPréstamo.Location;

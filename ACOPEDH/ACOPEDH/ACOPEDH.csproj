@@ -158,6 +158,18 @@
     <Compile Include="Estado de Cuenta.Designer.cs">
       <DependentUpon>Estado de Cuenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Estado_Abonos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Estado_Abonos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Estado_Retiros.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Estado_Retiros.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Informe_EstadoCuenta.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -197,7 +209,7 @@
     <Compile Include="InicioSesión.Designer.cs">
       <DependentUpon>InicioSesión.cs</DependentUpon>
     </Compile>
-    <Compile Include="modelo_Abonos.cs" />
+    <Compile Include="Modelos\modelo_Abonos.cs" />
     <Compile Include="Modelos\modelo_Amortización.cs" />
     <Compile Include="Modelos\modelo_PagosRealizados.cs" />
     <Compile Include="Modelos\modelo_Retiro.cs" />
@@ -330,6 +342,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Estado de Cuenta.resx">
       <DependentUpon>Estado de Cuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Estado_Abonos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Estado_Abonos.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Estado_Retiros.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Estado_Retiros.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Informe_EstadoCuenta.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

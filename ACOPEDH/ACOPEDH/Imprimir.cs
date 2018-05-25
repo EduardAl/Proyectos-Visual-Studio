@@ -15,7 +15,7 @@ namespace ACOPEDH
     public partial class Imprimir : Form
     {
         public string Datos, Opción;
-        private double aqui = 0, Abono = 0, Retiro = 0;
+        private double aqui = 0, Abono = 0, Retiro = 0, Saldo = 0;
         DataTable dt;
         Procedimientos_select seleccionar = new Procedimientos_select();
         SqlParameter[] Param = new SqlParameter[1];
@@ -70,9 +70,9 @@ namespace ACOPEDH
                     cons.SetParameterValue("Nombre", dt.Rows[0]["Name"]);
                     cons.SetParameterValue("Apellido", dt.Rows[0]["LName"]);
                     cons.SetParameterValue("Codigo", Datos);
-                    Param[0] = new SqlParameter("@Código_Asociado",Datos);
-                    dt = seleccionar.LlenarText("[Cargar Aportaciones]","[Monto de la Aportación]",Param);
-                    cons.SetParameterValue("Aportaciones",dt.Rows[0]["Monto de la Aportación"]);
+                    Param[0] = new SqlParameter("@Código_Asociado", Datos);
+                    dt = seleccionar.LlenarText("[Cargar Aportaciones]", "[Monto de la Aportación]", Param);
+                    cons.SetParameterValue("Aportaciones", dt.Rows[0]["Monto de la Aportación"]);
                     crystalReportViewer1.ReportSource = cons;
                     break;
                 //Constancia de Pago
@@ -93,19 +93,45 @@ namespace ACOPEDH
 #warning Aquí me da problemas mostrar los datos del DVG Abonos y Retiros
                 case "Estado":
                     Informe_EstadoCuenta info = new Informe_EstadoCuenta();
-                    DataSet ds = new DataSet();
-                    info.DataSourceConnections[0].SetConnection(Globales.Servidor, "ACOPEDH", Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
+                    Estado_Abonos abonos = new Estado_Abonos();
+                    Estado_Retiros retiros = new Estado_Retiros();
+                    Retiro = 0; Saldo = 0; Abono = 0;
+
+                    //Subinforme de Abonos
                     Param[0] = new SqlParameter("@ID_Ahorro", Datos);
-                    ds = seleccionar.llenar_DataSet("[Cargar Abonos]", Param, "Abono");
-                    info.Database.Tables["Abonos"].SetDataSource(ds);
+                    abonos.SetDataSource(seleccionar.ConsultaLista_Abono("[Cargar Abonos]", Param));
+                    Param[0] = new SqlParameter("@ID_Ahorro", Datos);
+                    info.Subreports[0].SetDataSource(seleccionar.ConsultaLista_Abono("[Cargar Abonos]", Param));
+                    //crystalReportViewer1.ReportSource = info;
+
+                    //Subinforme de Retiros
+                    Param[0] = new SqlParameter("@ID_Ahorro", Datos);
+                    retiros.SetDataSource(seleccionar.ConsultaLista_Retiro("[Cargar Retiros]",Param));
+                    Param[0] = new SqlParameter("@ID_Ahorro", Datos);
+                    info.Subreports[1].SetDataSource(seleccionar.ConsultaLista_Retiro("[Cargar Retiros]",Param));
+
+
+                    //Datos de Encabezado
+                    Param[0] = new SqlParameter("@Código_Ahorro", Datos);
+                    dt = seleccionar.LlenarText("[Cargar Ahorros]", "Nombre,Código_A,Est,TipoA,Interés", Param);
+                    info.SetParameterValue("Nombre", dt.Rows[0]["Nombre"]);
+                    info.SetParameterValue("Código", dt.Rows[0]["Código_A"]);
+                    info.SetParameterValue("Estado", dt.Rows[0]["Est"]);
+                    info.SetParameterValue("TipoAhorro", dt.Rows[0]["TipoA"]);
+                    info.SetParameterValue("Interés", dt.Rows[0]["Interés"]);
+                    info.SetParameterValue("No_Ahorro", Datos);
+                    Param[0] = new SqlParameter("@ID_Ahorro", Datos);
+                    dt = seleccionar.LlenarText("[Suma Abonos]", "Suma de Abonos", Param);
+                    Abono = Convert.ToDouble(dt.Rows[0]["Suma de Abonos"].ToString());
+                    Param[0] = new SqlParameter("@ID_Ahorro", Datos);
+                    dt = seleccionar.LlenarText("[Suma Retiros]", "Suma de Retiros", Param);
+                    Retiro = Convert.ToDouble(dt.Rows[0]["Suma de Retiros"].ToString());
+                    Saldo = Math.Round(Abono - Retiro, 2);
+                    info.SetParameterValue("AbonoIntereses", Abono);
+                    info.SetParameterValue("TotalRetiros", Retiro);
+                    info.SetParameterValue("SaldoActual", Saldo);
+                    //crystalReportViewer1.ReportSource = info;
                     crystalReportViewer1.ReportSource = info;
-                    //dt = seleccionar.llenar_DataTable("[Cargar Abonos]", Param);
-                    //info.Database.Tables["Abonos"].SetDataSource(dt);
-                    //crystalReportViewer1.ReportSource = info;
-                    //Param[0] = new SqlParameter("@ID_Ahorro", Datos);
-                    //dtt = seleccionar.llenar_DataTable("[Cargar Retiros]", Param);
-                    //info.Database.Tables["Retiros"].SetDataSource(dtt);
-                    //crystalReportViewer1.ReportSource = info;
                     break;
                 case "Préstamo":
                     Informes_Préstamos P = new Informes_Préstamos();
