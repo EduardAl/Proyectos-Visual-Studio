@@ -16,14 +16,14 @@ namespace ACOPEDH {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class Constancia_Abono : ReportClass {
+    public class Estado_Abonos : ReportClass {
         
-        public Constancia_Abono() {
+        public Estado_Abonos() {
         }
         
         public override string ResourceName {
             get {
-                return "Constancia Abono.rpt";
+                return "Estado_Abonos.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ACOPEDH {
         
         public override string FullResourceName {
             get {
-                return "ACOPEDH.Constancia Abono.rpt";
+                return "ACOPEDH.Estado_Abonos.rpt";
             }
             set {
                 // Do nothing
@@ -87,60 +87,12 @@ namespace ACOPEDH {
                 return this.ReportDefinition.Sections[4];
             }
         }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Nombre {
-            get {
-                return this.DataDefinition.ParameterFields[0];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Abono {
-            get {
-                return this.DataDefinition.ParameterFields[1];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Interés {
-            get {
-                return this.DataDefinition.ParameterFields[2];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Tipo_Ahorro {
-            get {
-                return this.DataDefinition.ParameterFields[3];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_No_Ahorro {
-            get {
-                return this.DataDefinition.ParameterFields[4];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Disponible {
-            get {
-                return this.DataDefinition.ParameterFields[5];
-            }
-        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedConstancia_Abono : Component, ICachedReport {
+    public class CachedEstado_Abonos : Component, ICachedReport {
         
-        public CachedConstancia_Abono() {
+        public CachedEstado_Abonos() {
         }
         
         [Browsable(false)]
@@ -177,7 +129,7 @@ namespace ACOPEDH {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            Constancia_Abono rpt = new Constancia_Abono();
+            Estado_Abonos rpt = new Estado_Abonos();
             rpt.Site = this.Site;
             return rpt;
         }

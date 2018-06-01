@@ -17,6 +17,8 @@ namespace ACOPEDH.Modelos
         private DateTime fechaPago;
         private DateTime fechaLimite;
 
+
+
         public int N_pagos { get => n_pagos; set => n_pagos = value; }
         public double Pago { get => pago; set => pago = value; }
         public double PagoIntereses { get => pagoIntereses; set => pagoIntereses = value; }

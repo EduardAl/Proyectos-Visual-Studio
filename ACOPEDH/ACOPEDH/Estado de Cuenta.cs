@@ -94,6 +94,8 @@ namespace ACOPEDH
                             if (Acción.Disponible == 0)
                             {
                                 CerrarCuenta();
+                                MessageBox.Show("La cuenta ha sido cerrada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                             }
                             else
                                 MessageBox.Show("Aún queda dinero disponible en la cuenta, no se puede cerrar","Dinero",MessageBoxButtons.OK,MessageBoxIcon.Warning);
@@ -125,7 +127,6 @@ namespace ACOPEDH
                 Parámetros[0] = new SqlParameter("@Id_Ahorro", Dato);
                 if (Cargar.llenar_tabla("Cerrar Ahorro", Parámetros) > 0)
                 {
-                    MessageBox.Show("La cuenta ha sido cerrada con éxito", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Cargar_Datos();
                     dr = DialogResult.Yes;
                 }
@@ -241,11 +242,11 @@ namespace ACOPEDH
         //Botón Imprimir
         private void bttImprimir_Click(object sender, EventArgs e)
         {
-            //Imprimir Acción = new Imprimir(Dato, "Estado");
-            //this.Cursor = Cursors.WaitCursor;
-            //Acción.ShowDialog();
-            //Acción.Dispose();
-            //this.Cursor = Cursors.Default;
+            Imprimir Acción = new Imprimir(Dato, "Estado");
+            this.Cursor = Cursors.WaitCursor;
+            Acción.ShowDialog();
+            Acción.Dispose();
+            this.Cursor = Cursors.Default;
         }
     }
 }

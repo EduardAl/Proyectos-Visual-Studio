@@ -16,14 +16,14 @@ namespace ACOPEDH {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class Constancia_Abono : ReportClass {
+    public class Constancia_Nuevo_Ahorro : ReportClass {
         
-        public Constancia_Abono() {
+        public Constancia_Nuevo_Ahorro() {
         }
         
         public override string ResourceName {
             get {
-                return "Constancia Abono.rpt";
+                return "Constancia Nuevo Ahorro.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace ACOPEDH {
         
         public override string FullResourceName {
             get {
-                return "ACOPEDH.Constancia Abono.rpt";
+                return "ACOPEDH.Constancia Nuevo Ahorro.rpt";
             }
             set {
                 // Do nothing
@@ -90,7 +90,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Nombre {
+        public CrystalDecisions.Shared.IParameterField Parameter_No_Ahorro {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
@@ -98,7 +98,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Abono {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Nombre {
             get {
                 return this.DataDefinition.ParameterFields[1];
             }
@@ -106,7 +106,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Interés {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Abono {
             get {
                 return this.DataDefinition.ParameterFields[2];
             }
@@ -114,7 +114,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_P_Tipo_Ahorro {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Interés {
             get {
                 return this.DataDefinition.ParameterFields[3];
             }
@@ -122,25 +122,17 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_No_Ahorro {
+        public CrystalDecisions.Shared.IParameterField Parameter_P_Tipo_Ahorro {
             get {
                 return this.DataDefinition.ParameterFields[4];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Disponible {
-            get {
-                return this.DataDefinition.ParameterFields[5];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedConstancia_Abono : Component, ICachedReport {
+    public class CachedConstancia_Nuevo_Ahorro : Component, ICachedReport {
         
-        public CachedConstancia_Abono() {
+        public CachedConstancia_Nuevo_Ahorro() {
         }
         
         [Browsable(false)]
@@ -177,7 +169,7 @@ namespace ACOPEDH {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            Constancia_Abono rpt = new Constancia_Abono();
+            Constancia_Nuevo_Ahorro rpt = new Constancia_Nuevo_Ahorro();
             rpt.Site = this.Site;
             return rpt;
         }

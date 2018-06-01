@@ -20,6 +20,7 @@ namespace ACOPEDH
         */
         string Dato;
         double interes = 0;
+        bool imprimir = false;
         Procedimientos_select ingresar = new Procedimientos_select();
         #region Constructores
         public Abonos()
@@ -72,22 +73,24 @@ namespace ACOPEDH
                     Parámetros[1] = new SqlParameter("@Comision",comision);
                     Parámetros[2] = new SqlParameter("@FK_Ahorro", Dato);
                     Parámetros[3] = new SqlParameter("@Id_Usuario",Globales.gbCodUsuario);
-                    if (Imprimir == DialogResult.Yes)
-                    {
-                        this.Cursor = Cursors.WaitCursor;
-                        Imprimir Acción = new Imprimir(Dato, "Abono");
-                        Acción.ShowDialog();
-                        Acción.Dispose();
-                    }
                     if (ingresar.llenar_tabla("[Abonar]", Parámetros) > 0)
                     {
                         DialogResult = DialogResult.OK;
                         Close();
+                        imprimir = true;
                     }
                     else
                     {
                         MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Globales.gbError = "";
+                        imprimir = false;
+                    }
+                    if (Imprimir == DialogResult.Yes && imprimir == true)
+                    {
+                        this.Cursor = Cursors.WaitCursor;
+                        Imprimir Acción = new Imprimir(Dato, "Abono");
+                        Acción.ShowDialog();
+                        Acción.Dispose();
                     }
                 }
             }

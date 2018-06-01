@@ -79,6 +79,10 @@ namespace ACOPEDH
                     {
                         MessageBox.Show("Cuenta de Ahorros guardado en la base de datos, procediendo a generar los documentos necesarios", "¡Éxito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DialogResult = dr = DialogResult.OK;
+                        this.Cursor = Cursors.WaitCursor;
+                        Imprimir Acción = new Imprimir(TxtCódigoA.Text, "Nuevo Ahorro");
+                        Acción.ShowDialog();
+                        Acción.Dispose();
                         Close();
                     }
                     else

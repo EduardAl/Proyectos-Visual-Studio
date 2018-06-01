@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ACOPEDH.Modelos
 {
-    class modelo_Amortización
+    public class modelo_Amortización
     {
         private int i;
         private double cuota;

@@ -157,6 +157,7 @@ namespace ACOPEDH
             {
                 Amortización Acción = new Amortización(double.Parse(TxtInterés.Text), Monto, Cuotas);
                 Acción.ShowDialog();
+                this.Cursor = Cursors.Default;
             }
             else
             {

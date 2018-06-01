@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ACOPEDH.Modelos;
 
 namespace ACOPEDH
 {
@@ -20,8 +21,9 @@ namespace ACOPEDH
             *     Componentes Iniciales     *
             ********************************* 
         */
-        public string CódigoPréstamo="";
+        public string lista="";
         Fonts F;
+        List<modelo_Amortización> listaAmort = new List<modelo_Amortización>();
         #region Constructores
         //Normal
         public Amortización()
@@ -32,7 +34,7 @@ namespace ACOPEDH
         public Amortización(string codigoPréstamo)
         {
             InitializeComponent();
-            CódigoPréstamo = codigoPréstamo;
+            lista = codigoPréstamo;
         }
         //Únicamente para generar
         public Amortización(double interes,double monto, int plazo)
@@ -47,11 +49,11 @@ namespace ACOPEDH
         private void Amortización_Load(object sender, EventArgs e)
         {
             DateTime Pago = DateTime.Today.AddDays(1).AddMinutes(-5);
-            if (CódigoPréstamo != "")//Si se ha cargado desde código
+            if (lista != "")//Si se ha cargado desde código
             {
                 Procedimientos_select pro = new Procedimientos_select();
                 SqlParameter[] Param = new SqlParameter[1];
-                Param[0] = new SqlParameter("@ID_Préstamo", CódigoPréstamo);
+                Param[0] = new SqlParameter("@ID_Préstamo", lista);
                 DataTable dt=pro.LlenarText("[Cargar Préstamo]", "Monto,NCuotas,Interés", Param, txtMonto, txtPlazo, txtInteres);
                 Pago = Convert.ToDateTime(dt.Rows[0]["FechaT"]);
             }
@@ -71,7 +73,7 @@ namespace ACOPEDH
                     if (i == plazo)
                         cuota = Math.Round(Monto * (1 + interes), 2);
                     dgvAmortizar.Rows.Add(i, cuota.ToString("C2"), (inte = Math.Round(interes * Monto, 2)).ToString("C2"), Math.Round(cuota - inte, 2).ToString("C2"), (Monto = Math.Round(Monto - cuota + inte, 2)).ToString("C2"), (Pago = Pago.AddMonths(1)).ToShortDateString());
-                    
+                    listaAmort.Add(new modelo_Amortización(i, cuota, inte, Math.Round(cuota - inte, 2), Monto, Pago));
                 }
             }
             catch
@@ -94,7 +96,7 @@ namespace ACOPEDH
         private void bttImprimir_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
-            Imprimir Acción = new Imprimir(CódigoPréstamo,"Amortización");
+            Imprimir Acción = new Imprimir(listaAmort, lista, "Amortización");
             Acción.ShowDialog();
             Acción.Dispose();
         }
