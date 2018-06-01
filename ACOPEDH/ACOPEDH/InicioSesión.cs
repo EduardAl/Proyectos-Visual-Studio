@@ -218,6 +218,7 @@ namespace ACOPEDH
                     Globales.gbError = "";
                 }
             }
+            Globales.ReiniciarValores();
         }
 
         private void txtCorreo_KeyUp(object sender, KeyEventArgs e)

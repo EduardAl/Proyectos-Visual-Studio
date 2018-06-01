@@ -17,6 +17,11 @@ namespace ACOPEDH
         public Globales()
         {
         }
+        public static void ReiniciarValores()
+        {
+            gbTipo_Usuario = "InicioSesion";
+            gbClave_Tipo_Usuario = "In112358";
+        }
         public static void Inicializar(String pCodUsuario, String pTipo_Cuenta, String pClaveCuenta, String pCorreo, String pNombreUsuario, String pApellidoUsuario, String pCod_TipoUsuario, String pClaveUsuario)
         {
             gbTipo_Usuario = pTipo_Cuenta;

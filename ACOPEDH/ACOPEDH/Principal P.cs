@@ -64,6 +64,7 @@ namespace ACOPEDH
             F.Diseño();
             F = new Fonts(dgvTransacciones);
             F.Diseño();
+            PAdministrar.Visible = (Globales.gbTipo_Usuario=="Master_ACOPEDH"||Globales.gbTipo_Usuario=="Administrador") ?true:false;
         }
         #endregion
 
@@ -75,112 +76,138 @@ namespace ACOPEDH
         #region Botones
         private void PInicio_Click(object sender, EventArgs e)
         {
-            Ocultar();
-            //Colorear
-            PInicio.BackColor = Seleccionado;
-            PInicio.ForeColor = Fuente;
+            if (PInicio.BackColor != Seleccionado)
+            {
+                Ocultar();
+                //Colorear
+                PInicio.BackColor = Seleccionado;
+                PInicio.ForeColor = Fuente;
+            }
         }
         private void PAhorros_Click(object sender, EventArgs e)
         {
-            Ocultar();
-            //Colorear
-            PAhorros.BackColor = Seleccionado;
-            PAhorros.ForeColor = Fuente;
+            if (PAhorros.BackColor != Seleccionado)
+            {
+                Ocultar();
+                //Colorear
+                PAhorros.BackColor = Seleccionado;
+                PAhorros.ForeColor = Fuente;
 
-            // Mostrando
-            labBuscar.Visible = true;
-            txtBúsqueda.Visible = true;
-            dgvBúsqueda.Visible = true;
-            bttAbono.Visible = true;
-            bttRetirar.Visible = true;
-            bttVerEstados.Visible = true;
-            bttCrearCuenta.Visible = true;
-            //Lenado de Datos
-            dgvControl = "Ahorro";
-            this.filtro = dsAhorro.DefaultView;
-            this.dgvBúsqueda.DataSource = filtro;
-            txtBúsqueda.Focus();
+                // Mostrando
+                labBuscar.Visible = true;
+                txtBúsqueda.Visible = true;
+                dgvBúsqueda.Visible = true;
+                bttAbono.Visible = true;
+                bttRetirar.Visible = true;
+                bttVerEstados.Visible = true;
+                bttCrearCuenta.Visible = true;
+                //Lenado de Datos
+                dgvControl = "Ahorro";
+                this.filtro = dsAhorro.DefaultView;
+                this.dgvBúsqueda.DataSource = filtro;
+                txtBúsqueda.Focus();
+            }
         }
         private void PPréstamos_Click(object sender, EventArgs e)
         {
-            Ocultar();
-            //Colorear
-            PPréstamos.BackColor = Seleccionado;
-            PPréstamos.ForeColor = Fuente;
+            if (PPréstamos.BackColor != Seleccionado)
+            {
+                Ocultar();
+                //Colorear
+                PPréstamos.BackColor = Seleccionado;
+                PPréstamos.ForeColor = Fuente;
 
-            // Mostrando
-            labBuscar.Visible = true;
-            txtBúsqueda.Visible = true;
-            dgvBúsqueda.Visible = true;
-            bttAmortizacion.Visible = true;
-            bttOtorgarPréstamo.Visible = true;
-            bttPagosRealizados.Visible = true;
-            bttRealizarPago.Visible = true;
-            //Lenado de Datos
-            dgvControl = "Préstamo";
-            this.filtro = dsPréstamo.DefaultView;
-            txtBúsqueda.Focus();
-            this.dgvBúsqueda.DataSource = filtro;
+                // Mostrando
+                labBuscar.Visible = true;
+                txtBúsqueda.Visible = true;
+                dgvBúsqueda.Visible = true;
+                bttAmortizacion.Visible = true;
+                bttOtorgarPréstamo.Visible = true;
+                bttPagosRealizados.Visible = true;
+                bttRealizarPago.Visible = true;
+                //Lenado de Datos
+                dgvControl = "Préstamo";
+                this.filtro = dsPréstamo.DefaultView;
+                txtBúsqueda.Focus();
+                this.dgvBúsqueda.DataSource = filtro;
+            }
         }
         private void PAsociados_Click(object sender, EventArgs e)
         {
-            Ocultar();
-            //Colorear
-            PAsociados.BackColor = Seleccionado;
-            PAsociados.ForeColor = Fuente;
+            if (PAsociados.BackColor != Seleccionado)
+            {
+                Ocultar();
+                //Colorear
+                PAsociados.BackColor = Seleccionado;
+                PAsociados.ForeColor = Fuente;
 
-            //Mostrando
-            labBuscar.Visible = true;
-            txtBúsqueda.Visible = true;
-            dgvBúsqueda.Visible = true;
-            bttAgregarAsociado.Visible = true;
-            bttDatosAsociado.Visible = true;
-            bttAportar.Visible = true;
-            //Lenado de Datos
-            dgvControl = "Asociado";
-            this.filtro = dsAsociado.DefaultView;
-            txtBúsqueda.Focus();
-            this.dgvBúsqueda.DataSource = filtro;
+                //Mostrando
+                labBuscar.Visible = true;
+                txtBúsqueda.Visible = true;
+                dgvBúsqueda.Visible = true;
+                bttAgregarAsociado.Visible = true;
+                bttDatosAsociado.Visible = true;
+                bttAportar.Visible = true;
+                //Lenado de Datos
+                dgvControl = "Asociado";
+                this.filtro = dsAsociado.DefaultView;
+                txtBúsqueda.Focus();
+                this.dgvBúsqueda.DataSource = filtro;
+            }
         }
         private void PConfiguración_Click(object sender, EventArgs e)
         {
-            Ocultar();
-            //Colorear
-            PConfiguración.BackColor = Seleccionado;
-            PConfiguración.ForeColor = Fuente;
-            //Mostrando
-            panelConfig.Visible = true;
+            if (PConfiguración.BackColor != Seleccionado)
+            {
+                Ocultar();
+                //Colorear
+                PConfiguración.BackColor = Seleccionado;
+                PConfiguración.ForeColor = Fuente;
+                //Mostrando
+                panelConfig.Visible = true;
+            }
         }
         private void PEstadoAsociación_Click(object sender, EventArgs e)
         {
-            Ocultar();
-            //Colorear
-            PEstadoAsociación.BackColor = Seleccionado;
-            PEstadoAsociación.ForeColor = Fuente;
-
-            //Mostrando
-            bttGráfica.Visible = true;
-            cbTransacción.Visible = true;
-            labDesde.Visible = true;
-            labHasta.Visible = true;
-            labTTran.Visible = true;
-            dtDesde.Visible = true;
-            dtHasta.Visible = true;
-            dgvTransacciones.Visible = true;
-            gbAhorros.Visible = true;
-            gbAportaciones.Visible = true;
-            gbPréstamos.Visible = true;
-            //Cargando
-            if (Cargando)
+            if (PEstadoAsociación.BackColor != Seleccionado)
             {
-                Cargando_Datos_DGV();
-                Cargando_Datos_Text();
-                Cargando = false;
+                Ocultar();
+                //Colorear
+                PEstadoAsociación.BackColor = Seleccionado;
+                PEstadoAsociación.ForeColor = Fuente;
+
+                //Mostrando
+                bttGráfica.Visible = true;
+                cbTransacción.Visible = true;
+                labDesde.Visible = true;
+                labHasta.Visible = true;
+                labTTran.Visible = true;
+                dtDesde.Visible = true;
+                dtHasta.Visible = true;
+                dgvTransacciones.Visible = true;
+                gbAhorros.Visible = true;
+                gbAportaciones.Visible = true;
+                gbPréstamos.Visible = true;
+                //Cargando
+                if (Cargando)
+                {
+                    Cargando_Datos_DGV();
+                    Cargando_Datos_Text();
+                    Cargando = false;
+                }
             }
         }
-        private void PCerrarSesion_Click(object sender, EventArgs e)
+        private void PAdministrador_Click(object sender, EventArgs e)
         {
-            Close();
+            // if (Globales.gbCod_TipoUsuario=="")
+            // {
+            Administrador Accion = new Administrador();
+            Visible = false;
+            Accion.ShowDialog();
+            Visible = true;
+            Accion.Dispose();
+            Cargando = true;
+            //}
         }
         #endregion
 
@@ -635,13 +662,13 @@ namespace ACOPEDH
             dgvTransacciones.Width = gbAhorros.Location.X - dgvTransacciones.Location.X - 30;
 
             //Botones
-            bttOtorgarPréstamo.Location = new Point(dgvBúsqueda.Width - bttOtorgarPréstamo.Width + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y - bttOtorgarPréstamo.Height - 23);
+            bttOtorgarPréstamo.Location = new Point(dgvBúsqueda.Width - bttOtorgarPréstamo.Width + dgvBúsqueda.Location.X, bttOtorgarPréstamo.Location.Y);
             bttCrearCuenta.Location = bttAgregarAsociado.Location = bttOtorgarPréstamo.Location;
             bttPagosRealizados.Location = new Point(dgvBúsqueda.Width - bttPagosRealizados.Width + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
             bttVerEstados.Location = bttAportar.Location = bttPagosRealizados.Location;
-            bttAmortizacion.Location = new Point(bttPagosRealizados.Location.X - bttAmortizacion.Width - 89, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
+            bttAmortizacion.Location = new Point(dgvBúsqueda.Location.X+(dgvBúsqueda.Width-bttAmortizacion.Width)/2, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
             bttRetirar.Location = bttDatosAsociado.Location = bttAmortizacion.Location;
-            bttRealizarPago.Location = new Point(bttAmortizacion.Location.X - bttRealizarPago.Width - 89, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
+            bttRealizarPago.Location = new Point(dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
             bttAbono.Location = bttRealizarPago.Location;
             Refresh();
         }
