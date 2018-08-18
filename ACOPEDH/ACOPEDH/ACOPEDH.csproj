@@ -249,6 +249,12 @@
     <Compile Include="Pagos_Realizados.Designer.cs">
       <DependentUpon>Pagos_Realizados.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrador.Designer.cs">
+      <DependentUpon>Administrador.cs</DependentUpon>
+    </Compile>
     <Compile Include="Principal P.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -388,6 +394,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pagos_Realizados.resx">
       <DependentUpon>Pagos_Realizados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrador.resx">
+      <DependentUpon>Administrador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal P.resx">
       <DependentUpon>Principal P.cs</DependentUpon>

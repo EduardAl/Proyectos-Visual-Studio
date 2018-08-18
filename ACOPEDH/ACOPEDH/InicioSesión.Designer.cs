@@ -214,9 +214,9 @@
             this.bttCer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(72)))));
             this.bttCer.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bttCer.BackgroundImage")));
             this.bttCer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.bttCer.Location = new System.Drawing.Point(363, 2);
+            this.bttCer.Location = new System.Drawing.Point(359, 1);
             this.bttCer.Name = "bttCer";
-            this.bttCer.Size = new System.Drawing.Size(25, 25);
+            this.bttCer.Size = new System.Drawing.Size(30, 30);
             this.bttCer.TabIndex = 65;
             this.bttCer.TabStop = false;
             this.bttCer.DoubleClick += new System.EventHandler(this.bttCer_Click);

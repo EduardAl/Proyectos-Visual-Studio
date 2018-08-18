@@ -13,10 +13,10 @@ namespace Crear_Base_de_Datos
         }
         private void Principal_Load(object sender, EventArgs e)
         {
+            Focus();
             Servidores ser = new Servidores();
             this.Hide();
             ser.ShowDialog();
-            txtNombre.Focus();
         }
         private void BttCrear_Click(object sender, EventArgs e)
         {
@@ -93,7 +93,7 @@ namespace Crear_Base_de_Datos
                 "[NIT] [varchar](17) NULL unique," +
                 "[Dirección] [varchar](100) NULL," +
                 "[Fecha de Nacimiento] [datetime] NOT NULL," +
-                "CONSTRAINT [PK_Persona] PRIMARY KEY ([Código Asociado])";*/
+                "CONSTRAINT [PK_Persona] PRIMARY KEY ([Código Persona]))";
             String tabla8 = "CREATE TABLE [dbo].[Asociado](" +
                 "[Número][int] IDENTITY(1, 1) NOT NULL," +
                 "[Código Asociado]  AS('AS' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
@@ -110,13 +110,13 @@ namespace Crear_Base_de_Datos
                 "REFERENCES [Tipo de Socio]([id Tipo de Socio])," +
                 "CONSTRAINT [FK Ocupación] FOREIGN KEY ([FK Ocupación])" +
                 "REFERENCES Ocupación([Id Ocupación]))";
-            /*String tabla010 = "CREATE TABLE [dbo].[Beneficiario](" +
+            String tabla010 = "CREATE TABLE [dbo].[Beneficiario](" +
                 "[FK Persona] [varchar](5) NOT NULL," +
                 "[FK Asociado] [varchar](5) NOT NULL," +
-                "CONSTRAINT [FK Persona] FOREIGN KEY ([FK Persona])" +
+                "CONSTRAINT [FK Persona A] FOREIGN KEY ([FK Persona])" +
                 "REFERENCES [Persona]([Código Persona])," +
-                "CONSTRAINT [FK Asociado] FOREIGN KEY ([FK Asociado])" +
-                "REFERENCES [Asociado]([Código Asociado]))";*/
+                "CONSTRAINT [FK Asociado P] FOREIGN KEY ([FK Asociado])" +
+                "REFERENCES [Asociado]([Código Asociado]))";
             String tabla9 = "CREATE TABLE [dbo].[Aportaciones](" +
                 "[Número] [int] IDENTITY(1,1) NOT NULL," +
                 "[id Aportación]  AS('AP' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
@@ -281,7 +281,7 @@ namespace Crear_Base_de_Datos
                 "set @Persona=(Select count([Código Asociado]) from Asociado where [FK Persona]=@FK_Per) " +
                 "if @Persona=0 " +
                 "begin " +
-                "Insert into Asociado values(@FK_Per,@FK_Tipo_Socio, @Fecha_Asociación, null, 'ACTIVO', @FK_Ocupación) " +
+                "Insert into Asociado values(@FK_Per,@FK_Tipo_Socio, @Fecha_Asociación, null, 'ACTIVO', @FK_Ocupacion) " +
                 "end " +
                 "else " +
                 "begin Print 'Ya existe una persona registrada con ese DUI' " +
@@ -664,7 +664,7 @@ namespace Crear_Base_de_Datos
                  "As " +
                  "Begin Tran Cargar_P " +
                 "Begin Try " +
-                "Select p.[Código Asociado] AS 'Código_A', (p.Nombres + ' ' + p.Apellidos) AS 'Nombre',[Forma de Pago].Nombre AS 'FormaP'," +
+                "Select Asociado.[Código Asociado] AS 'Código_A', (p.Nombres + ' ' + p.Apellidos) AS 'Nombre',[Forma de Pago].Nombre AS 'FormaP'," +
                 " [Tipo de Préstamo].[Tipo de Préstamo]As 'TipoP', [Tipo de Préstamo].[Tasa de Interés] As Interés, Préstamos.[Monto del Préstamo] AS Monto, " +
                 "Transacciones.[Fecha de Transacción] AS FechaT, Préstamos.Cuotas AS NCuotas, Préstamos.[Cuota Mensual] AS PCuotas, Préstamos.Estado AS Estado " +
                 "From Asociado inner join [Forma de Pago] on [Forma de Pago].[id Forma de Pago] = [id Forma de Pago] inner join Préstamos on " +
@@ -938,22 +938,16 @@ namespace Crear_Base_de_Datos
                 "@DUI varchar(10), " +
                 "@NIT varchar(17), " +
                 "@Residencia varchar(100), " +
-                "@Fecha_Nacimiento datetime, " +
-                "@FK_Ocupacion varchar(30) " +
+                "@Fecha_Nacimiento datetime " +
                 "As " +
                 "Begin transaction " +
-                "Declare @ID_Tipo_Socio as varchar(5) " +
-                "Declare @ID_Ocupación as varchar(5) " +
-                "set @ID_Tipo_Socio = (Select[id Tipo de Socio] From[Tipo de Socio] where[Nombre Tipo Socio] = @FK_Tipo_Socio)  " +
-                "set @ID_Ocupación = (Select[Id Ocupación] From[Ocupación] where[Nombre de la Empresa] = @FK_Ocupacion) " +
-                "Update Persona set[FK Tipo Socio] = @ID_Tipo_Socio, " +
+                "Update Persona set " +
                         "Nombres = @Nombres, " +
                         "Apellidos = @Apellidos, " +
                         "DUI = @DUI, " +
                         "NIT = @NIT, " +
                         "Dirección = @Residencia, " +
-                        "[Fecha de Nacimiento] = @Fecha_Nacimiento, " +
-                        "[FK Ocupación] = @ID_Ocupación where[Código Persona] = @Codigo_Persona " +
+                        "[Fecha de Nacimiento] = @Fecha_Nacimiento " +
               "If @@error = 0 " +
               "Begin " +
                 "COMMIT TRANSACTION " +
@@ -966,7 +960,7 @@ namespace Crear_Base_de_Datos
             String procedimiento39 = "Create procedure[dbo].[Actualizar Asociado] " +
                 "@Codigo_Asociado varchar(5), " +
                 "@FK_Tipo_Socio varchar(5), " +
-                "@FK_Ocupacion varchar(5) " +
+                "@FK_Ocupación varchar(5) " +
                 "As " +
                 "Begin transaction " +
                 "Update Asociado set[FK Tipo Socio] = @FK_Tipo_Socio, " +
@@ -1498,6 +1492,8 @@ namespace Crear_Base_de_Datos
                 "to Administrador with grant option " +
                 "grant execute on object :: [Constancia Nuevo Ahorro] " +
                 "to Administrador with grant option " +
+                "grant execute on object :: [Actualizar Persona] " +
+                "to Administrador with grant option " +
                 "grant execute on object :: [Actualizar Asociado] " +
                  "to Administrador with grant option ";
             String permisosUsuario =
@@ -1559,8 +1555,10 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd6 = new SqlCommand(tabla6, cnn);
             SqlCommand cmd7 = new SqlCommand(tabla7, cnn);
             SqlCommand cmd8 = new SqlCommand(tabla8, cnn);
+            SqlCommand cmd08 = new SqlCommand(tabla08, cnn);
             SqlCommand cmd9 = new SqlCommand(tabla9, cnn);
             SqlCommand cmd10 = new SqlCommand(tabla10, cnn);
+            SqlCommand cmd010 = new SqlCommand(tabla010, cnn);
             SqlCommand cmd11 = new SqlCommand(tabla11, cnn);
             SqlCommand cmd12 = new SqlCommand(tabla12, cnn);
             SqlCommand cmd13 = new SqlCommand(tabla13, cnn);
@@ -1616,6 +1614,7 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd_37 = new SqlCommand(procedimiento37, cnn);
             SqlCommand cmd_38 = new SqlCommand(procedimiento38, cnn);
             SqlCommand cmd_39 = new SqlCommand(procedimiento39, cnn);
+            SqlCommand cmd_039 = new SqlCommand(procedimiento039, cnn);
             SqlCommand cmd_40 = new SqlCommand(procedimiento40, cnn);
             SqlCommand cmd_41 = new SqlCommand(procedimiento41, cnn);
             SqlCommand cmd_42 = new SqlCommand(procedimiento42, cnn);
@@ -1684,9 +1683,11 @@ namespace Crear_Base_de_Datos
             cmd5.ExecuteNonQuery();
             cmd6.ExecuteNonQuery();
             cmd7.ExecuteNonQuery();
+            cmd08.ExecuteNonQuery();
             cmd8.ExecuteNonQuery();
             cmd9.ExecuteNonQuery();
             cmd10.ExecuteNonQuery();
+            cmd010.ExecuteNonQuery();
             cmd11.ExecuteNonQuery();
             cmd12.ExecuteNonQuery();
             cmd13.ExecuteNonQuery();
@@ -1739,6 +1740,7 @@ namespace Crear_Base_de_Datos
             cmd_36.ExecuteNonQuery();
             cmd_37.ExecuteNonQuery();
             cmd_38.ExecuteNonQuery();
+            cmd_039.ExecuteNonQuery();
             cmd_39.ExecuteNonQuery();
             cmd_40.ExecuteNonQuery();
             cmd_41.ExecuteNonQuery();

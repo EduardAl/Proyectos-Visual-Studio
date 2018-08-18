@@ -43,7 +43,7 @@
             this.PAsociados = new System.Windows.Forms.Button();
             this.PConfiguración = new System.Windows.Forms.Button();
             this.PEstadoAsociación = new System.Windows.Forms.Button();
-            this.PCerrarSesion = new System.Windows.Forms.Button();
+            this.PAdministrar = new System.Windows.Forms.Button();
             this.bttPagosRealizados = new System.Windows.Forms.Button();
             this.bttAmortización = new System.Windows.Forms.Button();
             this.bttRealizarPago = new System.Windows.Forms.Button();
@@ -118,11 +118,11 @@
             this.cbTransacción = new System.Windows.Forms.ComboBox();
             this.dtHasta = new System.Windows.Forms.DateTimePicker();
             this.dtDesde = new System.Windows.Forms.DateTimePicker();
-            this.dgvTransacciones = new System.Windows.Forms.DataGridView();
             this.bttAgregarAsociado = new System.Windows.Forms.Button();
             this.bttAmortizacion = new System.Windows.Forms.Button();
             this.bttAbono = new System.Windows.Forms.Button();
             this.bttAportar = new System.Windows.Forms.Button();
+            this.dgvTransacciones = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBúsqueda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttCer)).BeginInit();
@@ -267,27 +267,30 @@
             this.PEstadoAsociación.UseVisualStyleBackColor = false;
             this.PEstadoAsociación.Click += new System.EventHandler(this.PEstadoAsociación_Click);
             // 
-            // PCerrarSesion
+            // PAdministrar
             // 
-            this.PCerrarSesion.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.PCerrarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(219)))), ((int)(((byte)(252)))));
-            this.PCerrarSesion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.PCerrarSesion.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
-            this.PCerrarSesion.ForeColor = System.Drawing.Color.Black;
-            this.PCerrarSesion.Location = new System.Drawing.Point(31, 601);
-            this.PCerrarSesion.Name = "PCerrarSesion";
-            this.PCerrarSesion.Size = new System.Drawing.Size(163, 65);
-            this.PCerrarSesion.TabIndex = 11;
-            this.PCerrarSesion.TabStop = false;
-            this.PCerrarSesion.Text = "Cerrar Sesión";
-            this.PCerrarSesion.UseVisualStyleBackColor = false;
-            this.PCerrarSesion.Click += new System.EventHandler(this.PCerrarSesion_Click);
+            this.PAdministrar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.PAdministrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(219)))), ((int)(((byte)(252)))));
+            this.PAdministrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PAdministrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.PAdministrar.Font = new System.Drawing.Font("Linotte-Bold", 13.2F);
+            this.PAdministrar.ForeColor = System.Drawing.Color.Black;
+            this.PAdministrar.Location = new System.Drawing.Point(31, 601);
+            this.PAdministrar.Name = "PAdministrar";
+            this.PAdministrar.Size = new System.Drawing.Size(163, 65);
+            this.PAdministrar.TabIndex = 11;
+            this.PAdministrar.TabStop = false;
+            this.PAdministrar.Text = "Administrar";
+            this.PAdministrar.UseVisualStyleBackColor = false;
+            this.PAdministrar.Visible = false;
+            this.PAdministrar.Click += new System.EventHandler(this.PAdministrador_Click);
             // 
             // bttPagosRealizados
             // 
             this.bttPagosRealizados.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttPagosRealizados.Location = new System.Drawing.Point(746, 609);
+            this.bttPagosRealizados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttPagosRealizados.Font = new System.Drawing.Font("Linotte-SemiBold", 12F);
+            this.bttPagosRealizados.Location = new System.Drawing.Point(746, 608);
             this.bttPagosRealizados.Name = "bttPagosRealizados";
             this.bttPagosRealizados.Size = new System.Drawing.Size(150, 59);
             this.bttPagosRealizados.TabIndex = 27;
@@ -316,7 +319,9 @@
             // bttRealizarPago
             // 
             this.bttRealizarPago.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttRealizarPago.Location = new System.Drawing.Point(264, 609);
+            this.bttRealizarPago.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttRealizarPago.Font = new System.Drawing.Font("Linotte-SemiBold", 12F);
+            this.bttRealizarPago.Location = new System.Drawing.Point(264, 608);
             this.bttRealizarPago.Name = "bttRealizarPago";
             this.bttRealizarPago.Size = new System.Drawing.Size(150, 58);
             this.bttRealizarPago.TabIndex = 25;
@@ -387,6 +392,8 @@
             // 
             // txtBúsqueda
             // 
+            this.txtBúsqueda.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBúsqueda.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBúsqueda.Font = new System.Drawing.Font("Linotte-Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBúsqueda.Location = new System.Drawing.Point(365, 154);
@@ -413,9 +420,11 @@
             // bttRetirar
             // 
             this.bttRetirar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttRetirar.Location = new System.Drawing.Point(504, 609);
+            this.bttRetirar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttRetirar.Font = new System.Drawing.Font("Linotte-SemiBold", 12F);
+            this.bttRetirar.Location = new System.Drawing.Point(504, 608);
             this.bttRetirar.Name = "bttRetirar";
-            this.bttRetirar.Size = new System.Drawing.Size(150, 59);
+            this.bttRetirar.Size = new System.Drawing.Size(150, 58);
             this.bttRetirar.TabIndex = 29;
             this.bttRetirar.TabStop = false;
             this.bttRetirar.Text = "Retirar";
@@ -427,7 +436,9 @@
             // bttVerEstados
             // 
             this.bttVerEstados.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttVerEstados.Location = new System.Drawing.Point(746, 609);
+            this.bttVerEstados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttVerEstados.Font = new System.Drawing.Font("Linotte-SemiBold", 12F);
+            this.bttVerEstados.Location = new System.Drawing.Point(746, 608);
             this.bttVerEstados.Name = "bttVerEstados";
             this.bttVerEstados.Size = new System.Drawing.Size(150, 59);
             this.bttVerEstados.TabIndex = 30;
@@ -441,7 +452,9 @@
             // bttCrearCuenta
             // 
             this.bttCrearCuenta.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttCrearCuenta.Location = new System.Drawing.Point(743, 135);
+            this.bttCrearCuenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttCrearCuenta.Font = new System.Drawing.Font("Linotte-SemiBold", 12F);
+            this.bttCrearCuenta.Location = new System.Drawing.Point(744, 135);
             this.bttCrearCuenta.Name = "bttCrearCuenta";
             this.bttCrearCuenta.Size = new System.Drawing.Size(150, 58);
             this.bttCrearCuenta.TabIndex = 31;
@@ -580,9 +593,11 @@
             // bttDatosAsociado
             // 
             this.bttDatosAsociado.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bttDatosAsociado.Location = new System.Drawing.Point(504, 609);
+            this.bttDatosAsociado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttDatosAsociado.Font = new System.Drawing.Font("Linotte-SemiBold", 12F);
+            this.bttDatosAsociado.Location = new System.Drawing.Point(504, 608);
             this.bttDatosAsociado.Name = "bttDatosAsociado";
-            this.bttDatosAsociado.Size = new System.Drawing.Size(150, 59);
+            this.bttDatosAsociado.Size = new System.Drawing.Size(150, 58);
             this.bttDatosAsociado.TabIndex = 39;
             this.bttDatosAsociado.TabStop = false;
             this.bttDatosAsociado.Text = "Datos del Asociado";
@@ -1263,23 +1278,6 @@
             this.dtDesde.Visible = false;
             this.dtDesde.ValueChanged += new System.EventHandler(this.dtDesde_ValueChanged);
             // 
-            // dgvTransacciones
-            // 
-            this.dgvTransacciones.AllowUserToAddRows = false;
-            this.dgvTransacciones.AllowUserToDeleteRows = false;
-            this.dgvTransacciones.AllowUserToResizeRows = false;
-            this.dgvTransacciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvTransacciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTransacciones.Location = new System.Drawing.Point(264, 275);
-            this.dgvTransacciones.Name = "dgvTransacciones";
-            this.dgvTransacciones.ReadOnly = true;
-            this.dgvTransacciones.RowHeadersVisible = false;
-            this.dgvTransacciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTransacciones.Size = new System.Drawing.Size(360, 391);
-            this.dgvTransacciones.TabIndex = 80;
-            this.dgvTransacciones.TabStop = false;
-            this.dgvTransacciones.Visible = false;
-            // 
             // bttAgregarAsociado
             // 
             this.bttAgregarAsociado.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -1297,7 +1295,9 @@
             // bttAmortizacion
             // 
             this.bttAmortizacion.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.bttAmortizacion.Location = new System.Drawing.Point(504, 609);
+            this.bttAmortizacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttAmortizacion.Font = new System.Drawing.Font("Linotte-SemiBold", 12F);
+            this.bttAmortizacion.Location = new System.Drawing.Point(504, 608);
             this.bttAmortizacion.Name = "bttAmortizacion";
             this.bttAmortizacion.Size = new System.Drawing.Size(150, 58);
             this.bttAmortizacion.TabIndex = 92;
@@ -1309,7 +1309,9 @@
             // bttAbono
             // 
             this.bttAbono.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.bttAbono.Location = new System.Drawing.Point(264, 609);
+            this.bttAbono.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttAbono.Font = new System.Drawing.Font("Linotte-SemiBold", 12F);
+            this.bttAbono.Location = new System.Drawing.Point(264, 608);
             this.bttAbono.Name = "bttAbono";
             this.bttAbono.Size = new System.Drawing.Size(150, 58);
             this.bttAbono.TabIndex = 93;
@@ -1321,7 +1323,9 @@
             // bttAportar
             // 
             this.bttAportar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.bttAportar.Location = new System.Drawing.Point(264, 609);
+            this.bttAportar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bttAportar.Font = new System.Drawing.Font("Linotte-SemiBold", 12F);
+            this.bttAportar.Location = new System.Drawing.Point(264, 608);
             this.bttAportar.Name = "bttAportar";
             this.bttAportar.Size = new System.Drawing.Size(150, 58);
             this.bttAportar.TabIndex = 94;
@@ -1329,6 +1333,23 @@
             this.bttAportar.UseVisualStyleBackColor = true;
             this.bttAportar.Visible = false;
             this.bttAportar.Click += new System.EventHandler(this.bttAportaciones_Click);
+            // 
+            // dgvTransacciones
+            // 
+            this.dgvTransacciones.AllowUserToAddRows = false;
+            this.dgvTransacciones.AllowUserToDeleteRows = false;
+            this.dgvTransacciones.AllowUserToResizeRows = false;
+            this.dgvTransacciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvTransacciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTransacciones.Location = new System.Drawing.Point(264, 275);
+            this.dgvTransacciones.Name = "dgvTransacciones";
+            this.dgvTransacciones.ReadOnly = true;
+            this.dgvTransacciones.RowHeadersVisible = false;
+            this.dgvTransacciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTransacciones.Size = new System.Drawing.Size(360, 391);
+            this.dgvTransacciones.TabIndex = 80;
+            this.dgvTransacciones.TabStop = false;
+            this.dgvTransacciones.Visible = false;
             // 
             // Principal_P
             // 
@@ -1355,7 +1376,7 @@
             this.Controls.Add(this.dgvBúsqueda);
             this.Controls.Add(this.labBuscar);
             this.Controls.Add(this.txtBúsqueda);
-            this.Controls.Add(this.PCerrarSesion);
+            this.Controls.Add(this.PAdministrar);
             this.Controls.Add(this.PEstadoAsociación);
             this.Controls.Add(this.PConfiguración);
             this.Controls.Add(this.PAsociados);
@@ -1366,7 +1387,6 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.bttPagosRealizados);
             this.Controls.Add(this.bttVerEstados);
-            this.Controls.Add(this.dgvTransacciones);
             this.Controls.Add(this.bttAportar);
             this.Controls.Add(this.bttAbono);
             this.Controls.Add(this.bttRealizarPago);
@@ -1377,6 +1397,7 @@
             this.Controls.Add(this.bttCrearCuenta);
             this.Controls.Add(this.bttAgregarAsociado);
             this.Controls.Add(this.bttGráfica);
+            this.Controls.Add(this.dgvTransacciones);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Linotte-Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -1422,7 +1443,7 @@
         private System.Windows.Forms.Button PAsociados;
         private System.Windows.Forms.Button PConfiguración;
         private System.Windows.Forms.Button PEstadoAsociación;
-        private System.Windows.Forms.Button PCerrarSesion;
+        private System.Windows.Forms.Button PAdministrar;
         private System.Windows.Forms.Button bttPagosRealizados;
         private System.Windows.Forms.Button bttAmortización;
         private System.Windows.Forms.Button bttRealizarPago;
@@ -1497,11 +1518,11 @@
         private System.Windows.Forms.ComboBox cbTransacción;
         private System.Windows.Forms.DateTimePicker dtHasta;
         private System.Windows.Forms.DateTimePicker dtDesde;
-        private System.Windows.Forms.DataGridView dgvTransacciones;
         private System.Windows.Forms.Button bttRegistros;
         private System.Windows.Forms.Button bttAgregarAsociado;
         private System.Windows.Forms.Button bttAmortizacion;
         private System.Windows.Forms.Button bttAbono;
         private System.Windows.Forms.Button bttAportar;
+        private System.Windows.Forms.DataGridView dgvTransacciones;
     }
 }
