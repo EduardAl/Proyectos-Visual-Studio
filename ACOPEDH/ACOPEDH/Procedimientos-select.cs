@@ -14,15 +14,15 @@ namespace ACOPEDH
     {
         Conexión cn;
         SqlCommand Comando;
-        SqlConnection conex = new SqlConnection();
+        SqlConnection conex = new SqlConnection("Server = yiyel501.database.windows.net; User Id = Yiyel501; Database=ACOPEDH; Password=acopedh_1234");
         public int llenar_tabla(string procedimiento, SqlParameter[] param)
         {
             int resultado = 0;
-            cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
+          //  cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
             try
             {
-                conex = new SqlConnection(cn.cadena);
-                conex.InfoMessage += new SqlInfoMessageEventHandler(Conex_InfoMessage);
+             //   conex = new SqlConnection(cn.cadena);
+               conex.InfoMessage += new SqlInfoMessageEventHandler(Conex_InfoMessage);
                 conex.Open();
                 Comando = new SqlCommand(procedimiento, conex);
                 Comando.CommandType = CommandType.StoredProcedure;
@@ -44,11 +44,11 @@ namespace ACOPEDH
         }
         public DataTable llenar_DataTable(string procedimiento)
         {
-            cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
+          //  cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
             DataTable dt = new DataTable();
             try
             {
-                conex = new SqlConnection(cn.cadena);
+              //  conex = new SqlConnection(cn.cadena);
                 conex.Open();
                 Comando = new SqlCommand(procedimiento, conex);
                 Comando.CommandType = CommandType.StoredProcedure;
@@ -72,7 +72,7 @@ namespace ACOPEDH
             DataTable dt = new DataTable();
             try
             {
-                conex = new SqlConnection(cn.cadena);
+              //  conex = new SqlConnection(cn.cadena);
                 conex.Open();
                 Comando = new SqlCommand(procedimiento, conex);
                 Comando.CommandType = CommandType.StoredProcedure;
@@ -98,7 +98,7 @@ namespace ACOPEDH
             DataSet ds = new DataSet();
             try
             {
-                conex = new SqlConnection(cn.cadena);
+              //  conex = new SqlConnection(cn.cadena);
                 conex.Open();
                 conex.InfoMessage += new SqlInfoMessageEventHandler(Conex_InfoMessage);
                 Comando = new SqlCommand(procedimiento, conex);
@@ -126,7 +126,7 @@ namespace ACOPEDH
             DataSet ds = new DataSet();
             try
             {
-                conex = new SqlConnection(cn.cadena);
+           //     conex = new SqlConnection(cn.cadena);
                 conex.InfoMessage += new SqlInfoMessageEventHandler(Conex_InfoMessage);
                 conex.Open();
                 Comando = new SqlCommand();
@@ -160,7 +160,7 @@ namespace ACOPEDH
             try
             {
                 cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
-                conex = new SqlConnection(cn.cadena);
+             //   conex = new SqlConnection(cn.cadena);
                 conex.InfoMessage += new SqlInfoMessageEventHandler(Conex_InfoMessage);
                 conex.Open();
                 Comando = new SqlCommand();
@@ -198,7 +198,7 @@ namespace ACOPEDH
             try
             {
                 cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
-                conex = new SqlConnection(cn.cadena);
+              //  conex = new SqlConnection(cn.cadena);
                 conex.InfoMessage += new SqlInfoMessageEventHandler(Conex_InfoMessage);
                 conex.Open();
                 Comando = new SqlCommand();
@@ -235,7 +235,7 @@ namespace ACOPEDH
             try
             {
                 cn = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
-                conex = new SqlConnection(cn.cadena);
+             //   conex = new SqlConnection(cn.cadena);
                 conex.InfoMessage += new SqlInfoMessageEventHandler(Conex_InfoMessage);
                 conex.Open();
                 Comando = new SqlCommand();
