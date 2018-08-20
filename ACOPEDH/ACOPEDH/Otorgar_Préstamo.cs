@@ -298,6 +298,19 @@ namespace ACOPEDH
                 return cp;
             }
         }
+
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == '.'))
+            {
+                if (!char.IsControl(e.KeyChar))
+                    e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
+            }
+        }
         #endregion
 
         #region Pintar Bordes

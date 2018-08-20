@@ -65,9 +65,8 @@
             this.cbTipoTeléfono = new System.Windows.Forms.ComboBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtDirección = new System.Windows.Forms.RichTextBox();
-            this.txtIdPersona = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.bttPersona = new System.Windows.Forms.Button();
+            this.btnBorrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeléfonos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -410,34 +409,27 @@
             this.txtDirección.TabIndex = 8;
             this.txtDirección.Text = "";
             // 
-            // txtIdPersona
-            // 
-            this.txtIdPersona.Location = new System.Drawing.Point(149, 64);
-            this.txtIdPersona.MaxLength = 50;
-            this.txtIdPersona.Name = "txtIdPersona";
-            this.txtIdPersona.ReadOnly = true;
-            this.txtIdPersona.Size = new System.Drawing.Size(178, 27);
-            this.txtIdPersona.TabIndex = 0;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(40, 68);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(90, 19);
-            this.label9.TabIndex = 87;
-            this.label9.Text = "ID Persona:";
-            // 
             // bttPersona
             // 
-            this.bttPersona.Location = new System.Drawing.Point(335, 64);
+            this.bttPersona.Location = new System.Drawing.Point(149, 64);
             this.bttPersona.Name = "bttPersona";
-            this.bttPersona.Size = new System.Drawing.Size(100, 27);
+            this.bttPersona.Size = new System.Drawing.Size(188, 27);
             this.bttPersona.TabIndex = 1;
             this.bttPersona.TabStop = false;
-            this.bttPersona.Text = "Seleccionar";
+            this.bttPersona.Text = "Buscar Persona";
             this.bttPersona.UseVisualStyleBackColor = true;
+            this.bttPersona.Click += new System.EventHandler(this.bttPersona_Click);
+            // 
+            // btnBorrar
+            // 
+            this.btnBorrar.Location = new System.Drawing.Point(343, 64);
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Size = new System.Drawing.Size(92, 27);
+            this.btnBorrar.TabIndex = 81;
+            this.btnBorrar.TabStop = false;
+            this.btnBorrar.Text = "Borrar";
+            this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Click += new System.EventHandler(this.button4_Click);
             // 
             // Nuevo_asociado
             // 
@@ -446,9 +438,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(650, 720);
+            this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.bttPersona);
-            this.Controls.Add(this.txtIdPersona);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.txtDirección);
             this.Controls.Add(this.cbTipoTeléfono);
             this.Controls.Add(this.button3);
@@ -526,8 +517,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.RichTextBox txtDirección;
-        private System.Windows.Forms.TextBox txtIdPersona;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button bttPersona;
+        private System.Windows.Forms.Button btnBorrar;
     }
 }

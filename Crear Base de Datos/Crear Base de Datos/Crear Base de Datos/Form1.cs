@@ -31,6 +31,12 @@ namespace Crear_Base_de_Datos
                 cnn.Close();
                 cnn = new SqlConnection("Server=" + Servidores.Servidor2 + "; " + "database=master; integrated security=yes");
             }
+            SqlConnection cnn2 = cnn;
+
+            ////  Para crear la base en Azure
+            //SqlConnection cnn = new SqlConnection("Server=yiyel501.database.windows.net;database=master; User Id=Yiyel501;Password=acopedh_1234");
+            //SqlConnection cnn2 = new SqlConnection("Server=yiyel501.database.windows.net;database=ACOPEDH; User Id=Yiyel501;Password=acopedh_1234");
+
             String cadena1 = "CREATE DATABASE " + txtNombre.Text;
             //Comentar para Azure
             String USE = "Use " + txtNombre.Text + ";";
@@ -84,7 +90,7 @@ namespace Crear_Base_de_Datos
                 "[Id Ocupación]  AS('OC' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
                 "[Nombre de la Empresa] [varchar](60) NOT NULL," +
                 "CONSTRAINT[PK_Ocupación] PRIMARY KEY ([Id Ocupación]))";
-          /*  String tabla08 = "CREATE TABLE [dbo].[Persona](" +
+            String tabla08 = "CREATE TABLE [dbo].[Persona](" +
                 "[Número][int] IDENTITY(1, 1) NOT NULL," +
                 "[Código Persona]  AS('PC' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
                 "[Nombres] [varchar](50) NOT NULL," +
@@ -275,7 +281,8 @@ namespace Crear_Base_de_Datos
                 "if(@FK_Persona='') begin " +
                 "Set @FK_Per=(Select [Código Persona] from Persona where [DUI]=@DUI) " +
                 "if(@FK_Per is null) begin " +
-                "Insert into Persona values(@Nombres,@Apellidos,@DUI,@NIT,@Residencia,@Fecha_Nacimiento) " + 
+                "Insert into Persona values(@Nombres,@Apellidos,@DUI,@NIT,@Residencia,@Fecha_Nacimiento) " +
+                "Set @FK_Per=(Select [Código Persona] from Persona where [DUI]=@DUI) " +
                 "end end " +
                 "else begin Set @FK_Per=@FK_Persona end " +
                 "set @Persona=(Select count([Código Asociado]) from Asociado where [FK Persona]=@FK_Per) " +
@@ -712,7 +719,7 @@ namespace Crear_Base_de_Datos
                 "Commit Tran Pre End Try Begin Catch Print ERROR_MESSAGE(); " +
                 "Rollback Tran Pre End Catch";
             String procedimiento26 = "Create Procedure [Cargar Tipo Socio] As Begin Tran Aso Begin Try " +
-                "Select [Tipo de Socio].[Nombre Tipo Socio] AS 'TipoS' from [Tipo de Socio] " +
+                "Select [Tipo de Socio].[Nombre Tipo Socio] AS 'TipoS',[Tipo de Socio].[id Tipo de Socio]as'ID' from [Tipo de Socio] " +
                 "Commit Tran Aso End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Aso End Catch";
             String procedimiento27 = "Create Procedure [Cargar Tipo Ahorro] As Begin Tran Aho Begin Try " +
                 "Select [Tipo de Ahorro].Nombre AS 'TipoA',[Tipo de Ahorro].[Tasa de Interés] AS 'Interés' from [Tipo de Ahorro] " +
@@ -801,7 +808,7 @@ namespace Crear_Base_de_Datos
                 "Create procedure [Cargar Ocupaciones] " +
                 "As " +
                 "Begin " +
-                "Select [Nombre de la Empresa] As 'Trabajo' from Ocupación " +
+                "Select [Nombre de la Empresa] As 'Trabajo',[Id Ocupación] as 'ID' from Ocupación " +
                 "End";
             //Aqui se cambió para tener la referencia "TipoT"
             String procedimiento33 =
@@ -1257,17 +1264,18 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran img " +
                 "End Catch ";
-            String procedimeinto54 = "Create Procedure[dbo].[Constancia Retiro] " +
+            String procedimiento54 = "Create Procedure[dbo].[Constancia Retiro] " +
                 "@ID_Ahorro varchar(5) " +
                 "As Begin Tran C_Abono " +
                 "Begin Try " +
                 "declare @id_Retiro varchar(9) " +
                 "Set @id_Retiro = (Select Max([id Retiro]) From Retiros where Retiros.[FK Ahorro] = @ID_Ahorro) " +
-                "Select Retiros.Retiro as 'CantidadRetiro', Retiros.[id Retiro] as 'idRetiro', (Asociado.Nombres + ' ' + Asociado.Apellidos) as 'Nombre', " +
+                "Select Retiros.Retiro as 'CantidadRetiro', Retiros.[id Retiro] as 'idRetiro', (p.Nombres + ' ' + p.Apellidos) as 'Nombre', " +
                 "[Tipo de Ahorro].Nombre as 'Tipo',[Tipo de Ahorro].[Tasa de Interés] as 'Interés',Asociado.[Código Asociado] as 'Código', " +
                 "Retiros.[Número de Cheque] as 'Cheque', Ahorro.Estado as 'Estado' " +
                 "from Asociado inner join Ahorro on Asociado.[Código Asociado]= Ahorro.[FK Código de Asociado] inner join Retiros on Retiros.[FK Ahorro] = Ahorro.[id Ahorro] " +
                 "inner join [Tipo de Ahorro] on[Tipo de Ahorro].[id Tipo Ahorro] = Ahorro.[FK Tipo Ahorro] " +
+                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] " +
                 "where @ID_Ahorro = Ahorro.[id Ahorro] and Retiros.[id Retiro] = @id_Retiro " +
                 "Commit Tran C_Abono " +
                 "End Try " +
@@ -1283,10 +1291,12 @@ namespace Crear_Base_de_Datos
                 "Begin " +
                 "declare @id_Abono varchar(9) " +
                 "Set @id_Abono = (Select Max([id Abono]) From Abono where Abono.[FK Ahorro] = @ID_Ahorro) " +
-                "Select Abono.[id Abono] as 'Pid_Abono', Abono.Abono as 'Abono', (Asociado.Nombres + ' ' + Asociado.Apellidos) as 'PNombre', " +
+                "Select Abono.[id Abono] as 'Pid_Abono', Abono.Abono as 'Abono', (p.Nombres + ' ' + p.Apellidos) as 'PNombre', " +
                 "[Tipo de Ahorro].Nombre as 'PTipo',[Tipo de Ahorro].[Tasa de Interés] as 'PInterés'from Asociado inner join Ahorro " +
                 "on Asociado.[Código Asociado]= Ahorro.[FK Código de Asociado] inner join Abono on Abono.[FK Ahorro] = Ahorro.[id Ahorro] " +
-                "inner join [Tipo de Ahorro] on[Tipo de Ahorro].[id Tipo Ahorro] = Ahorro.[FK Tipo Ahorro] where @ID_Ahorro = Ahorro.[id Ahorro] " +
+                "inner join [Tipo de Ahorro] on[Tipo de Ahorro].[id Tipo Ahorro] = Ahorro.[FK Tipo Ahorro] " +
+                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] " +
+                "where @ID_Ahorro = Ahorro.[id Ahorro] " +
                 "and Abono.[id Abono] = @id_Abono " +
                 "Commit Tran C_Abono " +
                 "end " +
@@ -1305,12 +1315,14 @@ namespace Crear_Base_de_Datos
                 "Begin Try " +
                 "declare @id_Ahorro varchar(15) " +
                 "Set @id_Ahorro = (Select Max([FK Ahorro]) from Abono inner join Ahorro on Abono.[FK Ahorro] = Ahorro.[id Ahorro] where Ahorro.[FK Código de Asociado] = @ID_Asociado) " +
-                "Select(Asociado.Nombres + ' ' + Asociado.Apellidos) as 'Nombre', " +
+                "Select(p.Nombres + ' ' + p.Apellidos) as 'Nombre', " +
                 "Ahorro.[id Ahorro] as 'id_Ahorro',[Tipo de Ahorro].Nombre as 'Tipo', " +
                 "[Tipo de Ahorro].[Tasa de Interés] as 'Interés', " +
-                "Abono.Abono as 'Abono', Abono.[id Abono] as 'Pid_Abono' From Asociado inner join Ahorro " +
-                "on Asociado.[Código Asociado]=Ahorro.[FK Código de Asociado] inner join Abono " +
-                "on Abono.[FK Ahorro]= Ahorro.[id Ahorro] inner join [Tipo de Ahorro] on[Tipo de Ahorro].[id Tipo Ahorro] = Ahorro.[FK Tipo Ahorro] " +
+                "Abono.Abono as 'Abono', Abono.[id Abono] as 'Pid_Abono' From Asociado " +
+                "inner join Ahorro on Asociado.[Código Asociado]=Ahorro.[FK Código de Asociado] " +
+                "inner join Abono on Abono.[FK Ahorro]= Ahorro.[id Ahorro] " +
+                "inner join [Tipo de Ahorro] on[Tipo de Ahorro].[id Tipo Ahorro] = Ahorro.[FK Tipo Ahorro] " +
+                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] " +
                 "where Ahorro.[FK Código de Asociado] = @ID_Asociado and Ahorro.[id Ahorro] = @id_Ahorro " +
                 "Commit Tran N_Ahorro " +
                 "End Try " +
@@ -1537,10 +1549,11 @@ namespace Crear_Base_de_Datos
             //Añadido, la inserción de teléfonos
             String insertartiposdeteléfonos =
                  "insert into [Tipos de Teléfonos] values ('Celular'),('Casa'), ('Trabajo'), ('Fax')";
-
+            String insertarTiposImagenes =
+                 "Insert into [Tipos de Imágenes] values ('DUI'),('NIT'),('Documentos'),('Otro')";
             //Creación Base de Datos
 
-            SqlCommand cmd = new SqlCommand(cadena1, cnn);
+            SqlCommand cmd = new SqlCommand(cadena1, cnn2);
             SqlCommand cmdUse = new SqlCommand(USE, cnn);
 
             //Creación Tablas
@@ -1629,9 +1642,9 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd_51 = new SqlCommand(procedimiento51, cnn);
             SqlCommand cmd_52 = new SqlCommand(procedimiento52, cnn);
             SqlCommand cmd_53 = new SqlCommand(procedimiento53, cnn);
-            SqlCommand cmd_54 = new SqlCommand(procedimiento53, cnn);
-            SqlCommand cmd_55 = new SqlCommand(procedimiento53, cnn);
-            SqlCommand cmd_56 = new SqlCommand(procedimiento53, cnn);
+            SqlCommand cmd_54 = new SqlCommand(procedimiento54, cnn);
+            SqlCommand cmd_55 = new SqlCommand(procedimiento55, cnn);
+            SqlCommand cmd_56 = new SqlCommand(procedimiento56, cnn);
 
             //Creación Triggers
 
@@ -1639,10 +1652,10 @@ namespace Crear_Base_de_Datos
 
             //Creación Login
 
-            SqlCommand cmdLogin1 = new SqlCommand(Login1, cnn);
-            SqlCommand cmdLogin2 = new SqlCommand(Login2, cnn);
-            SqlCommand cmdLogin3 = new SqlCommand(Login3, cnn);
-            SqlCommand cmdLogin4 = new SqlCommand(Login4, cnn);
+            SqlCommand cmdLogin1 = new SqlCommand(Login1, cnn2);
+            SqlCommand cmdLogin2 = new SqlCommand(Login2, cnn2);
+            SqlCommand cmdLogin3 = new SqlCommand(Login3, cnn2);
+            SqlCommand cmdLogin4 = new SqlCommand(Login4, cnn2);
 
             //Creación Usuarios
 
@@ -1668,6 +1681,7 @@ namespace Crear_Base_de_Datos
             SqlCommand cmdCrearPréstamos = new SqlCommand(crearpréstamos, cnn);
             SqlCommand cmdCrearTransacciones = new SqlCommand(insertartiposdetransacciones, cnn);
             SqlCommand cmdCrearTeléfonos = new SqlCommand(insertartiposdeteléfonos, cnn);
+            SqlCommand cmdCrearTipoImágenes = new SqlCommand(insertarTiposImagenes, cnn);
 
             //try
             //{
@@ -1786,6 +1800,7 @@ namespace Crear_Base_de_Datos
             cmdCrearPréstamos.ExecuteNonQuery();
             cmdCrearTransacciones.ExecuteNonQuery();
             cmdCrearTeléfonos.ExecuteNonQuery();
+            cmdCrearTipoImágenes.ExecuteNonQuery();
             cnn.Close();
             MessageBox.Show("Base Creada");
             this.Close();

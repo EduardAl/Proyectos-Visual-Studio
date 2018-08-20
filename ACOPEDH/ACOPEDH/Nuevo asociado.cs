@@ -19,6 +19,7 @@ namespace ACOPEDH
             ********************************* 
         */
         DataTable dt;
+        String id = "";
         #region Constructores
         public Nuevo_asociado()
         {
@@ -37,9 +38,11 @@ namespace ACOPEDH
                 dt = Cargar.llenar_DataTable("[Cargar Tipo Socio]");
                 cbAsociación.DataSource = dt;
                 cbAsociación.DisplayMember = "TipoS";
+                cbAsociación.ValueMember = "ID";
                 dt = Cargar.llenar_DataTable("[Cargar Ocupaciones]");
                 cbOcupación.DataSource = dt;
                 cbOcupación.DisplayMember = "Trabajo";
+                cbOcupación.ValueMember = "ID";
                 dt = Cargar.llenar_DataTable("[Cargar Tipo Teléfono]");
                 cbTipoTeléfono.DataSource = dt;
                 cbTipoTeléfono.DisplayMember = "TipoT";
@@ -83,8 +86,9 @@ namespace ACOPEDH
                     try
                     {
                         Procedimientos_select ingresar = new Procedimientos_select();
-                        SqlParameter[] param = new SqlParameter[9];
-                        param[0] = new SqlParameter("@FK_Tipo_Socio", cbAsociación.Text);
+                        bool error = false;
+                        SqlParameter[] param = new SqlParameter[10];
+                        param[0] = new SqlParameter("@FK_Tipo_Socio", cbAsociación.SelectedValue);
                         param[1] = new SqlParameter("@Nombres", txtNombres.Text);
                         param[2] = new SqlParameter("@Apellidos", txtApellidos.Text);
                         param[3] = new SqlParameter("@DUI", txtDUI.Text);
@@ -92,12 +96,12 @@ namespace ACOPEDH
                         param[5] = new SqlParameter("@Residencia", txtDirección.Text);
                         param[6] = new SqlParameter("@Fecha_Nacimiento", dtNacimiento.Value);
                         param[7] = new SqlParameter("@Fecha_Asociación", DateTime.Now);
-                        param[8] = new SqlParameter("@FK_Ocupacion", cbOcupación.Text);
-                    //    param[9] = new SqlParameter("@FK_Persona", txtIdPersona.Text);
+                        param[8] = new SqlParameter("@FK_Ocupacion", cbOcupación.SelectedValue);
+                        param[9] = new SqlParameter("@FK_Persona", id);
+                        MessageBox.Show(cbAsociación.SelectedValue + "\n" + cbOcupación.SelectedValue);
                         if (ingresar.llenar_tabla("[Insertar Asociado]", param) > 0)
                         {
                             param = new SqlParameter[3];
-                            int i= 0;
                             foreach (DataGridViewRow row in dgvTeléfonos.Rows)
                             {
                                 cbTipoTeléfono.SelectedIndex = cbTipoTeléfono.FindString(row.Cells[1].Value.ToString());
@@ -109,11 +113,16 @@ namespace ACOPEDH
                                     MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     Globales.gbError = "";
                                     DialogResult = DialogResult.None;
+                                    error = true;
                                     break;
                                 }
                             }
-                            DialogResult = DialogResult.OK;
-                            Close();
+                            if (!error)
+                            {
+                                DialogResult = DialogResult.OK;
+                                MessageBox.Show("¡Datos guardados!", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                Close();
+                            }
                         }
                         else
                         {
@@ -124,7 +133,8 @@ namespace ACOPEDH
                     }
                     catch
                     {
-
+                        MessageBox.Show("Error al ingresar en la base de datos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        DialogResult = DialogResult.None;
                     }
                 }
             }
@@ -190,7 +200,17 @@ namespace ACOPEDH
             }
         }
         #endregion
-
+        #region Metodo
+        private void Habilitar(bool habilitar)
+        {
+            txtApellidos.Enabled = habilitar;
+            txtDirección.Enabled = habilitar;
+            txtDUI.Enabled = habilitar;
+            txtNIT.Enabled = habilitar;
+            txtNombres.Enabled = habilitar;
+            txtTeléfono.Enabled = habilitar;
+        }
+        #endregion
         /*
             *********************************
             *            Eventos            *
@@ -311,10 +331,25 @@ namespace ACOPEDH
         }
         #endregion
 
-
-        private void txtDirección_KeyUp(object sender, KeyEventArgs e)
+        private void bttPersona_Click(object sender, EventArgs e)
         {
+            button4_Click(sender, e);
+        }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            txtApellidos.Clear();
+            txtDirección.Clear();
+            txtDUI.Clear();
+            txtNIT.Clear();
+            txtNombres.Clear();
+            txtTeléfono.Clear();
+            dgvTeléfonos.Rows.Clear();
+
+            Habilitar(false);
+            button2.Enabled = false;
+            button3.Enabled = false;
+            id = "";
         }
     }
 }
