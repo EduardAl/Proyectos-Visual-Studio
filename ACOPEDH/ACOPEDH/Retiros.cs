@@ -76,7 +76,7 @@ namespace ACOPEDH
         {
             if (nCantidadRetiro.Value > 0)
             {
-                DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de retiro para la siguiente transacción?:\n$" + nCantidadRetiro.Value + "\n N° Préstamo: " + txtNoCuenta.Text + "\nPersona Asociada: " + txtAsociado.Text, "Confirmar Pago", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de retiro para la siguiente transacción?:\n$" + nCantidadRetiro.Value + "\n N° Préstamo: " + txtNoCuenta.Text + "\nPersona Asociada: " + txtAsociado.Text, "Confirmar Pago", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (Imprimir != DialogResult.Cancel)
                 {
                     SqlParameter[] Parámetros = new SqlParameter[4];
@@ -96,7 +96,7 @@ namespace ACOPEDH
                         MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Globales.gbError = "";
                     }
-                    if (Imprimir == DialogResult.Yes)
+                    if (Imprimir == DialogResult.OK)
                     {
                         this.Cursor = Cursors.WaitCursor;
                         Imprimir Acción = new Imprimir(Dato, "Retiro");
