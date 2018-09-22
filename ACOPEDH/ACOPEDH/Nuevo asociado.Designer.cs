@@ -416,7 +416,7 @@
             this.bttPersona.Size = new System.Drawing.Size(188, 27);
             this.bttPersona.TabIndex = 1;
             this.bttPersona.TabStop = false;
-            this.bttPersona.Text = "Buscar Persona";
+            this.bttPersona.Text = "Buscar ";
             this.bttPersona.UseVisualStyleBackColor = true;
             this.bttPersona.Click += new System.EventHandler(this.bttPersona_Click);
             // 

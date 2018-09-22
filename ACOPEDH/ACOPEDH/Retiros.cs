@@ -79,6 +79,7 @@ namespace ACOPEDH
                 DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de retiro para la siguiente transacción?:\n$" + nCantidadRetiro.Value + "\n N° Préstamo: " + txtNoCuenta.Text + "\nPersona Asociada: " + txtAsociado.Text, "Confirmar Pago", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (Imprimir != DialogResult.Cancel)
                 {
+                    MessageBox.Show(txtCheque.Text);
                     SqlParameter[] Parámetros = new SqlParameter[4];
                     Parámetros[0] = new SqlParameter("@Retiro", nCantidadRetiro.Value);
                     Parámetros[1] = new SqlParameter("@Número_Cheque", txtCheque.Text);

@@ -121,6 +121,8 @@ namespace ACOPEDH
         private void bttModificar_Click(object sender, EventArgs e)
         {
             Modificar(true);
+            bttAceptar.Visible = true;
+            bttCancelar.Visible = true;
             
         }
         //Desasociar
@@ -173,7 +175,7 @@ namespace ACOPEDH
         }
         private void bttCer_MouseLeave(object sender, EventArgs e)
         {
-            bttCer.BackColor = Color.FromArgb(20, 25, 72); ;
+            bttCer.BackColor = Color.FromArgb(20, 25, 72); 
         }
         private void bttCer_MouseHover(object sender, EventArgs e)
         {
@@ -210,6 +212,8 @@ namespace ACOPEDH
         {
             try
             {
+                bttAceptar.Visible = false;
+                bttCancelar.Visible = false;
                 //Carga de Parámetros
                 SqlParameter[] Param = new SqlParameter[1];
                 //Llenado del datatable (y de los TextBox)
