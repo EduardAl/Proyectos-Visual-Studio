@@ -19,13 +19,13 @@ namespace ACOPEDH
             ********************************* 
         */
         Procedimientos_select Cargar = new Procedimientos_select();
-        string Asociado = "";
+        string Persona = "";
         string DUI = "";
         #region Constructores
         public Teléfonos(string asociado,string Dui)
         {
             InitializeComponent();
-            Asociado = asociado;
+            Persona = asociado;
             DUI = Dui;
         }
         #endregion
@@ -151,7 +151,7 @@ namespace ACOPEDH
 
                 //Cargar los registros en su respectivo DGV
                 SqlParameter[] Parámetros = new SqlParameter[1];
-                Parámetros[0] = new SqlParameter("@Código_Asociado", Asociado);
+                Parámetros[0] = new SqlParameter("@Código_Persona", Persona);
                 dgvTeléfonos.DataSource = Cargar.llenar_DataTable("[Cargar Teléfonos]", Parámetros);
                 dgvTeléfonos.Refresh();
             }

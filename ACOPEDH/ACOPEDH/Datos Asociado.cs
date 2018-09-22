@@ -18,7 +18,7 @@ namespace ACOPEDH
             *     Componentes Iniciales     *
             ********************************* 
         */
-        string Dato, Dato2;
+        string Dato, Dato2, aux;
         public DialogResult dr = DialogResult.Cancel;
         Procedimientos_select Cargar = new Procedimientos_select();
         #region Constructores
@@ -157,14 +157,15 @@ namespace ACOPEDH
         //Mostrar Teléfonos
         private void bttTeléfonos_Click(object sender, EventArgs e)
         {
-            Teléfonos Accion = new Teléfonos(Dato, Dato2);
+            Teléfonos Accion = new Teléfonos(aux, Dato2);
             Accion.ShowDialog();
             Accion.Dispose();
         }
         //Mostrar Imágenes
         private void bttImágenes_Click(object sender, EventArgs e)
         {
-            Imágenes Accion = new Imágenes(Dato);
+#warning Imágenes ya está mandando el código de personas
+            Imágenes Accion = new Imágenes(aux);
             Accion.ShowDialog();
             Accion.Dispose();
         }
@@ -222,6 +223,7 @@ namespace ACOPEDH
                 dtNacimiento.Value = DateTime.Parse(dt.Rows[0]["FNacimiento"].ToString());
                 dtAso.Value = DateTime.Parse(dt.Rows[0]["FAsociación"].ToString());
                 txtDirección.Text = dt.Rows[0]["Residencia"].ToString();
+                aux = dt.Rows[0]["id"].ToString();
                 if (dt.Rows[0]["Est"].ToString() != "ACTIVO")
                 {
                     dtDesaso.Value = DateTime.Parse(dt.Rows[0]["FDesasociación"].ToString());

@@ -305,7 +305,7 @@ namespace Crear_Base_de_Datos
                 "As " +
                 "Begin Tran Cargar_Asociados " +
                 "Begin Try " +
-                "Select [Tipo de Socio].[Nombre Tipo Socio] AS 'Tipo de Asociación', p.Nombres AS 'Name', p.Apellidos AS 'LName',p.DUI AS 'DDui', p.NIT AS 'DNit', " +
+                "Select p.[Código Persona] as 'id', [Tipo de Socio].[Nombre Tipo Socio] AS 'Tipo de Asociación', p.Nombres AS 'Name', p.Apellidos AS 'LName',p.DUI AS 'DDui', p.NIT AS 'DNit', " +
                 "p.Dirección AS 'Residencia', p.[Fecha de Nacimiento] AS 'FNacimiento', [Fecha de Asociación] AS 'FAsociación', [Fecha de Desasociación] AS 'FDesasociación', Estado AS 'Est', " +
                 "Ocupación.[Nombre de la Empresa] AS 'Trabajo' From Asociado inner join [Tipo de Socio] on [Tipo de Socio].[id Tipo de Socio]=Asociado.[FK Tipo Socio] " +
                 "inner join Ocupación on Ocupación.[Id Ocupación] = Asociado.[FK Ocupación] " +
