@@ -1330,6 +1330,50 @@ namespace Crear_Base_de_Datos
                 "Print ERROR_MESSAGE(); " +
                 "Rollback Tran N_Ahorro " +
                 "End Catch ";
+            //Procedimiento Insertar Beneficiario
+            String procedimiento57 = "Create procedure [dbo].[Insertar Beneficiario] " +
+                "@Codigo_Asociado varchar(5), " +
+                "@Nombres varchar(80), " +
+                "@Apellidos varchar(80), " +
+                "@DUI varchar(10),  " +
+                "@NIT varchar(17), " +
+                "@Residencia varchar(100), " +
+                "@Fecha_Nacimiento datetime " +
+                "As Begin Tran Beneficiario " +
+                "Begin try " +
+                "   Declare @Codigo_Persona varchar(5) " +
+                "   Declare @No_Persona int " +
+                "   Set @No_Persona = (Select COUNT(NIT) From Persona where NIT = @NIT) " +
+                "   if @No_Persona = 0 " +
+                "   Begin " +
+                "       Insert into Persona values(@Nombres, @Apellidos, @DUI, @NIT, @Residencia, @Fecha_Nacimiento) " +
+                "       Set @Codigo_Persona = (Select Max([Código Persona]) from Persona where [DUI] = @DUI) " +
+                "       Insert into Beneficiario values(@Codigo_Persona, @Codigo_Asociado) " +
+                "   End " +
+                "   Else begin " +
+                "       Set @Codigo_Persona = (Select[Código Persona] from Persona where [NIT] = @NIT) " +
+                "       Insert into Beneficiario values(@Codigo_Persona, @Codigo_Asociado) " +
+                "   End " +
+                "   Commit Tran Beneficiario " +
+                "End try " +
+                "Begin Catch " +
+                "   print 'Ha ocurrido un error. ' + ERROR_MESSAGE() + '. Inténtelo más tarde'; " +
+                "   Rollback Tran Beneficiario " +
+                "End Catch ";
+            String procedimiento58 = "Create procedure [dbo].[Personas DVG] " +
+                "As " +
+                "Begin Tran Personas_DVG " +
+                "Begin Try " +
+                "Select Persona.[Código Persona] as 'Código Persona', (Persona.Nombres +' ' + Persona.Apellidos) as 'Nombre_P', " +
+                "Persona.DUI as 'DUI_P', Persona.NIT as 'NIT_P', Persona.Dirección as 'Dir_P', Persona.[Fecha de Nacimiento] as 'Fecha_P' " +
+                "from Persona full outer join Asociado on Persona.[Código Persona] = Asociado.[FK Persona] " +
+                "full outer join Beneficiario on Persona.[Código Persona] = Beneficiario.[FK Persona] where Asociado.Estado<> 'ACTIVO' " +
+                "Commit Tran Personas_DVG " +
+                "End Try " +
+                "Begin Catch " +
+                "Print 'Ha ocurrido un error: ' + ERROR_MESSAGE() + ' . Inténtelo más tarde.' " +
+                "Rollback Tran Personas_DVG " +
+                "End Catch ";
             String Login1 =
                 "CREATE LOGIN Master_ACOPEDH " +
                 "WITH PASSWORD = 'Aureo112358' ";
@@ -1506,6 +1550,10 @@ namespace Crear_Base_de_Datos
                 "to Administrador with grant option " +
                 "grant execute on object :: [Actualizar Persona] " +
                 "to Administrador with grant option " +
+                "grant execute on object :: [Insertar Beneficiario] " +
+                "to Administrador with grant option " + 
+                "grant execute on object :: [Personas DVG] " +
+                "to Administrador with grant option " +
                 "grant execute on object :: [Actualizar Asociado] " +
                  "to Administrador with grant option ";
             String permisosUsuario =
@@ -1645,6 +1693,8 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd_54 = new SqlCommand(procedimiento54, cnn);
             SqlCommand cmd_55 = new SqlCommand(procedimiento55, cnn);
             SqlCommand cmd_56 = new SqlCommand(procedimiento56, cnn);
+            SqlCommand cmd_57 = new SqlCommand(procedimiento57, cnn);
+            SqlCommand cmd_58 = new SqlCommand(procedimiento58, cnn);
 
             //Creación Triggers
 
@@ -1773,6 +1823,8 @@ namespace Crear_Base_de_Datos
             cmd_54.ExecuteNonQuery();
             cmd_55.ExecuteNonQuery();
             cmd_56.ExecuteNonQuery();
+            cmd_57.ExecuteNonQuery();
+            cmd_58.ExecuteNonQuery();
 
 
             cmdTrigger1.ExecuteNonQuery();
