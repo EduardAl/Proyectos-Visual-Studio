@@ -182,7 +182,6 @@
             this.txtCheque.Location = new System.Drawing.Point(115, 135);
             this.txtCheque.MaxLength = 20;
             this.txtCheque.Name = "txtCheque";
-            this.txtCheque.ReadOnly = true;
             this.txtCheque.Size = new System.Drawing.Size(181, 27);
             this.txtCheque.TabIndex = 53;
             // 

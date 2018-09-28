@@ -219,7 +219,7 @@
             this.bttCer.Size = new System.Drawing.Size(30, 30);
             this.bttCer.TabIndex = 65;
             this.bttCer.TabStop = false;
-            this.bttCer.DoubleClick += new System.EventHandler(this.bttCer_Click);
+            this.bttCer.Click += new System.EventHandler(this.bttCer_Click);
             this.bttCer.MouseLeave += new System.EventHandler(this.bttCer_MouseLeave);
             this.bttCer.MouseHover += new System.EventHandler(this.bttCer_MouseHover);
             // 

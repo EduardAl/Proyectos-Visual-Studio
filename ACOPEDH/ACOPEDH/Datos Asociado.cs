@@ -18,7 +18,7 @@ namespace ACOPEDH
             *     Componentes Iniciales     *
             ********************************* 
         */
-        string Dato, Dato2;
+        string Dato, Dato2, aux;
         public DialogResult dr = DialogResult.Cancel;
         Procedimientos_select Cargar = new Procedimientos_select();
         #region Constructores
@@ -42,8 +42,10 @@ namespace ACOPEDH
             //Llenado de los combobox
             cbAsociación.DataSource = Cargar.llenar_DataTable("[Cargar Tipo Socio]");
             cbAsociación.DisplayMember = "TipoS";
+            cbAsociación.ValueMember = "ID";
             cbOcupación.DataSource = Cargar.llenar_DataTable("[Cargar Ocupaciones]");
             cbOcupación.DisplayMember = "Trabajo";
+            cbOcupación.ValueMember = "ID";
             //Código Asociado
             lbCódigo.Text = "Código de Asociación: " + Dato;
             CargarDatos();
@@ -79,18 +81,22 @@ namespace ACOPEDH
                             try
                             {
                                 Procedimientos_select modificar = new Procedimientos_select();
-                                SqlParameter[] param = new SqlParameter[10];
+                                SqlParameter[] param = new SqlParameter[3];
+                                //Actualizar Asociado
                                 param[0] = new SqlParameter("@Codigo_Asociado", Dato);
-                                param[1] = new SqlParameter("@FK_Tipo_Socio", cbAsociación.Text);
-                                param[2] = new SqlParameter("@Nombres", txtNombres.Text);
-                                param[3] = new SqlParameter("@Apellidos", txtApellidos.Text);
-                                param[4] = new SqlParameter("@DUI", txtDUI.Text);
-                                param[5] = new SqlParameter("@NIT", txtNIT.Text);
-                                param[6] = new SqlParameter("@Residencia", txtDirección.Text);
-                                param[7] = new SqlParameter("@Fecha_Nacimiento", dtNacimiento.Value);
-                                param[8] = new SqlParameter("@Fecha_Asociación", dtAso.Value);
-                                param[9] = new SqlParameter("@FK_Ocupacion", cbOcupación.Text);
+                                param[1] = new SqlParameter("@FK_Tipo_Socio", cbAsociación.SelectedValue);
+                                param[2] = new SqlParameter("@FK_Ocupación", cbOcupación.SelectedValue);
                                 modificar.llenar_tabla("[Actualizar Asociado]", param);
+                                //Actualizar Persona
+                                param = new SqlParameter[7];
+                                param[0] = new SqlParameter("@Codigo_Persona", aux);
+                                param[1] = new SqlParameter("@Nombres", txtNombres.Text);
+                                param[2] = new SqlParameter("@Apellidos", txtApellidos.Text);
+                                param[3] = new SqlParameter("@DUI", txtDUI.Text);
+                                param[4] = new SqlParameter("@NIT", txtNIT.Text);
+                                param[5] = new SqlParameter("@Residencia", txtDirección.Text);
+                                param[6] = new SqlParameter("@Fecha_Nacimiento", dtNacimiento.Value);
+                                modificar.llenar_tabla("[Actualizar Persona]", param);
                                 Modificar(false);
                                 dr = DialogResult.Yes;
                             }
@@ -121,6 +127,8 @@ namespace ACOPEDH
         private void bttModificar_Click(object sender, EventArgs e)
         {
             Modificar(true);
+            bttAceptar.Visible = true;
+            bttCancelar.Visible = true;
             
         }
         //Desasociar
@@ -155,14 +163,15 @@ namespace ACOPEDH
         //Mostrar Teléfonos
         private void bttTeléfonos_Click(object sender, EventArgs e)
         {
-            Teléfonos Accion = new Teléfonos(Dato, Dato2);
+            Teléfonos Accion = new Teléfonos(aux, Dato2);
             Accion.ShowDialog();
             Accion.Dispose();
         }
         //Mostrar Imágenes
         private void bttImágenes_Click(object sender, EventArgs e)
         {
-            Imágenes Accion = new Imágenes(Dato);
+#warning Imágenes ya está mandando el código de personas
+            Imágenes Accion = new Imágenes(aux);
             Accion.ShowDialog();
             Accion.Dispose();
         }
@@ -173,7 +182,7 @@ namespace ACOPEDH
         }
         private void bttCer_MouseLeave(object sender, EventArgs e)
         {
-            bttCer.BackColor = Color.FromArgb(20, 25, 72); ;
+            bttCer.BackColor = Color.FromArgb(20, 25, 72); 
         }
         private void bttCer_MouseHover(object sender, EventArgs e)
         {
@@ -204,12 +213,15 @@ namespace ACOPEDH
             dtNacimiento.Enabled = enabled;
             bttModificar.Enabled = !enabled;
             bttAceptar.Enabled=bttCancelar.Enabled = enabled;
+            bttAceptar.Visible = bttCancelar.Visible = enabled;
             errorProvider1.Clear();
         }
         public void CargarDatos()
         {
             try
             {
+                bttAceptar.Visible = false;
+                bttCancelar.Visible = false;
                 //Carga de Parámetros
                 SqlParameter[] Param = new SqlParameter[1];
                 //Llenado del datatable (y de los TextBox)
@@ -218,6 +230,7 @@ namespace ACOPEDH
                 dtNacimiento.Value = DateTime.Parse(dt.Rows[0]["FNacimiento"].ToString());
                 dtAso.Value = DateTime.Parse(dt.Rows[0]["FAsociación"].ToString());
                 txtDirección.Text = dt.Rows[0]["Residencia"].ToString();
+                aux = dt.Rows[0]["id"].ToString();
                 if (dt.Rows[0]["Est"].ToString() != "ACTIVO")
                 {
                     dtDesaso.Value = DateTime.Parse(dt.Rows[0]["FDesasociación"].ToString());

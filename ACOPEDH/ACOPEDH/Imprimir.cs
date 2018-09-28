@@ -62,18 +62,22 @@ namespace ACOPEDH
                 //Constancia de Aportación
                 case "Aportación":
                     Constancia_Aportación cons = new Constancia_Aportación();
+                    //Cargamos la Suma de Aportaciones
                     Param[0] = new SqlParameter("@Código_Asociado", Datos);
                     dt = seleccionar.LlenarText("[Suma Aportaciones]", "Suma de Aportaciones", Param);
                     cons.SetParameterValue("Sumatoria", dt.Rows[0]["Suma de Aportaciones"]);
+                    //Cargamos los datos del Asociado en el reporte
                     Param[0] = new SqlParameter("@Código_Asociado", Datos);
                     dt = seleccionar.LlenarText("[Cargar Asociados]", "Name,LName", Param);
                     cons.SetParameterValue("Nombre", dt.Rows[0]["Name"]);
                     cons.SetParameterValue("Apellido", dt.Rows[0]["LName"]);
                     cons.SetParameterValue("Codigo", Datos);
+                    //Cargamos aportaciones
                     Param[0] = new SqlParameter("@Código_Asociado", Datos);
                     dt = seleccionar.LlenarText("[Cargar Aportaciones]", "[Monto de la Aportación]", Param);
                     cons.SetParameterValue("Aportaciones", dt.Rows[0]["Monto de la Aportación"]);
                     crystalReportViewer1.ReportSource = cons;
+                    BarraTítulo.Text = "         ACOPEDH - Constancia de Aportación";
                     break;
                 //Constancia de Pago
                 case "Pago":
@@ -89,28 +93,24 @@ namespace ACOPEDH
                     cp.SetParameterValue("Mora", dt.Rows[0]["Pmora"]);
                     cp.SetParameterValue("Fecha", dt.Rows[0]["PFecha"]);
                     crystalReportViewer1.ReportSource = cp;
+                    BarraTítulo.Text = "         ACOPEDH - Constancia de Pago";
                     break;
-#warning Aquí me da problemas mostrar los datos del DVG Abonos y Retiros
+                //Constancia de Estado de Cuenta
                 case "Estado":
                     Informe_EstadoCuenta info = new Informe_EstadoCuenta();
                     Estado_Abonos abonos = new Estado_Abonos();
                     Estado_Retiros retiros = new Estado_Retiros();
                     Retiro = 0; Saldo = 0; Abono = 0;
-
                     //Subinforme de Abonos
                     Param[0] = new SqlParameter("@ID_Ahorro", Datos);
                     abonos.SetDataSource(seleccionar.ConsultaLista_Abono("[Cargar Abonos]", Param));
                     Param[0] = new SqlParameter("@ID_Ahorro", Datos);
                     info.Subreports[0].SetDataSource(seleccionar.ConsultaLista_Abono("[Cargar Abonos]", Param));
-                    //crystalReportViewer1.ReportSource = info;
-
                     //Subinforme de Retiros
                     Param[0] = new SqlParameter("@ID_Ahorro", Datos);
                     retiros.SetDataSource(seleccionar.ConsultaLista_Retiro("[Cargar Retiros]",Param));
                     Param[0] = new SqlParameter("@ID_Ahorro", Datos);
                     info.Subreports[1].SetDataSource(seleccionar.ConsultaLista_Retiro("[Cargar Retiros]",Param));
-
-
                     //Datos de Encabezado
                     Param[0] = new SqlParameter("@Código_Ahorro", Datos);
                     dt = seleccionar.LlenarText("[Cargar Ahorros]", "Nombre,Código_A,Est,TipoA,Interés", Param);
@@ -130,9 +130,10 @@ namespace ACOPEDH
                     info.SetParameterValue("AbonoIntereses", Abono);
                     info.SetParameterValue("TotalRetiros", Retiro);
                     info.SetParameterValue("SaldoActual", Saldo);
-                    //crystalReportViewer1.ReportSource = info;
                     crystalReportViewer1.ReportSource = info;
+                    BarraTítulo.Text = "         ACOPEDH - Estado de Cuenta";
                     break;
+                //Constancia de Nuevo Préstamo
                 case "Préstamo":
                     Informes_Préstamos P = new Informes_Préstamos();
                     ConversiónNúmeros conv = new ConversiónNúmeros();
@@ -155,11 +156,14 @@ namespace ACOPEDH
                         P.SetParameterValue("P_Tasa_de_Interés", dt.Rows[0]["Interés"]);
                         P.SetParameterValue("No_Préstamo", dt.Rows[0]["Préstamo"]);
                         P.SetParameterValue("Llamado", "Señor, Señora, Señorita");
+                        P.SetParameterValue("Presidenta", "Larissa Nataly Ventura");
+                        P.SetParameterValue("Secretaria", "Beatriz Campos Ceballos");
                         P.SetParameterValue("MontoLetras", montoletras);
                         P.SetParameterValue("Descuento", "—");
                         crystalReportViewer1.ReportSource = P;
                     }
                     catch { }
+                    BarraTítulo.Text = "         ACOPEDH - Nuevo Préstamo";
                     break;
                 //Tabla de Amortización
                 case "Amortización":
@@ -194,7 +198,9 @@ namespace ACOPEDH
                         ca.SetParameterValue("id_Préstamo", " ");
                     }
                     crystalReportViewer1.ReportSource = ca;
+                    BarraTítulo.Text = "         ACOPEDH - Tabla de Amortización";
                     break;
+                //Constancia de Pagos Realizados
                 case "Pagos_Realizados":
                     MessageBox.Show(Datos);
                     Constancia_Pagos_Realizados pagos = new Constancia_Pagos_Realizados();
@@ -214,7 +220,9 @@ namespace ACOPEDH
                     pagos.SetParameterValue("Estado", dt.Rows[0]["Estado"]);
                     pagos.SetParameterValue("ID_Préstamo", Datos);
                     crystalReportViewer1.ReportSource = pagos;
+                    BarraTítulo.Text = "         ACOPEDH - Constancia de Pagos Realizados";
                     break;
+                //Constancia de Abono
                 case "Abono":
                     Constancia_Abono abono = new Constancia_Abono();
                     try
@@ -234,9 +242,11 @@ namespace ACOPEDH
                         aqui = Math.Round(Abono - Retiro, 2);
                         abono.SetParameterValue("Disponible", aqui);
                         crystalReportViewer1.ReportSource = abono;
+                        BarraTítulo.Text = "         ACOPEDH - Constancia de Abono";
                     }
                     catch { }
                     break;
+                //Constancia de Retiro
                 case "Retiro":
                     Constancia_de_Retiro retiro = new Constancia_de_Retiro();
                     Param[0] = new SqlParameter("@ID_Ahorro", Datos);
@@ -255,7 +265,9 @@ namespace ACOPEDH
                     aqui = Math.Round(Abono - Retiro, 2);
                     retiro.SetParameterValue("Disponible",aqui);
                     crystalReportViewer1.ReportSource = retiro;
+                    BarraTítulo.Text = "         ACOPEDH - Constancia de Retiro";
                     break;
+                //Constancia de Nuevo Ahorro
                 case "Nuevo Ahorro":
                     Constancia_Nuevo_Ahorro ahorro = new Constancia_Nuevo_Ahorro();
                     Param[0] = new SqlParameter("@ID_Asociado",Datos);
@@ -266,6 +278,7 @@ namespace ACOPEDH
                     ahorro.SetParameterValue("P_Abono", dt.Rows[0]["Abono"]);
                     ahorro.SetParameterValue("No_Ahorro",dt.Rows[0]["id_Ahorro"]);
                     crystalReportViewer1.ReportSource = ahorro;
+                    BarraTítulo.Text = "         ACOPEDH - Constancia de Nuevo Ahorro";
                     break;
                 default:
                     break;

@@ -86,7 +86,7 @@ namespace ACOPEDH
         {
             if (nmCantidad.Value > 0)
             {
-                DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de pago para la siguiente transacción?:\n$" + nmCantidad.Value + "\n N° Préstamo: " + txtIdPréstamo.Text + "\nPersona Asociada: " + txtNombre.Text, "Confirmar Pago", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de pago para la siguiente transacción?:\n$" + nmCantidad.Value + "\n N° Préstamo: " + txtIdPréstamo.Text + "\nPersona Asociada: " + txtNombre.Text, "Confirmar Pago", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (Imprimir != DialogResult.Cancel)
                 {
                     double inte = Math.Round(Convert.ToDouble(txtSaldo.Text) * interes, 2);
@@ -106,7 +106,7 @@ namespace ACOPEDH
 
                     if (ingresar.llenar_tabla("[Realizar Pago]", Parámetros) > 0)
                     {
-                        if (Imprimir == DialogResult.Yes)
+                        if (Imprimir == DialogResult.OK)
                         {
                             this.Cursor = Cursors.WaitCursor;
                             Imprimir Acción = new Imprimir(Datos, "Pago");

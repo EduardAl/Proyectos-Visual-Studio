@@ -334,6 +334,9 @@ namespace ACOPEDH
         private void bttPersona_Click(object sender, EventArgs e)
         {
             button4_Click(sender, e);
+            Personas p = new Personas();
+            p.ShowDialog();
+            Dispose();
         }
 
         private void button4_Click(object sender, EventArgs e)

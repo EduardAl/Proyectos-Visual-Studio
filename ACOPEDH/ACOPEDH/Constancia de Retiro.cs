@@ -106,7 +106,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Codigo {
+        public CrystalDecisions.Shared.IParameterField Parameter_Disponible {
             get {
                 return this.DataDefinition.ParameterFields[1];
             }
@@ -114,7 +114,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Cheque {
+        public CrystalDecisions.Shared.IParameterField Parameter_Retiro {
             get {
                 return this.DataDefinition.ParameterFields[2];
             }
@@ -122,7 +122,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Disponible {
+        public CrystalDecisions.Shared.IParameterField Parameter_id_Ahorro {
             get {
                 return this.DataDefinition.ParameterFields[3];
             }
@@ -130,7 +130,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Retiro {
+        public CrystalDecisions.Shared.IParameterField Parameter_Estado {
             get {
                 return this.DataDefinition.ParameterFields[4];
             }
@@ -138,7 +138,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_id_Ahorro {
+        public CrystalDecisions.Shared.IParameterField Parameter_Codigo {
             get {
                 return this.DataDefinition.ParameterFields[5];
             }
@@ -146,7 +146,7 @@ namespace ACOPEDH {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Estado {
+        public CrystalDecisions.Shared.IParameterField Parameter_Cheque {
             get {
                 return this.DataDefinition.ParameterFields[6];
             }

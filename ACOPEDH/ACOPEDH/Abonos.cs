@@ -63,7 +63,7 @@ namespace ACOPEDH
         {
             if (nmCantidadAbono.Value > 0)
             {
-                DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de abono para la siguiente transacción?:\n$" + nmCantidadAbono.Value + "\n N° Préstamo: " + txtNoCuenta.Text + "\nPersona Asociada: " + txtAsociado.Text, "Confirmar Pago", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de abono para la siguiente transacción?:\n$" + nmCantidadAbono.Value + "\n N° Préstamo: " + txtNoCuenta.Text + "\nPersona Asociada: " + txtAsociado.Text, "Confirmar Pago", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (Imprimir != DialogResult.Cancel)
                 {
                     double Convertir = Convert.ToDouble(nmCantidadAbono.Value);
@@ -85,7 +85,7 @@ namespace ACOPEDH
                         Globales.gbError = "";
                         imprimir = false;
                     }
-                    if (Imprimir == DialogResult.Yes && imprimir == true)
+                    if (Imprimir == DialogResult.OK && imprimir == true)
                     {
                         this.Cursor = Cursors.WaitCursor;
                         Imprimir Acción = new Imprimir(Dato, "Abono");

@@ -110,7 +110,8 @@ namespace ACOPEDH
             cargando.Clear();
             imageList1 = new ImageList();
             listView1.Columns.Add("Imagen", 150);
-            listView1.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.HeaderSize);
+#warning Verificar la visualización de las imágenes
+            listView1.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.None);
             imageList1.ImageSize = new Size(150, 150);
             try
             {
