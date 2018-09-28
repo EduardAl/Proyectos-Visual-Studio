@@ -255,6 +255,9 @@
     <Compile Include="Administrador.Designer.cs">
       <DependentUpon>Administrador.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlaceHolderTextbox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Principal P.cs">
       <SubType>Form</SubType>
     </Compile>
