@@ -200,6 +200,30 @@ namespace ACOPEDH
                 dgvTeléfonos.Rows.Remove(dgvTeléfonos.CurrentRow);
             }
         }
+        //Modificar?
+        private void button4_Click(object sender, EventArgs e)
+        {
+            txtApellidos.Clear();
+            txtDirección.Clear();
+            txtDUI.Clear();
+            txtNIT.Clear();
+            txtNombres.Clear();
+            txtTeléfono.Clear();
+            dgvTeléfonos.Rows.Clear();
+
+            Habilitar(false);
+            button2.Enabled = false;
+            button3.Enabled = false;
+            id = "";
+        }
+        //Ver Personas
+        private void bttPersona_Click(object sender, EventArgs e)
+        {
+            button4_Click(sender, e);
+            Personas p = new Personas();
+            p.ShowDialog();
+            Dispose();
+        }
         #endregion
         #region Metodo
         private void Habilitar(bool habilitar)
@@ -338,28 +362,6 @@ namespace ACOPEDH
             }
         }
         #endregion
-        private void bttPersona_Click(object sender, EventArgs e)
-        {
-            button4_Click(sender, e);
-            Personas p = new Personas();
-            p.ShowDialog();
-            Dispose();
-        }
-        private void button4_Click(object sender, EventArgs e)
-        {
-            txtApellidos.Clear();
-            txtDirección.Clear();
-            txtDUI.Clear();
-            txtNIT.Clear();
-            txtNombres.Clear();
-            txtTeléfono.Clear();
-            dgvTeléfonos.Rows.Clear();
-
-            Habilitar(false);
-            button2.Enabled = false;
-            button3.Enabled = false;
-            id = "";
-        }
         #region Focus Leave
         private void txtNombres_Leave(object sender, EventArgs e)
         {

@@ -20,6 +20,7 @@ namespace ACOPEDH
             {
                 try
                 {
+                 //   /*
                     tablaServidores = new DataTable();
                     servidores = SqlDataSourceEnumerator.Instance;
                     if (tablaServidores.Rows.Count == 0)
@@ -39,8 +40,9 @@ namespace ACOPEDH
                         }
 #warning Cambiar los servidores 
                         Globales.Servidor = listaServidores[0];
-                     //   Globales.Servidor = "GISSELLE-REYES";
                     }
+                  //  */
+                   //     Globales.Servidor = "GISSELLE-REYES";
                 }
                 catch (SqlException ex)
                 {
