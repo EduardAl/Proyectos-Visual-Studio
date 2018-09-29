@@ -20,7 +20,7 @@ namespace Crear_Base_de_Datos
         }
         private void BttCrear_Click(object sender, EventArgs e)
         {
-            SqlConnection cnn = new SqlConnection("Server=" + Servidores.Servidor + "; " + "database=master; integrated security=yes");
+            SqlConnection cnn = new SqlConnection("Server=" + Servidores.Servidor + "; \n" + "database=master; integrated security=yes");
             try
             {
                 cnn.Open();
@@ -29,7 +29,7 @@ namespace Crear_Base_de_Datos
             catch
             {
                 cnn.Close();
-                cnn = new SqlConnection("Server=" + Servidores.Servidor2 + "; " + "database=master; integrated security=yes");
+                cnn = new SqlConnection("Server=" + Servidores.Servidor2 + "; \n" + "database=master; integrated security=yes");
             }
             SqlConnection cnn2 = cnn;
 
@@ -37,17 +37,17 @@ namespace Crear_Base_de_Datos
             //SqlConnection cnn = new SqlConnection("Server=yiyel501.database.windows.net;database=master; User Id=Yiyel501;Password=acopedh_1234");
             //SqlConnection cnn2 = new SqlConnection("Server=yiyel501.database.windows.net;database=ACOPEDH; User Id=Yiyel501;Password=acopedh_1234");
 
-            String cadena1 = "CREATE DATABASE " + txtNombre.Text;
+            String cadena1 = "CREATE DATABASE \n" + txtNombre.Text;
             //Comentar para Azure
-            String USE = "Use " + txtNombre.Text + ";";
+            String USE = "Use \n" + txtNombre.Text + ";";
             //Tablas
 #warning Añadir más variables después
-            String tablaVariables = "CREATE TABLE [dbo].[Variables]( " +
-                "[Aportación] smallmoney not null, " +
-                "[Mora] Numeric(3,2) " +
-                //" " +
-                //" " +
-                //" " +
+            String tablaVariables = "CREATE TABLE [dbo].[Variables]( \n" +
+                "[Aportación] smallmoney not null, \n" +
+                "[Mora] Numeric(3,2) \n" +
+                //" \n" +
+                //" \n" +
+                //" \n" +
                 " )";
             String tabla1 = "CREATE TABLE [dbo].[Tipo de Usuarios](" +
                 "[Número] [int] IDENTITY(1,1) NOT NULL," +
@@ -74,9 +74,11 @@ namespace Crear_Base_de_Datos
                 "[id Tipo de Transacción]  AS('TT' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL primary key," +
                 "[Tipo de Transacción] varchar(30) unique NOT NULL)";
             String tabla5 = "CREATE TABLE Transacciones(" +
-                 "[Número][int] IDENTITY(1, 1) NOT NULL," +
-                "[id Transacción]  AS('TR' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL primary key," +
-                "[ID Usuario Transacción] varchar(5) references [Usuarios]([Id Usuario]), " +
+#warning Aquí se cambio la llave primaria
+                /*"[Número][int] IDENTITY(1, 1) NOT NULL," +
+                "[id Transacción]  AS('TR' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL primary key," +*/
+                "[id Transacción] [int] IDENTITY(1, 1) NOT NULL primary key," +
+                "[ID Usuario Transacción] varchar(5) references [Usuarios]([Id Usuario]), \n" +
                 "[FK Tipo de Transacción] [varchar](5) NOT NULL references [Tipo de Transacción]([id Tipo de Transacción])," +
                 "[Fecha de Transacción] datetime NOT NULL)";
             String tabla6 = "CREATE TABLE [dbo].[Tipo de Ahorro](" +
@@ -101,13 +103,15 @@ namespace Crear_Base_de_Datos
                 "[Fecha de Nacimiento] [datetime] NOT NULL," +
                 "CONSTRAINT [PK_Persona] PRIMARY KEY ([Código Persona]))";
             String tabla8 = "CREATE TABLE [dbo].[Asociado](" +
-                "[Número][int] IDENTITY(1, 1) NOT NULL," +
-                "[Código Asociado]  AS('AS' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
+#warning verificar aqui sobre llaves primarias
+                /*  "[Número][int] IDENTITY(1, 1) NOT NULL," +
+                  "[Código Asociado]  AS('AS' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +*/
+                "[Código Asociado][int] IDENTITY(1, 1) Not Null, \n" +
                 "[FK Persona] [varchar](5) NOT NULL," +
                 "[FK Tipo Socio] [varchar](5) NOT NULL," +
                 "[Fecha de Asociación] [datetime] NOT NULL," +
                 "[Fecha de Desasociación] [datetime] NULL," +
-                "[Estado] [varchar](10) NOT NULL, " +
+                "[Estado] [varchar](10) NOT NULL, \n" +
                 "[FK Ocupación] [varchar](5) NOT NULL," +
                 "CONSTRAINT [PK_Asociado] PRIMARY KEY ([Código Asociado])," +
                 "CONSTRAINT [FK Persona] FOREIGN KEY ([FK Persona])" +
@@ -118,7 +122,7 @@ namespace Crear_Base_de_Datos
                 "REFERENCES Ocupación([Id Ocupación]))";
             String tabla010 = "CREATE TABLE [dbo].[Beneficiario](" +
                 "[FK Persona] [varchar](5) NOT NULL," +
-                "[FK Asociado] [varchar](5) NOT NULL," +
+                "[FK Asociado] [int] NOT NULL," +
                 "CONSTRAINT [FK Persona A] FOREIGN KEY ([FK Persona])" +
                 "REFERENCES [Persona]([Código Persona])," +
                 "CONSTRAINT [FK Asociado P] FOREIGN KEY ([FK Asociado])" +
@@ -127,8 +131,8 @@ namespace Crear_Base_de_Datos
                 "[Número] [int] IDENTITY(1,1) NOT NULL," +
                 "[id Aportación]  AS('AP' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
                 "[Aportación] [money] NOT NULL," +
-                "[FK Asociado] [varchar](5) NOT NULL," +
-                "[FK Transacción] [varchar](5) references [Transacciones]([id Transacción])," +
+                "[FK Asociado] [int] NOT NULL," +
+                "[FK Transacción] [int] references [Transacciones]([id Transacción])," +
                 "CONSTRAINT[PK_Aportaciones] PRIMARY KEY([id Aportación])," +
                 "CONSTRAINT [FK Asociado] FOREIGN KEY ([FK Asociado])" +
                 "REFERENCES Asociado([Código Asociado]))";
@@ -137,8 +141,8 @@ namespace Crear_Base_de_Datos
                 "[id Ahorro]  AS('AH' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
                 "[Estado] [varchar](10) NOT NULL," +
                 "[FK Tipo Ahorro] [varchar](5) NOT NULL," +
-                "[FK Código de Asociado] [varchar](5) NOT NULL," +
-                "[FK Transacción] [varchar](5) references [Transacciones]([id Transacción])," +
+                "[FK Código de Asociado] [int] NOT NULL," +
+                "[FK Transacción] [int] references [Transacciones]([id Transacción])," +
                 "CONSTRAINT [PK_Ahorro] PRIMARY KEY ([id Ahorro])," +
                 "CONSTRAINT [FK Tipo Ahorro] FOREIGN KEY ([FK Tipo Ahorro])" +
                 "REFERENCES [Tipo de Ahorro]([id Tipo Ahorro])," +
@@ -150,7 +154,7 @@ namespace Crear_Base_de_Datos
                 "[Retiro] [money] NOT NULL," +
                 "[Número de Cheque] [varchar](8) NOT NULL," +
                 "[FK Ahorro] [varchar](5) NOT NULL," +
-                "[FK Transacción] [varchar](5) references [Transacciones]([id Transacción])," +
+                "[FK Transacción] [int] references [Transacciones]([id Transacción])," +
                 "CONSTRAINT[PK_Retiros] PRIMARY KEY ([id Retiro])," +
                 "CONSTRAINT [FK Ahorro] FOREIGN KEY ([FK Ahorro])" +
                 "REFERENCES Ahorro([id Ahorro]))";
@@ -160,7 +164,7 @@ namespace Crear_Base_de_Datos
                 "[Abono] [money] NOT NULL," +
                 "[Abono y Comisión] [money] NOT NULL," +
                 "[FK Ahorro] [varchar](5) NOT NULL," +
-                "[FK Transacción] [varchar](5) references [Transacciones]([id Transacción])," +
+                "[FK Transacción] [int] references [Transacciones]([id Transacción])," +
                 "CONSTRAINT [PK Abono] PRIMARY KEY ([id Abono])," +
                 "CONSTRAINT [FK Abono] FOREIGN KEY ([FK Ahorro])" +
                 "references Ahorro([id Ahorro]))";
@@ -176,7 +180,7 @@ namespace Crear_Base_de_Datos
                 "CONSTRAINT [PK Teléfono] PRIMARY KEY ([id Teléfono]))";
             String tabla15 = "CREATE TABLE [dbo].[Contacto](" +
                 "[FK Teléfono] [varchar](5) NOT NULL references[Teléfono]([id Teléfono])," +
-                "[FK Persona] [varchar](5) NOT NULL references Persona([Código Persona]), " +
+                "[FK Persona] [varchar](5) NOT NULL references Persona([Código Persona]), \n" +
                 "[FK Tipo de Teléfono][varchar](5) NOT NULL references [Tipos de Teléfonos]([id Tipo de Teléfono]))";
             String tabla16 = "Create table [dbo].[Forma de Pago](" +
                 "[Número] [int] identity(1, 1) NOT NULL," +
@@ -192,14 +196,14 @@ namespace Crear_Base_de_Datos
             String tabla18 = "Create table [Préstamos](" +
                 "[Número] [int] identity(1,1)," +
                 "[id Préstamos] AS('PP-' + right('000000'+Convert([varchar](6), [Número]), (6))) PERSISTED NOT NULL PRIMARY KEY," +
-                "[Código Asociado] [varchar](5) NOT NULL references [Asociado]([Código Asociado])," +
+                "[Código Asociado] [int] NOT NULL references [Asociado]([Código Asociado])," +
                 "[id Forma de Pago] [varchar](5) references[Forma de Pago]([id Forma de Pago]) NOT NULL," +
                 "[id Tipo de Préstamo] [varchar](5) references [Tipo de Préstamo]([id Tipo de Préstamo]) NOT NULL," +
                 "[Fecha de Otorgamiento] [datetime] NOT NULL," +
                 "[Cuotas] [int] NOT NULL," +
                 "[Monto del Préstamo] [money] NOT NULL," +
                 "[Cuota Mensual] [money] NOT NULL," +
-                "[FK Transacción] [varchar](5) references [Transacciones]([id Transacción])," +
+                "[FK Transacción] [int] references [Transacciones]([id Transacción])," +
                 "[Estado] [varchar](10) NOT NULL)";
             String tabla19 = "Create table [dbo].[Pago](" +
                 "[Número][int] identity(1, 1) NOT NULL," +
@@ -212,21 +216,21 @@ namespace Crear_Base_de_Datos
                 "[id Préstamo] [varchar](9) references [Préstamos]([id Préstamos])NOT NULL," +
                 "[Mora] [money]," +
                 "[Fecha Límite][datetime] NOT NULL," +
-                "[FK Transacción] [varchar](5) references [Transacciones]([id Transacción])," +
+                "[FK Transacción] [int] references [Transacciones]([id Transacción])," +
                  "CONSTRAINT [PK Pago] PRIMARY KEY ([id Pago]))";
             String tabla20 = "Create table Imagenes(" +
-                "Cod_Imagen int identity(1, 1) primary key, " +
-                "Imagen Image, " +
-                "[Tipo imagen] int, " +
-                "Estado varchar(8), " +
+                "Cod_Imagen int identity(1, 1) primary key, \n" +
+                "Imagen Image, \n" +
+                "[Tipo imagen] int, \n" +
+                "Estado varchar(8), \n" +
                 "Descripcion varchar(MAX)); ";
             String tabla21 = "Create table[Retiros Aportaciones](" +
-                "[Número][int] IDENTITY(1, 1) NOT NULL, " +
-                "[Id Retiro Aportación]  AS('RA' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL, " +
-                "[Retiro] money NOT NULL, " +
-                "[Número de Cheque] varchar(8) NOT NULL, " +
-                "[FK Asociado] varchar(5) NOT NULL references Asociado([Código Asociado]), " +
-                "[FK Transacción] varchar(5) NOT NULL references Transacciones([id Transacción])) ";
+                "[Número][int] IDENTITY(1, 1) NOT NULL, \n" +
+                "[Id Retiro Aportación]  AS('RA' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL, \n" +
+                "[Retiro] money NOT NULL, \n" +
+                "[Número de Cheque] varchar(8) NOT NULL, \n" +
+                "[FK Asociado] [int] NOT NULL references Asociado([Código Asociado]), \n" +
+                "[FK Transacción] [int] NOT NULL references Transacciones([id Transacción])) ";
             String tabla22 = "Create table [dbo].[Tipos de Imágenes](" +
                "[Número][int] identity(1, 1) NOT NULL," +
                "[id Tipo Imagen] AS('TI' + right('000' + Convert([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
@@ -237,778 +241,779 @@ namespace Crear_Base_de_Datos
                 "[id Imagen] AS('IA' + right('00000' + Convert([varchar](5),[Número]), (5))) PERSISTED NOT NULL," +
                 "[Imagen] Image not null," +
                 "[Fecha de Subida] [datetime] NOT NULL," +
-                "[Persona Asociada] [varchar](5) references [Asociado]([Código Asociado])," +
+                "[Persona Asociada] [varchar](5) references [Persona]([Código Persona])," +
                 "[Tipo Imagen] [varchar](5) references [Tipos de Imágenes]([id Tipo Imagen])," +
                 "[Comentarios] [varchar](120) null," +
                 "CONSTRAINT [PK Imagen] PRIMARY KEY ([id Imagen]))";
             //Añadido para conseguir el límite anterior
-            String procedimiento1 = "Create Procedure [Conseguir Límite] " +
-                "@Id_Préstamo varchar(9) " +
-                "As Begin Tran Pagar " +
-                "Begin Try " +
-                "Declare @NPagos int " +
-                "Set @NPagos = (Select Count(Pago.[Número de Cuota]) From Pago inner join Préstamos on Préstamos.[id Préstamos] = Pago.[id Préstamo] " +
-                "where Préstamos.[id Préstamos] = @Id_Préstamo) " +
-                "IF @NPagos > 0 " +
-                "begin " +
-                "Select Pago.[Fecha Límite] as 'Límite' from Pago where Pago.[Número de Cuota] = @NPagos " +
-                "END " +
-                "ELSE " +
-                "begin " +
-                "    Select Préstamos.[Fecha de Otorgamiento] as 'Límite' from Préstamos where Préstamos.[id Préstamos]= @Id_Préstamo " +
-                "END " +
-                "Commit tran Pagar " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Pagar " +
-                "return 0 " +
+            String procedimiento1 = "Create Procedure [Conseguir Límite] \n" +
+                "@Id_Préstamo varchar(9) \n" +
+                "As Begin Tran Pagar \n" +
+                "Begin Try \n" +
+                "Declare @NPagos int \n" +
+                "Set @NPagos = (Select Count(Pago.[Número de Cuota]) From Pago inner join Préstamos on Préstamos.[id Préstamos] = Pago.[id Préstamo] \n" +
+                "where Préstamos.[id Préstamos] = @Id_Préstamo) \n" +
+                "IF @NPagos > 0 \n" +
+                "begin \n" +
+                "Select Pago.[Fecha Límite] as 'Límite' from Pago where Pago.[Número de Cuota] = @NPagos \n" +
+                "END \n" +
+                "ELSE \n" +
+                "begin \n" +
+                "    Select Préstamos.[Fecha de Otorgamiento] as 'Límite' from Préstamos where Préstamos.[id Préstamos]= @Id_Préstamo \n" +
+                "END \n" +
+                "Commit tran Pagar \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Pagar \n" +
+                "return 0 \n" +
                 "End Catch";
             String procedimiento2 = "Create Procedure[Insertar Asociado]" +
-                "@FK_Persona varchar(5), " +
-                "@FK_Tipo_Socio varchar(5), " +
-                "@Nombres varchar(80), " +
-                "@Apellidos varchar(80), " +
-                "@DUI varchar(10), " +
-                "@NIT varchar(17), " +
-                "@Residencia varchar(100), " +
-                "@Fecha_Nacimiento datetime, " +
-                "@Fecha_Asociación datetime, " +
-                "@FK_Ocupacion varchar(5) " +
-                "As " +
-                "Begin Tran Asociado Begin try " +
-                "Declare @Persona int Declare @FK_Per varchar(5) " +
-                "if(@FK_Persona='') begin " +
-                "Set @FK_Per=(Select [Código Persona] from Persona where [DUI]=@DUI) " +
-                "if(@FK_Per is null) begin " +
-                "Insert into Persona values(@Nombres,@Apellidos,@DUI,@NIT,@Residencia,@Fecha_Nacimiento) " +
-                "Set @FK_Per=(Select [Código Persona] from Persona where [DUI]=@DUI) " +
-                "end end " +
-                "else begin Set @FK_Per=@FK_Persona end " +
-                "set @Persona=(Select count([Código Asociado]) from Asociado where [FK Persona]=@FK_Per) " +
-                "if @Persona=0 " +
-                "begin " +
-                "Insert into Asociado values(@FK_Per,@FK_Tipo_Socio, @Fecha_Asociación, null, 'ACTIVO', @FK_Ocupacion) " +
-                "end " +
-                "else " +
-                "begin Print 'Ya existe una persona registrada con ese DUI' " +
-                "end " +
-                "Commit tran Asociado " +
-                "End try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback tran Asociado " +
+                "@FK_Persona varchar(5), \n" +
+                "@FK_Tipo_Socio varchar(5), \n" +
+                "@Nombres varchar(80), \n" +
+                "@Apellidos varchar(80), \n" +
+                "@DUI varchar(10), \n" +
+                "@NIT varchar(17), \n" +
+                "@Residencia varchar(100), \n" +
+                "@Fecha_Nacimiento datetime, \n" +
+                "@Fecha_Asociación datetime, \n" +
+                "@FK_Ocupacion varchar(5) \n" +
+                "As \n" +
+                "Begin Tran Asociado Begin try \n" +
+                "Declare @Persona int Declare @FK_Per varchar(5) \n" +
+                "if(@FK_Persona='') begin \n" +
+                "Set @FK_Per=(Select [Código Persona] from Persona where [DUI]=@DUI) \n" +
+                "if(@FK_Per is null) begin \n" +
+                "Insert into Persona values(@Nombres,@Apellidos,@DUI,@NIT,@Residencia,@Fecha_Nacimiento) \n" +
+                "Set @FK_Per=(Select [Código Persona] from Persona where [DUI]=@DUI) \n" +
+                "end end \n" +
+                "else begin Set @FK_Per=@FK_Persona end \n" +
+                "set @Persona=(Select count([Código Asociado]) from Asociado where [FK Persona]=@FK_Per) \n" +
+                "if @Persona=0 \n" +
+                "begin \n" +
+                "Insert into Asociado values(@FK_Per,@FK_Tipo_Socio, @Fecha_Asociación, null, 'ACTIVO', @FK_Ocupacion) \n" +
+                "end \n" +
+                "else \n" +
+                "begin Print 'Ya existe una persona registrada con ese DUI' \n" +
+                "end \n" +
+                "Commit tran Asociado \n" +
+                "End try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback tran Asociado \n" +
                 "End Catch ";
             //Cambiado los nombres para cargar las variables y añadiendo campos
-            String procedimiento3 = "Create Procedure[Cargar Asociados] " +
-                "@Código_Asociado varchar(5) " +
-                "As " +
-                "Begin Tran Cargar_Asociados " +
-                "Begin Try " +
-                "Select p.[Código Persona] as 'id', [Tipo de Socio].[Nombre Tipo Socio] AS 'Tipo de Asociación', p.Nombres AS 'Name', p.Apellidos AS 'LName',p.DUI AS 'DDui', p.NIT AS 'DNit', " +
-                "p.Dirección AS 'Residencia', p.[Fecha de Nacimiento] AS 'FNacimiento', [Fecha de Asociación] AS 'FAsociación', [Fecha de Desasociación] AS 'FDesasociación', Estado AS 'Est', " +
-                "Ocupación.[Nombre de la Empresa] AS 'Trabajo' From Asociado inner join [Tipo de Socio] on [Tipo de Socio].[id Tipo de Socio]=Asociado.[FK Tipo Socio] " +
-                "inner join Ocupación on Ocupación.[Id Ocupación] = Asociado.[FK Ocupación] " +
-                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] where [Código Asociado] = @Código_Asociado " +
-                "Commit Tran Cargar_Asociados " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Cargar_Asociados " +
+            String procedimiento3 = "Create Procedure[Cargar Asociados] \n" +
+                "@Código_Asociado int \n" +
+                "As \n" +
+                "Begin Tran Cargar_Asociados \n" +
+                "Begin Try \n" +
+                "Select p.[Código Persona] as 'id', [Tipo de Socio].[Nombre Tipo Socio] AS 'Tipo de Asociación', p.Nombres AS 'Name', p.Apellidos AS 'LName',p.DUI AS 'DDui', p.NIT AS 'DNit', \n" +
+                "p.Dirección AS 'Residencia', p.[Fecha de Nacimiento] AS 'FNacimiento', [Fecha de Asociación] AS 'FAsociación', [Fecha de Desasociación] AS 'FDesasociación', Estado AS 'Est', \n" +
+                "Ocupación.[Nombre de la Empresa] AS 'Trabajo' From Asociado inner join [Tipo de Socio] on [Tipo de Socio].[id Tipo de Socio]=Asociado.[FK Tipo Socio] \n" +
+                "inner join Ocupación on Ocupación.[Id Ocupación] = Asociado.[FK Ocupación] \n" +
+                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] where [Código Asociado] = @Código_Asociado \n" +
+                "Commit Tran Cargar_Asociados \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Cargar_Asociados \n" +
                 "End Catch";
-            String procedimiento4 = "Create Procedure[Insertar Teléfono] " +
-                "@Tipo_Teléfono varchar(5),  " +
-                "@Teléfono varchar(9), " +
-                "@DUI varchar(10) " +
-                "As " +
-                "Begin Tran Teléfono " +
-                "Begin Try " +
-                "Declare @ID_Persona varchar(5) " +
-                "Declare @ID_Teléfono varchar(5) " +
-                "Begin " +
-                "Set @ID_Persona = (Select[Código Persona] From Persona where @DUI = DUI)  " +
-                "Insert into Teléfono values(@Teléfono) " +
-                "set @ID_Teléfono = (Select Max([id Teléfono]) From Teléfono) " +
-                "Insert into Contacto values(@ID_Teléfono, @ID_Persona, @Tipo_Teléfono) " +
-                "Commit Tran Teléfono " +
-                "End " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Teléfono " +
+            String procedimiento4 = "Create Procedure[Insertar Teléfono] \n" +
+                "@Tipo_Teléfono varchar(5),  \n" +
+                "@Teléfono varchar(9), \n" +
+                "@DUI varchar(10) \n" +
+                "As \n" +
+                "Begin Tran Teléfono \n" +
+                "Begin Try \n" +
+                "Declare @ID_Persona varchar(5) \n" +
+                "Declare @ID_Teléfono varchar(5) \n" +
+                "Begin \n" +
+                "Set @ID_Persona = (Select[Código Persona] From Persona where @DUI = DUI)  \n" +
+                "Insert into Teléfono values(@Teléfono) \n" +
+                "set @ID_Teléfono = (Select Max([id Teléfono]) From Teléfono) \n" +
+                "Insert into Contacto values(@ID_Teléfono, @ID_Persona, @Tipo_Teléfono) \n" +
+                "Commit Tran Teléfono \n" +
+                "End \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Teléfono \n" +
                 "End Catch";
-            String procedimiento5 = "Create Procedure[Cargar Teléfonos] " +
-                "@Código_Persona varchar(5) " +
-                "As " +
-                "Begin Tran Cargar_Teléfonos " +
-                "Begin Try " +
-                "Select Teléfono.Teléfono AS 'Número de Teléfono',[Tipos de Teléfonos].[Tipo de Teléfono] From Teléfono " +
-                "inner join Contacto on Teléfono.[id Teléfono] = Contacto.[FK Teléfono] inner join [Tipos de Teléfonos] on [Tipos de Teléfonos].[id Tipo de Teléfono] = Contacto.[FK Tipo de Teléfono] " +
-                "where Contacto.[FK Persona] = @Código_Persona " +
-                "Commit Tran Cargar_Teléfonos " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Cargar_Teléfonos " +
+            String procedimiento5 = "Create Procedure[Cargar Teléfonos] \n" +
+                "@Código_Persona varchar(5) \n" +
+                "As \n" +
+                "Begin Tran Cargar_Teléfonos \n" +
+                "Begin Try \n" +
+                "Select Teléfono.Teléfono AS 'Número de Teléfono',[Tipos de Teléfonos].[Tipo de Teléfono] From Teléfono \n" +
+                "inner join Contacto on Teléfono.[id Teléfono] = Contacto.[FK Teléfono] inner join [Tipos de Teléfonos] on [Tipos de Teléfonos].[id Tipo de Teléfono] = Contacto.[FK Tipo de Teléfono] \n" +
+                "where Contacto.[FK Persona] = @Código_Persona \n" +
+                "Commit Tran Cargar_Teléfonos \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Cargar_Teléfonos \n" +
                 "End Catch ";
-            String procedimiento6 = "Create Procedure[Modificar Teléfono] " +
-                "@Tipo_Telefono varchar(50), " +
-                "@ID_Teléfono varchar(5), " +
-                "@Teléfono varchar(10), " +
-                "@Código_Persona varchar(5) " +
-                "As " +
-                "Begin Tran Mod_Tel " +
-                "Begin Try " +
-                "If((Select [Tipos de Teléfonos].[Tipo de Teléfono] From[Tipos de Teléfonos] inner join Contacto " +
-                "on[Tipos de Teléfonos].[id Tipo de Teléfono] = Contacto.[FK Tipo de Teléfono] where Contacto.[FK Teléfono] = @ID_Teléfono AND Contacto.[FK Persona] = @Código_Persona) " +
-                "= @Tipo_Telefono) " +
-                "Update Teléfono set Teléfono = @Teléfono where @ID_Teléfono =[id Teléfono] " +
-                "Commit Tran Mod_Tel " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Mod_Tel " +
+            String procedimiento6 = "Create Procedure[Modificar Teléfono] \n" +
+                "@Tipo_Telefono varchar(50), \n" +
+                "@ID_Teléfono varchar(5), \n" +
+                "@Teléfono varchar(10), \n" +
+                "@Código_Persona varchar(5) \n" +
+                "As \n" +
+                "Begin Tran Mod_Tel \n" +
+                "Begin Try \n" +
+                "If((Select [Tipos de Teléfonos].[Tipo de Teléfono] From[Tipos de Teléfonos] inner join Contacto \n" +
+                "on[Tipos de Teléfonos].[id Tipo de Teléfono] = Contacto.[FK Tipo de Teléfono] where Contacto.[FK Teléfono] = @ID_Teléfono AND Contacto.[FK Persona] = @Código_Persona) \n" +
+                "= @Tipo_Telefono) \n" +
+                "Update Teléfono set Teléfono = @Teléfono where @ID_Teléfono =[id Teléfono] \n" +
+                "Commit Tran Mod_Tel \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Mod_Tel \n" +
                 "End Catch";
-            String procedimiento7 = "Create Procedure[Eliminar Teléfono] " +
-                "@ID_Teléfono varchar(5), " +
-                "@Id_Persona varchar(5) " +
-                "As   " +
-                "Begin Tran Del_Teléfono " +
-                "Begin Try " +
-                "Begin " +
-                "Delete From Contacto where @ID_Teléfono = [FK Teléfono] AND @Id_Persona = [FK Persona] " +
-                "Commit Tran Del_Teléfono " +
-                "End " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Del_Teléfono " +
+            String procedimiento7 = "Create Procedure[Eliminar Teléfono] \n" +
+                "@ID_Teléfono varchar(5), \n" +
+                "@Id_Persona varchar(5) \n" +
+                "As   \n" +
+                "Begin Tran Del_Teléfono \n" +
+                "Begin Try \n" +
+                "Begin \n" +
+                "Delete From Contacto where @ID_Teléfono = [FK Teléfono] AND @Id_Persona = [FK Persona] \n" +
+                "Commit Tran Del_Teléfono \n" +
+                "End \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Del_Teléfono \n" +
                 "End Catch ";
-            String procedimiento8 = "Create Procedure[Abonar] " +
-               "@Abono money, " +
-               "@Comision money, " +
-               "@FK_Ahorro varchar(40), " +
-               "@Id_Usuario varchar(5) " +
-               "As " +
-               "Begin Tran Abono " +
-               "Begin Try " +
+            String procedimiento8 = "Create Procedure[Abonar] \n" +
+               "@Abono money, \n" +
+               "@Comision money, \n" +
+               "@FK_Ahorro varchar(40), \n" +
+               "@Id_Usuario varchar(5) \n" +
+               "As \n" +
+               "Begin Tran Abono \n" +
+               "Begin Try \n" +
                "if ((Select Estado From Ahorro where Ahorro.[id Ahorro] = @FK_Ahorro) <> 'INACTIVO') "+
                "Begin "+
-               "Declare @id_Transación varchar(5) " +
-               "Insert into Transacciones values(@Id_Usuario, 'TT002',GETDATE()) " +
-               "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
-               "Insert into Abono values(@Abono,@Comision,@FK_Ahorro, @id_Transación) " +
-               "Commit Tran Abono " +
+               "Declare @id_Transación int \n" +
+               "Insert into Transacciones values(@Id_Usuario, 'TT002',GETDATE()) \n" +
+               "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) \n" +
+               "Insert into Abono values(@Abono,@Comision,@FK_Ahorro, @id_Transación) \n" +
+               "Commit Tran Abono \n" +
                "End "+
                "Else begin "+
                "Print 'Cuenta INACTIVA. No se puede abonar.' "+
                "Commit Tran Abono "+
                "end "+
-               "End Try " +
-               "Begin Catch " +
-               "Print ERROR_MESSAGE(); " +
-               "Rollback tran Abono " +
+               "End Try \n" +
+               "Begin Catch \n" +
+               "Print ERROR_MESSAGE(); \n" +
+               "Rollback tran Abono \n" +
                "End Catch ";
             //Cambiado para que se muestren activos e inactivos
-            String procedimiento9 = "Create Procedure[Ahorro DVG] " +
-                "As " +
-                "Begin Tran Ahorro_DVG " +
-                "Begin Try " +
-                "Select Ahorro.[id Ahorro] as 'Código de Ahorro',(p.Nombres+' ' + p.Apellidos) as 'Persona Asociada', p.DUI as 'DUI' ,[Tipo de Ahorro].Nombre as 'Tipo de Ahorro', Ahorro.Estado as 'Estado' From Asociado inner join Ahorro " +
-                "on Ahorro.[FK Código de Asociado] = Asociado.[Código Asociado] inner join [Tipo de Ahorro] on Ahorro.[FK Tipo Ahorro]=[Tipo de Ahorro].[id Tipo Ahorro] " +
+            String procedimiento9 = "Create Procedure[Ahorro DVG] \n" +
+                "As \n" +
+                "Begin Tran Ahorro_DVG \n" +
+                "Begin Try \n" +
+                "Select Ahorro.[id Ahorro] as 'Código de Ahorro',(p.Nombres+' ' + p.Apellidos) as 'Persona Asociada', p.DUI as 'DUI' ,[Tipo de Ahorro].Nombre as 'Tipo de Ahorro', Ahorro.Estado as 'Estado' From Asociado inner join Ahorro \n" +
+                "on Ahorro.[FK Código de Asociado] = Asociado.[Código Asociado] inner join [Tipo de Ahorro] on Ahorro.[FK Tipo Ahorro]=[Tipo de Ahorro].[id Tipo Ahorro] \n" +
                 "inner join Persona p on p.[Código Persona]= Asociado.[FK Persona]" +
-                "Commit Tran Ahorro_DVG " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Cargar_Ahorros " +
+                "Commit Tran Ahorro_DVG \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Cargar_Ahorros \n" +
                 "End Catch";
-            String procedimiento10 = "Create Procedure[dbo].[Realizar Aportación] " +
-                "@Aportación money, " +
-                "@ID_Asociado varchar(5), " +
-                "@Id_Usuario varchar(5) " +
-                "As " +
-                "Begin Tran Asociado " +
-                "Begin try " +
-                "if ((Select Estado From Asociado where Asociado.[Código Asociado] = @ID_Asociado) = 'ACTIVO') " +
-                "Begin " +
-                "If Exists(Select Aportaciones.[id Aportación] from Aportaciones inner join Transacciones on Aportaciones.[FK Transacción]= Transacciones.[id Transacción] " +
-                "where MONTH(Transacciones.[Fecha de Transacción])= MONTH(GETDATE())AND YEAR(Transacciones.[Fecha de Transacción]) = YEAR(GETDATE()) " +
-                "AND Aportaciones.[FK Asociado]= @ID_Asociado) " +
-                "Begin " +
-                "Print 'Ya se realizó aportación mensual' " +
-                "Rollback tran Asociado " +
-                "End " +
-                "Else " +
-                "Begin " +
-                "Declare @id_Transación varchar(5) " +
-                "Insert into Transacciones values(@Id_Usuario, 'TT001',GETDATE()) " +
-                "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
-                "Insert into Aportaciones values(@Aportación, @ID_Asociado, @id_Transación) " +
-                "Print 'Aporte realizado con éxito' " +
-                "Commit tran Asociado " +
-                "End " +
-                "End " +
-                "Else begin " +
-                "Print 'No se puede realizar aportación. La persona está desasociada.' " +
-                "Commit Tran Asociado " +
-                "End " +
-                "End try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback tran Asociado " +
+            String procedimiento10 = "Create Procedure[dbo].[Realizar Aportación] \n" +
+                "@Aportación money, \n" +
+                "@ID_Asociado int, \n" +
+                "@Id_Usuario varchar(5) \n" +
+                "As \n" +
+                "Begin Tran Asociado \n" +
+                "Begin try \n" +
+                "if ((Select Estado From Asociado where Asociado.[Código Asociado] = @ID_Asociado) = 'ACTIVO') \n" +
+                "Begin \n" +
+                "If Exists(Select Aportaciones.[id Aportación] from Aportaciones inner join Transacciones on Aportaciones.[FK Transacción]= Transacciones.[id Transacción] \n" +
+                "where MONTH(Transacciones.[Fecha de Transacción])= MONTH(GETDATE())AND YEAR(Transacciones.[Fecha de Transacción]) = YEAR(GETDATE()) \n" +
+                "AND Aportaciones.[FK Asociado]= @ID_Asociado) \n" +
+                "Begin \n" +
+                "Print 'Ya se realizó aportación mensual' \n" +
+                "Rollback tran Asociado \n" +
+                "End \n" +
+                "Else \n" +
+                "Begin \n" +
+                "Declare @id_Transación int \n" +
+                "Insert into Transacciones values(@Id_Usuario, 'TT001',GETDATE()) \n" +
+                "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) \n" +
+                "Insert into Aportaciones values(@Aportación, @ID_Asociado, @id_Transación) \n" +
+                "Print 'Aporte realizado con éxito' \n" +
+                "Commit tran Asociado \n" +
+                "End \n" +
+                "End \n" +
+                "Else begin \n" +
+                "Print 'No se puede realizar aportación. La persona está desasociada.' \n" +
+                "Commit Tran Asociado \n" +
+                "End \n" +
+                "End try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback tran Asociado \n" +
                 "End Catch ";
-            String procedimiento11 = "Create Procedure[Cargar Aportaciones] " +
-                "@Código_Asociado varchar(5) " +
-                "As " +
-                "Begin Tran C_Aportaciones " +
-                "Begin Try " +
+            String procedimiento11 = "Create Procedure[Cargar Aportaciones] \n" +
+                "@Código_Asociado int \n" +
+                "As \n" +
+                "Begin Tran C_Aportaciones \n" +
+                "Begin Try \n" +
                 "Select Aportaciones.Aportación as 'Monto de la Aportación',Transacciones.[Fecha de Transacción] as 'Fecha de Aportación' From Aportaciones inner join Transacciones on Aportaciones.[FK Transacción] =" +
-                "Transacciones.[id Transacción] where @Código_Asociado = Aportaciones.[FK Asociado] " +
-                "Commit Tran C_Aportaciones " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran C_Aportaciones " +
+                "Transacciones.[id Transacción] where @Código_Asociado = Aportaciones.[FK Asociado] \n" +
+                "Commit Tran C_Aportaciones \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran C_Aportaciones \n" +
                 "End Catch";
-            String procedimiento12 = "Create Procedure[Suma Aportaciones] " +
-                "@Código_Asociado varchar(5) " +
-                "As " +
-                "Begin Tran S_Aportaciones " +
-                "Begin Try " +
-                "if (Select Count(Aportación) AS 'Suma de Aportaciones' From Aportaciones where @Código_Asociado = [FK Asociado] ) > 0 " +
-                "Begin Select SUM(Aportación) AS 'Suma de Aportaciones' From Aportaciones where @Código_Asociado = [FK Asociado] " +
-                "Commit Tran S_Aportaciones End " +
-                "Else Begin Select 0 AS 'Suma de Aportaciones' Commit Tran S_Aportaciones end " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran S_Aportaciones " +
-                "Select 0 AS 'Suma de Aportaciones' Commit Tran S_Aportaciones " +
+            String procedimiento12 = "Create Procedure[Suma Aportaciones] \n" +
+                "@Código_Asociado varchar(5) \n" +
+                "As \n" +
+                "Begin Tran S_Aportaciones \n" +
+                "Begin Try \n" +
+                "if (Select Count(Aportación) AS 'Suma de Aportaciones' From Aportaciones where @Código_Asociado = [FK Asociado] ) > 0 \n" +
+                "Begin Select SUM(Aportación) AS 'Suma de Aportaciones' From Aportaciones where @Código_Asociado = [FK Asociado] \n" +
+                "Commit Tran S_Aportaciones End \n" +
+                "Else Begin Select 0 AS 'Suma de Aportaciones' Commit Tran S_Aportaciones end \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran S_Aportaciones \n" +
+                "Select 0 AS 'Suma de Aportaciones' Commit Tran S_Aportaciones \n" +
                 "End Catch ";
             //Cambio para visualizar más campos en la consulta
-            String procedimiento13 = "Create Procedure[Cargar Pagos] " +
-                "@ID_Préstamo varchar(9) " +
-                "As " +
-                "Begin Tran Cargar_Pagos " +
-                "Begin Try " +
-                "Select Pago.[Número de Cuota] as 'No Pago', Pago.Pago as 'Monto Cancelado', Pago.Intereses as 'Pago a Intereses', Pago.Capital as 'Pago a Capital', Pago.Mora as 'Mora por retraso', Pago.Saldo as 'Saldo restante', Transacciones.[Fecha de Transacción] as 'Fecha de Pago', Pago.[Fecha Límite] as 'Fecha Límite de Pago' From Pago " +
-                "inner join Préstamos on Préstamos.[id Préstamos] = Pago.[id Préstamo] " +
-                "inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] where Préstamos.[id Préstamos]=@ID_Préstamo " +
-                "Commit Tran Cargar_Pagos " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Cargar_Pagos " +
+            String procedimiento13 = "Create Procedure[Cargar Pagos] \n" +
+                "@ID_Préstamo varchar(9) \n" +
+                "As \n" +
+                "Begin Tran Cargar_Pagos \n" +
+                "Begin Try \n" +
+                "Select Pago.[Número de Cuota] as 'No Pago', Pago.Pago as 'Monto Cancelado', Pago.Intereses as 'Pago a Intereses', Pago.Capital as 'Pago a Capital', Pago.Mora as 'Mora por retraso', Pago.Saldo as 'Saldo restante', Transacciones.[Fecha de Transacción] as 'Fecha de Pago', Pago.[Fecha Límite] as 'Fecha Límite de Pago' From Pago \n" +
+                "inner join Préstamos on Préstamos.[id Préstamos] = Pago.[id Préstamo] \n" +
+                "inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] where Préstamos.[id Préstamos]=@ID_Préstamo \n" +
+                "Commit Tran Cargar_Pagos \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Cargar_Pagos \n" +
                 "End Catch ";
 #warning Podría causar errores
             //Modificado para que ingrese además un abono
-            String procedimiento14 = "Create Procedure [Nueva Cuenta de Ahorro] " +
-                "@FK_Tipo_Ahorro varchar(20), " +
-                "@FK_Asociado varchar(5), " +
-                "@Abono_inicial money, " +
-                "@Comision money, " +
-                "@ID_Usuario varchar(5) " +
-                "As Begin Tran Ahorro " +
-                "Begin try " +
-                "Declare @ID_Tipo_Ahorro as varchar(5) " +
-                "Declare @Contar_Activos as int " +
-                "Declare @id_Transacción as varchar(5)" +
-                "set @ID_Tipo_Ahorro = (Select [id Tipo Ahorro] From [Tipo de Ahorro] where Nombre = @FK_Tipo_Ahorro) " +
-                "set @Contar_Activos = (Select COUNT([id Ahorro]) from Ahorro where [FK Código de Asociado] = @FK_Asociado AND Estado = 'ACTIVO') " +
-                "if @Contar_Activos < 3 " +
-                "Begin " +
-                "Insert into Transacciones values(@Id_Usuario, 'TT006', GETDATE()) " +
-                "set @id_Transacción = (Select MAX([id Transacción]) From Transacciones) " +
-                "Insert into Ahorro values('ACTIVO', @ID_Tipo_Ahorro, @FK_Asociado, @id_Transacción) " +
-                "Declare @FK_Ahorro_nuevo as varchar(5) " +
-                "set @FK_Ahorro_nuevo = (Select MAX([id Ahorro]) from Ahorro where [FK Código de Asociado] = @FK_Asociado) " +
-                "exec Abonar @Abono_inicial,@Comision,@FK_Ahorro_nuevo,@ID_Usuario " +
-                "Commit tran Ahorro " +
-                "End " +
-                "else " +
-                "Begin " +
-                "Print 'El usuario ya tiene 3 cuentas de ahorro activas' " +
-                "Commit tran Ahorro " +
-                "End " +
-                "End try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback tran Ahorro " +
-                "return 0 " +
+            String procedimiento14 = "Create Procedure [Nueva Cuenta de Ahorro] \n" +
+                "@FK_Tipo_Ahorro varchar(20), \n" +
+                "@FK_Asociado varchar(5), \n" +
+                "@Abono_inicial money, \n" +
+                "@Comision money, \n" +
+                "@ID_Usuario varchar(5) \n" +
+                "As Begin Tran Ahorro \n" +
+                "Begin try \n" +
+                "Declare @ID_Tipo_Ahorro as varchar(5) \n" +
+                "Declare @Contar_Activos as int \n" +
+                "Declare @id_Transacción as int \n" +
+                "set @ID_Tipo_Ahorro = (Select [id Tipo Ahorro] From [Tipo de Ahorro] where Nombre = @FK_Tipo_Ahorro) \n" +
+                "set @Contar_Activos = (Select COUNT([id Ahorro]) from Ahorro where [FK Código de Asociado] = @FK_Asociado AND Estado = 'ACTIVO') \n" +
+                "if @Contar_Activos < 3 \n" +
+                "Begin \n" +
+                "Insert into Transacciones values(@Id_Usuario, 'TT006', GETDATE()) \n" +
+                "set @id_Transacción = (Select MAX([id Transacción]) From Transacciones) \n" +
+                "Insert into Ahorro values('ACTIVO', @ID_Tipo_Ahorro, @FK_Asociado, @id_Transacción) \n" +
+                "Declare @FK_Ahorro_nuevo as varchar(5) \n" +
+                "set @FK_Ahorro_nuevo = (Select MAX([id Ahorro]) from Ahorro where [FK Código de Asociado] = @FK_Asociado) \n" +
+                "exec Abonar @Abono_inicial,@Comision,@FK_Ahorro_nuevo,@ID_Usuario \n" +
+                "Commit tran Ahorro \n" +
+                "End \n" +
+                "else \n" +
+                "Begin \n" +
+                "Print 'El usuario ya tiene 3 cuentas de ahorro activas' \n" +
+                "Commit tran Ahorro \n" +
+                "End \n" +
+                "End try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback tran Ahorro \n" +
+                "return 0 \n" +
                 "End Catch ";
-            String procedimiento15 = "Create Procedure[Cargar Abonos] " +
-                "@ID_Ahorro varchar(5) " +
-                "As " +
-                "Begin Tran Cargar_Abono " +
-                "Begin Try " +
-                "Select Abono.Abono as 'Monto Abonado', Abono.[Abono y Comisión] as 'Abono más Comisión',Transacciones.[Fecha de Transacción] as 'Fecha de Abono' From Abono inner join Transacciones on Abono.[FK Transacción] = Transacciones.[id Transacción] " +
-                "where[FK Ahorro] = @ID_Ahorro " +
-                "Commit Tran Cargar_Abono " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Cargar_Abono " +
+            String procedimiento15 = "Create Procedure[Cargar Abonos] \n" +
+                "@ID_Ahorro varchar(5) \n" +
+                "As \n" +
+                "Begin Tran Cargar_Abono \n" +
+                "Begin Try \n" +
+                "Select Abono.Abono as 'Monto Abonado', Abono.[Abono y Comisión] as 'Abono más Comisión',Transacciones.[Fecha de Transacción] as 'Fecha de Abono' From Abono inner join Transacciones on Abono.[FK Transacción] = Transacciones.[id Transacción] \n" +
+                "where[FK Ahorro] = @ID_Ahorro \n" +
+                "Commit Tran Cargar_Abono \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Cargar_Abono \n" +
                 "End Catch";
-            String procedimiento16 = "Create Procedure[Suma Abonos] " +
-                "@ID_Ahorro varchar(5) " +
-                "As " +
-                "Begin Tran Disponibles_Abono " +
-                "Begin Try " +
-                "if (Select Count([Abono y Comisión]) AS 'Suma de Abonos' From Abono where[FK Ahorro] = @ID_Ahorro) > 0 Begin " +
-                "Select SUM([Abono y Comisión]) AS 'Suma de Abonos' From Abono where[FK Ahorro] = @ID_Ahorro " +
-                "Commit Tran Disponibles_Abono End " +
-                "else begin Select 0 as 'Suma de Abonos' Commit Tran Disponibles_Abono End " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Disponibles_Abono " +
-                "Select 0 as 'Suma de Abonos' " +
+            String procedimiento16 = "Create Procedure[Suma Abonos] \n" +
+                "@ID_Ahorro varchar(5) \n" +
+                "As \n" +
+                "Begin Tran Disponibles_Abono \n" +
+                "Begin Try \n" +
+                "if (Select Count([Abono y Comisión]) AS 'Suma de Abonos' From Abono where[FK Ahorro] = @ID_Ahorro) > 0 Begin \n" +
+                "Select SUM([Abono y Comisión]) AS 'Suma de Abonos' From Abono where[FK Ahorro] = @ID_Ahorro \n" +
+                "Commit Tran Disponibles_Abono End \n" +
+                "else begin Select 0 as 'Suma de Abonos' Commit Tran Disponibles_Abono End \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Disponibles_Abono \n" +
+                "Select 0 as 'Suma de Abonos' \n" +
                 "End Catch";
-            String procedimiento17 = "Create Procedure[Realizar Retiros] " +
-                "@Retiro money, " +
-                "@Número_Cheque varchar(8), " +
-                "@FK_Ahorro varchar(30), " +
-                "@Id_Usuario varchar(5) " +
-                "As " +
-                "Begin Try " +
-                "Begin Tran Retiro " +
-                "Declare @id_Transación varchar(5) " +
-                "Insert into Transacciones values(@Id_Usuario, 'TT005',GETDATE()) " +
-                "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
-                "Insert into Retiros values(@Retiro,@Número_Cheque, @FK_Ahorro, @id_Transación) " +
-                "Commit Tran Retiro " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback tran Retiro " +
+            String procedimiento17 = "Create Procedure[Realizar Retiros] \n" +
+                "@Retiro money, \n" +
+                "@Número_Cheque varchar(8), \n" +
+                "@FK_Ahorro varchar(30), \n" +
+                "@Id_Usuario varchar(5) \n" +
+                "As \n" +
+                "Begin Try \n" +
+                "Begin Tran Retiro \n" +
+                "Declare @id_Transación int \n" +
+                "Insert into Transacciones values(@Id_Usuario, 'TT005',GETDATE()) \n" +
+                "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) \n" +
+                "Insert into Retiros values(@Retiro,@Número_Cheque, @FK_Ahorro, @id_Transación) \n" +
+                "Commit Tran Retiro \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback tran Retiro \n" +
                 "End Catch ";
-            String procedimiento18 = "Create Procedure[Cargar Retiros] " +
-                "@ID_Ahorro varchar(5) " +
-                "As " +
-                "Begin Tran Cargar_Retiro " +
-                "Begin Try " +
-                "Select Retiros.Retiro as 'Monto Retirado',Transacciones.[Fecha de Transacción] as 'Fecha de Retiro' From Retiros inner join Transacciones on Retiros.[FK Transacción] = Transacciones.[id Transacción] " +
-                "where[FK Ahorro] = @ID_Ahorro " +
-                "Commit Tran Cargar_Retiro " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Cargar_Retiro " +
+            String procedimiento18 = "Create Procedure[Cargar Retiros] \n" +
+                "@ID_Ahorro varchar(5) \n" +
+                "As \n" +
+                "Begin Tran Cargar_Retiro \n" +
+                "Begin Try \n" +
+                "Select Retiros.Retiro as 'Monto Retirado',Transacciones.[Fecha de Transacción] as 'Fecha de Retiro' From Retiros inner join Transacciones on Retiros.[FK Transacción] = Transacciones.[id Transacción] \n" +
+                "where[FK Ahorro] = @ID_Ahorro \n" +
+                "Commit Tran Cargar_Retiro \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Cargar_Retiro \n" +
                 "End Catch ";
             //Si no hay retiros
-            String procedimiento19 = "Create Procedure[Suma Retiros] " +
-                "@ID_Ahorro varchar(5) " +
-                "As " +
-                "Begin Tran Disponibles_Retiro " +
-                "Begin Try " +
-                "if (Select Count(Retiro) From Retiros where[FK Ahorro] = @ID_Ahorro ) > 0 " +
-                "begin " +
-                "Select SUM(Retiro) AS 'Suma de Retiros' From Retiros where[FK Ahorro] = @ID_Ahorro " +
-                "Commit Tran Disponibles_Retiro end else " +
-                "begin " +
-                "Select 0 AS 'Suma de Retiros' " +
-                "commit tran Disponibles_Retiro end " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Disponibles_Retiro Select 0 AS 'Suma de Retiros' " +
+            String procedimiento19 = "Create Procedure[Suma Retiros] \n" +
+                "@ID_Ahorro varchar(5) \n" +
+                "As \n" +
+                "Begin Tran Disponibles_Retiro \n" +
+                "Begin Try \n" +
+                "if (Select Count(Retiro) From Retiros where[FK Ahorro] = @ID_Ahorro ) > 0 \n" +
+                "begin \n" +
+                "Select SUM(Retiro) AS 'Suma de Retiros' From Retiros where[FK Ahorro] = @ID_Ahorro \n" +
+                "Commit Tran Disponibles_Retiro end else \n" +
+                "begin \n" +
+                "Select 0 AS 'Suma de Retiros' \n" +
+                "commit tran Disponibles_Retiro end \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Disponibles_Retiro Select 0 AS 'Suma de Retiros' \n" +
                 "End Catch ";
             //Cambiado por el n de cuota
-            String procedimiento20 = "Create Procedure[Realizar Pago] " +
-                "@ID_Préstamo varchar(9), " +
-                "@Pago money, " +
-                "@Id_Usuario varchar(5), " +
-                "@Intereses money, " +
-                "@Capital money, " +
-                "@Saldo money, " +
-                "@Mora money, " +
-                "@Fecha_Límite datetime " +
-                "As Begin Tran Pagar " +
-                "Begin Try " +
-                "Declare @id_Transación varchar(5) " +
-                "Declare @No_Cuota int " +
-                "if (Select Estado from Préstamos where [id Préstamos] = @ID_Préstamo) = 'ACTIVO' Begin " +
-                "Insert into Transacciones values(@Id_Usuario, 'TT004', GETDATE()) " +
-                "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) " +
+            String procedimiento20 = "Create Procedure[Realizar Pago] \n" +
+                "@ID_Préstamo varchar(9), \n" +
+                "@Pago money, \n" +
+                "@Id_Usuario varchar(5), \n" +
+                "@Intereses money, \n" +
+                "@Capital money, \n" +
+                "@Saldo money, \n" +
+                "@Mora money, \n" +
+                "@Fecha_Límite datetime \n" +
+                "As Begin Tran Pagar \n" +
+                "Begin Try \n" +
+                "Declare @id_Transación int \n" +
+                "Declare @No_Cuota int \n" +
+                "if (Select Estado from Préstamos where [id Préstamos] = @ID_Préstamo) = 'ACTIVO' Begin \n" +
+                "Insert into Transacciones values(@Id_Usuario, 'TT004', GETDATE()) \n" +
+                "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) \n" +
                 "Set @No_Cuota = ((Select Count(Pago.[Número de Cuota]) From Pago inner join Préstamos on Préstamos.[id Préstamos] = Pago.[id Préstamo]" +
-                "Where Préstamos.[id Préstamos] = @ID_Préstamo) + 1) " +
-                "Insert into Pago values(@Pago, @No_Cuota, @Intereses, @Capital, @Saldo, @ID_Préstamo, @Mora, @Fecha_Límite, @id_Transación) " +
-                "Commit Tran Pagar End " +
-                "Else Begin Print 'El préstamo ya fue cancelado' Commit Tran Pagar return 0 End " +
+                "Where Préstamos.[id Préstamos] = @ID_Préstamo) + 1) \n" +
+                "Insert into Pago values(@Pago, @No_Cuota, @Intereses, @Capital, @Saldo, @ID_Préstamo, @Mora, @Fecha_Límite, @id_Transación) \n" +
+                "Commit Tran Pagar End \n" +
+                "Else Begin Print 'El préstamo ya fue cancelado' Commit Tran Pagar return 0 End \n" +
                 "End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Pagar End Catch ";
-            String procedimiento21 = "Create Procedure[Cargar Saldo] " +
-                  "@ID_Préstamo varchar(9) " +
-                  "As " +
-                  "Begin Tran Cargar_Saldo " +
-                  "Begin Try " +
-                  "Select Min(Pago.Saldo) AS 'Pago Mínimo' From Pago inner join Préstamos " +
-                  "on Pago.[id Préstamo] = Préstamos.[id Préstamos] where Préstamos.[id Préstamos]=@ID_Préstamo " +
-                  "Commit Tran Cargar_Saldo " +
-                  "End Try " +
-                  "Begin Catch " +
-                  "Print ERROR_MESSAGE(); " +
+            String procedimiento21 = "Create Procedure[Cargar Saldo] \n" +
+                  "@ID_Préstamo varchar(9) \n" +
+                  "As \n" +
+                  "Begin Tran Cargar_Saldo \n" +
+                  "Begin Try \n" +
+                  "Select Min(Pago.Saldo) AS 'Pago Mínimo' From Pago inner join Préstamos \n" +
+                  "on Pago.[id Préstamo] = Préstamos.[id Préstamos] where Préstamos.[id Préstamos]=@ID_Préstamo \n" +
+                  "Commit Tran Cargar_Saldo \n" +
+                  "End Try \n" +
+                  "Begin Catch \n" +
+                  "Print ERROR_MESSAGE(); \n" +
                   "Rollback Tran Cargar_Saldo \n" +
                   "End Catch ";
             //Trigger Feo
-            String Trigger1 = "Create Trigger [Préstamo Cancelado] " +
-            "On Pago For Insert " +
-            "As " +
-            "Declare @Pago_Ultimo money " +
-            "Select @Pago_Ultimo = Pago.Saldo From inserted " +
-            "inner join Pago on Pago.[id Pago] = inserted.[id Pago] " +
-            "inner join Préstamos on Préstamos.[id Préstamos] = inserted.[id Préstamo] " +
-            "If (@Pago_Ultimo) = 0 " +
-            "Begin " +
-            "Update Préstamos set Estado = 'CANCELADO' " +
-            "From Préstamos inner join Pago on Préstamos.[id Préstamos] = Pago.[id Préstamo] " +
-            "inner join inserted on Pago.[id Pago] = inserted.[id Pago] " +
-            "where Pago.[id Pago] = inserted.[id Pago] " +
+            String Trigger1 = "Create Trigger [Préstamo Cancelado] \n" +
+            "On Pago For Insert \n" +
+            "As \n" +
+            "Declare @Pago_Ultimo money \n" +
+            "Select @Pago_Ultimo = Pago.Saldo From inserted \n" +
+            "inner join Pago on Pago.[id Pago] = inserted.[id Pago] \n" +
+            "inner join Préstamos on Préstamos.[id Préstamos] = inserted.[id Préstamo] \n" +
+            "If (@Pago_Ultimo) = 0 \n" +
+            "Begin \n" +
+            "Update Préstamos set Estado = 'CANCELADO' \n" +
+            "From Préstamos inner join Pago on Préstamos.[id Préstamos] = Pago.[id Préstamo] \n" +
+            "inner join inserted on Pago.[id Pago] = inserted.[id Pago] \n" +
+            "where Pago.[id Pago] = inserted.[id Pago] \n" +
             "End;";
             //Modificación
-            String procedimiento22 = "Create Procedure[Cargar Préstamo] " +
-                "@ID_Préstamo varchar(9) " +
-                 "As " +
-                 "Begin Tran Cargar_P " +
-                "Begin Try " +
+            String procedimiento22 = "Create Procedure[Cargar Préstamo] \n" +
+                "@ID_Préstamo varchar(9) \n" +
+                 "As \n" +
+                 "Begin Tran Cargar_P \n" +
+                "Begin Try \n" +
                 "Select Asociado.[Código Asociado] AS 'Código_A', (p.Nombres + ' ' + p.Apellidos) AS 'Nombre',[Forma de Pago].Nombre AS 'FormaP'," +
-                " [Tipo de Préstamo].[Tipo de Préstamo]As 'TipoP', [Tipo de Préstamo].[Tasa de Interés] As Interés, Préstamos.[Monto del Préstamo] AS Monto, " +
-                "Transacciones.[Fecha de Transacción] AS FechaT, Préstamos.Cuotas AS NCuotas, Préstamos.[Cuota Mensual] AS PCuotas, Préstamos.Estado AS Estado " +
-                "From Asociado inner join [Forma de Pago] on [Forma de Pago].[id Forma de Pago] = [id Forma de Pago] inner join Préstamos on " +
-                "Asociado.[Código Asociado] = Préstamos.[Código Asociado] inner join [Tipo de Préstamo] on Préstamos.[id Tipo de Préstamo] " +
-                "= [Tipo de Préstamo].[id Tipo de Préstamo] inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] " +
+                " [Tipo de Préstamo].[Tipo de Préstamo]As 'TipoP', [Tipo de Préstamo].[Tasa de Interés] As Interés, Préstamos.[Monto del Préstamo] AS Monto, \n" +
+                "Transacciones.[Fecha de Transacción] AS FechaT, Préstamos.Cuotas AS NCuotas, Préstamos.[Cuota Mensual] AS PCuotas, Préstamos.Estado AS Estado \n" +
+                "From Asociado inner join [Forma de Pago] on [Forma de Pago].[id Forma de Pago] = [id Forma de Pago] inner join Préstamos on \n" +
+                "Asociado.[Código Asociado] = Préstamos.[Código Asociado] inner join [Tipo de Préstamo] on Préstamos.[id Tipo de Préstamo] \n" +
+                "= [Tipo de Préstamo].[id Tipo de Préstamo] inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] \n" +
                 "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona]" +
-                "where Préstamos.[id Préstamos]= @ID_Préstamo " +
-                "Commit Tran Cargar_P " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Cargar_P " +
+                "where Préstamos.[id Préstamos]= @ID_Préstamo \n" +
+                "Commit Tran Cargar_P \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Cargar_P \n" +
                 "End Catch ";
             //Modificado para que se vean también los no activos
-            String procedimiento23 = "Create Procedure[Préstamo DVG] " +
-                "As " +
-                "Begin Tran Pres " +
-                "Begin Try " +
-                "Select Préstamos.[id Préstamos] as 'Código de Préstamo', (p.Nombres + ' ' + p.Apellidos) as 'Persona Asociada', p.DUI as 'Dui', [Tipo de Préstamo].[Tipo de Préstamo], Préstamos.Estado as 'Estado' " +
-                "From Asociado inner join Préstamos on Asociado.[Código Asociado] = Préstamos.[Código Asociado] inner join [Tipo de Préstamo] " +
-                "on Préstamos.[id Tipo de Préstamo] = [Tipo de Préstamo].[id Tipo de Préstamo] " +
-                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] " +
-                "Commit Tran Pres " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Pres " +
+            String procedimiento23 = "Create Procedure[Préstamo DVG] \n" +
+                "As \n" +
+                "Begin Tran Pres \n" +
+                "Begin Try \n" +
+                "Select Préstamos.[id Préstamos] as 'Código de Préstamo', (p.Nombres + ' ' + p.Apellidos) as 'Persona Asociada', p.DUI as 'Dui', [Tipo de Préstamo].[Tipo de Préstamo], Préstamos.Estado as 'Estado' \n" +
+                "From Asociado inner join Préstamos on Asociado.[Código Asociado] = Préstamos.[Código Asociado] inner join [Tipo de Préstamo] \n" +
+                "on Préstamos.[id Tipo de Préstamo] = [Tipo de Préstamo].[id Tipo de Préstamo] \n" +
+                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] \n" +
+                "Commit Tran Pres \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Pres \n" +
                 "End Catch";
             //Cambiado para que muestre los activos y no activos
             String procedimiento24 = "Create Procedure[Asociado DVG]" +
-                "As " +
-                "Begin Tran Aso " +
-                "Begin Try " +
-                "Select Asociado.[Código Asociado] as 'Código', (p.Nombres + ' ' + p.Apellidos) as 'Persona Asociada',p.DUI as 'Dui',[Tipo de Socio].[Nombre Tipo Socio] as 'Tipo Asociación', Asociado.Estado as 'Estado' " +
-                "From Asociado inner join [Tipo de Socio] on [Tipo de Socio].[id Tipo de Socio]=Asociado.[FK Tipo Socio] " +
-                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] " +
-                "Commit Tran Aso " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Aso " +
+                "As \n" +
+                "Begin Tran Aso \n" +
+                "Begin Try \n" +
+                "Select Asociado.[Código Asociado] as 'Código', (p.Nombres + ' ' + p.Apellidos) as 'Persona Asociada',p.DUI as 'Dui',[Tipo de Socio].[Nombre Tipo Socio] as 'Tipo Asociación', Asociado.Estado as 'Estado' \n" +
+                "From Asociado inner join [Tipo de Socio] on [Tipo de Socio].[id Tipo de Socio]=Asociado.[FK Tipo Socio] \n" +
+                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] \n" +
+                "Commit Tran Aso \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Aso \n" +
                 "End Catch";
-            String procedimiento25 = "Create Procedure [Cargar Tipo Préstamo] As Begin Tran Pre Begin Try " +
-                "Select[Tipo de Préstamo].[Tipo de Préstamo] AS 'TipoP',[Tipo de Préstamo].[Tasa de Interés] AS 'Interés' from[Tipo de Préstamo] " +
-                "Commit Tran Pre End Try Begin Catch Print ERROR_MESSAGE(); " +
+            String procedimiento25 = "Create Procedure [Cargar Tipo Préstamo] As Begin Tran Pre Begin Try \n" +
+                "Select[Tipo de Préstamo].[Tipo de Préstamo] AS 'TipoP',[Tipo de Préstamo].[Tasa de Interés] AS 'Interés' from[Tipo de Préstamo] \n" +
+                "Commit Tran Pre End Try Begin Catch Print ERROR_MESSAGE(); \n" +
                 "Rollback Tran Pre End Catch";
-            String procedimiento26 = "Create Procedure [Cargar Tipo Socio] As Begin Tran Aso Begin Try " +
-                "Select [Tipo de Socio].[Nombre Tipo Socio] AS 'TipoS',[Tipo de Socio].[id Tipo de Socio]as'ID' from [Tipo de Socio] " +
+            String procedimiento26 = "Create Procedure [Cargar Tipo Socio] As Begin Tran Aso Begin Try \n" +
+                "Select [Tipo de Socio].[Nombre Tipo Socio] AS 'TipoS',[Tipo de Socio].[id Tipo de Socio]as'ID' from [Tipo de Socio] \n" +
                 "Commit Tran Aso End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Aso End Catch";
-            String procedimiento27 = "Create Procedure [Cargar Tipo Ahorro] As Begin Tran Aho Begin Try " +
-                "Select [Tipo de Ahorro].Nombre AS 'TipoA',[Tipo de Ahorro].[Tasa de Interés] AS 'Interés' from [Tipo de Ahorro] " +
+            String procedimiento27 = "Create Procedure [Cargar Tipo Ahorro] As Begin Tran Aho Begin Try \n" +
+                "Select [Tipo de Ahorro].Nombre AS 'TipoA',[Tipo de Ahorro].[Tasa de Interés] AS 'Interés' from [Tipo de Ahorro] \n" +
                 "Commit Tran Aho End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Aho End Catch";
-            String procedimiento28 = "create Procedure[dbo].[Recuperar Contraseña] " +
-                "@Correo varchar(50), " +
-                "@Contraseña varchar(MAX) " +
-                "As " +
-                "Begin Tran Mod_Tel " +
-                "Begin Try " +
-                "Begin Update Usuarios set Contraseña = @Contraseña where @Correo =[Correo] " +
-                "Commit " +
+            String procedimiento28 = "create Procedure[dbo].[Recuperar Contraseña] \n" +
+                "@Correo varchar(50), \n" +
+                "@Contraseña varchar(MAX) \n" +
+                "As \n" +
+                "Begin Tran Mod_Tel \n" +
+                "Begin Try \n" +
+                "Begin Update Usuarios set Contraseña = @Contraseña where @Correo =[Correo] \n" +
+                "Commit \n" +
                 "Tran Mod_Tel End;" +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Mod_Tel " +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Mod_Tel \n" +
                 "End Catch ";
             String procedimiento29 =
-                "create Procedure[ModificarDatos] " +
-                "@Id varchar(5), " +
-                "@Correo varchar(50), " +
-                "@Nombre varchar(50), " +
-                "@Apellido varchar(50), " +
-                "@Contraseña varchar(MAX) " +
-                "As " +
-                "Begin Try " +
-                "if exists(select Contraseña from Usuarios where Usuarios.[Id Usuario] = @Id) " +
-                "Begin " +
-                "update Usuarios set Correo = @Correo, Nombres = @Nombre, Apellidos = @Apellido, Contraseña = @Contraseña where[Id Usuario] = @Id; " +
-                "select * from Usuarios where [Id Usuario] = @Id " +
-                "End " +
-                "Else " +
-                "Begin " +
-                "Print 'Ocurrió un problema al actualizar los datos.' " +
-                "End " +
-                "End Try " +
-                "Begin Catch " +
-                "Catch: " +
-                "Begin " +
-                "print ERROR_MESSAGE(); " +
-                "End " +
+                "create Procedure[ModificarDatos] \n" +
+                "@Id varchar(5), \n" +
+                "@Correo varchar(50), \n" +
+                "@Nombre varchar(50), \n" +
+                "@Apellido varchar(50), \n" +
+                "@Contraseña varchar(MAX) \n" +
+                "As \n" +
+                "Begin Try \n" +
+                "if exists(select Contraseña from Usuarios where Usuarios.[Id Usuario] = @Id) \n" +
+                "Begin \n" +
+                "update Usuarios set Correo = @Correo, Nombres = @Nombre, Apellidos = @Apellido, Contraseña = @Contraseña where[Id Usuario] = @Id; \n" +
+                "select * from Usuarios where [Id Usuario] = @Id \n" +
+                "End \n" +
+                "Else \n" +
+                "Begin \n" +
+                "Print 'Ocurrió un problema al actualizar los datos.' \n" +
+                "End \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Catch: \n" +
+                "Begin \n" +
+                "print ERROR_MESSAGE(); \n" +
+                "End \n" +
                 "End Catch";
             String procedimiento30 =
-                "create Procedure[dbo].[InicioDeSesión] " +
-                "@Correo varchar(50) " +
-                "As " +
-                "Begin Try " +
-                "if exists(select * from Usuarios where Usuarios.Correo = @Correo) " +
-                "Begin " +
-                "select * from Usuarios where Correo = @Correo; " +
-                "End " +
-                "Else " +
-                "Begin " +
-                "Print 'No se encontró ningún usuario con esta dirección de e-mail.'; " +
-                "End " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
+                "create Procedure[dbo].[InicioDeSesión] \n" +
+                "@Correo varchar(50) \n" +
+                "As \n" +
+                "Begin Try \n" +
+                "if exists(select * from Usuarios where Usuarios.Correo = @Correo) \n" +
+                "Begin \n" +
+                "select * from Usuarios where Correo = @Correo; \n" +
+                "End \n" +
+                "Else \n" +
+                "Begin \n" +
+                "Print 'No se encontró ningún usuario con esta dirección de e-mail.'; \n" +
+                "End \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
                 "End Catch";
             String procedimiento31 =
-                "create Procedure[dbo].[Nuevo Usuario] " +
-                "@Correo varchar(50), " +
-                "@Nombre varchar(50), " +
-                "@Apellido varchar(50), " +
-                "@Contraseña varchar(MAX), " +
-                "@Tipo_Usuario varchar(5) " +
-                "As " +
-                "Begin Try " +
-                "if not exists(select * from Usuarios where Usuarios.Correo = @Correo) " +
-                "Begin " +
-                "insert into Usuarios values(@Nombre, @Apellido, @Contraseña, @Correo, @Tipo_Usuario); " +
-                "End " +
-                "Else " +
-                "Begin " +
-                "print 'Ya hay una cuenta creada con esta dirección de e-mail.'; " +
-                "End " +
-                "End Try " +
-                "Begin Catch " +
-                "Catch:  " +
-                "Begin " +
-                "print ERROR_MESSAGE(); " +
-                "End " +
+                "create Procedure[dbo].[Nuevo Usuario] \n" +
+                "@Correo varchar(50), \n" +
+                "@Nombre varchar(50), \n" +
+                "@Apellido varchar(50), \n" +
+                "@Contraseña varchar(MAX), \n" +
+                "@Tipo_Usuario varchar(5) \n" +
+                "As \n" +
+                "Begin Try \n" +
+                "if not exists(select * from Usuarios where Usuarios.Correo = @Correo) \n" +
+                "Begin \n" +
+                "insert into Usuarios values(@Nombre, @Apellido, @Contraseña, @Correo, @Tipo_Usuario); \n" +
+                "End \n" +
+                "Else \n" +
+                "Begin \n" +
+                "print 'Ya hay una cuenta creada con esta dirección de e-mail.'; \n" +
+                "End \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Catch:  \n" +
+                "Begin \n" +
+                "print ERROR_MESSAGE(); \n" +
+                "End \n" +
                 "End Catch";
             String procedimiento32 =
-                "Create procedure [Cargar Ocupaciones] " +
-                "As " +
-                "Begin " +
-                "Select [Nombre de la Empresa] As 'Trabajo',[Id Ocupación] as 'ID' from Ocupación " +
+                "Create procedure [Cargar Ocupaciones] \n" +
+                "As \n" +
+                "Begin \n" +
+                "Select [Nombre de la Empresa] As 'Trabajo',[Id Ocupación] as 'ID' from Ocupación \n" +
                 "End";
             //Aqui se cambió para tener la referencia "TipoT"
             String procedimiento33 =
-                "Create procedure [Cargar Tipo Teléfono] " +
-                "As " +
-                "Begin " +
-                "Select [Tipos de Teléfonos].[Tipo de Teléfono] as 'TipoT',[Tipos de Teléfonos].[id Tipo de Teléfono] 'Cod' From [Tipos de Teléfonos] " +
+                "Create procedure [Cargar Tipo Teléfono] \n" +
+                "As \n" +
+                "Begin \n" +
+                "Select [Tipos de Teléfonos].[Tipo de Teléfono] as 'TipoT',[Tipos de Teléfonos].[id Tipo de Teléfono] 'Cod' From [Tipos de Teléfonos] \n" +
                 "End";
             //Faltaba este procedimiento
-            String procedimiento34 = "Create Procedure[Cargar Ahorros] " +
-                "@Código_Ahorro varchar(5) " +
-               "As " +
-               "Begin Tran Cargar_Ahorros " +
-               "Begin Try " +
-               "Select Asociado.[Código Asociado] as 'Código_A', (p.Nombres+' ' + p.Apellidos) as 'Nombre', Ahorro.Estado as 'Est',  [Tipo de Ahorro].Nombre as 'TipoA', [Tipo de Ahorro].[Tasa de Interés] as 'Interés' from Ahorro inner join Asociado " +
-               "on Ahorro.[FK Código de Asociado] = Asociado.[Código Asociado] inner join [Tipo de Ahorro] on Ahorro.[FK Tipo Ahorro]=[Tipo de Ahorro].[id Tipo Ahorro] " +
-               "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] where Ahorro.[id Ahorro] = @Código_Ahorro " +
-               "Commit Tran Cargar_Ahorros " +
-               "End Try " +
-               "Begin Catch " +
-               "Print ERROR_MESSAGE(); " +
-               "Rollback Tran Cargar_Ahorros " +
+            String procedimiento34 = "Create Procedure[Cargar Ahorros] \n" +
+                "@Código_Ahorro varchar(5) \n" +
+               "As \n" +
+               "Begin Tran Cargar_Ahorros \n" +
+               "Begin Try \n" +
+               "Select Asociado.[Código Asociado] as 'Código_A', (p.Nombres+' ' + p.Apellidos) as 'Nombre', Ahorro.Estado as 'Est',  [Tipo de Ahorro].Nombre as 'TipoA', [Tipo de Ahorro].[Tasa de Interés] as 'Interés' from Ahorro inner join Asociado \n" +
+               "on Ahorro.[FK Código de Asociado] = Asociado.[Código Asociado] inner join [Tipo de Ahorro] on Ahorro.[FK Tipo Ahorro]=[Tipo de Ahorro].[id Tipo Ahorro] \n" +
+               "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] where Ahorro.[id Ahorro] = @Código_Ahorro \n" +
+               "Commit Tran Cargar_Ahorros \n" +
+               "End Try \n" +
+               "Begin Catch \n" +
+               "Print ERROR_MESSAGE(); \n" +
+               "Rollback Tran Cargar_Ahorros \n" +
                "End Catch";
 #warning Verificar cantidad de préstamos que se pueden otorgar
             //Faltaba este procedimiento
-            String procedimiento35 = "Create Procedure[Nuevo Préstamo] " +
-                "@FK_Tipo_Préstamo varchar(20), " +
-                "@FK_Asociado varchar(5), " +
-                "@Forma_Pago varchar(5), " +
-                "@NCuotas int, " +
-                "@Monto money, " +
-                "@Cuota money, " +
-                "@Usuario varchar(5) " +
-                "As Begin Tran Préstamo Begin try " +
-                "Declare @ID_Tipo_Préstamo as varchar(5) " +
-                "Declare @Contar_Emergencia as int " +
-                "Declare @Contar_Normal as int " +
-                "Declare @Id_Transacción as varchar(5) " +
-                "set @ID_Tipo_Préstamo = (Select [id Tipo de Préstamo] From [Tipo de Préstamo] where [Tipo de Préstamo] = @FK_Tipo_Préstamo) " +
-                "set @Contar_Emergencia = (Select COUNT(Préstamos.[id Préstamos]) from Préstamos inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo] where Préstamos.[Código Asociado] = @FK_Asociado AND Estado = 'ACTIVO' AND [Tipo de Préstamo].[Tipo de Préstamo] = 'Emergencia') " +
-                "set @Contar_Normal = (Select COUNT(Préstamos.[id Préstamos]) from Préstamos inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo] where Préstamos.[Código Asociado] = @FK_Asociado AND Estado = 'ACTIVO' AND [Tipo de Préstamo].[Tipo de Préstamo] <> 'Emergencia') " +
-                "IF (@FK_Tipo_Préstamo <> 'Emergencia' AND @Contar_Normal < 2 ) OR (@FK_Tipo_Préstamo = 'Emergencia' AND @Contar_Emergencia < 1) " +
-                "	BEGIN " +
-                "	Insert into Transacciones values(@Usuario, 'TT003', GETDATE()) " +
-                "	Set @Id_Transacción = (Select MAX([id Transacción]) from Transacciones) " +
-                "	Insert into Préstamos values(@FK_Asociado, @Forma_Pago,@ID_Tipo_Préstamo,GETDATE(),@NCuotas,@Monto,@Cuota,@Id_Transacción,'ACTIVO') " +
-                "	Commit tran Préstamo " +
-                "END " +
-                "ELSE " +
-                "BEGIN " +
-                "	Print 'El usuario ya ha superado máximo de préstamos permitidos para este tipo de préstamo' " +
-                "   Commit tran Préstamo return 0 " +
-                "END " +
-                "End try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback tran Préstamo " +
-                "return 0 " +
+            String procedimiento35 = "Create Procedure[Nuevo Préstamo] \n" +
+                "@FK_Tipo_Préstamo varchar(20), \n" +
+                "@FK_Asociado int, \n" +
+                "@Forma_Pago varchar(5), \n" +
+                "@NCuotas int, \n" +
+                "@Monto money, \n" +
+                "@Cuota money, \n" +
+                "@Usuario varchar(5) \n" +
+                "As Begin Tran Préstamo Begin try \n" +
+                "Declare @ID_Tipo_Préstamo as varchar(5) \n" +
+                "Declare @Contar_Emergencia as int \n" +
+                "Declare @Contar_Normal as int \n" +
+                "Declare @Id_Transacción as int \n" +
+                "set @ID_Tipo_Préstamo = (Select [id Tipo de Préstamo] From [Tipo de Préstamo] where [Tipo de Préstamo] = @FK_Tipo_Préstamo) \n" +
+                "set @Contar_Emergencia = (Select COUNT(Préstamos.[id Préstamos]) from Préstamos inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo] where Préstamos.[Código Asociado] = @FK_Asociado AND Estado = 'ACTIVO' AND [Tipo de Préstamo].[Tipo de Préstamo] = 'Emergencia') \n" +
+                "set @Contar_Normal = (Select COUNT(Préstamos.[id Préstamos]) from Préstamos inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo] where Préstamos.[Código Asociado] = @FK_Asociado AND Estado = 'ACTIVO' AND [Tipo de Préstamo].[Tipo de Préstamo] <> 'Emergencia') \n" +
+                "IF (@FK_Tipo_Préstamo <> 'Emergencia' AND @Contar_Normal < 2 ) OR (@FK_Tipo_Préstamo = 'Emergencia' AND @Contar_Emergencia < 1) \n" +
+                "	BEGIN \n" +
+                "	Insert into Transacciones values(@Usuario, 'TT003', GETDATE()) \n" +
+                "	Set @Id_Transacción = (Select MAX([id Transacción]) from Transacciones) \n" +
+                "	Insert into Préstamos values(@FK_Asociado, @Forma_Pago,@ID_Tipo_Préstamo,GETDATE(),@NCuotas,@Monto,@Cuota,@Id_Transacción,'ACTIVO') \n" +
+                "	Commit tran Préstamo \n" +
+                "END \n" +
+                "ELSE \n" +
+                "BEGIN \n" +
+                "	Print 'El usuario ya ha superado máximo de préstamos permitidos para este tipo de préstamo' \n" +
+                "   Commit tran Préstamo return 0 \n" +
+                "END \n" +
+                "End try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback tran Préstamo \n" +
+                "return 0 \n" +
                 "End Catch";
             //Añadido para el combobox
-            String procedimiento36 = "Create Procedure [dbo].[Cargar Tipo Pagos] " +
-                "As Begin Tran Tipo_Pagos " +
-                "Begin Try " +
-                "Select[Forma de Pago].Nombre AS 'FormaP', [Forma de Pago].[id Forma de Pago] as 'Id' from[Forma de Pago] " +
+            String procedimiento36 = "Create Procedure [dbo].[Cargar Tipo Pagos] \n" +
+                "As Begin Tran Tipo_Pagos \n" +
+                "Begin Try \n" +
+                "Select[Forma de Pago].Nombre AS 'FormaP', [Forma de Pago].[id Forma de Pago] as 'Id' from[Forma de Pago] \n" +
                 "Commit Tran Tipo_pagos End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Pre End Catch";
             //Añadido para cerrar ahorro
-            String procedimiento37 = "Create Procedure[dbo].[Cerrar Ahorro] " +
-                "@Id_Ahorro varchar(5) " +
-                "As Begin Tran Cuenta_Cerrada " +
-                "Begin Try " +
-                "If(Select Estado from Ahorro where [id Ahorro] = @Id_Ahorro) = 'ACTIVO' " +
-                "Begin " +
-                "    Update Ahorro Set Estado = 'INACTIVO' where[id Ahorro] = @Id_Ahorro " +
-                "    Print 'La cuenta ha sido cerrada' " +
-                "    Commit Tran Cuenta_Cerrada " +
-                "End " +
-                "Else " +
-                "Begin " +
-                "    Print 'La cuenta ya se encuentra cerrada' " +
-                "    Commit Tran Cuenta_Cerrada " +
-                "End " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Cuenta_Cerrada " +
+            String procedimiento37 = "Create Procedure[dbo].[Cerrar Ahorro] \n" +
+                "@Id_Ahorro varchar(5) \n" +
+                "As Begin Tran Cuenta_Cerrada \n" +
+                "Begin Try \n" +
+                "If(Select Estado from Ahorro where [id Ahorro] = @Id_Ahorro) = 'ACTIVO' \n" +
+                "Begin \n" +
+                "    Update Ahorro Set Estado = 'INACTIVO' where[id Ahorro] = @Id_Ahorro \n" +
+                "    Print 'La cuenta ha sido cerrada' \n" +
+                "    Commit Tran Cuenta_Cerrada \n" +
+                "End \n" +
+                "Else \n" +
+                "Begin \n" +
+                "    Print 'La cuenta ya se encuentra cerrada' \n" +
+                "    Commit Tran Cuenta_Cerrada \n" +
+                "End \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Cuenta_Cerrada \n" +
                 "End Catch ";
             //Añadido para desasociar
-            String procedimiento38 = "Create Procedure[dbo].[Desasociar] " +
-                "@Código_Asociado varchar(5) " +
-                "As Begin Tran Desasociado " +
-                "Begin Try " +
-                "If(Select Estado from Asociado where[Código Asociado] = @Código_Asociado) = 'ACTIVO' " +
-                "Begin " +
-                "Declare @Ahorro int, @Préstamo_E int , @Préstamo_N int " +
-                "Set @Ahorro = (Select COUNT([id Ahorro]) from Ahorro where [FK Código de Asociado] = @Código_Asociado AND Estado = 'ACTIVO')  " +
-                "If(@Ahorro = 0) " +
-                "Begin " +
-                "Set @Préstamo_E = (Select COUNT(Préstamos.[id Préstamos]) from Préstamos inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo] where Préstamos.[Código Asociado] = @Código_Asociado AND Estado = 'ACTIVO' AND[Tipo de Préstamo].[Tipo de Préstamo] = 'Emergencia') " +
-                "Set @Préstamo_N = (Select COUNT(Préstamos.[id Préstamos]) from Préstamos inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo] where Préstamos.[Código Asociado] = @Código_Asociado AND Estado = 'ACTIVO' AND[Tipo de Préstamo].[Tipo de Préstamo] <> 'Emergencia') " +
-                "if (@Préstamo_E = 0) AND(@Préstamo_N = 0) " +
-                "Begin " +
-                "Update Asociado Set Estado = 'INACTIVO', [Fecha de Desasociación] = GetDate() " +
-                "where[Código Asociado] = @Código_Asociado " +
-                "Commit Tran Desasociado " +
-                "End " +
-                "else " +
-                "Begin " +
-                "Print 'La persona asociada tiene préstamos sin cancelar' " +
-                "Commit Tran Desasociado " +
-                "End " +
-                "End " +
-                "Else " +
-                "Begin " +
-                "Print 'La persona asociada tiene cuentas de ahorro activas' " +
-                "Commit Tran Desasociado " +
-                "End " +
-                "End " +
-                "Else " +
-                "Begin " +
-                "Print 'La persona ya se encuentra desasociada' " +
-                "Commit Tran Desasociado " +
-                "End " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Desasociado " +
-                "return 0 " +
+            String procedimiento38 = "Create Procedure[dbo].[Desasociar] \n" +
+                "@Código_Asociado int \n" +
+                "As Begin Tran Desasociado \n" +
+                "Begin Try \n" +
+                "If(Select Estado from Asociado where[Código Asociado] = @Código_Asociado) = 'ACTIVO' \n" +
+                "Begin \n" +
+                "Declare @Ahorro int, @Préstamo_E int , @Préstamo_N int \n" +
+                "Set @Ahorro = (Select COUNT([id Ahorro]) from Ahorro where [FK Código de Asociado] = @Código_Asociado AND Estado = 'ACTIVO')  \n" +
+                "If(@Ahorro = 0) \n" +
+                "Begin \n" +
+                "Set @Préstamo_E = (Select COUNT(Préstamos.[id Préstamos]) from Préstamos inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo] where Préstamos.[Código Asociado] = @Código_Asociado AND Estado = 'ACTIVO' AND[Tipo de Préstamo].[Tipo de Préstamo] = 'Emergencia') \n" +
+                "Set @Préstamo_N = (Select COUNT(Préstamos.[id Préstamos]) from Préstamos inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo] where Préstamos.[Código Asociado] = @Código_Asociado AND Estado = 'ACTIVO' AND[Tipo de Préstamo].[Tipo de Préstamo] <> 'Emergencia') \n" +
+                "if (@Préstamo_E = 0) AND(@Préstamo_N = 0) \n" +
+                "Begin \n" +
+                "Update Asociado Set Estado = 'INACTIVO', [Fecha de Desasociación] = GetDate() \n" +
+                "where[Código Asociado] = @Código_Asociado \n" +
+                "Commit Tran Desasociado \n" +
+                "End \n" +
+                "else \n" +
+                "Begin \n" +
+                "Print 'La persona asociada tiene préstamos sin cancelar' \n" +
+                "Commit Tran Desasociado \n" +
+                "End \n" +
+                "End \n" +
+                "Else \n" +
+                "Begin \n" +
+                "Print 'La persona asociada tiene cuentas de ahorro activas' \n" +
+                "Commit Tran Desasociado \n" +
+                "End \n" +
+                "End \n" +
+                "Else \n" +
+                "Begin \n" +
+                "Print 'La persona ya se encuentra desasociada' \n" +
+                "Commit Tran Desasociado \n" +
+                "End \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Desasociado \n" +
+                "return 0 \n" +
                 "End Catch ";
             //Añadido Actualizar Asociado
-            String procedimiento039 = "Create procedure[dbo].[Actualizar Persona] " +
-                "@Codigo_Persona varchar(5), " +
-                "@Nombres varchar(50), " +
-                "@Apellidos varchar(50), " +
-                "@DUI varchar(10), " +
-                "@NIT varchar(17), " +
-                "@Residencia varchar(100), " +
-                "@Fecha_Nacimiento datetime " +
-                "As " +
-                "Begin transaction " +
-                "Update Persona set " +
-                        "Nombres = @Nombres, " +
-                        "Apellidos = @Apellidos, " +
-                        "DUI = @DUI, " +
-                        "NIT = @NIT, " +
-                        "Dirección = @Residencia, " +
-                        "[Fecha de Nacimiento] = @Fecha_Nacimiento " +
-              "If @@error = 0 " +
-              "Begin " +
-                "COMMIT TRANSACTION " +
-              "End " +
-              "Else " +
-              "Begin " +
-                "ROLLBACK TRANSACTION " +
-                "Print 'Error en modificar datos de la persona ' + ERROR_MESSAGE(); " +
+            String procedimiento039 = "Create procedure[dbo].[Actualizar Persona] \n" +
+                "@Codigo_Persona varchar(5), \n" +
+                "@Nombres varchar(50), \n" +
+                "@Apellidos varchar(50), \n" +
+                "@DUI varchar(10), \n" +
+                "@NIT varchar(17), \n" +
+                "@Residencia varchar(100), \n" +
+                "@Fecha_Nacimiento datetime \n" +
+                "As \n" +
+                "Begin transaction \n" +
+                "Update Persona set \n" +
+                        "Nombres = @Nombres, \n" +
+                        "Apellidos = @Apellidos, \n" +
+                        "DUI = @DUI, \n" +
+                        "NIT = @NIT, \n" +
+                        "Dirección = @Residencia, \n" +
+                        "[Fecha de Nacimiento] = @Fecha_Nacimiento \n" +
+                        "where[Código Persona] = @Codigo_Persona \n" +
+              "If @@error = 0 \n" +
+              "Begin \n" +
+                "COMMIT TRANSACTION \n" +
+              "End \n" +
+              "Else \n" +
+              "Begin \n" +
+                "ROLLBACK TRANSACTION \n" +
+                "Print 'Error en modificar datos de la persona ' + ERROR_MESSAGE(); \n" +
               "End ";
-            String procedimiento39 = "Create procedure[dbo].[Actualizar Asociado] " +
-                "@Codigo_Asociado varchar(5), " +
-                "@FK_Tipo_Socio varchar(5), " +
-                "@FK_Ocupación varchar(5) " +
-                "As " +
-                "Begin transaction " +
-                "Update Asociado set[FK Tipo Socio] = @FK_Tipo_Socio, " +
-                        "[FK Ocupación] = @FK_Ocupación where[Código Asociado] = @Codigo_Asociado " +
-              "If @@error = 0 " +
-              "Begin " +
-                "COMMIT TRANSACTION " +
-              "End " +
-              "Else " +
-              "Begin " +
-                "ROLLBACK TRANSACTION " +
-                "Print 'Error en modificar datos de la persona asociada ' + ERROR_MESSAGE(); " +
+            String procedimiento39 = "Create procedure[dbo].[Actualizar Asociado] \n" +
+                "@Codigo_Asociado int, \n" +
+                "@FK_Tipo_Socio varchar(5), \n" +
+                "@FK_Ocupación varchar(5) \n" +
+                "As \n" +
+                "Begin transaction \n" +
+                "Update Asociado set[FK Tipo Socio] = @FK_Tipo_Socio, \n" +
+                        "[FK Ocupación] = @FK_Ocupación where[Código Asociado] = @Codigo_Asociado \n" +
+              "If @@error = 0 \n" +
+              "Begin \n" +
+                "COMMIT TRANSACTION \n" +
+              "End \n" +
+              "Else \n" +
+              "Begin \n" +
+                "ROLLBACK TRANSACTION \n" +
+                "Print 'Error en modificar datos de la persona asociada ' + ERROR_MESSAGE(); \n" +
               "End ";
-            String procedimiento40 = "create procedure[Cargar Imagenes] " +
-                "As Begin " +
-                "select Imagen, [Tipo imagen], Descripcion from Imagenes where Estado = 'Activa' " +
+            String procedimiento40 = "create procedure[Cargar Imagenes] \n" +
+                "As Begin \n" +
+                "select Imagen, [Tipo imagen], Descripcion from Imagenes where Estado = 'Activa' \n" +
                 "End; ";
-            String procedimiento41 = "create procedure[Nueva Imagen] " +
-                "@Imagen image, " +
-                "@Tipo_imagen int, " +
+            String procedimiento41 = "create procedure[Nueva Imagen] \n" +
+                "@Imagen image, \n" +
+                "@Tipo_imagen int, \n" +
                 "@Descripcion varchar(MAX)" +
-                "As Begin " +
-                "If exists(select Cod_Imagen from Imagenes where [Tipo imagen] = @Tipo_imagen) " +
-                "Begin " +
-                "Update Imagenes set Estado = 'Inactiva' where Cod_Imagen = (select Cod_Imagen from Imagenes where [Tipo imagen] = @Tipo_imagen); " +
-                "Insert into Imagenes values(@Imagen, @Tipo_imagen, 'Activa', @Descripcion); " +
-                "End " +
-                "Else " +
-                "Begin " +
-                "Insert into Imagenes values(@Imagen, @Tipo_imagen, 'Activa', @Descripcion); " +
-                "End " +
+                "As Begin \n" +
+                "If exists(select Cod_Imagen from Imagenes where [Tipo imagen] = @Tipo_imagen) \n" +
+                "Begin \n" +
+                "Update Imagenes set Estado = 'Inactiva' where Cod_Imagen = (select Cod_Imagen from Imagenes where [Tipo imagen] = @Tipo_imagen); \n" +
+                "Insert into Imagenes values(@Imagen, @Tipo_imagen, 'Activa', @Descripcion); \n" +
+                "End \n" +
+                "Else \n" +
+                "Begin \n" +
+                "Insert into Imagenes values(@Imagen, @Tipo_imagen, 'Activa', @Descripcion); \n" +
+                "End \n" +
                 "End ";
-            String procedimiento42 = "create procedure[Elimina Imagen] " +
-                "@Cod_Imagen int " +
-                "As " +
-                "Begin " +
-                "delete from Imagenes where Cod_Imagen = @Cod_Imagen " +
+            String procedimiento42 = "create procedure[Elimina Imagen] \n" +
+                "@Cod_Imagen int \n" +
+                "As \n" +
+                "Begin \n" +
+                "delete from Imagenes where Cod_Imagen = @Cod_Imagen \n" +
                 "End; ";
             //Procedimiento para retirar las aportaciones al desasociar.
-            String procedimiento43 = "create procedure [dbo].[Retirar Aportaciones] " +
-                "@Código_Asociado varchar(5), "+
+            String procedimiento43 = "create procedure [dbo].[Retirar Aportaciones] \n" +
+                "@Código_Asociado int, "+
                 "@No_Cheque varchar(8), "+
                 "@Id_Usuario varchar(5) "+
                 "As Begin Tran Retiro "+
@@ -1019,7 +1024,7 @@ namespace Crear_Base_de_Datos
                 "if (Select SUM(Aportación) from Aportaciones where [FK Asociado] = @Código_Asociado) <> 0 "+
                 "Begin "+
                 "set @total_Retiro = (Select SUM(Aportación) from Aportaciones where [FK Asociado] = @Código_Asociado) "+
-			    "Declare @Id_Transacción varchar(5) "+
+			    "Declare @Id_Transacción int "+
                 "Insert into Transacciones values(@Id_Usuario,'TT007',GETDATE()) "+
 			    "set @Id_Transacción = (Select MAX([id Transacción]) From Transacciones) "+
 			    "Insert into[Retiros Aportaciones] values(@total_Retiro, @No_Cheque, @Código_Asociado, @Id_Transacción) "+
@@ -1035,548 +1040,548 @@ namespace Crear_Base_de_Datos
                 "Commit Tran Retiro "+
                 "End "+
                 "End Try "+
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Retiro " +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Retiro \n" +
                 "End Catch ";
             //Procedimiento para cerrar un préstamo
-            String procedimiento44 = "Create procedure [dbo].[Cerrar Préstamo] " +
-                "@Id_Préstamo varchar(9), " +
-                "@Id_Usuario varchar(5) " +
-                "As Begin Tran Cancelar " +
-                "Begin Try " +
-                "Declare @Id_Transacción varchar(5) " +
-                "Update Préstamos set Estado = 'CANCELADO' From Préstamos where[id Préstamos] = @Id_Préstamo " +
-                "Insert into Transacciones values(@Id_Usuario, 'TT008', GETDATE()) " +
-                "Commit Tran Cancelar " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Cancelar  " +
+            String procedimiento44 = "Create procedure [dbo].[Cerrar Préstamo] \n" +
+                "@Id_Préstamo varchar(9), \n" +
+                "@Id_Usuario varchar(5) \n" +
+                "As Begin Tran Cancelar \n" +
+                "Begin Try \n" +
+                "Declare @Id_Transacción int \n" +
+                "Update Préstamos set Estado = 'CANCELADO' From Préstamos where[id Préstamos] = @Id_Préstamo \n" +
+                "Insert into Transacciones values(@Id_Usuario, 'TT008', GETDATE()) \n" +
+                "Commit Tran Cancelar \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Cancelar  \n" +
                 "End catch ";
             //Procedimiento para Constancia de Pago
-            String procedimiento45 = "Create procedure[dbo].[Constancia Pago] " +
-                "@Id_Préstamo varchar(9) " +
-                "As begin tran Constancia " +
-                "Begin try " +
-                "declare @id_Pago varchar(9) " +
-                "Set @id_Pago = (Select Max([id Pago]) From Pago where Pago.[id Préstamo] = @Id_Préstamo) " +
-                "Select Pago.[id Pago] as 'Pid_Pago', Préstamos.[id Préstamos] as 'PPréstamo', (p.Nombres +' '+ p.Apellidos) as 'PNombre', " +
-                "Préstamos.[Cuota Mensual] as 'Monto mínimo',Pago.Saldo as 'Psaldo',  Pago.Pago as 'PPago', Pago.Mora as 'Pmora', " +
-                "Transacciones.[Fecha de Transacción] as 'PFecha' From Asociado inner join Préstamos on Asociado.[Código Asociado] = Préstamos.[Código Asociado] " +
-                "inner join Pago on Préstamos.[id Préstamos] = Pago.[id Préstamo] inner join Transacciones on Pago.[FK Transacción] = Transacciones.[id Transacción] " +
-                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] " +
-                "where Pago.[id Pago] = @id_Pago and Préstamos.[id Préstamos]= @Id_Préstamo " +
-                "Commit Tran Constancia " +
-                "End try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback tran Constancia " +
+            String procedimiento45 = "Create procedure[dbo].[Constancia Pago] \n" +
+                "@Id_Préstamo varchar(9) \n" +
+                "As begin tran Constancia \n" +
+                "Begin try \n" +
+                "declare @id_Pago varchar(9) \n" +
+                "Set @id_Pago = (Select Max([id Pago]) From Pago where Pago.[id Préstamo] = @Id_Préstamo) \n" +
+                "Select Pago.[id Pago] as 'Pid_Pago', Préstamos.[id Préstamos] as 'PPréstamo', (p.Nombres +' '+ p.Apellidos) as 'PNombre', \n" +
+                "Préstamos.[Cuota Mensual] as 'Monto mínimo',Pago.Saldo as 'Psaldo',  Pago.Pago as 'PPago', Pago.Mora as 'Pmora', \n" +
+                "Transacciones.[Fecha de Transacción] as 'PFecha' From Asociado inner join Préstamos on Asociado.[Código Asociado] = Préstamos.[Código Asociado] \n" +
+                "inner join Pago on Préstamos.[id Préstamos] = Pago.[id Préstamo] inner join Transacciones on Pago.[FK Transacción] = Transacciones.[id Transacción] \n" +
+                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] \n" +
+                "where Pago.[id Pago] = @id_Pago and Préstamos.[id Préstamos]= @Id_Préstamo \n" +
+                "Commit Tran Constancia \n" +
+                "End try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback tran Constancia \n" +
                 "End Catch ";
             //Procedimiento para Informe de Préstamo
-            String procedimiento46 = "Create Procedure[dbo].[Informe Préstamo] " +
-                "@Codigo varchar(5) " +
-                "As Begin " +
-                "Tran Informe " +
-                "Begin Try " +
-                "Declare @Id_Préstamo varchar(9) " +
-                "Set @Id_Préstamo = (Select Max(Préstamos.[id Préstamos]) From Préstamos inner join Asociado on Préstamos.[Código Asociado] = Asociado.[Código Asociado] " +
-                "where Asociado.[Código Asociado] = @Codigo) " +
-                "Select Asociado.[Código Asociado] AS 'Código_A', p.Nombres AS 'Nombre', " +
-                "p.Apellidos as 'Apellido', Préstamos.[id Préstamos] as 'Préstamo', " +
-                "p.Dirección as 'Dir', Ocupación.[Nombre de la Empresa] as 'Trabajo',[Forma de Pago].Nombre AS 'FormaP', [Tipo de Préstamo].[Tipo de Préstamo] As 'TipoP',  " +
-                "p.DUI as 'PDUI',[Tipo de Préstamo].[Tasa de Interés] As 'Interés',  " +
-                "Préstamos.[Monto del Préstamo] AS 'Monto', Transacciones.[Fecha de Transacción] AS 'FechaT', Préstamos.Cuotas AS 'NCuotas', " +
-                "Préstamos.[Cuota Mensual] AS 'PCuotas', Préstamos.Estado AS 'Estado' From Ocupación inner join Asociado on " +
-                "Ocupación.[Id Ocupación] = Asociado.[FK Ocupación] inner join Préstamos on Asociado.[Código Asociado] = Préstamos.[Código Asociado] " +
-                "inner join [Tipo de Préstamo] on Préstamos.[id Tipo de Préstamo] = [Tipo de Préstamo].[id Tipo de Préstamo] " +
-                "inner join [Forma de Pago] on Préstamos.[id Forma de Pago] = [Forma de Pago].[id Forma de Pago] " +
-                "inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] " +
-                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] where Préstamos.[id Préstamos]= @Id_Préstamo " +
+            String procedimiento46 = "Create Procedure[dbo].[Informe Préstamo] \n" +
+                "@Codigo int \n" +
+                "As Begin \n" +
+                "Tran Informe \n" +
+                "Begin Try \n" +
+                "Declare @Id_Préstamo varchar(9) \n" +
+                "Set @Id_Préstamo = (Select Max(Préstamos.[id Préstamos]) From Préstamos inner join Asociado on Préstamos.[Código Asociado] = Asociado.[Código Asociado] \n" +
+                "where Asociado.[Código Asociado] = @Codigo) \n" +
+                "Select Asociado.[Código Asociado] AS 'Código_A', p.Nombres AS 'Nombre', \n" +
+                "p.Apellidos as 'Apellido', Préstamos.[id Préstamos] as 'Préstamo', \n" +
+                "p.Dirección as 'Dir', Ocupación.[Nombre de la Empresa] as 'Trabajo',[Forma de Pago].Nombre AS 'FormaP', [Tipo de Préstamo].[Tipo de Préstamo] As 'TipoP',  \n" +
+                "p.DUI as 'PDUI',[Tipo de Préstamo].[Tasa de Interés] As 'Interés',  \n" +
+                "Préstamos.[Monto del Préstamo] AS 'Monto', Transacciones.[Fecha de Transacción] AS 'FechaT', Préstamos.Cuotas AS 'NCuotas', \n" +
+                "Préstamos.[Cuota Mensual] AS 'PCuotas', Préstamos.Estado AS 'Estado' From Ocupación inner join Asociado on \n" +
+                "Ocupación.[Id Ocupación] = Asociado.[FK Ocupación] inner join Préstamos on Asociado.[Código Asociado] = Préstamos.[Código Asociado] \n" +
+                "inner join [Tipo de Préstamo] on Préstamos.[id Tipo de Préstamo] = [Tipo de Préstamo].[id Tipo de Préstamo] \n" +
+                "inner join [Forma de Pago] on Préstamos.[id Forma de Pago] = [Forma de Pago].[id Forma de Pago] \n" +
+                "inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] \n" +
+                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] where Préstamos.[id Préstamos]= @Id_Préstamo \n" +
                 "Commit Tran Informe End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Informe End Catch ";
             //Añadido para cargar datos cooperativa
-            String procedimiento47 = "Create Procedure [dbo].[Conseguir Transacciones]  " +
-                "@Fecha_Inicial datetime, " +
-                "@Fecha_Final datetime, " +
-                "@Tipo_Transaccion varchar(30) " +
-                "As " +
-                "Begin Tran Coop " +
-                "Begin Try " +
-                "If(@Tipo_Transaccion = 'Todas las transacciones') " +
-                "Begin " +
-                "Set @Tipo_Transaccion = '' " +
-                "End " +
-                "Select t.[Fecha de Transacción] AS 'Fecha', tt.[Tipo de Transacción] AS 'Transacción', " +
-                "	(tu.Nombres + ' ' + tu.Apellidos) AS 'Usuario' from Transacciones t " +
-                "   inner join [Tipo de Transacción] as tt on tt.[id Tipo de Transacción] = t.[FK Tipo de Transacción] " +
-                "   inner join [Usuarios] as tu on tu.[Id Usuario] = t.[ID Usuario Transacción] " +
-                "   where tt.[Tipo de Transacción] Like('%' + @Tipo_Transaccion + '%') AND " +
-                "   t.[Fecha de Transacción] <= @Fecha_Final AND " +
-                "   t.[Fecha de Transacción] >= @Fecha_Inicial order by t.[Fecha de Transacción] " +
-                "Commit tran Coop " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Coop " +
+            String procedimiento47 = "Create Procedure [dbo].[Conseguir Transacciones]  \n" +
+                "@Fecha_Inicial datetime, \n" +
+                "@Fecha_Final datetime, \n" +
+                "@Tipo_Transaccion varchar(30) \n" +
+                "As \n" +
+                "Begin Tran Coop \n" +
+                "Begin Try \n" +
+                "If(@Tipo_Transaccion = 'Todas las transacciones') \n" +
+                "Begin \n" +
+                "Set @Tipo_Transaccion = '' \n" +
+                "End \n" +
+                "Select t.[Fecha de Transacción] AS 'Fecha', tt.[Tipo de Transacción] AS 'Transacción', \n" +
+                "	(tu.Nombres + ' ' + tu.Apellidos) AS 'Usuario' from Transacciones t \n" +
+                "   inner join [Tipo de Transacción] as tt on tt.[id Tipo de Transacción] = t.[FK Tipo de Transacción] \n" +
+                "   inner join [Usuarios] as tu on tu.[Id Usuario] = t.[ID Usuario Transacción] \n" +
+                "   where tt.[Tipo de Transacción] Like('%' + @Tipo_Transaccion + '%') AND \n" +
+                "   t.[Fecha de Transacción] <= @Fecha_Final AND \n" +
+                "   t.[Fecha de Transacción] >= @Fecha_Inicial order by t.[Fecha de Transacción] \n" +
+                "Commit tran Coop \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Coop \n" +
                 "End Catch";
 #warning Editar, para añadir las aportaciones retiradas
-            String procedimiento48 = "Create Procedure [dbo].[Conseguir Datos Cooperativa] " +
-                "@Fecha_Inicial datetime, " +
-                "@Fecha_Final datetime " +
-                "As " +
-                "Begin Tran Coop " +
-                "Begin Try " +
-                "Declare @Abonos smallmoney = 0, @Retiros smallmoney = 0, @Aportaciones smallmoney = 0, " +
-                "    @RetiroAportación smallmoney = 0, @Préstamos_Otorgados smallmoney = 0, " +
-                "    @Pago_Capital smallmoney = 0, @Intereses_Pagados smallmoney = 0, @Mora_Pagada smallmoney = 0 , @SumaP smallmoney, @SumaN smallmoney " +
-                "Set @Abonos = (Select SUM(X.Abono) From Abono X " +
-                "    inner join Transacciones t on t.[id Transacción] = X.[FK Transacción] " +
-                "    where t.[Fecha de Transacción]<=@Fecha_Final AND " +
-                "    t.[Fecha de Transacción]>=@Fecha_Inicial) " +
-                "Set @Retiros = (Select SUM(X.Retiro) From Retiros X " +
-                "    inner join Transacciones t on t.[id Transacción]= X.[FK Transacción] " +
-                "    where t.[Fecha de Transacción]<=@Fecha_Final AND " +
-                "    t.[Fecha de Transacción]>=@Fecha_Inicial) " +
-                "Set @Aportaciones = (Select SUM(X.Aportación) From Aportaciones X " +
-                "    inner join Transacciones t on t.[id Transacción]= X.[FK Transacción] " +
-                "    where t.[Fecha de Transacción]<=@Fecha_Final AND " +
-                "    t.[Fecha de Transacción]>=@Fecha_Inicial) " +
-                "Set @Préstamos_Otorgados = (Select SUM(X.[Monto del Préstamo]) From Préstamos X " +
-                "    inner join Transacciones t on t.[id Transacción]= X.[FK Transacción] " +
-                "    where t.[Fecha de Transacción]<=@Fecha_Final AND " +
-                "    t.[Fecha de Transacción]>=@Fecha_Inicial) " +
-                "Set @Pago_Capital = (Select SUM(X.Capital) From Pago X " +
-                "    inner join Transacciones t on t.[id Transacción]= X.[FK Transacción] " +
-                "    where t.[Fecha de Transacción]<=@Fecha_Final AND " +
-                "    t.[Fecha de Transacción]>=@Fecha_Inicial) " +
-                "Set @Intereses_Pagados = (Select SUM(X.Intereses) From Pago X " +
-                "    inner join Transacciones t on t.[id Transacción]= X.[FK Transacción] " +
-                "    where t.[Fecha de Transacción]<=@Fecha_Final AND " +
-                "    t.[Fecha de Transacción]>=@Fecha_Inicial) " +
-                "Set @Mora_Pagada = (Select SUM(X.Mora) From Pago X " +
-                "    inner join Transacciones t on t.[id Transacción]= X.[FK Transacción] " +
-                "    where t.[Fecha de Transacción]<=@Fecha_Final AND " +
-                "    t.[Fecha de Transacción]>=@Fecha_Inicial) " +
-                "Set @SumaP = @Abonos + @Aportaciones + @Pago_Capital + @Intereses_Pagados + @Mora_Pagada " +
-                "Set @SumaN = @Retiros + @RetiroAportación + @Préstamos_Otorgados " +
-                "Select @Abonos as 'Abonos', @Retiros as 'Retiros', @Aportaciones as 'Aportaciones', " +
-                "    @RetiroAportación as 'RetiroAportación', @Préstamos_Otorgados as 'Préstamos_Otorgados', @Pago_Capital as 'Pago_Capital', " +
-                "    @Intereses_Pagados as 'Intereses_Pagados', @Mora_Pagada as 'Mora_Pagada' , @SumaP as 'TotalP', @SumaN as 'TotalN' " +
-                "Commit tran Coop " +
-                "End Try " +
-                "Begin Catch " +
-                "    Print ERROR_MESSAGE(); " +
-                "    Rollback Tran Coop " +
+            String procedimiento48 = "Create Procedure [dbo].[Conseguir Datos Cooperativa] \n" +
+                "@Fecha_Inicial datetime, \n" +
+                "@Fecha_Final datetime \n" +
+                "As \n" +
+                "Begin Tran Coop \n" +
+                "Begin Try \n" +
+                "Declare @Abonos smallmoney = 0, @Retiros smallmoney = 0, @Aportaciones smallmoney = 0, \n" +
+                "    @RetiroAportación smallmoney = 0, @Préstamos_Otorgados smallmoney = 0, \n" +
+                "    @Pago_Capital smallmoney = 0, @Intereses_Pagados smallmoney = 0, @Mora_Pagada smallmoney = 0 , @SumaP smallmoney, @SumaN smallmoney \n" +
+                "Set @Abonos = (Select SUM(X.Abono) From Abono X \n" +
+                "    inner join Transacciones t on t.[id Transacción] = X.[FK Transacción] \n" +
+                "    where t.[Fecha de Transacción]<=@Fecha_Final AND \n" +
+                "    t.[Fecha de Transacción]>=@Fecha_Inicial) \n" +
+                "Set @Retiros = (Select SUM(X.Retiro) From Retiros X \n" +
+                "    inner join Transacciones t on t.[id Transacción]= X.[FK Transacción] \n" +
+                "    where t.[Fecha de Transacción]<=@Fecha_Final AND \n" +
+                "    t.[Fecha de Transacción]>=@Fecha_Inicial) \n" +
+                "Set @Aportaciones = (Select SUM(X.Aportación) From Aportaciones X \n" +
+                "    inner join Transacciones t on t.[id Transacción]= X.[FK Transacción] \n" +
+                "    where t.[Fecha de Transacción]<=@Fecha_Final AND \n" +
+                "    t.[Fecha de Transacción]>=@Fecha_Inicial) \n" +
+                "Set @Préstamos_Otorgados = (Select SUM(X.[Monto del Préstamo]) From Préstamos X \n" +
+                "    inner join Transacciones t on t.[id Transacción]= X.[FK Transacción] \n" +
+                "    where t.[Fecha de Transacción]<=@Fecha_Final AND \n" +
+                "    t.[Fecha de Transacción]>=@Fecha_Inicial) \n" +
+                "Set @Pago_Capital = (Select SUM(X.Capital) From Pago X \n" +
+                "    inner join Transacciones t on t.[id Transacción]= X.[FK Transacción] \n" +
+                "    where t.[Fecha de Transacción]<=@Fecha_Final AND \n" +
+                "    t.[Fecha de Transacción]>=@Fecha_Inicial) \n" +
+                "Set @Intereses_Pagados = (Select SUM(X.Intereses) From Pago X \n" +
+                "    inner join Transacciones t on t.[id Transacción]= X.[FK Transacción] \n" +
+                "    where t.[Fecha de Transacción]<=@Fecha_Final AND \n" +
+                "    t.[Fecha de Transacción]>=@Fecha_Inicial) \n" +
+                "Set @Mora_Pagada = (Select SUM(X.Mora) From Pago X \n" +
+                "    inner join Transacciones t on t.[id Transacción]= X.[FK Transacción] \n" +
+                "    where t.[Fecha de Transacción]<=@Fecha_Final AND \n" +
+                "    t.[Fecha de Transacción]>=@Fecha_Inicial) \n" +
+                "Set @SumaP = @Abonos + @Aportaciones + @Pago_Capital + @Intereses_Pagados + @Mora_Pagada \n" +
+                "Set @SumaN = @Retiros + @RetiroAportación + @Préstamos_Otorgados \n" +
+                "Select @Abonos as 'Abonos', @Retiros as 'Retiros', @Aportaciones as 'Aportaciones', \n" +
+                "    @RetiroAportación as 'RetiroAportación', @Préstamos_Otorgados as 'Préstamos_Otorgados', @Pago_Capital as 'Pago_Capital', \n" +
+                "    @Intereses_Pagados as 'Intereses_Pagados', @Mora_Pagada as 'Mora_Pagada' , @SumaP as 'TotalP', @SumaN as 'TotalN' \n" +
+                "Commit tran Coop \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "    Print ERROR_MESSAGE(); \n" +
+                "    Rollback Tran Coop \n" +
                 "End Catch";
-            String procedimiento49 = "CREATE Procedure [dbo].[Conseguir Imágenes]  " +
-                "@Persona_Asociada varchar(5) As " +
-                "Begin Tran Img " +
-                "Begin Try " +
-                "Select i.Imagen as 'img', ti.Nombre as 'tipo', i.[Fecha de Subida] as 'fecha', i.Comentarios as 'comment', i.[id Imagen] as 'id' from Imagen i  " +
-                "inner join [Tipos de Imágenes] ti on ti.[id Tipo Imagen]=i.[Tipo Imagen] " +
-                "where [Persona Asociada] = @Persona_Asociada " +
-                "Commit tran Img " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Img " +
+            String procedimiento49 = "CREATE Procedure [dbo].[Conseguir Imágenes]  \n" +
+                "@Persona_Asociada varchar(5) As \n" +
+                "Begin Tran Img \n" +
+                "Begin Try \n" +
+                "Select i.Imagen as 'img', ti.Nombre as 'tipo', i.[Fecha de Subida] as 'fecha', i.Comentarios as 'comment', i.[id Imagen] as 'id' from Imagen i  \n" +
+                "inner join [Tipos de Imágenes] ti on ti.[id Tipo Imagen]=i.[Tipo Imagen] \n" +
+                "where [Persona Asociada] = @Persona_Asociada \n" +
+                "Commit tran Img \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Img \n" +
                 "End Catch";
-            String procedimiento50 = "CREATE Procedure [dbo].[Insertar Imagen]  " +
-                "@Persona_Asociada varchar(5), " +
-                "@Imagen Image, " +
-                "@TipoImagen varchar(5), " +
-                "@Comentarios varchar(120) " +
-                "As " +
-                "Begin Tran Img " +
-                "Begin Try Declare @Contar_Tipo int " +
-                "Set @Contar_Tipo = (Select Count([id Imagen]) from Imagen where [Tipo Imagen]=@TipoImagen and [Persona Asociada]=@Persona_Asociada ) " +
-                "IF (@Contar_Tipo < 2) Begin " +
-                "if (@Comentarios <> '') " +
-                "Begin " +
-                "Insert Imagen values(@Imagen, GetDate(), @Persona_Asociada, @TipoImagen, @Comentarios) " +
-                "End " +
-                "Else " +
-                "Begin " +
-                "Insert Imagen(Imagen,[Fecha de Subida],[Persona Asociada],[Tipo Imagen]) " +
-                "values(@Imagen, GetDate(), @Persona_Asociada, @TipoImagen) " +
-                "End END " +
-                "ELSE BEGIN " +
-                "Print 'Ya se encuentran almacenadas dos imágenes de este tipo. Elimine otra imagen, modifíquela o cambie de tipo de imagen para poder continuar' " +
-                "END Commit tran Img " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran Img " +
+            String procedimiento50 = "CREATE Procedure [dbo].[Insertar Imagen]  \n" +
+                "@Persona_Asociada varchar(5), \n" +
+                "@Imagen Image, \n" +
+                "@TipoImagen varchar(5), \n" +
+                "@Comentarios varchar(120) \n" +
+                "As \n" +
+                "Begin Tran Img \n" +
+                "Begin Try Declare @Contar_Tipo int \n" +
+                "Set @Contar_Tipo = (Select Count([id Imagen]) from Imagen where [Tipo Imagen]=@TipoImagen and [Persona Asociada]=@Persona_Asociada ) \n" +
+                "IF (@Contar_Tipo < 2) Begin \n" +
+                "if (@Comentarios <> '') \n" +
+                "Begin \n" +
+                "Insert Imagen values(@Imagen, GetDate(), @Persona_Asociada, @TipoImagen, @Comentarios) \n" +
+                "End \n" +
+                "Else \n" +
+                "Begin \n" +
+                "Insert Imagen(Imagen,[Fecha de Subida],[Persona Asociada],[Tipo Imagen]) \n" +
+                "values(@Imagen, GetDate(), @Persona_Asociada, @TipoImagen) \n" +
+                "End END \n" +
+                "ELSE BEGIN \n" +
+                "Print 'Ya se encuentran almacenadas dos imágenes de este tipo. Elimine otra imagen, modifíquela o cambie de tipo de imagen para poder continuar' \n" +
+                "END Commit tran Img \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran Img \n" +
                 "End Catch";
-            String procedimiento51 = "Create Procedure [dbo].[Actualizar Imagen]  " +
-                "@Persona_Asociada varchar(5), " +
-                "@Id_Imagen varchar(7), " +
-                "@Imagen Image, " +
-                "@TipoImagen varchar(5), " +
-                "@Comentarios varchar(120) " +
-                "As " +
-                "Begin Tran Img " +
-                "Begin Try " +
-                "Declare @Contar_Tipo int, @Tipo_Original varchar(5) " +
-                "Set @Contar_Tipo = (Select Count([id Imagen]) from Imagen where [Tipo Imagen] = @TipoImagen and[Persona Asociada] = @Persona_Asociada )  " +
-                "Set @Tipo_Original = (Select[Tipo Imagen] from Imagen where [id Imagen] = @Id_Imagen) " +
-                "IF(@Contar_Tipo < 2 or @Tipo_Original = @TipoImagen) " +
-                "Begin " +
-                "    if (@Comentarios <> '') " +
-                "    Begin " +
-                "    Update Imagen set Imagen=@Imagen, [Fecha de Subida]=GETDATE(),[Tipo Imagen]=@TipoImagen, Comentarios=@Comentarios  where [id Imagen]=@Id_Imagen " +
-                "    End " +
-                "    Else " +
-                "    Begin " +
-                "    Update Imagen set Imagen=@Imagen, [Fecha de Subida]=GETDATE(), [Persona Asociada]=@Persona_Asociada, [Tipo Imagen]=@TipoImagen, Comentarios=null where [id Imagen]=@Id_Imagen " +
-                "    End " +
-                "END " +
-                "ELSE " +
-                "BEGIN " +
-                "Print 'Ya se encuentran almacenadas dos imágenes de este tipo. Elimine otra imagen o cambie de tipo de imagen para poder continuar' " +
-                "END " +
-                "Commit tran Img " +
-                "End Try " +
-                "Begin Catch " +
-                "    Print ERROR_MESSAGE(); " +
-                "    Rollback Tran Img " +
+            String procedimiento51 = "Create Procedure [dbo].[Actualizar Imagen]  \n" +
+                "@Persona_Asociada varchar(5), \n" +
+                "@Id_Imagen varchar(7), \n" +
+                "@Imagen Image, \n" +
+                "@TipoImagen varchar(5), \n" +
+                "@Comentarios varchar(120) \n" +
+                "As \n" +
+                "Begin Tran Img \n" +
+                "Begin Try \n" +
+                "Declare @Contar_Tipo int, @Tipo_Original varchar(5) \n" +
+                "Set @Contar_Tipo = (Select Count([id Imagen]) from Imagen where [Tipo Imagen] = @TipoImagen and[Persona Asociada] = @Persona_Asociada )  \n" +
+                "Set @Tipo_Original = (Select[Tipo Imagen] from Imagen where [id Imagen] = @Id_Imagen) \n" +
+                "IF(@Contar_Tipo < 2 or @Tipo_Original = @TipoImagen) \n" +
+                "Begin \n" +
+                "    if (@Comentarios <> '') \n" +
+                "    Begin \n" +
+                "    Update Imagen set Imagen=@Imagen, [Fecha de Subida]=GETDATE(),[Tipo Imagen]=@TipoImagen, Comentarios=@Comentarios  where [id Imagen]=@Id_Imagen \n" +
+                "    End \n" +
+                "    Else \n" +
+                "    Begin \n" +
+                "    Update Imagen set Imagen=@Imagen, [Fecha de Subida]=GETDATE(), [Persona Asociada]=@Persona_Asociada, [Tipo Imagen]=@TipoImagen, Comentarios=null where [id Imagen]=@Id_Imagen \n" +
+                "    End \n" +
+                "END \n" +
+                "ELSE \n" +
+                "BEGIN \n" +
+                "Print 'Ya se encuentran almacenadas dos imágenes de este tipo. Elimine otra imagen o cambie de tipo de imagen para poder continuar' \n" +
+                "END \n" +
+                "Commit tran Img \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "    Print ERROR_MESSAGE(); \n" +
+                "    Rollback Tran Img \n" +
                 "End Catch ";
-            String procedimiento52 = "Create Procedure [dbo].[Eliminar Imagen] " +
-                "@Id_Imagen varchar(7) " +
-                "As " +
-                "Begin Tran Img " +
-                "Begin Try " +
-                "    Delete Imagen where [id Imagen] = @Id_Imagen " +
-                "    Commit tran Img " +
-                "End Try " +
-                "Begin Catch " +
-                "    Print ERROR_MESSAGE(); " +
-                "    Rollback Tran Img " +
+            String procedimiento52 = "Create Procedure [dbo].[Eliminar Imagen] \n" +
+                "@Id_Imagen varchar(7) \n" +
+                "As \n" +
+                "Begin Tran Img \n" +
+                "Begin Try \n" +
+                "    Delete Imagen where [id Imagen] = @Id_Imagen \n" +
+                "    Commit tran Img \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "    Print ERROR_MESSAGE(); \n" +
+                "    Rollback Tran Img \n" +
                 "End Catch ";
-            String procedimiento53 = "Create Procedure [dbo].[Cargar Tipo Imagen] " +
-                "As " +
-                "Begin Tran img " +
-                "Begin Try " +
-                "Select Nombre AS 'TipoI', [id Tipo Imagen] as 'idI' from[Tipos de Imágenes] " +
-                "Commit Tran img " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran img " +
+            String procedimiento53 = "Create Procedure [dbo].[Cargar Tipo Imagen] \n" +
+                "As \n" +
+                "Begin Tran img \n" +
+                "Begin Try \n" +
+                "Select Nombre AS 'TipoI', [id Tipo Imagen] as 'idI' from[Tipos de Imágenes] \n" +
+                "Commit Tran img \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran img \n" +
                 "End Catch ";
-            String procedimiento54 = "Create Procedure[dbo].[Constancia Retiro] " +
-                "@ID_Ahorro varchar(5) " +
-                "As Begin Tran C_Abono " +
-                "Begin Try " +
-                "declare @id_Retiro varchar(9) " +
-                "Set @id_Retiro = (Select Max([id Retiro]) From Retiros where Retiros.[FK Ahorro] = @ID_Ahorro) " +
-                "Select Retiros.Retiro as 'CantidadRetiro', Retiros.[id Retiro] as 'idRetiro', (p.Nombres + ' ' + p.Apellidos) as 'Nombre', " +
-                "[Tipo de Ahorro].Nombre as 'Tipo',[Tipo de Ahorro].[Tasa de Interés] as 'Interés',Asociado.[Código Asociado] as 'Código', " +
-                "Retiros.[Número de Cheque] as 'Cheque', Ahorro.Estado as 'Estado' " +
-                "from Asociado inner join Ahorro on Asociado.[Código Asociado]= Ahorro.[FK Código de Asociado] inner join Retiros on Retiros.[FK Ahorro] = Ahorro.[id Ahorro] " +
-                "inner join [Tipo de Ahorro] on[Tipo de Ahorro].[id Tipo Ahorro] = Ahorro.[FK Tipo Ahorro] " +
-                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] " +
-                "where @ID_Ahorro = Ahorro.[id Ahorro] and Retiros.[id Retiro] = @id_Retiro " +
-                "Commit Tran C_Abono " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran C_Abono " +
+            String procedimiento54 = "Create Procedure[dbo].[Constancia Retiro] \n" +
+                "@ID_Ahorro varchar(5) \n" +
+                "As Begin Tran C_Abono \n" +
+                "Begin Try \n" +
+                "declare @id_Retiro varchar(9) \n" +
+                "Set @id_Retiro = (Select Max([id Retiro]) From Retiros where Retiros.[FK Ahorro] = @ID_Ahorro) \n" +
+                "Select Retiros.Retiro as 'CantidadRetiro', Retiros.[id Retiro] as 'idRetiro', (p.Nombres + ' ' + p.Apellidos) as 'Nombre', \n" +
+                "[Tipo de Ahorro].Nombre as 'Tipo',[Tipo de Ahorro].[Tasa de Interés] as 'Interés',Asociado.[Código Asociado] as 'Código', \n" +
+                "Retiros.[Número de Cheque] as 'Cheque', Ahorro.Estado as 'Estado' \n" +
+                "from Asociado inner join Ahorro on Asociado.[Código Asociado]= Ahorro.[FK Código de Asociado] inner join Retiros on Retiros.[FK Ahorro] = Ahorro.[id Ahorro] \n" +
+                "inner join [Tipo de Ahorro] on[Tipo de Ahorro].[id Tipo Ahorro] = Ahorro.[FK Tipo Ahorro] \n" +
+                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] \n" +
+                "where @ID_Ahorro = Ahorro.[id Ahorro] and Retiros.[id Retiro] = @id_Retiro \n" +
+                "Commit Tran C_Abono \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran C_Abono \n" +
                 "End Catch ";
-            String procedimiento55 = "Create Procedure[dbo].[Constancia Abono] " +
-                "@ID_Ahorro varchar(5) " +
-                "As Begin Tran C_Abono " +
-                "Begin Try " +
-                "if ((Select Estado From Ahorro where Ahorro.[id Ahorro] = @ID_Ahorro) <> 'INACTIVO') " +
-                "Begin " +
-                "declare @id_Abono varchar(9) " +
-                "Set @id_Abono = (Select Max([id Abono]) From Abono where Abono.[FK Ahorro] = @ID_Ahorro) " +
-                "Select Abono.[id Abono] as 'Pid_Abono', Abono.Abono as 'Abono', (p.Nombres + ' ' + p.Apellidos) as 'PNombre', " +
-                "[Tipo de Ahorro].Nombre as 'PTipo',[Tipo de Ahorro].[Tasa de Interés] as 'PInterés'from Asociado inner join Ahorro " +
-                "on Asociado.[Código Asociado]= Ahorro.[FK Código de Asociado] inner join Abono on Abono.[FK Ahorro] = Ahorro.[id Ahorro] " +
-                "inner join [Tipo de Ahorro] on[Tipo de Ahorro].[id Tipo Ahorro] = Ahorro.[FK Tipo Ahorro] " +
-                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] " +
-                "where @ID_Ahorro = Ahorro.[id Ahorro] " +
-                "and Abono.[id Abono] = @id_Abono " +
-                "Commit Tran C_Abono " +
-                "end " +
-                "Else begin " +
-                "Commit Tran C_Abono " +
-                "End " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran C_Abono " +
+            String procedimiento55 = "Create Procedure[dbo].[Constancia Abono] \n" +
+                "@ID_Ahorro varchar(5) \n" +
+                "As Begin Tran C_Abono \n" +
+                "Begin Try \n" +
+                "if ((Select Estado From Ahorro where Ahorro.[id Ahorro] = @ID_Ahorro) <> 'INACTIVO') \n" +
+                "Begin \n" +
+                "declare @id_Abono varchar(9) \n" +
+                "Set @id_Abono = (Select Max([id Abono]) From Abono where Abono.[FK Ahorro] = @ID_Ahorro) \n" +
+                "Select Abono.[id Abono] as 'Pid_Abono', Abono.Abono as 'Abono', (p.Nombres + ' ' + p.Apellidos) as 'PNombre', \n" +
+                "[Tipo de Ahorro].Nombre as 'PTipo',[Tipo de Ahorro].[Tasa de Interés] as 'PInterés'from Asociado inner join Ahorro \n" +
+                "on Asociado.[Código Asociado]= Ahorro.[FK Código de Asociado] inner join Abono on Abono.[FK Ahorro] = Ahorro.[id Ahorro] \n" +
+                "inner join [Tipo de Ahorro] on[Tipo de Ahorro].[id Tipo Ahorro] = Ahorro.[FK Tipo Ahorro] \n" +
+                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] \n" +
+                "where @ID_Ahorro = Ahorro.[id Ahorro] \n" +
+                "and Abono.[id Abono] = @id_Abono \n" +
+                "Commit Tran C_Abono \n" +
+                "end \n" +
+                "Else begin \n" +
+                "Commit Tran C_Abono \n" +
+                "End \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran C_Abono \n" +
                 "End Catch ";
-            String procedimiento56 = "Create Procedure[Constancia Nuevo Ahorro] " +
-                "@ID_Asociado varchar(5) " +
-                "As " +
-                "Begin Tran N_Ahorro " +
-                "Begin Try " +
-                "declare @id_Ahorro varchar(15) " +
-                "Set @id_Ahorro = (Select Max([FK Ahorro]) from Abono inner join Ahorro on Abono.[FK Ahorro] = Ahorro.[id Ahorro] where Ahorro.[FK Código de Asociado] = @ID_Asociado) " +
-                "Select(p.Nombres + ' ' + p.Apellidos) as 'Nombre', " +
-                "Ahorro.[id Ahorro] as 'id_Ahorro',[Tipo de Ahorro].Nombre as 'Tipo', " +
-                "[Tipo de Ahorro].[Tasa de Interés] as 'Interés', " +
-                "Abono.Abono as 'Abono', Abono.[id Abono] as 'Pid_Abono' From Asociado " +
-                "inner join Ahorro on Asociado.[Código Asociado]=Ahorro.[FK Código de Asociado] " +
-                "inner join Abono on Abono.[FK Ahorro]= Ahorro.[id Ahorro] " +
-                "inner join [Tipo de Ahorro] on[Tipo de Ahorro].[id Tipo Ahorro] = Ahorro.[FK Tipo Ahorro] " +
-                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] " +
-                "where Ahorro.[FK Código de Asociado] = @ID_Asociado and Ahorro.[id Ahorro] = @id_Ahorro " +
-                "Commit Tran N_Ahorro " +
-                "End Try " +
-                "Begin Catch " +
-                "Print ERROR_MESSAGE(); " +
-                "Rollback Tran N_Ahorro " +
+            String procedimiento56 = "Create Procedure[Constancia Nuevo Ahorro] \n" +
+                "@ID_Asociado int \n" +
+                "As \n" +
+                "Begin Tran N_Ahorro \n" +
+                "Begin Try \n" +
+                "declare @id_Ahorro varchar(15) \n" +
+                "Set @id_Ahorro = (Select Max([FK Ahorro]) from Abono inner join Ahorro on Abono.[FK Ahorro] = Ahorro.[id Ahorro] where Ahorro.[FK Código de Asociado] = @ID_Asociado) \n" +
+                "Select(p.Nombres + ' ' + p.Apellidos) as 'Nombre', \n" +
+                "Ahorro.[id Ahorro] as 'id_Ahorro',[Tipo de Ahorro].Nombre as 'Tipo', \n" +
+                "[Tipo de Ahorro].[Tasa de Interés] as 'Interés', \n" +
+                "Abono.Abono as 'Abono', Abono.[id Abono] as 'Pid_Abono' From Asociado \n" +
+                "inner join Ahorro on Asociado.[Código Asociado]=Ahorro.[FK Código de Asociado] \n" +
+                "inner join Abono on Abono.[FK Ahorro]= Ahorro.[id Ahorro] \n" +
+                "inner join [Tipo de Ahorro] on[Tipo de Ahorro].[id Tipo Ahorro] = Ahorro.[FK Tipo Ahorro] \n" +
+                "inner join Persona p on p.[Código Persona]=Asociado.[FK Persona] \n" +
+                "where Ahorro.[FK Código de Asociado] = @ID_Asociado and Ahorro.[id Ahorro] = @id_Ahorro \n" +
+                "Commit Tran N_Ahorro \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print ERROR_MESSAGE(); \n" +
+                "Rollback Tran N_Ahorro \n" +
                 "End Catch ";
             //Procedimiento Insertar Beneficiario
-            String procedimiento57 = "Create procedure [dbo].[Insertar Beneficiario] " +
-                "@Codigo_Asociado varchar(5), " +
-                "@Nombres varchar(80), " +
-                "@Apellidos varchar(80), " +
-                "@DUI varchar(10),  " +
-                "@NIT varchar(17), " +
-                "@Residencia varchar(100), " +
-                "@Fecha_Nacimiento datetime " +
-                "As Begin Tran Beneficiario " +
-                "Begin try " +
-                "   Declare @Codigo_Persona varchar(5) " +
-                "   Declare @No_Persona int " +
-                "   Set @No_Persona = (Select COUNT(NIT) From Persona where NIT = @NIT) " +
-                "   if @No_Persona = 0 " +
-                "   Begin " +
-                "       Insert into Persona values(@Nombres, @Apellidos, @DUI, @NIT, @Residencia, @Fecha_Nacimiento) " +
-                "       Set @Codigo_Persona = (Select Max([Código Persona]) from Persona where [DUI] = @DUI) " +
-                "       Insert into Beneficiario values(@Codigo_Persona, @Codigo_Asociado) " +
-                "   End " +
-                "   Else begin " +
-                "       Set @Codigo_Persona = (Select[Código Persona] from Persona where [NIT] = @NIT) " +
-                "       Insert into Beneficiario values(@Codigo_Persona, @Codigo_Asociado) " +
-                "   End " +
-                "   Commit Tran Beneficiario " +
-                "End try " +
-                "Begin Catch " +
-                "   print 'Ha ocurrido un error. ' + ERROR_MESSAGE() + '. Inténtelo más tarde'; " +
-                "   Rollback Tran Beneficiario " +
+            String procedimiento57 = "Create procedure [dbo].[Insertar Beneficiario] \n" +
+                "@Codigo_Asociado varchar(5), \n" +
+                "@Nombres varchar(80), \n" +
+                "@Apellidos varchar(80), \n" +
+                "@DUI varchar(10),  \n" +
+                "@NIT varchar(17), \n" +
+                "@Residencia varchar(100), \n" +
+                "@Fecha_Nacimiento datetime \n" +
+                "As Begin Tran Beneficiario \n" +
+                "Begin try \n" +
+                "   Declare @Codigo_Persona varchar(5) \n" +
+                "   Declare @No_Persona int \n" +
+                "   Set @No_Persona = (Select COUNT(NIT) From Persona where NIT = @NIT) \n" +
+                "   if @No_Persona = 0 \n" +
+                "   Begin \n" +
+                "       Insert into Persona values(@Nombres, @Apellidos, @DUI, @NIT, @Residencia, @Fecha_Nacimiento) \n" +
+                "       Set @Codigo_Persona = (Select Max([Código Persona]) from Persona where [DUI] = @DUI) \n" +
+                "       Insert into Beneficiario values(@Codigo_Persona, @Codigo_Asociado) \n" +
+                "   End \n" +
+                "   Else begin \n" +
+                "       Set @Codigo_Persona = (Select[Código Persona] from Persona where [NIT] = @NIT) \n" +
+                "       Insert into Beneficiario values(@Codigo_Persona, @Codigo_Asociado) \n" +
+                "   End \n" +
+                "   Commit Tran Beneficiario \n" +
+                "End try \n" +
+                "Begin Catch \n" +
+                "   print 'Ha ocurrido un error. ' + ERROR_MESSAGE() + '. Inténtelo más tarde'; \n" +
+                "   Rollback Tran Beneficiario \n" +
                 "End Catch ";
-            String procedimiento58 = "Create procedure [dbo].[Personas DVG] " +
-                "As " +
-                "Begin Tran Personas_DVG " +
-                "Begin Try " +
-                "Select Persona.[Código Persona] as 'Código Persona', (Persona.Nombres +' ' + Persona.Apellidos) as 'Nombre_P', " +
-                "Persona.DUI as 'DUI_P', Persona.NIT as 'NIT_P', Persona.Dirección as 'Dir_P', Persona.[Fecha de Nacimiento] as 'Fecha_P' " +
-                "from Persona full outer join Asociado on Persona.[Código Persona] = Asociado.[FK Persona] " +
-                "full outer join Beneficiario on Persona.[Código Persona] = Beneficiario.[FK Persona] where Asociado.Estado<> 'ACTIVO' " +
-                "Commit Tran Personas_DVG " +
-                "End Try " +
-                "Begin Catch " +
-                "Print 'Ha ocurrido un error: ' + ERROR_MESSAGE() + ' . Inténtelo más tarde.' " +
-                "Rollback Tran Personas_DVG " +
+            String procedimiento58 = "Create procedure [dbo].[Personas DVG] \n" +
+                "As \n" +
+                "Begin Tran Personas_DVG \n" +
+                "Begin Try \n" +
+                "Select Persona.[Código Persona] as 'Código Persona', (Persona.Nombres +' ' + Persona.Apellidos) as 'Nombre_P', \n" +
+                "Persona.DUI as 'DUI_P', Persona.NIT as 'NIT_P', Persona.Dirección as 'Dir_P', Persona.[Fecha de Nacimiento] as 'Fecha_P' \n" +
+                "from Persona full outer join Asociado on Persona.[Código Persona] = Asociado.[FK Persona] \n" +
+                "full outer join Beneficiario on Persona.[Código Persona] = Beneficiario.[FK Persona] where Asociado.Estado<> 'ACTIVO' \n" +
+                "Commit Tran Personas_DVG \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "Print 'Ha ocurrido un error: ' + ERROR_MESSAGE() + ' . Inténtelo más tarde.' \n" +
+                "Rollback Tran Personas_DVG \n" +
                 "End Catch ";
             String Login1 =
-                "CREATE LOGIN Master_ACOPEDH " +
+                "CREATE LOGIN Master_ACOPEDH \n" +
                 "WITH PASSWORD = 'Aureo112358' ";
 
             String Login2 =
-                "CREATE LOGIN Administrador " +
+                "CREATE LOGIN Administrador \n" +
                 "WITH PASSWORD = 'Acopedh365' ";
             String Login3 =
-                "CREATE LOGIN Usuario " +
+                "CREATE LOGIN Usuario \n" +
                 "WITH PASSWORD = 'User12345' ";
             String Login4 =
-                "CREATE LOGIN InicioSesion " +
+                "CREATE LOGIN InicioSesion \n" +
                 "WITH PASSWORD = 'In112358' " ;
             String Usuario1 =
-               "USE " + txtNombre.Text + ";" +
+               "USE \n" + txtNombre.Text + ";" +
                "CREATE USER Master_ACOPEDH FOR LOGIN Master_ACOPEDH ";
             String Usuario2 =
-                "USE " + txtNombre.Text + ";" +
+                "USE \n" + txtNombre.Text + ";" +
                 "CREATE USER Administrador FOR LOGIN Administrador";
             String Usuario3 =
-                "USE " + txtNombre.Text + ";" +
+                "USE \n" + txtNombre.Text + ";" +
                 "CREATE USER Usuario FOR LOGIN Usuario ";
             String Usuario4 =
-                "USE " + txtNombre.Text + ";" +
+                "USE \n" + txtNombre.Text + ";" +
                 "CREATE USER InicioSesion FOR LOGIN InicioSesion ";
             String permisosMaster_ACOPEDH =
-                "Use " + txtNombre.Text + ";" +
+                "Use \n" + txtNombre.Text + ";" +
                 "Exec sp_addrolemember N'db_owner',N'Master_ACOPEDH' ";
             String permisosAdministrador =
-                "Use " + txtNombre.Text + ";" +
-                "grant select, update, references, insert on object :: Ahorro " +
-                "to Administrador with grant option " +
-                "grant select, update, references, insert on object :: Imagenes " +
-                "to Administrador with grant option " +
+                "Use \n" + txtNombre.Text + ";" +
+                "grant select, update, references, insert on object :: Ahorro \n" +
+                "to Administrador with grant option \n" +
+                "grant select, update, references, insert on object :: Imagenes \n" +
+                "to Administrador with grant option \n" +
                 "grant select, update, references, insert on object :: [Tipo de Ahorro]" +
-                "to Administrador with grant option " +
-                "grant select, references, insert on object :: Retiros " +
-                "to Administrador with grant option " +
-                "grant select, references, insert on object :: Abono " +
-                "to Administrador with grant option " +
-                "grant select, update, references, insert on object :: Ocupación " +
-                "to Administrador with grant option " +
-                "grant select, update, insert,references, insert on object :: Asociado " +
-                "to Administrador with grant option " +
-                "grant select, references, insert on object :: Aportaciones " +
-                "to Administrador with grant option " +
-                "grant select, update, references, insert on object :: [Tipos de Teléfonos] " +
-                "to Administrador with grant option " +
-                "grant select, update, references, insert on object :: [Contacto] " +
-                "to Administrador with grant option " +
-                "grant select, update, references, insert on object :: [Teléfono] " +
-                "to Administrador with grant option " +
-                "grant select, update, references, insert on object :: Usuarios " +
-                "to Administrador with grant option " +
-                "grant select, update, references, insert on object :: [Tipo de Socio] " +
-                "to Administrador with grant option " +
-                "grant select on object :: [Tipo de Usuarios] " +
-                "to Administrador with grant option " +
-                "grant select, references, insert on object :: [Pago] " +
-                "to Administrador with grant option " +
-                "grant select, update, references, insert on object :: [Préstamos] " +
-                "to Administrador with grant option " +
-                "grant select, update, references, insert on object :: [Retiros] " +
-                "to Administrador with grant option " +
-                "grant select, update, references, insert on object :: [Tipo de Préstamo] " +
-                "to Administrador with grant option " +
-                "grant select, update, references, insert on object :: [Tipo de Transacción] " +
-                "to Administrador with grant option " +
-                "grant select, update, references, insert on object :: [Forma de Pago] " +
-                "to Administrador with grant option " +
-                "grant select, references, insert on object :: [Transacciones] " +
-                "to Administrador with grant option " +
-                "grant select, references, insert on object :: [Retiros Aportaciones] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Insertar Asociado] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Cargar Asociados] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Ahorro DVG] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Asociado DVG] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Préstamo DVG] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Cargar Ahorros] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Cargar Abonos] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Cargar Aportaciones] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Cargar Pagos] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Cargar Préstamo] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Cargar Retiros] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Cargar Saldo] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Cargar Teléfonos] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Eliminar Teléfono] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Insertar Asociado] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Insertar Teléfono] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Modificar Teléfono] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Nueva Cuenta de Ahorro] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Realizar Aportación] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Realizar Pago] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Realizar Retiros] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Suma Abonos] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Suma Aportaciones] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Suma Retiros] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Cargar Tipo Préstamo] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Cargar Tipo Socio] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Cargar Tipo Ahorro] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Nuevo Usuario] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Nuevo Préstamo] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Cargar Tipo Pagos] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Conseguir Límite] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Desasociar] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Cerrar Ahorro] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Cargar Imagenes] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Nueva Imagen] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Elimina Imagen] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Retirar Aportaciones] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Cerrar Préstamo] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Constancia Pago] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Informe Préstamo] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Conseguir Transacciones] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Conseguir Datos Cooperativa] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Conseguir Imágenes] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Insertar Imagen] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Actualizar Imagen] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Eliminar Imagen] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Cargar Tipo Imagen] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Constancia Retiro] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Constancia Abono] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Constancia Nuevo Ahorro] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Actualizar Persona] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Insertar Beneficiario] " +
-                "to Administrador with grant option " + 
-                "grant execute on object :: [Personas DVG] " +
-                "to Administrador with grant option " +
-                "grant execute on object :: [Actualizar Asociado] " +
+                "to Administrador with grant option \n" +
+                "grant select, references, insert on object :: Retiros \n" +
+                "to Administrador with grant option \n" +
+                "grant select, references, insert on object :: Abono \n" +
+                "to Administrador with grant option \n" +
+                "grant select, update, references, insert on object :: Ocupación \n" +
+                "to Administrador with grant option \n" +
+                "grant select, update, insert,references, insert on object :: Asociado \n" +
+                "to Administrador with grant option \n" +
+                "grant select, references, insert on object :: Aportaciones \n" +
+                "to Administrador with grant option \n" +
+                "grant select, update, references, insert on object :: [Tipos de Teléfonos] \n" +
+                "to Administrador with grant option \n" +
+                "grant select, update, references, insert on object :: [Contacto] \n" +
+                "to Administrador with grant option \n" +
+                "grant select, update, references, insert on object :: [Teléfono] \n" +
+                "to Administrador with grant option \n" +
+                "grant select, update, references, insert on object :: Usuarios \n" +
+                "to Administrador with grant option \n" +
+                "grant select, update, references, insert on object :: [Tipo de Socio] \n" +
+                "to Administrador with grant option \n" +
+                "grant select on object :: [Tipo de Usuarios] \n" +
+                "to Administrador with grant option \n" +
+                "grant select, references, insert on object :: [Pago] \n" +
+                "to Administrador with grant option \n" +
+                "grant select, update, references, insert on object :: [Préstamos] \n" +
+                "to Administrador with grant option \n" +
+                "grant select, update, references, insert on object :: [Retiros] \n" +
+                "to Administrador with grant option \n" +
+                "grant select, update, references, insert on object :: [Tipo de Préstamo] \n" +
+                "to Administrador with grant option \n" +
+                "grant select, update, references, insert on object :: [Tipo de Transacción] \n" +
+                "to Administrador with grant option \n" +
+                "grant select, update, references, insert on object :: [Forma de Pago] \n" +
+                "to Administrador with grant option \n" +
+                "grant select, references, insert on object :: [Transacciones] \n" +
+                "to Administrador with grant option \n" +
+                "grant select, references, insert on object :: [Retiros Aportaciones] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Insertar Asociado] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Cargar Asociados] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Ahorro DVG] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Asociado DVG] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Préstamo DVG] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Cargar Ahorros] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Cargar Abonos] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Cargar Aportaciones] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Cargar Pagos] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Cargar Préstamo] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Cargar Retiros] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Cargar Saldo] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Cargar Teléfonos] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Eliminar Teléfono] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Insertar Asociado] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Insertar Teléfono] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Modificar Teléfono] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Nueva Cuenta de Ahorro] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Realizar Aportación] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Realizar Pago] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Realizar Retiros] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Suma Abonos] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Suma Aportaciones] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Suma Retiros] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Cargar Tipo Préstamo] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Cargar Tipo Socio] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Cargar Tipo Ahorro] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Nuevo Usuario] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Nuevo Préstamo] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Cargar Tipo Pagos] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Conseguir Límite] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Desasociar] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Cerrar Ahorro] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Cargar Imagenes] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Nueva Imagen] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Elimina Imagen] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Retirar Aportaciones] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Cerrar Préstamo] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Constancia Pago] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Informe Préstamo] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Conseguir Transacciones] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Conseguir Datos Cooperativa] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Conseguir Imágenes] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Insertar Imagen] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Actualizar Imagen] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Eliminar Imagen] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Cargar Tipo Imagen] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Constancia Retiro] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Constancia Abono] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Constancia Nuevo Ahorro] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Actualizar Persona] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Insertar Beneficiario] \n" +
+                "to Administrador with grant option \n" + 
+                "grant execute on object :: [Personas DVG] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Actualizar Asociado] \n" +
                  "to Administrador with grant option ";
             String permisosUsuario =
-                 "Use " + txtNombre.Text + ";" +
-                 "Exec sp_addrolemember N'db_datareader',N'Usuario' " +
-                "grant execute on object :: [ModificarDatos] " +
-                "to Usuario with grant option " +
-                "grant execute on object :: [Nuevo Usuario] " +
+                 "Use \n" + txtNombre.Text + ";" +
+                 "Exec sp_addrolemember N'db_datareader',N'Usuario' \n" +
+                "grant execute on object :: [ModificarDatos] \n" +
+                "to Usuario with grant option \n" +
+                "grant execute on object :: [Nuevo Usuario] \n" +
                 "to Usuario with grant option ";
             String permisosInicioSesión =
-                 "Use " + txtNombre.Text + ";" +
-                 "grant select, insert on object :: Usuarios " +
-                 "to InicioSesion " +
-                 "grant select on object :: [Tipo de Usuarios] " +
-                 "to InicioSesion " +
-                 "grant execute on object :: [Recuperar Contraseña] " +
-                 "to InicioSesion " +
-                "grant execute on object :: [InicioDeSesión] " +
-                "to InicioSesion " +
-                "grant execute on object :: [Nuevo Usuario] " +
+                 "Use \n" + txtNombre.Text + ";" +
+                 "grant select, insert on object :: Usuarios \n" +
+                 "to InicioSesion \n" +
+                 "grant select on object :: [Tipo de Usuarios] \n" +
+                 "to InicioSesion \n" +
+                 "grant execute on object :: [Recuperar Contraseña] \n" +
+                 "to InicioSesion \n" +
+                "grant execute on object :: [InicioDeSesión] \n" +
+                "to InicioSesion \n" +
+                "grant execute on object :: [Nuevo Usuario] \n" +
                 "to InicioSesion";
             String crearusuarios =
-                 "Use " + txtNombre.Text + ";" +
+                 "Use \n" + txtNombre.Text + ";" +
                  "insert into [Tipo de Usuarios] values" +
                  "('Master_ACOPEDH', 'Aureo112358')," +
                  "('Administrador', 'Acopedh365')," +

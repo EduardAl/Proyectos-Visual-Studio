@@ -175,7 +175,7 @@
             this.txtNombres.Name = "txtNombres";
             this.txtNombres.Size = new System.Drawing.Size(286, 27);
             this.txtNombres.TabIndex = 1;
-            this.txtNombres.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtNombres_KeyUp);
+            this.txtNombres.Leave += new System.EventHandler(this.txtNombres_Leave);
             // 
             // txtApellidos
             // 
@@ -184,7 +184,7 @@
             this.txtApellidos.Name = "txtApellidos";
             this.txtApellidos.Size = new System.Drawing.Size(286, 27);
             this.txtApellidos.TabIndex = 2;
-            this.txtApellidos.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtApellidos_KeyUp);
+            this.txtApellidos.Leave += new System.EventHandler(this.txtApellidos_Leave);
             // 
             // txtDUI
             // 
@@ -193,7 +193,7 @@
             this.txtDUI.Name = "txtDUI";
             this.txtDUI.Size = new System.Drawing.Size(178, 27);
             this.txtDUI.TabIndex = 3;
-            this.txtDUI.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDUI_KeyUp);
+            this.txtDUI.Leave += new System.EventHandler(this.txtDUI_Leave);
             // 
             // txtNIT
             // 
@@ -202,7 +202,7 @@
             this.txtNIT.Name = "txtNIT";
             this.txtNIT.Size = new System.Drawing.Size(178, 27);
             this.txtNIT.TabIndex = 4;
-            this.txtNIT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtNIT_KeyUp);
+            this.txtNIT.Leave += new System.EventHandler(this.txtNIT_Leave);
             // 
             // cbOcupación
             // 
@@ -348,7 +348,7 @@
             this.txtTeléfono.Name = "txtTeléfono";
             this.txtTeléfono.Size = new System.Drawing.Size(178, 27);
             this.txtTeléfono.TabIndex = 9;
-            this.txtTeléfono.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtTeléfono_KeyUp);
+            this.txtTeléfono.Leave += new System.EventHandler(this.txtTeléfono_Leave);
             // 
             // button1
             // 

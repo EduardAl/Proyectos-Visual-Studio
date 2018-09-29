@@ -70,7 +70,7 @@ namespace ACOPEDH
                     Procedimientos_select Cargar = new Procedimientos_select();
                     SqlParameter[] Parámetros = new SqlParameter[5];
                     Parámetros[0] = new SqlParameter("@FK_Tipo_Ahorro", CBTipoAhorro.Text);
-                    Parámetros[1] = new SqlParameter("@FK_Asociado", TxtCódigoA.Text);
+                    Parámetros[1] = new SqlParameter("@FK_Asociado", int.Parse(TxtCódigoA.Text));
                     Parámetros[2] = new SqlParameter("@Abono_inicial", nmAbono.Value);
                     Parámetros[3] = new SqlParameter("@Comision", comision);
                     Parámetros[4] = new SqlParameter("@ID_Usuario", Globales.gbCodUsuario);
@@ -200,11 +200,11 @@ namespace ACOPEDH
             {
                 if (salida_datos.Length == 0)
                 {
-                    salida_datos = "(Código LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR Dui LIKE '%" + palabra + "%' OR [Tipo Asociación] LIKE '%" + palabra + "%')";
+                    salida_datos = "(Convert(Código,System.String)LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR Dui LIKE '%" + palabra + "%' OR [Tipo Asociación] LIKE '%" + palabra + "%')";
                 }
                 else
                 {
-                    salida_datos += " AND(Código LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR Dui LIKE '%" + palabra + "%' OR [Tipo Asociación] LIKE '%" + palabra + "%')";
+                    salida_datos += " AND(Convert(Código,System.String) LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR Dui LIKE '%" + palabra + "%' OR [Tipo Asociación] LIKE '%" + palabra + "%')";
                 }
             }
             this.filtro.RowFilter = salida_datos;

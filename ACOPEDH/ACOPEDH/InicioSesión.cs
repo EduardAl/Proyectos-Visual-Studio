@@ -166,7 +166,7 @@ namespace ACOPEDH
             Conexión con;
             con = new Conexión(Globales.gbTipo_Usuario, Globales.gbClave_Tipo_Usuario);
             SqlConnection cn = new SqlConnection(con.cadena);
-            if (Validaciones.IsNullOrEmty(ref txtCorreo, ref errorProvider1) && Validaciones.IsNullOrEmty(ref ttpass, ref errorProvider1))
+            if (Validaciones.IsNullOrEmpty(ref txtCorreo, ref errorProvider1) && Validaciones.IsNullOrEmpty(ref ttpass, ref errorProvider1))
             {
                 Properties.Settings.Default.UsuariosG = txtCorreo.Text;
                 Properties.Settings.Default.Save();

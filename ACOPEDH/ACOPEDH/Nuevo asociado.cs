@@ -71,11 +71,12 @@ namespace ACOPEDH
         // Ingresar Asociado
         private void bttAceptar_Click(object sender, EventArgs e)
         {
+            errorProvider1.Clear();
             if (Validaciones.ValidarNomApe(ref txtNombres, ref errorProvider1) &&
                 Validaciones.ValidarNomApe(ref txtApellidos, ref errorProvider1) &&
                 Validaciones.validar_DUI(ref txtDUI, ref errorProvider1) &&
                 Validaciones.validar_NIT(ref txtNIT, ref errorProvider1) &&
-                Validaciones.IsNullOrEmty(ref txtDirección, ref errorProvider1))
+                Validaciones.IsNullOrEmpty(ref txtDirección, ref errorProvider1))
             {
                 string datos = string.Format("Nombre: {0}\nApellidos: {1}\nDUI: {2}\n" +
                     "NIT: {3}\nFecha de Nacimiento: {4}\nLugar de Trabajo: {5}\nTipo de Asociación: " +
@@ -257,31 +258,38 @@ namespace ACOPEDH
 
         #endregion
         #region KeyUp
+        /*
         private void txtNombres_KeyUp(object sender, KeyEventArgs e)
         {
             if (!(e.KeyValue == (char)Keys.Enter || e.KeyValue == (char)Keys.Up || e.KeyValue == (char)Keys.Down || e.KeyValue == (char)Keys.Left || e.KeyValue == (char)Keys.Right))
-                Validaciones.ValidarNomApe (ref txtNombres, ref errorProvider1);
+                if (Validaciones.ValidarNomApe(ref txtNombres, ref errorProvider1))
+                    errorProvider1.SetError(txtNombres, "");
         }
         private void txtApellidos_KeyUp(object sender, KeyEventArgs e)
         {
             if (!(e.KeyValue == (char)Keys.Enter || e.KeyValue == (char)Keys.Up || e.KeyValue == (char)Keys.Down || e.KeyValue == (char)Keys.Left || e.KeyValue == (char)Keys.Right))
-                Validaciones.ValidarNomApe(ref txtApellidos, ref errorProvider1);
+                if (Validaciones.ValidarNomApe(ref txtApellidos, ref errorProvider1))
+                    errorProvider1.SetError(txtApellidos, "");
         }
         private void txtDUI_KeyUp(object sender, KeyEventArgs e)
         {
             if (!(e.KeyValue == (char)Keys.Enter || e.KeyValue == (char)Keys.Up || e.KeyValue == (char)Keys.Down || e.KeyValue == (char)Keys.Left || e.KeyValue == (char)Keys.Right))
-                Validaciones.validar_DUI(ref txtDUI, ref errorProvider1);
+                if (Validaciones.validar_DUI(ref txtDUI, ref errorProvider1))
+                    errorProvider1.SetError(txtDUI, "");
         }
         private void txtNIT_KeyUp(object sender, KeyEventArgs e)
         {
             if (!(e.KeyValue == (char)Keys.Enter || e.KeyValue == (char)Keys.Up || e.KeyValue == (char)Keys.Down || e.KeyValue == (char)Keys.Left || e.KeyValue == (char)Keys.Right))
-                Validaciones.validar_NIT(ref txtNIT, ref errorProvider1);
+                if (Validaciones.validar_NIT(ref txtNIT, ref errorProvider1))
+                    errorProvider1.SetError(txtNIT, "");
         }
         private void txtTeléfono_KeyUp(object sender, KeyEventArgs e)
         {
             if (!(e.KeyValue == (char)Keys.Enter || e.KeyValue == (char)Keys.Up || e.KeyValue == (char)Keys.Down || e.KeyValue == (char)Keys.Left || e.KeyValue == (char)Keys.Right))
-                Validaciones.validar_Teléfonos(ref txtTeléfono, ref errorProvider1);
+                if (Validaciones.validar_Teléfonos(ref txtTeléfono, ref errorProvider1))
+                    errorProvider1.SetError(txtTeléfono, "");
         }
+        */
         #endregion
         #region Sombra
         protected override CreateParams CreateParams
@@ -330,7 +338,6 @@ namespace ACOPEDH
             }
         }
         #endregion
-
         private void bttPersona_Click(object sender, EventArgs e)
         {
             button4_Click(sender, e);
@@ -338,7 +345,6 @@ namespace ACOPEDH
             p.ShowDialog();
             Dispose();
         }
-
         private void button4_Click(object sender, EventArgs e)
         {
             txtApellidos.Clear();
@@ -354,5 +360,32 @@ namespace ACOPEDH
             button3.Enabled = false;
             id = "";
         }
+        #region Focus Leave
+        private void txtNombres_Leave(object sender, EventArgs e)
+        {
+            if (Validaciones.ValidarNomApe(ref txtNombres, ref errorProvider1))
+                errorProvider1.SetError(txtNombres, "");
+        }
+        private void txtApellidos_Leave(object sender, EventArgs e)
+        {
+            if (Validaciones.ValidarNomApe(ref txtApellidos, ref errorProvider1))
+                errorProvider1.SetError(txtApellidos, "");
+        }
+        private void txtDUI_Leave(object sender, EventArgs e)
+        {
+            if (Validaciones.validar_DUI(ref txtDUI, ref errorProvider1))
+                errorProvider1.SetError(txtDUI, "");
+        }
+        private void txtNIT_Leave(object sender, EventArgs e)
+        {
+            if (Validaciones.validar_NIT(ref txtNIT, ref errorProvider1))
+                errorProvider1.SetError(txtNIT, "");
+        }
+        private void txtTeléfono_Leave(object sender, EventArgs e)
+        {
+            if (Validaciones.validar_Teléfonos(ref txtTeléfono, ref errorProvider1))
+                errorProvider1.SetError(txtTeléfono, "");
+        }
+        #endregion
     }
 }

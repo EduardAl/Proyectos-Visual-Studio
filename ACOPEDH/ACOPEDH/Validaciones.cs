@@ -8,7 +8,6 @@ namespace ACOPEDH
     {
         public static bool validar_DUI(ref TextBox DUI, ref ErrorProvider Mostrar)
         {
-            Mostrar.Clear();
             String expresion;
             expresion = "[0-9]{8}\\-[0-9]{1}?$";
             if (Regex.IsMatch(DUI.Text, expresion))
@@ -31,7 +30,6 @@ namespace ACOPEDH
         }
         public static bool validar_NIT(ref TextBox NIT, ref ErrorProvider Mostrar)
         {
-            Mostrar.Clear();
             String expresion;
             expresion = "[0-9]{4}\\-[0-9]{6}\\-[0-9]{3}\\-[0-9]{1}?$";
             if (Regex.IsMatch(NIT.Text, expresion))
@@ -54,7 +52,6 @@ namespace ACOPEDH
         }
         public static bool validar_correo(ref TextBox correo, ref ErrorProvider Mostrar)
         {
-            Mostrar.Clear();
             String expresion;
             expresion = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,3})$";
             while (correo.Text.Contains(" "))
@@ -82,7 +79,6 @@ namespace ACOPEDH
         }
         public static bool validar_nombre(ref TextBox Nombre, ref ErrorProvider Mostrar)
         {
-            Mostrar.Clear();
             String expresion;
             expresion = "[a-zA-ZñÑáéíóúÁÉÍÓÚäëïöüÄËÏÖÜ\\s]{2,50}";
             if (Regex.IsMatch(Nombre.Text, expresion))
@@ -105,7 +101,6 @@ namespace ACOPEDH
         }
         public static bool validar_Teléfonos(ref TextBox Telefono, ref ErrorProvider Mostrar)
         {
-            Mostrar.Clear();
             String expresion;
             expresion = "[0-9]{4}\\-[0-9]{4}?$";
             if ((Regex.IsMatch(Telefono.Text, expresion) && !(Telefono.Text.ToString().Length < 8)))
@@ -128,7 +123,6 @@ namespace ACOPEDH
         }
         public static bool validar_contraseñas(TextBox Contraseña1, ref ErrorProvider Mostrar)
         {
-            Mostrar.Clear();
             String expresion;
             expresion = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$";
             if (Regex.IsMatch(Contraseña1.Text, expresion))
@@ -153,7 +147,6 @@ namespace ACOPEDH
         }
         public static bool claves_iguales(TextBox Contraseña1, TextBox Contraseña2, ref ErrorProvider Mostrar)
         {
-            Mostrar.Clear();
             if (Contraseña1.Text != Contraseña2.Text)
             {
                 Mostrar.SetError(Contraseña2, "Las contraseñas no son iguales");
@@ -167,13 +160,11 @@ namespace ACOPEDH
             int k = txt.SelectionStart;
             txt.Text = retornarMayúscula(ref txt,ref k);
             txt.SelectionStart = (k>=0)?k:0;
-            validar_nombre(ref txt, ref Mostrar);
-            return !string.IsNullOrEmpty(txt.Text);
+            return validar_nombre(ref txt, ref Mostrar);
         }
 
         public static bool validar_Cheque(ref TextBox Cheque, ref ErrorProvider Mostrar)
         {
-            Mostrar.Clear();
             String expresion;
             expresion = "[0-9]{6}\\-[0-9]{1}?$";
             if (Regex.IsMatch(Cheque.Text, expresion))
@@ -194,9 +185,8 @@ namespace ACOPEDH
                 return false;
             }
         }
-        public static bool IsNullOrEmty(ref TextBox Cadena, ref ErrorProvider Mostrar)
+        public static bool IsNullOrEmpty(ref TextBox Cadena, ref ErrorProvider Mostrar)
         {
-            Mostrar.Clear();
             if (String.IsNullOrEmpty(Cadena.Text))
             {
                 Mostrar.SetError(Cadena, "Campo obligatorio.");
@@ -207,9 +197,8 @@ namespace ACOPEDH
                 return true;
             }
         }
-        public static bool IsNullOrEmty(ref RichTextBox Cadena, ref ErrorProvider Mostrar)
+        public static bool IsNullOrEmpty(ref RichTextBox Cadena, ref ErrorProvider Mostrar)
         {
-            Mostrar.Clear();
             if (String.IsNullOrEmpty(Cadena.Text))
             {
                 Mostrar.SetError(Cadena, "Campo obligatorio.");

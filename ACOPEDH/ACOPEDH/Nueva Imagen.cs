@@ -93,7 +93,7 @@ namespace ACOPEDH
                         Parámetros = new SqlParameter[5];
                         Parámetros[4] = new SqlParameter("@Id_Imagen", img.Id);
                     }
-                    Parámetros[0] = new SqlParameter("@Persona_Asociada", Asociado);
+                    Parámetros[0] = new SqlParameter("@Persona_Asociada", int.Parse(Asociado));
                     if (!Cambiado)
                         Parámetros[1] = new SqlParameter("@Imagen", img.Imagen);
                     else

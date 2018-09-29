@@ -63,17 +63,17 @@ namespace ACOPEDH
                 case "Aportación":
                     Constancia_Aportación cons = new Constancia_Aportación();
                     //Cargamos la Suma de Aportaciones
-                    Param[0] = new SqlParameter("@Código_Asociado", Datos);
+                    Param[0] = new SqlParameter("@Código_Asociado", int.Parse(Datos));
                     dt = seleccionar.LlenarText("[Suma Aportaciones]", "Suma de Aportaciones", Param);
                     cons.SetParameterValue("Sumatoria", dt.Rows[0]["Suma de Aportaciones"]);
                     //Cargamos los datos del Asociado en el reporte
-                    Param[0] = new SqlParameter("@Código_Asociado", Datos);
+                    Param[0] = new SqlParameter("@Código_Asociado", int.Parse(Datos));
                     dt = seleccionar.LlenarText("[Cargar Asociados]", "Name,LName", Param);
                     cons.SetParameterValue("Nombre", dt.Rows[0]["Name"]);
                     cons.SetParameterValue("Apellido", dt.Rows[0]["LName"]);
                     cons.SetParameterValue("Codigo", Datos);
                     //Cargamos aportaciones
-                    Param[0] = new SqlParameter("@Código_Asociado", Datos);
+                    Param[0] = new SqlParameter("@Código_Asociado", int.Parse(Datos));
                     dt = seleccionar.LlenarText("[Cargar Aportaciones]", "[Monto de la Aportación]", Param);
                     cons.SetParameterValue("Aportaciones", dt.Rows[0]["Monto de la Aportación"]);
                     crystalReportViewer1.ReportSource = cons;
@@ -270,7 +270,7 @@ namespace ACOPEDH
                 //Constancia de Nuevo Ahorro
                 case "Nuevo Ahorro":
                     Constancia_Nuevo_Ahorro ahorro = new Constancia_Nuevo_Ahorro();
-                    Param[0] = new SqlParameter("@ID_Asociado",Datos);
+                    Param[0] = new SqlParameter("@ID_Asociado",int.Parse(Datos));
                     dt = seleccionar.LlenarText("[Constancia Nuevo Ahorro]","Nombre,id_Ahorro,Tipo,Interés,Abono,Pid_Abono",Param);
                     ahorro.SetParameterValue("P_Nombre", dt.Rows[0]["Nombre"]);
                     ahorro.SetParameterValue("P_Tipo_Ahorro", dt.Rows[0]["Tipo"]);

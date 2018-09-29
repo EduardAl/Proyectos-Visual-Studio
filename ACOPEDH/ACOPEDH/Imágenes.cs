@@ -116,7 +116,7 @@ namespace ACOPEDH
             try
             {
                 SqlParameter[] Parámetros = new SqlParameter[1];
-                Parámetros[0] = new SqlParameter("@Persona_Asociada", Asociado);
+                Parámetros[0] = new SqlParameter("@Persona_Asociada", int.Parse(Asociado));
                 DataSet set = Cargar.llenar_DataSet("[Conseguir Imágenes]", Parámetros);
                 int i = 0;
                 listView1.LargeImageList = imageList1;

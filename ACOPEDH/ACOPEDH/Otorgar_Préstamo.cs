@@ -78,8 +78,8 @@ namespace ACOPEDH
         private void button1_Click(object sender, EventArgs e)
         {
             //Verificando que todos los datos estén correctos
-            if (Validaciones.IsNullOrEmty(ref TxtAsociadoP, ref Errores) &&
-                Validaciones.IsNullOrEmty(ref txtCuotaMensual, ref Errores))
+            if (Validaciones.IsNullOrEmpty(ref TxtAsociadoP, ref Errores) &&
+                Validaciones.IsNullOrEmpty(ref txtCuotaMensual, ref Errores))
             {
                 //Insertando los parametros
                 SqlParameter[] Parámetros = new SqlParameter[7];
@@ -153,7 +153,7 @@ namespace ACOPEDH
         //Mostrar Amortización
         private void button2_Click(object sender, EventArgs e)
         {
-            if (Validaciones.IsNullOrEmty(ref txtCuotaMensual,ref Errores))
+            if (Validaciones.IsNullOrEmpty(ref txtCuotaMensual,ref Errores))
             {
                 Amortización Acción = new Amortización(double.Parse(TxtInterés.Text), Monto, Cuotas);
                 Acción.ShowDialog();

@@ -32,7 +32,7 @@ namespace ACOPEDH
             {
                 txtCódigo.Text = Dato;
                 SqlParameter[] Parámetro = new SqlParameter[1];
-                Parámetro[0] = new SqlParameter("@Código_Asociado", Dato);
+                Parámetro[0] = new SqlParameter("@Código_Asociado", int.Parse(Dato));
                 pro.LlenarText("[Suma Aportaciones]", "Suma de Aportaciones", Parámetro, txtSuma);
                 txtSuma.Text = double.Parse(txtSuma.Text).ToString("C2");
             }
@@ -56,9 +56,9 @@ namespace ACOPEDH
                 {
                 //double suma = Convert.ToDouble(txtSuma.Text);
                 MessageBox.Show(txtSuma.Text);
-                    SqlParameter[] Parámetros = new SqlParameter[4];
-                    Parámetros[0] = new SqlParameter("@Código_Asociado", Dato);
-                    Parámetros[2] = new SqlParameter("@No_Cheque", txtCheque.Text);
+                    SqlParameter[] Parámetros = new SqlParameter[3];
+                    Parámetros[0] = new SqlParameter("@Código_Asociado", int.Parse(Dato));
+                    Parámetros[1] = new SqlParameter("@No_Cheque", txtCheque.Text);
                     Parámetros[2] = new SqlParameter("@Id_Usuario", Globales.gbCodUsuario);
                     if (pro.llenar_tabla("[Retirar Aportaciones]", Parámetros) > 0)
                     {

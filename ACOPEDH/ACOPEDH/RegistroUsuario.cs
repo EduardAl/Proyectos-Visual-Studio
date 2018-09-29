@@ -94,11 +94,11 @@ namespace ACOPEDH
             String asunto = "Bienvenido a ACOPEDH";
             String mensaje = "Éste correo se ha generado automáticamente, por favor, no responder\n\nBienvenido a ACOPEDH.\n\nDesde éste momento puede ingresar a su cuenta.\n\n\nSu usuario: " + txtCorreo.Text + "\nSu clave: " + txtPassword.Text;
             if (
-                Validaciones.IsNullOrEmty(ref txtNombre, ref errorProvider1) &&
-                Validaciones.IsNullOrEmty(ref txtApellido, ref errorProvider1) &&
-                Validaciones.IsNullOrEmty(ref txtCorreo, ref errorProvider1) &&
-                Validaciones.IsNullOrEmty(ref txtPassword, ref errorProvider1) &&
-                Validaciones.IsNullOrEmty(ref txtConfPassword, ref errorProvider1) &&
+                Validaciones.IsNullOrEmpty(ref txtNombre, ref errorProvider1) &&
+                Validaciones.IsNullOrEmpty(ref txtApellido, ref errorProvider1) &&
+                Validaciones.IsNullOrEmpty(ref txtCorreo, ref errorProvider1) &&
+                Validaciones.IsNullOrEmpty(ref txtPassword, ref errorProvider1) &&
+                Validaciones.IsNullOrEmpty(ref txtConfPassword, ref errorProvider1) &&
                 Validaciones.ValidarNomApe(ref txtNombre, ref errorProvider1) &&
                 Validaciones.ValidarNomApe(ref txtApellido, ref errorProvider1) &&
                 Validaciones.validar_contraseñas(txtPassword, ref errorProvider1) &&

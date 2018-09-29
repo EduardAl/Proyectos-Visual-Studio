@@ -681,14 +681,14 @@ namespace ACOPEDH
         {
             DataSet ds = new DataSet();
             if (
-                Validaciones.IsNullOrEmty(ref txtNombreActual, ref errorProvider1) &&
-                Validaciones.IsNullOrEmty(ref txtApellidoActual, ref errorProvider1) &&
-                Validaciones.IsNullOrEmty(ref txtCorreoElectrónicoNuevo, ref errorProvider1) &&
+                Validaciones.IsNullOrEmpty(ref txtNombreActual, ref errorProvider1) &&
+                Validaciones.IsNullOrEmpty(ref txtApellidoActual, ref errorProvider1) &&
+                Validaciones.IsNullOrEmpty(ref txtCorreoElectrónicoNuevo, ref errorProvider1) &&
                 Validaciones.ValidarNomApe(ref txtNombreActual, ref errorProvider1) &&
                 Validaciones.ValidarNomApe(ref txtApellidoActual, ref errorProvider1) &&
                 Validaciones.validar_correo(ref txtCorreoElectrónicoNuevo, ref errorProvider1) &&
-                Validaciones.IsNullOrEmty(ref txtNuevaContraseña, ref errorProvider1) &&
-                Validaciones.IsNullOrEmty(ref txtConfContraseña, ref errorProvider1) &&
+                Validaciones.IsNullOrEmpty(ref txtNuevaContraseña, ref errorProvider1) &&
+                Validaciones.IsNullOrEmpty(ref txtConfContraseña, ref errorProvider1) &&
                 Validaciones.validar_contraseñas(txtNuevaContraseña, ref errorProvider1) &&
                 Validaciones.claves_iguales(txtNuevaContraseña, txtConfContraseña, ref errorProvider1)
                 )
@@ -706,8 +706,8 @@ namespace ACOPEDH
                     {
                         if
                             (
-                                Validaciones.IsNullOrEmty(ref txtNuevaContraseña, ref errorProvider1) &&
-                                Validaciones.IsNullOrEmty(ref txtConfContraseña, ref errorProvider1) &&
+                                Validaciones.IsNullOrEmpty(ref txtNuevaContraseña, ref errorProvider1) &&
+                                Validaciones.IsNullOrEmpty(ref txtConfContraseña, ref errorProvider1) &&
                                 Validaciones.validar_contraseñas(txtNuevaContraseña, ref errorProvider1) &&
                                 Validaciones.claves_iguales(txtNuevaContraseña, txtConfContraseña, ref errorProvider1)
                             )
