@@ -20,6 +20,7 @@ namespace ACOPEDH
             {
                 try
                 {
+                 //   /*
                     tablaServidores = new DataTable();
                     servidores = SqlDataSourceEnumerator.Instance;
                     if (tablaServidores.Rows.Count == 0)

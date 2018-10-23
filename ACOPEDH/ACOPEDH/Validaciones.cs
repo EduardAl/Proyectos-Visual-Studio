@@ -14,6 +14,7 @@ namespace ACOPEDH
             {
                 if (Regex.Replace(DUI.Text, expresion, String.Empty).Length == 0)
                 {
+                    Mostrar.SetError(DUI, "");
                     return true;
                 }
                 else
@@ -36,6 +37,7 @@ namespace ACOPEDH
             {
                 if (Regex.Replace(NIT.Text, expresion, String.Empty).Length == 0)
                 {
+                    Mostrar.SetError(NIT, "");
                     return true;
                 }
                 else
@@ -63,6 +65,7 @@ namespace ACOPEDH
             {
                 if (Regex.Replace(correo.Text, expresion, String.Empty).Length == 0)
                 {
+                    Mostrar.SetError(correo, "");
                     return true;
                 }
                 else
@@ -85,6 +88,7 @@ namespace ACOPEDH
             {
                 if (Regex.Replace(Nombre.Text, expresion, String.Empty).Length == 0)
                 {
+                    Mostrar.SetError(Nombre, "");
                     return true;
                 }
                 else
@@ -107,6 +111,7 @@ namespace ACOPEDH
             {
                 if (Regex.Replace(Telefono.Text, expresion, String.Empty).Length == 0)
                 {
+                    Mostrar.SetError(Telefono, "");
                     return true;
                 }
                 else
@@ -129,6 +134,7 @@ namespace ACOPEDH
             {
                 if (Regex.Replace(Contraseña1.Text, expresion, String.Empty).Length == 0)
                 {
+                    Mostrar.SetError(Contraseña1, "");
                     return true;
                 }
                 else
@@ -153,14 +159,24 @@ namespace ACOPEDH
                 return false;
             }
             else
+            {
+                Mostrar.SetError(Contraseña2, "");
                 return true;
+            }
         }
         public static bool ValidarNomApe(ref TextBox txt, ref ErrorProvider Mostrar)
         {
             int k = txt.SelectionStart;
-            txt.Text = retornarMayúscula(ref txt,ref k);
+            txt.Text = retornarMayúscula(ref txt);
             txt.SelectionStart = (k>=0)?k:0;
-            return validar_nombre(ref txt, ref Mostrar);
+            if (validar_nombre(ref txt, ref Mostrar))
+            {
+                Mostrar.SetError(txt, "");
+                return true;
+            }
+            else
+                return false;
+
         }
 
         public static bool validar_Cheque(ref TextBox Cheque, ref ErrorProvider Mostrar)
@@ -171,6 +187,7 @@ namespace ACOPEDH
             {
                 if (Regex.Replace(Cheque.Text, expresion, String.Empty).Length == 0)
                 {
+                Mostrar.SetError(Cheque, "");
                     return true;
                 }
                 else
@@ -194,6 +211,7 @@ namespace ACOPEDH
             }
             else
             {
+                Mostrar.SetError(Cadena, "");
                 return true;
             }
         }
@@ -206,6 +224,7 @@ namespace ACOPEDH
             }
             else
             {
+                Mostrar.SetError(Cadena, "");
                 return true;
             }
         }
@@ -216,10 +235,7 @@ namespace ACOPEDH
             {
                 Cadena.Text = Cadena.Text.Replace("  ", " ");
             }
-            if (Cadena.Text == " ")
-            {
-                Cadena.Text = Cadena.Text.Trim();
-            }
+                Cadena.Text = Cadena.Text.Trim(' ');
             if ((Cadena.Text.Length >= 1))
             {
                 if (!(string.IsNullOrEmpty(Cadena.Text)))
@@ -247,6 +263,7 @@ namespace ACOPEDH
             else
                 return null;
         }
+        #region Ya no se usa
         private static string retornarMayúscula(ref TextBox Cadena, ref int k)
         {
             while (Cadena.Text.Contains("  "))
@@ -256,7 +273,7 @@ namespace ACOPEDH
             }
             if (Cadena.Text == " ")
             {
-                Cadena.Text = Cadena.Text.Trim();
+                Cadena.Text = Cadena.Text.Trim(' ');
                 k--;
             }
             if ((Cadena.Text.Length >= 1))
@@ -286,7 +303,6 @@ namespace ACOPEDH
             else
                 return null;
         }
-
-
+#endregion
     }
 }
