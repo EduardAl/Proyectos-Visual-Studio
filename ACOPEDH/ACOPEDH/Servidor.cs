@@ -40,6 +40,7 @@ namespace ACOPEDH
 #warning Cambiar los servidores 
                         Globales.Servidor = listaServidores[0];
                      //   Globales.Servidor = "GISSELLE-REYES";
+                     //   Globales.Servidor = "EDUARD";
                     }
                 }
                 catch (SqlException ex)

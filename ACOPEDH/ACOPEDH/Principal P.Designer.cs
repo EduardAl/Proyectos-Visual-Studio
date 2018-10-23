@@ -152,7 +152,8 @@
             // 
             // Titulo
             // 
-            this.Titulo.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Titulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Titulo.AutoSize = true;
             this.Titulo.BackColor = System.Drawing.Color.Transparent;
             this.Titulo.Font = new System.Drawing.Font("Linotte-Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
