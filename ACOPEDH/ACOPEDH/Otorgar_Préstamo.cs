@@ -84,7 +84,7 @@ namespace ACOPEDH
                 //Insertando los parametros
                 SqlParameter[] Parámetros = new SqlParameter[7];
                 Parámetros[0] = new SqlParameter("@FK_Tipo_Préstamo", CBTipoPréstamo.Text);
-                Parámetros[1] = new SqlParameter("@FK_Asociado", TxtCódigoP.Text);
+                Parámetros[1] = new SqlParameter("@FK_Asociado", int.Parse(TxtCódigoP.Text));
                 Parámetros[2] = new SqlParameter("@Forma_Pago", CBFormadePago.SelectedValue);
                 Parámetros[3] = new SqlParameter("@NCuotas", int.Parse(txtNoCuota.Text));
                 Parámetros[4] = new SqlParameter("@Monto", double.Parse(TxtMonto.Text));

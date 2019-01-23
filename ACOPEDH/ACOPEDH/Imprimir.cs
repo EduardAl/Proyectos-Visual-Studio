@@ -79,6 +79,21 @@ namespace ACOPEDH
                     crystalReportViewer1.ReportSource = cons;
                     BarraTítulo.Text = "         ACOPEDH - Constancia de Aportación";
                     break;
+                //Constancia Retiro de Aportaciones
+                case "Retiro Aportaciones":
+                    Constancia_RetiroAportación retiro_ap = new Constancia_RetiroAportación();
+                    Param[0] = new SqlParameter("@Código_Asociado", int.Parse(Datos));
+                    dt = seleccionar.LlenarText("[Suma Aportaciones]", "Suma de Aportaciones", Param);
+                    retiro_ap.SetParameterValue("Suma", dt.Rows[0]["Suma de Aportaciones"]);
+                    retiro_ap.SetParameterValue("Retiro", dt.Rows[0]["Suma de Aportaciones"]);
+                    Param[0] = new SqlParameter("@Codigo", int.Parse(Datos));
+                    dt = seleccionar.LlenarText("[Constancia Retiro Aportaciones]", "NombreP,EstadoP", Param);
+                    retiro_ap.SetParameterValue("Cod",Datos);
+                    retiro_ap.SetParameterValue("Nombre", dt.Rows[0]["NombreP"]);
+                    retiro_ap.SetParameterValue("Estado", dt.Rows[0]["EstadoP"]);
+                    crystalReportViewer1.ReportSource = retiro_ap;
+                    BarraTítulo.Text = "         ACOPEDH - Constancia de Retiro de Aportaciones";
+                    break;
                 //Constancia de Pago
                 case "Pago":
                     Constancia_Pago cp = new Constancia_Pago();
@@ -138,8 +153,9 @@ namespace ACOPEDH
                     Informes_Préstamos P = new Informes_Préstamos();
                     ConversiónNúmeros conv = new ConversiónNúmeros();
                     string montoletras = ""; ;
-                    Param[0] = new SqlParameter("@Codigo", Datos);
+                    Param[0] = new SqlParameter("@Codigo", int.Parse(Datos));
                     dt = seleccionar.LlenarText("[Informe Préstamo]", "Código_A,Nombre,Apellido,Préstamo,Dir,Trabajo,FormaP,TipoP,PDUI,Interés,Monto,FechaT,NCuotas,PCuotas,Estado", Param);
+                    MessageBox.Show(dt.Rows[0]["Monto"].ToString());
                     montoletras = conv.Decimales(dt.Rows[0]["Monto"].ToString());
                     try
                     {

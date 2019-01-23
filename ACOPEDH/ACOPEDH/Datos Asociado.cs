@@ -134,16 +134,18 @@ namespace ACOPEDH
         //Desasociar
         private void bttDesasociar_Click(object sender, EventArgs e)
         {
+            Retirar_Aportaciones r = new Retirar_Aportaciones();
             DialogResult Desasociar = MessageBox.Show("¿Desea desasociar a "+txtNombres.Text +" ?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (Desasociar != DialogResult.No)
             {
-                Retirar_Aportaciones Acción = new Retirar_Aportaciones(Dato);
-                Acción.ShowDialog();
                 SqlParameter[] Parámetros = new SqlParameter[1];
                 Parámetros[0] = new SqlParameter("@Código_Asociado", int.Parse(Dato));
                 if (Desasociar == DialogResult.Yes)
                 {
-                    if (Cargar.llenar_tabla("[Desasociar]", Parámetros) > 0)
+                    Retirar_Aportaciones Acción = new Retirar_Aportaciones(Dato);
+                    Acción.ShowDialog();
+                    Acción.Dispose();
+                    if (r.enabled)
                     {
                         dtDesaso.Value = DateTime.Now;
                         dtDesaso.Visible = true;
@@ -153,11 +155,9 @@ namespace ACOPEDH
                     }
                     else
                     {
-                        MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Globales.gbError = "";
+
                     }
                 }
-                Acción.Dispose();
             }
         }
         //Mostrar Teléfonos

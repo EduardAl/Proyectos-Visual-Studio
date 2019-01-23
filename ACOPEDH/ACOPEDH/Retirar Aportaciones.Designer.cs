@@ -38,6 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.bttRetirarAportación = new System.Windows.Forms.Button();
             this.txtCheque = new System.Windows.Forms.TextBox();
+            this.bttCancelar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
@@ -138,11 +139,11 @@
             // bttRetirarAportación
             // 
             this.bttRetirarAportación.Font = new System.Drawing.Font("Linotte-Bold", 12F);
-            this.bttRetirarAportación.Location = new System.Drawing.Point(141, 252);
+            this.bttRetirarAportación.Location = new System.Drawing.Point(48, 251);
             this.bttRetirarAportación.Name = "bttRetirarAportación";
-            this.bttRetirarAportación.Size = new System.Drawing.Size(112, 50);
+            this.bttRetirarAportación.Size = new System.Drawing.Size(173, 50);
             this.bttRetirarAportación.TabIndex = 97;
-            this.bttRetirarAportación.Text = "Retirar\r\nAportaciones\r\n";
+            this.bttRetirarAportación.Text = "Retirar Aportaciones\r\ny Desasociar\r\n";
             this.bttRetirarAportación.UseVisualStyleBackColor = true;
             this.bttRetirarAportación.Click += new System.EventHandler(this.bttRealizarAportación_Click);
             // 
@@ -154,6 +155,17 @@
             this.txtCheque.Size = new System.Drawing.Size(135, 27);
             this.txtCheque.TabIndex = 98;
             // 
+            // bttCancelar
+            // 
+            this.bttCancelar.Font = new System.Drawing.Font("Linotte-Bold", 12F);
+            this.bttCancelar.Location = new System.Drawing.Point(249, 251);
+            this.bttCancelar.Name = "bttCancelar";
+            this.bttCancelar.Size = new System.Drawing.Size(112, 50);
+            this.bttCancelar.TabIndex = 99;
+            this.bttCancelar.Text = "Cancelar";
+            this.bttCancelar.UseVisualStyleBackColor = true;
+            this.bttCancelar.Click += new System.EventHandler(this.bttCancelar_Click);
+            // 
             // Retirar_Aportaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,6 +173,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(184)))), ((int)(((byte)(192)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(417, 326);
+            this.Controls.Add(this.bttCancelar);
             this.Controls.Add(this.txtCheque);
             this.Controls.Add(this.bttRetirarAportación);
             this.Controls.Add(this.label1);
@@ -196,5 +209,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button bttRetirarAportación;
         private System.Windows.Forms.TextBox txtCheque;
+        private System.Windows.Forms.Button bttCancelar;
     }
 }
