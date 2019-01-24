@@ -56,6 +56,8 @@ namespace ACOPEDH
                 txtMonto.Text = Math.Round(Convert.ToDouble(txtMonto.Text),2).ToString("C2");
                 txtCuotaMensual.Text = Math.Round(Convert.ToDouble(txtCuotaMensual.Text),2).ToString("C2");
                 F = new Fonts(dgvPagosRealizados);
+                if (txtEstado.Text == "CANCELADO")
+                    bttRefinanciar.Visible = false;
                 F.Diseño();
             }
             catch { }
