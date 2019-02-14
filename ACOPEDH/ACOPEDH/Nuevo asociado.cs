@@ -200,9 +200,10 @@ namespace ACOPEDH
                 dgvTeléfonos.Rows.Remove(dgvTeléfonos.CurrentRow);
             }
         }
-        //Modificar?
+        //Borrar datos
         private void button4_Click(object sender, EventArgs e)
         {
+            errorProvider1.Clear();
             txtApellidos.Clear();
             txtDirección.Clear();
             txtDUI.Clear();
@@ -211,7 +212,7 @@ namespace ACOPEDH
             txtTeléfono.Clear();
             dgvTeléfonos.Rows.Clear();
 
-            Habilitar(false);
+            Habilitar(true);
             button2.Enabled = false;
             button3.Enabled = false;
             id = "";
@@ -219,13 +220,17 @@ namespace ACOPEDH
         //Ver Personas
         private void bttPersona_Click(object sender, EventArgs e)
         {
-            button4_Click(sender, e);
             Personas p = new Personas();
             p.ShowDialog();
-            Dispose();
+            if (true)
+            {
+                button4_Click(sender, e);
+                Habilitar(false);
+            }
+            p.Dispose();
         }
         #endregion
-        #region Metodo
+        #region Método
         private void Habilitar(bool habilitar)
         {
             txtApellidos.Enabled = habilitar;

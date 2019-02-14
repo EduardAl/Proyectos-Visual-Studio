@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,12 @@ namespace ACOPEDH
     public partial class Personas : Form
     {
         Fonts F;
+        public bool Seleccionada = true;
+        private string codigoPersona;
+        public string CodigoPersona { get => codigoPersona; }
+        Procedimientos_select Cargar = new Procedimientos_select();
+        DataTable dt = new DataTable();
+        DataView filtro = new DataView();
 
         public Personas()
         {
@@ -23,13 +30,21 @@ namespace ACOPEDH
         {
             F = new Fonts(dgvPersonas);
             F.Diseño();
+            LlenarDGV(ref dt, "[Personas DVG]");
+
+            this.filtro = dt.DefaultView;
+            this.dgvPersonas.DataSource = filtro;
         }
 
         private void bttCer_Click(object sender, EventArgs e)
         {
             Close();
         }
-
+        private void LlenarDGV(ref DataTable dss, String tabla)
+        {
+            dgvPersonas.DataSource = null;
+            dss = Cargar.llenar_DataTable(tabla);
+        }
         #region Pintar Bordes
         private void Bordes_Paint(object sender, PaintEventArgs e)
         {
@@ -54,6 +69,7 @@ namespace ACOPEDH
                 return cp;
             }
         }
+
         #endregion
         #region Mover Form
         bool Empezarmover = false;

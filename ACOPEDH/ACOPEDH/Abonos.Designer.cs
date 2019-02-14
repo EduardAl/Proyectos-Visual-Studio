@@ -34,7 +34,6 @@
             this.nmCantidadAbono = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.txtAsociado = new System.Windows.Forms.TextBox();
-            this.txtNoCuenta = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTasa = new System.Windows.Forms.TextBox();
@@ -42,6 +41,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.txtNoCuenta = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nmCantidadAbono)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -98,14 +98,6 @@
             this.txtAsociado.ReadOnly = true;
             this.txtAsociado.Size = new System.Drawing.Size(321, 27);
             this.txtAsociado.TabIndex = 53;
-            // 
-            // txtNoCuenta
-            // 
-            this.txtNoCuenta.Location = new System.Drawing.Point(115, 51);
-            this.txtNoCuenta.Name = "txtNoCuenta";
-            this.txtNoCuenta.ReadOnly = true;
-            this.txtNoCuenta.Size = new System.Drawing.Size(100, 27);
-            this.txtNoCuenta.TabIndex = 52;
             // 
             // label2
             // 
@@ -184,6 +176,14 @@
             this.label6.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.label6.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             // 
+            // txtNoCuenta
+            // 
+            this.txtNoCuenta.Location = new System.Drawing.Point(115, 51);
+            this.txtNoCuenta.Name = "txtNoCuenta";
+            this.txtNoCuenta.ReadOnly = true;
+            this.txtNoCuenta.Size = new System.Drawing.Size(100, 27);
+            this.txtNoCuenta.TabIndex = 52;
+            // 
             // Abonos
             // 
             this.AcceptButton = this.bttAceptar;
@@ -232,7 +232,6 @@
         private System.Windows.Forms.NumericUpDown nmCantidadAbono;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtAsociado;
-        private System.Windows.Forms.TextBox txtNoCuenta;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTasa;
@@ -240,5 +239,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtNoCuenta;
     }
 }
