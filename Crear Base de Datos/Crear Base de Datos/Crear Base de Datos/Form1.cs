@@ -199,6 +199,7 @@ namespace Crear_Base_de_Datos
                 "[Código Asociado] [int] NOT NULL references [Asociado]([Código Asociado])," +
                 "[id Forma de Pago] [varchar](5) references[Forma de Pago]([id Forma de Pago]) NOT NULL," +
                 "[id Tipo de Préstamo] [varchar](5) references [Tipo de Préstamo]([id Tipo de Préstamo]) NOT NULL," +
+                "[Tasa de Interés] [decimal](10, 2) NOT NULL," +
                 "[Fecha de Otorgamiento] [datetime] NOT NULL," +
                 "[Cuotas] [int] NOT NULL," +
                 "[Monto del Préstamo] [money] NOT NULL," +
@@ -396,18 +397,18 @@ namespace Crear_Base_de_Datos
                "As \n" +
                "Begin Tran Abono \n" +
                "Begin Try \n" +
-               "if ((Select Estado From Ahorro where Ahorro.[id Ahorro] = @FK_Ahorro) <> 'INACTIVO') "+
-               "Begin "+
+               "if ((Select Estado From Ahorro where Ahorro.[id Ahorro] = @FK_Ahorro) <> 'INACTIVO') \n"+
+               "Begin \n"+
                "Declare @id_Transación int \n" +
                "Insert into Transacciones values(@Id_Usuario, 'TT002',GETDATE()) \n" +
                "set @id_Transación = (Select MAX([id Transacción]) From Transacciones) \n" +
                "Insert into Abono values(@Abono,@Comision,@FK_Ahorro, @id_Transación) \n" +
                "Commit Tran Abono \n" +
-               "End "+
-               "Else begin "+
-               "Print 'Cuenta INACTIVA. No se puede abonar.' "+
-               "Commit Tran Abono "+
-               "end "+
+               "End \n"+
+               "Else begin \n"+
+               "Print 'Cuenta INACTIVA. No se puede abonar.' \n"+
+               "Commit Tran Abono \n"+
+               "end \n"+
                "End Try \n" +
                "Begin Catch \n" +
                "Print ERROR_MESSAGE(); \n" +
@@ -520,6 +521,8 @@ namespace Crear_Base_de_Datos
                 "Declare @id_Transacción as int \n" +
                 "set @ID_Tipo_Ahorro = (Select [id Tipo Ahorro] From [Tipo de Ahorro] where Nombre = @FK_Tipo_Ahorro) \n" +
                 "set @Contar_Activos = (Select COUNT([id Ahorro]) from Ahorro where [FK Código de Asociado] = @FK_Asociado AND Estado = 'ACTIVO') \n" +
+                "if (Select Estado from Asociado where[Código Asociado] = @FK_Asociado) = 'ACTIVO' \n"+
+                "Begin \n"+
                 "if @Contar_Activos < 3 \n" +
                 "Begin \n" +
                 "Insert into Transacciones values(@Id_Usuario, 'TT006', GETDATE()) \n" +
@@ -535,6 +538,11 @@ namespace Crear_Base_de_Datos
                 "Print 'El usuario ya tiene 3 cuentas de ahorro activas' \n" +
                 "Commit tran Ahorro \n" +
                 "End \n" +
+                "End \n"+
+                "Else begin \n"+
+                "Print 'La persona se encuentra DESASOCIADA.' \n"+
+                "Commit tran Ahorro \n"+
+                "end \n"+
                 "End try \n" +
                 "Begin Catch \n" +
                 "Print ERROR_MESSAGE(); \n" +
@@ -676,7 +684,7 @@ namespace Crear_Base_de_Datos
                  "Begin Tran Cargar_P \n" +
                 "Begin Try \n" +
                 "Select Asociado.[Código Asociado] AS 'Código_A', (p.Nombres + ' ' + p.Apellidos) AS 'Nombre',[Forma de Pago].Nombre AS 'FormaP'," +
-                " [Tipo de Préstamo].[Tipo de Préstamo]As 'TipoP', [Tipo de Préstamo].[Tasa de Interés] As Interés, Préstamos.[Monto del Préstamo] AS Monto, \n" +
+                " [Tipo de Préstamo].[Tipo de Préstamo]As 'TipoP', [Préstamos].[Tasa de Interés] As Interés, Préstamos.[Monto del Préstamo] AS Monto, \n" +
                 "Transacciones.[Fecha de Transacción] AS FechaT, Préstamos.Cuotas AS NCuotas, Préstamos.[Cuota Mensual] AS PCuotas, Préstamos.Estado AS Estado \n" +
                 "From Asociado inner join [Forma de Pago] on [Forma de Pago].[id Forma de Pago] = [id Forma de Pago] inner join Préstamos on \n" +
                 "Asociado.[Código Asociado] = Préstamos.[Código Asociado] inner join [Tipo de Préstamo] on Préstamos.[id Tipo de Préstamo] \n" +
@@ -851,14 +859,19 @@ namespace Crear_Base_de_Datos
                 "Declare @Contar_Emergencia as int \n" +
                 "Declare @Contar_Normal as int \n" +
                 "Declare @Id_Transacción as int \n" +
+                "Declare @Tasa_Interés as int \n" +
                 "set @ID_Tipo_Préstamo = (Select [id Tipo de Préstamo] From [Tipo de Préstamo] where [Tipo de Préstamo] = @FK_Tipo_Préstamo) \n" +
                 "set @Contar_Emergencia = (Select COUNT(Préstamos.[id Préstamos]) from Préstamos inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo] where Préstamos.[Código Asociado] = @FK_Asociado AND Estado = 'ACTIVO' AND [Tipo de Préstamo].[Tipo de Préstamo] = 'Emergencia') \n" +
                 "set @Contar_Normal = (Select COUNT(Préstamos.[id Préstamos]) from Préstamos inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo] where Préstamos.[Código Asociado] = @FK_Asociado AND Estado = 'ACTIVO' AND [Tipo de Préstamo].[Tipo de Préstamo] <> 'Emergencia') \n" +
+                "if (Select Estado from Asociado where[Código Asociado] = @FK_Asociado) = 'ACTIVO' \n" +
+                "Begin " +
                 "IF (@FK_Tipo_Préstamo <> 'Emergencia' AND @Contar_Normal < 2 ) OR (@FK_Tipo_Préstamo = 'Emergencia' AND @Contar_Emergencia < 1) \n" +
                 "	BEGIN \n" +
                 "	Insert into Transacciones values(@Usuario, 'TT003', GETDATE()) \n" +
                 "	Set @Id_Transacción = (Select MAX([id Transacción]) from Transacciones) \n" +
-                "	Insert into Préstamos values(@FK_Asociado, @Forma_Pago,@ID_Tipo_Préstamo,GETDATE(),@NCuotas,@Monto,@Cuota,@Id_Transacción,'ACTIVO') \n" +
+                "   Set @Tasa_Interés = (Select[Tipo de Préstamo].[Tasa de Interés] from[Tipo de Préstamo]  \n" +
+                "                           where [Tipo de Préstamo].[id Tipo de Préstamo] = @ID_Tipo_Préstamo) \n" +
+                "	Insert into Préstamos values(@FK_Asociado, @Forma_Pago,@ID_Tipo_Préstamo,@Tasa_Interés,GETDATE(),@NCuotas,@Monto,@Cuota,@Id_Transacción,'ACTIVO') \n" +
                 "	Commit tran Préstamo \n" +
                 "END \n" +
                 "ELSE \n" +
@@ -866,6 +879,11 @@ namespace Crear_Base_de_Datos
                 "	Print 'El usuario ya ha superado máximo de préstamos permitidos para este tipo de préstamo' \n" +
                 "   Commit tran Préstamo return 0 \n" +
                 "END \n" +
+                "end \n" +
+                "else begin \n" +
+                "   Print 'La persona ya no está asociada.' \n" +
+                "   Commit tran Préstamo return 0 \n" +
+                "end \n" +
                 "End try \n" +
                 "Begin Catch \n" +
                 "Print ERROR_MESSAGE(); \n" +
@@ -1013,33 +1031,26 @@ namespace Crear_Base_de_Datos
                 "End; ";
             //Procedimiento para retirar las aportaciones al desasociar.
             String procedimiento43 = "create procedure [dbo].[Retirar Aportaciones] \n" +
-                "@Código_Asociado int, "+
-                "@No_Cheque varchar(8), "+
-                "@Id_Usuario varchar(5) "+
-                "As Begin Tran Retiro "+
-                "Begin Try "+
-                "declare @total_Retiro money "+
-                "If(Select Estado from Asociado where[Código Asociado] = @Código_Asociado) = 'ACTIVO' "+
-                "Begin "+
-                "if (Select SUM(Aportación) from Aportaciones where [FK Asociado] = @Código_Asociado) <> 0 "+
-                "Begin "+
-                "set @total_Retiro = (Select SUM(Aportación) from Aportaciones where [FK Asociado] = @Código_Asociado) "+
-			    "Declare @Id_Transacción int "+
+                "@Código_Asociado int, \n"+
+                "@No_Cheque varchar(8), \n"+
+                "@Id_Usuario varchar(5) \n"+
+                "As Begin Tran Retiro \n"+
+                "Begin Try \n"+
+                "declare @total_Retiro money \n"+
+                "if (Select SUM(Aportación) from Aportaciones where [FK Asociado] = @Código_Asociado) > 0 \n"+
+                "Begin \n"+
+                "set @total_Retiro = (Select SUM(Aportación) from Aportaciones where [FK Asociado] = @Código_Asociado) \n"+
+			    "Declare @Id_Transacción int \n"+
                 "Insert into Transacciones values(@Id_Usuario,'TT007',GETDATE()) "+
 			    "set @Id_Transacción = (Select MAX([id Transacción]) From Transacciones) "+
-			    "Insert into[Retiros Aportaciones] values(@total_Retiro, @No_Cheque, @Código_Asociado, @Id_Transacción) "+
-                "Commit Tran Retiro "+
-                "End "+
-                "Else Begin "+
-                "Print 'No hay aportaciones que retirar.' "+
-                "Commit Tran Retiro "+
-                "End "+
-                "End "+
-                "Else Begin "+
-                "Print 'La persona se encuentra desasociada.' "+
-                "Commit Tran Retiro "+
-                "End "+
-                "End Try "+
+			    "Insert into[Retiros Aportaciones] values(@total_Retiro, @No_Cheque, @Código_Asociado, @Id_Transacción) \n"+
+                "Commit Tran Retiro \n"+
+                "End \n"+
+                "Else Begin \n"+
+                "Print 'La persona se encuentra desasociada.' \n"+
+                "Commit Tran Retiro \n"+
+                "End \n"+
+                "End Try \n"+
                 "Begin Catch \n" +
                 "Print ERROR_MESSAGE(); \n" +
                 "Rollback Tran Retiro \n" +
@@ -1090,7 +1101,7 @@ namespace Crear_Base_de_Datos
                 "Select Asociado.[Código Asociado] AS 'Código_A', p.Nombres AS 'Nombre', \n" +
                 "p.Apellidos as 'Apellido', Préstamos.[id Préstamos] as 'Préstamo', \n" +
                 "p.Dirección as 'Dir', Ocupación.[Nombre de la Empresa] as 'Trabajo',[Forma de Pago].Nombre AS 'FormaP', [Tipo de Préstamo].[Tipo de Préstamo] As 'TipoP',  \n" +
-                "p.DUI as 'PDUI',[Tipo de Préstamo].[Tasa de Interés] As 'Interés',  \n" +
+                "p.DUI as 'PDUI',[Préstamos].[Tasa de Interés] As 'Interés',  \n" +
                 "Préstamos.[Monto del Préstamo] AS 'Monto', Transacciones.[Fecha de Transacción] AS 'FechaT', Préstamos.Cuotas AS 'NCuotas', \n" +
                 "Préstamos.[Cuota Mensual] AS 'PCuotas', Préstamos.Estado AS 'Estado' From Ocupación inner join Asociado on \n" +
                 "Ocupación.[Id Ocupación] = Asociado.[FK Ocupación] inner join Préstamos on Asociado.[Código Asociado] = Préstamos.[Código Asociado] \n" +
@@ -1369,16 +1380,28 @@ namespace Crear_Base_de_Datos
                 "As \n" +
                 "Begin Tran Personas_DVG \n" +
                 "Begin Try \n" +
-                "Select Persona.[Código Persona] as 'Código Persona', (Persona.Nombres +' ' + Persona.Apellidos) as 'Nombre_P', \n" +
-                "Persona.DUI as 'DUI_P', Persona.NIT as 'NIT_P', Persona.Dirección as 'Dir_P', Persona.[Fecha de Nacimiento] as 'Fecha_P' \n" +
+                "Select Persona.[Código Persona] as 'Código Persona', (Persona.Nombres +' ' + Persona.Apellidos) as 'Nombre', \n" +
+                "Persona.DUI as 'DUI', Persona.NIT as 'NIT', Persona.Dirección as 'Dirección', Persona.[Fecha de Nacimiento] as 'Fecha' \n" +
                 "from Persona full outer join Asociado on Persona.[Código Persona] = Asociado.[FK Persona] \n" +
-                "full outer join Beneficiario on Persona.[Código Persona] = Beneficiario.[FK Persona] where Asociado.Estado<> 'ACTIVO' \n" +
+                "full outer join Beneficiario on Persona.[Código Persona] = Beneficiario.[FK Persona] where Asociado.Estado<> 'ACTIVO' or Asociado.[Código Asociado] is null \n" +
                 "Commit Tran Personas_DVG \n" +
                 "End Try \n" +
                 "Begin Catch \n" +
                 "Print 'Ha ocurrido un error: ' + ERROR_MESSAGE() + ' . Inténtelo más tarde.' \n" +
                 "Rollback Tran Personas_DVG \n" +
                 "End Catch ";
+            String procedimiento59 = "Create procedure[dbo].[Constancia Retiro Aportaciones] \n" +
+                "@Codigo int \n" +
+                "As begin tran Constancia_A \n" +
+                "Begin try \n" +
+                "   Select(Persona.Nombres + ' ' + Persona.Apellidos) as 'NombreP', Asociado.Estado as 'EstadoP'  from Persona inner join Asociado \n" +
+                "           on Persona.[Código Persona] = Asociado.[FK Persona] where Asociado.[Código Asociado] = @Codigo \n" +
+                "   Commit Tran Constancia_A \n" +
+                "End try \n" +
+                "Begin Catch \n" +
+                "   Print ERROR_MESSAGE(); \n" +
+                "   Rollback tran Constancia_A \n" +
+                "End Catch \n";
             String Login1 =
                 "CREATE LOGIN Master_ACOPEDH \n" +
                 "WITH PASSWORD = 'Aureo112358' ";
@@ -1559,6 +1582,8 @@ namespace Crear_Base_de_Datos
                 "to Administrador with grant option \n" + 
                 "grant execute on object :: [Personas DVG] \n" +
                 "to Administrador with grant option \n" +
+                "grant execute on object :: [Constancia Retiro Aportaciones] \n" +
+                "to Administrador with grant option \n" +
                 "grant execute on object :: [Actualizar Asociado] \n" +
                  "to Administrador with grant option ";
             String permisosUsuario =
@@ -1700,6 +1725,7 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd_56 = new SqlCommand(procedimiento56, cnn);
             SqlCommand cmd_57 = new SqlCommand(procedimiento57, cnn);
             SqlCommand cmd_58 = new SqlCommand(procedimiento58, cnn);
+            SqlCommand cmd_59 = new SqlCommand(procedimiento59, cnn);
 
             //Creación Triggers
 
@@ -1830,6 +1856,7 @@ namespace Crear_Base_de_Datos
             cmd_56.ExecuteNonQuery();
             cmd_57.ExecuteNonQuery();
             cmd_58.ExecuteNonQuery();
+            cmd_59.ExecuteNonQuery();
 
 
             cmdTrigger1.ExecuteNonQuery();

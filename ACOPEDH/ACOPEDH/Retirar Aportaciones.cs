@@ -14,6 +14,8 @@ namespace ACOPEDH
     public partial class Retirar_Aportaciones : Form
     {
         string Dato;
+        double suma;
+        public bool enabled = false;
         Procedimientos_select pro = new Procedimientos_select();
         public DialogResult dr = DialogResult.Cancel;
 
@@ -34,6 +36,7 @@ namespace ACOPEDH
                 SqlParameter[] Parámetro = new SqlParameter[1];
                 Parámetro[0] = new SqlParameter("@Código_Asociado", int.Parse(Dato));
                 pro.LlenarText("[Suma Aportaciones]", "Suma de Aportaciones", Parámetro, txtSuma);
+                suma = double.Parse(txtSuma.Text);
                 txtSuma.Text = double.Parse(txtSuma.Text).ToString("C2");
             }
             catch
@@ -49,37 +52,38 @@ namespace ACOPEDH
 
         private void bttRealizarAportación_Click(object sender, EventArgs e)
         {
-            //    try
-            //    {
-            DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de retiro para la siguiente transacción?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (Imprimir != DialogResult.Cancel)
+
+            //double suma = Convert.ToDouble(txtSuma.Text);
+            //MessageBox.Show(txtSuma.Text);
+            SqlParameter[] Parámetros = new SqlParameter[3];
+            Parámetros[0] = new SqlParameter("@Código_Asociado", int.Parse(Dato));
+            Parámetros[1] = new SqlParameter("@No_Cheque", txtCheque.Text);
+            Parámetros[2] = new SqlParameter("@Id_Usuario", Globales.gbCodUsuario);
+            if (pro.llenar_tabla("[Retirar Aportaciones]", Parámetros) > 0)
+            {
+                Parámetros = new SqlParameter[1];
+                Parámetros[0] = new SqlParameter("@Código_Asociado", int.Parse(Dato));
+                if (pro.llenar_tabla("[Desasociar]", Parámetros) > 0)
                 {
-                //double suma = Convert.ToDouble(txtSuma.Text);
-                MessageBox.Show(txtSuma.Text);
-                    SqlParameter[] Parámetros = new SqlParameter[3];
-                    Parámetros[0] = new SqlParameter("@Código_Asociado", int.Parse(Dato));
-                    Parámetros[1] = new SqlParameter("@No_Cheque", txtCheque.Text);
-                    Parámetros[2] = new SqlParameter("@Id_Usuario", Globales.gbCodUsuario);
-                    if (pro.llenar_tabla("[Retirar Aportaciones]", Parámetros) > 0)
-                    {
-                        DialogResult = DialogResult.OK;
-                        Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Globales.gbError = "";
-                    }
-                    if (Imprimir == DialogResult.Yes)
-                    {
-#warning Añadir Imprimir
-                    }
+                    DialogResult = DialogResult.OK;
+                    enabled = true;
+                    this.Cursor = Cursors.WaitCursor;
+                    Imprimir Acción = new Imprimir(Dato, "Retiro Aportaciones");
+                    Acción.ShowDialog();
+                    Acción.Dispose();
+                    Close();
                 }
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Ha ocurrido un error en la transacción.Inténtelo más tarde.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+                else
+                {
+                    MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Globales.gbError = "";
+                }
+            }
+            else
+            {
+                MessageBox.Show(Globales.gbError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Globales.gbError = "";
+            }
         }
 
         #region Mover Form
@@ -128,6 +132,9 @@ namespace ACOPEDH
                 return cp;
             }
         }
+
+        public bool Enabled1 { get => enabled; set => enabled = value; }
+        public bool Enabled2 { get => enabled; set => enabled = value; }
         #endregion
 
         #region Pintar Bordes
@@ -142,5 +149,9 @@ namespace ACOPEDH
         }
         #endregion
 
+        private void bttCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

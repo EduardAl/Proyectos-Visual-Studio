@@ -22,7 +22,11 @@ namespace Crear_Base_de_Datos
 
         private void Servidores_Load(object sender, EventArgs e)
         {
-            this.dataGridView1.DataSource = Instancias();
+            //this.dataGridView1.DataSource = Instancias();
+            dataGridView1.Columns.Add("server", "ServerName");
+            dataGridView1.Columns.Add("instance", "InstaceName");
+            this.dataGridView1.Rows.Add("EDUARD", "EDUARD");
+            this.dataGridView1.Rows.Add("EDUARD", "EDUARD");
             Focus();
         }
 
@@ -36,7 +40,7 @@ namespace Crear_Base_de_Datos
                 dgvv = dataGridView1.Rows[e.RowIndex];
                 Servidor = dgvv.Cells[0].Value.ToString();
                 Servidor2 = dgvv.Cells[0].Value.ToString() + @"\" + dgvv.Cells[1].Value.ToString();
-                if (String.IsNullOrEmpty(Servidor)||String.IsNullOrEmpty(Servidor2))
+                if (String.IsNullOrEmpty(Servidor)&&String.IsNullOrEmpty(Servidor2))
                 {
                     goto a;
                 }
