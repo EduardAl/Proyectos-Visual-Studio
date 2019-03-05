@@ -22,11 +22,11 @@ namespace Crear_Base_de_Datos
 
         private void Servidores_Load(object sender, EventArgs e)
         {
-            //this.dataGridView1.DataSource = Instancias();
+            this.dataGridView1.DataSource = Instancias();
             dataGridView1.Columns.Add("server", "ServerName");
             dataGridView1.Columns.Add("instance", "InstaceName");
-            this.dataGridView1.Rows.Add("EDUARD", "EDUARD");
-            this.dataGridView1.Rows.Add("EDUARD", "EDUARD");
+          //  this.dataGridView1.Rows.Add("EDUARD", "EDUARD");/
+          //  this.dataGridView1.Rows.Add("EDUARD", "EDUARD");
             Focus();
         }
 
