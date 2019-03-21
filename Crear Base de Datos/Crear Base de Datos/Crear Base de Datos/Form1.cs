@@ -1456,16 +1456,16 @@ namespace Crear_Base_de_Datos
                 "As \n" +
                 "Begin Tran Trans_A \n" +
                 "Begin Try \n" +
-                "    Select Ahorro.[id Ahorro] as Código, [Tipo de Transacción].[Tipo de Transacción] as Categoría, [Tipo de Ahorro].Nombre as Tipo, \n" +
-                "    Ahorro.Estado  as Estado from Ahorro inner join Transacciones on Ahorro.[FK Transacción] = Transacciones.[id Transacción] \n" +
+                "    Select Ahorro.[id Ahorro] as 'Código', [Tipo de Transacción].[Tipo de Transacción] as 'Categoría', [Tipo de Ahorro].Nombre as 'Tipo', \n" +
+                "    Ahorro.Estado  as 'Estado' from Ahorro inner join Transacciones on Ahorro.[FK Transacción] = Transacciones.[id Transacción] \n" +
                 "    inner join [Tipo de Ahorro] on Ahorro.[FK Tipo Ahorro] = [Tipo de Ahorro].[id Tipo Ahorro] \n" +
                 "    inner join [Tipo de Transacción] on Transacciones.[FK Tipo de Transacción] = [Tipo de Transacción].[id Tipo de Transacción] \n" +
                 "    where Ahorro.[FK Código de Asociado] = @Código \n" +
                 "    union all \n" +
-                "    Select Préstamos.[id Préstamos] as Código, [Tipo de Transacción].[Tipo de Transacción] as Categoría, [Tipo de Préstamo].[Tipo de Préstamo] as Tipo, \n" +
-                "    Préstamos.Estado as Estado from Préstamos inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] \n" +
-                "    inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo \n" +
-                "    inner join [Tipo de Transacción] on [Tipo de Transacción].[id Tipo de Transacción] = Transacciones.[FK Tipo de Transacción \n" +
+                "    Select Préstamos.[id Préstamos] as 'Código', [Tipo de Transacción].[Tipo de Transacción] as 'Categoría', [Tipo de Préstamo].[Tipo de Préstamo] as 'Tipo', \n" +
+                "    Préstamos.Estado as 'Estado' from Préstamos inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción] \n" +
+                "    inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo] \n" +
+                "    inner join [Tipo de Transacción] on [Tipo de Transacción].[id Tipo de Transacción] = Transacciones.[FK Tipo de Transacción] \n" +
                 "    where Préstamos.[Código Asociado] = @Código \n" +
                 "    order by Estado \n" +
                 "    Commit Tran Trans_A \n" +
