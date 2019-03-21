@@ -737,13 +737,13 @@ namespace ACOPEDH
             }
             else
             {
-                PInicio.Location = new Point(pictureBox1.Location.X + 40, PInicio.Location.Y);
-                PConfiguración.Location = new Point(pictureBox1.Location.X + 40, PConfiguración.Location.Y);
-                PPréstamos.Location = new Point(pictureBox1.Location.X + 40, PPréstamos.Location.Y);
-                PAhorros.Location = new Point(pictureBox1.Location.X + 40, PAhorros.Location.Y);
-                PEstadoAsociación.Location = new Point(pictureBox1.Location.X + 40, PEstadoAsociación.Location.Y);
-                PAdministrar.Location = new Point(pictureBox1.Location.X + 40, PAdministrar.Location.Y);
-                PAsociados.Location = new Point(pictureBox1.Location.X + 40, PAsociados.Location.Y);
+                PInicio.Location = new Point(pictureBox1.Location.X + 30, PInicio.Location.Y);
+                PConfiguración.Location = new Point(pictureBox1.Location.X + 30, PConfiguración.Location.Y);
+                PPréstamos.Location = new Point(pictureBox1.Location.X + 30, PPréstamos.Location.Y);
+                PAhorros.Location = new Point(pictureBox1.Location.X + 30, PAhorros.Location.Y);
+                PEstadoAsociación.Location = new Point(pictureBox1.Location.X + 30, PEstadoAsociación.Location.Y);
+                PAdministrar.Location = new Point(pictureBox1.Location.X + 30, PAdministrar.Location.Y);
+                PAsociados.Location = new Point(pictureBox1.Location.X + 30, PAsociados.Location.Y);
                 panelConfig.Width = (this.Width * 3) / 4;
                 panelConfig.Height = (this.Height - Titulo.Height - Titulo.Location.Y - 100);
                 panelConfig.Location = new Point(((Width - (pictureBox1.Height + pictureBox1.Location.X)) / 2) - (panelConfig.Width / 2) +
