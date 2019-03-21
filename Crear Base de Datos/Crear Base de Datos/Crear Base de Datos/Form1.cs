@@ -1427,24 +1427,15 @@ namespace Crear_Base_de_Datos
                 "    Print 'Ha ocurrido el siguiente un error. Inténtelo más tarde.' \n" +
                 "    Rollback Tran AdminU \n" +
                 "End Catch";
-            String procedimiento62 = "Create procedure [dbo].[Contar] \n" +
+            String procedimiento62 = "Create procedure [dbo].[Contar Ahorros] \n" +
                 "@Código as varchar(6) \n" +
                 "as \n" +
                 "begin tran contar \n" +
                 "begin try \n" +
-                "declare @Vista as int \n" +
-                "declare @Vacaciones as int \n" +
-                "declare @Navidad as int \n" +
-                "declare @Escolar as int \n" +
-                "declare @Personal as int \n" +
-                "declare @Emergencia as int \n" +
-                "set @Vista = (Select count(Ahorro.[id Ahorro]) from Ahorro where Ahorro.[FK Tipo Ahorro] = 'TA001' and Ahorro.[FK Código de Asociado] = @Código) \n" +
-                "set @Vacaciones = (Select count(Ahorro.[id Ahorro]) from Ahorro where Ahorro.[FK Tipo Ahorro] = 'TA002' and Ahorro.[FK Código de Asociado] = @Código) \n" +
-                "set @Navidad = (Select count(Ahorro.[id Ahorro]) from Ahorro where Ahorro.[FK Tipo Ahorro] = 'TA003' and Ahorro.[FK Código de Asociado] = @Código) \n" +
-                "set @Escolar = (Select count(Ahorro.[id Ahorro]) from Ahorro where Ahorro.[FK Tipo Ahorro] = 'TA004' and Ahorro.[FK Código de Asociado] = @Código) \n" +
-                "set @Personal = (Select count(Préstamos.[id Préstamos]) from Préstamos where Préstamos.[id Tipo de Préstamo] = 'TP001' and Préstamos.[Código Asociado]= @Código) \n" +
-                "set @Emergencia = (Select count(Préstamos.[id Préstamos]) from Préstamos where Préstamos.[id Tipo de Préstamo] = 'TP002' and Préstamos.[Código Asociado]= @Código) \n" +
-                "Select @Vista as 'Vista', @Vacaciones as 'Vacaciones', @Navidad as 'Navideño', @Escolar as 'Escolar', @Personal as 'Personal', @Emergencia as 'Emergencia' \n" +
+                "   Select ta.Nombre as 'Ahorro', count(a.[id Ahorro]) as 'No' from [Tipo de Ahorro] ta \n" +
+                "   inner join Ahorro a on ta.[id Tipo Ahorro] = a.[FK Tipo Ahorro] \n" +
+                "   inner join Asociado pa on pa.[Código Asociado] = a.[FK Código de Asociado] \n" +
+                "   where pa.[Código Asociado] = @Código group by ta.Nombre \n" +
                 "Commit tran contar \n" +
                 "End try \n" +
                 "begin catch \n" +
@@ -1474,6 +1465,20 @@ namespace Crear_Base_de_Datos
                 "    Print 'Ha ocurrido un error: ' + ERROR_MESSAGE() + '. Inténtelo más tarde' \n" +
                 "    Rollback Tran Trans_A \n" +
                 "End Catch";
+            String procedimiento64 = "Creace procedure [dbo].[Contar Préstamos] \n" +
+                "@Código as varchar(6) \n" +
+                "as begin tran contar \n" +
+                "begin try \n" +
+                "Select tp.[Tipo de Préstamo] 'Préstamos', count(p.[id Préstamos]) as 'No' from [Tipo de Préstamo] tp \n" +
+                "inner join Préstamos p on tp.[id Tipo de Préstamo] = p.[id Tipo de Préstamo] \n" +
+                "inner join Asociado pa on pa.[Código Asociado] = p.[Código Asociado] \n"+
+                "where pa.[Código Asociado] = @Código group by tp.[Tipo de Préstamo] \n"+
+                "Commit tran contar \n" +
+                "End try \n" +
+                "begin catch \n" +
+                "Print 'Ha ocurrido un error. ' + ERROR_MESSAGE() + ' . Inténtelo más tarde.' \n" +
+                "Rollback Tran contar \n" +
+                "end catch";
             String Login1 =
                 "CREATE LOGIN Master_ACOPEDH \n" +
                 "WITH PASSWORD = 'Aureo112358' ";
@@ -1664,7 +1669,9 @@ namespace Crear_Base_de_Datos
                 "to Administrador with grant option \n" +
                 "grant execute on object :: [Administrar Usuarios] \n" +
                 "to Administrador with grant option \n" +
-                "grant execute on object :: [Contar] \n" +
+                "grant execute on object :: [Contar Ahorros] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Contar Préstamos] \n" +
                 "to Administrador with grant option \n" +
                 "grant execute on object :: [Actualizar Asociado] \n" +
                  "to Administrador with grant option ";
@@ -1812,6 +1819,7 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd_61 = new SqlCommand(procedimiento61, cnn);
             SqlCommand cmd_62 = new SqlCommand(procedimiento62, cnn);
             SqlCommand cmd_63 = new SqlCommand(procedimiento63, cnn);
+            SqlCommand cmd_64 = new SqlCommand(procedimiento64, cnn);
             //Creación Triggers
 
             SqlCommand cmdTrigger1 = new SqlCommand(Trigger1, cnn);
@@ -1946,6 +1954,7 @@ namespace Crear_Base_de_Datos
             cmd_61.ExecuteNonQuery();
             cmd_62.ExecuteNonQuery();
             cmd_63.ExecuteNonQuery();
+            cmd_64.ExecuteNonQuery();
 
             cmdTrigger1.ExecuteNonQuery();
 
