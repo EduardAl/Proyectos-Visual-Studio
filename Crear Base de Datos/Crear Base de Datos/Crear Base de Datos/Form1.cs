@@ -1470,7 +1470,7 @@ namespace Crear_Base_de_Datos
                 "    order by Estado \n" +
                 "    Commit Tran Trans_A \n" +
                 "End Try \n" +
-                "Begin  \n" +
+                "Begin Catch \n" +
                 "    Print 'Ha ocurrido un error: ' + ERROR_MESSAGE() + '. Inténtelo más tarde' \n" +
                 "    Rollback Tran Trans_A \n" +
                 "End Catch";
