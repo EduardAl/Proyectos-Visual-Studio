@@ -51,7 +51,7 @@ namespace ACOPEDH
             pictureBox3.BackColor = 
             bttMin.BackColor=bttMax.BackColor=bttCer.BackColor=
             BarraTítulo.BackColor = Seleccionado;
-            MaximumSize = new Size(SystemInformation.PrimaryMonitorMaximizedWindowSize.Width - 15, SystemInformation.PrimaryMonitorMaximizedWindowSize.Height - 15);
+            MaximumSize = new Size(SystemInformation.PrimaryMonitorSize.Width, SystemInformation.PrimaryMonitorSize.Height - SystemInformation.MenuBarButtonSize.Height);
             txtNuevaContraseña.UseSystemPasswordChar = true;
             txtConfContraseña.UseSystemPasswordChar = true;
             dtDesde.Value = new DateTime(2008, 1, 1);
@@ -63,8 +63,6 @@ namespace ACOPEDH
             F = new Fonts(dgvBúsqueda);
             F.Diseño();
             F = new Fonts(dgvTransacciones);
-            F.Diseño();
-            F = new Fonts(dgvPersonasA);
             F.Diseño();
             F = new Fonts(dgvPersonasA);
             F.Diseño();
@@ -721,17 +719,41 @@ namespace ACOPEDH
         private void Principal_P_SizeChanged(object sender, EventArgs e)
         {
             //Elementos
-            Titulo.Location = new Point((Width / 2) - (Titulo.Width / 2) + 93, Titulo.Location.Y);
-            panelConfig.Width = Width - 285;
-            panelConfig.Height = 544;
-            panelConfig.Location = new Point((Width / 2) - (panelConfig.Width / 2) + 93, 122 /*panelConfig.Location.Y*/);
-            tabControlAdmin.Width = Width - 285;
-            tabControlAdmin.Height = 531;
-            tabControlAdmin.Location = new Point((Width / 2) - (tabControlAdmin.Width / 2) + 93, 136 /*panelConfig.Location.Y*/);
+            Titulo.Location = new Point(((Width - (pictureBox1.Height + pictureBox1.Location.X)) / 2) - (Titulo.Width / 2) + pictureBox1.Width +
+                pictureBox1.Location.X, pictureBox1.Location.Y + 40);
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                PInicio.Location = new Point(pictureBox1.Location.X, PInicio.Location.Y);
+                PConfiguración.Location = new Point(pictureBox1.Location.X, PConfiguración.Location.Y);
+                PPréstamos.Location = new Point(pictureBox1.Location.X, PPréstamos.Location.Y);
+                PAhorros.Location = new Point(pictureBox1.Location.X, PAhorros.Location.Y);
+                PEstadoAsociación.Location = new Point(pictureBox1.Location.X, PEstadoAsociación.Location.Y);
+                PAdministrar.Location = new Point(pictureBox1.Location.X, PAdministrar.Location.Y);
+                PAsociados.Location = new Point(pictureBox1.Location.X, PAsociados.Location.Y);
+                panelConfig.Width = (this.Width * 3) / 4;
+                panelConfig.Height = PInicio.Size.Height * 8;
+                panelConfig.Location = new Point(((Width - (pictureBox1.Height + pictureBox1.Location.X)) / 2) - (panelConfig.Width / 2) +
+                    pictureBox1.Width + pictureBox1.Location.X, PInicio.Location.Y - PInicio.Height - 8);
+            }
+            else
+            {
+                PInicio.Location = new Point(pictureBox1.Location.X + 50, PInicio.Location.Y);
+                PConfiguración.Location = new Point(pictureBox1.Location.X + 50, PConfiguración.Location.Y);
+                PPréstamos.Location = new Point(pictureBox1.Location.X + 50, PPréstamos.Location.Y);
+                PAhorros.Location = new Point(pictureBox1.Location.X + 50, PAhorros.Location.Y);
+                PEstadoAsociación.Location = new Point(pictureBox1.Location.X + 50, PEstadoAsociación.Location.Y);
+                PAdministrar.Location = new Point(pictureBox1.Location.X + 50, PAdministrar.Location.Y);
+                PAsociados.Location = new Point(pictureBox1.Location.X + 50, PAsociados.Location.Y);
+                panelConfig.Width = (this.Width * 3) / 4;
+                panelConfig.Height = (this.Height - Titulo.Height - Titulo.Location.Y - 100);
+                panelConfig.Location = new Point(((Width - (pictureBox1.Height + pictureBox1.Location.X)) / 2) - (panelConfig.Width / 2) +
+                    pictureBox1.Width + pictureBox1.Location.X, Titulo.Location.Y + Titulo.Height + 45);
+            }
+            tabControlAdmin.Size = new Size(panelConfig.Size.Width, panelConfig.Size.Height);
+            tabControlAdmin.Location = panelConfig.Location;
             dgvBúsqueda.Width = Width - dgvBúsqueda.Location.X - 87;
             dgvBúsqueda.Height = Height - dgvBúsqueda.Location.Y - 116;
             dgvTransacciones.Width = gbAhorros.Location.X - dgvTransacciones.Location.X - 30;
-            dgvPersonasA.Width = tabControlAdmin.Width = dgvUsuarios.Width = 736;
             dgvPersonasA.Height = 668;
             //Botones
             bttOtorgarPréstamo.Location = new Point(dgvBúsqueda.Width - bttOtorgarPréstamo.Width + dgvBúsqueda.Location.X, bttOtorgarPréstamo.Location.Y);
