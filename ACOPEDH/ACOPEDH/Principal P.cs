@@ -737,22 +737,22 @@ namespace ACOPEDH
             }
             else
             {
-                PInicio.Location = new Point(pictureBox1.Location.X + 50, PInicio.Location.Y);
-                PConfiguración.Location = new Point(pictureBox1.Location.X + 50, PConfiguración.Location.Y);
-                PPréstamos.Location = new Point(pictureBox1.Location.X + 50, PPréstamos.Location.Y);
-                PAhorros.Location = new Point(pictureBox1.Location.X + 50, PAhorros.Location.Y);
-                PEstadoAsociación.Location = new Point(pictureBox1.Location.X + 50, PEstadoAsociación.Location.Y);
-                PAdministrar.Location = new Point(pictureBox1.Location.X + 50, PAdministrar.Location.Y);
-                PAsociados.Location = new Point(pictureBox1.Location.X + 50, PAsociados.Location.Y);
+                PInicio.Location = new Point(pictureBox1.Location.X + 40, PInicio.Location.Y);
+                PConfiguración.Location = new Point(pictureBox1.Location.X + 40, PConfiguración.Location.Y);
+                PPréstamos.Location = new Point(pictureBox1.Location.X + 40, PPréstamos.Location.Y);
+                PAhorros.Location = new Point(pictureBox1.Location.X + 40, PAhorros.Location.Y);
+                PEstadoAsociación.Location = new Point(pictureBox1.Location.X + 40, PEstadoAsociación.Location.Y);
+                PAdministrar.Location = new Point(pictureBox1.Location.X + 40, PAdministrar.Location.Y);
+                PAsociados.Location = new Point(pictureBox1.Location.X + 40, PAsociados.Location.Y);
                 panelConfig.Width = (this.Width * 3) / 4;
                 panelConfig.Height = (this.Height - Titulo.Height - Titulo.Location.Y - 100);
                 panelConfig.Location = new Point(((Width - (pictureBox1.Height + pictureBox1.Location.X)) / 2) - (panelConfig.Width / 2) +
-                    pictureBox1.Width + pictureBox1.Location.X, Titulo.Location.Y + Titulo.Height + 45);
+                pictureBox1.Width + pictureBox1.Location.X, Titulo.Location.Y + Titulo.Height + 45);
+                dgvBúsqueda.Size = new Size(panelConfig.Size.Width, panelConfig.Size.Height);
+                dgvBúsqueda.Location = panelConfig.Location;
             }
             tabControlAdmin.Size = new Size(panelConfig.Size.Width, panelConfig.Size.Height);
             tabControlAdmin.Location = panelConfig.Location;
-            dgvBúsqueda.Width = Width - dgvBúsqueda.Location.X - 87;
-            dgvBúsqueda.Height = Height - dgvBúsqueda.Location.Y - 116;
             dgvTransacciones.Width = gbAhorros.Location.X - dgvTransacciones.Location.X - 30;
             dgvPersonasA.Height = 668;
             //Botones
