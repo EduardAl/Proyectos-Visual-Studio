@@ -1451,7 +1451,7 @@ namespace Crear_Base_de_Datos
                 "Print 'Ha ocurrido un error. ' + ERROR_MESSAGE() + ' . Inténtelo más tarde.' \n" +
                 "Rollback Tran contar \n" +
                 "end catch";
-            String procedimiento63 = "procedure [dbo].[Transacciones por Asociado] \n" +
+            String procedimiento63 = "Create procedure [dbo].[Transacciones por Asociado] \n" +
                 "@Código as varchar(6) \n" +
                 "As \n" +
                 "Begin Tran Trans_A \n" +
@@ -1466,7 +1466,7 @@ namespace Crear_Base_de_Datos
                 "    Préstamos.Estado as Estado from Préstamos inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción \n" +
                 "    inner join [Tipo de Préstamo] on[Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo \n" +
                 "    inner join [Tipo de Transacción] on[Tipo de Transacción].[id Tipo de Transacción] = Transacciones.[FK Tipo de Transacción \n" +
-                "    where Préstamos.[Código Asociado] = @Código  \n" +
+                "    where Préstamos.[Código Asociado] = @Código \n" +
                 "    order by Estado \n" +
                 "    Commit Tran Trans_A \n" +
                 "End Try \n" +
