@@ -15,8 +15,8 @@ namespace ACOPEDH
     {
         String Dato;
         Procedimientos_select Cargar = new Procedimientos_select();
-        DataTable dt;
-        DataView filtro;
+        DataTable dtAsociado, dtAhorros,dtPréstamos;
+        DataView filtro, filtro2, filtro3;
         Fonts F;
         SqlParameter[] Parámetros;
 
@@ -36,15 +36,27 @@ namespace ACOPEDH
             //Llenando el DataGridView
             Parámetros = new SqlParameter[1];
             Parámetros[0] = new SqlParameter("@Código",Dato);
-            dt = Cargar.llenar_DataTable("[Transacciones por Asociado]", Parámetros);
-            filtro = dt.DefaultView;
+            dtAsociado = Cargar.llenar_DataTable("[Transacciones por Asociado]", Parámetros);
+            filtro = dtAsociado.DefaultView;
             dgvTrans.DataSource = filtro;
-            //Llenando los GroupBox
+            //Llenando DataGridView Ahorros
             Parámetros = new SqlParameter[1];
             Parámetros[0] = new SqlParameter("@Código", Dato);
-            Cargar.LlenarText("[Contar]","Vista,Vacaciones,Navideño,Escolar,Personal,Emergencia", Parámetros,txtVista,txtVacaciones,txtNavideño,txtEscolar,txtPersonal,txtEmergencia);
+            dtAhorros = Cargar.llenar_DataTable("[Contar Ahorros]",Parámetros);
+            filtro2 = dtAhorros.DefaultView;
+            dgvAhorros.DataSource = filtro2;
+            //Llenando DataGridView Préstamos
+            Parámetros = new SqlParameter[1];
+            Parámetros[0] = new SqlParameter("@Código", Dato);
+            dtPréstamos = Cargar.llenar_DataTable("[Contar Préstamos]", Parámetros);
+            filtro3 = dtPréstamos.DefaultView;
+            dgvPréstamos.DataSource = filtro3;
             //Formato del DataGridView
             F = new Fonts(dgvTrans);
+            F.Diseño();
+            F = new Fonts(dgvAhorros);
+            F.Diseño();
+            F = new Fonts(dgvPréstamos);
             F.Diseño();
             dgvTrans.Refresh();
         }
