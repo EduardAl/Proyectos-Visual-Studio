@@ -1464,8 +1464,8 @@ namespace Crear_Base_de_Datos
                 "    union all \n" +
                 "    Select Préstamos.[id Préstamos] as Código, [Tipo de Transacción].[Tipo de Transacción] as Categoría, [Tipo de Préstamo].[Tipo de Préstamo] as Tipo, \n" +
                 "    Préstamos.Estado as Estado from Préstamos inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción \n" +
-                "    inner join [Tipo de Préstamo] on[Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo \n" +
-                "    inner join [Tipo de Transacción] on[Tipo de Transacción].[id Tipo de Transacción] = Transacciones.[FK Tipo de Transacción \n" +
+                "    inner join [Tipo de Préstamo] on [Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo \n" +
+                "    inner join [Tipo de Transacción] on [Tipo de Transacción].[id Tipo de Transacción] = Transacciones.[FK Tipo de Transacción \n" +
                 "    where Préstamos.[Código Asociado] = @Código \n" +
                 "    order by Estado \n" +
                 "    Commit Tran Trans_A \n" +
