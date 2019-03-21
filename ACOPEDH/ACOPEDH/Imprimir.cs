@@ -63,17 +63,17 @@ namespace ACOPEDH
                 case "Aportación":
                     Constancia_Aportación cons = new Constancia_Aportación();
                     //Cargamos la Suma de Aportaciones
-                    Param[0] = new SqlParameter("@Código_Asociado", int.Parse(Datos));
+                    Param[0] = new SqlParameter("@Código_Asociado", Datos);
                     dt = seleccionar.LlenarText("[Suma Aportaciones]", "Suma de Aportaciones", Param);
                     cons.SetParameterValue("Sumatoria", dt.Rows[0]["Suma de Aportaciones"]);
                     //Cargamos los datos del Asociado en el reporte
-                    Param[0] = new SqlParameter("@Código_Asociado", int.Parse(Datos));
+                    Param[0] = new SqlParameter("@Código_Asociado", Datos);
                     dt = seleccionar.LlenarText("[Cargar Asociados]", "Name,LName", Param);
                     cons.SetParameterValue("Nombre", dt.Rows[0]["Name"]);
                     cons.SetParameterValue("Apellido", dt.Rows[0]["LName"]);
                     cons.SetParameterValue("Codigo", Datos);
                     //Cargamos aportaciones
-                    Param[0] = new SqlParameter("@Código_Asociado", int.Parse(Datos));
+                    Param[0] = new SqlParameter("@Código_Asociado", Datos);
                     dt = seleccionar.LlenarText("[Cargar Aportaciones]", "[Monto de la Aportación]", Param);
                     cons.SetParameterValue("Aportaciones", dt.Rows[0]["Monto de la Aportación"]);
                     crystalReportViewer1.ReportSource = cons;
@@ -82,11 +82,11 @@ namespace ACOPEDH
                 //Constancia Retiro de Aportaciones
                 case "Retiro Aportaciones":
                     Constancia_RetiroAportación retiro_ap = new Constancia_RetiroAportación();
-                    Param[0] = new SqlParameter("@Código_Asociado", int.Parse(Datos));
+                    Param[0] = new SqlParameter("@Código_Asociado",Datos);
                     dt = seleccionar.LlenarText("[Suma Aportaciones]", "Suma de Aportaciones", Param);
                     retiro_ap.SetParameterValue("Suma", dt.Rows[0]["Suma de Aportaciones"]);
                     retiro_ap.SetParameterValue("Retiro", dt.Rows[0]["Suma de Aportaciones"]);
-                    Param[0] = new SqlParameter("@Codigo", int.Parse(Datos));
+                    Param[0] = new SqlParameter("@Codigo", Datos);
                     dt = seleccionar.LlenarText("[Constancia Retiro Aportaciones]", "NombreP,EstadoP", Param);
                     retiro_ap.SetParameterValue("Cod",Datos);
                     retiro_ap.SetParameterValue("Nombre", dt.Rows[0]["NombreP"]);
@@ -153,7 +153,7 @@ namespace ACOPEDH
                     Informes_Préstamos P = new Informes_Préstamos();
                     ConversiónNúmeros conv = new ConversiónNúmeros();
                     string montoletras = ""; ;
-                    Param[0] = new SqlParameter("@Codigo", int.Parse(Datos));
+                    Param[0] = new SqlParameter("@Codigo", Datos);
                     dt = seleccionar.LlenarText("[Informe Préstamo]", "Código_A,Nombre,Apellido,Préstamo,Dir,Trabajo,FormaP,TipoP,PDUI,Interés,Monto,FechaT,NCuotas,PCuotas,Estado", Param);
                     MessageBox.Show(dt.Rows[0]["Monto"].ToString());
                     montoletras = conv.Decimales(dt.Rows[0]["Monto"].ToString());
@@ -286,7 +286,7 @@ namespace ACOPEDH
                 //Constancia de Nuevo Ahorro
                 case "Nuevo Ahorro":
                     Constancia_Nuevo_Ahorro ahorro = new Constancia_Nuevo_Ahorro();
-                    Param[0] = new SqlParameter("@ID_Asociado",int.Parse(Datos));
+                    Param[0] = new SqlParameter("@ID_Asociado",Datos);
                     dt = seleccionar.LlenarText("[Constancia Nuevo Ahorro]","Nombre,id_Ahorro,Tipo,Interés,Abono,Pid_Abono",Param);
                     ahorro.SetParameterValue("P_Nombre", dt.Rows[0]["Nombre"]);
                     ahorro.SetParameterValue("P_Tipo_Ahorro", dt.Rows[0]["Tipo"]);

@@ -21,8 +21,8 @@ namespace ACOPEDH
         Color Original, Seleccionado, Fuente, FuenteO;
         String Dato,Extra;
         Procedimientos_select Cargar = new Procedimientos_select();
-        DataTable dsAhorro, dsPréstamo, dsAsociado,dsTransacciones;
-        DataView filtro,filtro1;
+        DataTable dsAhorro, dsPréstamo, dsAsociado,dsTransacciones, dsPersonas, dsUsuarios;
+        DataView filtro, filtro1, filtro2, filtro3;
         DataTable Gráfica;
         Emailsistema enviarEmail = new Emailsistema();
         bool Cargando = true; 
@@ -63,6 +63,12 @@ namespace ACOPEDH
             F = new Fonts(dgvBúsqueda);
             F.Diseño();
             F = new Fonts(dgvTransacciones);
+            F.Diseño();
+            F = new Fonts(dgvPersonasA);
+            F.Diseño();
+            F = new Fonts(dgvPersonasA);
+            F.Diseño();
+            F = new Fonts(dgvUsuarios);
             F.Diseño();
             PAdministrar.Visible = (Globales.gbTipo_Usuario=="Master_ACOPEDH"||Globales.gbTipo_Usuario=="Administrador") ?true:false;
         }
@@ -201,13 +207,24 @@ namespace ACOPEDH
         {
             // if (Globales.gbCod_TipoUsuario=="")
             // {
-            Administrador Accion = new Administrador();
-            Visible = false;
-            Accion.ShowDialog();
-            Visible = true;
-            Accion.Dispose();
-            Cargando = true;
+            //Administrador Accion = new Administrador();
+            //Visible = false;
+            //Accion.ShowDialog();
+            //Visible = true;
+            //Accion.Dispose();
+            //Cargando = true;
             //}
+            if (PAdministrar.BackColor != Seleccionado)
+            {
+                Ocultar();
+                //Colorear
+                PAdministrar.BackColor = Seleccionado;
+                PAdministrar.ForeColor = Fuente;
+                //Mostrando
+                tabControlAdmin.Visible = true;
+                Page_Asociados();
+                Page_Usuarios();
+            }
         }
         #endregion
 
@@ -238,6 +255,27 @@ namespace ACOPEDH
             }
             return false;
         }
+        private bool DatoA()
+        {
+            if (dgvPersonasA.SelectedRows.Count == 1)
+            {
+                try
+                {
+                    Extra = "";
+                    DataGridViewRow dgvv = null;
+                    int i = dgvPersonasA.CurrentCell.RowIndex;
+                    dgvv = dgvPersonasA.Rows[i];
+                    Dato = dgvv.Cells[0].Value.ToString();
+                    Extra = dgvv.Cells[1].Value.ToString();
+                    if (!String.IsNullOrEmpty(Dato))
+                        return true;
+                }
+                catch
+                {
+                }
+            }
+            return false;
+        }
         #endregion
         #region Botones Principales (Ocultar cosas)
         public void Ocultar()
@@ -249,12 +287,14 @@ namespace ACOPEDH
             PAsociados.BackColor = Original;
             PConfiguración.BackColor = Original;
             PEstadoAsociación.BackColor = Original;
+            PAdministrar.BackColor = Original;
             PInicio.ForeColor = FuenteO;
             PAhorros.ForeColor = FuenteO;
             PPréstamos.ForeColor = FuenteO;
             PAsociados.ForeColor = FuenteO;
             PConfiguración.ForeColor = FuenteO;
             PEstadoAsociación.ForeColor = FuenteO;
+            PAdministrar.ForeColor = FuenteO;
 
             //Búsqueda
             labBuscar.Visible = false;
@@ -276,6 +316,9 @@ namespace ACOPEDH
 
             //Configuración
             panelConfig.Visible = false;
+
+            //Administración
+            tabControlAdmin.Visible = false;
 
             //Estado Asociación
             bttGráfica.Visible = false;
@@ -339,6 +382,8 @@ namespace ACOPEDH
             lbContraseña.Visible = false;
             txtConfContraseña.Visible = !false;
             txtNuevaContraseña.Visible = !false;
+            labCNueva.Visible = !false;
+            labCConfirmar.Visible = !false;
             lkContra.Visible = false;
         }
         private void No_Editar()
@@ -350,6 +395,8 @@ namespace ACOPEDH
             lbCorreo.Text = Globales.gbCorreo;
             lkCancelar.Visible = false;
             lkConfirmar.Visible = false;
+            labCNueva.Visible = false;
+            labCConfirmar.Visible = false;
             LLEditar1.Visible = true;
             txtNombreActual.Visible = !true;
             txtApellidoActual.Visible = !true;
@@ -374,6 +421,11 @@ namespace ACOPEDH
             dgvBúsqueda.DataSource = null;
             dss = Cargar.llenar_DataTable(tabla);
         }
+        //private void LlenarDGVPersonas(ref DataTable dss, String tabla)
+        //{
+        //    dgvPersonasA.DataSource = null;
+        //    dss = Cargar.llenar_DataTable(tabla);
+        //}
         #endregion
         #region Cargar Transacciones
         private void Cargando_Datos_Text()
@@ -431,6 +483,22 @@ namespace ACOPEDH
             filtro1 = dsTransacciones.DefaultView;
             dgvTransacciones.DataSource = filtro1;
             dgvTransacciones.Refresh();
+        }
+        #endregion
+        #region Cargar Administración
+        private void Page_Asociados()
+        {
+            dgvPersonasA.DataSource = null;
+            dsPersonas = Cargar.llenar_DataTable("[Administrar Asociados]");
+            this.filtro2 = dsPersonas.DefaultView;
+            this.dgvPersonasA.DataSource = filtro2;
+        }
+        private void Page_Usuarios()
+        {
+            dgvUsuarios.DataSource = null;
+            dsUsuarios = Cargar.llenar_DataTable("[Administrar Usuarios]");
+            this.filtro3 = dsUsuarios.DefaultView;
+            this.dgvUsuarios.DataSource = filtro3;
         }
         #endregion
 
@@ -657,9 +725,14 @@ namespace ACOPEDH
             panelConfig.Width = Width - 285;
             panelConfig.Height = 544;
             panelConfig.Location = new Point((Width / 2) - (panelConfig.Width / 2) + 93, 122 /*panelConfig.Location.Y*/);
+            tabControlAdmin.Width = Width - 285;
+            tabControlAdmin.Height = 531;
+            tabControlAdmin.Location = new Point((Width / 2) - (tabControlAdmin.Width / 2) + 93, 136 /*panelConfig.Location.Y*/);
             dgvBúsqueda.Width = Width - dgvBúsqueda.Location.X - 87;
             dgvBúsqueda.Height = Height - dgvBúsqueda.Location.Y - 116;
             dgvTransacciones.Width = gbAhorros.Location.X - dgvTransacciones.Location.X - 30;
+            dgvPersonasA.Width = tabControlAdmin.Width = dgvUsuarios.Width = 736;
+            dgvPersonasA.Height = 668;
             //Botones
             bttOtorgarPréstamo.Location = new Point(dgvBúsqueda.Width - bttOtorgarPréstamo.Width + dgvBúsqueda.Location.X, bttOtorgarPréstamo.Location.Y);
             bttCrearCuenta.Location = bttAgregarAsociado.Location = bttOtorgarPréstamo.Location;
@@ -1055,6 +1128,12 @@ namespace ACOPEDH
             Cargando_Datos_DGV();
             Cargando_Datos_Text();
         }
+
+        private void lbContraseña_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void dtHasta_ValueChanged(object sender, EventArgs e)
         {
             dtDesde.MaxDate = dtHasta.Value;
@@ -1077,12 +1156,28 @@ namespace ACOPEDH
             }
             catch { }
         }
+
+        private void dgvPersonasA_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DatoA())
+            {
+                Administar_Asociado Admin = new Administar_Asociado(Dato);
+                Admin.ShowDialog();
+                Admin.Dispose();
+                //Cargando = true;
+            }
+            else
+                MessageBox.Show("No ha seleccionado un registro válido", "Carga de datos fallida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
         #endregion
         #region Efecto botones barra título
         private void bttMin_MouseHover(object sender, EventArgs e)
         {
             bttMin.BackColor = Color.FromArgb(35, 45, 129);
         }
+
+
 
         private void bttMin_MouseLeave(object sender, EventArgs e)
         {

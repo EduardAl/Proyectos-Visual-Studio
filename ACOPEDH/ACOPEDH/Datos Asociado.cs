@@ -47,7 +47,7 @@ namespace ACOPEDH
             cbOcupación.DisplayMember = "Trabajo";
             cbOcupación.ValueMember = "ID";
             //Código Asociado
-            lbCódigo.Text = "Código de Asociación: " + Dato.PadLeft((Dato.Length<6)?5:Dato.Length,'0');
+            lbCódigo.Text = "Código de Asociación: " + Dato.PadLeft((Dato.Length<7)?5:Dato.Length,'0');
             CargarDatos();
         }
         #endregion
@@ -83,7 +83,7 @@ namespace ACOPEDH
                                 Procedimientos_select modificar = new Procedimientos_select();
                                 SqlParameter[] param = new SqlParameter[3];
                                 //Actualizar Asociado
-                                param[0] = new SqlParameter("@Codigo_Asociado", int.Parse(Dato));
+                                param[0] = new SqlParameter("@Codigo_Asociado", Dato);
                                 param[1] = new SqlParameter("@FK_Tipo_Socio", cbAsociación.SelectedValue);
                                 param[2] = new SqlParameter("@FK_Ocupación", cbOcupación.SelectedValue);
                                 modificar.llenar_tabla("[Actualizar Asociado]", param);
@@ -139,7 +139,7 @@ namespace ACOPEDH
             if (Desasociar != DialogResult.No)
             {
                 SqlParameter[] Parámetros = new SqlParameter[1];
-                Parámetros[0] = new SqlParameter("@Código_Asociado", int.Parse(Dato));
+                Parámetros[0] = new SqlParameter("@Código_Asociado", Dato);
                 if (Desasociar == DialogResult.Yes)
                 {
                     Retirar_Aportaciones Acción = new Retirar_Aportaciones(Dato);
@@ -225,7 +225,7 @@ namespace ACOPEDH
                 //Carga de Parámetros
                 SqlParameter[] Param = new SqlParameter[1];
                 //Llenado del datatable (y de los TextBox)
-                Param[0] = new SqlParameter("@Código_Asociado", int.Parse(Dato));
+                Param[0] = new SqlParameter("@Código_Asociado", Dato);
                 DataTable dt = Cargar.LlenarText("[Cargar Asociados]", "Name,LName,DDui,DNit", Param, txtNombres, txtApellidos, txtDUI, txtNIT);
                 dtNacimiento.Value = DateTime.Parse(dt.Rows[0]["FNacimiento"].ToString());
                 dtAso.Value = DateTime.Parse(dt.Rows[0]["FAsociación"].ToString());

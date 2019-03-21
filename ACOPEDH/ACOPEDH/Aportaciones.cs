@@ -29,9 +29,9 @@ namespace ACOPEDH
         private void Cargar()
         {
             SqlParameter[] Param = new SqlParameter[1];
-            Param[0] = new SqlParameter("@Código_Asociado", int.Parse(Dato));
+            Param[0] = new SqlParameter("@Código_Asociado", Dato);
             dgvAportaciones.DataSource = pro.llenar_DataTable("[Cargar Aportaciones]", Param);
-            Param[0] = new SqlParameter("@Código_Asociado", int.Parse(Dato));
+            Param[0] = new SqlParameter("@Código_Asociado", Dato);
             pro.LlenarText("[Suma Aportaciones]", "Suma de Aportaciones", Param, txtSuma);
             txtSuma.Text = double.Parse(txtSuma.Text).ToString("C2");
             dgvAportaciones.Columns[0].DefaultCellStyle.Format = "C2";
@@ -77,7 +77,7 @@ namespace ACOPEDH
                 DialogResult Imprimir = MessageBox.Show("¿Desea imprimir una constancia de aportación para la siguiente transacción?", "Confirmar Aportación", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 SqlParameter[] Parámetros = new SqlParameter[3];
                 Parámetros[0] = new SqlParameter("@Aportación", 5);
-                Parámetros[1] = new SqlParameter("@ID_Asociado", int.Parse(Dato));
+                Parámetros[1] = new SqlParameter("@ID_Asociado", Dato);
                 Parámetros[2] = new SqlParameter("@Id_Usuario", Globales.gbCodUsuario);
                 if (pro.llenar_tabla("[Realizar Aportación]", Parámetros) > 0)
                 {

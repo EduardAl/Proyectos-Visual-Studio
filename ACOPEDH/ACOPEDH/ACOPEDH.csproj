@@ -82,6 +82,12 @@
     <Compile Include="Abonos.Designer.cs">
       <DependentUpon>Abonos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administar_Asociado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administar_Asociado.Designer.cs">
+      <DependentUpon>Administar_Asociado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Amortización.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -320,6 +326,9 @@
     <Compile Include="Validaciones.cs" />
     <EmbeddedResource Include="Abonos.resx">
       <DependentUpon>Abonos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administar_Asociado.resx">
+      <DependentUpon>Administar_Asociado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Amortización.resx">
       <DependentUpon>Amortización.cs</DependentUpon>

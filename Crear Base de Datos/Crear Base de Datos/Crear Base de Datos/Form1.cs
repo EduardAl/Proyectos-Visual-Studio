@@ -94,7 +94,7 @@ namespace Crear_Base_de_Datos
                 "CONSTRAINT[PK_Ocupación] PRIMARY KEY ([Id Ocupación]))";
             String tabla08 = "CREATE TABLE [dbo].[Persona](" +
                 "[Número][int] IDENTITY(1, 1) NOT NULL," +
-                "[Código Persona]  AS('PC' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
+                "[Código Persona]  AS('PC' + right('000000' + CONVERT([varchar](6),[Número]), (6))) PERSISTED NOT NULL," +
                 "[Nombres] [varchar](50) NOT NULL," +
                 "[Apellidos] [varchar](50) NOT NULL," +
                 "[DUI] [varchar](10) NULL unique," +
@@ -104,10 +104,10 @@ namespace Crear_Base_de_Datos
                 "CONSTRAINT [PK_Persona] PRIMARY KEY ([Código Persona]))";
             String tabla8 = "CREATE TABLE [dbo].[Asociado](" +
 #warning verificar aqui sobre llaves primarias
-                /*  "[Número][int] IDENTITY(1, 1) NOT NULL," +
-                  "[Código Asociado]  AS('AS' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +*/
-                "[Código Asociado][int] IDENTITY(1, 1) Not Null, \n" +
-                "[FK Persona] [varchar](5) NOT NULL," +
+                  "[Número][int] IDENTITY(1, 1) NOT NULL," +
+                  "[Código Asociado]  AS(right('000000' + CONVERT([varchar](6),[Número]), (6))) PERSISTED NOT NULL," +
+                //"[Código Asociado][int] IDENTITY(1, 1) Not Null, \n" +
+                "[FK Persona] [varchar](8) NOT NULL," +
                 "[FK Tipo Socio] [varchar](5) NOT NULL," +
                 "[Fecha de Asociación] [datetime] NOT NULL," +
                 "[Fecha de Desasociación] [datetime] NULL," +
@@ -121,27 +121,27 @@ namespace Crear_Base_de_Datos
                 "CONSTRAINT [FK Ocupación] FOREIGN KEY ([FK Ocupación])" +
                 "REFERENCES Ocupación([Id Ocupación]))";
             String tabla010 = "CREATE TABLE [dbo].[Beneficiario](" +
-                "[FK Persona] [varchar](5) NOT NULL," +
-                "[FK Asociado] [int] NOT NULL," +
+                "[FK Persona] [varchar](8) NOT NULL," +
+                "[FK Asociado] [varchar](6) NOT NULL," +
                 "CONSTRAINT [FK Persona A] FOREIGN KEY ([FK Persona])" +
                 "REFERENCES [Persona]([Código Persona])," +
                 "CONSTRAINT [FK Asociado P] FOREIGN KEY ([FK Asociado])" +
                 "REFERENCES [Asociado]([Código Asociado]))";
             String tabla9 = "CREATE TABLE [dbo].[Aportaciones](" +
                 "[Número] [int] IDENTITY(1,1) NOT NULL," +
-                "[id Aportación]  AS('AP' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
+                "[id Aportación]  AS('AP' + right('000000' + CONVERT([varchar](6),[Número]), (6))) PERSISTED NOT NULL," +
                 "[Aportación] [money] NOT NULL," +
-                "[FK Asociado] [int] NOT NULL," +
+                "[FK Asociado] [varchar](6) NOT NULL," +
                 "[FK Transacción] [int] references [Transacciones]([id Transacción])," +
                 "CONSTRAINT[PK_Aportaciones] PRIMARY KEY([id Aportación])," +
                 "CONSTRAINT [FK Asociado] FOREIGN KEY ([FK Asociado])" +
                 "REFERENCES Asociado([Código Asociado]))";
             String tabla10 = "CREATE TABLE[dbo].[Ahorro](" +
                 "[Número] [int] IDENTITY(1,1) NOT NULL," +
-                "[id Ahorro]  AS('AH' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
+                "[id Ahorro]  AS('AH' + right('000000' + CONVERT([varchar](6),[Número]), (6))) PERSISTED NOT NULL," +
                 "[Estado] [varchar](10) NOT NULL," +
                 "[FK Tipo Ahorro] [varchar](5) NOT NULL," +
-                "[FK Código de Asociado] [int] NOT NULL," +
+                "[FK Código de Asociado] [varchar](6) NOT NULL," +
                 "[FK Transacción] [int] references [Transacciones]([id Transacción])," +
                 "CONSTRAINT [PK_Ahorro] PRIMARY KEY ([id Ahorro])," +
                 "CONSTRAINT [FK Tipo Ahorro] FOREIGN KEY ([FK Tipo Ahorro])" +
@@ -150,20 +150,20 @@ namespace Crear_Base_de_Datos
                 "REFERENCES Asociado([Código Asociado]))";
             String tabla11 = "CREATE TABLE [dbo].[Retiros](" +
                 "[Número][int] IDENTITY(1, 1) NOT NULL," +
-                "[id Retiro]  AS('RE' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
+                "[id Retiro]  AS('RE' + right('000000' + CONVERT([varchar](6),[Número]), (6))) PERSISTED NOT NULL," +
                 "[Retiro] [money] NOT NULL," +
                 "[Número de Cheque] [varchar](8) NOT NULL," +
-                "[FK Ahorro] [varchar](5) NOT NULL," +
+                "[FK Ahorro] [varchar](8) NOT NULL," +
                 "[FK Transacción] [int] references [Transacciones]([id Transacción])," +
                 "CONSTRAINT[PK_Retiros] PRIMARY KEY ([id Retiro])," +
                 "CONSTRAINT [FK Ahorro] FOREIGN KEY ([FK Ahorro])" +
                 "REFERENCES Ahorro([id Ahorro]))";
             String tabla12 = "CREATE TABLE [dbo].[Abono](" +
                 "[Número][int] IDENTITY(1,1) NOT NULL," +
-                "[id Abono]  AS('AB' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
+                "[id Abono]  AS('AB' + right('000000' + CONVERT([varchar](6),[Número]), (6))) PERSISTED NOT NULL," +
                 "[Abono] [money] NOT NULL," +
                 "[Abono y Comisión] [money] NOT NULL," +
-                "[FK Ahorro] [varchar](5) NOT NULL," +
+                "[FK Ahorro] [varchar](8) NOT NULL," +
                 "[FK Transacción] [int] references [Transacciones]([id Transacción])," +
                 "CONSTRAINT [PK Abono] PRIMARY KEY ([id Abono])," +
                 "CONSTRAINT [FK Abono] FOREIGN KEY ([FK Ahorro])" +
@@ -175,12 +175,12 @@ namespace Crear_Base_de_Datos
                 "CONSTRAINT [PK Tipo de Teléfono] PRIMARY KEY ([id Tipo de Teléfono]))";
             String tabla14 = "CREATE TABLE [dbo].[Teléfono](" +
                 "[Número][int] identity(1,1) NOT NULL," +
-                "[id Teléfono] AS('TE' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
+                "[id Teléfono] AS('TE' + right('000000' + CONVERT([varchar](6),[Número]), (6))) PERSISTED NOT NULL," +
                 "[Teléfono][varchar](10) NOT NULL," +
                 "CONSTRAINT [PK Teléfono] PRIMARY KEY ([id Teléfono]))";
             String tabla15 = "CREATE TABLE [dbo].[Contacto](" +
-                "[FK Teléfono] [varchar](5) NOT NULL references[Teléfono]([id Teléfono])," +
-                "[FK Persona] [varchar](5) NOT NULL references Persona([Código Persona]), \n" +
+                "[FK Teléfono] [varchar](8) NOT NULL references[Teléfono]([id Teléfono])," +
+                "[FK Persona] [varchar](8) NOT NULL references Persona([Código Persona]), \n" +
                 "[FK Tipo de Teléfono][varchar](5) NOT NULL references [Tipos de Teléfonos]([id Tipo de Teléfono]))";
             String tabla16 = "Create table [dbo].[Forma de Pago](" +
                 "[Número] [int] identity(1, 1) NOT NULL," +
@@ -196,7 +196,7 @@ namespace Crear_Base_de_Datos
             String tabla18 = "Create table [Préstamos](" +
                 "[Número] [int] identity(1,1)," +
                 "[id Préstamos] AS('PP-' + right('000000'+Convert([varchar](6), [Número]), (6))) PERSISTED NOT NULL PRIMARY KEY," +
-                "[Código Asociado] [int] NOT NULL references [Asociado]([Código Asociado])," +
+                "[Código Asociado] [varchar](6) NOT NULL references [Asociado]([Código Asociado])," +
                 "[id Forma de Pago] [varchar](5) references[Forma de Pago]([id Forma de Pago]) NOT NULL," +
                 "[id Tipo de Préstamo] [varchar](5) references [Tipo de Préstamo]([id Tipo de Préstamo]) NOT NULL," +
                 "[Tasa de Interés] [decimal](10, 2) NOT NULL," +
@@ -208,7 +208,7 @@ namespace Crear_Base_de_Datos
                 "[Estado] [varchar](10) NOT NULL)";
             String tabla19 = "Create table [dbo].[Pago](" +
                 "[Número][int] identity(1, 1) NOT NULL," +
-                "[id Pago] AS('PA' + right('000' + Convert([varchar](3),[Número]), (3))) PERSISTED NOT NULL," +
+                "[id Pago] AS('PA' + right('000000' + Convert([varchar](6),[Número]), (6))) PERSISTED NOT NULL," +
                 "[Pago] [money] NOT NULL," +
                 "[Número de Cuota] [int] NOT NULL," +
                 "[Intereses] [money] NOT NULL," +
@@ -227,10 +227,10 @@ namespace Crear_Base_de_Datos
                 "Descripcion varchar(MAX)); ";
             String tabla21 = "Create table[Retiros Aportaciones](" +
                 "[Número][int] IDENTITY(1, 1) NOT NULL, \n" +
-                "[Id Retiro Aportación]  AS('RA' + right('000' + CONVERT([varchar](3),[Número]), (3))) PERSISTED NOT NULL, \n" +
+                "[Id Retiro Aportación]  AS('RA' + right('000000' + CONVERT([varchar](6),[Número]), (6))) PERSISTED NOT NULL, \n" +
                 "[Retiro] money NOT NULL, \n" +
                 "[Número de Cheque] varchar(8) NOT NULL, \n" +
-                "[FK Asociado] [int] NOT NULL references Asociado([Código Asociado]), \n" +
+                "[FK Asociado] [varchar](6) NOT NULL references Asociado([Código Asociado]), \n" +
                 "[FK Transacción] [int] NOT NULL references Transacciones([id Transacción])) ";
             String tabla22 = "Create table [dbo].[Tipos de Imágenes](" +
                "[Número][int] identity(1, 1) NOT NULL," +
@@ -242,7 +242,7 @@ namespace Crear_Base_de_Datos
                 "[id Imagen] AS('IA' + right('00000' + Convert([varchar](5),[Número]), (5))) PERSISTED NOT NULL," +
                 "[Imagen] Image not null," +
                 "[Fecha de Subida] [datetime] NOT NULL," +
-                "[Persona Asociada] [varchar](5) references [Persona]([Código Persona])," +
+                "[Persona Asociada] [varchar](8) references [Persona]([Código Persona])," +
                 "[Tipo Imagen] [varchar](5) references [Tipos de Imágenes]([id Tipo Imagen])," +
                 "[Comentarios] [varchar](120) null," +
                 "CONSTRAINT [PK Imagen] PRIMARY KEY ([id Imagen]))";
@@ -270,7 +270,7 @@ namespace Crear_Base_de_Datos
                 "return 0 \n" +
                 "End Catch";
             String procedimiento2 = "Create Procedure[Insertar Asociado]" +
-                "@FK_Persona varchar(5), \n" +
+                "@FK_Persona varchar(8), \n" +
                 "@FK_Tipo_Socio varchar(5), \n" +
                 "@Nombres varchar(80), \n" +
                 "@Apellidos varchar(80), \n" +
@@ -282,7 +282,7 @@ namespace Crear_Base_de_Datos
                 "@FK_Ocupacion varchar(5) \n" +
                 "As \n" +
                 "Begin Tran Asociado Begin try \n" +
-                "Declare @Persona int Declare @FK_Per varchar(5) \n" +
+                "Declare @Persona int Declare @FK_Per varchar(8) \n" +
                 "if(@FK_Persona='') begin \n" +
                 "Set @FK_Per=(Select [Código Persona] from Persona where [DUI]=@DUI) \n" +
                 "if(@FK_Per is null) begin \n" +
@@ -306,7 +306,7 @@ namespace Crear_Base_de_Datos
                 "End Catch ";
             //Cambiado los nombres para cargar las variables y añadiendo campos
             String procedimiento3 = "Create Procedure[Cargar Asociados] \n" +
-                "@Código_Asociado int \n" +
+                "@Código_Asociado varchar(6) \n" +
                 "As \n" +
                 "Begin Tran Cargar_Asociados \n" +
                 "Begin Try \n" +
@@ -328,8 +328,8 @@ namespace Crear_Base_de_Datos
                 "As \n" +
                 "Begin Tran Teléfono \n" +
                 "Begin Try \n" +
-                "Declare @ID_Persona varchar(5) \n" +
-                "Declare @ID_Teléfono varchar(5) \n" +
+                "Declare @ID_Persona varchar(8) \n" +
+                "Declare @ID_Teléfono varchar(8) \n" +
                 "Begin \n" +
                 "Set @ID_Persona = (Select[Código Persona] From Persona where @DUI = DUI)  \n" +
                 "Insert into Teléfono values(@Teléfono) \n" +
@@ -343,7 +343,7 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Teléfono \n" +
                 "End Catch";
             String procedimiento5 = "Create Procedure[Cargar Teléfonos] \n" +
-                "@Código_Persona varchar(5) \n" +
+                "@Código_Persona varchar(8) \n" +
                 "As \n" +
                 "Begin Tran Cargar_Teléfonos \n" +
                 "Begin Try \n" +
@@ -358,9 +358,9 @@ namespace Crear_Base_de_Datos
                 "End Catch ";
             String procedimiento6 = "Create Procedure[Modificar Teléfono] \n" +
                 "@Tipo_Telefono varchar(50), \n" +
-                "@ID_Teléfono varchar(5), \n" +
+                "@ID_Teléfono varchar(8), \n" +
                 "@Teléfono varchar(10), \n" +
-                "@Código_Persona varchar(5) \n" +
+                "@Código_Persona varchar(8) \n" +
                 "As \n" +
                 "Begin Tran Mod_Tel \n" +
                 "Begin Try \n" +
@@ -375,8 +375,8 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Mod_Tel \n" +
                 "End Catch";
             String procedimiento7 = "Create Procedure[Eliminar Teléfono] \n" +
-                "@ID_Teléfono varchar(5), \n" +
-                "@Id_Persona varchar(5) \n" +
+                "@ID_Teléfono varchar(8), \n" +
+                "@Id_Persona varchar(8) \n" +
                 "As   \n" +
                 "Begin Tran Del_Teléfono \n" +
                 "Begin Try \n" +
@@ -430,7 +430,7 @@ namespace Crear_Base_de_Datos
                 "End Catch";
             String procedimiento10 = "Create Procedure[dbo].[Realizar Aportación] \n" +
                 "@Aportación money, \n" +
-                "@ID_Asociado int, \n" +
+                "@ID_Asociado varchar(6), \n" +
                 "@Id_Usuario varchar(5) \n" +
                 "As \n" +
                 "Begin Tran Asociado \n" +
@@ -464,7 +464,7 @@ namespace Crear_Base_de_Datos
                 "Rollback tran Asociado \n" +
                 "End Catch ";
             String procedimiento11 = "Create Procedure[Cargar Aportaciones] \n" +
-                "@Código_Asociado int \n" +
+                "@Código_Asociado varchar(6) \n" +
                 "As \n" +
                 "Begin Tran C_Aportaciones \n" +
                 "Begin Try \n" +
@@ -477,7 +477,7 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran C_Aportaciones \n" +
                 "End Catch";
             String procedimiento12 = "Create Procedure[Suma Aportaciones] \n" +
-                "@Código_Asociado varchar(5) \n" +
+                "@Código_Asociado varchar(6) \n" +
                 "As \n" +
                 "Begin Tran S_Aportaciones \n" +
                 "Begin Try \n" +
@@ -510,7 +510,7 @@ namespace Crear_Base_de_Datos
             //Modificado para que ingrese además un abono
             String procedimiento14 = "Create Procedure [Nueva Cuenta de Ahorro] \n" +
                 "@FK_Tipo_Ahorro varchar(20), \n" +
-                "@FK_Asociado varchar(5), \n" +
+                "@FK_Asociado varchar(6), \n" +
                 "@Abono_inicial money, \n" +
                 "@Comision money, \n" +
                 "@ID_Usuario varchar(5) \n" +
@@ -528,7 +528,7 @@ namespace Crear_Base_de_Datos
                 "Insert into Transacciones values(@Id_Usuario, 'TT006', GETDATE()) \n" +
                 "set @id_Transacción = (Select MAX([id Transacción]) From Transacciones) \n" +
                 "Insert into Ahorro values('ACTIVO', @ID_Tipo_Ahorro, @FK_Asociado, @id_Transacción) \n" +
-                "Declare @FK_Ahorro_nuevo as varchar(5) \n" +
+                "Declare @FK_Ahorro_nuevo as varchar(8) \n" +
                 "set @FK_Ahorro_nuevo = (Select MAX([id Ahorro]) from Ahorro where [FK Código de Asociado] = @FK_Asociado) \n" +
                 "exec Abonar @Abono_inicial,@Comision,@FK_Ahorro_nuevo,@ID_Usuario \n" +
                 "Commit tran Ahorro \n" +
@@ -550,7 +550,7 @@ namespace Crear_Base_de_Datos
                 "return 0 \n" +
                 "End Catch ";
             String procedimiento15 = "Create Procedure[Cargar Abonos] \n" +
-                "@ID_Ahorro varchar(5) \n" +
+                "@ID_Ahorro varchar(8) \n" +
                 "As \n" +
                 "Begin Tran Cargar_Abono \n" +
                 "Begin Try \n" +
@@ -563,7 +563,7 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Cargar_Abono \n" +
                 "End Catch";
             String procedimiento16 = "Create Procedure[Suma Abonos] \n" +
-                "@ID_Ahorro varchar(5) \n" +
+                "@ID_Ahorro varchar(8) \n" +
                 "As \n" +
                 "Begin Tran Disponibles_Abono \n" +
                 "Begin Try \n" +
@@ -596,7 +596,7 @@ namespace Crear_Base_de_Datos
                 "Rollback tran Retiro \n" +
                 "End Catch ";
             String procedimiento18 = "Create Procedure[Cargar Retiros] \n" +
-                "@ID_Ahorro varchar(5) \n" +
+                "@ID_Ahorro varchar(8) \n" +
                 "As \n" +
                 "Begin Tran Cargar_Retiro \n" +
                 "Begin Try \n" +
@@ -610,7 +610,7 @@ namespace Crear_Base_de_Datos
                 "End Catch ";
             //Si no hay retiros
             String procedimiento19 = "Create Procedure[Suma Retiros] \n" +
-                "@ID_Ahorro varchar(5) \n" +
+                "@ID_Ahorro varchar(8) \n" +
                 "As \n" +
                 "Begin Tran Disponibles_Retiro \n" +
                 "Begin Try \n" +
@@ -831,7 +831,7 @@ namespace Crear_Base_de_Datos
                 "End";
             //Faltaba este procedimiento
             String procedimiento34 = "Create Procedure[Cargar Ahorros] \n" +
-                "@Código_Ahorro varchar(5) \n" +
+                "@Código_Ahorro varchar(8) \n" +
                "As \n" +
                "Begin Tran Cargar_Ahorros \n" +
                "Begin Try \n" +
@@ -848,7 +848,7 @@ namespace Crear_Base_de_Datos
             //Faltaba este procedimiento
             String procedimiento35 = "Create Procedure[Nuevo Préstamo] \n" +
                 "@FK_Tipo_Préstamo varchar(20), \n" +
-                "@FK_Asociado int, \n" +
+                "@FK_Asociado varchar(6), \n" +
                 "@Forma_Pago varchar(5), \n" +
                 "@NCuotas int, \n" +
                 "@Monto money, \n" +
@@ -898,7 +898,7 @@ namespace Crear_Base_de_Datos
                 "Commit Tran Tipo_pagos End Try Begin Catch Print ERROR_MESSAGE(); Rollback Tran Pre End Catch";
             //Añadido para cerrar ahorro
             String procedimiento37 = "Create Procedure[dbo].[Cerrar Ahorro] \n" +
-                "@Id_Ahorro varchar(5) \n" +
+                "@Id_Ahorro varchar(8) \n" +
                 "As Begin Tran Cuenta_Cerrada \n" +
                 "Begin Try \n" +
                 "If(Select Estado from Ahorro where [id Ahorro] = @Id_Ahorro) = 'ACTIVO' \n" +
@@ -919,7 +919,7 @@ namespace Crear_Base_de_Datos
                 "End Catch ";
             //Añadido para desasociar
             String procedimiento38 = "Create Procedure[dbo].[Desasociar] \n" +
-                "@Código_Asociado int \n" +
+                "@Código_Asociado varchar(6) \n" +
                 "As Begin Tran Desasociado \n" +
                 "Begin Try \n" +
                 "If(Select Estado from Asociado where[Código Asociado] = @Código_Asociado) = 'ACTIVO' \n" +
@@ -961,7 +961,7 @@ namespace Crear_Base_de_Datos
                 "End Catch ";
             //Añadido Actualizar Asociado
             String procedimiento039 = "Create procedure[dbo].[Actualizar Persona] \n" +
-                "@Codigo_Persona varchar(5), \n" +
+                "@Codigo_Persona varchar(8), \n" +
                 "@Nombres varchar(50), \n" +
                 "@Apellidos varchar(50), \n" +
                 "@DUI varchar(10), \n" +
@@ -988,7 +988,7 @@ namespace Crear_Base_de_Datos
                 "Print 'Error en modificar datos de la persona ' + ERROR_MESSAGE(); \n" +
               "End ";
             String procedimiento39 = "Create procedure[dbo].[Actualizar Asociado] \n" +
-                "@Codigo_Asociado int, \n" +
+                "@Codigo_Asociado varchar(6), \n" +
                 "@FK_Tipo_Socio varchar(5), \n" +
                 "@FK_Ocupación varchar(5) \n" +
                 "As \n" +
@@ -1031,7 +1031,7 @@ namespace Crear_Base_de_Datos
                 "End; ";
             //Procedimiento para retirar las aportaciones al desasociar.
             String procedimiento43 = "create procedure [dbo].[Retirar Aportaciones] \n" +
-                "@Código_Asociado int, \n"+
+                "@Código_Asociado varchar(6), \n"+
                 "@No_Cheque varchar(8), \n"+
                 "@Id_Usuario varchar(5) \n"+
                 "As Begin Tran Retiro \n"+
@@ -1091,7 +1091,7 @@ namespace Crear_Base_de_Datos
                 "End Catch ";
             //Procedimiento para Informe de Préstamo
             String procedimiento46 = "Create Procedure[dbo].[Informe Préstamo] \n" +
-                "@Codigo int \n" +
+                "@Codigo varchar(6) \n" +
                 "As Begin \n" +
                 "Tran Informe \n" +
                 "Begin Try \n" +
@@ -1185,7 +1185,7 @@ namespace Crear_Base_de_Datos
                 "    Rollback Tran Coop \n" +
                 "End Catch";
             String procedimiento49 = "CREATE Procedure [dbo].[Conseguir Imágenes]  \n" +
-                "@Persona_Asociada varchar(5) As \n" +
+                "@Persona_Asociada varchar(8) As \n" +
                 "Begin Tran Img \n" +
                 "Begin Try \n" +
                 "Select i.Imagen as 'img', ti.Nombre as 'tipo', i.[Fecha de Subida] as 'fecha', i.Comentarios as 'comment', i.[id Imagen] as 'id' from Imagen i  \n" +
@@ -1198,7 +1198,7 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Img \n" +
                 "End Catch";
             String procedimiento50 = "CREATE Procedure [dbo].[Insertar Imagen]  \n" +
-                "@Persona_Asociada varchar(5), \n" +
+                "@Persona_Asociada varchar(8), \n" +
                 "@Imagen Image, \n" +
                 "@TipoImagen varchar(5), \n" +
                 "@Comentarios varchar(120) \n" +
@@ -1225,7 +1225,7 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Img \n" +
                 "End Catch";
             String procedimiento51 = "Create Procedure [dbo].[Actualizar Imagen]  \n" +
-                "@Persona_Asociada varchar(5), \n" +
+                "@Persona_Asociada varchar(8), \n" +
                 "@Id_Imagen varchar(7), \n" +
                 "@Imagen Image, \n" +
                 "@TipoImagen varchar(5), \n" +
@@ -1281,7 +1281,7 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran img \n" +
                 "End Catch ";
             String procedimiento54 = "Create Procedure[dbo].[Constancia Retiro] \n" +
-                "@ID_Ahorro varchar(5) \n" +
+                "@ID_Ahorro varchar(8) \n" +
                 "As Begin Tran C_Abono \n" +
                 "Begin Try \n" +
                 "declare @id_Retiro varchar(9) \n" +
@@ -1300,7 +1300,7 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran C_Abono \n" +
                 "End Catch ";
             String procedimiento55 = "Create Procedure[dbo].[Constancia Abono] \n" +
-                "@ID_Ahorro varchar(5) \n" +
+                "@ID_Ahorro varchar(8) \n" +
                 "As Begin Tran C_Abono \n" +
                 "Begin Try \n" +
                 "if ((Select Estado From Ahorro where Ahorro.[id Ahorro] = @ID_Ahorro) <> 'INACTIVO') \n" +
@@ -1325,11 +1325,11 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran C_Abono \n" +
                 "End Catch ";
             String procedimiento56 = "Create Procedure[Constancia Nuevo Ahorro] \n" +
-                "@ID_Asociado int \n" +
+                "@ID_Asociado varchar(6) \n" +
                 "As \n" +
                 "Begin Tran N_Ahorro \n" +
                 "Begin Try \n" +
-                "declare @id_Ahorro varchar(15) \n" +
+                "declare @id_Ahorro varchar(8) \n" +
                 "Set @id_Ahorro = (Select Max([FK Ahorro]) from Abono inner join Ahorro on Abono.[FK Ahorro] = Ahorro.[id Ahorro] where Ahorro.[FK Código de Asociado] = @ID_Asociado) \n" +
                 "Select(p.Nombres + ' ' + p.Apellidos) as 'Nombre', \n" +
                 "Ahorro.[id Ahorro] as 'id_Ahorro',[Tipo de Ahorro].Nombre as 'Tipo', \n" +
@@ -1348,7 +1348,7 @@ namespace Crear_Base_de_Datos
                 "End Catch ";
             //Procedimiento Insertar Beneficiario
             String procedimiento57 = "Create procedure [dbo].[Insertar Beneficiario] \n" +
-                "@Codigo_Asociado varchar(5), \n" +
+                "@Codigo_Asociado varchar(6), \n" +
                 "@Nombres varchar(80), \n" +
                 "@Apellidos varchar(80), \n" +
                 "@DUI varchar(10),  \n" +
@@ -1357,7 +1357,7 @@ namespace Crear_Base_de_Datos
                 "@Fecha_Nacimiento datetime \n" +
                 "As Begin Tran Beneficiario \n" +
                 "Begin try \n" +
-                "   Declare @Codigo_Persona varchar(5) \n" +
+                "   Declare @Codigo_Persona varchar(8) \n" +
                 "   Declare @No_Persona int \n" +
                 "   Set @No_Persona = (Select COUNT(NIT) From Persona where NIT = @NIT) \n" +
                 "   if @No_Persona = 0 \n" +
@@ -1391,7 +1391,7 @@ namespace Crear_Base_de_Datos
                 "Rollback Tran Personas_DVG \n" +
                 "End Catch ";
             String procedimiento59 = "Create procedure[dbo].[Constancia Retiro Aportaciones] \n" +
-                "@Codigo int \n" +
+                "@Codigo varchar(6) \n" +
                 "As begin tran Constancia_A \n" +
                 "Begin try \n" +
                 "   Select(Persona.Nombres + ' ' + Persona.Apellidos) as 'NombreP', Asociado.Estado as 'EstadoP'  from Persona inner join Asociado \n" +
@@ -1402,6 +1402,78 @@ namespace Crear_Base_de_Datos
                 "   Print ERROR_MESSAGE(); \n" +
                 "   Rollback tran Constancia_A \n" +
                 "End Catch \n";
+            String procedimiento60 = "Create procedure [dbo].[Administrar Asociados] \n" +
+                "As \n" +
+                "Begin Tran AdministrarA \n" +
+                "Begin Try \n" +
+                "   Select Asociado.[Código Asociado] as 'Código',(Persona.Nombres + ' ' + Persona.Apellidos) as 'Nombre', [Tipo de Socio].[Nombre Tipo Socio] as 'Tipo', \n" +
+                "   Asociado.Estado as 'Estado' from Persona inner join Asociado on Persona.[Código Persona] = Asociado.[FK Persona] \n " +
+                "   inner join[Tipo de Socio] on[Tipo de Socio].[id Tipo de Socio] = Asociado.[FK Tipo Socio] \n" +
+                "   Commit Tran AdministrarA \n" +
+                "End Try \n" +
+                "Begin Catch \n " +
+                "   Print 'Ha ocurrido un error: ' + ERROR_MESSAGE() + ' . Inténtelo más tarde.' \n" +
+                "   Rollback Tran AdministrarA \n" +
+                "End Catch";
+            String procedimiento61 = "Create procedure [dbo].[Administrar Usuarios] \n" +
+                "As begin Tran AdminU \n" +
+                "Begin Try \n" +
+                "Select Usuarios.[Id Usuario] as 'ID Usuario', (Usuarios.Nombres + ' ' + Usuarios.Apellidos) as 'Nombre del Usuario', \n" +
+                "Usuarios.Correo as 'Correo Electrónico', [Tipo de Usuarios].Nombre as 'Tipo de Usuario' from Usuarios inner join[Tipo de Usuarios] \n" +
+                "on Usuarios.[FK Tipo Usuario] = [Tipo de Usuarios].[Id Tipo Usuario] \n" +
+                "Commit Tran AdminU \n" +
+                "End Try \n" +
+                "Begin Catch \n" +
+                "    Print 'Ha ocurrido el siguiente un error. Inténtelo más tarde.' \n" +
+                "    Rollback Tran AdminU \n" +
+                "End Catch";
+            String procedimiento62 = "Create procedure [dbo].[Contar] \n" +
+                "@Código as varchar(6) \n" +
+                "as \n" +
+                "begin tran contar \n" +
+                "begin try \n" +
+                "declare @Vista as int \n" +
+                "declare @Vacaciones as int \n" +
+                "declare @Navidad as int \n" +
+                "declare @Escolar as int \n" +
+                "declare @Personal as int \n" +
+                "declare @Emergencia as int \n" +
+                "set @Vista = (Select count(Ahorro.[id Ahorro]) from Ahorro where Ahorro.[FK Tipo Ahorro] = 'TA001' and Ahorro.[FK Código de Asociado] = @Código) \n" +
+                "set @Vacaciones = (Select count(Ahorro.[id Ahorro]) from Ahorro where Ahorro.[FK Tipo Ahorro] = 'TA002' and Ahorro.[FK Código de Asociado] = @Código) \n" +
+                "set @Navidad = (Select count(Ahorro.[id Ahorro]) from Ahorro where Ahorro.[FK Tipo Ahorro] = 'TA003' and Ahorro.[FK Código de Asociado] = @Código) \n" +
+                "set @Escolar = (Select count(Ahorro.[id Ahorro]) from Ahorro where Ahorro.[FK Tipo Ahorro] = 'TA004' and Ahorro.[FK Código de Asociado] = @Código) \n" +
+                "set @Personal = (Select count(Préstamos.[id Préstamos]) from Préstamos where Préstamos.[id Tipo de Préstamo] = 'TP001' and Préstamos.[Código Asociado]= @Código) \n" +
+                "set @Emergencia = (Select count(Préstamos.[id Préstamos]) from Préstamos where Préstamos.[id Tipo de Préstamo] = 'TP002' and Préstamos.[Código Asociado]= @Código) \n" +
+                "Select @Vista as 'Vista', @Vacaciones as 'Vacaciones', @Navidad as 'Navideño', @Escolar as 'Escolar', @Personal as 'Personal', @Emergencia as 'Emergencia' \n" +
+                "Commit tran contar \n" +
+                "End try \n" +
+                "begin catch \n" +
+                "Print 'Ha ocurrido un error. ' + ERROR_MESSAGE() + ' . Inténtelo más tarde.' \n" +
+                "Rollback Tran contar \n" +
+                "end catch";
+            String procedimiento63 = "procedure [dbo].[Transacciones por Asociado] \n" +
+                "@Código as varchar(6) \n" +
+                "As \n" +
+                "Begin Tran Trans_A \n" +
+                "Begin Try \n" +
+                "    Select Ahorro.[id Ahorro] as Código, [Tipo de Transacción].[Tipo de Transacción] as Categoría, [Tipo de Ahorro].Nombre as Tipo, \n" +
+                "    Ahorro.Estado  as Estado from Ahorro inner join Transacciones on Ahorro.[FK Transacción] = Transacciones.[id Transacción] \n" +
+                "    inner join [Tipo de Ahorro] on Ahorro.[FK Tipo Ahorro] = [Tipo de Ahorro].[id Tipo Ahorro] \n" +
+                "    inner join [Tipo de Transacción] on Transacciones.[FK Tipo de Transacción] = [Tipo de Transacción].[id Tipo de Transacción] \n" +
+                "    where Ahorro.[FK Código de Asociado] = @Código \n" +
+                "    union all \n" +
+                "    Select Préstamos.[id Préstamos] as Código, [Tipo de Transacción].[Tipo de Transacción] as Categoría, [Tipo de Préstamo].[Tipo de Préstamo] as Tipo, \n" +
+                "    Préstamos.Estado as Estado from Préstamos inner join Transacciones on Préstamos.[FK Transacción] = Transacciones.[id Transacción \n" +
+                "    inner join [Tipo de Préstamo] on[Tipo de Préstamo].[id Tipo de Préstamo] = Préstamos.[id Tipo de Préstamo \n" +
+                "    inner join [Tipo de Transacción] on[Tipo de Transacción].[id Tipo de Transacción] = Transacciones.[FK Tipo de Transacción \n" +
+                "    where Préstamos.[Código Asociado] = @Código  \n" +
+                "    order by Estado \n" +
+                "    Commit Tran Trans_A \n" +
+                "End Try \n" +
+                "Begin  \n" +
+                "    Print 'Ha ocurrido un error: ' + ERROR_MESSAGE() + '. Inténtelo más tarde' \n" +
+                "    Rollback Tran Trans_A \n" +
+                "End Catch";
             String Login1 =
                 "CREATE LOGIN Master_ACOPEDH \n" +
                 "WITH PASSWORD = 'Aureo112358' ";
@@ -1584,6 +1656,16 @@ namespace Crear_Base_de_Datos
                 "to Administrador with grant option \n" +
                 "grant execute on object :: [Constancia Retiro Aportaciones] \n" +
                 "to Administrador with grant option \n" +
+                "grant execute on object :: [ModificarDatos] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Transacciones por Asociado] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Administrar Asociados] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Administrar Usuarios] \n" +
+                "to Administrador with grant option \n" +
+                "grant execute on object :: [Contar] \n" +
+                "to Administrador with grant option \n" +
                 "grant execute on object :: [Actualizar Asociado] \n" +
                  "to Administrador with grant option ";
             String permisosUsuario =
@@ -1726,7 +1808,10 @@ namespace Crear_Base_de_Datos
             SqlCommand cmd_57 = new SqlCommand(procedimiento57, cnn);
             SqlCommand cmd_58 = new SqlCommand(procedimiento58, cnn);
             SqlCommand cmd_59 = new SqlCommand(procedimiento59, cnn);
-
+            SqlCommand cmd_60 = new SqlCommand(procedimiento60, cnn);
+            SqlCommand cmd_61 = new SqlCommand(procedimiento61, cnn);
+            SqlCommand cmd_62 = new SqlCommand(procedimiento62, cnn);
+            SqlCommand cmd_63 = new SqlCommand(procedimiento63, cnn);
             //Creación Triggers
 
             SqlCommand cmdTrigger1 = new SqlCommand(Trigger1, cnn);
@@ -1857,7 +1942,10 @@ namespace Crear_Base_de_Datos
             cmd_57.ExecuteNonQuery();
             cmd_58.ExecuteNonQuery();
             cmd_59.ExecuteNonQuery();
-
+            cmd_60.ExecuteNonQuery();
+            cmd_61.ExecuteNonQuery();
+            cmd_62.ExecuteNonQuery();
+            cmd_63.ExecuteNonQuery();
 
             cmdTrigger1.ExecuteNonQuery();
 
