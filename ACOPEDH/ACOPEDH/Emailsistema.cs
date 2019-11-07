@@ -27,8 +27,9 @@ namespace ACOPEDH
                 correo.Body = (pmensaje);
                 SmtpServer.Send(correo);
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
             }
         }
     }

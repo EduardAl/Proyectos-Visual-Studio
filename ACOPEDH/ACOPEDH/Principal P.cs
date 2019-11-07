@@ -721,50 +721,93 @@ namespace ACOPEDH
             //Elementos
             Titulo.Location = new Point(((Width - (pictureBox1.Height + pictureBox1.Location.X)) / 2) - (Titulo.Width / 2) + pictureBox1.Width +
                 pictureBox1.Location.X, pictureBox1.Location.Y + 40);
-            if (this.WindowState == FormWindowState.Normal)
-            {
-                PInicio.Location = new Point(pictureBox1.Location.X, PInicio.Location.Y);
-                PConfiguración.Location = new Point(pictureBox1.Location.X, PConfiguración.Location.Y);
-                PPréstamos.Location = new Point(pictureBox1.Location.X, PPréstamos.Location.Y);
-                PAhorros.Location = new Point(pictureBox1.Location.X, PAhorros.Location.Y);
-                PEstadoAsociación.Location = new Point(pictureBox1.Location.X, PEstadoAsociación.Location.Y);
-                PAdministrar.Location = new Point(pictureBox1.Location.X, PAdministrar.Location.Y);
-                PAsociados.Location = new Point(pictureBox1.Location.X, PAsociados.Location.Y);
-                panelConfig.Width = (this.Width * 3) / 4;
-                panelConfig.Height = PInicio.Size.Height * 8;
-                panelConfig.Location = new Point(((Width - (pictureBox1.Height + pictureBox1.Location.X)) / 2) - (panelConfig.Width / 2) +
-                    pictureBox1.Width + pictureBox1.Location.X, PInicio.Location.Y - PInicio.Height - 8);
-            }
-            else
-            {
-                PInicio.Location = new Point(pictureBox1.Location.X + 30, PInicio.Location.Y);
-                PConfiguración.Location = new Point(pictureBox1.Location.X + 30, PConfiguración.Location.Y);
-                PPréstamos.Location = new Point(pictureBox1.Location.X + 30, PPréstamos.Location.Y);
-                PAhorros.Location = new Point(pictureBox1.Location.X + 30, PAhorros.Location.Y);
-                PEstadoAsociación.Location = new Point(pictureBox1.Location.X + 30, PEstadoAsociación.Location.Y);
-                PAdministrar.Location = new Point(pictureBox1.Location.X + 30, PAdministrar.Location.Y);
-                PAsociados.Location = new Point(pictureBox1.Location.X + 30, PAsociados.Location.Y);
-                panelConfig.Width = (this.Width * 3) / 4;
-                panelConfig.Height = (this.Height - Titulo.Height - Titulo.Location.Y - 100);
-                panelConfig.Location = new Point(((Width - (pictureBox1.Height + pictureBox1.Location.X)) / 2) - (panelConfig.Width / 2) +
-                pictureBox1.Width + pictureBox1.Location.X, Titulo.Location.Y + Titulo.Height + 45);
-                dgvBúsqueda.Size = new Size(panelConfig.Size.Width, panelConfig.Size.Height);
-                dgvBúsqueda.Location = panelConfig.Location;
-            }
-            tabControlAdmin.Size = new Size(panelConfig.Size.Width, panelConfig.Size.Height);
+            //if (this.WindowState == FormWindowState.Normal)
+            //{
+            //    PInicio.Location = new Point(pictureBox1.Location.X, PInicio.Location.Y);
+            //    PConfiguración.Location = new Point(pictureBox1.Location.X, PConfiguración.Location.Y);
+            //    PPréstamos.Location = new Point(pictureBox1.Location.X, PPréstamos.Location.Y);
+            //    PAhorros.Location = new Point(pictureBox1.Location.X, PAhorros.Location.Y);
+            //    PEstadoAsociación.Location = new Point(pictureBox1.Location.X, PEstadoAsociación.Location.Y);
+            //    PAdministrar.Location = new Point(pictureBox1.Location.X, PAdministrar.Location.Y);
+            //    PAsociados.Location = new Point(pictureBox1.Location.X, PAsociados.Location.Y);
+            //    panelConfig.Width = (this.Width * 3) / 4;
+            //    panelConfig.Height = PInicio.Size.Height * 8;
+            //    panelConfig.Location = new Point(((Width - (pictureBox1.Height + pictureBox1.Location.X)) / 2) - (panelConfig.Width / 2) +
+            //        pictureBox1.Width + pictureBox1.Location.X, PInicio.Location.Y - PInicio.Height - 8);
+            //}
+            //else
+            //{
+            //    PInicio.Location = new Point(pictureBox1.Location.X + 30, PInicio.Location.Y);
+            //    PConfiguración.Location = new Point(pictureBox1.Location.X + 30, PConfiguración.Location.Y);
+            //    PPréstamos.Location = new Point(pictureBox1.Location.X + 30, PPréstamos.Location.Y);
+            //    PAhorros.Location = new Point(pictureBox1.Location.X + 30, PAhorros.Location.Y);
+            //    PEstadoAsociación.Location = new Point(pictureBox1.Location.X + 30, PEstadoAsociación.Location.Y);
+            //    PAdministrar.Location = new Point(pictureBox1.Location.X + 30, PAdministrar.Location.Y);
+            //    PAsociados.Location = new Point(pictureBox1.Location.X + 30, PAsociados.Location.Y);
+            //    panelConfig.Width = (this.Width * 3) / 4;
+            //    panelConfig.Height = (this.Height - Titulo.Height - Titulo.Location.Y - 100);
+            //    panelConfig.Location = new Point(((Width - (pictureBox1.Height + pictureBox1.Location.X)) / 2) - (panelConfig.Width / 2) +
+            //    pictureBox1.Width + pictureBox1.Location.X, Titulo.Location.Y + Titulo.Height + 45);
+            //    dgvBúsqueda.Size = new Size(panelConfig.Size.Width -50, panelConfig.Size.Height -50);
+            //    dgvBúsqueda.Location = panelConfig.Location;
+            //}
+
+            PInicio.Location = new Point(pictureBox1.Location.X + 30, PInicio.Location.Y);
+            PConfiguración.Location = new Point(pictureBox1.Location.X + 30, PConfiguración.Location.Y);
+            PPréstamos.Location = new Point(pictureBox1.Location.X + 30, PPréstamos.Location.Y);
+            PAhorros.Location = new Point(pictureBox1.Location.X + 30, PAhorros.Location.Y);
+            PEstadoAsociación.Location = new Point(pictureBox1.Location.X + 30, PEstadoAsociación.Location.Y);
+            PAdministrar.Location = new Point(pictureBox1.Location.X + 30, PAdministrar.Location.Y);
+            PAsociados.Location = new Point(pictureBox1.Location.X + 30, PAsociados.Location.Y);
+            panelConfig.Width = (this.Width * 3) / 4;
+            panelConfig.Height = (this.Height - Titulo.Height - Titulo.Location.Y - 100);
+            panelConfig.Location = new Point(((Width - (pictureBox1.Height + pictureBox1.Location.X)) / 2) - (panelConfig.Width / 2) +
+            pictureBox1.Width + pictureBox1.Location.X, Titulo.Location.Y + Titulo.Height + 45);
+            dgvBúsqueda.Size = new Size(panelConfig.Size.Width - 100 + bttNuevoAsociado.Width, panelConfig.Size.Height - 100);
+            txtBúsqueda.Width = dgvBúsqueda.Width - (bttNuevoAsociado.Width + labBuscar.Width + 15);
+            dgvBúsqueda.Location = new Point(labBuscar.Location.X, txtBúsqueda.Location.Y + (txtBúsqueda.Height * 2));
+            dataGridView1.Location = dgvBúsqueda.Location;
+            dataGridView1.Size = new Size(dgvBúsqueda.Size.Width, dgvBúsqueda.Size.Height);
+            //}
+            tabControlAdmin.Size = new Size(panelConfig.Size.Width - 50, panelConfig.Size.Height - 50);
             tabControlAdmin.Location = panelConfig.Location;
-            dgvTransacciones.Width = gbAhorros.Location.X - dgvTransacciones.Location.X - 30;
-            dgvPersonasA.Height = 668;
+            //dgvPersonasA.Height = 668;y
             //Botones
+            labHasta.Location = new Point(labDesde.Location.X + dtDesde.Width + 5, labDesde.Location.Y);
+            dtHasta.Location = new Point(labHasta.Location.X, dtDesde.Location.Y);
             bttOtorgarPréstamo.Location = new Point(dgvBúsqueda.Width - bttOtorgarPréstamo.Width + dgvBúsqueda.Location.X, bttOtorgarPréstamo.Location.Y);
             bttCrearCuenta.Location = bttAgregarAsociado.Location = bttOtorgarPréstamo.Location;
             bttPagosRealizados.Location = new Point(dgvBúsqueda.Width - bttPagosRealizados.Width + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
             bttVerEstados.Location = bttAportar.Location = bttPagosRealizados.Location;
-            bttAmortizacion.Location = new Point(dgvBúsqueda.Location.X+(dgvBúsqueda.Width-bttAmortizacion.Width)/2, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
+            bttAmortizacion.Location = new Point(dgvBúsqueda.Location.X + (dgvBúsqueda.Width - bttAmortizacion.Width) / 2, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
             bttRetirar.Location = bttDatosAsociado.Location = bttAmortizacion.Location;
             bttRealizarPago.Location = new Point(dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
             bttAbono.Location = bttRealizarPago.Location;
+            bttGráfica.Location = new Point(bttCrearCuenta.Location.X, dtDesde.Location.Y);
+            gbAportaciones.Location = new Point(bttGráfica.Location.X + bttGráfica.Width - gbAportaciones.Width, bttGráfica.Location.Y + (bttGráfica.Height * 2)+10);
+            gbPréstamos.Location = new Point(gbAportaciones.Location.X + gbAportaciones.Width - gbPréstamos.Width, gbAportaciones.Location.Y + gbAportaciones.Height + 10);
+            gbAhorros.Location = new Point(gbPréstamos.Location.X, gbAportaciones.Location.Y);
+            cbTransacción.Location = new Point(gbAhorros.Location.X, bttGráfica.Location.Y + bttGráfica.Height + 10);
+            labTTran.Location = new Point(cbTransacción.Location.X, cbTransacción.Location.Y - cbTransacción.Height);
+            dgvTransacciones.Location = new Point(dtDesde.Location.X, labTTran.Location.Y);
+            dgvTransacciones.Size = new Size(labTTran.Location.X - dgvTransacciones.Location.X -20, this.Height - dgvTransacciones.Location.Y - 40);
             Refresh();
+
+            //tabControlAdmin.Size = new Size(panelConfig.Size.Width - 50, panelConfig.Size.Height -50);
+            //tabControlAdmin.Location = panelConfig.Location;
+            //dgvTransacciones.Width = gbAhorros.Location.X - dgvTransacciones.Location.X - 30;
+            //dgvPersonasA.Height = 668;
+            //gbAhorros.Height = this.Width * (8 / 10);
+            ////Botones
+            //bttOtorgarPréstamo.Location = new Point(dgvBúsqueda.Width - bttOtorgarPréstamo.Width + dgvBúsqueda.Location.X, bttOtorgarPréstamo.Location.Y);
+            //bttCrearCuenta.Location = bttAgregarAsociado.Location = bttOtorgarPréstamo.Location;
+            //bttPagosRealizados.Location = new Point(dgvBúsqueda.Width - bttPagosRealizados.Width + dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
+            //bttVerEstados.Location = bttAportar.Location = bttPagosRealizados.Location;
+            //bttAmortizacion.Location = new Point(dgvBúsqueda.Location.X+(dgvBúsqueda.Width-bttAmortizacion.Width)/2, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
+            //bttRetirar.Location = bttDatosAsociado.Location = bttAmortizacion.Location;
+            //bttRealizarPago.Location = new Point(dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
+            //bttAbono.Location = bttRealizarPago.Location;
+            //Refresh();
         }
         #endregion
         #region Links

@@ -1465,7 +1465,7 @@ namespace Crear_Base_de_Datos
                 "    Print 'Ha ocurrido un error: ' + ERROR_MESSAGE() + '. Inténtelo más tarde' \n" +
                 "    Rollback Tran Trans_A \n" +
                 "End Catch";
-            String procedimiento64 = "Creace procedure [dbo].[Contar Préstamos] \n" +
+            String procedimiento64 = "Create procedure [dbo].[Contar Préstamos] \n" +
                 "@Código as varchar(6) \n" +
                 "as begin tran contar \n" +
                 "begin try \n" +
