@@ -154,7 +154,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(119, 19);
             this.label4.TabIndex = 68;
-            this.label4.Text = "Tipo de Ahorro:";
+            this.label4.Text = "TipoA:";
             // 
             // label5
             // 
@@ -169,7 +169,7 @@
             // txtTipoA
             // 
             this.txtTipoA.Location = new System.Drawing.Point(445, 102);
-            this.txtTipoA.Name = "txtTipoA";
+            this.txtTipoA.Name = "Tipo de Ahorro";
             this.txtTipoA.ReadOnly = true;
             this.txtTipoA.Size = new System.Drawing.Size(156, 27);
             this.txtTipoA.TabIndex = 70;

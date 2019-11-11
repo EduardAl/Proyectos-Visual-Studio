@@ -21,8 +21,8 @@ namespace ACOPEDH
         Color Original, Seleccionado, Fuente, FuenteO;
         String Dato,Extra;
         Procedimientos_select Cargar = new Procedimientos_select();
-        DataTable dsAhorro, dsPréstamo, dsAsociado,dsTransacciones, dsPersonas, dsUsuarios;
-        DataView filtro, filtro1, filtro2, filtro3;
+        DataTable dsAhorro, dsPréstamo, dsAsociado,dsTransacciones, dsPersonas, dsUsuarios, dsVariableAhorro, dsVariablePrestamo;
+        DataView filtro, filtro1, filtro2, filtro3, filtro4, filtro5;
         DataTable Gráfica;
         Emailsistema enviarEmail = new Emailsistema();
         bool Cargando = true; 
@@ -67,6 +67,10 @@ namespace ACOPEDH
             F = new Fonts(dgvPersonasA);
             F.Diseño();
             F = new Fonts(dgvUsuarios);
+            F.Diseño();
+            F = new Fonts(dgvVariableAhorros);
+            F.Diseño();
+            F = new Fonts(dvgVariablePrestamo);
             F.Diseño();
             PAdministrar.Visible = (Globales.gbTipo_Usuario=="Master_ACOPEDH"||Globales.gbTipo_Usuario=="Administrador") ?true:false;
         }
@@ -223,6 +227,7 @@ namespace ACOPEDH
                 tabControlAdmin.Visible = true;
                 Page_Asociados();
                 Page_Usuarios();
+                Page_Variables();
             }
         }
         #endregion
@@ -498,6 +503,19 @@ namespace ACOPEDH
             this.filtro3 = dsUsuarios.DefaultView;
             this.dgvUsuarios.DataSource = filtro3;
         }
+        private void Page_Variables()
+        {
+            dgvVariableAhorros.DataSource = null;
+            dsVariableAhorro = Cargar.llenar_DataTable("[Cargar Tipo Ahorro]");
+            dsVariableAhorro.Columns[0].ColumnName = "Tipo de Ahorro";
+            this.filtro4 = dsVariableAhorro.DefaultView;
+            this.dgvVariableAhorros.DataSource = filtro4;
+            dvgVariablePrestamo.DataSource = null;
+            dsVariablePrestamo = Cargar.llenar_DataTable("[Cargar Tipo Préstamo]");
+            dsVariablePrestamo.Columns[0].ColumnName = "Tipo de PRéstamo";
+            this.filtro5 = dsVariablePrestamo.DefaultView;
+            this.dvgVariablePrestamo.DataSource = filtro5;
+        }
         #endregion
 
         /*
@@ -768,8 +786,13 @@ namespace ACOPEDH
             dgvBúsqueda.Size = new Size(panelConfig.Size.Width - 100 + bttNuevoAsociado.Width, panelConfig.Size.Height - 100);
             txtBúsqueda.Width = dgvBúsqueda.Width - (bttNuevoAsociado.Width + labBuscar.Width + 15);
             dgvBúsqueda.Location = new Point(labBuscar.Location.X, txtBúsqueda.Location.Y + (txtBúsqueda.Height * 2));
-            dataGridView1.Location = dgvBúsqueda.Location;
-            dataGridView1.Size = new Size(dgvBúsqueda.Size.Width, dgvBúsqueda.Size.Height);
+            dvgVariablePrestamo.Height = (dvgVariablePrestamo.Height * 2);
+            groupBox1.Height = tabControlAdmin.Height/2 - 50;
+            groupBox2.Height = tabControlAdmin.Height/2 - 50;
+            
+            
+            //dvgVariablesPrestamos.Location = dgvBús,queda.Location;
+            //dvgVariablesPrestamos.Size = new Size(dgvBúsqueda.Size.Width, dgvBúsqueda.Size.Height);
             panelConfig.Location = dgvBúsqueda.Location;
             panelConfig.Size = new Size(dgvBúsqueda.Size.Width, (PAdministrar.Location.Y + PAdministrar.Height) - dgvBúsqueda.Location.Y);
             //}
@@ -1019,11 +1042,11 @@ namespace ACOPEDH
                     {
                         if (salida_datos.Length == 0)
                         {
-                            salida_datos = "(Dui LIKE '%" + palabra + "%' OR [Código de Ahorro] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Tipo de Ahorro] LIKE '%" + palabra + "%')";
+                            salida_datos = "(Dui LIKE '%" + palabra + "%' OR [Código de Ahorro] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [TipoA] LIKE '%" + palabra + "%')";
                         }
                         else
                         {
-                            salida_datos += " AND(Dui LIKE '%" + palabra + "%' OR [Código de Ahorro] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Tipo de Ahorro] LIKE '%" + palabra + "%')";
+                            salida_datos += " AND(Dui LIKE '%" + palabra + "%' OR [Código de Ahorro] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [TipoA] LIKE '%" + palabra + "%')";
                         }
                     }
                     this.filtro.RowFilter = salida_datos;
