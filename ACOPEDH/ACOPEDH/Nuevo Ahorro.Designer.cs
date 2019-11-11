@@ -269,7 +269,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(123, 19);
             this.label9.TabIndex = 13;
-            this.label9.Text = "Tipo de Ahorro: ";
+            this.label9.Text = "TipoA: ";
             // 
             // CBTipoAhorro
             // 

@@ -221,11 +221,11 @@ namespace ACOPEDH
                     {
                         if (salida_datos.Length == 0)
                         {
-                            salida_datos = "(Dui LIKE '%" + palabra + "%' OR [Código de Ahorro] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Tipo de Ahorro] LIKE '%" + palabra + "%')";
+                            salida_datos = "(Dui LIKE '%" + palabra + "%' OR [Código de Ahorro] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [TipoA] LIKE '%" + palabra + "%')";
                         }
                         else
                         {
-                            salida_datos += " AND(Dui LIKE '%" + palabra + "%' OR [Código de Ahorro] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [Tipo de Ahorro] LIKE '%" + palabra + "%')";
+                            salida_datos += " AND(Dui LIKE '%" + palabra + "%' OR [Código de Ahorro] LIKE '%" + palabra + "%' OR [Persona Asociada] LIKE '%" + palabra + "%' OR [TipoA] LIKE '%" + palabra + "%')";
                         }
                     }
                     this.filtro.RowFilter = salida_datos;
