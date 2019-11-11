@@ -91,6 +91,9 @@ namespace ACOPEDH
                 PInicio.BackColor = Seleccionado;
                 PInicio.ForeColor = Fuente;
             }
+                pbInicioOne.Visible = true;
+                pbInicioTwo.Visible = true;
+                pbInicioThree.Visible = true;
         }
         private void PAhorros_Click(object sender, EventArgs e)
         {
@@ -284,6 +287,10 @@ namespace ACOPEDH
         #region Botones Principales (Ocultar cosas)
         public void Ocultar()
         {
+            //Imágenes inicio
+            pbInicioOne.Visible = false;
+            pbInicioTwo.Visible = false;
+            pbInicioThree.Visible = false;
             //Colorear
             PInicio.BackColor = Original;
             PAhorros.BackColor = Original;
@@ -784,7 +791,15 @@ namespace ACOPEDH
             panelConfig.Location = new Point(((Width - (pictureBox1.Height + pictureBox1.Location.X)) / 2) - (panelConfig.Width / 2) +
             pictureBox1.Width + pictureBox1.Location.X, Titulo.Location.Y + Titulo.Height + 45);
             dgvBúsqueda.Size = new Size(panelConfig.Size.Width - 100 + bttNuevoAsociado.Width, panelConfig.Size.Height - 100);
-            txtBúsqueda.Width = dgvBúsqueda.Width - (bttNuevoAsociado.Width + labBuscar.Width + 15);
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                dgvBúsqueda.Size = new Size(panelConfig.Size.Width -100 + bttNuevoAsociado.Width, panelConfig.Size.Height - 100);
+            }
+            else
+            {
+                dgvBúsqueda.Size = new Size(panelConfig.Size.Width + bttNuevoAsociado.Width, panelConfig.Size.Height - 100);
+            }
+            txtBúsqueda.Width = dgvBúsqueda.Width - (bttNuevoAsociado.Width + (labBuscar.Width * 2));
             dgvBúsqueda.Location = new Point(labBuscar.Location.X, txtBúsqueda.Location.Y + (txtBúsqueda.Height * 2));
             dvgVariablePrestamo.Height = (dvgVariablePrestamo.Height * 2);
             groupBox1.Height = tabControlAdmin.Height/2 - 50;
@@ -814,14 +829,28 @@ namespace ACOPEDH
             gbAportaciones.Location = new Point(bttGráfica.Location.X + bttGráfica.Width - gbAportaciones.Width, bttGráfica.Location.Y + (bttGráfica.Height *2));
             gbPréstamos.Location = new Point(gbAportaciones.Location.X + gbAportaciones.Width - gbPréstamos.Width, gbAportaciones.Location.Y + gbAportaciones.Height + 10);
             gbAhorros.Location = new Point(gbPréstamos.Location.X, gbAportaciones.Location.Y);
-            cbTransacción.Location = new Point(gbAhorros.Location.X, bttGráfica.Location.Y + bttGráfica.Height + 10);
-            labTTran.Location = new Point(cbTransacción.Location.X, cbTransacción.Location.Y - cbTransacción.Height);
+            cbTransacción.Location = new Point(gbAhorros.Location.X, (bttGráfica.Location.Y + bttGráfica.Height + 10));
+            labTTran.Location = new Point(cbTransacción.Location.X, (cbTransacción.Location.Y - cbTransacción.Height));
             dgvTransacciones.Location = new Point(dtDesde.Location.X, cbTransacción.Location.Y);
-            dgvTransacciones.Size = new Size(labTTran.Location.X - dgvTransacciones.Location.X -20, dgvBúsqueda.Height);
-            if(this.WindowState == FormWindowState.Normal)
+            dgvTransacciones.Size = new Size((labTTran.Location.X - dgvTransacciones.Location.X -20), dgvBúsqueda.Height);
+            pbInicioOne.Location = new Point(dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y);
+            pbInicioOne.Size = new Size((dgvBúsqueda.Width * 2) / 5, (dgvBúsqueda.Height / 2));
+            pbInicioOne.Padding = new Padding(5, 5, 5, 5);
+            pbInicioTwo.Location = new Point((dgvBúsqueda.Location.X + pbInicioOne.Width), dgvBúsqueda.Location.Y);
+            pbInicioTwo.Size = new Size((dgvBúsqueda.Width * 3) / 5, dgvBúsqueda.Height / 2);
+            pbInicioTwo.Padding = new Padding(5, 5, 5, 5);
+            pbInicioThree.Location = new Point(dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y + pbInicioOne.Height);
+            pbInicioThree.Size = new Size(dgvBúsqueda.Width, dgvBúsqueda.Height / 2);
+            pbInicioThree.Padding = new Padding(5, 5, 5, 5);
+            if (this.WindowState == FormWindowState.Normal)
             {
                 tabControlAdmin.Size = new Size(panelConfig.Size.Width, (PAdministrar.Location.Y + PAdministrar.Size.Height) - dgvBúsqueda.Location.Y);
                 dgvTransacciones.Size = new Size(labTTran.Location.X - dgvTransacciones.Location.X - 20, (PAdministrar.Location.Y + PAdministrar.Size.Height) - PInicio.Location.Y);
+                pbInicioThree.Size = new Size(dgvBúsqueda.Width, (PAdministrar.Location.Y + PAdministrar.Size.Height) - (pbInicioOne.Location.Y + pbInicioOne.Size.Height));
+            }
+            else
+            {
+
             }
             //bttSalir.Location = bttRealizarPago.Location;
             //bttSalir.Size = bttRealizarPago.Size;
@@ -1219,7 +1248,18 @@ namespace ACOPEDH
                 m.Result = (IntPtr)HTCAPTION;
 
         }
+
+        private void pictureBox5_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
         #endregion
+
         #region Cambio de Fecha
         private void dtDesde_ValueChanged(object sender, EventArgs e)
         {
