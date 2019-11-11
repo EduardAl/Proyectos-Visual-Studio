@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data;
-using System.Drawing;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace ACOPEDH
 {
@@ -1220,66 +1220,6 @@ namespace ACOPEDH
             this.Close();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void groupBox3_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void labContraseña_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbContraseña_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labCNueva_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labCConfirmar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtConfContraseña_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtNuevaContraseña_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PBMostrar2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PBMostrar3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox4_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void dtHasta_ValueChanged(object sender, EventArgs e)
         {
             dtDesde.MaxDate = dtHasta.Value;
@@ -1322,9 +1262,6 @@ namespace ACOPEDH
         {
             bttMin.BackColor = Color.FromArgb(35, 45, 129);
         }
-
-
-
         private void bttMin_MouseLeave(object sender, EventArgs e)
         {
             bttMin.BackColor = Seleccionado;
