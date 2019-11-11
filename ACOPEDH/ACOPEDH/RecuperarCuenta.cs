@@ -212,7 +212,7 @@ namespace ACOPEDH
             if (m.Msg == WM_NCHITTEST && (int)m.Result == HTCLIENT)     // drag the form
                 m.Result = (IntPtr)HTCAPTION;
 
-        }
+            }
 
         #endregion
         #region Pintar Bordes

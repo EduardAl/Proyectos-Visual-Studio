@@ -169,6 +169,7 @@ namespace ACOPEDH
                 PConfiguración.ForeColor = Fuente;
                 //Mostrando
                 panelConfig.Visible = true;
+                //bttSalir.Visible = true;
             }
         }
         private void PEstadoAsociación_Click(object sender, EventArgs e)
@@ -311,6 +312,7 @@ namespace ACOPEDH
             bttAportar.Visible = false;
             bttAgregarAsociado.Visible = false;
             bttDatosAsociado.Visible = false;
+            //bttSalir.Visible = false;
 
             //Configuración
             panelConfig.Visible = false;
@@ -336,8 +338,6 @@ namespace ACOPEDH
         private void Editar()
         {
             editdata = true;
-            PBMostrar2.Visible = !false;
-            PBMostrar3.Visible = !false;
             if (!editpass)
             {
                 txtNombreActual.Text = Globales.gbNombre_Usuario;
@@ -721,6 +721,8 @@ namespace ACOPEDH
             //Elementos
             Titulo.Location = new Point(((Width - (pictureBox1.Height + pictureBox1.Location.X)) / 2) - (Titulo.Width / 2) + pictureBox1.Width +
                 pictureBox1.Location.X, pictureBox1.Location.Y + 40);
+            bttAgregarAsociado.Location = new Point(bttAgregarAsociado.Location.X, Titulo.Location.Y + (Titulo.Size.Height * 3));
+     bttCrearCuenta.Location = new Point(bttAgregarAsociado.Location.X, Titulo.Location.Y + (Titulo.Size.Height * 3)); 
             //if (this.WindowState == FormWindowState.Normal)
             //{
             //    PInicio.Location = new Point(pictureBox1.Location.X, PInicio.Location.Y);
@@ -768,9 +770,11 @@ namespace ACOPEDH
             dgvBúsqueda.Location = new Point(labBuscar.Location.X, txtBúsqueda.Location.Y + (txtBúsqueda.Height * 2));
             dataGridView1.Location = dgvBúsqueda.Location;
             dataGridView1.Size = new Size(dgvBúsqueda.Size.Width, dgvBúsqueda.Size.Height);
+            panelConfig.Location = dgvBúsqueda.Location;
+            panelConfig.Size = new Size(dgvBúsqueda.Size.Width, (PAdministrar.Location.Y + PAdministrar.Height) - dgvBúsqueda.Location.Y);
             //}
-            tabControlAdmin.Size = new Size(panelConfig.Size.Width - 50, panelConfig.Size.Height - 50);
-            tabControlAdmin.Location = panelConfig.Location;
+            tabControlAdmin.Size = new Size(panelConfig.Size.Width - 50, dgvBúsqueda.Size.Height);
+            tabControlAdmin.Location = dgvBúsqueda.Location;
             //dgvPersonasA.Height = 668;y
             //Botones
             labHasta.Location = new Point(labDesde.Location.X + dtDesde.Width + 5, labDesde.Location.Y);
@@ -783,14 +787,21 @@ namespace ACOPEDH
             bttRetirar.Location = bttDatosAsociado.Location = bttAmortizacion.Location;
             bttRealizarPago.Location = new Point(dgvBúsqueda.Location.X, dgvBúsqueda.Location.Y + dgvBúsqueda.Height + 18);
             bttAbono.Location = bttRealizarPago.Location;
-            bttGráfica.Location = new Point(bttCrearCuenta.Location.X, dtDesde.Location.Y);
-            gbAportaciones.Location = new Point(bttGráfica.Location.X + bttGráfica.Width - gbAportaciones.Width, bttGráfica.Location.Y + (bttGráfica.Height * 2)+10);
+            bttGráfica.Location = new Point(bttCrearCuenta.Location.X, labDesde.Location.Y);
+            gbAportaciones.Location = new Point(bttGráfica.Location.X + bttGráfica.Width - gbAportaciones.Width, bttGráfica.Location.Y + (bttGráfica.Height *2));
             gbPréstamos.Location = new Point(gbAportaciones.Location.X + gbAportaciones.Width - gbPréstamos.Width, gbAportaciones.Location.Y + gbAportaciones.Height + 10);
             gbAhorros.Location = new Point(gbPréstamos.Location.X, gbAportaciones.Location.Y);
             cbTransacción.Location = new Point(gbAhorros.Location.X, bttGráfica.Location.Y + bttGráfica.Height + 10);
             labTTran.Location = new Point(cbTransacción.Location.X, cbTransacción.Location.Y - cbTransacción.Height);
-            dgvTransacciones.Location = new Point(dtDesde.Location.X, labTTran.Location.Y);
-            dgvTransacciones.Size = new Size(labTTran.Location.X - dgvTransacciones.Location.X -20, this.Height - dgvTransacciones.Location.Y - 40);
+            dgvTransacciones.Location = new Point(dtDesde.Location.X, cbTransacción.Location.Y);
+            dgvTransacciones.Size = new Size(labTTran.Location.X - dgvTransacciones.Location.X -20, dgvBúsqueda.Height);
+            if(this.WindowState == FormWindowState.Normal)
+            {
+                tabControlAdmin.Size = new Size(panelConfig.Size.Width, (PAdministrar.Location.Y + PAdministrar.Size.Height) - dgvBúsqueda.Location.Y);
+                dgvTransacciones.Size = new Size(labTTran.Location.X - dgvTransacciones.Location.X - 20, (PAdministrar.Location.Y + PAdministrar.Size.Height) - PInicio.Location.Y);
+            }
+            //bttSalir.Location = bttRealizarPago.Location;
+            //bttSalir.Size = bttRealizarPago.Size;
             Refresh();
 
             //tabControlAdmin.Size = new Size(panelConfig.Size.Width - 50, panelConfig.Size.Height -50);
@@ -828,8 +839,8 @@ namespace ACOPEDH
                 Validaciones.IsNullOrEmpty(ref txtNuevaContraseña, ref errorProvider1) &&
                 Validaciones.IsNullOrEmpty(ref txtConfContraseña, ref errorProvider1) &&
                 Validaciones.validar_contraseñas(txtNuevaContraseña, ref errorProvider1) &&
-                Validaciones.claves_iguales(txtNuevaContraseña, txtConfContraseña, ref errorProvider1)
-                )
+                Validaciones.claves_iguales(txtNuevaContraseña, txtConfContraseña, ref errorProvider1))   
+
             {
                 if (!(Globales.gbNombre_Usuario == txtNombreActual.Text.Trim() && Globales.gbApellido_Usuario == txtApellidoActual.Text.Trim() &&
                     Globales.gbCorreo == txtCorreoElectrónicoNuevo.Text.Trim() && (Globales.gbClaveUsuario == txtNuevaContraseña.Text.Trim() ||
@@ -936,9 +947,9 @@ namespace ACOPEDH
         #region Pintar
         private void panelConfig_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawLine(new Pen(Brushes.Black, 3), 10, 32, panelConfig.Width - 10, 32);//23
-            e.Graphics.DrawLine(new Pen(Brushes.Black, 2), 10, 196, panelConfig.Width - 10, 196);//180
-            e.Graphics.DrawLine(new Pen(Brushes.Black, 2), 10, 347, panelConfig.Width - 10, 347);//331
+            //e.Graphics.DrawLine(new Pen(Brushes.Black, 3), 10, 32, panelConfig.Width - 10, 32);//23
+            //e.Graphics.DrawLine(new Pen(Brushes.Black, 2), 10, 196, panelConfig.Width - 10, 196);//180
+            //e.Graphics.DrawLine(new Pen(Brushes.Black, 2), 10, 347, panelConfig.Width - 10, 347);//331
         }
         private void Bordes_Paint(object sender, PaintEventArgs e)
         {
@@ -1195,6 +1206,76 @@ namespace ACOPEDH
         }
 
         private void lbContraseña_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvPersonasA_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void bttSalir_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void labContraseña_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbContraseña_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labCNueva_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labCConfirmar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtConfContraseña_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNuevaContraseña_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PBMostrar2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PBMostrar3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox4_Enter(object sender, EventArgs e)
         {
 
         }
